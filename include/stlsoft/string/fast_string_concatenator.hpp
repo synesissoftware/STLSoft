@@ -4,14 +4,14 @@
  * Purpose: Fast string concatenator.
  *
  * Created: 4th November 2003 (the time added to STLSoft libraries)
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Thanks:  Sean Kelly for picking up on my gratuitous use of pointers in
  *          the first implementation.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    11
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        156
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        157
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -688,7 +688,9 @@ inline fast_string_concatenator<S, C, T> operator +(C const lhs, fast_string_con
     return fast_string_concatenator<S, C, T>(lhs, rhs);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

@@ -4,11 +4,11 @@
  * Purpose:     Environment functions.
  *
  * Created:     31st October 2019
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      4
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,7 +139,9 @@ environment_variable_exists(
     return ximpl_stlsoft_environment_functions_hpp_::env_var_exists_(STLSOFT_NS_QUAL(c_str_ptr)(name));
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

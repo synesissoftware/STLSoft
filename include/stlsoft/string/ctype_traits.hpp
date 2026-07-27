@@ -4,11 +4,11 @@
  * Purpose:     Traits for ctype functions.
  *
  * Created:     1st April 2005
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_MAJOR     2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_MINOR     0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_REVISION  6
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_EDIT      32
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,7 +153,9 @@ struct ctype_traits<ss_char_w_t>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

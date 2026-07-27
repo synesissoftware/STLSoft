@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 1st July 2026
+ * Updated: 29th July 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -64,6 +64,7 @@ namespace {
     static void TEST__WINSTL_VER();
 #endif
 #ifdef STLSOFT_HAS_MFC
+
     static void TEST__MFCSTL_VER();
 #endif
 } // anonymous namespace
@@ -114,8 +115,9 @@ namespace {
 
 static void TEST__STLSOFT_VER()
 {
-	TEST_INT_EQ(_STLSOFT_VER_1_11_1_RC4, _STLSOFT_VER);
+	TEST_INT_EQ(_STLSOFT_VER_1_11_1_RC5, _STLSOFT_VER);
 }
+
 static void TEST__PLATFORMSTL_VER()
 {
 	TEST_INT_EQ(_PLATFORMSTL_VER_1_10_0_B02, _PLATFORMSTL_VER);

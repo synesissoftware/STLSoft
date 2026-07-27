@@ -4,11 +4,11 @@
  * Purpose:     is_class_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_REVISION    7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_EDIT        22
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,7 +154,9 @@ struct is_class_type
 
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

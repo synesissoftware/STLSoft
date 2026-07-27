@@ -5,11 +5,11 @@
  *          form via string access shims.
  *
  * Created: 6th April 2005
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   10
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       35
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -217,7 +217,9 @@ string_inserter(
     return make_string_insert_iterator(container);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
