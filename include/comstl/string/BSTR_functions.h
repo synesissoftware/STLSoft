@@ -4,11 +4,11 @@
  * Purpose: Contains classes and functions for dealing with BSTR strings.
  *
  * Created: 24th June 2002
- * Updated: 24th December 2024
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 9
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     108
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -735,7 +735,9 @@ bstr_compare(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
