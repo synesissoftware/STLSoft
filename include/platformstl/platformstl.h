@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 22nd August 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 7
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     62
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 8
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -135,12 +135,13 @@
 # define _PLATFORMSTL_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1 alpha 8) */
 # define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
 # define _PLATFORMSTL_VER_1_10_0_B01    0x010a0081  /*!< Version 1.10.0 alpha 2 (with STLSoft 1.11.1 rc 3) */
+# define _PLATFORMSTL_VER_1_10_0_B02    0x010a0082  /*!< Version 1.10.0 beta 2 (with STLSoft 1.11.1 rc 4) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
 #define _PLATFORMSTL_VER_REVISION   0
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_10_0_B01
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_10_0_B02
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -508,7 +509,9 @@ typedef WINSTL_NS_QUAL(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION && __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if !defined(__cplusplus)
  /* Nothing defined in C */
