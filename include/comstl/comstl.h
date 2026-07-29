@@ -159,12 +159,13 @@
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
 # define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1 alpha 8) */
 # define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1 alpha 17) */
+# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1 rc 5) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       10
-#define _COMSTL_VER_REVISION    3
-#define _COMSTL_VER             _COMSTL_VER_1_10_3
+#define _COMSTL_VER_REVISION    4
+#define _COMSTL_VER             _COMSTL_VER_1_10_4
 
 
 /* /////////////////////////////////////////////////////////////////////////
