@@ -1,4 +1,4 @@
-# STLSoft - Authors
+# STLSoft - Authors <!-- omit in toc -->
 
 ## Major Contributors:
 

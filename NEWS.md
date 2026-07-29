@@ -1,4 +1,4 @@
-# STLSoft - News
+# STLSoft - News <!-- omit in toc -->
 
 
 | Date                  | News Item                                                 |

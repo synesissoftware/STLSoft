@@ -1,4 +1,4 @@
-# STLSoft - History
+# STLSoft - History <!-- omit in toc -->
 
 
 ----
