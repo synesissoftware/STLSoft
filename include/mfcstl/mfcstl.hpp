@@ -5,13 +5,13 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Thanks:  To Cláudio Albuquerque for suggesting the inclusion of atlstr.h.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  6
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      111
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  7
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -133,12 +133,13 @@
 # define _MFCSTL_VER_1_6_1_B01  0x01060181  /*!< Version 1.6.1 beta 1 (with STLSoft 1.10.1 beta 1) */
 # define _MFCSTL_VER_1_6_1_B02  0x01060182  /*!< Version 1.6.1 beta 2 (with STLSoft 1.10.1 beta 26) */
 # define _MFCSTL_VER_1_6_1      0x010601ff  /*!< Version 1.6.1 (with STLSoft 1.11.1 alpha 8) */
+# define _MFCSTL_VER_1_6_2      0x010602ff  /*!< Version 1.6.2 (with STLSoft 1.11.1 rc 4) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _MFCSTL_VER_MAJOR       1
 #define _MFCSTL_VER_MINOR       6
-#define _MFCSTL_VER_REVISION    1
-#define _MFCSTL_VER             _MFCSTL_VER_1_6_1
+#define _MFCSTL_VER_REVISION    2
+#define _MFCSTL_VER             _MFCSTL_VER_1_6_2
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -530,7 +531,9 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
  */
 #define mfcstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
