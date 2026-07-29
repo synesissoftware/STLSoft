@@ -5,11 +5,11 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   5
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       30
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -686,7 +686,9 @@ protected:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

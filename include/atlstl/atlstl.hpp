@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      126
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -136,12 +136,13 @@
 # define _ATLSTL_VER_1_7_1_B03  0x01070183  /*!< Version 1.7.1 beta 3 (with STLSoft 1.10.1 beta 10) */
 # define _ATLSTL_VER_1_7_1_B04  0x01070184  /*!< Version 1.7.1 beta 4 (with STLSoft 1.10.1 beta 26) */
 # define _ATLSTL_VER_1_7_1      0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.11.1 alpha 8) */
+# define _ATLSTL_VER_1_7_2      0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.11.1 rc 5) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ATLSTL_VER_MAJOR       1
 #define _ATLSTL_VER_MINOR       7
-#define _ATLSTL_VER_REVISION    1
-#define _ATLSTL_VER             _ATLSTL_VER_1_7_1
+#define _ATLSTL_VER_REVISION    2
+#define _ATLSTL_VER             _ATLSTL_VER_1_7_2
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -579,7 +580,9 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 }
 #endif /* _ATL_VER < 0x0700 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
