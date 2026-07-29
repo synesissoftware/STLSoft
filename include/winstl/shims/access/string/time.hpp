@@ -4,13 +4,13 @@
  * Purpose: Helper functions for the Windows time types.
  *
  * Created: 2nd December 2004
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Thanks:  David Wang, for spotting an error in one of the shim functions.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    18
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        78
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1202,7 +1202,9 @@ operator <<(
 
 #endif /* WINSTL_UDATE_DEFINED */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

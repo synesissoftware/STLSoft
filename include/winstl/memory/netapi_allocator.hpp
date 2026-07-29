@@ -4,11 +4,11 @@
  * Purpose:     netapi_allocator class.
  *
  * Created:     23rd March 2006
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_REVISION 9
-# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     31
+# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,7 +228,9 @@ inline ws_bool_t operator !=(const netapi_allocator<T> &/* lhs */, const netapi_
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

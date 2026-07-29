@@ -4,11 +4,11 @@
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     11th March 2024
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_REVISION   5
-# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       37
+# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,7 +117,9 @@ const COLORREF  bluegreen       =   RGB(  0, 128, 128); /*!< Colour constant */
 const COLORREF  darkgrey        =   RGB(128, 128, 128); /*!< Colour constant */
 const COLORREF  lightgrey       =   RGB(192, 192, 192); /*!< Colour constant */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -4,11 +4,11 @@
  * Purpose:     System information functions.
  *
  * Created:     5th November 2014
- * Updated:     11th March 2024
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -456,7 +456,9 @@ get_user_name(
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

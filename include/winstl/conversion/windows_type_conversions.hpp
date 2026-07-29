@@ -4,11 +4,11 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     1st June 2003
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR    1
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION 6
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     51
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,9 @@
 # include <shellapi.h>
 #endif /* !STLSOFT_INCL_H_SHELLAPI */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -208,7 +210,9 @@ typedef STLSOFT_NS_QUAL(union_caster)<HICON, LRESULT, false>        LRESULT2HICO
  typedef union_caster<HTREEITEM, LONG, false>                       LONG2HTREEITEM;
 #endif /* _INC_COMMCTRL || _COMMCTRL_H */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

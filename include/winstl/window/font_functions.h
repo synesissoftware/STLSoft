@@ -4,11 +4,11 @@
  * Purpose: Error functions.
  *
  * Created: 20th October 1994
- * Updated: 24th December 2024
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT     150
+# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT     151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,7 +169,9 @@ set_window_font(
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

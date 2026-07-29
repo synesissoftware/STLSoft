@@ -4,11 +4,11 @@
  * Purpose:     WinSTL thread-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_MAJOR    5
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_EDIT     61
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,7 +101,9 @@ namespace winstl_project
 
 typedef threadtimes_stopwatch                   threadtimes_counter;
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
