@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      57
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -112,12 +112,13 @@
 # define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1 beta 1 (STLSoft 1.10.1 b1) */
 # define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1 beta 2 (STLSoft 1.10.1 beta 26) */
 # define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1 alpha 8) */
+# define _ACESTL_VER_1_2_2     0x010202ff  /*!< Version 1.2.2 (with STLSoft 1.11.1 rc 5) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
 #define _ACESTL_VER_MINOR      2
-#define _ACESTL_VER_REVISION   1
-#define _ACESTL_VER            _ACESTL_VER_1_2_1
+#define _ACESTL_VER_REVISION   2
+#define _ACESTL_VER            _ACESTL_VER_1_2_2
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -517,7 +518,9 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
  */
 #define acestl_gen_opaque(htype)                       STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

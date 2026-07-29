@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  10
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      54
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -327,7 +327,9 @@ inline S& operator <<(S& s, ACE_Time_Value const& t)
     return s;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
