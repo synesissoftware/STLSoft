@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/STLSoft.svg)](https://github.com/synesissoftware/STLSoft/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/STLSoft)](https://github.com/synesissoftware/STLSoft/commits/master)
-[![CMake on multiple platforms](https://github.com/synesissoftware/STLSoft/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/synesissoftware/STLSoft/actions/workflows/cmake-multi-platform.yml)
+[![CMake on multiple platforms](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml)
 
 
 ## Table of Contents <!-- omit in toc -->
