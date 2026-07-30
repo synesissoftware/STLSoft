@@ -104,7 +104,7 @@
 * Wholesale trivial/minor tidying;
 
 
-## 1.11.1-beta2 - 21st February 2025
+## 1.11.1-beta2 - 23rd February 2025
 
 * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
 * added **inetstl/util/uds_helpers.h** that provides Unix Domain Sockets helper functions;
@@ -426,8 +426,10 @@
 
 ## 1.10.3 - 12th January 2024
 
+* warnings fix (Issue 14);
 * include/unixstl/filesystem/path_functions/classify_functions_X_.h - GCC / Clang warning;
 * include/winstl/filesystem/path_functions/classify_functions_X_.h - GCC / Clang warning;
+* fixed sub-project versions (Issue 15);
 * include/comstl/comstl.h - ~ fixed sub-project version;
 * include/inetstl/inetstl.h - ~ fixed sub-project version;
 * include/unixstl/unixstl.h - ~ fixed sub-project version;
@@ -454,29 +456,29 @@
 * porting back significant and necessary fixes from STLSoft-1.10;
 
 
-## 1.10.1 - December 13th 2023
+## 1.10.1 - 13th December 2023
 
 * CMake support;
 
 
-## 1.10.1 beta 33 - April 26th 2021
+## 1.10.1 beta 33 - 26th April 2021
 
 * Clang compatibility;
 
 
-## 1.10.1 beta 32 - April 26th 2021
+## 1.10.1 beta 32 - 26th April 2021
 
 * GCC/Clang compatibility;
 
 
-## 1.10.1 beta 31 - April 2nd 2021
+## 1.10.1 beta 31 - 2nd April 2021
 
 * Clang compatibility;
 * provision for customising inline (in C compilation);
 * warnings;
 
 
-## 1.10.1 beta 30 - March 29th 2021
+## 1.10.1 beta 30 - 29th March 2021
 
 * Clang compatibility;
 * warnings;
@@ -673,7 +675,7 @@
 * try_parse_to_bool() semantics firmed up;
 
 
-## 1.10.1 beta 9 - 11th June 2018
+## 1.10.1 beta 9 - 12th June 2018
 
 * Borland compatibility;
 
@@ -2137,7 +2139,7 @@
 * removal of unnecessary string access shim;
 
 
-## 1.9.68 - 18th January 2009
+## 1.9.68 - 19th January 2009
 
 * fix defect, and updated docs, for stlsoft::must_init utility class template;
 * include/stlsoft/util/must_init.hpp:;
@@ -2494,7 +2496,7 @@
 * winstl/clipboard/clipboard_scope.hpp - tightening up of exception handling code;
 
 
-## 1.9.42 - 13th May 2008
+## 1.9.42 - 17th May 2008
 
 * more Win64-compatibility modifications;
 * more Safe String library modifications;
@@ -2629,7 +2631,7 @@
 * fixes to stlsoft::must_init for built-in types to support assignment;
 
 
-## 1.9.30 - 3rd March 2008
+## 1.9.30 - 3rd April 2008
 
 * tidying of distribution;
 
