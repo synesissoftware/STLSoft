@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - main
+      - dev
       - ver
       - rc4
       - rc5
