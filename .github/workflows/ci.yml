@@ -5,10 +5,17 @@ on:
     branches:
       - master
       - dev
-      - ver
+      - rc1
+      - rc2
+      - rc3
       - rc4
       - rc5
+      - update
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 env:
   BUILD_TYPE: Release
@@ -20,14 +27,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - id: linux-gcc
-            os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
           - id: linux-clang
             os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
+          - id: linux-gcc
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
           - id: macos-clang
             os: macos-latest
             c_compiler: clang
