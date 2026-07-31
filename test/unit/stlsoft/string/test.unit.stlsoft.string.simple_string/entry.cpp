@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 20th March 2025
+ * Updated: 31st July 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1224,6 +1224,24 @@ static void test_resize()
         XTESTS_TEST_BOOLEAN_FALSE(s.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+    }
+
+    // Grow a non-empty string past its current capacity (exercises the
+    // realloc path that previously over-read the source buffer).
+    {
+        string_t    s("abcdef");
+
+        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
+        XTESTS_TEST_INTEGER_EQUAL(6u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", s);
+
+        s.resize(1000u, '~');
+
+        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
+        XTESTS_TEST_INTEGER_EQUAL(1000u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abcdef", s, 6);
+        XTESTS_TEST_CHARACTER_EQUAL('~', s[6]);
+        XTESTS_TEST_CHARACTER_EQUAL('~', s[999]);
     }
 }
 
