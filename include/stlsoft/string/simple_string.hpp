@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 20th March 2025
+ * Updated: 31st July 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      284
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      285
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -3902,16 +3902,47 @@ basic_simple_string<C, T, A>::resize(
     {
         if (len < cch)
         {
-            /* Expand the string, using self-assignemt. */
-            assign(c_str(), cch);
+            /* Ensure storage for cch characters (+ nul), preserving the
+             * existing len characters. Note: must NOT use assign(c_str(),
+             * cch) — that would copy cch characters from a source of only
+             * len characters (heap over-read).
+             */
 
-            traits_type::assign(char_pointer_from_member_pointer_(m_buffer) + len, cch - len, ch);
+            if (ss_nullptr_k == m_buffer)
+            {
+                m_buffer = alloc_buffer_(ss_nullptr_k, cch, 0);
+            }
+            else
+            {
+                string_buffer* const buffer = string_buffer_from_member_pointer_(m_buffer);
+
+                if (cch >= buffer->capacity)
+                {
+                    member_pointer const new_buffer = alloc_buffer_(buffer->contents, cch, len);
+
+                    destroy_buffer_(m_buffer);
+
+                    m_buffer = new_buffer;
+                }
+            }
+
+            if (ss_nullptr_k != m_buffer)
+            {
+                traits_type::assign(char_pointer_from_member_pointer_(m_buffer) + len, cch - len, ch);
+
+                string_buffer* const buffer = string_buffer_from_member_pointer_(m_buffer);
+
+                buffer->length = cch;
+                buffer->contents[buffer->length] = traits_type::to_char_type(0);
+            }
         }
+        else
+        {
+            string_buffer* const buffer = string_buffer_from_member_pointer_(m_buffer);
 
-        string_buffer* buffer = string_buffer_from_member_pointer_(m_buffer);
-
-        buffer->length = cch;
-        buffer->contents[buffer->length] = traits_type::to_char_type(0);
+            buffer->length = cch;
+            buffer->contents[buffer->length] = traits_type::to_char_type(0);
+        }
     }
 
     STLSOFT_ASSERT(is_valid());
