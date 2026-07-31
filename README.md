@@ -1,6 +1,6 @@
-# STLSoft 1.11 <!-- omit in toc -->
+# STLSoft <!-- omit in toc -->
 
-*... robust, lightweight, cross-platform, template software ...*
+… robust, lightweight, cross-platform, template software …
 
 
 ![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white)
@@ -8,56 +8,58 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/STLSoft.svg)](https://github.com/synesissoftware/STLSoft/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/STLSoft)](https://github.com/synesissoftware/STLSoft/commits/master)
-[![CMake on multiple platforms](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml)
+[![CI](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml)
 
 
 ## Table of Contents <!-- omit in toc -->
 
-* [Introduction](#introduction)
-* [Installation](#installation)
-* [Components](#components)
-  * [Subprojects](#subprojects)
-  * [Libraries](#libraries)
-* [Examples](#examples)
-* [Project Information](#project-information)
-  * [Where to get help](#where-to-get-help)
-  * [Contribution guidelines](#contribution-guidelines)
-  * [Dependencies](#dependencies)
-    * [Test-only dependencies](#test-only-dependencies)
-  * [Related projects](#related-projects)
-  * [License](#license)
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Components](#components)
+  - [Subprojects](#subprojects)
+  - [Libraries](#libraries)
+- [Examples](#examples)
+- [Project Information](#project-information)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 
 ## Introduction
 
-**STLSoft** is a suite of C and C++ libraries that provides:
+**STLSoft** is a suite of C and C++ libraries (currently the **1.11** line) that provides:
+
 * STL extensions;
-* General-purpose utility components;
-* Facades over operating-system and technology-specific APIs.
+* general-purpose utility components;
+* facades over operating-system and technology-specific APIs;
 
-The overarching characteristic of STLSoft is that it is *lightweight*. That sounds great, but what does it actually mean? Specifically, the **STLSoft** libraries share the following characteristics:
+The overarching characteristic of **STLSoft** is that it is *lightweight*. Specifically, the libraries share the following characteristics:
 
-* "**100% header-only**" - all components within the libraries are entirely defined within header files, meaning that users need only `#include` the requisite files to access the functionality;
-* "**Intersecting Conformance**" -  similar, but not-identical, components from different projects (e.g. **UNIXSTL** and **WinSTL**) are _structurally conformant_ (they share compatible syntax, and corresponding semantics, without being related by type) only to the degree of the intersection of identical functionality, rather than employing significant additional functionality to achieve total structural conformance. For example, though both the `unixstl::filesystem_traits` and `winstl::filesystem_traits` traits classes provide the `stat()` and `fstat()` operations, `lstat()` is provided only by the former;
-* **Maximum Cohesion with Minimal Coupling** - achieved by extensive use of generalising mechanisms, such as "*shims*", e.g. types that manipulate character strings are able to interact with arbitrary string types, not just `char const*` and `std::string`;
-* **Very High Efficiency** - along with *Robustness*, all components in the libraries are implemented with a view to maximum _Efficiency_. This is aided by the extensive use of efficient utility classes, such as `stlsoft::auto_buffer` and `stlsoft::scoped_handle`;
+* **100% header-only** — all components are entirely defined within header files, so users need only `#include` the requisite files to access the functionality;
+* **Intersecting Conformance** — similar, but not identical, components from different sub-projects (e.g. **UnixSTL** and **WinSTL**) are *structurally conformant* (compatible syntax and corresponding semantics, without being related by type) only to the degree of the intersection of identical functionality, rather than employing significant additional functionality to achieve total structural conformance. For example, though both `unixstl::filesystem_traits` and `winstl::filesystem_traits` provide `stat()` and `fstat()`, `lstat()` is provided only by the former;
+* **Maximum Cohesion with Minimal Coupling** — achieved by extensive use of generalising mechanisms such as *shims*; e.g. types that manipulate character strings can interact with arbitrary string types, not just `char const*` and `std::string`;
+* **Very High Efficiency** — along with *Robustness*, components are implemented with a view to maximum *Efficiency*, aided by efficient utility classes such as `stlsoft::auto_buffer` and `stlsoft::scoped_handle`;
 
-**NOTE**: It is important to understand that _**STLSoft** is not a framework_. Each library component is as "thin" as possible to provide its given function. The intent is that STLSoft components are used as building blocks for writing higher level components - applications, classes, libraries, servers. **STLSoft** has been used extensively in the development of software in all these guises.
+**NOTE**: **STLSoft** is *not* a framework. Each library component is as thin as possible for its given function. The intent is that **STLSoft** components are used as building blocks for higher-level software — applications, classes, libraries, servers. **STLSoft** has been used extensively in all these guises.
+
+Further reading: [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md), [http://www.stlsoft.org/](http://www.stlsoft.org/).
 
 
 ## Installation
 
-There are three main ways to install **STLSoft**:
+Detailed instructions — via **CMake**, and via environment variables (archive or clone) — are provided in the accompanying [INSTALL.md](./INSTALL.md) file, including an explanation of the top-level build scripts.
 
-1. As downloaded archive, then using environment variables;
-2. Cloning project, then using environment variables;
-3. Cloning project, then installing via CMake;
+In short, there are three main ways to install **STLSoft**:
+
+1. As a downloaded archive, then using environment variables;
+2. Cloning the project, then using environment variables;
+3. Cloning the project, then installing via **CMake**;
 
 Option 3 is recommended.
 
-See [INSTALL.md](./INSTALL.md) for details of these options, and also for an explanation of the top-level build scripts in the project.
-
-> **IMPORTANT**: If you are installing **STLSoft** _for the first time_ you **must** do the **CMake**-based build step specifying that you do _not_ want to run tests - by specifying the flags `-E` and `-T` to **prepare_cmake.sh** - otherwise you will end up with a circular dependency on **xTests** (which depends on **STLSoft**). [INSTALL.md](./INSTALL.md) explains this in detail.
+> **IMPORTANT**: If you are installing **STLSoft** *for the first time*, you **must** do the **CMake**-based prepare step specifying that you do *not* want to run tests — by passing the flags `-E` and `-T` to **prepare_cmake.sh** — otherwise you will hit a circular dependency on **xTests** (which depends on **STLSoft**). [INSTALL.md](./INSTALL.md) explains the full first-time ordering.
 
 
 ## Components
@@ -71,8 +73,11 @@ The following significant sub-projects are provided:
 
 * **STLSoft** - general-purpose components and base-level features;
 * **ACESTL** - components to do with **ACE** framework;
+* **ATLSTL** - components to do with **Active Template Library (ATL)**;
 * **COMSTL** - components to do with **Component Object Model (COM)**;
+* **InetSTL** - components to do with **internet APIs**;
 * **MFCSTL** - components to do with **Microsoft Foundation Classes (MFC)**;
+* **PlatformSTL** - components that provide platform-related elements, from **UnixSTL** or **WinSTL** as appropriate, according to structural conformance;
 * **UnixSTL** - components to do with **Unix** operating system APIs;
 * **WinSTL** - components to do with **Windows** operating system APIs;
 
@@ -121,49 +126,58 @@ As **STLSoft** approaches an official release we will provide increasing informa
 
 ## Examples
 
-Examples are provided in the ```examples``` directory, along with a markdown description for each. A detailed list TOC of them is provided in [EXAMPLES.md](./EXAMPLES.md).
+Examples are provided in the `examples` directory, along with a markdown description for each. A detailed catalogue is in [EXAMPLES.md](./EXAMPLES.md). After a **CMake** build, `./run_all_examples.sh` exercises matching example programs (see [INSTALL.md](./INSTALL.md)).
 
 
 ## Project Information
 
+
 ### Where to get help
 
-[GitHub Page](https://github.com/synesissoftware/STLSoft "GitHub Page")
+* [GitHub Page](https://github.com/synesissoftware/STLSoft);
+* [GitHub Issues](https://github.com/synesissoftware/STLSoft/issues);
+* [FAQ.md](./FAQ.md);
+* [HOW_YOU_CAN_HELP.md](./HOW_YOU_CAN_HELP.md);
+* [KNOWN_ISSUES.md](./KNOWN_ISSUES.md);
+* [http://www.stlsoft.org/](http://www.stlsoft.org/);
 
 
 ### Contribution guidelines
 
 Defect reports, feature requests, and pull requests are welcome on https://github.com/synesissoftware/STLSoft.
 
-If you'd like to help out with the project, please raise an issue via [GitHub Issues Page](https://github.com/synesissoftware/STLSoft/issues "GitHub Issues Page") - you'll be very welcome!
+If you'd like to help out with the project, please raise an issue via [GitHub Issues](https://github.com/synesissoftware/STLSoft/issues) — you'll be very welcome! See also [HOW_YOU_CAN_HELP.md](./HOW_YOU_CAN_HELP.md).
 
 
 ### Dependencies
 
-There are no dependencies for installation and use of **STLSoft**.
-
-
-#### Test-only dependencies
-
-The component-/unit-tests depend on the **xTests** project:
-
-* [xTests](http://github.com/synesissoftware/xTests/)
+| Dependency | Role | Required? |
+| ---------- | ---- | --------- |
+| — | Installation and use of **STLSoft** (100% header-only) | ✅ None |
+| [**xTests**](https://github.com/synesissoftware/xTests) | Component- / unit-tests (`BUILD_TESTING`) | ⚪ Tests only |
 
 
 ### Related projects
 
-Projects that depend on **STLSoft** - though for some it is only for test - include:
+Projects that depend on **STLSoft** — though for some it is only for tests — include:
 
-* [**b64**](https://github.com/synesissoftware/b64)
-* [**cstring**](https://github.com/synesissoftware/cstring)
-* [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism)
-* [**FastFormat**](https://github.com/synesissoftware/FastFormat)
-* [**libpath**](https://github.com/synesissoftware/libpath)
-* [**Pantheios**](https://github.com/synesissoftware/Pantheios)
-* [**recls**](https://github.com/synesissoftware/recls)
-* [**shwild**](https://github.com/synesissoftware/shwild)
-* [**UNIXem**](https://github.com/synesissoftware/UNIXem)
-* [**xTests**](https://github.com/synesissoftware/xTests)
+* [**2be**](https://github.com/synesissoftware/2be) (tests only);
+* [**b64**](https://github.com/synesissoftware/b64) (C++ API only);
+* [**CLASP**](https://github.com/synesissoftware/CLASP);
+* [**cstring**](https://github.com/synesissoftware/cstring) (tests only);
+* [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) (tests only);
+* [**FastFormat**](https://github.com/synesissoftware/FastFormat);
+* [**libCLImate**](https://github.com/synesissoftware/libCLImate);
+* [**libpath**](https://github.com/synesissoftware/libpath) (tests only);
+* [**Pantheios**](https://github.com/synesissoftware/Pantheios);
+* [**Pantheios.Extras.DiagUtil**](https://github.com/synesissoftware/Pantheios.Extras.DiagUtil);
+* [**Pantheios.Extras.Main**](https://github.com/synesissoftware/Pantheios.Extras.Main);
+* [**Pantheios.Extras.xHelpers**](https://github.com/synesissoftware/Pantheios.Extras.xHelpers);
+* [**recls**](https://github.com/synesissoftware/recls);
+* [**shwild**](https://github.com/synesissoftware/shwild) (C++ API only);
+* [**UNIXem**](https://github.com/synesissoftware/UNIXem);
+* [**VOLE**](https://github.com/synesissoftware/VOLE) (tests only);
+* [**xTests**](https://github.com/synesissoftware/xTests);
 
 
 ### License
