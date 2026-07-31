@@ -1,12 +1,13 @@
 # STLSoft - Authors <!-- omit in toc -->
 
-## Major Contributors:
 
-* Matt Wilson ([mwsis](https://github.com/mwsis)) - primary contributor of most of the libraries
-* Pablo Aguilar - author of the Windows ToolHelp Library
+## Major Contributors
+
+* Matt Wilson ([mwsis](https://github.com/mwsis)) — primary contributor of most of the libraries;
+* Pablo Aguilar — author of the Windows ToolHelp Library;
 
 
-## Defect reports, fixes and suggestions (for which we are very grateful):
+## Defect reports, fixes and suggestions (for which we are very grateful)
 
 * Adi Shavit
 * Allan McLellan
