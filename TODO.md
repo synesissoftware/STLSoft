@@ -1,21 +1,21 @@
 # STLSoft - TODO <!-- omit in toc -->
 
-> **NOTE**: some of the following are very old, stretching back even into the 2000s, so this list will be updated a lot over the coming months. The most glaring of these is to ensure compatiblity with C++-14/17/20 as is necessary.
+> **NOTE**: some of the following are very old, stretching back even into the 2000s, so this list will be updated a lot over the coming months. The most glaring of these is to ensure compatibility with C++14/17/20/23/26 as is necessary.
 
 
 ## Table of Contents <!-- omit in toc -->
 
-* [Functional improvements](#functional-improvements)
-  * [Code changes (1.10.x)](#code-changes-110x)
-  * [Code changes (1.11.x)](#code-changes-111x)
-  * [Code changes (1.12+)](#code-changes-112)
-  * [abandoned TODOs](#abandoned-todos)
-* [Performance improvements](#performance-improvements)
-* [Packaging improvements](#packaging-improvements)
-  * [Administrative (1.10.x)](#administrative-110x)
-  * [Administrative (1.11.x)](#administrative-111x)
-  * [Building/executing automated tests (1.11.x)](#buildingexecuting-automated-tests-111x)
-  * [Administrative (1.12+)](#administrative-112)
+- [Functional improvements](#functional-improvements)
+  - [Code changes (1.10.x)](#code-changes-110x)
+  - [Code changes (1.11.x)](#code-changes-111x)
+  - [Code changes (1.12+)](#code-changes-112)
+  - [abandoned TODOs](#abandoned-todos)
+- [Performance improvements](#performance-improvements)
+- [Packaging improvements](#packaging-improvements)
+  - [Administrative (1.10.x)](#administrative-110x)
+  - [Administrative (1.11.x)](#administrative-111x)
+  - [Building/executing automated tests (1.11.x)](#buildingexecuting-automated-tests-111x)
+  - [Administrative (1.12+)](#administrative-112)
 
 
 ## Functional improvements
@@ -69,19 +69,7 @@
 
 ### Code changes (1.12+)
 
-* [ ] C++ 11/14/17/20/23/26 compatibility:
-  * [ ] C++ 11 compatibility:
-    * [ ] T.B.C.;
-  * [ ] C++ 14 compatibility:
-    * [ ] T.B.C.;
-  * [ ] C++ 17 compatibility:
-    * [ ] T.B.C.;
-  * [ ] C++ 20 compatibility:
-    * [ ] T.B.C.;
-  * [ ] C++ 23 compatibility:
-    * [ ] T.B.C.;
-  * [ ] C++ 26 compatibility:
-    * [ ] T.B.C.;
+* [ ] C++ 11/14/17/20/23/26 compatibility — inventory remaining gaps and record concrete per-standard fixes here (partial work already tracked under **Code changes (1.11.x)**);
 * [ ] syslog in variadic templates, a la `winstl::output_debug_line()`;
 * [ ] Simple thread-pool (bring from **SS** work circa 2000);
 * [ ] include/*stl*/error => include/*stl*/diagnostics;
@@ -115,7 +103,7 @@
 ### Administrative (1.10.x)
 
 * [ ] GitHub README.md image features - version, build, etc;
-* [ ] ~~STLSoft 1.10-related blog posts (focusing on new components);
+* [ ] STLSoft 1.10-related blog posts (focusing on new components);
 * [ ] fix Doxygen build;
 * [x] ~~~CMake~~~ - ✅;
 
@@ -126,10 +114,10 @@
 * [ ] convert to https://github.com/synesissoftware/STLSoft;
 * [ ] take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 * [ ] Documentation improvements;
-* [ ] update the downloads on SourceForge;
-* [ ] sort the SourceForge site;
+* [-] ~~~update the downloads on SourceForge~~~ - ❌ (canonical distribution is now GitHub);
+* [-] ~~~sort the SourceForge site~~~ - ❌ (canonical presence is now GitHub);
 * [ ] STLSoft 1.11-related blog posts (focusing on new components);
-* [ ] Website - currenty http://stlsoft.org/ is *VERY* out of date;
+* [ ] Website - currently http://stlsoft.org/ is *VERY* out of date;
 * [ ] Set-up donation;
 * [ ] Ensure all permutations (in below table) work;
 
