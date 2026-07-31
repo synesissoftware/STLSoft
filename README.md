@@ -64,64 +64,61 @@ Option 3 is recommended.
 
 ## Components
 
-The components in **STLSoft** are provided in _sub-projects_, and in _libraries_.
+The components in **STLSoft** are organised as *sub-projects* (technology / platform facets) that share *libraries* (functional areas). Many libraries appear in more than one sub-project with *intersecting conformance* — for example **filesystem** and **dl** under **PlatformSTL**, **UnixSTL**, and **WinSTL**.
 
 
 ### Subprojects
 
 The following significant sub-projects are provided:
 
-* **STLSoft** - general-purpose components and base-level features;
-* **ACESTL** - components to do with **ACE** framework;
-* **ATLSTL** - components to do with **Active Template Library (ATL)**;
-* **COMSTL** - components to do with **Component Object Model (COM)**;
-* **InetSTL** - components to do with **internet APIs**;
-* **MFCSTL** - components to do with **Microsoft Foundation Classes (MFC)**;
-* **PlatformSTL** - components that provide platform-related elements, from **UnixSTL** or **WinSTL** as appropriate, according to structural conformance;
-* **UnixSTL** - components to do with **Unix** operating system APIs;
-* **WinSTL** - components to do with **Windows** operating system APIs;
+* **STLSoft** — general-purpose components and base-level features, such as `stlsoft::auto_buffer<>`, `stlsoft::scoped_handle<>`, and `STLSOFT_ASSERT()`;
+* **ACESTL** — components for the **ACE** framework, such as `acestl::message_queue_sequence<>`;
+* **ATLSTL** — components for the **Active Template Library (ATL)**, such as `atlstl::get_MemberValue()`;
+* **COMSTL** — components for the **Component Object Model (COM)**, such as `comstl::interface_cast` and `comstl::enumerator_sequence<>`;
+* **InetSTL** — components for internet APIs, such as `inetstl::session` and `inetstl::ftpdir_sequence`;
+* **MFCSTL** — components for the **Microsoft Foundation Classes (MFC)**, such as `mfcstl::CArray_cadaptor<>`;
+* **PlatformSTL** — platform-selected facades over **UnixSTL** or **WinSTL** (by structural conformance), such as `platformstl::readdir_sequence` and `platformstl::stopwatch`;
+* **UnixSTL** — components for **Unix** operating-system APIs, such as `unixstl::glob_sequence` and `unixstl::dl_call()`;
+* **WinSTL** — components for **Windows** operating-system APIs, such as `winstl::clipboard_scope` and `winstl::findfile_sequence`;
 
 
 ### Libraries
 
-The significant libraries include:
+The significant libraries include (examples are illustrative, not exhaustive):
 
-* **algorithms** - T.B.C.
-* **automation** - T.B.C.
-* **clipboard** - T.B.C.
-* **collections** - T.B.C.
-* **containers** - general- and special-purpose containers, such as `stlsoft::frequency_map<>`;
-* **controls** - T.B.C.
-* **conversion** - T.B.C.
-* **diagnostics** - T.B.C.
-* **dl** - dynamic-library loading and invocation (for both **Unix** and **Windows**);
-* **filesystem** - T.B.C.
-* **function_adaptors** - T.B.C.
-* **functional** - T.B.C.
-* **iterator** - T.B.C.
-* **locale** - T.B.C.
-* **memory** - T.B.C.
-* **meta** - T.B.C.
-* **network** - T.B.C.
-* **performance** - T.B.C.
-* **process** - T.B.C.
-* **quality** - T.B.C.
-* **reactor** - T.B.C.
-* **registry** - T.B.C.
-* **resource** - T.B.C.
-* **security** - T.B.C.
-* **shell** - T.B.C.
-* **shims** - T.B.C.
-* **smartptr** - T.B.C.
-* **speech** - T.B.C.
-* **string** - T.B.C.
-* **synch** - T.B.C.
-* **system** - T.B.C.
-* **time** - T.B.C.
-* **typelib** - T.B.C.
-* **view** - T.B.C.
-
-As **STLSoft** approaches an official release we will provide increasing information on the above _sub-projects_ and _libraries_.
+* **algorithms** — POD and unordered-sequence algorithms, such as `stlsoft::pod_copy_n()` and `stlsoft::find_first_duplicate()`;
+* **automation** — **ATL** Automation property and enumerator helpers, such as `atlstl::get_MemberValue()`;
+* **clipboard** — Windows clipboard RAII and enumeration, such as `winstl::clipboard_scope`;
+* **collections** — sequence and veneer adaptors (arrays, COM enumerators, ACE queues, MFC containers), such as `stlsoft::array_view<>` and `comstl::enumerator_sequence<>`;
+* **containers** — general- and special-purpose containers, such as `stlsoft::frequency_map<>` and `stlsoft::unicode_point_map`;
+* **controls** — STL sequences over Win32 common controls, such as `winstl::listview_sequence`;
+* **conversion** — casts and converters, such as `stlsoft::sap_cast<>()`, `stlsoft::format_bytes()`, and `comstl::interface_cast`;
+* **diagnostics** — stopwatches, timing histograms, and debug emitters, such as `platformstl::stopwatch` and `stlsoft::doomgram`;
+* **dl** — dynamic-library loading and invocation (**Unix** and **Windows**), such as `platformstl::dl_module` and `winstl::dl_call()`;
+* **filesystem** — directory/glob sequences, paths, and mapped files, such as `platformstl::readdir_sequence`, `unixstl::glob_sequence`, and `platformstl::memory_mapped_file`;
+* **functional** — function/method adaptors and predicates, such as `stlsoft::noop_function`;
+* **iterator** — output and transforming iterators, such as `stlsoft::FILE_iterator` and `stlsoft::string_concatenator_iterator`;
+* **locale** — scoped C locale changes, such as `stlsoft::locale_scope`;
+* **memory** — buffers and allocators, such as `stlsoft::auto_buffer<>` and `comstl::task_allocator<>`;
+* **meta** — compile-time type traits and selectors, such as `stlsoft::is_same_type<>`;
+* **network** — internet/ACE session and connection facades, such as `inetstl::session` and `inetstl::connection`;
+* **performance** — performance counters (often aliased to platform stopwatches), such as `platformstl::performance_counter`;
+* **process** — Windows process-creation helpers, such as `winstl::create_process()`;
+* **quality** — contract-enforcement and coverage macros, such as `STLSOFT_COVER_MARK_LINE()`;
+* **reactor** — **ACE** reactor custom-event handling, such as `acestl::custom_event_handler`;
+* **registry** — Windows registry keys, values, and sequences, such as `winstl::reg_key` and `winstl::reg_value_sequence`;
+* **resource** — Windows resource-loading helpers, such as `winstl::load_custom_resource()`;
+* **security** — COM/Win security initialisation and token/ACL views, such as `comstl::CoInitSecurity()` and `winstl::token_information<>`;
+* **shell** — Windows Shell helpers, such as `winstl::browse_for_folder()`;
+* **shims** — generalising access, attribute, and logical shims (overloads across sub-projects), such as `stlsoft::c_str_ptr()` and `stlsoft::get_ptr()`;
+* **smartptr** — scoped and reference-counted handles, such as `stlsoft::scoped_handle<>` and `stlsoft::ref_ptr<>`;
+* **speech** — lightweight SAPI helpers, such as `comstl::sapi_speak()`;
+* **string** — lightweight strings, views, and tokenisers, such as `stlsoft::basic_simple_string<>` and `stlsoft::string_tokeniser<>`;
+* **synch** — mutexes, spin locks, and lock scopes, such as `platformstl::thread_mutex` and `stlsoft::lock_scope<>`;
+* **system** — environment, home directory, and process-id sequences, such as `platformstl::home_directory` and `platformstl::pid_sequence`;
+* **time** — time formatting and comparison helpers, such as `stlsoft::fast_strftime()`;
+* **typelib** — COM type-library helpers, such as `comstl::TypeInfo_resource_scope`;
+* **view** — transforming views, such as `stlsoft::member_selector_view<>`;
 
 
 ## Examples
