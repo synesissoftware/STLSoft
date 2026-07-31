@@ -1,6 +1,19 @@
 # **STLSoft** Changes <!-- omit in toc -->
 
 
+## 1.11.1-rc5 - 2nd August 2026
+
+* Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);
+* Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;
+* Project documentation modernisation — **README.md**, **FAQ.md**, **INSTALL.md**, **EXAMPLES.md**, **KNOWN_ISSUES.md**, **TODO.md**, **HOW_YOU_CAN_HELP.md**, **AUTHORS.md**; repository URLs **STLSoft-1.11** → **STLSoft**;
+* **EXAMPLES.md** — replaced “T.B.C.” placeholders with concrete summaries;
+* **README.md** — fleshed out Components (sub-projects / libraries); CI badge targets **ci.yml**; badge set standardised;
+* CI (**ci.yml**) — concurrency cancel-in-progress; branch triggers include **dev** / **rc*** / **update**; matrix cell order;
+* CMake — minimum version **3.20**; **BUILD_TESTING** option; project homepage URL; patch/revision version regex;
+* Project boilerplate — **.gitattributes**, **.vimrc**, **.vscode/settings.json**;
+* **test.unit.versions** — aligned with **1.11.1-rc5** (**_STLSOFT_VER_1_11_1_RC5**);
+
+
 ## 1.11.1-rc4 - 29th July 2026
 
 * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);

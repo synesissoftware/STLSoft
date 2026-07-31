@@ -23,17 +23,17 @@ There are three options for installing **STLSoft**, depending on how you obtain 
 
 If you obtain the latest release as an archive from the [**STLSoft** GitHub Releases](https://github.com/synesissoftware/STLSoft/releases) page (legacy archives may also still appear on [SourceForge](https://sourceforge.net/projects/stlsoft/)):
 
-1. Download the latest distribution, e.g. [**STLSoft-1.11.1-rc4.zip**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/1.11.1-rc4.zip);
+1. Download the latest distribution, e.g. [**STLSoft-1.11.1-rc5.zip**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/1.11.1-rc5.zip);
 
 2. Unzip it to a directory of your choice, as in:
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip STLSoft-1.11.1-rc4.zip
+$ unzip STLSoft-1.11.1-rc5.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc4`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc5`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 
 ### Cloning project, using environment variables
@@ -98,16 +98,16 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 Unless you are certain that your projects, and all the projects upon which they depend, all use **STLSoft** via **CMake** then it is recommended that you define an `STLSOFT` environment variable.
 
 For example, if you're using **UNIX** and you install to
-**/usr/local/stlsoft/STLSoft-1.11.1-rc4**
+**/usr/local/stlsoft/STLSoft-1.11.1-rc5**
 then you should set the environment variable `STLSOFT` to
-**/usr/local/stlsoft/STLSoft-1.11.1-rc4**
-in which case the file `stlsoft/stlsoft.h`, for example, will be located in `/usr/local/stlsoft/STLSoft-1.11.1-rc4/include/stlsoft/stlsoft.h`.
+**/usr/local/stlsoft/STLSoft-1.11.1-rc5**
+in which case the file `stlsoft/stlsoft.h`, for example, will be located in `/usr/local/stlsoft/STLSoft-1.11.1-rc5/include/stlsoft/stlsoft.h`.
 
 Conversely, if you're using **Windows** and you install to
-**C:\3pty\STLSoft\STLSoft-1.11.1-rc4**
+**C:\3pty\STLSoft\STLSoft-1.11.1-rc5**
 then you should set the environment variable `STLSOFT` to
-**C:\3pty\STLSoft\STLSoft-1.11.1-rc4**
-in which case the file `stlsoft/stlsoft.h`, for example, will be located in `C:\3pty\STLSoft\STLSoft-1.11.1-rc4\include\stlsoft\stlsoft.h`.
+**C:\3pty\STLSoft\STLSoft-1.11.1-rc5**
+in which case the file `stlsoft/stlsoft.h`, for example, will be located in `C:\3pty\STLSoft\STLSoft-1.11.1-rc5\include\stlsoft\stlsoft.h`.
 
 The makefiles / project files of several other open-source projects expect this symbol, including:
 
