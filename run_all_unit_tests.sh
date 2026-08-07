@@ -17,6 +17,24 @@ Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
+# colours
+
+if command -v tput > /dev/null; then
+
+  SisClr_Blue=${FG_BLUE:-$(tput setaf 4)}
+  SisClr_Red=${FG_BLUE:-$(tput setaf 1)}
+  SisClr_Bold=${FD_BOLD:-$(tput bold)}
+  SisClr_None=${FD_NONE:-$(tput sgr0)}
+else
+
+  SisClr_Blue=
+  SisClr_Red=
+  SisClr_Bold=
+  SisClr_None=
+fi
+
+
+# ##########################################################
 # command-line handling
 
 while [[ $# -gt 0 ]]; do
@@ -168,7 +186,7 @@ if [ $status -eq 0 ]; then
 
     if [ $ListOnly -ne 0 ]; then
 
-      echo "would execute $f:"
+      echo "would execute $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
       continue
     fi
@@ -179,7 +197,7 @@ if [ $status -eq 0 ]; then
     fi
     if [ $Verbosity -ge 2 ]; then
 
-      echo "executing $f:"
+      echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
     fi
 
     if $f --verbosity=$Verbosity; then
