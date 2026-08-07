@@ -65,6 +65,7 @@ jobs:
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
       with-ace: false
+      with-mfc: false
     secrets: inherit
 
   cell-ace:
@@ -85,6 +86,28 @@ jobs:
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
       with-ace: true
+      with-mfc: false
+    secrets: inherit
+
+  cell-mfc:
+    name: CI MFC (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: windows-cl-mfc
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      with-ace: false
+      with-mfc: true
     secrets: inherit
 
   install-smoke:

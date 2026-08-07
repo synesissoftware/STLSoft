@@ -1,5 +1,28 @@
 
 
+
+# Apply MFC link settings for targets created in the current directory
+# scope. Call before define_automated_test_program /
+# define_example_program when the target includes MFC headers.
+# **CMAKE_MFC_FLAG** is read at add_executable() time (Visual Studio
+# generators); **_AFXDLL** is required for shared MFC on Make/Ninja+cl
+# as well.
+macro(stlsoft_prepare_mfc_target)
+
+	if(NOT MFC_FOUND)
+
+		message(FATAL_ERROR "stlsoft_prepare_mfc_target() requires MFC_FOUND")
+	endif()
+
+	set(CMAKE_MFC_FLAG ${STLSOFT_MFC_FLAG})
+
+	if(STLSOFT_MFC_SHARED)
+
+		add_compile_definitions(_AFXDLL)
+	endif()
+endmacro(stlsoft_prepare_mfc_target)
+
+
 function(define_automated_test_program program_name entry_point_source_name)
 
 	add_executable(${program_name}

@@ -100,9 +100,30 @@ endif(WIN32)
 
 if(MFC_FOUND)
 
-	add_compile_definitions(STLSOFT_HAS_MFC)
+	# Shared MFC (/MD + _AFXDLL) unless the project is configured for the
+	# static CRT (**MSVC_USE_MT**), in which case static MFC is required.
+	#
+	# **CMAKE_MFC_FLAG** / **_AFXDLL** are applied only to MFC-consuming
+	# targets (see **test/unit/mfcstl** and **test.unit.versions**). Setting
+	# them project-wide would force every subsequent MSVC executable to link
+	# MFC. Without them on those targets, `find_package(MFC)` can succeed
+	# while mfcstl tests fail to link — the historical GHA failure mode.
 
-	message("-- using Microsoft Foundation Classes")
+	if(MSVC_USE_MT)
+
+		set(STLSOFT_MFC_FLAG 1)
+		set(STLSOFT_MFC_SHARED OFF)
+
+		message("-- using Microsoft Foundation Classes (static; MSVC_USE_MT)")
+	else(MSVC_USE_MT)
+
+		set(STLSOFT_MFC_FLAG 2)
+		set(STLSOFT_MFC_SHARED ON)
+
+		message("-- using Microsoft Foundation Classes (shared)")
+	endif(MSVC_USE_MT)
+
+	add_compile_definitions(STLSOFT_HAS_MFC)
 endif(MFC_FOUND)
 
 
