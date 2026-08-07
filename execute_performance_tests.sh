@@ -6,6 +6,8 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 [[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
 MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 ExpandWidth=0
 ListOnly=0
@@ -85,7 +87,7 @@ status=0
 if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
-    echo "Executing make and then running all performance test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} performance test programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -110,10 +112,10 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all performance test programs"
+    echo "Listing all ${ProjectName} performance test programs"
   else
 
-    echo "Running all performance test programs"
+    echo "Running all ${ProjectName} performance test programs"
   fi
 
   for f in $(find "$CMakeDir" -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print | sort)
