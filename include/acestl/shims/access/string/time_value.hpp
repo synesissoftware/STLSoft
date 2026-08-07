@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  11
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      55
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  12
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF
+# include <stlsoft/util/string/snprintf.h>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF */
 
 #ifndef STLSOFT_INCL_ACE_H_TIME_VALUE
 # define STLSOFT_INCL_ACE_H_TIME_VALUE
@@ -127,6 +130,57 @@ namespace acestl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 namespace acestl_time_access_string_util
 {
+    inline int invoke_ACE_OS_snprintf(ACE_TCHAR s2[], as_size_t size, ACE_TCHAR const* fmt, as_char_a_t const* s1, long ms)
+    {
+# ifndef ACE_USES_WCHAR
+        return stlsoft_C_snprintf(s2, size, fmt, s1, ms);
+# else /* ? ACE_USES_WCHAR */
+        stlsoft::auto_buffer<as_char_a_t>   buff(1 + size);
+        int                                 res;
+
+        s2[0] = '\0';
+
+        res = stlsoft_C_snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+
+        if (0 < res)
+        {
+            ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
+
+            ::mbstowcs(s2, buff.data(), res);
+            s2[res] = '\0';
+        }
+
+        return res;
+# endif /* ACE_USES_WCHAR */
+    }
+
+# ifdef ACE_USES_WCHAR
+    inline int invoke_ACE_OS_snprintf(as_char_a_t s2[], as_size_t size, as_char_w_t const* fmt, as_char_a_t const* s1, long ms)
+    {
+        return stlsoft_C_snprintf(s2, size, ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+    }
+# else /* ? ACE_USES_WCHAR */
+    inline int invoke_ACE_OS_snprintf(as_char_w_t s2[], as_size_t size, as_char_a_t const* fmt, as_char_a_t const* s1, long ms)
+    {
+        stlsoft::auto_buffer<as_char_a_t>   buff(1 + size);
+        int                                 res;
+
+        s2[0] = '\0';
+
+        res = stlsoft_C_snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+
+        if (0 < res)
+        {
+            ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
+
+            ::mbstowcs(&s2[2], buff.data(), res);
+            s2[res] = '\0';
+        }
+
+        return res;
+    }
+# endif /* ACE_USES_WCHAR */
+
     template <ss_typename_param_k S>
     void stream_insert(S& s, ACE_Time_Value const& t)
     {
@@ -140,44 +194,12 @@ namespace acestl_time_access_string_util
 
         ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s1));
 
-        len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), ACE_TEXT_CHAR_TO_TCHAR(s1), us / 1000);
+        len = invoke_ACE_OS_snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
 
         ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s2));
 
         s.write(&s2[0], len);
     }
-
-    inline int invoke_ACE_OS_snprintf(ACE_TCHAR s2[], as_size_t size, ACE_TCHAR const* fmt, as_char_a_t const* s1, long ms)
-    {
-        return ACE_OS::snprintf(s2, size, fmt, ACE_TEXT_CHAR_TO_TCHAR(s1), ms);
-    }
-
-# ifdef ACE_USES_WCHAR
-    inline int invoke_ACE_OS_snprintf(as_char_a_t s2[], as_size_t size, as_char_w_t const* fmt, as_char_a_t const* s1, long ms)
-    {
-        return ACE_OS::snprintf(s2, size, ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
-    }
-# else /* ? ACE_USES_WCHAR */
-    inline int invoke_ACE_OS_snprintf(as_char_w_t s2[], as_size_t size, as_char_a_t const* fmt, as_char_a_t const* s1, long ms)
-    {
-        stlsoft::auto_buffer<as_char_a_t>   buff(1 + size);
-        int                                 res;
-
-        s2[0] = '\0';
-
-        res = ACE_OS::snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
-
-        if (0 < res)
-        {
-            ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
-
-            ::mbstowcs(&s2[2], buff.data(), res);
-            s2[res] = '\0';
-        }
-
-        return res;
-    }
-# endif /* ACE_USES_WCHAR */
 
     template <ss_typename_param_k C>
     inline
