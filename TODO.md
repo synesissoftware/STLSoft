@@ -9,7 +9,7 @@
   - [Code changes (1.10.x)](#code-changes-110x)
   - [Code changes (1.11.x)](#code-changes-111x)
   - [Code changes (1.12+)](#code-changes-112)
-  - [abandoned TODOs](#abandoned-todos)
+  - [Abandoned TODOs](#abandoned-todos)
 - [Performance improvements](#performance-improvements)
 - [Packaging improvements](#packaging-improvements)
   - [Administrative (1.10.x)](#administrative-110x)
@@ -23,9 +23,9 @@
 
 ### Code changes (1.10.x)
 
-* [ ] GitHub README.md badges - version, build, etc;
-* [ ] STLSoft-related blog posts (focusing on new components);
-* [ ] fix Doxygen build;
+* [x] ~~~GitHub **README.md** badges - version, build, etc.~~~ - ✅;
+* [-] ~~~STLSoft-related blog posts (focusing on new components)~~~ - ❌ (tracked under **Administrative (1.11.x)**);
+* [-] ~~~fix Doxygen build~~~ - ❌ (tracked under **Administrative (1.11.x)**);
 * [x] ~~~CMake~~~ - ✅;
 * [ ] `invoke_ACE_OS_snprintf` should be implemented in terms of `stlsoft_C_snprintf()`;
 * [ ] `invalid_integral_range_policy::operator ()` should be implemented in terms of `stlsoft_C_snprintf()`;
@@ -57,7 +57,7 @@
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 * [x] ~~~`unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`~~~ - ✅;
 * [x] ~~~`unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`~~~ - ✅;
-* [ ] standardise (via **INTERNAL**) of following:
+* [x] ~~~standardise (via **INTERNAL**) of following~~~ - ✅:
   * [x] ~~~`ExpandEnvironmentStringsA/W()`~~~ - ✅;
   * [x] ~~~`GetEnvironmentVariableA/W()`~~~ - ✅;
   * [x] ~~~`GetModuleFileNameA/W()`~~~ - ✅;
@@ -86,7 +86,7 @@
 * [ ] standard names of integer-to-string and string-to-integer to allow for coming enhancements for multiple bases;
 
 
-### abandoned TODOs
+### Abandoned TODOs
 
 * [-] ~~~custom radix in integer_to_string - abandoned for performance reasons, and obviated by new conversion functions (oct, dec, hex) in 1.10~~~ - ❌;
 
@@ -102,49 +102,54 @@
 
 ### Administrative (1.10.x)
 
-* [ ] GitHub README.md image features - version, build, etc;
-* [ ] STLSoft 1.10-related blog posts (focusing on new components);
-* [ ] fix Doxygen build;
+* [x] ~~~GitHub **README.md** image features - version, build, etc.~~~ - ✅;
+* [-] ~~~STLSoft 1.10-related blog posts (focusing on new components)~~~ - ❌ (tracked under **Administrative (1.11.x)**);
+* [-] ~~~fix Doxygen build~~~ - ❌ (tracked under **Administrative (1.11.x)**);
 * [x] ~~~CMake~~~ - ✅;
 
 
 ### Administrative (1.11.x)
 
-* [ ] flesh out [**README.md**](./README.md);
-* [ ] convert to https://github.com/synesissoftware/STLSoft;
+* [x] ~~~flesh out [**README.md**](./README.md)~~~ - ✅;
+* [x] ~~~convert to https://github.com/synesissoftware/STLSoft~~~ - ✅;
+* [x] ~~~project documentation modernisation — **INSTALL.md**, **FAQ.md**, **EXAMPLES.md**, **KNOWN_ISSUES.md**, **HOW_YOU_CAN_HELP.md**, **AUTHORS.md**, **CHANGES.md**, **NEWS.md**~~~ - ✅;
+* [x] ~~~modular GitHub Actions (**ci.yml** / **ci-cell.yml**, install-smoke, canonical push branches)~~~ - ✅;
+* [x] ~~~`.sis/` project identity (**project_name.txt**, **script_info_lines.txt**) and helper-script **ProjectName** wiring~~~ - ✅;
+* [x] ~~~**ctest_cmake.sh**; MSYS auto-MinGW in **prepare_cmake.sh**~~~ - ✅;
+* [x] ~~~CMake **CMP0177**; **cmake/BuildType.cmake** default-type CACHE fix~~~ - ✅;
 * [ ] take down https://github.com/synesissoftware/STLSoft-1.10-delta;
-* [ ] Documentation improvements;
-* [-] ~~~update the downloads on SourceForge~~~ - ❌ (canonical distribution is now GitHub);
-* [-] ~~~sort the SourceForge site~~~ - ❌ (canonical presence is now GitHub);
+* [ ] fix Doxygen build (no **Doxyfile** / **generate_doxygen.sh** yet; deeper API docs still open — see [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md));
 * [ ] STLSoft 1.11-related blog posts (focusing on new components);
 * [ ] Website - currently http://stlsoft.org/ is *VERY* out of date;
 * [ ] Set-up donation;
-* [ ] Ensure all permutations (in below table) work;
+* [ ] Expand CI / local coverage beyond the default **C17** / **C++20** OS×compiler matrix (see dialect inventory below);
 
 
 ### Building/executing automated tests (1.11.x)
 
+GitHub Actions (**ci.yml**) currently exercises the project default language levels (**C17** / **C++20** in **CMakeLists.txt**) on **clang**, **gcc**, **MinGW**, and **MSVC** across macOS, Linux, and Windows (plus install-smoke). The table below remains a manual dialect-compatibility inventory — cells are not all covered by CI.
+
 | C++   | C   | Clang 15.0 (macOS, ARM64) | Clang 17.0 (macOS, x64) | GCC 11.4 (Linux)  | GCC 13.2 (Linux)  | GCC 14.2 (Linux)  | GCC 14.2 (MinGW, Windows) | Visual C++ 17.x (Windows) |
 | ----- | --- | :-----------------------: | :---------------------: | :---------------: | :---------------: | :---------------: | :-----------------------: | :-----------------------: |
 | 23    | 23  |                           | ✅                       |                   | ✅                 | ✅                 |                           |                           |
-| 23    | 17  |                           | ✅                       |                   |                   |                   |                           |                              |
-| 20    | 23  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 20    | 17  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
-| 20    | 11  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 20    | 99  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 20    | 90  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 17    | 17  |                           | ✅                       | ✅                | ✅                 | ✅                 |                            | ✅                           |
-| 17    | 11  |                           | ✅                       |                   |                   |                   | ✅                         |                       |
-| 17    | 99  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 17    | 90  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 14    | 11  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
-| 14    | 99  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 14    | 90  |                           | ✅                       |                   |                   |                   |                           | ✅                            |
-| 11    | 11  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
-| 11    | 99  |                           | ✅                       |                   |                   | ✅                 |                           |                             |
-| 11    | 90  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 98    | 99  |                           | ✅                       | ✅                | ✅                 | ✅                 | ✅                          | ✅                            |
-| 98    | 90  |                           | ✅                       |                   | ❌                 | ❌                 |                           | ✅                            |
+| 23    | 17  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 20    | 23  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 20    | 17  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                         |
+| 20    | 11  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 20    | 99  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 20    | 90  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 17    | 17  |                           | ✅                       | ✅                 | ✅                 | ✅                 |                           | ✅                         |
+| 17    | 11  |                           | ✅                       |                   |                   |                   | ✅                         |                           |
+| 17    | 99  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 17    | 90  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 14    | 11  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                         |
+| 14    | 99  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 14    | 90  |                           | ✅                       |                   |                   |                   |                           | ✅                         |
+| 11    | 11  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                         |
+| 11    | 99  |                           | ✅                       |                   |                   | ✅                 |                           |                           |
+| 11    | 90  |                           | ✅                       |                   |                   |                   |                           |                           |
+| 98    | 99  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                         |
+| 98    | 90  |                           | ✅                       |                   | ❌                 | ❌                 |                           | ✅                         |
 
 
 ### Administrative (1.12+)
