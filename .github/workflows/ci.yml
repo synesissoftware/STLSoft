@@ -5,12 +5,15 @@ on:
     branches:
       - master
       - dev
+      - boilerplate
+      - idiomatic
+      - update
+      - update.2
       - rc1
       - rc2
       - rc3
       - rc4
       - rc5
-      - update
   pull_request:
 
 concurrency:
