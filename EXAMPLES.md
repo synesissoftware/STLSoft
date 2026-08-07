@@ -1,4 +1,4 @@
-# STLSoft Examples <!-- omit in toc -->
+# STLSoft - Examples <!-- omit in toc -->
 
 | Name | Source & Description | Platform | Summary |
 | ---- | -------------------- | -------- | ------- |
