@@ -65,6 +65,7 @@ jobs:
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
       with-ace: false
+      with-atl: false
       with-mfc: false
     secrets: inherit
 
@@ -86,6 +87,29 @@ jobs:
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
       with-ace: true
+      with-atl: false
+      with-mfc: false
+    secrets: inherit
+
+  cell-atl:
+    name: CI ATL (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: windows-cl-atl
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      with-ace: false
+      with-atl: true
       with-mfc: false
     secrets: inherit
 
@@ -107,6 +131,7 @@ jobs:
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
       with-ace: false
+      with-atl: false
       with-mfc: true
     secrets: inherit
 
@@ -157,6 +182,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
+              -DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
