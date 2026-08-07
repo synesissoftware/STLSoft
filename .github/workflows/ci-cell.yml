@@ -247,11 +247,19 @@ jobs:
         run: |
           set -euo pipefail
           find build -type f \
-            \( -path '*/examples/*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
             ! -path '*/CMakeFiles/*' \
             ! -name '*.a' \
             ! -name '*.d' \
@@ -302,11 +310,19 @@ jobs:
         run: |
           set -euo pipefail
           find build -type f \
-            \( -path '*/examples/*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
             ! -path '*/CMakeFiles/*' \
             ! -name '*.a' \
             ! -name '*.d' \
@@ -357,11 +373,19 @@ jobs:
         run: |
           set -euo pipefail
           find build -type f \
-            \( -path '*/examples/*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
             ! -path '*/CMakeFiles/*' \
             ! -name '*.a' \
             ! -name '*.d' \
@@ -413,11 +437,19 @@ jobs:
         run: |
           set -euo pipefail
           find build -type f \
-            \( -path '*/examples/*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
             ! -path '*/CMakeFiles/*' \
             ! -name '*.a' \
             ! -name '*.d' \
@@ -469,11 +501,19 @@ jobs:
         run: |
           set -euo pipefail
           find build -type f \
-            \( -path '*/examples/*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
             ! -path '*/CMakeFiles/*' \
             ! -name '*.a' \
             ! -name '*.d' \

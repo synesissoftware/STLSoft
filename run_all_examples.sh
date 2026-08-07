@@ -206,7 +206,36 @@ if [ $status -eq 0 ]; then
     echo "Running all ${ProjectName} example programs"
   fi
 
-  for f in $(find "$CMakeDir/examples" -type f -exec test -x {} \; -print | sort)
+  # Exclude CMake / build artefacts that can become +x after artifact restore.
+  ExamplePrograms=( $(find "$CMakeDir/examples" -type f \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.cmake' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    ! -name 'CMakeLists.txt' \
+    ! -name 'CTestTestfile.cmake' \
+    ! -name 'Makefile' \
+    ! -name 'cmake_install.cmake' \
+    -exec test -x {} \; -print | sort) )
+
+  echo "discovered ${#ExamplePrograms[@]} example program(s)"
+
+  if [ ${#ExamplePrograms[@]} -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no matching executable example programs under '$CMakeDir/examples' (execute bits missing after artifact download?)"
+
+    if [ $ListOnly -eq 0 ]; then
+
+      status=1
+    fi
+  fi
+
+  for f in "${ExamplePrograms[@]}"
   do
 
     if is_skipped_interactive_example "$f"; then
