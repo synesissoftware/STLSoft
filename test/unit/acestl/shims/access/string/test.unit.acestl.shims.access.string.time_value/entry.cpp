@@ -123,7 +123,7 @@ static void TEST_c_str_ptr_format_and_milliseconds()
 
     ACE_Time_Value const tv(sec, usec);
     stlsoft::basic_shim_string<char> const s = stlsoft::c_str_ptr_a(tv);
-    char const* const ptr = s.c_str();
+    char const* const ptr = s.data();
 
     TEST_INT_EQ(23u, s.size());
     TEST_INT_EQ(23, static_cast<int>(::strlen(ptr)));

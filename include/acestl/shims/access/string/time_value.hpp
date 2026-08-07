@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     20th March 2025
+ * Updated:     7th August 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  10
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      54
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  11
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,16 +133,16 @@ namespace acestl_time_access_string_util
         char                s1[20];
         ACE_TCHAR           s2[24];
 
-        long const          s   =   t.sec();
-        long const          us  =   t.usec();
-        struct tm* const    tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
-        as_size_t           len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
+        long const          secs    =   t.sec();
+        long const          us      =   t.usec();
+        struct tm* const    tm      =   ACE_OS::localtime(&static_cast<time_t const&>(secs));
+        as_size_t           len     =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
 
-        ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s1));
+        ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s1));
 
         len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), ACE_TEXT_CHAR_TO_TCHAR(s1), us / 1000);
 
-        ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s2));
+        ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s2));
 
         s.write(&s2[0], len);
     }
