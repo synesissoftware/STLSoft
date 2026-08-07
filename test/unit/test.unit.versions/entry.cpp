@@ -161,7 +161,7 @@ static void TEST__WINSTL_VER()
 
 static void TEST__MFCSTL_VER()
 {
-    TEST_INT_EQ(_MFCSTL_VER_1_6_1, MFCSTL_VER);
+    TEST_INT_EQ(_MFCSTL_VER_1_6_1, _MFCSTL_VER);
 }
 #endif
 
