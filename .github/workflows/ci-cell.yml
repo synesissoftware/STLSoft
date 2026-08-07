@@ -242,6 +242,26 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -path '*/examples/*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run examples
         shell: bash
         run: |
@@ -277,6 +297,26 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -path '*/examples/*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run unit tests
         shell: bash
         run: |
@@ -311,6 +351,26 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -path '*/examples/*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run component tests
         shell: bash
@@ -348,6 +408,26 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -path '*/examples/*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run scratch tests
         shell: bash
         run: |
@@ -383,6 +463,26 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -path '*/examples/*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run performance tests
         shell: bash
