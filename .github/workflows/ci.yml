@@ -11,6 +11,7 @@ on:
       - update.2
       - update.3
       - update.4
+      - ace
       - rc1
       - rc2
       - rc3
@@ -63,6 +64,27 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      with-ace: false
+    secrets: inherit
+
+  cell-ace:
+    name: CI ACE (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: linux-gcc-ace
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      with-ace: true
     secrets: inherit
 
   install-smoke:

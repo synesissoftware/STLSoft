@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: Release
+      with-ace:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -31,6 +35,10 @@ jobs:
       - name: Install Clang (Ubuntu)
         if: runner.os == 'Linux' && inputs.c-compiler == 'clang'
         run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
@@ -61,7 +69,8 @@ jobs:
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --config "${{ inputs.build-type }}" --parallel
             cmake --install "$STLINSTALL" --config "${{ inputs.build-type }}"
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
@@ -70,7 +79,8 @@ jobs:
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --parallel 2
             cmake --install "$STLINSTALL"
           else
@@ -80,7 +90,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --parallel
             cmake --install "$STLINSTALL"
           fi
@@ -129,13 +140,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            ACE_FLAG="-DNO_ACE=OFF"
+          else
+            ACE_FLAG="-DNO_ACE=ON"
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DNO_SHWILD=TRUE \
+              $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -145,7 +162,8 @@ jobs:
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DNO_SHWILD=TRUE \
+              $ACE_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -154,7 +172,8 @@ jobs:
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DNO_SHWILD=TRUE \
+              $ACE_FLAG
           fi
 
       - name: Build
@@ -184,6 +203,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
@@ -216,6 +239,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -246,6 +273,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
@@ -279,6 +310,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -310,6 +345,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'

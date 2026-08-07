@@ -151,6 +151,7 @@ If you'd like to help out with the project, please raise an issue via [GitHub Is
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
 | — | Installation and use of **STLSoft** (100% header-only) | ✅ None |
+| **ACE** | **ACESTL** examples / tests | ⚪ Optional (`NO_ACE` / **`--no-ace`**; `ACE` / `ACE_ROOT` or system package) |
 | [**xTests**](https://github.com/synesissoftware/xTests) | Component- / unit-tests (`BUILD_TESTING`) | ⚪ Tests only |
 
 

@@ -29,6 +29,7 @@
 
 * [ ] Remove **WTL**;
 * [ ] ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`;
+* [ ] CI: exercise **MFCSTL** on a Windows cell (drop / gate `CMAKE_DISABLE_FIND_PACKAGE_MFC`; confirm MSVC+MFC on the runner);
 
 
 ### 1.11.2
