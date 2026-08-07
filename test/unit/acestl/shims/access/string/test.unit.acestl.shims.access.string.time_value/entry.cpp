@@ -47,7 +47,6 @@ namespace {
     static void TEST_calls_possible();
     static void TEST_c_str_len();
     static void TEST_c_str_ptr_format_and_milliseconds();
-    static void TEST_deliberate_failure_for_GHA_observation();
 } // anonymous namespace
 
 
@@ -67,7 +66,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_calls_possible);
         XTESTS_RUN_CASE(TEST_c_str_len);
         XTESTS_RUN_CASE(TEST_c_str_ptr_format_and_milliseconds);
-        XTESTS_RUN_CASE(TEST_deliberate_failure_for_GHA_observation);
 
         XTESTS_PRINT_RESULTS();
 
@@ -164,12 +162,6 @@ static void TEST_c_str_ptr_format_and_milliseconds()
     TEST_INT_EQ(4, ::snprintf(expected_suffix, sizeof(expected_suffix), ".%03ld", msec));
 
     TEST_MS_EQ(expected_suffix, ptr + 19);
-}
-
-static void TEST_deliberate_failure_for_GHA_observation()
-{
-    /* Temporary: remove once GHA ACE unit-test failure reporting is confirmed. */
-    TEST_INT_EQ(0, 1);
 }
 
 } // anonymous namespace
