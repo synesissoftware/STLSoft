@@ -15,6 +15,24 @@ SkipInteractive=0
 
 
 # ##########################################################
+# colours
+
+if command -v tput > /dev/null; then
+
+  SisClr_Blue=${FG_BLUE:-$(tput setaf 4)}
+  SisClr_Red=${FG_BLUE:-$(tput setaf 1)}
+  SisClr_Bold=${FD_BOLD:-$(tput bold)}
+  SisClr_None=${FD_NONE:-$(tput sgr0)}
+else
+
+  SisClr_Blue=
+  SisClr_Red=
+  SisClr_Bold=
+  SisClr_None=
+fi
+
+
+# ##########################################################
 # helpers
 
 example_stem()
@@ -195,12 +213,12 @@ if [ $status -eq 0 ]; then
 
       if [ $ListOnly -ne 0 ]; then
 
-        echo "would skip $f (interactive; --skip-interactive)"
+        echo "would skip $SisClr_Blue$SisClr_Bold$f$SisClr_None (interactive; --skip-interactive)"
 
       else
 
         echo
-        echo "skipping $f (interactive; --skip-interactive)"
+        echo "skipping $SisClr_Blue$SisClr_Bold$f$SisClr_None (interactive; --skip-interactive)"
       fi
 
       continue
@@ -208,13 +226,13 @@ if [ $status -eq 0 ]; then
 
     if [ $ListOnly -ne 0 ]; then
 
-      echo "would execute $f:"
+      echo "would execute $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
       continue
     fi
 
     echo
-    echo "executing $f:"
+    echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
     if $f; then
 
