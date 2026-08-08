@@ -1,7 +1,7 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc5 - 4th August 2026
+## 1.11.1-rc5 - 9th August 2026
 
 * Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);
 * Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;
