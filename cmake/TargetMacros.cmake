@@ -6,6 +6,15 @@ function(define_automated_test_program program_name entry_point_source_name)
 		${entry_point_source_name}
 	)
 
+	# Prefer this tree's headers over any installed STLSoft. On Apple Clang,
+	# /usr/local/include is searched before -isystem paths, so includes that
+	# arrive only via imported deps (e.g. xTests) can otherwise shadow us.
+	set_property(TARGET ${program_name} PROPERTY NO_SYSTEM_FROM_IMPORTED TRUE)
+	target_include_directories(${program_name}
+		BEFORE PRIVATE
+			${CMAKE_SOURCE_DIR}/include
+	)
+
 	target_link_libraries(${program_name}
 		$<$<BOOL:${cstring_FOUND}>:cstring::core>
 		$<$<BOOL:${shwild_FOUND}>:shwild::core>
@@ -63,6 +72,15 @@ function(define_example_program program_name entry_point_source_name)
 
 	add_executable(${program_name}
 		${entry_point_source_name}
+	)
+
+	# Prefer this tree's headers over any installed STLSoft. On Apple Clang,
+	# /usr/local/include is searched before -isystem paths, so includes that
+	# arrive only via imported deps (e.g. xTests) can otherwise shadow us.
+	set_property(TARGET ${program_name} PROPERTY NO_SYSTEM_FROM_IMPORTED TRUE)
+	target_include_directories(${program_name}
+		BEFORE PRIVATE
+			${CMAKE_SOURCE_DIR}/include
 	)
 
 	target_link_libraries(${program_name}
