@@ -223,6 +223,26 @@ jobs:
           echo "MFC_FOUND=${MFC_FOUND}"
           grep -E '^CMAKE_MFC_FLAG:' build/CMakeCache.txt || true
 
+      - name: Verify ACE discovered
+        if: inputs.with-ace
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_LIB="$(grep -E '^ACE_LIBRARY:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          ACE_INC="$(grep -E '^ACE_INCLUDE_DIR:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          if [ -z "${ACE_LIB}" ] || [[ "${ACE_LIB}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_LIBRARY was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          if [ -z "${ACE_INC}" ] || [[ "${ACE_INC}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_INCLUDE_DIR was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ACE_LIBRARY=${ACE_LIB}"
+          echo "ACE_INCLUDE_DIR=${ACE_INC}"
+
       - name: Build
         shell: bash
         run: |
