@@ -11,6 +11,7 @@
 
 
 #include <winstl/performance/performance_counter.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
@@ -31,8 +32,16 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+namespace {
+
 static void test_query(void)
 {
     winstl::performance_counter c;
-    TEST_BOOLEAN_TRUE(c.get_seconds() >= 0.0);
+
+    c.start();
+    c.stop();
+
+    TEST_INT_GE(0, c.get_seconds());
+    TEST_INT_GE(0, c.get_microseconds());
 }
+} // anonymous namespace

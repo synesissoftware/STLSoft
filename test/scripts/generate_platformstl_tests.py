@@ -176,6 +176,7 @@ static void test_known_error(void)
     write(
         TEST_UNIT / "performance/test.unit.platformstl.performance.performance_counter/entry.cpp",
         """#include <platformstl/performance/performance_counter.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
@@ -196,11 +197,19 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+namespace {
+
 static void test_query(void)
 {
     platformstl::performance_counter pc;
-    TEST_BOOLEAN_TRUE(pc.get_seconds() >= 0.0);
+
+    pc.start();
+    pc.stop();
+
+    TEST_INT_GE(0, pc.get_seconds());
+    TEST_INT_GE(0, pc.get_microseconds());
 }
+} // anonymous namespace
 """,
     )
 
