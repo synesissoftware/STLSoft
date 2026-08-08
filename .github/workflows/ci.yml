@@ -8,6 +8,7 @@ on:
       - boilerplate
       - idiomatic
       - test-consistency
+      - test-coverage
       - rc1
       - rc2
       - rc3
