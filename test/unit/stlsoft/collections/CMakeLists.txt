@@ -1,0 +1,11 @@
+add_subdirectory(test.unit.stlsoft.collections.array_proxy)
+add_subdirectory(test.unit.stlsoft.collections.array_view)
+add_subdirectory(test.unit.stlsoft.collections.associative_adaptor_sequences)
+add_subdirectory(test.unit.stlsoft.collections.associative_container_veneer)
+add_subdirectory(test.unit.stlsoft.collections.associative_key_sequence)
+add_subdirectory(test.unit.stlsoft.collections.associative_value_sequence)
+add_subdirectory(test.unit.stlsoft.collections.functions)
+add_subdirectory(test.unit.stlsoft.collections.sequence_container_veneer)
+add_subdirectory(util)
+
+# ############################## end of file ############################# #

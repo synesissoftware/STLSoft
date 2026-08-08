@@ -1,0 +1,7 @@
+add_subdirectory(handles)
+add_subdirectory(test.component.stlsoft.filesystem.io_functions)
+add_subdirectory(test.component.stlsoft.filesystem.path_buffer)
+add_subdirectory(test.component.stlsoft.filesystem.read_line)
+add_subdirectory(test.component.stlsoft.filesystem.searchspec_sequence)
+
+# ############################## end of file ############################# #

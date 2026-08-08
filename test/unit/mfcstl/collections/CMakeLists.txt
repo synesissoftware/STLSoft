@@ -1,0 +1,7 @@
+add_subdirectory(test.unit.mfcstl.collections.CArray_adaptors)
+add_subdirectory(test.unit.mfcstl.collections.CArray_swap)
+add_subdirectory(test.unit.mfcstl.collections.CArray_traits)
+add_subdirectory(test.unit.mfcstl.collections.CList_adaptors)
+add_subdirectory(test.unit.mfcstl.collections.CList_swap)
+add_subdirectory(test.unit.mfcstl.collections.CList_traits)
+add_subdirectory(test.unit.mfcstl.collections.CString_adaptors)

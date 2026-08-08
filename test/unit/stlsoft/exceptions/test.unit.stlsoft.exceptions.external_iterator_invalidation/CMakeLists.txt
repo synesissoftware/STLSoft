@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.exceptions.external_iterator_invalidation entry.cpp)

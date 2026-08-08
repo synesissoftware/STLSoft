@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.platformstl.filesystem.file_path_buffer entry.cpp)

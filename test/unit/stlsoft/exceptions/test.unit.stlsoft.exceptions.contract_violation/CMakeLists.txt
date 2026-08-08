@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.exceptions.contract_violation entry.cpp)

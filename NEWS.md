@@ -3,6 +3,7 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 9th August 2026       |   Release of [STLSoft 1.11.1 (release candidate 6)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc6) — comprehensive unit/component test coverage across all sub-projects |
 | 9th August 2026       |   Release of [STLSoft 1.11.1 (release candidate 5)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc5) |
 | 29th July 2026        |   Release of [STLSoft 1.11.1 (release candidate 4)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc4) |
 | 23rd August 2025      |   Release of [STLSoft 1.11.1 (release candidate 3)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |

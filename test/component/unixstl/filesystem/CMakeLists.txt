@@ -1,5 +1,11 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(handles)
+add_subdirectory(test.component.unixstl.filesystem.current_directory)
+add_subdirectory(test.component.unixstl.filesystem.current_directory_scope)
+add_subdirectory(test.component.unixstl.filesystem.directory_functions)
 add_subdirectory(test.component.unixstl.filesystem.glob_sequence)
+add_subdirectory(test.component.unixstl.filesystem.memory_map_functions)
 add_subdirectory(test.component.unixstl.filesystem.memory_mapped_file)
+add_subdirectory(test.component.unixstl.filesystem.pipe)
 add_subdirectory(test.component.unixstl.filesystem.readdir_sequence)
 add_subdirectory(test.component.unixstl.filesystem.readonly_memory_mapped_file)

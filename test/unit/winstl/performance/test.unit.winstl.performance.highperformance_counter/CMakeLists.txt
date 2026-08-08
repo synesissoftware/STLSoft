@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.winstl.performance.highperformance_counter entry.cpp)

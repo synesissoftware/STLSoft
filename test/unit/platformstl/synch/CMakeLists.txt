@@ -1,0 +1,10 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(refcount_policies)
+add_subdirectory(test.unit.platformstl.synch.atomic_functions)
+add_subdirectory(test.unit.platformstl.synch.atomic_types)
+add_subdirectory(test.unit.platformstl.synch.refcount_policies)
+add_subdirectory(test.unit.platformstl.synch.semaphore)
+add_subdirectory(test.unit.platformstl.synch.sleep_functions)
+add_subdirectory(test.unit.platformstl.synch.spin_mutex)
+add_subdirectory(test.unit.platformstl.synch.thread_mutex)
+add_subdirectory(test.unit.platformstl.synch.tss_index)

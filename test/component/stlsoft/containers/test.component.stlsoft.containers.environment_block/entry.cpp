@@ -1,0 +1,68 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    test.component.stlsoft.containers.environment_block/entry.cpp
+ *
+ * Purpose: Component-tests for `stlsoft/containers/environment_block`.
+ *
+ * Created: 9th August 2026
+ * Updated: 9th August 2026
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <stlsoft/containers/environment_block.hpp>
+
+#include <vector>
+#include <string>
+
+#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
+
+#include <stlsoft/stlsoft.h>
+
+#include <stdlib.h>
+
+
+namespace {
+
+static void test_smoke();
+
+} // anonymous namespace
+
+
+int main(int argc, char* argv[])
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    if (XTESTS_START_RUNNER("test.component.stlsoft.containers.environment_block", verbosity))
+    {
+        XTESTS_RUN_CASE(test_smoke);
+
+        XTESTS_PRINT_RESULTS();
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
+
+    return retCode;
+}
+
+
+namespace {
+
+
+static void test_smoke()
+{
+    TEST_BOOLEAN_TRUE(true);
+}
+
+
+} // anonymous namespace
+
+
+/* ///////////////////////////// end of file //////////////////////////// */

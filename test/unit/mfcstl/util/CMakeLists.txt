@@ -1,0 +1,1 @@
+add_subdirectory(test.unit.mfcstl.util.memory_exception_translation_policies)

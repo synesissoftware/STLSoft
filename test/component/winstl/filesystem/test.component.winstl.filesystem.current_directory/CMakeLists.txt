@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.filesystem.current_directory entry.cpp)

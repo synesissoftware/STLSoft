@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.util.resizeable_buffer_helpers entry.cpp)

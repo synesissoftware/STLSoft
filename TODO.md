@@ -33,17 +33,19 @@
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~;
 * [ ] Remove **WTL**;
 * [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
-* [ ] bring in some essential unit-tests from interal repo;
+* [ ] bring in some essential unit-tests from internal repo;
 
 
 ### 1.11.2
 
 Dedicated increment: **test analysis and coverage only** — no other product changes in this release.
 
-* [ ] Existing test consistency (deep analysis);
+* [x] Coverage of currently untested components — **bulk expansion landed in 1.11.1-rc6** (~640 new test programs);
+* [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
 * [ ] Complete coverage of currently tested components (improvement / completion);
-* [ ] Coverage of currently untested components;
-
+* [ ] WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites;
+* [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
+* [ ] Correct/ensure (and write coding guidelines for) test-function naming;
 
 ### 1.11.3
 

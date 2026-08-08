@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.synch.singlethreaded_tss_index entry.cpp)

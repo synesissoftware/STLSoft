@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.platformstl.system.home_directory entry.cpp)

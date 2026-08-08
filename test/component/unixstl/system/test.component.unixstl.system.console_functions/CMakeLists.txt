@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.unixstl.system.console_functions entry.cpp)
