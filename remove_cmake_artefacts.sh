@@ -11,6 +11,7 @@ Directories=(
   CMakeFiles
   Testing
   cmake
+  docs
   examples
   projects
   src
@@ -20,6 +21,7 @@ Files=(
   CMakeCache.txt
   CTestTestfile.cmake
   DartConfiguration.tcl
+  Doxyfile
   Makefile
   cmake_install.cmake
   install_manifest.txt

@@ -1,5 +1,5 @@
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(BEFORE ${CMAKE_SOURCE_DIR}/include)
 
 if(_BUILD_AS_UNIX)
 
