@@ -1116,10 +1116,13 @@ static void test_push_pop_restores(void)
         TEST_COMPONENT / "filesystem/test.component.platformstl.filesystem.current_directory_scope/entry.cpp",
         """#include <platformstl/filesystem/current_directory_scope.hpp>
 #include <platformstl/filesystem/current_directory.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
+#include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 namespace { static void test_scope_restores(void); }
 
@@ -1137,19 +1140,27 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+namespace {
+
 static void test_scope_restores(void)
 {
     using ::xtests::cpp::util::temp_directory;
     platformstl::current_directory_a const original;
     temp_directory td(temp_directory::EmptyOnOpen | temp_directory::EmptyOnClose | temp_directory::RemoveOnClose);
     {
-        platformstl::current_directory_scope_a scope(td.c_str());
+        platformstl::current_directory_scope scope(td.c_str());
         platformstl::current_directory_a const changed;
-        TEST_MS_EQ(td.c_str(), changed);
+
+        char resolved_td[PATH_MAX];
+        char resolved_cwd[PATH_MAX];
+        XTESTS_REQUIRE(TEST(NULL != realpath(td.c_str(), resolved_td)));
+        XTESTS_REQUIRE(TEST(NULL != realpath(stlsoft::c_str_ptr_a(changed), resolved_cwd)));
+        TEST_MS_EQ(resolved_td, resolved_cwd);
     }
     platformstl::current_directory_a const restored;
-    TEST_MS_EQ(original, restored);
+    TEST_MS_EQ(stlsoft::c_str_ptr_a(original), stlsoft::c_str_ptr_a(restored));
 }
+} // anonymous namespace
 """,
     )
 
