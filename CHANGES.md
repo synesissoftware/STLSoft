@@ -12,6 +12,7 @@
 * CMake — minimum version **3.20**; **BUILD_TESTING** option; project homepage URL; patch/revision version regex;
 * Project boilerplate — **.gitattributes**, **.vimrc**, **.vscode/settings.json**;
 * **test.unit.versions** — aligned with **1.11.1-rc5** (**_STLSOFT_VER_1_11_1_RC5**);
+* All unit/component test assertions use xTests Terse API;
 
 
 ## 1.11.1-rc4 - 29th July 2026

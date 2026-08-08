@@ -4,7 +4,7 @@
  * Purpose: Scratch test for GUID functions.
  *
  * Created: 12th May 2010
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,6 +21,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -95,15 +96,15 @@ static const GUID s_guid3 =
 
 static void test_equal(void)
 {
-    XTESTS_TEST_BOOLEAN_TRUE(comstl_C_GUID_equal(&IID_IUnknown, &IID_IUnknown));
-    XTESTS_TEST_BOOLEAN_FALSE(comstl_C_GUID_equal(&GUID_NULL, &IID_IUnknown));
+    TEST_BOOLEAN_TRUE(comstl_C_GUID_equal(&IID_IUnknown, &IID_IUnknown));
+    TEST_BOOLEAN_FALSE(comstl_C_GUID_equal(&GUID_NULL, &IID_IUnknown));
 }
 
 static void test_compare(void)
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, comstl_C_GUID_compare(&IID_IUnknown, &IID_IUnknown, NULL));
-    XTESTS_TEST_INTEGER_LESS(0, comstl_C_GUID_compare(&GUID_NULL, &IID_IUnknown, NULL));
-    XTESTS_TEST_INTEGER_GREATER(0, comstl_C_GUID_compare(&IID_IUnknown, &GUID_NULL, NULL));
+    TEST_INT_EQ(0, comstl_C_GUID_compare(&IID_IUnknown, &IID_IUnknown, NULL));
+    TEST_INT_LT(0, comstl_C_GUID_compare(&GUID_NULL, &IID_IUnknown, NULL));
+    TEST_INT_GT(0, comstl_C_GUID_compare(&IID_IUnknown, &GUID_NULL, NULL));
 }
 
 static void test_binary_compare(void)
@@ -111,9 +112,9 @@ static void test_binary_compare(void)
 #if defined(PLATFORMSTL_ARCH_IS_X86) || \
     defined(PLATFORMSTL_ARCH_IS_X64)
 
-    XTESTS_TEST_INTEGER_EQUAL(0, comstl_C_GUID_binary_compare(&IID_IUnknown, &IID_IUnknown));
-    XTESTS_TEST_INTEGER_LESS(0, comstl_C_GUID_binary_compare(&GUID_NULL, &IID_IUnknown));
-    XTESTS_TEST_INTEGER_GREATER(0, comstl_C_GUID_binary_compare(&IID_IUnknown, &GUID_NULL));
+    TEST_INT_EQ(0, comstl_C_GUID_binary_compare(&IID_IUnknown, &IID_IUnknown));
+    TEST_INT_LT(0, comstl_C_GUID_binary_compare(&GUID_NULL, &IID_IUnknown));
+    TEST_INT_GT(0, comstl_C_GUID_binary_compare(&IID_IUnknown, &GUID_NULL));
 
 #endif
 }
@@ -125,12 +126,12 @@ static void test_to_string(void)
     HRESULT hr;
 
     hr = comstl_C_GUID_to_string_w(&s_guid1, &ws1);
-    XTESTS_TEST_INTEGER_EQUAL(S_OK, hr);
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"{F4864792-D0D2-4005-ABCA-F67994C2FFA6}", ws1);
+    TEST_INT_EQ(S_OK, hr);
+    TEST_WS_EQ(L"{F4864792-D0D2-4005-ABCA-F67994C2FFA6}", ws1);
 
     hr = comstl_C_GUID_to_string_a(&s_guid1, &mbs1);
-    XTESTS_TEST_INTEGER_EQUAL(S_OK, hr);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("{F4864792-D0D2-4005-ABCA-F67994C2FFA6}", mbs1);
+    TEST_INT_EQ(S_OK, hr);
+    TEST_MS_EQ("{F4864792-D0D2-4005-ABCA-F67994C2FFA6}", mbs1);
 
 }
 
@@ -141,12 +142,12 @@ static void test_from_string(void)
     HRESULT hr;
 
     hr = comstl_C_GUID_from_string_w(L"{F4864792-D0D2-4005-ABCA-F67994C2FFA6}", &guid1);
-    XTESTS_TEST_INTEGER_EQUAL(S_OK, hr);
+    TEST_INT_EQ(S_OK, hr);
 
     hr = comstl_C_GUID_from_string_a("{F4864792-D0D2-4005-ABCA-F67994C2FFA6}", &guid2);
-    XTESTS_TEST_INTEGER_EQUAL(S_OK, hr);
+    TEST_INT_EQ(S_OK, hr);
 
-    XTESTS_TEST_BOOLEAN_TRUE(comstl_C_GUID_equal(&guid1, &guid2));
+    TEST_BOOLEAN_TRUE(comstl_C_GUID_equal(&guid1, &guid2));
 }
 
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 28th May 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -127,40 +128,40 @@ static void test_min_max()
         typedef signed int                                  int_t;
         typedef stlsoft::integral_limits<int_t>             limits_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::min(), limits_t::minimum());
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::max(), limits_t::maximum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::min(), limits_t::minimum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::max(), limits_t::maximum());
     }
 
     {
         typedef unsigned long                               int_t;
         typedef stlsoft::integral_limits<int_t>             limits_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::min(), limits_t::minimum());
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::max(), limits_t::maximum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::min(), limits_t::minimum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::max(), limits_t::maximum());
     }
 
     {
         typedef signed short                                int_t;
         typedef stlsoft::integral_limits<int_t>             limits_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::min(), limits_t::minimum());
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::max(), limits_t::maximum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::min(), limits_t::minimum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::max(), limits_t::maximum());
     }
 
     {
         typedef ss_uint64_t                                 int_t;
         typedef stlsoft::integral_limits<int_t>             limits_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::min(), limits_t::minimum());
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t>::max(), limits_t::maximum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::min(), limits_t::minimum());
+        TEST_INT_EQ(std::numeric_limits<int_t>::max(), limits_t::maximum());
     }
 
     {
         typedef int_wrapper                                 int_t;
         typedef stlsoft::integral_limits<int_t>             limits_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t::value_type>::min(), limits_t::minimum().value);
-        XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t::value_type>::max(), limits_t::maximum().value);
+        TEST_INT_EQ(std::numeric_limits<int_t::value_type>::min(), limits_t::minimum().value);
+        TEST_INT_EQ(std::numeric_limits<int_t::value_type>::max(), limits_t::maximum().value);
     }
 }
 } // anonymous namespace

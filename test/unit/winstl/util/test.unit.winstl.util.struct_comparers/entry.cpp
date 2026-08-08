@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_comparers`.
  *
  * Created: 9th October 2024
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -20,6 +20,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <winstl/util/struct_initialisers.hpp>
@@ -77,14 +78,14 @@ static void test_FILETIME()
         FILETIME ft1 = {0, 0};
         FILETIME ft2 = {0, 0};
 
-        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(ft1, ft2));
+        TEST_BOOLEAN_TRUE(winstl::equal_struct(ft1, ft2));
     }
 
     {
         FILETIME ft1 = {0, 0};
         FILETIME ft2 = {0, 1};
 
-        XTESTS_TEST_BOOLEAN_FALSE(winstl::equal_struct(ft1, ft2));
+        TEST_BOOLEAN_FALSE(winstl::equal_struct(ft1, ft2));
     }
 }
 
@@ -97,7 +98,7 @@ static void test_SYSTEMTIME()
         winstl::init_struct(st1);
         winstl::init_struct(st2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
+        TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
     }
 
     {
@@ -110,7 +111,7 @@ static void test_SYSTEMTIME()
         st1.wDayOfWeek = 1;
         st2.wDayOfWeek = 2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
+        TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
     }
 
 #if __cplusplus >= 202002L
@@ -137,7 +138,7 @@ static void test_SYSTEMTIME()
             .wMilliseconds = 1001,
         };
 
-        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
+        TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
     }
 #endif
 }

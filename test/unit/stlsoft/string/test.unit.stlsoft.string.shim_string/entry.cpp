@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -189,74 +190,74 @@ namespace {
 
 static void test_sizes()
 {
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 4>), sizeof(stlsoft::basic_shim_string<char, 4>));
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 16>), sizeof(stlsoft::basic_shim_string<char, 16>));
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 32>), sizeof(stlsoft::basic_shim_string<char, 32>));
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 64>), sizeof(stlsoft::basic_shim_string<char, 64>));
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 256>), sizeof(stlsoft::basic_shim_string<char, 256>));
+    TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 4>), sizeof(stlsoft::basic_shim_string<char, 4>));
+    TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 16>), sizeof(stlsoft::basic_shim_string<char, 16>));
+    TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 32>), sizeof(stlsoft::basic_shim_string<char, 32>));
+    TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 64>), sizeof(stlsoft::basic_shim_string<char, 64>));
+    TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 256>), sizeof(stlsoft::basic_shim_string<char, 256>));
 }
 
 static void test_construction()
 {
     stlsoft::basic_shim_string<char> str0;
 
-    XTESTS_TEST_BOOLEAN_TRUE(str0.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, str0.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(str0));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, str0.internal_size());
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str0);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str0);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str0.data());
+    TEST_BOOLEAN_TRUE(str0.empty());
+    TEST_INT_EQ(0u, str0.size());
+    TEST_INT_EQ(0u, static_cast<size_t>(str0));
+    TEST_INT_NE(0u, str0.internal_size());
+    TEST_PTR_NE(NULL, str0);
+    TEST_MS_EQ("", str0);
+    TEST_MS_EQ("", str0.data());
 
     stlsoft::basic_shim_string<char> str1(size_t(0u));
 
-    XTESTS_TEST_BOOLEAN_TRUE(str1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, str1.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(str1));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, str1.internal_size());
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str1);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str1);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str1.data());
+    TEST_BOOLEAN_TRUE(str1.empty());
+    TEST_INT_EQ(0u, str1.size());
+    TEST_INT_EQ(0u, static_cast<size_t>(str1));
+    TEST_INT_NE(0u, str1.internal_size());
+    TEST_PTR_NE(NULL, str1);
+    TEST_MS_EQ("", str1);
+    TEST_MS_EQ("", str1.data());
 
     stlsoft::basic_shim_string<char> const str2("");
 
-    XTESTS_TEST_BOOLEAN_TRUE(str2.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, str2.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(str2));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, str2.internal_size());
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str2.data());
+    TEST_BOOLEAN_TRUE(str2.empty());
+    TEST_INT_EQ(0u, str2.size());
+    TEST_INT_EQ(0u, static_cast<size_t>(str2));
+    TEST_INT_NE(0u, str2.internal_size());
+    TEST_PTR_NE(NULL, str2);
+    TEST_MS_EQ("", str2);
+    TEST_MS_EQ("", str2.data());
 
     stlsoft::basic_shim_string<char> str3("", 0);
 
-    XTESTS_TEST_BOOLEAN_TRUE(str3.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, str3.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(str3));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, str3.internal_size());
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str3.data());
+    TEST_BOOLEAN_TRUE(str3.empty());
+    TEST_INT_EQ(0u, str3.size());
+    TEST_INT_EQ(0u, static_cast<size_t>(str3));
+    TEST_INT_NE(0u, str3.internal_size());
+    TEST_PTR_NE(NULL, str3);
+    TEST_MS_EQ("", str3);
+    TEST_MS_EQ("", str3.data());
 
     stlsoft::basic_shim_string<char> str4(NULL, 0);
 
-    XTESTS_TEST_BOOLEAN_TRUE(str4.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, str4.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(str4));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, str4.internal_size());
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str4);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str4);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str4.data());
+    TEST_BOOLEAN_TRUE(str4.empty());
+    TEST_INT_EQ(0u, str4.size());
+    TEST_INT_EQ(0u, static_cast<size_t>(str4));
+    TEST_INT_NE(0u, str4.internal_size());
+    TEST_PTR_NE(NULL, str4);
+    TEST_MS_EQ("", str4);
+    TEST_MS_EQ("", str4.data());
 
     stlsoft::basic_shim_string<char> str5(str1);
 
-    XTESTS_TEST_BOOLEAN_TRUE(str5.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, str5.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(str5));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, str5.internal_size());
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str5);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str5);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str5.data());
+    TEST_BOOLEAN_TRUE(str5.empty());
+    TEST_INT_EQ(0u, str5.size());
+    TEST_INT_EQ(0u, static_cast<size_t>(str5));
+    TEST_INT_NE(0u, str5.internal_size());
+    TEST_PTR_NE(NULL, str5);
+    TEST_MS_EQ("", str5);
+    TEST_MS_EQ("", str5.data());
 }
 
 static void test_method_calls()
@@ -268,43 +269,43 @@ static void test_method_calls()
     str1.size();
     str1.data();
 
-    XTESTS_TEST_PASSED();
+    TEST_PASSED();
 }
 
 static void test_constructor_length()
 {
     stlsoft::basic_shim_string<char> str(5u);
 
-    XTESTS_TEST_BOOLEAN_FALSE(str.empty());
-    XTESTS_TEST_INTEGER_EQUAL(5u, str.size());
-    XTESTS_TEST_INTEGER_EQUAL(5u, static_cast<size_t>(str));
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", str.data());
+    TEST_BOOLEAN_FALSE(str.empty());
+    TEST_INT_EQ(5u, str.size());
+    TEST_INT_EQ(5u, static_cast<size_t>(str));
+    TEST_PTR_NE(NULL, str);
+    TEST_MS_EQ("", str);
+    TEST_MS_EQ("", str.data());
 }
 
 static void test_constructor_c_string()
 {
     stlsoft::basic_shim_string<char> str("a");
 
-    XTESTS_TEST_BOOLEAN_FALSE(str.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, str.size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, static_cast<size_t>(str));
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", str.data());
+    TEST_BOOLEAN_FALSE(str.empty());
+    TEST_INT_EQ(1u, str.size());
+    TEST_INT_EQ(1u, static_cast<size_t>(str));
+    TEST_PTR_NE(NULL, str);
+    TEST_MS_EQ("a", str);
+    TEST_MS_EQ("a", str.data());
 }
 
 static void test_constructor_range_string()
 {
     stlsoft::basic_shim_string<char> str("abcdefghijkl", 3);
 
-    XTESTS_TEST_BOOLEAN_FALSE(str.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, str.size());
-    XTESTS_TEST_INTEGER_EQUAL(3u, static_cast<size_t>(str));
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", str.data());
+    TEST_BOOLEAN_FALSE(str.empty());
+    TEST_INT_EQ(3u, str.size());
+    TEST_INT_EQ(3u, static_cast<size_t>(str));
+    TEST_PTR_NE(NULL, str);
+    TEST_MS_EQ("abc", str);
+    TEST_MS_EQ("abc", str.data());
 }
 
 static void test_write()
@@ -313,12 +314,12 @@ static void test_write()
 
     str.write("abc");
 
-    XTESTS_TEST_BOOLEAN_FALSE(str.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, str.size());
-    XTESTS_TEST_INTEGER_EQUAL(3u, static_cast<size_t>(str));
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", str);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", str.data());
+    TEST_BOOLEAN_FALSE(str.empty());
+    TEST_INT_EQ(3u, str.size());
+    TEST_INT_EQ(3u, static_cast<size_t>(str));
+    TEST_PTR_NE(NULL, str);
+    TEST_MS_EQ("abc", str);
+    TEST_MS_EQ("abc", str.data());
 }
 
 static void test_truncate()
@@ -329,8 +330,8 @@ static void test_truncate()
     {
         size_t numTriplets = (8 - i);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u * numTriplets, str.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(alphabet, 3u * numTriplets), str);
+        TEST_INT_EQ(3u * numTriplets, str.size());
+        TEST_MS_EQ(std::string(alphabet, 3u * numTriplets), str);
 
         if (8 == i)
         {
@@ -339,8 +340,8 @@ static void test_truncate()
 
         str.truncate(3u * (numTriplets - 1));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u * (numTriplets - 1), str.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(alphabet, 3u * (numTriplets - 1)), str);
+        TEST_INT_EQ(3u * (numTriplets - 1), str.size());
+        TEST_MS_EQ(std::string(alphabet, 3u * (numTriplets - 1)), str);
     }}
 }
 
@@ -350,34 +351,34 @@ static void test_swap()
         stlsoft::basic_shim_string<char>  s1("abc");
         stlsoft::basic_shim_string<char>  s2("defghi");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
-        XTESTS_TEST_INTEGER_EQUAL(6u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("defghi", s2);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
+        TEST_INT_EQ(6u, s2.size());
+        TEST_MS_EQ("defghi", s2);
 
         s1.swap(s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(6u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("defghi", s1);
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(6u, s1.size());
+        TEST_MS_EQ("defghi", s1);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 
     {
         stlsoft::basic_shim_string<char>  s1("abcdefghijklmnopqrstuvwxyz");
         stlsoft::basic_shim_string<char>  s2("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s1);
-        XTESTS_TEST_INTEGER_EQUAL(26u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ABCDEFGHIJKLMNOPQRSTUVWXYZ", s2);
+        TEST_INT_EQ(26u, s1.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s1);
+        TEST_INT_EQ(26u, s2.size());
+        TEST_MS_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", s2);
 
         s1.swap(s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ABCDEFGHIJKLMNOPQRSTUVWXYZ", s1);
-        XTESTS_TEST_INTEGER_EQUAL(26u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s2);
+        TEST_INT_EQ(26u, s1.size());
+        TEST_MS_EQ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", s1);
+        TEST_INT_EQ(26u, s2.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s2);
     }
 }
 
@@ -409,8 +410,8 @@ static void test_append_c_string()
     {
         str.append(strings[i]);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u * (i + 1), str.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(alphabet, 3u * (i + 1)), str);
+        TEST_INT_EQ(3u * (i + 1), str.size());
+        TEST_MS_EQ(std::string(alphabet, 3u * (i + 1)), str);
     }}
 }
 
@@ -438,9 +439,9 @@ static void test_append_c_string_after_truncate()
     {
         str.append(strings[i]);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u * (i + 1), str.size());
-        XTESTS_TEST_POINTER_EQUAL(ptr, str);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(alphabet, 3u * (i + 1)), str);
+        TEST_INT_EQ(3u * (i + 1), str.size());
+        TEST_PTR_EQ(ptr, str);
+        TEST_MS_EQ(std::string(alphabet, 3u * (i + 1)), str);
     }}
 }
 
@@ -453,11 +454,11 @@ static void test_null_string()
     {
         stlsoft::basic_shim_string<char, 64, true>  s(size_t(0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(s));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_POINTER_EQUAL(NULL, s);
-        XTESTS_TEST_INTEGER_EQUAL(0u, static_cast<size_t>(s));
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_EQ(0u, static_cast<size_t>(s));
+        TEST_INT_EQ(0u, s.size());
+        TEST_PTR_EQ(NULL, s);
+        TEST_INT_EQ(0u, static_cast<size_t>(s));
     }
 }
 
@@ -466,33 +467,33 @@ static void test_reserve()
     {
         stlsoft::basic_shim_string<char>    s(size_t(0u));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.reserve(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.reserve(1u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.reserve(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.reserve(100u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.reserve(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
     }
 
 }
@@ -502,33 +503,33 @@ static void test_resize()
     {
         stlsoft::basic_shim_string<char>    s(size_t(0u));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.resize(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.resize(1u);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(1u, s.size());
 
         s.resize(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.resize(100u);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(100u, s.size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(100u, s.size());
 
         s.resize(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
     }
 
 }
@@ -569,7 +570,7 @@ static void test_insertion_1()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
 
         {
@@ -581,7 +582,7 @@ static void test_insertion_1()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
     }
 
@@ -603,7 +604,7 @@ static void test_insertion_1()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
 
         {
@@ -615,7 +616,7 @@ static void test_insertion_1()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
     }
 
@@ -637,7 +638,7 @@ static void test_insertion_1()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
 
         {
@@ -649,7 +650,7 @@ static void test_insertion_1()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
     }
 }
@@ -672,7 +673,7 @@ static void test_insertion_2()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
 
         {
@@ -687,7 +688,7 @@ static void test_insertion_2()
                 << ']'
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[abcdef]", ss.str());
+            TEST_MS_EQ("[abcdef]", ss.str());
         }
     }
 
@@ -707,7 +708,7 @@ static void test_insertion_2()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
 
         {
@@ -722,7 +723,7 @@ static void test_insertion_2()
                 << ']'
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[abcdef]", ss.str());
+            TEST_MS_EQ("[abcdef]", ss.str());
         }
     }
 
@@ -742,7 +743,7 @@ static void test_insertion_2()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+            TEST_MS_EQ("abcdef", ss.str());
         }
 
         {
@@ -757,7 +758,7 @@ static void test_insertion_2()
                 << ']'
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[abcdef]", ss.str());
+            TEST_MS_EQ("[abcdef]", ss.str());
         }
     }
 }
@@ -785,7 +786,7 @@ static void test_insertion_3()
             << ']'
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[____abc__def]", ss.str());
+        TEST_MS_EQ("[____abc__def]", ss.str());
     }
 
     // std::string (for reference)
@@ -809,7 +810,7 @@ static void test_insertion_3()
             << ']'
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[____abc__def]", ss.str());
+        TEST_MS_EQ("[____abc__def]", ss.str());
     }
 
     // stlsoft::basic_shim_string<>
@@ -832,7 +833,7 @@ static void test_insertion_3()
                 << s3
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("____abc__def", ss.str());
+            TEST_MS_EQ("____abc__def", ss.str());
         }
 
         {
@@ -851,7 +852,7 @@ static void test_insertion_3()
                 << ']'
                 ;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[____abc__def]", ss.str());
+            TEST_MS_EQ("[____abc__def]", ss.str());
         }
     }
 }
@@ -918,7 +919,7 @@ static void test_insertion_4()
     std::string const expected = Expected::fn(s2, s3);
 #endif
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(
+    TEST_MS_EQ(
         expected
         , ss.str());
 

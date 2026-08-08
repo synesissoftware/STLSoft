@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::squeeze_path`.
  *
  * Created: 29th October 2016
- * Updated: 15th April 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */

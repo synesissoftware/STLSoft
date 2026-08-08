@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_lc_string`.
  *
  * Created: 1st November 2011
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,6 +30,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -114,23 +115,23 @@ static void test_987654321()
 
     s = stlsoft::integer_to_lc_string("\3\3", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(11u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", s);
+    TEST_INT_EQ(11u, n);
+    TEST_MS_EQ("987,654,321", s);
 
     s = stlsoft::integer_to_lc_string("\3\2", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98,76,54,321", s);
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("98,76,54,321", s);
 
     s = stlsoft::integer_to_lc_string("\10", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("9,87654321", s);
+    TEST_INT_EQ(10u, n);
+    TEST_MS_EQ("9,87654321", s);
 
     s = stlsoft::integer_to_lc_string("\x8", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("9,87654321", s);
+    TEST_INT_EQ(10u, n);
+    TEST_MS_EQ("9,87654321", s);
 }
 
 static void test_1_0()
@@ -155,7 +156,7 @@ static void test_1_0()
         char                sz[41];
         char const* const   s = stlsoft::integer_to_decimal_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 
@@ -183,7 +184,7 @@ static void test_1_1()
         char        sz[41];
         char const* const   s = stlsoft::integer_to_lc_string(grouping, *thousands_sep, &sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 
@@ -212,7 +213,7 @@ static void test_1_2()
         char        sz[41];
         char const* const   s = stlsoft::integer_to_lc_string(grouping, *thousands_sep, &sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 
@@ -240,7 +241,7 @@ static void test_1_3()
         char        sz[41];
         char const* const   s = stlsoft::integer_to_lc_string(grouping, *thousands_sep, &sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 
@@ -268,7 +269,7 @@ static void test_1_4()
         char        sz[41];
         char const* const   s = stlsoft::integer_to_lc_string(grouping, *thousands_sep, &sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 
@@ -296,7 +297,7 @@ static void test_1_5()
         char        sz[41];
         char const* const   s = stlsoft::integer_to_lc_string(grouping, *thousands_sep, &sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 
@@ -325,7 +326,7 @@ static void test_1_6()
         char                sz[41];
         char const* const   s = stlsoft::integer_to_lc_string(grouping, *thousands_sep, &sz[0], STLSOFT_NUM_ELEMENTS(sz), mappings[i].value);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
+        TEST_MS_EQ(mappings[i].result, s);
     }}
 }
 } // anonymous namespace

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 31st July 2026
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,6 +41,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -479,10 +480,10 @@ static void test_ctor_default()
         ss_constexpr_2020_k
         string_t s;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 }
 
@@ -492,16 +493,16 @@ static void test_ctor_copy()
         string_t    s1;
         string_t    s2(s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 
     {
         string_t    s1("abc");
         string_t    s2(s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 }
 
@@ -511,16 +512,16 @@ static void test_ctor_s_pos()
         string_t    s1;
         string_t    s2(s1, 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 
     {
         string_t    s1("abc");
         string_t    s2(s1, 1);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 }
 
@@ -530,16 +531,16 @@ static void test_ctor_s_pos_n()
         string_t    s1("abc");
         string_t    s2(s1, 0u, s1.size());
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 
     {
         string_t    s1("abc");
         string_t    s2(s1, 1u, s1.size() - 1u);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 
     // deliberately over-specify n
@@ -547,8 +548,8 @@ static void test_ctor_s_pos_n()
         string_t    s1("abc");
         string_t    s2(s1, 1u, 500);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 }
 
@@ -557,19 +558,19 @@ static void test_ctor_ccs()
     {
         string_t    s("abc");
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
     }
 
 #ifndef USE_std_string
     {
         string_t    s(static_cast<char const*>(NULL));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 #endif /* !USE_std_string */
 }
@@ -579,20 +580,20 @@ static void test_ctor_ccs_n()
     {
         string_t    s(alphabet, 3);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(3u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 
 #ifndef USE_std_string
     {
         string_t    s(static_cast<char const*>(NULL), size_t(0));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 #endif /* !USE_std_string */
 }
@@ -602,56 +603,56 @@ static void test_ctor_n_ch()
     {
         string_t    s(0, '~');
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
     }
 
     {
         string_t    s(8, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(8u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(8u, s.capacity());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(8u, s.size());
+        TEST_INT_GE(8u, s.capacity());
 #ifndef USE_std_string
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
+        TEST_CHAR_EQ('~', s.front());
+        TEST_CHAR_EQ('~', s.back());
 
         string_t const& cs = s;
 
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
+        TEST_CHAR_EQ('~', cs.front());
+        TEST_CHAR_EQ('~', cs.back());
 #endif // !USE_std_string
     }
 
     {
         string_t    s(9, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(9u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(9u, s.capacity());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(9u, s.size());
+        TEST_INT_GE(9u, s.capacity());
+        TEST_CHAR_EQ('~', s.front());
+        TEST_CHAR_EQ('~', s.back());
 
         string_t const& cs = s;
 
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
+        TEST_CHAR_EQ('~', cs.front());
+        TEST_CHAR_EQ('~', cs.back());
     }
 
     {
         string_t    s(10, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(10u, s.size());
+        TEST_INT_GE(10u, s.capacity());
+        TEST_CHAR_EQ('~', s.front());
+        TEST_CHAR_EQ('~', s.back());
 
         string_t const& cs = s;
 
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
+        TEST_CHAR_EQ('~', cs.front());
+        TEST_CHAR_EQ('~', cs.back());
     }
 }
 
@@ -662,10 +663,10 @@ static void test_ctor_range()
     string_t const  s3(s1.begin(), s1.end());
     string_t        s4(s3.begin(), s3.end());
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s1);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s4);
+    TEST_MS_EQ(alphabet, s1);
+    TEST_MS_EQ(alphabet, s2);
+    TEST_MS_EQ(alphabet, s3);
+    TEST_MS_EQ(alphabet, s4);
 }
 
 #ifndef USE_std_string
@@ -679,11 +680,11 @@ static void test_ctor_range_2()
     string_t        s4(s3.rbegin(), s3.rend());
 # endif
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s1);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s2);
+    TEST_MS_EQ(alphabet, s1);
+    TEST_MS_EQ(alphabet, s2);
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
-//  XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s4);
+//  TEST_MS_EQ(alphabet, s3);
+    TEST_MS_EQ(alphabet, s4);
 # endif
 }
 #endif /* !USE_std_string */
@@ -698,38 +699,38 @@ static void test_assign_1()
 
         s.assign("");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
 
         s = "";
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
 
         s = 'a';
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", s);
+        TEST_INT_EQ(1u, s.size());
+        TEST_MS_EQ("a", s);
 
         s = string_t();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
 
         s.assign("abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
 
         s.assign(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
 
         s.assign("");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
     }
 
     {
@@ -737,13 +738,13 @@ static void test_assign_1()
 
         s.assign("");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
 
         s.assign(s.c_str(), 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
     }
 
     {
@@ -751,18 +752,18 @@ static void test_assign_1()
 
         s.assign(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
 
         s.assign(s.c_str(), 26);
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
 
         s.assign(s.c_str() + 13, 13);
 
-        XTESTS_TEST_INTEGER_EQUAL(13u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("nopqrstuvwxyz", s);
+        TEST_INT_EQ(13u, s.size());
+        TEST_MS_EQ("nopqrstuvwxyz", s);
     }
 }
 
@@ -773,28 +774,28 @@ static void test_assign_2()
 
         s.assign("", size_t(0));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
 
         s.assign("abc", 3);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
 
         s.assign(alphabet, 26);
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
 
         s.assign(alphabet, 3);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
 
         s.assign("", size_t(0));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
     }
 }
 
@@ -807,28 +808,28 @@ static void test_assign_3()
 
         s.assign(s_alphabet, 0, 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
 
         s.assign(s_alphabet, 0, 3);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
 
         s.assign(s_alphabet, 0, 26);
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
 
         s.assign(s_alphabet.begin(), s_alphabet.end());
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
 
         s.assign(s_alphabet, 25, 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
     }
 }
 
@@ -841,10 +842,10 @@ static void test_assign_4()
 
     string_t    s1 = string_t(std::istream_iterator<char>(ss), std::istream_iterator<char>());
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(3u, s1.size());
+    TEST_INT_GE(3u, s1.capacity());
+    TEST_MS_EQ("abc", s1);
 # endif
 }
 #endif /* !USE_std_string */
@@ -857,31 +858,31 @@ static void test_append_1()
     string_t        s1;
     string_t const  s2("abc");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+    TEST_BOOLEAN_TRUE(s1.empty());
+    TEST_INT_EQ(0u, s1.size());
+    TEST_INT_GE(0u, s1.capacity());
+    TEST_MS_EQ("", s1);
 
     s1.append(s1, 0, 0);
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+    TEST_BOOLEAN_TRUE(s1.empty());
+    TEST_INT_EQ(0u, s1.size());
+    TEST_INT_GE(0u, s1.capacity());
+    TEST_MS_EQ("", s1);
 
     s1.append(s2, 3u, 0u);
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+    TEST_BOOLEAN_TRUE(s1.empty());
+    TEST_INT_EQ(0u, s1.size());
+    TEST_INT_GE(0u, s1.capacity());
+    TEST_MS_EQ("", s1);
 
     s1.append(s2, 0, 3);
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(3u, s1.size());
+    TEST_INT_GE(3u, s1.capacity());
+    TEST_MS_EQ("abc", s1);
 
 #ifndef USE_std_string
     s1.clear();
@@ -890,10 +891,10 @@ static void test_append_1()
 #endif /* !USE_std_string */
     s1.append(s2, 2, 3);
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("c", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(1u, s1.size());
+    TEST_INT_GE(1u, s1.capacity());
+    TEST_MS_EQ("c", s1);
 
 #ifndef USE_std_string
     s1.clear();
@@ -902,10 +903,10 @@ static void test_append_1()
 #endif /* !USE_std_string */
     s1.append(s2.begin(), s2.end());
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(3u, s1.size());
+    TEST_INT_GE(3u, s1.capacity());
+    TEST_MS_EQ("abc", s1);
 
     std::stringstream   ss("abc");
 
@@ -914,10 +915,10 @@ static void test_append_1()
     s1.clear();
     s1.append(std::istream_iterator<char>(ss), std::istream_iterator<char>());
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(3u, s1.size());
+    TEST_INT_GE(3u, s1.capacity());
+    TEST_MS_EQ("abc", s1);
 # endif
 #endif /* !USE_std_string */
 }
@@ -927,31 +928,31 @@ static void test_append_2()
     string_t    s1;
     char const  s2[] = "abc";
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+    TEST_BOOLEAN_TRUE(s1.empty());
+    TEST_INT_EQ(0u, s1.size());
+    TEST_INT_GE(0u, s1.capacity());
+    TEST_MS_EQ("", s1);
 
     s1.append(s1, 0u, 0);
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+    TEST_BOOLEAN_TRUE(s1.empty());
+    TEST_INT_EQ(0u, s1.size());
+    TEST_INT_GE(0u, s1.capacity());
+    TEST_MS_EQ("", s1);
 
     s1.append(s2, 3);
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(3u, s1.size());
+    TEST_INT_GE(3u, s1.capacity());
+    TEST_MS_EQ("abc", s1);
 
     s1.append(s2, size_t(0));
 
-    XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s1.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+    TEST_BOOLEAN_FALSE(s1.empty());
+    TEST_INT_EQ(3u, s1.size());
+    TEST_INT_GE(3u, s1.capacity());
+    TEST_MS_EQ("abc", s1);
 }
 
 static void test_append_3()
@@ -960,7 +961,7 @@ static void test_append_3()
 
     s1.append(s1, 1u, 0);
 
-    XTESTS_TEST_FAIL("should not get here!");
+    TEST_FAIL("should not get here!");
 }
 
 #ifndef USE_std_string
@@ -969,31 +970,31 @@ static void test_push_back()
 {
     string_t    s;
 
-    XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    TEST_BOOLEAN_TRUE(s.empty());
+    TEST_INT_EQ(0u, s.size());
+    TEST_INT_GE(0u, s.capacity());
+    TEST_MS_EQ("", s);
 
     s.push_back('a');
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(1u, s.size());
+    TEST_INT_GE(1u, s.capacity());
+    TEST_MS_EQ("a", s);
 
     s.push_back('b');
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(2u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(2u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ab", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(2u, s.size());
+    TEST_INT_GE(2u, s.capacity());
+    TEST_MS_EQ("ab", s);
 
     s.push_back('c');
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(3u, s.size());
+    TEST_INT_GE(3u, s.capacity());
+    TEST_MS_EQ("abc", s);
 }
 #endif /* !USE_std_string */
 
@@ -1001,40 +1002,40 @@ static void test_pop_back()
 {
     string_t s(alphabet, 10);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s);
+    TEST_MS_EQ("abcdefghij", s);
 
     s.pop_back();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghi", s);
-
-    s.pop_back();
-    s.pop_back();
-    s.pop_back();
-
-    XTESTS_TEST_INTEGER_EQUAL(6u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", s);
+    TEST_MS_EQ("abcdefghi", s);
 
     s.pop_back();
     s.pop_back();
     s.pop_back();
-    s.pop_back();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ab", s);
-
-    s.pop_back();
-
-    XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", s);
+    TEST_INT_EQ(6u, s.size());
+    TEST_MS_EQ("abcdef", s);
 
     s.pop_back();
+    s.pop_back();
+    s.pop_back();
+    s.pop_back();
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    TEST_MS_EQ("ab", s);
 
     s.pop_back();
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    TEST_INT_EQ(1u, s.size());
+    TEST_MS_EQ("a", s);
+
+    s.pop_back();
+
+    TEST_INT_EQ(0u, s.size());
+    TEST_MS_EQ("", s);
+
+    s.pop_back();
+
+    TEST_INT_EQ(0u, s.size());
+    TEST_MS_EQ("", s);
 }
 
 
@@ -1045,38 +1046,38 @@ static void test_reserve()
     {
         string_t    s;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
 
         s.reserve(10u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(10u, s.capacity());
     }
 
     {
         string_t    s("abc");
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(3u, s.capacity());
+        TEST_MS_EQ("abc", s);
 
         s.reserve(10u);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(10u, s.capacity());
+        TEST_MS_EQ("abc", s);
 
         s.reserve(1000u);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1000u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(1000u, s.capacity());
+        TEST_MS_EQ("abc", s);
     }
 }
 
@@ -1086,32 +1087,32 @@ static void test_swap_1()
         string_t    s1;
         string_t    s2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
 
         s1.swap(s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
     }
 
     {
         string_t    s1("abc");
         string_t    s2;
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
 
         s1.swap(s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -1121,32 +1122,32 @@ static void test_swap_2()
         string_t    s1;
         string_t    s2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
 
         swap(s1, s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
     }
 
     {
         string_t    s1("abc");
         string_t    s2;
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
 
         swap(s1, s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -1156,32 +1157,32 @@ static void test_swap_3()
         string_t    s1;
         string_t    s2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
 
         std::swap(s1, s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
     }
 
     {
         string_t    s1("abc");
         string_t    s2;
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
 
         std::swap(s1, s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -1190,40 +1191,40 @@ static void test_resize()
     {
         string_t    s;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.resize(0u);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
         string_t    s;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
 
         s.resize(3u, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~~~", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("~~~", s);
     }
 
     {
         string_t    s("abcdef");
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(6u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(6u, s.size());
+        TEST_MS_EQ("abcdef", s);
 
         s.resize(3u, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
     }
 
     // Grow a non-empty string past its current capacity (exercises the
@@ -1231,17 +1232,17 @@ static void test_resize()
     {
         string_t    s("abcdef");
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(6u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(6u, s.size());
+        TEST_MS_EQ("abcdef", s);
 
         s.resize(1000u, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(1000u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abcdef", s, 6);
-        XTESTS_TEST_CHARACTER_EQUAL('~', s[6]);
-        XTESTS_TEST_CHARACTER_EQUAL('~', s[999]);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(1000u, s.size());
+        TEST_MS_EQ_N("abcdef", s, 6);
+        TEST_CHAR_EQ('~', s[6]);
+        TEST_CHAR_EQ('~', s[999]);
     }
 }
 
@@ -1254,7 +1255,7 @@ static void test_clear()
 
         s.clear();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
@@ -1262,7 +1263,7 @@ static void test_clear()
 
         s.clear();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 }
 #endif /* !USE_std_string */
@@ -1276,7 +1277,7 @@ static void test_erase_0_param()
 
         s.erase();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
@@ -1284,7 +1285,7 @@ static void test_erase_0_param()
 
         s.erase();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 }
 
@@ -1295,7 +1296,7 @@ static void test_erase_1_pos()
 
         s.erase(size_t(0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
@@ -1303,7 +1304,7 @@ static void test_erase_1_pos()
 
         s.erase(size_t(0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 }
 
@@ -1314,7 +1315,7 @@ static void test_erase_pos_and_cch()
 
         s.erase(0u, 10u);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
@@ -1322,7 +1323,7 @@ static void test_erase_pos_and_cch()
 
         s.erase(0u, 10u);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 }
 #endif
@@ -1341,7 +1342,7 @@ static void test_max_size()
 {
     string_t s;
 
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1000000u, s.max_size());
+    TEST_INT_GE(1000000u, s.max_size());
 }
 
 static void test_length()
@@ -1353,15 +1354,15 @@ static void test_capacity()
 {
     string_t s;
 
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
+    TEST_INT_GE(0u, s.capacity());
 
     s.resize(10u);
 
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
+    TEST_INT_GE(10u, s.capacity());
 
     s.resize(1000u);
 
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1000u, s.capacity());
+    TEST_INT_GE(1000u, s.capacity());
 }
 
 static void test_empty()
@@ -1377,35 +1378,35 @@ static void test_compare_1()
     string_t    s1("abc");
     string_t    s2("def");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() != s2);
-    XTESTS_TEST_MULTIBYTE_STRING_NOT_EQUAL(s1, s2);
+    TEST_BOOLEAN_TRUE(s1 != s2);
+    TEST_BOOLEAN_TRUE(s1 != s2.c_str());
+    TEST_BOOLEAN_TRUE(s1.c_str() != s2);
+    TEST_MS_NE(s1, s2);
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1 < s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 < s2.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() < s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 <= s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 <= s2.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() <= s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s2 > s1);
-    XTESTS_TEST_BOOLEAN_TRUE(s2 > s1.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s2.c_str() > s1);
-    XTESTS_TEST_BOOLEAN_TRUE(s2 >= s1);
-    XTESTS_TEST_BOOLEAN_TRUE(s2 >= s1.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s2.c_str() >= s1);
+    TEST_BOOLEAN_TRUE(s1 < s2);
+    TEST_BOOLEAN_TRUE(s1 < s2.c_str());
+    TEST_BOOLEAN_TRUE(s1.c_str() < s2);
+    TEST_BOOLEAN_TRUE(s1 <= s2);
+    TEST_BOOLEAN_TRUE(s1 <= s2.c_str());
+    TEST_BOOLEAN_TRUE(s1.c_str() <= s2);
+    TEST_BOOLEAN_TRUE(s2 > s1);
+    TEST_BOOLEAN_TRUE(s2 > s1.c_str());
+    TEST_BOOLEAN_TRUE(s2.c_str() > s1);
+    TEST_BOOLEAN_TRUE(s2 >= s1);
+    TEST_BOOLEAN_TRUE(s2 >= s1.c_str());
+    TEST_BOOLEAN_TRUE(s2.c_str() >= s1);
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1 == s1);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 == s1.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s1 == "abc");
-    XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() == s1);
-    XTESTS_TEST_BOOLEAN_TRUE("abc" == s1);
+    TEST_BOOLEAN_TRUE(s1 == s1);
+    TEST_BOOLEAN_TRUE(s1 == s1.c_str());
+    TEST_BOOLEAN_TRUE(s1 == "abc");
+    TEST_BOOLEAN_TRUE(s1.c_str() == s1);
+    TEST_BOOLEAN_TRUE("abc" == s1);
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2.c_str());
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != "def");
-    XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() != s2);
-    XTESTS_TEST_BOOLEAN_TRUE("abc" != s2);
+    TEST_BOOLEAN_TRUE(s1 != s2);
+    TEST_BOOLEAN_TRUE(s1 != s2.c_str());
+    TEST_BOOLEAN_TRUE(s1 != "def");
+    TEST_BOOLEAN_TRUE(s1.c_str() != s2);
+    TEST_BOOLEAN_TRUE("abc" != s2);
 }
 
 static void test_compare_2()
@@ -1413,70 +1414,70 @@ static void test_compare_2()
     string_t    s1("abc");
     string_t    s2("def");
 
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2.c_str()));
-//  XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 4u, s2.c_str()));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2.c_str(), s2.size()));
+    TEST_INT_LT(0, s1.compare(s2));
+    TEST_INT_LT(0, s1.compare(0u, 3u, s2));
+    TEST_INT_LT(0, s1.compare(0u, 3u, s2.c_str()));
+//  TEST_INT_LT(0, s1.compare(0u, 4u, s2.c_str()));
+    TEST_INT_LT(0, s1.compare(0u, 3u, s2.c_str(), s2.size()));
 }
 
 static void test_compare_3()
 {
     string_t    s1("def");
 
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare("ghi"));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, "ghi"));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(3u, 0u, "ghi"));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 2u, "ghi"));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 2u, "ghi", 2u));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(3u, 2u, "ghi", 2u));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(3u, 2u, "ghi", 0u, 2u));
-    XTESTS_TEST_INTEGER_GREATER(0, s1.compare(0u, 2u, "abc", 0u, 2u));
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(3u, 2u, "abc", 0u, 2u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 2u, "ghi", 3u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 2u, "ghi", 3u, 2u));
+    TEST_INT_LT(0, s1.compare("ghi"));
+    TEST_INT_LT(0, s1.compare(0u, 3u, "ghi"));
+    TEST_INT_LT(0, s1.compare(3u, 0u, "ghi"));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "ghi"));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "ghi", 2u));
+    TEST_INT_LT(0, s1.compare(3u, 2u, "ghi", 2u));
+    TEST_INT_LT(0, s1.compare(3u, 2u, "ghi", 0u, 2u));
+    TEST_INT_GT(0, s1.compare(0u, 2u, "abc", 0u, 2u));
+    TEST_INT_LT(0, s1.compare(3u, 2u, "abc", 0u, 2u));
+    TEST_INT_EQ(0, s1.compare(3u, 2u, "ghi", 3u, 0u));
+    TEST_INT_EQ(0, s1.compare(3u, 2u, "ghi", 3u, 2u));
 
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(0u, 0u, "def", 0u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(1u, 0u, "def", 1u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 0u, "def", 2u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 0u, "def", 3u, 0u));
+    TEST_INT_EQ(0, s1.compare(0u, 0u, "def", 0u, 0u));
+    TEST_INT_EQ(0, s1.compare(1u, 0u, "def", 1u, 0u));
+    TEST_INT_EQ(0, s1.compare(2u, 0u, "def", 2u, 0u));
+    TEST_INT_EQ(0, s1.compare(3u, 0u, "def", 3u, 0u));
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(0u, 1u, "def", 0u, 1u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(1u, 1u, "def", 1u, 1u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 1u, "def", 2u, 1u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 1u, "def", 3u, 1u));
+    TEST_INT_EQ(0, s1.compare(0u, 1u, "def", 0u, 1u));
+    TEST_INT_EQ(0, s1.compare(1u, 1u, "def", 1u, 1u));
+    TEST_INT_EQ(0, s1.compare(2u, 1u, "def", 2u, 1u));
+    TEST_INT_EQ(0, s1.compare(3u, 1u, "def", 3u, 1u));
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(0u, 2u, "def", 0u, 2u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(1u, 2u, "def", 1u, 2u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 2u, "def", 2u, 2u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 2u, "def", 3u, 2u));
+    TEST_INT_EQ(0, s1.compare(0u, 2u, "def", 0u, 2u));
+    TEST_INT_EQ(0, s1.compare(1u, 2u, "def", 1u, 2u));
+    TEST_INT_EQ(0, s1.compare(2u, 2u, "def", 2u, 2u));
+    TEST_INT_EQ(0, s1.compare(3u, 2u, "def", 3u, 2u));
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(0u, 3u, "def", 0u, 3u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(1u, 3u, "def", 1u, 3u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 3u, "def", 2u, 3u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 3u, "def", 3u, 3u));
+    TEST_INT_EQ(0, s1.compare(0u, 3u, "def", 0u, 3u));
+    TEST_INT_EQ(0, s1.compare(1u, 3u, "def", 1u, 3u));
+    TEST_INT_EQ(0, s1.compare(2u, 3u, "def", 2u, 3u));
+    TEST_INT_EQ(0, s1.compare(3u, 3u, "def", 3u, 3u));
 
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(0u, 0u, "fed", 0u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(1u, 0u, "fed", 1u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 0u, "fed", 2u, 0u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 0u, "fed", 3u, 0u));
+    TEST_INT_EQ(0, s1.compare(0u, 0u, "fed", 0u, 0u));
+    TEST_INT_EQ(0, s1.compare(1u, 0u, "fed", 1u, 0u));
+    TEST_INT_EQ(0, s1.compare(2u, 0u, "fed", 2u, 0u));
+    TEST_INT_EQ(0, s1.compare(3u, 0u, "fed", 3u, 0u));
 
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 1u, "fed", 0u, 1u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(1u, 1u, "fed", 1u, 1u));
-    XTESTS_TEST_INTEGER_GREATER(0, s1.compare(2u, 1u, "fed", 2u, 1u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 1u, "fed", 3u, 1u));
+    TEST_INT_LT(0, s1.compare(0u, 1u, "fed", 0u, 1u));
+    TEST_INT_EQ(0, s1.compare(1u, 1u, "fed", 1u, 1u));
+    TEST_INT_GT(0, s1.compare(2u, 1u, "fed", 2u, 1u));
+    TEST_INT_EQ(0, s1.compare(3u, 1u, "fed", 3u, 1u));
 
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 2u, "fed", 0u, 2u));
-    XTESTS_TEST_INTEGER_GREATER(0, s1.compare(1u, 2u, "fed", 1u, 2u));
-    XTESTS_TEST_INTEGER_GREATER(0, s1.compare(2u, 2u, "fed", 2u, 2u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 2u, "fed", 3u, 2u));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "fed", 0u, 2u));
+    TEST_INT_GT(0, s1.compare(1u, 2u, "fed", 1u, 2u));
+    TEST_INT_GT(0, s1.compare(2u, 2u, "fed", 2u, 2u));
+    TEST_INT_EQ(0, s1.compare(3u, 2u, "fed", 3u, 2u));
 
-    XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, "fed", 0u, 3u));
-    XTESTS_TEST_INTEGER_GREATER(0, s1.compare(1u, 3u, "fed", 1u, 3u));
-    XTESTS_TEST_INTEGER_GREATER(0, s1.compare(2u, 3u, "fed", 2u, 3u));
-    XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 3u, "fed", 3u, 3u));
+    TEST_INT_LT(0, s1.compare(0u, 3u, "fed", 0u, 3u));
+    TEST_INT_GT(0, s1.compare(1u, 3u, "fed", 1u, 3u));
+    TEST_INT_GT(0, s1.compare(2u, 3u, "fed", 2u, 3u));
+    TEST_INT_EQ(0, s1.compare(3u, 3u, "fed", 3u, 3u));
 }
 
 static void test_compare_4()
@@ -1485,9 +1486,9 @@ static void test_compare_4()
         string_t    s1("mno");
         string_t    s2("mnopqr");
 
-        XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2));
-        XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2.c_str()));
-        XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, s1.size(), s2));
+        TEST_INT_LT(0, s1.compare(s2));
+        TEST_INT_LT(0, s1.compare(s2.c_str()));
+        TEST_INT_LT(0, s1.compare(0u, s1.size(), s2));
     }
 }
 
@@ -1498,14 +1499,14 @@ static void test_equality_operators_1()
     string_t    s3("abc");
     string_t    s4("def");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1 == s1);
-    XTESTS_TEST_BOOLEAN_FALSE(s1 != s1);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
-    XTESTS_TEST_BOOLEAN_FALSE(s1 == s2);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 == s3);
-    XTESTS_TEST_BOOLEAN_FALSE(s1 != s3);
-    XTESTS_TEST_BOOLEAN_TRUE(s1 != s4);
-    XTESTS_TEST_BOOLEAN_FALSE(s1 == s4);
+    TEST_BOOLEAN_TRUE(s1 == s1);
+    TEST_BOOLEAN_FALSE(s1 != s1);
+    TEST_BOOLEAN_TRUE(s1 != s2);
+    TEST_BOOLEAN_FALSE(s1 == s2);
+    TEST_BOOLEAN_TRUE(s1 == s3);
+    TEST_BOOLEAN_FALSE(s1 != s3);
+    TEST_BOOLEAN_TRUE(s1 != s4);
+    TEST_BOOLEAN_FALSE(s1 == s4);
 }
 
 #ifndef USE_std_string
@@ -1517,10 +1518,10 @@ static void test_equal_p_n_ccs_n()
     string_t    s3("abc");
     string_t    s4("def");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str(), 3));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str(), 3));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str(), 3));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str(), 3));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str(), 3));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str(), 3));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str(), 3));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str(), 3));
 }
 
 static void test_equal_p_n_ccs()
@@ -1530,24 +1531,24 @@ static void test_equal_p_n_ccs()
     string_t    s3("abc");
     string_t    s4("def");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str()));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str()));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str()));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str()));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str()));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str()));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, "abc"));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, "bc"));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 1, "c"));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(3, 0, ""));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, "abc"));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 2, "bc"));
+    TEST_BOOLEAN_TRUE(s1.equal(2, 1, "c"));
+    TEST_BOOLEAN_TRUE(s1.equal(3, 0, ""));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 4, "abc"));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 444, "abc"));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 4, "abc"));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 444, "abc"));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 3, "bc"));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 333, "bc"));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 3, "bc"));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 333, "bc"));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 2, "c"));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 222, "c"));
+    TEST_BOOLEAN_TRUE(s1.equal(2, 2, "c"));
+    TEST_BOOLEAN_TRUE(s1.equal(2, 222, "c"));
 }
 
 static void test_equal_ccs()
@@ -1557,10 +1558,10 @@ static void test_equal_ccs()
     string_t    s3("abc");
     string_t    s4("def");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s1.c_str()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s2.c_str()));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s3.c_str()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s4.c_str()));
+    TEST_BOOLEAN_TRUE(s1.equal(s1.c_str()));
+    TEST_BOOLEAN_FALSE(s1.equal(s2.c_str()));
+    TEST_BOOLEAN_TRUE(s1.equal(s3.c_str()));
+    TEST_BOOLEAN_FALSE(s1.equal(s4.c_str()));
 }
 
 static void test_equal_p_n_scr_p_n()
@@ -1571,27 +1572,27 @@ static void test_equal_p_n_scr_p_n()
     string_t    s3("abcd");
     string_t    s4("defg");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 0, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 1, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_FALSE(s0.equal(0, 0, s0, 0, 1));
+    TEST_BOOLEAN_TRUE(s0.equal(0, 0, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s0.equal(0, 1, s0, 0, 0));
+    TEST_BOOLEAN_FALSE(s0.equal(0, 0, s0, 0, 1));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0, 0, 0));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0, 0, 0));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2, 0, s2.size()));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s3, 0, s3.size()));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4, 0, s4.size()));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2, 0, s2.size()));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s3, 0, s3.size()));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4, 0, s4.size()));
 
-    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 1, s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 2, s1));
-    XTESTS_TEST_BOOLEAN_TRUE(s3.equal(0, 3, s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 4, s1));
+    TEST_BOOLEAN_FALSE(s3.equal(0, 1, s1));
+    TEST_BOOLEAN_FALSE(s3.equal(0, 2, s1));
+    TEST_BOOLEAN_TRUE(s3.equal(0, 3, s1));
+    TEST_BOOLEAN_FALSE(s3.equal(0, 4, s1));
 }
 
 static void test_equal_p_n_scr()
@@ -1602,23 +1603,23 @@ static void test_equal_p_n_scr()
     string_t    s3("abcd");
     string_t    s4("defg");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0));
+    TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0));
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s3));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2));
+    TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s3));
+    TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4));
 
-    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 1, s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 2, s1));
-    XTESTS_TEST_BOOLEAN_TRUE(s3.equal(0, 3, s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 4, s1));
+    TEST_BOOLEAN_FALSE(s3.equal(0, 1, s1));
+    TEST_BOOLEAN_FALSE(s3.equal(0, 2, s1));
+    TEST_BOOLEAN_TRUE(s3.equal(0, 3, s1));
+    TEST_BOOLEAN_FALSE(s3.equal(0, 4, s1));
 }
 
 static void test_equal_scr()
@@ -1629,12 +1630,12 @@ static void test_equal_scr()
     string_t    s3("abc");
     string_t    s4("def");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(s0));
-    XTESTS_TEST_BOOLEAN_FALSE(s0.equal(s1));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s1));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s2));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s3));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s4));
+    TEST_BOOLEAN_TRUE(s0.equal(s0));
+    TEST_BOOLEAN_FALSE(s0.equal(s1));
+    TEST_BOOLEAN_TRUE(s1.equal(s1));
+    TEST_BOOLEAN_FALSE(s1.equal(s2));
+    TEST_BOOLEAN_TRUE(s1.equal(s3));
+    TEST_BOOLEAN_FALSE(s1.equal(s4));
 }
 #endif /* !USE_std_string */
 
@@ -1646,69 +1647,69 @@ static void test_starts_with_1()
     string_t const s;
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("z"));
+        TEST_BOOLEAN_TRUE(s.starts_with(""));
+        TEST_BOOLEAN_FALSE(s.starts_with("a"));
+        TEST_BOOLEAN_FALSE(s.starts_with("b"));
+        TEST_BOOLEAN_FALSE(s.starts_with("c"));
+        TEST_BOOLEAN_FALSE(s.starts_with("d"));
+        TEST_BOOLEAN_FALSE(s.starts_with("e"));
+        TEST_BOOLEAN_FALSE(s.starts_with("i"));
+        TEST_BOOLEAN_FALSE(s.starts_with("o"));
+        TEST_BOOLEAN_FALSE(s.starts_with("u"));
+        TEST_BOOLEAN_FALSE(s.starts_with("x"));
+        TEST_BOOLEAN_FALSE(s.starts_with("y"));
+        TEST_BOOLEAN_FALSE(s.starts_with("z"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("ab"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abc"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abcd"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abcde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("ab"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abc"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abcd"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abce"));
+        TEST_BOOLEAN_FALSE(s.starts_with("aa"));
+        TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("acde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("ab")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abc")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcd")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('z'));
+        TEST_BOOLEAN_FALSE(s.starts_with('a'));
+        TEST_BOOLEAN_FALSE(s.starts_with('b'));
+        TEST_BOOLEAN_FALSE(s.starts_with('c'));
+        TEST_BOOLEAN_FALSE(s.starts_with('d'));
+        TEST_BOOLEAN_FALSE(s.starts_with('e'));
+        TEST_BOOLEAN_FALSE(s.starts_with('i'));
+        TEST_BOOLEAN_FALSE(s.starts_with('o'));
+        TEST_BOOLEAN_FALSE(s.starts_with('u'));
+        TEST_BOOLEAN_FALSE(s.starts_with('x'));
+        TEST_BOOLEAN_FALSE(s.starts_with('y'));
+        TEST_BOOLEAN_FALSE(s.starts_with('z'));
     }
 }
 
@@ -1717,69 +1718,69 @@ static void test_starts_with_2()
     string_t const s(alphabet);
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(""));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("z"));
+        TEST_BOOLEAN_TRUE(s.starts_with(""));
+        TEST_BOOLEAN_TRUE(s.starts_with("a"));
+        TEST_BOOLEAN_FALSE(s.starts_with("b"));
+        TEST_BOOLEAN_FALSE(s.starts_with("c"));
+        TEST_BOOLEAN_FALSE(s.starts_with("d"));
+        TEST_BOOLEAN_FALSE(s.starts_with("e"));
+        TEST_BOOLEAN_FALSE(s.starts_with("i"));
+        TEST_BOOLEAN_FALSE(s.starts_with("o"));
+        TEST_BOOLEAN_FALSE(s.starts_with("u"));
+        TEST_BOOLEAN_FALSE(s.starts_with("x"));
+        TEST_BOOLEAN_FALSE(s.starts_with("y"));
+        TEST_BOOLEAN_FALSE(s.starts_with("z"));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("ab"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("abc"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("abcd"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("abcde"));
+        TEST_BOOLEAN_TRUE(s.starts_with("ab"));
+        TEST_BOOLEAN_TRUE(s.starts_with("abc"));
+        TEST_BOOLEAN_TRUE(s.starts_with("abcd"));
+        TEST_BOOLEAN_TRUE(s.starts_with("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abce"));
+        TEST_BOOLEAN_FALSE(s.starts_with("aa"));
+        TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("acde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcde")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("ab")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("abc")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcd")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('z'));
+        TEST_BOOLEAN_TRUE(s.starts_with('a'));
+        TEST_BOOLEAN_FALSE(s.starts_with('b'));
+        TEST_BOOLEAN_FALSE(s.starts_with('c'));
+        TEST_BOOLEAN_FALSE(s.starts_with('d'));
+        TEST_BOOLEAN_FALSE(s.starts_with('e'));
+        TEST_BOOLEAN_FALSE(s.starts_with('i'));
+        TEST_BOOLEAN_FALSE(s.starts_with('o'));
+        TEST_BOOLEAN_FALSE(s.starts_with('u'));
+        TEST_BOOLEAN_FALSE(s.starts_with('x'));
+        TEST_BOOLEAN_FALSE(s.starts_with('y'));
+        TEST_BOOLEAN_FALSE(s.starts_with('z'));
     }
 }
 
@@ -1788,69 +1789,69 @@ static void test_contains_1()
     string_t const s;
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("z"));
+        TEST_BOOLEAN_TRUE(s.contains(""));
+        TEST_BOOLEAN_FALSE(s.contains("a"));
+        TEST_BOOLEAN_FALSE(s.contains("b"));
+        TEST_BOOLEAN_FALSE(s.contains("c"));
+        TEST_BOOLEAN_FALSE(s.contains("d"));
+        TEST_BOOLEAN_FALSE(s.contains("e"));
+        TEST_BOOLEAN_FALSE(s.contains("i"));
+        TEST_BOOLEAN_FALSE(s.contains("o"));
+        TEST_BOOLEAN_FALSE(s.contains("u"));
+        TEST_BOOLEAN_FALSE(s.contains("x"));
+        TEST_BOOLEAN_FALSE(s.contains("y"));
+        TEST_BOOLEAN_FALSE(s.contains("z"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("ab"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abc"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abcd"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abcde"));
+        TEST_BOOLEAN_FALSE(s.contains("ab"));
+        TEST_BOOLEAN_FALSE(s.contains("abc"));
+        TEST_BOOLEAN_FALSE(s.contains("abcd"));
+        TEST_BOOLEAN_FALSE(s.contains("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abce"));
+        TEST_BOOLEAN_FALSE(s.contains("aa"));
+        TEST_BOOLEAN_FALSE(s.contains("bcde"));
+        TEST_BOOLEAN_FALSE(s.contains("acde"));
+        TEST_BOOLEAN_FALSE(s.contains("abde"));
+        TEST_BOOLEAN_FALSE(s.contains("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abcde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("ab")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abc")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abcd")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('z'));
+        TEST_BOOLEAN_FALSE(s.contains('a'));
+        TEST_BOOLEAN_FALSE(s.contains('b'));
+        TEST_BOOLEAN_FALSE(s.contains('c'));
+        TEST_BOOLEAN_FALSE(s.contains('d'));
+        TEST_BOOLEAN_FALSE(s.contains('e'));
+        TEST_BOOLEAN_FALSE(s.contains('i'));
+        TEST_BOOLEAN_FALSE(s.contains('o'));
+        TEST_BOOLEAN_FALSE(s.contains('u'));
+        TEST_BOOLEAN_FALSE(s.contains('x'));
+        TEST_BOOLEAN_FALSE(s.contains('y'));
+        TEST_BOOLEAN_FALSE(s.contains('z'));
     }
 }
 
@@ -1859,72 +1860,72 @@ static void test_contains_2()
     string_t const s(alphabet);
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(""));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("a"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("b"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("c"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("d"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("e"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("i"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("o"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("u"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("x"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("y"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("z"));
+        TEST_BOOLEAN_TRUE(s.contains(""));
+        TEST_BOOLEAN_TRUE(s.contains("a"));
+        TEST_BOOLEAN_TRUE(s.contains("b"));
+        TEST_BOOLEAN_TRUE(s.contains("c"));
+        TEST_BOOLEAN_TRUE(s.contains("d"));
+        TEST_BOOLEAN_TRUE(s.contains("e"));
+        TEST_BOOLEAN_TRUE(s.contains("i"));
+        TEST_BOOLEAN_TRUE(s.contains("o"));
+        TEST_BOOLEAN_TRUE(s.contains("u"));
+        TEST_BOOLEAN_TRUE(s.contains("x"));
+        TEST_BOOLEAN_TRUE(s.contains("y"));
+        TEST_BOOLEAN_TRUE(s.contains("z"));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("ab"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abcd"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abcde"));
+        TEST_BOOLEAN_TRUE(s.contains("ab"));
+        TEST_BOOLEAN_TRUE(s.contains("abc"));
+        TEST_BOOLEAN_TRUE(s.contains("abcd"));
+        TEST_BOOLEAN_TRUE(s.contains("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("aa"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abce"));
+        TEST_BOOLEAN_FALSE(s.contains("aa"));
+        TEST_BOOLEAN_TRUE(s.contains("bcde"));
+        TEST_BOOLEAN_FALSE(s.contains("acde"));
+        TEST_BOOLEAN_FALSE(s.contains("abde"));
+        TEST_BOOLEAN_FALSE(s.contains("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("a")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("b")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("c")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("d")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("e")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("i")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("o")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("u")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("x")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("y")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("a")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("b")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("c")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("d")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("e")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("i")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("o")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("u")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("x")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("y")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("abcde")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("ab")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("abc")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("abcd")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('a'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('b'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('c'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('d'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('e'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('i'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('o'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('u'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('x'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('y'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('z'));
+        TEST_BOOLEAN_TRUE(s.contains('a'));
+        TEST_BOOLEAN_TRUE(s.contains('b'));
+        TEST_BOOLEAN_TRUE(s.contains('c'));
+        TEST_BOOLEAN_TRUE(s.contains('d'));
+        TEST_BOOLEAN_TRUE(s.contains('e'));
+        TEST_BOOLEAN_TRUE(s.contains('i'));
+        TEST_BOOLEAN_TRUE(s.contains('o'));
+        TEST_BOOLEAN_TRUE(s.contains('u'));
+        TEST_BOOLEAN_TRUE(s.contains('x'));
+        TEST_BOOLEAN_TRUE(s.contains('y'));
+        TEST_BOOLEAN_TRUE(s.contains('z'));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(' '));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('*'));
+        TEST_BOOLEAN_FALSE(s.contains(' '));
+        TEST_BOOLEAN_FALSE(s.contains('*'));
     }
 }
 
@@ -1934,7 +1935,7 @@ static void test_contains_3()
         string_t const s("abdabeabcab");
 
         {
-            XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
+            TEST_BOOLEAN_TRUE(s.contains("abc"));
         }
     }
 
@@ -1942,7 +1943,7 @@ static void test_contains_3()
         string_t const s("abdabeabfab");
 
         {
-            XTESTS_TEST_BOOLEAN_FALSE(s.contains("abc"));
+            TEST_BOOLEAN_FALSE(s.contains("abc"));
         }
     }
 
@@ -1950,8 +1951,8 @@ static void test_contains_3()
         string_t const s("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab");
 
         {
-            XTESTS_TEST_BOOLEAN_TRUE(s.contains("ab"));
-            XTESTS_TEST_BOOLEAN_FALSE(s.contains("ac"));
+            TEST_BOOLEAN_TRUE(s.contains("ab"));
+            TEST_BOOLEAN_FALSE(s.contains("ac"));
         }
     }
 }
@@ -1961,70 +1962,70 @@ static void test_ends_with_1()
     string_t const s;
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("z"));
+        TEST_BOOLEAN_TRUE(s.ends_with(""));
+        TEST_BOOLEAN_FALSE(s.ends_with("a"));
+        TEST_BOOLEAN_FALSE(s.ends_with("b"));
+        TEST_BOOLEAN_FALSE(s.ends_with("c"));
+        TEST_BOOLEAN_FALSE(s.ends_with("d"));
+        TEST_BOOLEAN_FALSE(s.ends_with("e"));
+        TEST_BOOLEAN_FALSE(s.ends_with("i"));
+        TEST_BOOLEAN_FALSE(s.ends_with("o"));
+        TEST_BOOLEAN_FALSE(s.ends_with("u"));
+        TEST_BOOLEAN_FALSE(s.ends_with("x"));
+        TEST_BOOLEAN_FALSE(s.ends_with("y"));
+        TEST_BOOLEAN_FALSE(s.ends_with("z"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("yz"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("xyz"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("wxyz"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("vwxyz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("yz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("xyz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("wxyz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("vwxyz"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abce"));
+        TEST_BOOLEAN_FALSE(s.ends_with("aa"));
+        TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("acde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("yz")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("xyz")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("wxyz")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("vwxyz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("yz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("xyz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("wxyz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("vwxyz")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
     }
 
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('z'));
+        TEST_BOOLEAN_FALSE(s.ends_with('a'));
+        TEST_BOOLEAN_FALSE(s.ends_with('b'));
+        TEST_BOOLEAN_FALSE(s.ends_with('c'));
+        TEST_BOOLEAN_FALSE(s.ends_with('d'));
+        TEST_BOOLEAN_FALSE(s.ends_with('e'));
+        TEST_BOOLEAN_FALSE(s.ends_with('i'));
+        TEST_BOOLEAN_FALSE(s.ends_with('o'));
+        TEST_BOOLEAN_FALSE(s.ends_with('u'));
+        TEST_BOOLEAN_FALSE(s.ends_with('x'));
+        TEST_BOOLEAN_FALSE(s.ends_with('y'));
+        TEST_BOOLEAN_FALSE(s.ends_with('z'));
     }
 }
 
@@ -2033,70 +2034,70 @@ static void test_ends_with_2()
     string_t const s(alphabet);
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("y"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("z"));
+        TEST_BOOLEAN_TRUE(s.ends_with(""));
+        TEST_BOOLEAN_FALSE(s.ends_with("a"));
+        TEST_BOOLEAN_FALSE(s.ends_with("b"));
+        TEST_BOOLEAN_FALSE(s.ends_with("c"));
+        TEST_BOOLEAN_FALSE(s.ends_with("d"));
+        TEST_BOOLEAN_FALSE(s.ends_with("e"));
+        TEST_BOOLEAN_FALSE(s.ends_with("i"));
+        TEST_BOOLEAN_FALSE(s.ends_with("o"));
+        TEST_BOOLEAN_FALSE(s.ends_with("u"));
+        TEST_BOOLEAN_FALSE(s.ends_with("x"));
+        TEST_BOOLEAN_FALSE(s.ends_with("y"));
+        TEST_BOOLEAN_TRUE(s.ends_with("z"));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("yz"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("xyz"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("wxyz"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("vwxyz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("yz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("xyz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("wxyz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("vwxyz"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abce"));
+        TEST_BOOLEAN_FALSE(s.ends_with("aa"));
+        TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("acde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("yz")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("xyz")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("wxyz")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("vwxyz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("yz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("xyz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("wxyz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("vwxyz")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
     }
 
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('y'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with('z'));
+        TEST_BOOLEAN_FALSE(s.ends_with('a'));
+        TEST_BOOLEAN_FALSE(s.ends_with('b'));
+        TEST_BOOLEAN_FALSE(s.ends_with('c'));
+        TEST_BOOLEAN_FALSE(s.ends_with('d'));
+        TEST_BOOLEAN_FALSE(s.ends_with('e'));
+        TEST_BOOLEAN_FALSE(s.ends_with('i'));
+        TEST_BOOLEAN_FALSE(s.ends_with('o'));
+        TEST_BOOLEAN_FALSE(s.ends_with('u'));
+        TEST_BOOLEAN_FALSE(s.ends_with('x'));
+        TEST_BOOLEAN_FALSE(s.ends_with('y'));
+        TEST_BOOLEAN_TRUE(s.ends_with('z'));
     }
 }
 #endif
@@ -2108,18 +2109,18 @@ static void test_at_1()
 {
     string_t    s("abc");
 
-    XTESTS_TEST_CHARACTER_EQUAL('a', s.at(0u));
-    XTESTS_TEST_CHARACTER_EQUAL('b', s.at(1u));
-    XTESTS_TEST_CHARACTER_EQUAL('c', s.at(2u));
+    TEST_CHAR_EQ('a', s.at(0u));
+    TEST_CHAR_EQ('b', s.at(1u));
+    TEST_CHAR_EQ('c', s.at(2u));
 }
 
 static void test_at_2()
 {
     string_t const s("abc");
 
-    XTESTS_TEST_CHARACTER_EQUAL('a', s.at(0u));
-    XTESTS_TEST_CHARACTER_EQUAL('b', s.at(1u));
-    XTESTS_TEST_CHARACTER_EQUAL('c', s.at(2u));
+    TEST_CHAR_EQ('a', s.at(0u));
+    TEST_CHAR_EQ('b', s.at(1u));
+    TEST_CHAR_EQ('c', s.at(2u));
 }
 
 static void test_at_3()
@@ -2140,33 +2141,33 @@ static void test_index_1()
 {
     string_t    s("abc");
 
-    XTESTS_TEST_CHARACTER_EQUAL('a', s[0u]);
-    XTESTS_TEST_CHARACTER_EQUAL('b', s[1u]);
-    XTESTS_TEST_CHARACTER_EQUAL('c', s[2u]);
+    TEST_CHAR_EQ('a', s[0u]);
+    TEST_CHAR_EQ('b', s[1u]);
+    TEST_CHAR_EQ('c', s[2u]);
 }
 
 static void test_index_2()
 {
     string_t const s("abc");
 
-    XTESTS_TEST_CHARACTER_EQUAL('a', s[0u]);
-    XTESTS_TEST_CHARACTER_EQUAL('b', s[1u]);
-    XTESTS_TEST_CHARACTER_EQUAL('c', s[2u]);
-    XTESTS_TEST_CHARACTER_EQUAL('\0', s[3u]);
+    TEST_CHAR_EQ('a', s[0u]);
+    TEST_CHAR_EQ('b', s[1u]);
+    TEST_CHAR_EQ('c', s[2u]);
+    TEST_CHAR_EQ('\0', s[3u]);
 }
 
 static void test_copy()
 {
     string_t const s_alphabet(alphabet);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s_alphabet);
+    TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s_alphabet);
 
     {
         string_t    s;
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, cch);
+        TEST_INT_EQ(0u, cch);
     }
 
 #ifndef USE_std_string
@@ -2176,7 +2177,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 10);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, cch);
+        TEST_INT_EQ(0u, cch);
     }
 #endif
 
@@ -2185,7 +2186,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, cch);
+        TEST_INT_EQ(3u, cch);
     }
 
     {
@@ -2193,7 +2194,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 2);
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, cch);
+        TEST_INT_EQ(1u, cch);
     }
 
     {
@@ -2201,7 +2202,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 3);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, cch);
+        TEST_INT_EQ(0u, cch);
     }
 
     {
@@ -2210,8 +2211,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 26);
         dest[26] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", dest);
+        TEST_INT_EQ(26u, n);
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", dest);
     }
 
     {
@@ -2220,8 +2221,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20);
         dest[20] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(20u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrst", dest);
+        TEST_INT_EQ(20u, n);
+        TEST_MS_EQ("abcdefghijklmnopqrst", dest);
     }
 
     {
@@ -2230,8 +2231,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20, 6);
         dest[20] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(20u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghijklmnopqrstuvwxyz", dest);
+        TEST_INT_EQ(20u, n);
+        TEST_MS_EQ("ghijklmnopqrstuvwxyz", dest);
     }
 
     {
@@ -2240,8 +2241,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20, 16);
         dest[10] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("qrstuvwxyz", dest);
+        TEST_INT_EQ(10u, n);
+        TEST_MS_EQ("qrstuvwxyz", dest);
     }
 }
 
@@ -2253,10 +2254,10 @@ static void test_substr()
     string_t        s4 = s1.substr(0, s1.size() * 2);
     string_t        s5 = s1.substr();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s4);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s2);
+    TEST_MS_EQ(s1, s3);
+    TEST_MS_EQ(s1, s4);
+    TEST_MS_EQ(s1, s5);
 }
 
 static void test_substr_throw()
@@ -2264,7 +2265,7 @@ static void test_substr_throw()
     string_t const  s1("abcdefghi");
     string_t        s2 = s1.substr(s1.size() + 1);
 
-    XTESTS_TEST_FAIL("should not get here");
+    TEST_FAIL("should not get here");
 }
 
 
@@ -2277,28 +2278,28 @@ static void test_find_char()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('\0'));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('\0'));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find('a'));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find('b', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find('z'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('A'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('\0'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find('\0', 1u));
+        TEST_INT_EQ(0u, s.find('a'));
+        TEST_INT_EQ(1u, s.find('b', 0u));
+        TEST_INT_EQ(1u, s.find('b', 1u));
+        TEST_INT_EQ(25u, s.find('z'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('A'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find('\0', 1u));
     }
 }
 
@@ -2307,58 +2308,58 @@ static void test_find_c_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find(""));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find("", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 6u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("abc"));
+        TEST_INT_EQ(0u, s.find(""));
+        TEST_INT_EQ(0u, s.find("", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 2u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 3u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 5u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 6u));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find(""));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find("", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 6u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("abc"));
+        TEST_INT_EQ(0u, s.find(""));
+        TEST_INT_EQ(0u, s.find("", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 2u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 3u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 5u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 6u));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("abc", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find(""));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find("", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find("", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find("", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find("", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find("", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find("", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(6u, s.find("", 6u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 7u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("", 8u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("abc", 4u));
+        TEST_INT_EQ(0u, s.find(""));
+        TEST_INT_EQ(0u, s.find("", 0u));
+        TEST_INT_EQ(1u, s.find("", 1u));
+        TEST_INT_EQ(2u, s.find("", 2u));
+        TEST_INT_EQ(3u, s.find("", 3u));
+        TEST_INT_EQ(4u, s.find("", 4u));
+        TEST_INT_EQ(5u, s.find("", 5u));
+        TEST_INT_EQ(6u, s.find("", 6u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 7u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("", 8u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find("bcd", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find("bcd", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("bdc", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("bdc", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find("z"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("A"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("a", 1u));
+        TEST_INT_EQ(0u, s.find("abc"));
+        TEST_INT_EQ(1u, s.find("bcd", 0u));
+        TEST_INT_EQ(1u, s.find("bcd", 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("bdc", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("bdc", 1u));
+        TEST_INT_EQ(25u, s.find("z"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("A"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("a", 1u));
     }
 }
 
@@ -2367,32 +2368,32 @@ static void test_find_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find(string_t("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find("abc", 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find("abc", 4u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find(string_t("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find(string_t("bcd"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find(string_t("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find(string_t("bdc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find(string_t("bdc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find(string_t("z")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find(string_t("A")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find(string_t("a"), 1u));
+        TEST_INT_EQ(0u, s.find(string_t("abc")));
+        TEST_INT_EQ(1u, s.find(string_t("bcd"), 0u));
+        TEST_INT_EQ(1u, s.find(string_t("bcd"), 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find(string_t("bdc"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find(string_t("bdc"), 1u));
+        TEST_INT_EQ(25u, s.find(string_t("z")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find(string_t("A")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find(string_t("a"), 1u));
     }
 }
 
@@ -2401,53 +2402,53 @@ static void test_rfind_char()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('\0'));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('\0'));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind('a'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind('a', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind('a', 5u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind('a', 6u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind('a', 100u));
+        TEST_INT_EQ(3u, s.rfind('a'));
+        TEST_INT_EQ(0u, s.rfind('a', 0u));
+        TEST_INT_EQ(0u, s.rfind('a', 1u));
+        TEST_INT_EQ(0u, s.rfind('a', 2u));
+        TEST_INT_EQ(3u, s.rfind('a', 3u));
+        TEST_INT_EQ(3u, s.rfind('a', 4u));
+        TEST_INT_EQ(3u, s.rfind('a', 5u));
+        TEST_INT_EQ(3u, s.rfind('a', 6u));
+        TEST_INT_EQ(3u, s.rfind('a', 100u));
 
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.rfind('b'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('b', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.rfind('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.rfind('b', 5u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.rfind('b', 6u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.rfind('b', 100u));
+        TEST_INT_EQ(4u, s.rfind('b'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('b', 0u));
+        TEST_INT_EQ(1u, s.rfind('b', 1u));
+        TEST_INT_EQ(1u, s.rfind('b', 2u));
+        TEST_INT_EQ(1u, s.rfind('b', 3u));
+        TEST_INT_EQ(4u, s.rfind('b', 4u));
+        TEST_INT_EQ(4u, s.rfind('b', 5u));
+        TEST_INT_EQ(4u, s.rfind('b', 6u));
+        TEST_INT_EQ(4u, s.rfind('b', 100u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('b', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.rfind('z'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('A'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('\0'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind('\0', 1u));
+        TEST_INT_EQ(0u, s.rfind('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('b', 0u));
+        TEST_INT_EQ(1u, s.rfind('b', 1u));
+        TEST_INT_EQ(1u, s.rfind('b', 1u));
+        TEST_INT_EQ(25u, s.rfind('z'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('A'));
+        TEST_INT_EQ(0u, s.rfind('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind('\0', 1u));
     }
 }
 
@@ -2456,60 +2457,60 @@ static void test_rfind_c_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind(""));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind("abc"));
+        TEST_INT_EQ(0u, s.rfind(""));
+        TEST_INT_EQ(0u, s.rfind("", 0u));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind(""));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind("abc"));
+        TEST_INT_EQ(0u, s.rfind(""));
+        TEST_INT_EQ(0u, s.rfind("", 0u));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 7u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 6u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(6u, s.rfind(""));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.rfind("", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.rfind("", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.rfind("", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(6u, s.rfind("", 6u));
-        XTESTS_TEST_INTEGER_EQUAL(6u, s.rfind("", 7u));
+        TEST_INT_EQ(3u, s.rfind("abc"));
+        TEST_INT_EQ(3u, s.rfind("abc", 7u));
+        TEST_INT_EQ(3u, s.rfind("abc", 6u));
+        TEST_INT_EQ(3u, s.rfind("abc", 5u));
+        TEST_INT_EQ(3u, s.rfind("abc", 4u));
+        TEST_INT_EQ(3u, s.rfind("abc", 3u));
+        TEST_INT_EQ(0u, s.rfind("abc", 2u));
+        TEST_INT_EQ(0u, s.rfind("abc", 1u));
+        TEST_INT_EQ(0u, s.rfind("abc", 0u));
+        TEST_INT_EQ(6u, s.rfind(""));
+        TEST_INT_EQ(0u, s.rfind("", 0u));
+        TEST_INT_EQ(1u, s.rfind("", 1u));
+        TEST_INT_EQ(2u, s.rfind("", 2u));
+        TEST_INT_EQ(3u, s.rfind("", 3u));
+        TEST_INT_EQ(4u, s.rfind("", 4u));
+        TEST_INT_EQ(5u, s.rfind("", 5u));
+        TEST_INT_EQ(6u, s.rfind("", 6u));
+        TEST_INT_EQ(6u, s.rfind("", 7u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind("bcd", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 6u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 7u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind("bcd", 100u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind("bdc", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind("bdc", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.rfind("z"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind("A"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("a", 1u));
+        TEST_INT_EQ(0u, s.rfind("abc"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind("bcd", 0u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 1u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 2u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 3u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 4u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 5u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 6u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 7u));
+        TEST_INT_EQ(1u, s.rfind("bcd", 100u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind("bdc", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind("bdc", 1u));
+        TEST_INT_EQ(25u, s.rfind("z"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind("A"));
+        TEST_INT_EQ(0u, s.rfind("a", 1u));
     }
 }
 
@@ -2518,49 +2519,49 @@ static void test_rfind_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind(string_t("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind("abc", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 5u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 6u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.rfind("abc", 100u));
+        TEST_INT_EQ(3u, s.rfind("abc"));
+        TEST_INT_EQ(0u, s.rfind("abc", 0u));
+        TEST_INT_EQ(0u, s.rfind("abc", 1u));
+        TEST_INT_EQ(0u, s.rfind("abc", 2u));
+        TEST_INT_EQ(3u, s.rfind("abc", 3u));
+        TEST_INT_EQ(3u, s.rfind("abc", 4u));
+        TEST_INT_EQ(3u, s.rfind("abc", 5u));
+        TEST_INT_EQ(3u, s.rfind("abc", 6u));
+        TEST_INT_EQ(3u, s.rfind("abc", 100u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind(string_t("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind(string_t("bcd"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 5u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 10u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 20u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.rfind(string_t("bcd"), 100u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind(string_t("bdc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind(string_t("bdc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.rfind(string_t("z")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.rfind(string_t("A")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind(string_t("a")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind(string_t("a"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.rfind(string_t("a"), 1u));
+        TEST_INT_EQ(0u, s.rfind(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind(string_t("bcd"), 0u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 1u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 2u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 3u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 4u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 5u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 10u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 20u));
+        TEST_INT_EQ(1u, s.rfind(string_t("bcd"), 100u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind(string_t("bdc"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind(string_t("bdc"), 1u));
+        TEST_INT_EQ(25u, s.rfind(string_t("z")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.rfind(string_t("A")));
+        TEST_INT_EQ(0u, s.rfind(string_t("a")));
+        TEST_INT_EQ(0u, s.rfind(string_t("a"), 0u));
+        TEST_INT_EQ(0u, s.rfind(string_t("a"), 1u));
     }
 }
 
@@ -2569,28 +2570,28 @@ static void test_find_first_of_char()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('\0'));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('\0'));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of('b', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_first_of('z'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('A'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('\0'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of('\0', 1u));
+        TEST_INT_EQ(0u, s.find_first_of('a'));
+        TEST_INT_EQ(1u, s.find_first_of('b', 0u));
+        TEST_INT_EQ(1u, s.find_first_of('b', 1u));
+        TEST_INT_EQ(25u, s.find_first_of('z'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('A'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of('\0', 1u));
     }
 }
 
@@ -2599,33 +2600,33 @@ static void test_find_first_of_c_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("abc"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("abc"));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("abc"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("abc"));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("defghijklmnopqrstuvwxyz", 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("defghijklmnopqrstuvwxyz", 4u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_of("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of("bcd", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of("dcb", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of("bcd", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("BDC", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("aBDC", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_first_of("z"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("A"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of("a", 1u));
+        TEST_INT_EQ(0u, s.find_first_of("abc"));
+        TEST_INT_EQ(1u, s.find_first_of("bcd", 0u));
+        TEST_INT_EQ(1u, s.find_first_of("dcb", 0u));
+        TEST_INT_EQ(1u, s.find_first_of("bcd", 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("BDC", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("aBDC", 1u));
+        TEST_INT_EQ(25u, s.find_first_of("z"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("A"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of("a", 1u));
     }
 }
 
@@ -2634,33 +2635,33 @@ static void test_find_first_of_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_of(string_t("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of(string_t("bcd"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of(string_t("dcb"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_of(string_t("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("BDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("aBDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_first_of(string_t("z")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("A")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_of(string_t("a"), 1u));
+        TEST_INT_EQ(0u, s.find_first_of(string_t("abc")));
+        TEST_INT_EQ(1u, s.find_first_of(string_t("bcd"), 0u));
+        TEST_INT_EQ(1u, s.find_first_of(string_t("dcb"), 0u));
+        TEST_INT_EQ(1u, s.find_first_of(string_t("bcd"), 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("BDC"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("aBDC"), 1u));
+        TEST_INT_EQ(25u, s.find_first_of(string_t("z")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("A")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_of(string_t("a"), 1u));
     }
 }
 
@@ -2669,95 +2670,95 @@ static void test_find_last_of_char()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('\0'));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('\0'));
     }
 
     {
         string_t    s("a");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('\0'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('\0', 1u));
+        TEST_INT_EQ(0u, s.find_last_of('a'));
+        TEST_INT_EQ(0u, s.find_last_of('a', 1u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 0u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 2u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('\0'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('\0', 1u));
     }
 
     {
         string_t    s("ab");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 0u));
+        TEST_INT_EQ(0u, s.find_last_of('a'));
+        TEST_INT_EQ(0u, s.find_last_of('a', 4u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 3u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 2u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 1u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('b', 0u));
+        TEST_INT_EQ(1u, s.find_last_of('b'));
+        TEST_INT_EQ(1u, s.find_last_of('b', 4u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 3u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 2u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('b', 0u));
     }
 
     {
         string_t    s("abab");
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 0u));
+        TEST_INT_EQ(2u, s.find_last_of('a'));
+        TEST_INT_EQ(2u, s.find_last_of('a', 4u));
+        TEST_INT_EQ(2u, s.find_last_of('a', 3u));
+        TEST_INT_EQ(2u, s.find_last_of('a', 2u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 1u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('b', 0u));
+        TEST_INT_EQ(3u, s.find_last_of('b'));
+        TEST_INT_EQ(3u, s.find_last_of('b', 4u));
+        TEST_INT_EQ(3u, s.find_last_of('b', 3u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 2u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('b', 0u));
     }
 
     {
         string_t    s("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_of('a', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_of('a', 27u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_of('a', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 25u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of('a', 0u));
+        TEST_INT_EQ(26u, s.find_last_of('a'));
+        TEST_INT_EQ(26u, s.find_last_of('a', 51u));
+        TEST_INT_EQ(26u, s.find_last_of('a', 27u));
+        TEST_INT_EQ(26u, s.find_last_of('a', 26u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 25u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 1u));
+        TEST_INT_EQ(0u, s.find_last_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_last_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_last_of('b', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_last_of('b', 50u));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_last_of('b', 28u));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_last_of('b', 27u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 10u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('b', 0u));
+        TEST_INT_EQ(27u, s.find_last_of('b'));
+        TEST_INT_EQ(27u, s.find_last_of('b', 51u));
+        TEST_INT_EQ(27u, s.find_last_of('b', 50u));
+        TEST_INT_EQ(27u, s.find_last_of('b', 28u));
+        TEST_INT_EQ(27u, s.find_last_of('b', 27u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 26u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 10u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 2u));
+        TEST_INT_EQ(1u, s.find_last_of('b', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('b', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_last_of('z'));
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_last_of('z', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of('z', 50u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of('z', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of('z', 25u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('z', 24u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('z', 10u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('z', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of('z', 0u));
+        TEST_INT_EQ(51u, s.find_last_of('z'));
+        TEST_INT_EQ(51u, s.find_last_of('z', 51u));
+        TEST_INT_EQ(25u, s.find_last_of('z', 50u));
+        TEST_INT_EQ(25u, s.find_last_of('z', 26u));
+        TEST_INT_EQ(25u, s.find_last_of('z', 25u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('z', 24u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('z', 10u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('z', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of('z', 0u));
     }
 }
 
@@ -2766,88 +2767,88 @@ static void test_find_last_of_c_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("abc"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("abc"));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("abc"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("abc"));
     }
 
     {
         string_t    s("abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("abc"));
+        TEST_INT_EQ(2u, s.find_last_of("abc"));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("defghijklmnopqrstuvwxyz", 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("defghijklmnopqrstuvwxyz", 4u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("abc"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("abc", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("abc", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("abc", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("abc", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("abc", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("abc", 20u));
+        TEST_INT_EQ(2u, s.find_last_of("abc"));
+        TEST_INT_EQ(0u, s.find_last_of("abc", 0u));
+        TEST_INT_EQ(1u, s.find_last_of("abc", 1u));
+        TEST_INT_EQ(2u, s.find_last_of("abc", 2u));
+        TEST_INT_EQ(2u, s.find_last_of("abc", 3u));
+        TEST_INT_EQ(2u, s.find_last_of("abc", 4u));
+        TEST_INT_EQ(2u, s.find_last_of("abc", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("bca"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("bca", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("bca", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("bca", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("bca", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("bca", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("bca", 20u));
+        TEST_INT_EQ(2u, s.find_last_of("bca"));
+        TEST_INT_EQ(0u, s.find_last_of("bca", 0u));
+        TEST_INT_EQ(1u, s.find_last_of("bca", 1u));
+        TEST_INT_EQ(2u, s.find_last_of("bca", 2u));
+        TEST_INT_EQ(2u, s.find_last_of("bca", 3u));
+        TEST_INT_EQ(2u, s.find_last_of("bca", 4u));
+        TEST_INT_EQ(2u, s.find_last_of("bca", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("cab"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("cab", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("cab", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("cab", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("cab", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("cab", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("cab", 20u));
+        TEST_INT_EQ(2u, s.find_last_of("cab"));
+        TEST_INT_EQ(0u, s.find_last_of("cab", 0u));
+        TEST_INT_EQ(1u, s.find_last_of("cab", 1u));
+        TEST_INT_EQ(2u, s.find_last_of("cab", 2u));
+        TEST_INT_EQ(2u, s.find_last_of("cab", 3u));
+        TEST_INT_EQ(2u, s.find_last_of("cab", 4u));
+        TEST_INT_EQ(2u, s.find_last_of("cab", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of("dcb"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("dcb", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("dcb", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of("dcb", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of("dcb", 3u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of("dcb", 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of("dcb", 20u));
+        TEST_INT_EQ(3u, s.find_last_of("dcb"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("dcb", 0u));
+        TEST_INT_EQ(1u, s.find_last_of("dcb", 1u));
+        TEST_INT_EQ(2u, s.find_last_of("dcb", 2u));
+        TEST_INT_EQ(3u, s.find_last_of("dcb", 3u));
+        TEST_INT_EQ(3u, s.find_last_of("dcb", 4u));
+        TEST_INT_EQ(3u, s.find_last_of("dcb", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("BDC"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("BDC", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("BDC"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("BDC", 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("aBDC"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("aBDC", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("aBDC", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("aBDC", 20u));
+        TEST_INT_EQ(0u, s.find_last_of("aBDC"));
+        TEST_INT_EQ(0u, s.find_last_of("aBDC", 0u));
+        TEST_INT_EQ(0u, s.find_last_of("aBDC", 1u));
+        TEST_INT_EQ(0u, s.find_last_of("aBDC", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("AbDC"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("AbDC", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("AbDC", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of("AbDC", 20u));
+        TEST_INT_EQ(1u, s.find_last_of("AbDC"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("AbDC", 0u));
+        TEST_INT_EQ(1u, s.find_last_of("AbDC", 1u));
+        TEST_INT_EQ(1u, s.find_last_of("AbDC", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("a"));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("a", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("a", 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of("a", 20u));
+        TEST_INT_EQ(0u, s.find_last_of("a"));
+        TEST_INT_EQ(0u, s.find_last_of("a", 0u));
+        TEST_INT_EQ(0u, s.find_last_of("a", 2u));
+        TEST_INT_EQ(0u, s.find_last_of("a", 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of("z"));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("z", 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("z", 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("z", 20u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("z", 24u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of("z", 25u));
+        TEST_INT_EQ(25u, s.find_last_of("z"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("z", 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("z", 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("z", 20u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("z", 24u));
+        TEST_INT_EQ(25u, s.find_last_of("z", 25u));
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of("A"));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of("A"));
     }
 }
 
@@ -2856,88 +2857,88 @@ static void test_find_last_of_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("abc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("abc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("abc"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("abc"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("abc"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("abc"), 20u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("abc")));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("abc"), 0u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("abc"), 1u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("abc"), 2u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("abc"), 3u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("abc"), 4u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("abc"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("bca")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("bca"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("bca"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("bca"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("bca"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("bca"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("bca"), 20u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("bca")));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("bca"), 0u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("bca"), 1u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("bca"), 2u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("bca"), 3u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("bca"), 4u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("bca"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("cab")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("cab"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("cab"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("cab"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("cab"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("cab"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("cab"), 20u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("cab")));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("cab"), 0u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("cab"), 1u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("cab"), 2u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("cab"), 3u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("cab"), 4u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("cab"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of(string_t("dcb")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("dcb"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("dcb"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_of(string_t("dcb"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of(string_t("dcb"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of(string_t("dcb"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_of(string_t("dcb"), 20u));
+        TEST_INT_EQ(3u, s.find_last_of(string_t("dcb")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("dcb"), 0u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("dcb"), 1u));
+        TEST_INT_EQ(2u, s.find_last_of(string_t("dcb"), 2u));
+        TEST_INT_EQ(3u, s.find_last_of(string_t("dcb"), 3u));
+        TEST_INT_EQ(3u, s.find_last_of(string_t("dcb"), 4u));
+        TEST_INT_EQ(3u, s.find_last_of(string_t("dcb"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("BDC")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("BDC"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("BDC")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("BDC"), 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("aBDC")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("aBDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("aBDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("aBDC"), 20u));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("aBDC")));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("aBDC"), 0u));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("aBDC"), 1u));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("aBDC"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("AbDC")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("AbDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("AbDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_of(string_t("AbDC"), 20u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("AbDC")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("AbDC"), 0u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("AbDC"), 1u));
+        TEST_INT_EQ(1u, s.find_last_of(string_t("AbDC"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("a")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("a"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("a"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_of(string_t("a"), 20u));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("a")));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("a"), 0u));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("a"), 2u));
+        TEST_INT_EQ(0u, s.find_last_of(string_t("a"), 20u));
 
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of(string_t("z")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("z"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("z"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("z"), 20u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("z"), 24u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_of(string_t("z"), 25u));
+        TEST_INT_EQ(25u, s.find_last_of(string_t("z")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("z"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("z"), 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("z"), 20u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("z"), 24u));
+        TEST_INT_EQ(25u, s.find_last_of(string_t("z"), 25u));
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_of(string_t("A")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_of(string_t("A")));
     }
 }
 
@@ -2946,96 +2947,96 @@ static void test_find_first_not_of_char()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a'));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a'));
     }
 
     {
         string_t    s("a");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 2u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 2u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 2u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b'));
+        TEST_INT_EQ(0u, s.find_first_not_of('b', 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 2u));
     }
 
     {
         string_t    s("ab");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a', 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 3u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 2u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a', 1u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b', 0u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 3u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 2u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b', 0u));
     }
 
     {
         string_t    s("abab");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a', 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('a', 4u));
+        TEST_INT_EQ(3u, s.find_first_not_of('a', 3u));
+        TEST_INT_EQ(3u, s.find_first_not_of('a', 2u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a', 1u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_first_not_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_first_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b', 0u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 4u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('b', 3u));
+        TEST_INT_EQ(2u, s.find_first_not_of('b', 2u));
+        TEST_INT_EQ(2u, s.find_first_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b', 0u));
     }
 
     {
         string_t    s("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_first_not_of('a', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_first_not_of('a', 27u));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_first_not_of('a', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_first_not_of('a', 25u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('a', 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a'));
+        TEST_INT_EQ(51u, s.find_first_not_of('a', 51u));
+        TEST_INT_EQ(27u, s.find_first_not_of('a', 27u));
+        TEST_INT_EQ(27u, s.find_first_not_of('a', 26u));
+        TEST_INT_EQ(25u, s.find_first_not_of('a', 25u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a', 1u));
+        TEST_INT_EQ(1u, s.find_first_not_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_first_not_of('b', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(50u, s.find_first_not_of('b', 50u));
-        XTESTS_TEST_INTEGER_EQUAL(28u, s.find_first_not_of('b', 28u));
-        XTESTS_TEST_INTEGER_EQUAL(28u, s.find_first_not_of('b', 27u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_first_not_of('b', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.find_first_not_of('b', 10u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_first_not_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_first_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('b', 0u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b'));
+        TEST_INT_EQ(51u, s.find_first_not_of('b', 51u));
+        TEST_INT_EQ(50u, s.find_first_not_of('b', 50u));
+        TEST_INT_EQ(28u, s.find_first_not_of('b', 28u));
+        TEST_INT_EQ(28u, s.find_first_not_of('b', 27u));
+        TEST_INT_EQ(26u, s.find_first_not_of('b', 26u));
+        TEST_INT_EQ(10u, s.find_first_not_of('b', 10u));
+        TEST_INT_EQ(2u, s.find_first_not_of('b', 2u));
+        TEST_INT_EQ(2u, s.find_first_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of('b', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('z'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of('z', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(50u, s.find_first_not_of('z', 50u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_first_not_of('z', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_first_not_of('z', 25u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_first_not_of('z', 24u));
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.find_first_not_of('z', 10u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of('z', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of('z', 0u));
+        TEST_INT_EQ(0u, s.find_first_not_of('z'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of('z', 51u));
+        TEST_INT_EQ(50u, s.find_first_not_of('z', 50u));
+        TEST_INT_EQ(26u, s.find_first_not_of('z', 26u));
+        TEST_INT_EQ(26u, s.find_first_not_of('z', 25u));
+        TEST_INT_EQ(24u, s.find_first_not_of('z', 24u));
+        TEST_INT_EQ(10u, s.find_first_not_of('z', 10u));
+        TEST_INT_EQ(1u, s.find_first_not_of('z', 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of('z', 0u));
     }
 }
 
@@ -3044,54 +3045,54 @@ static void test_find_first_not_of_c_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(("abc")));
     }
 
     {
         string_t    s("xyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("abc")));
+        TEST_INT_EQ(0u, s.find_first_not_of(("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 5u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 6u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 7u));
+        TEST_INT_EQ(0u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 1u));
+        TEST_INT_EQ(2u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 2u));
+        TEST_INT_EQ(3u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 3u));
+        TEST_INT_EQ(4u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 4u));
+        TEST_INT_EQ(5u, s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 5u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 6u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(("defghijklmnopqrstuvwxyz"), 7u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(("abc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(("abc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(("abc"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(("abc"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_first_not_of(("abc"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("dcb"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_first_not_of(("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("BDC")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("BDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of(("aBDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("z")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(("z"), 25u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_first_not_of(("z"), 24u));
-        XTESTS_TEST_INTEGER_EQUAL(23u, s.find_first_not_of(("z"), 23u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(("A")));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of(("a"), 1u));
+        TEST_INT_EQ(3u, s.find_first_not_of(("abc")));
+        TEST_INT_EQ(3u, s.find_first_not_of(("abc"), 0u));
+        TEST_INT_EQ(3u, s.find_first_not_of(("abc"), 1u));
+        TEST_INT_EQ(3u, s.find_first_not_of(("abc"), 2u));
+        TEST_INT_EQ(3u, s.find_first_not_of(("abc"), 3u));
+        TEST_INT_EQ(4u, s.find_first_not_of(("abc"), 4u));
+        TEST_INT_EQ(0u, s.find_first_not_of(("dcb"), 0u));
+        TEST_INT_EQ(4u, s.find_first_not_of(("bcd"), 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of(("BDC")));
+        TEST_INT_EQ(0u, s.find_first_not_of(("BDC"), 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of(("aBDC"), 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of(("z")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(("z"), 25u));
+        TEST_INT_EQ(24u, s.find_first_not_of(("z"), 24u));
+        TEST_INT_EQ(23u, s.find_first_not_of(("z"), 23u));
+        TEST_INT_EQ(0u, s.find_first_not_of(("A")));
+        TEST_INT_EQ(1u, s.find_first_not_of(("a"), 1u));
     }
 }
 
@@ -3100,54 +3101,54 @@ static void test_find_first_not_of_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(string_t("abc")));
     }
 
     {
         string_t    s("xyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("abc")));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 5u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 6u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 7u));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 1u));
+        TEST_INT_EQ(2u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 2u));
+        TEST_INT_EQ(3u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 3u));
+        TEST_INT_EQ(4u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
+        TEST_INT_EQ(5u, s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 5u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 6u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(string_t("defghijklmnopqrstuvwxyz"), 7u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(string_t("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(string_t("abc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(string_t("abc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(string_t("abc"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_first_not_of(string_t("abc"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_first_not_of(string_t("abc"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("dcb"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_first_not_of(string_t("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("BDC")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("BDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of(string_t("aBDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("z")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_first_not_of(string_t("z"), 25u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_first_not_of(string_t("z"), 24u));
-        XTESTS_TEST_INTEGER_EQUAL(23u, s.find_first_not_of(string_t("z"), 23u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_first_not_of(string_t("A")));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_first_not_of(string_t("a"), 1u));
+        TEST_INT_EQ(3u, s.find_first_not_of(string_t("abc")));
+        TEST_INT_EQ(3u, s.find_first_not_of(string_t("abc"), 0u));
+        TEST_INT_EQ(3u, s.find_first_not_of(string_t("abc"), 1u));
+        TEST_INT_EQ(3u, s.find_first_not_of(string_t("abc"), 2u));
+        TEST_INT_EQ(3u, s.find_first_not_of(string_t("abc"), 3u));
+        TEST_INT_EQ(4u, s.find_first_not_of(string_t("abc"), 4u));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("dcb"), 0u));
+        TEST_INT_EQ(4u, s.find_first_not_of(string_t("bcd"), 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("BDC")));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("BDC"), 0u));
+        TEST_INT_EQ(1u, s.find_first_not_of(string_t("aBDC"), 1u));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("z")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_first_not_of(string_t("z"), 25u));
+        TEST_INT_EQ(24u, s.find_first_not_of(string_t("z"), 24u));
+        TEST_INT_EQ(23u, s.find_first_not_of(string_t("z"), 23u));
+        TEST_INT_EQ(0u, s.find_first_not_of(string_t("A")));
+        TEST_INT_EQ(1u, s.find_first_not_of(string_t("a"), 1u));
     }
 }
 
@@ -3156,96 +3157,96 @@ static void test_find_last_not_of_char()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a'));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a'));
     }
 
     {
         string_t    s("a");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a', 2u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a'));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a', 2u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 2u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b'));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 0u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 2u));
     }
 
     {
         string_t    s("ab");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a'));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 4u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 3u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 2u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 0u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b'));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 4u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 3u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 2u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 0u));
     }
 
     {
         string_t    s("abab");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of('a', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of('a', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
+        TEST_INT_EQ(3u, s.find_last_not_of('a'));
+        TEST_INT_EQ(3u, s.find_last_not_of('a', 4u));
+        TEST_INT_EQ(3u, s.find_last_not_of('a', 3u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 2u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of('b', 4u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of('b', 3u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 0u));
+        TEST_INT_EQ(2u, s.find_last_not_of('b'));
+        TEST_INT_EQ(2u, s.find_last_not_of('b', 4u));
+        TEST_INT_EQ(2u, s.find_last_not_of('b', 3u));
+        TEST_INT_EQ(2u, s.find_last_not_of('b', 2u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 0u));
     }
 
     {
         string_t    s("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_last_not_of('a'));
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_last_not_of('a', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(27u, s.find_last_not_of('a', 27u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of('a', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of('a', 25u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('a', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
+        TEST_INT_EQ(51u, s.find_last_not_of('a'));
+        TEST_INT_EQ(51u, s.find_last_not_of('a', 51u));
+        TEST_INT_EQ(27u, s.find_last_not_of('a', 27u));
+        TEST_INT_EQ(25u, s.find_last_not_of('a', 26u));
+        TEST_INT_EQ(25u, s.find_last_not_of('a', 25u));
+        TEST_INT_EQ(1u, s.find_last_not_of('a', 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of('a', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_last_not_of('b'));
-        XTESTS_TEST_INTEGER_EQUAL(51u, s.find_last_not_of('b', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(50u, s.find_last_not_of('b', 50u));
-        XTESTS_TEST_INTEGER_EQUAL(28u, s.find_last_not_of('b', 28u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_not_of('b', 27u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_not_of('b', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.find_last_not_of('b', 10u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of('b', 2u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('b', 0u));
+        TEST_INT_EQ(51u, s.find_last_not_of('b'));
+        TEST_INT_EQ(51u, s.find_last_not_of('b', 51u));
+        TEST_INT_EQ(50u, s.find_last_not_of('b', 50u));
+        TEST_INT_EQ(28u, s.find_last_not_of('b', 28u));
+        TEST_INT_EQ(26u, s.find_last_not_of('b', 27u));
+        TEST_INT_EQ(26u, s.find_last_not_of('b', 26u));
+        TEST_INT_EQ(10u, s.find_last_not_of('b', 10u));
+        TEST_INT_EQ(2u, s.find_last_not_of('b', 2u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 1u));
+        TEST_INT_EQ(0u, s.find_last_not_of('b', 0u));
 
-        XTESTS_TEST_INTEGER_EQUAL(50u, s.find_last_not_of('z'));
-        XTESTS_TEST_INTEGER_EQUAL(50u, s.find_last_not_of('z', 51u));
-        XTESTS_TEST_INTEGER_EQUAL(50u, s.find_last_not_of('z', 50u));
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.find_last_not_of('z', 26u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of('z', 25u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of('z', 24u));
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.find_last_not_of('z', 10u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of('z', 1u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of('z', 0u));
+        TEST_INT_EQ(50u, s.find_last_not_of('z'));
+        TEST_INT_EQ(50u, s.find_last_not_of('z', 51u));
+        TEST_INT_EQ(50u, s.find_last_not_of('z', 50u));
+        TEST_INT_EQ(26u, s.find_last_not_of('z', 26u));
+        TEST_INT_EQ(24u, s.find_last_not_of('z', 25u));
+        TEST_INT_EQ(24u, s.find_last_not_of('z', 24u));
+        TEST_INT_EQ(10u, s.find_last_not_of('z', 10u));
+        TEST_INT_EQ(1u, s.find_last_not_of('z', 1u));
+        TEST_INT_EQ(0u, s.find_last_not_of('z', 0u));
     }
 }
 
@@ -3254,54 +3255,54 @@ static void test_find_last_not_of_c_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(("abc")));
     }
 
     {
         string_t    s("xyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of(("abc")));
+        TEST_INT_EQ(2u, s.find_last_not_of(("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 5u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 6u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 7u));
+        TEST_INT_EQ(0u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 0u));
+        TEST_INT_EQ(1u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 1u));
+        TEST_INT_EQ(2u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 2u));
+        TEST_INT_EQ(3u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 3u));
+        TEST_INT_EQ(4u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 4u));
+        TEST_INT_EQ(5u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 5u));
+        TEST_INT_EQ(5u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 6u));
+        TEST_INT_EQ(5u, s.find_last_not_of(("defghijklmnopqrstuvwxyz"), 7u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of(("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(("abc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(("abc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(("abc"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of(("abc"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_last_not_of(("abc"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(("dcb"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of(("BDC")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(("BDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of(("aBDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of(("z")));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of(("z"), 25u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of(("z"), 24u));
-        XTESTS_TEST_INTEGER_EQUAL(23u, s.find_last_not_of(("z"), 23u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of(("A")));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of(("a"), 1u));
+        TEST_INT_EQ(25u, s.find_last_not_of(("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(("abc"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(("abc"), 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(("abc"), 2u));
+        TEST_INT_EQ(3u, s.find_last_not_of(("abc"), 3u));
+        TEST_INT_EQ(4u, s.find_last_not_of(("abc"), 4u));
+        TEST_INT_EQ(0u, s.find_last_not_of(("dcb"), 0u));
+        TEST_INT_EQ(0u, s.find_last_not_of(("bcd"), 1u));
+        TEST_INT_EQ(25u, s.find_last_not_of(("BDC")));
+        TEST_INT_EQ(0u, s.find_last_not_of(("BDC"), 0u));
+        TEST_INT_EQ(1u, s.find_last_not_of(("aBDC"), 1u));
+        TEST_INT_EQ(24u, s.find_last_not_of(("z")));
+        TEST_INT_EQ(24u, s.find_last_not_of(("z"), 25u));
+        TEST_INT_EQ(24u, s.find_last_not_of(("z"), 24u));
+        TEST_INT_EQ(23u, s.find_last_not_of(("z"), 23u));
+        TEST_INT_EQ(25u, s.find_last_not_of(("A")));
+        TEST_INT_EQ(1u, s.find_last_not_of(("a"), 1u));
     }
 }
 
@@ -3310,54 +3311,54 @@ static void test_find_last_not_of_string()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(string_t("abc")));
     }
 
     {
         string_t    s("");
 
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(string_t("abc")));
     }
 
     {
         string_t    s("xyz");
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of(string_t("abc")));
+        TEST_INT_EQ(2u, s.find_last_not_of(string_t("abc")));
     }
 
     {
         string_t    s("abcabc");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(2u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 5u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 6u));
-        XTESTS_TEST_INTEGER_EQUAL(5u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 7u));
+        TEST_INT_EQ(0u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 0u));
+        TEST_INT_EQ(1u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 1u));
+        TEST_INT_EQ(2u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 2u));
+        TEST_INT_EQ(3u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 3u));
+        TEST_INT_EQ(4u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 4u));
+        TEST_INT_EQ(5u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 5u));
+        TEST_INT_EQ(5u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 6u));
+        TEST_INT_EQ(5u, s.find_last_not_of(string_t("defghijklmnopqrstuvwxyz"), 7u));
     }
 
     {
         string_t    s(alphabet);
 
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of(string_t("abc")));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(string_t("abc"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(string_t("abc"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(~string_t::size_type(0u), s.find_last_not_of(string_t("abc"), 2u));
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.find_last_not_of(string_t("abc"), 3u));
-        XTESTS_TEST_INTEGER_EQUAL(4u, s.find_last_not_of(string_t("abc"), 4u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(string_t("dcb"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(string_t("bcd"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of(string_t("BDC")));
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.find_last_not_of(string_t("BDC"), 0u));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of(string_t("aBDC"), 1u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of(string_t("z")));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of(string_t("z"), 25u));
-        XTESTS_TEST_INTEGER_EQUAL(24u, s.find_last_not_of(string_t("z"), 24u));
-        XTESTS_TEST_INTEGER_EQUAL(23u, s.find_last_not_of(string_t("z"), 23u));
-        XTESTS_TEST_INTEGER_EQUAL(25u, s.find_last_not_of(string_t("A")));
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.find_last_not_of(string_t("a"), 1u));
+        TEST_INT_EQ(25u, s.find_last_not_of(string_t("abc")));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(string_t("abc"), 0u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(string_t("abc"), 1u));
+        TEST_INT_EQ(~string_t::size_type(0u), s.find_last_not_of(string_t("abc"), 2u));
+        TEST_INT_EQ(3u, s.find_last_not_of(string_t("abc"), 3u));
+        TEST_INT_EQ(4u, s.find_last_not_of(string_t("abc"), 4u));
+        TEST_INT_EQ(0u, s.find_last_not_of(string_t("dcb"), 0u));
+        TEST_INT_EQ(0u, s.find_last_not_of(string_t("bcd"), 1u));
+        TEST_INT_EQ(25u, s.find_last_not_of(string_t("BDC")));
+        TEST_INT_EQ(0u, s.find_last_not_of(string_t("BDC"), 0u));
+        TEST_INT_EQ(1u, s.find_last_not_of(string_t("aBDC"), 1u));
+        TEST_INT_EQ(24u, s.find_last_not_of(string_t("z")));
+        TEST_INT_EQ(24u, s.find_last_not_of(string_t("z"), 25u));
+        TEST_INT_EQ(24u, s.find_last_not_of(string_t("z"), 24u));
+        TEST_INT_EQ(23u, s.find_last_not_of(string_t("z"), 23u));
+        TEST_INT_EQ(25u, s.find_last_not_of(string_t("A")));
+        TEST_INT_EQ(1u, s.find_last_not_of(string_t("a"), 1u));
     }
 }
 #endif
@@ -3376,7 +3377,7 @@ static void test_stlsoft_char_traits()
 
             traits_t::assign(buff4, 3, 'a');
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaa4", buff4, 4);
+            TEST_MS_EQ_N("aaa4", buff4, 4);
         }
 
         // compare
@@ -3384,25 +3385,25 @@ static void test_stlsoft_char_traits()
             {
                 int const r = traits_t::compare("abc", "abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare("abcd", "abce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare("a\0cd", "a\0ce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare("a\0d", "a\0e", 3);
 
-                XTESTS_TEST_INTEGER_NOT_EQUAL(0, r);
+                TEST_INT_NE(0, r);
             }
         }
 
@@ -3411,25 +3412,25 @@ static void test_stlsoft_char_traits()
             {
                 int const r = traits_t::compare_max("abc", "abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare_max("abcd", "abce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare_max("a\0cd", "a\0ce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare_max("a\0d", "a\0e", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
         }
 
@@ -3440,19 +3441,19 @@ static void test_stlsoft_char_traits()
 
                 char const* i = traits_t::find(buff4, 4, '3');
 
-                XTESTS_TEST_INTEGER_EQUAL(2, i - buff4);
+                TEST_INT_EQ(2, i - buff4);
             }
 
             {
                 char const* i = traits_t::find(alphabet, 26, 'm');
 
-                XTESTS_TEST_INTEGER_EQUAL(12, i - alphabet);
+                TEST_INT_EQ(12, i - alphabet);
             }
 
             {
                 char const* i = traits_t::find(alphabet, 11, 'm');
 
-                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, i);
+                TEST_PTR_EQ(ss_nullptr_k, i);
             }
         }
 
@@ -3461,19 +3462,19 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length("");
 
-                XTESTS_TEST_INTEGER_EQUAL(0u, r);
+                TEST_INT_EQ(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length("abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(3u, r);
+                TEST_INT_EQ(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length(alphabet);
 
-                XTESTS_TEST_INTEGER_EQUAL(26u, r);
+                TEST_INT_EQ(26u, r);
             }
         }
 
@@ -3482,37 +3483,37 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length_max("", 0);
 
-                XTESTS_TEST_INTEGER_EQUAL(0u, r);
+                TEST_INT_EQ(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("", 10);
 
-                XTESTS_TEST_INTEGER_EQUAL(0u, r);
+                TEST_INT_EQ(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(3u, r);
+                TEST_INT_EQ(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("abc", 2);
 
-                XTESTS_TEST_INTEGER_EQUAL(2u, r);
+                TEST_INT_EQ(2u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("abc", 22);
 
-                XTESTS_TEST_INTEGER_EQUAL(3u, r);
+                TEST_INT_EQ(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(alphabet, 1000);
 
-                XTESTS_TEST_INTEGER_EQUAL(26u, r);
+                TEST_INT_EQ(26u, r);
             }
         }
     }
@@ -3526,7 +3527,7 @@ static void test_stlsoft_char_traits()
 
             traits_t::assign(buff4, 3, L'a');
 
-            XTESTS_TEST_WIDE_STRING_EQUAL_N(L"aaa4", buff4, 4);
+            TEST_WS_EQ_N(L"aaa4", buff4, 4);
         }
 
         // compare
@@ -3534,25 +3535,25 @@ static void test_stlsoft_char_traits()
             {
                 int const r = traits_t::compare(L"abc", L"abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare(L"abcd", L"abce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare(L"a\0cd", L"a\0ce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare(L"a\0d", L"a\0e", 3);
 
-                XTESTS_TEST_INTEGER_NOT_EQUAL(0, r);
+                TEST_INT_NE(0, r);
             }
         }
 
@@ -3561,25 +3562,25 @@ static void test_stlsoft_char_traits()
             {
                 int const r = traits_t::compare_max(L"abc", L"abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare_max(L"abcd", L"abce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare_max(L"a\0cd", L"a\0ce", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
 
             {
                 int const r = traits_t::compare_max(L"a\0d", L"a\0e", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                TEST_INT_EQ(0, r);
             }
         }
 
@@ -3590,19 +3591,19 @@ static void test_stlsoft_char_traits()
 
                 wchar_t const* i = traits_t::find(buff4, 4, '3');
 
-                XTESTS_TEST_INTEGER_EQUAL(2, i - buff4);
+                TEST_INT_EQ(2, i - buff4);
             }
 
             {
                 wchar_t const* i = traits_t::find(alphabet_w, 26, 'm');
 
-                XTESTS_TEST_INTEGER_EQUAL(12, i - alphabet_w);
+                TEST_INT_EQ(12, i - alphabet_w);
             }
 
             {
                 wchar_t const* i = traits_t::find(alphabet_w, 11, 'm');
 
-                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, i);
+                TEST_PTR_EQ(ss_nullptr_k, i);
             }
         }
 
@@ -3611,19 +3612,19 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length(L"");
 
-                XTESTS_TEST_INTEGER_EQUAL(0u, r);
+                TEST_INT_EQ(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length(L"abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(3u, r);
+                TEST_INT_EQ(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length(alphabet_w);
 
-                XTESTS_TEST_INTEGER_EQUAL(26u, r);
+                TEST_INT_EQ(26u, r);
             }
         }
 
@@ -3632,37 +3633,37 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length_max(L"", 0);
 
-                XTESTS_TEST_INTEGER_EQUAL(0u, r);
+                TEST_INT_EQ(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"", 10);
 
-                XTESTS_TEST_INTEGER_EQUAL(0u, r);
+                TEST_INT_EQ(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(3u, r);
+                TEST_INT_EQ(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"abc", 2);
 
-                XTESTS_TEST_INTEGER_EQUAL(2u, r);
+                TEST_INT_EQ(2u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"abc", 22);
 
-                XTESTS_TEST_INTEGER_EQUAL(3u, r);
+                TEST_INT_EQ(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(alphabet_w, 1000);
 
-                XTESTS_TEST_INTEGER_EQUAL(26u, r);
+                TEST_INT_EQ(26u, r);
             }
         }
     }
@@ -3673,10 +3674,10 @@ static void test_string_traits()
     {
         string_t    s = stlsoft::string_traits<string_t>::empty_string();
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 
     {
@@ -3688,9 +3689,9 @@ static void test_string_traits()
         string_t    s5 = stlsoft::string_traits<string_t>::construct(s2, 0u, s2.size());
         string_t    s6 = stlsoft::string_traits<string_t>::construct(s3, 0u, s3.size());
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s4);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s2, s5);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s3, s6);
+        TEST_MS_EQ(s1, s4);
+        TEST_MS_EQ(s2, s5);
+        TEST_MS_EQ(s3, s6);
     }
 
     {
@@ -3699,7 +3700,7 @@ static void test_string_traits()
 
         stlsoft::string_traits<string_t>::assign_inplace(s1, s2.begin(), s2.end());
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_MS_EQ(s1, s2);
     }
 }
 
@@ -3714,7 +3715,7 @@ static void test_concatenation_1()
     string_t    s4(s1, 20, 6);
     string_t    s5 = s2 + s3 + s4;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s5);
 }
 
 static void test_concatenation_2()
@@ -3725,7 +3726,7 @@ static void test_concatenation_2()
     string_t    s4 = s1.substr(20, 6);
     string_t    s5 = s2 + s3 + s4;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s5);
 }
 
 #ifdef USE_std_string
@@ -3740,7 +3741,7 @@ static void test_concatenation_3()
     string_t    s4 = s1.substr(20, 6);
     string_t    s5 = s2 + s3 + s4;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s5);
 }
 
 static void test_concatenation_4()
@@ -3754,7 +3755,7 @@ static void test_concatenation_4()
     string_t    s4 = s1.substr(20, 6);
     string_t    s5 = s2 + s3 + s4;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s5);
 }
 
 static void test_concatenation_5()
@@ -3768,7 +3769,7 @@ static void test_concatenation_5()
     string_t    s4 = s1.substr(20, 6);
     string_t    s5 = s2 + s3.c_str() + s4;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s5);
 }
 #endif
 
@@ -3776,38 +3777,38 @@ static void test_concatenation_6()
 {
     string_t    s;
 
-    XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    TEST_BOOLEAN_TRUE(s.empty());
+    TEST_INT_EQ(0u, s.size());
+    TEST_INT_GE(0u, s.capacity());
+    TEST_MS_EQ("", s);
 
     s += 'a';
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(1u, s.size());
+    TEST_INT_GE(1u, s.capacity());
+    TEST_MS_EQ("a", s);
 
     s = s + 'b';
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(2u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(2u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ab", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(2u, s.size());
+    TEST_INT_GE(2u, s.capacity());
+    TEST_MS_EQ("ab", s);
 
     s = 'c' + s;
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("cab", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(3u, s.size());
+    TEST_INT_GE(3u, s.capacity());
+    TEST_MS_EQ("cab", s);
 
     s = "" + s;
 
-    XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s.capacity());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("cab", s);
+    TEST_BOOLEAN_FALSE(s.empty());
+    TEST_INT_EQ(3u, s.size());
+    TEST_INT_GE(3u, s.capacity());
+    TEST_MS_EQ("cab", s);
 }
 
 
@@ -3830,7 +3831,7 @@ static void test_insertion_1()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+        TEST_MS_EQ("abcdef", ss.str());
     }
 
     {
@@ -3842,7 +3843,7 @@ static void test_insertion_1()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+        TEST_MS_EQ("abcdef", ss.str());
     }
 }
 
@@ -3862,7 +3863,7 @@ static void test_insertion_2()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+        TEST_MS_EQ("abcdef", ss.str());
     }
 }
 
@@ -3885,7 +3886,7 @@ static void test_insertion_3()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("____abc__def", ss.str());
+        TEST_MS_EQ("____abc__def", ss.str());
     }
 }
 
@@ -3950,7 +3951,7 @@ static void test_insertion_4()
     std::string const expected = Expected::fn(s2, s3);
 #endif
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(
+    TEST_MS_EQ(
         expected
         , ss.str());
 
@@ -3967,47 +3968,47 @@ static void test_string_access_shims()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len_a(s));
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len(s));
+        TEST_INT_EQ(0u, stlsoft::c_str_len_a(s));
+        TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data_a(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_data_a(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_data_a(s));
+        TEST_MS_EQ("", stlsoft::c_str_data_a(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_data(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_data(s));
+        TEST_MS_EQ("", stlsoft::c_str_data(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr_a(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_ptr_a(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_ptr_a(s));
+        TEST_MS_EQ("", stlsoft::c_str_ptr_a(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_ptr(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_ptr(s));
+        TEST_MS_EQ("", stlsoft::c_str_ptr(s));
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null_a(s));
+        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_a(s));
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
+        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
     }
 
     {
         wstring_t   s;
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len_w(s));
-//      XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len(s));
+        TEST_INT_EQ(0u, stlsoft::c_str_len_w(s));
+//      TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data_w(s));
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_data_w(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_data_w(s));
+        TEST_WS_EQ(L"", stlsoft::c_str_data_w(s));
 
-//      XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data(s));
-//      XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_data(s));
+//      TEST_PTR_NE(NULL, stlsoft::c_str_data(s));
+//      TEST_WS_EQ(L"", stlsoft::c_str_data(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr_w(s));
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_ptr_w(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_ptr_w(s));
+        TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(s));
 
-//      XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr(s));
-//      XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_ptr(s));
+//      TEST_PTR_NE(NULL, stlsoft::c_str_ptr(s));
+//      TEST_WS_EQ(L"", stlsoft::c_str_ptr(s));
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null_w(s));
+        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_w(s));
 
-//      XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
+//      TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
     }
 
 }

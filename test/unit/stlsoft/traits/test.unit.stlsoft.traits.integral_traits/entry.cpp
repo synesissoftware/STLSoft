@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_traits`.
  *
  * Created: 21st November 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/limits/integral_limits.hpp>
@@ -135,8 +136,8 @@ static void test_1()
 
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<traits_t::integer_type, traits_t::underlying_type>::value));
 
-        XTESTS_TEST_INTEGER_EQUAL(123, traits_t::get_underlying_value(123));
-        XTESTS_TEST_INTEGER_EQUAL(123, traits_t::from_underlying_type(123));
+        TEST_INT_EQ(123, traits_t::get_underlying_value(123));
+        TEST_INT_EQ(123, traits_t::from_underlying_type(123));
     }
 
     {
@@ -145,8 +146,8 @@ static void test_1()
 
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<traits_t::integer_type, traits_t::underlying_type>::value));
 
-        XTESTS_TEST_INTEGER_EQUAL(12345678u, traits_t::get_underlying_value(12345678));
-        XTESTS_TEST_INTEGER_EQUAL(12345678u, traits_t::from_underlying_type(12345678));
+        TEST_INT_EQ(12345678u, traits_t::get_underlying_value(12345678));
+        TEST_INT_EQ(12345678u, traits_t::from_underlying_type(12345678));
     }
 
     {
@@ -155,8 +156,8 @@ static void test_1()
 
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<traits_t::integer_type, traits_t::underlying_type>::value));
 
-        XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::get_underlying_value(12345678));
-        XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::from_underlying_type(12345678));
+        TEST_INT_EQ(12345678, traits_t::get_underlying_value(12345678));
+        TEST_INT_EQ(12345678, traits_t::from_underlying_type(12345678));
     }
 
     {
@@ -168,9 +169,9 @@ static void test_1()
         {
             int_wrapper iw_12345678 = { 12345678 };
 
-            XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::get_underlying_value(iw_12345678));
+            TEST_INT_EQ(12345678, traits_t::get_underlying_value(iw_12345678));
         }
-        XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::from_underlying_type(12345678).value);
+        TEST_INT_EQ(12345678, traits_t::from_underlying_type(12345678).value);
     }
 }
 } // anonymous namespace

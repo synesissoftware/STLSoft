@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::spin_mutex`.
  *
  * Created: sometime in 2015
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <winstl/synch/event.hpp>
@@ -212,7 +213,7 @@ namespace {
         STLSOFT_SUPPRESS_UNUSED(typeid(winstl::spin_mutex_no_yield));
         STLSOFT_SUPPRESS_UNUSED(typeid(winstl::spin_mutex32));
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     static void test_types_have_expected_attributes()
@@ -220,7 +221,7 @@ namespace {
         static_assert(stlsoft::is_integral_type<winstl::spin_mutex::atomic_int_type>::value, "spin_mutex type must have integral atomic type");
         static_assert(stlsoft::is_integral_type<winstl::spin_mutex32::atomic_int_type>::value, "spin_mutex32 type must have integral atomic type");
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     static void test_spin_mutex_can_be_locked_and_unlocked()
@@ -229,11 +230,11 @@ namespace {
 
         mx.lock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         mx.unlock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     static void test_spin_mutex_can_be_locked_and_unlocked_with_lock_scope()
@@ -243,10 +244,10 @@ namespace {
         {
             stlsoft::lock_scope<winstl::spin_mutex> lock(mx);
 
-            XTESTS_TEST_PASSED();
+            TEST_PASSED();
         }
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     static void test_spin_mutex_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread()
@@ -255,17 +256,17 @@ namespace {
 
         mx.lock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         bool locked = true;
 
         std::thread thread([&locked, &mx] { mx.unlock(); locked = false; });
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         thread.join();
 
-        XTESTS_TEST_BOOLEAN_FALSE(locked);
+        TEST_BOOLEAN_FALSE(locked);
     }
 
     static void test_spin_mutex32_can_be_locked_and_unlocked()
@@ -274,11 +275,11 @@ namespace {
 
         mx.lock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         mx.unlock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     static void test_spin_mutex32_can_be_locked_and_unlocked_with_lock_scope()
@@ -288,10 +289,10 @@ namespace {
         {
             stlsoft::lock_scope<winstl::spin_mutex32> lock(mx);
 
-            XTESTS_TEST_PASSED();
+            TEST_PASSED();
         }
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     static void test_spin_mutex32_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread()
@@ -300,17 +301,17 @@ namespace {
 
         mx.lock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         bool locked = true;
 
         std::thread thread([&locked, &mx] { mx.unlock(); locked = false; });
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         thread.join();
 
-        XTESTS_TEST_BOOLEAN_FALSE(locked);
+        TEST_BOOLEAN_FALSE(locked);
     }
 
     static void test_with_specific_policy()
@@ -330,7 +331,7 @@ namespace {
 
                 mx.unlock();
 
-                XTESTS_TEST_PASSED();
+                TEST_PASSED();
             });
 
             ev_start.set();
@@ -342,17 +343,17 @@ namespace {
 
         mx.lock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1000, mx.spun_count());
+        TEST_INT_GE(1000, mx.spun_count());
 
         mx.unlock();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         thread.join();
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 } // anonymous namespace
 

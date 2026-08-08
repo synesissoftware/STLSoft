@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 29th May 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */
@@ -168,29 +169,29 @@ static void test_int_spec()
         TEST_INT_EQ(0, v0);
         TEST_INT_EQ(0, cv0);
 
-        XTESTS_TEST(v0 == v0);
-        XTESTS_TEST(v0 == 0);
-        XTESTS_TEST(0 == v0);
-        XTESTS_TEST(!(v0 != v0));
-        XTESTS_TEST(!(v0 != 0));
-        XTESTS_TEST(!(0 != v0));
+        TEST(v0 == v0);
+        TEST(v0 == 0);
+        TEST(0 == v0);
+        TEST(!(v0 != v0));
+        TEST(!(v0 != 0));
+        TEST(!(0 != v0));
 
         type_t  v0_2(v0);
 
-        XTESTS_TEST(v0 == v0_2);
-        XTESTS_TEST(!(v0 != v0_2));
+        TEST(v0 == v0_2);
+        TEST(!(v0 != v0_2));
 
         type_t  v0_3 = v0;
 
-        XTESTS_TEST(v0 == v0_3);
-        XTESTS_TEST(!(v0 != v0_3));
+        TEST(v0 == v0_3);
+        TEST(!(v0 != v0_3));
 
 #if __cplusplus >= 201402L
 
         type_t  v0_4{v0};
 
-        XTESTS_TEST(v0 == v0_4);
-        XTESTS_TEST(!(v0 != v0_4));
+        TEST(v0 == v0_4);
+        TEST(!(v0 != v0_4));
 #endif
     }
 
@@ -245,21 +246,21 @@ static void test_int_spec()
         type_t  v1(1);
         type_t  v2(2);
 
-        XTESTS_TEST(1 < v2);
-        XTESTS_TEST(v1 < v2);
-        XTESTS_TEST(v1 < 2);
+        TEST(1 < v2);
+        TEST(v1 < v2);
+        TEST(v1 < 2);
 
-        XTESTS_TEST(v1 <= 1);
-        XTESTS_TEST(v1 <= v1);
-        XTESTS_TEST(1 <= v2);
-        XTESTS_TEST(v1 <= v2);
+        TEST(v1 <= 1);
+        TEST(v1 <= v1);
+        TEST(1 <= v2);
+        TEST(v1 <= v2);
 
-        XTESTS_TEST(2 > v1);
-        XTESTS_TEST(v2 > 1);
-        XTESTS_TEST(v2 > v1);
+        TEST(2 > v1);
+        TEST(v2 > 1);
+        TEST(v2 > v1);
 
-        XTESTS_TEST(v2 >= v2);
-        XTESTS_TEST(v2 >= v1);
+        TEST(v2 >= v2);
+        TEST(v2 >= v1);
     }
 
 
@@ -271,26 +272,26 @@ static void test_int_spec()
         type_t  v4 = 2 + v2;
         type_t  v5 = v1 + 4;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // +=
     {
         type_t  v(1);
 
-        XTESTS_TEST(1 == v);
+        TEST(1 == v);
 
         v += v;
 
-        XTESTS_TEST(2 == v);
+        TEST(2 == v);
 
         v += -3;
 
-        XTESTS_TEST(-1 == v);
+        TEST(-1 == v);
     }
 
 
@@ -302,11 +303,11 @@ static void test_int_spec()
         type_t  v4 = 5 - v1;
         type_t  v5 = v1 - -4;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // -=
@@ -314,15 +315,15 @@ static void test_int_spec()
         type_t  v(1);
         type_t  v2(2);
 
-        XTESTS_TEST(1 == v);
+        TEST(1 == v);
 
         v -= v2;
 
-        XTESTS_TEST(-1 == v);
+        TEST(-1 == v);
 
         v -= -3;
 
-        XTESTS_TEST(2 == v);
+        TEST(2 == v);
     }
 
 
@@ -334,26 +335,26 @@ static void test_int_spec()
         type_t  v4 = v2 * v2;
         type_t  v5 = v1 * 5;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // *=
     {
         type_t  v(1);
 
-        XTESTS_TEST(1 == v);
+        TEST(1 == v);
 
         v *= 2;
 
-        XTESTS_TEST(2 == v);
+        TEST(2 == v);
 
         v *= v;
 
-        XTESTS_TEST(4 == v);
+        TEST(4 == v);
     }
 
 
@@ -365,11 +366,11 @@ static void test_int_spec()
         type_t  v4 = 8 / v2;
         type_t  v5 = v4 /1 + 1;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // /=
@@ -377,15 +378,15 @@ static void test_int_spec()
         type_t  v(12);
         type_t  v2(2);
 
-        XTESTS_TEST(12 == v);
+        TEST(12 == v);
 
         v /= v2;
 
-        XTESTS_TEST(6 == v);
+        TEST(6 == v);
 
         v /= 3;
 
-        XTESTS_TEST(2 == v);
+        TEST(2 == v);
     }
 
 
@@ -397,11 +398,11 @@ static void test_int_spec()
         type_t  v4 = 5 % v3 * 2;
         type_t  v5 = (v4 % 3) + 4;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // %=
@@ -409,15 +410,15 @@ static void test_int_spec()
         type_t  v(15);
         type_t  v4(4);
 
-        XTESTS_TEST(15 == v);
+        TEST(15 == v);
 
         v %= 8;
 
-        XTESTS_TEST(7 == v);
+        TEST(7 == v);
 
         v %= v4;
 
-        XTESTS_TEST(3 == v);
+        TEST(3 == v);
     }
 
 
@@ -429,11 +430,11 @@ static void test_int_spec()
         type_t  v4 = 6 ^ v2;
         type_t  v5 = v2 ^ 7;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // ^=
@@ -441,15 +442,15 @@ static void test_int_spec()
         type_t  v(15);
         type_t  v2(2);
 
-        XTESTS_TEST(15 == v);
+        TEST(15 == v);
 
         v ^= 8;
 
-        XTESTS_TEST(7 == v);
+        TEST(7 == v);
 
         v ^= v2;
 
-        XTESTS_TEST(5 == v);
+        TEST(5 == v);
     }
 
 
@@ -458,8 +459,8 @@ static void test_int_spec()
         type_t  v1(0x1);
         type_t  v2(0x2);
 
-        XTESTS_TEST(~1 == ~v1);
-        XTESTS_TEST(~2 == ~v2);
+        TEST(~1 == ~v1);
+        TEST(~2 == ~v2);
     }
 
     // ~=
@@ -476,12 +477,12 @@ static void test_int_spec()
         type_t  v4 = 4 >> v0;
         type_t  v5 = short(5) >> v0;
 
-        XTESTS_TEST(0 == v0);
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(0 == v0);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // >>=
@@ -489,15 +490,15 @@ static void test_int_spec()
         type_t  v(0x0f0f);
         type_t  v8(8);
 
-        XTESTS_TEST(3855 == v);
+        TEST(3855 == v);
 
         v >>= v8;
 
-        XTESTS_TEST(15 == v);
+        TEST(15 == v);
 
         v >>= 1;
 
-        XTESTS_TEST(7 == v);
+        TEST(7 == v);
     }
 
 
@@ -510,11 +511,11 @@ static void test_int_spec()
         type_t          v4 = (v1 << v2) | (v0 << v1);
         type_t          v5 = short(5) << v0;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // <<=
@@ -522,15 +523,15 @@ static void test_int_spec()
         type_t  v(0x0f0f);
         type_t  v4(4);
 
-        XTESTS_TEST(3855 == v);
+        TEST(3855 == v);
 
         v <<= v4;
 
-        XTESTS_TEST(61680 == v);
+        TEST(61680 == v);
 
         v <<= 0;
 
-        XTESTS_TEST(61680 == v);
+        TEST(61680 == v);
     }
 
 #if __cplusplus >= 201402L
@@ -544,7 +545,7 @@ static void test_int_spec()
 
             stm << v;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", stm.str());
+            TEST_MS_EQ("1", stm.str());
         }
 
         {
@@ -554,7 +555,7 @@ static void test_int_spec()
 
             stm << v;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("12345678", stm.str());
+            TEST_MS_EQ("12345678", stm.str());
         }
         {
             SimpleStream stm;
@@ -563,7 +564,7 @@ static void test_int_spec()
 
             stm << v;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", stm.str());
+            TEST_MS_EQ("1", stm.str());
         }
 
         {
@@ -573,7 +574,7 @@ static void test_int_spec()
 
             stm << v;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("12345678", stm.str());
+            TEST_MS_EQ("12345678", stm.str());
         }
     }
 #endif
@@ -587,10 +588,10 @@ static void test_int_spec()
         type_t  v3 = (v2 | v1) & ~v0;
         type_t  v4 = 6 & ~v2;
 
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
     }
 
     // &=
@@ -598,15 +599,15 @@ static void test_int_spec()
         type_t  v(0x0f0f);
         type_t  v37(37);
 
-        XTESTS_TEST(3855 == v);
+        TEST(3855 == v);
 
         v &= v37;
 
-        XTESTS_TEST(5 == v);
+        TEST(5 == v);
 
         v &= 7;
 
-        XTESTS_TEST(5 == v);
+        TEST(5 == v);
     }
 
 
@@ -619,12 +620,12 @@ static void test_int_spec()
         type_t  v4 = v0 | 4;
         type_t  v5 = 1 | v4;
 
-        XTESTS_TEST(0 == v0);
-        XTESTS_TEST(1 == v1);
-        XTESTS_TEST(2 == v2);
-        XTESTS_TEST(3 == v3);
-        XTESTS_TEST(4 == v4);
-        XTESTS_TEST(5 == v5);
+        TEST(0 == v0);
+        TEST(1 == v1);
+        TEST(2 == v2);
+        TEST(3 == v3);
+        TEST(4 == v4);
+        TEST(5 == v5);
     }
 
     // |=
@@ -632,15 +633,15 @@ static void test_int_spec()
         type_t  v(0x0f0f);
         type_t  v37(37);
 
-        XTESTS_TEST(3855 == v);
+        TEST(3855 == v);
 
         v |= v37;
 
-        XTESTS_TEST(3887 == v);
+        TEST(3887 == v);
 
         v |= 0xf080;
 
-        XTESTS_TEST(65455 == v);
+        TEST(65455 == v);
     }
 }
 
