@@ -17,6 +17,24 @@ Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
+# colours
+
+if command -v tput > /dev/null; then
+
+  SisClr_Blue=${FG_BLUE:-$(tput setaf 4)}
+  SisClr_Red=${FG_BLUE:-$(tput setaf 1)}
+  SisClr_Bold=${FD_BOLD:-$(tput bold)}
+  SisClr_None=${FD_NONE:-$(tput sgr0)}
+else
+
+  SisClr_Blue=
+  SisClr_Red=
+  SisClr_Bold=
+  SisClr_None=
+fi
+
+
+# ##########################################################
 # command-line handling
 
 while [[ $# -gt 0 ]]; do
@@ -163,12 +181,37 @@ if [ $status -eq 0 ]; then
     find_name_expr=( \( -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' \) )
   fi
 
-  for f in $(find "$CMakeDir" -type f "${find_name_expr[@]}" -exec test -x {} \; -print | sort)
+  # Exclude build artefacts that can match suite name globs (CMake object
+  # files under CMakeFiles/, etc.).
+  TestPrograms=( $(find "$CMakeDir" -type f "${find_name_expr[@]}" \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    -exec test -x {} \; -print | sort) )
+
+  echo "discovered ${#TestPrograms[@]} ${TestKindDescription} program(s)"
+
+  if [ ${#TestPrograms[@]} -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no matching executable ${TestKindDescription} programs under '$CMakeDir' (execute bits missing after artifact download?)"
+
+    if [ $ListOnly -eq 0 ]; then
+
+      status=1
+    fi
+  fi
+
+  for f in "${TestPrograms[@]}"
   do
 
     if [ $ListOnly -ne 0 ]; then
 
-      echo "would execute $f:"
+      echo "would execute $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
       continue
     fi
@@ -179,7 +222,7 @@ if [ $status -eq 0 ]; then
     fi
     if [ $Verbosity -ge 2 ]; then
 
-      echo "executing $f:"
+      echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
     fi
 
     if $f --verbosity=$Verbosity; then

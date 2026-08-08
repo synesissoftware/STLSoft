@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     20th March 2025
+ * Updated:     7th August 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  10
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      54
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  12
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF
+# include <stlsoft/util/string/snprintf.h>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF */
 
 #ifndef STLSOFT_INCL_ACE_H_TIME_VALUE
 # define STLSOFT_INCL_ACE_H_TIME_VALUE
@@ -127,35 +130,34 @@ namespace acestl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 namespace acestl_time_access_string_util
 {
-    template <ss_typename_param_k S>
-    void stream_insert(S& s, ACE_Time_Value const& t)
-    {
-        char                s1[20];
-        ACE_TCHAR           s2[24];
-
-        long const          s   =   t.sec();
-        long const          us  =   t.usec();
-        struct tm* const    tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
-        as_size_t           len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
-
-        ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s1));
-
-        len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), ACE_TEXT_CHAR_TO_TCHAR(s1), us / 1000);
-
-        ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s2));
-
-        s.write(&s2[0], len);
-    }
-
     inline int invoke_ACE_OS_snprintf(ACE_TCHAR s2[], as_size_t size, ACE_TCHAR const* fmt, as_char_a_t const* s1, long ms)
     {
-        return ACE_OS::snprintf(s2, size, fmt, ACE_TEXT_CHAR_TO_TCHAR(s1), ms);
+# ifndef ACE_USES_WCHAR
+        return stlsoft_C_snprintf(s2, size, fmt, s1, ms);
+# else /* ? ACE_USES_WCHAR */
+        stlsoft::auto_buffer<as_char_a_t>   buff(1 + size);
+        int                                 res;
+
+        s2[0] = '\0';
+
+        res = stlsoft_C_snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+
+        if (0 < res)
+        {
+            ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
+
+            ::mbstowcs(s2, buff.data(), res);
+            s2[res] = '\0';
+        }
+
+        return res;
+# endif /* ACE_USES_WCHAR */
     }
 
 # ifdef ACE_USES_WCHAR
     inline int invoke_ACE_OS_snprintf(as_char_a_t s2[], as_size_t size, as_char_w_t const* fmt, as_char_a_t const* s1, long ms)
     {
-        return ACE_OS::snprintf(s2, size, ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+        return stlsoft_C_snprintf(s2, size, ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
     }
 # else /* ? ACE_USES_WCHAR */
     inline int invoke_ACE_OS_snprintf(as_char_w_t s2[], as_size_t size, as_char_a_t const* fmt, as_char_a_t const* s1, long ms)
@@ -165,7 +167,7 @@ namespace acestl_time_access_string_util
 
         s2[0] = '\0';
 
-        res = ACE_OS::snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+        res = stlsoft_C_snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
 
         if (0 < res)
         {
@@ -178,6 +180,26 @@ namespace acestl_time_access_string_util
         return res;
     }
 # endif /* ACE_USES_WCHAR */
+
+    template <ss_typename_param_k S>
+    void stream_insert(S& s, ACE_Time_Value const& t)
+    {
+        char                s1[20];
+        ACE_TCHAR           s2[24];
+
+        long const          secs    =   t.sec();
+        long const          us      =   t.usec();
+        struct tm* const    tm      =   ACE_OS::localtime(&static_cast<time_t const&>(secs));
+        as_size_t           len     =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
+
+        ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s1));
+
+        len = invoke_ACE_OS_snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
+
+        ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s2));
+
+        s.write(&s2[0], len);
+    }
 
     template <ss_typename_param_k C>
     inline

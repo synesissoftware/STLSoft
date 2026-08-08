@@ -19,6 +19,18 @@ on:
         required: false
         type: string
         default: Release
+      with-ace:
+        required: false
+        type: boolean
+        default: false
+      with-atl:
+        required: false
+        type: boolean
+        default: false
+      with-mfc:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -31,6 +43,10 @@ jobs:
       - name: Install Clang (Ubuntu)
         if: runner.os == 'Linux' && inputs.c-compiler == 'clang'
         run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
@@ -58,10 +74,12 @@ jobs:
 
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -S "$STLSRC" -B "$STLINSTALL" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --config "${{ inputs.build-type }}" --parallel
             cmake --install "$STLINSTALL" --config "${{ inputs.build-type }}"
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
@@ -70,7 +88,8 @@ jobs:
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --parallel 2
             cmake --install "$STLINSTALL"
           else
@@ -80,7 +99,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --parallel
             cmake --install "$STLINSTALL"
           fi
@@ -89,6 +109,7 @@ jobs:
 
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -S "$XTSRC" -B "$XTBUILD" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DCMAKE_PREFIX_PATH="$DEPS" \
@@ -129,13 +150,33 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            ACE_FLAG="-DNO_ACE=OFF"
+          else
+            ACE_FLAG="-DNO_ACE=ON"
+          fi
+          # Default MSVC cells suppress ATL/MFC discovery (keeps lean cells lean).
+          # **with-atl** / **with-mfc** leave the matching find enabled so
+          # **ATLSTL** / **MFCSTL** can build (versions smoke; mfcstl tests).
+          if [ "${{ inputs.c-compiler }}" = "cl" ] && [ "${{ inputs.with-atl }}" != "true" ]; then
+            ATL_FLAG="-DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE"
+          else
+            ATL_FLAG=""
+          fi
+          if [ "${{ inputs.c-compiler }}" = "cl" ] && [ "${{ inputs.with-mfc }}" != "true" ]; then
+            MFC_FLAG="-DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE"
+          else
+            MFC_FLAG=""
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+              $ATL_FLAG \
+              $MFC_FLAG \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DNO_SHWILD=TRUE \
+              $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -145,7 +186,8 @@ jobs:
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DNO_SHWILD=TRUE \
+              $ACE_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -154,8 +196,80 @@ jobs:
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DNO_SHWILD=TRUE \
+              $ACE_FLAG
           fi
+
+      - name: Verify ACE discovered
+        if: inputs.with-ace
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_LIB="$(grep -E '^ACE_LIBRARY:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          ACE_INC="$(grep -E '^ACE_INCLUDE_DIR:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          if [ -z "${ACE_LIB}" ] || [[ "${ACE_LIB}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_LIBRARY was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          if [ -z "${ACE_INC}" ] || [[ "${ACE_INC}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_INCLUDE_DIR was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ACE_LIBRARY=${ACE_LIB}"
+          echo "ACE_INCLUDE_DIR=${ACE_INC}"
+
+      - name: Verify ATL discovered
+        if: inputs.with-atl
+        shell: bash
+        run: |
+          set -euo pipefail
+          ATL_HAVE="$(grep -E '^ATL_HAVE_ATL:(BOOL|INTERNAL)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          ATL_FOUND="$(grep -E '^ATL_FOUND:(BOOL|INTERNAL|STRING)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          if [ "${ATL_HAVE}" != "1" ] && [ "${ATL_HAVE}" != "TRUE" ] && [ "${ATL_HAVE}" != "ON" ] && [ "${ATL_FOUND}" != "YES" ] && [ "${ATL_FOUND}" != "TRUE" ] && [ "${ATL_FOUND}" != "ON" ]; then
+            echo "with-atl requested but ATL was not found:" >&2
+            grep -i '^ATL_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ATL_HAVE_ATL=${ATL_HAVE}"
+          echo "ATL_FOUND=${ATL_FOUND}"
+
+      - name: Verify MFC discovered
+        if: inputs.with-mfc
+        shell: bash
+        run: |
+          set -euo pipefail
+          MFC_HAVE="$(grep -E '^MFC_HAVE_MFC:INTERNAL=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          MFC_FOUND="$(grep -E '^MFC_FOUND:(BOOL|INTERNAL|STRING)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          if [ "${MFC_HAVE}" != "1" ] && [ "${MFC_FOUND}" != "YES" ] && [ "${MFC_FOUND}" != "TRUE" ] && [ "${MFC_FOUND}" != "ON" ]; then
+            echo "with-mfc requested but MFC was not found:" >&2
+            grep -i '^MFC_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "MFC_HAVE_MFC=${MFC_HAVE}"
+          echo "MFC_FOUND=${MFC_FOUND}"
+          grep -E '^CMAKE_MFC_FLAG:' build/CMakeCache.txt || true
+
+      - name: Verify ACE discovered
+        if: inputs.with-ace
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_LIB="$(grep -E '^ACE_LIBRARY:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          ACE_INC="$(grep -E '^ACE_INCLUDE_DIR:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          if [ -z "${ACE_LIB}" ] || [[ "${ACE_LIB}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_LIBRARY was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          if [ -z "${ACE_INC}" ] || [[ "${ACE_INC}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_INCLUDE_DIR was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ACE_LIBRARY=${ACE_LIB}"
+          echo "ACE_INCLUDE_DIR=${ACE_INC}"
 
       - name: Build
         shell: bash
@@ -185,6 +299,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -198,6 +316,34 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run examples
         shell: bash
@@ -216,6 +362,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -229,6 +379,34 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run unit tests
         shell: bash
@@ -247,6 +425,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -260,6 +442,34 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run component tests
         shell: bash
@@ -279,6 +489,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -292,6 +506,34 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run scratch tests
         shell: bash
@@ -311,6 +553,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
@@ -324,6 +570,34 @@ jobs:
         with:
           name: sis-build-${{ inputs.cell-id }}
           path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
 
       - name: Run performance tests
         shell: bash

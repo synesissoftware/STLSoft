@@ -28,6 +28,12 @@
 # include <comstl/comstl.h>
 # include <winstl/winstl.h>
 #endif
+#ifdef STLSOFT_HAS_ACE
+# include <acestl/acestl.hpp>
+#endif
+#ifdef STLSOFT_HAS_ATL
+# include <atlstl/atlstl.hpp>
+#endif
 #ifdef STLSOFT_HAS_MFC
 # include <mfcstl/mfcstl.hpp>
 #endif
@@ -54,6 +60,12 @@
 namespace {
 
     static void TEST__STLSOFT_VER();
+#ifdef STLSOFT_HAS_ACE
+    static void TEST__ACESTL_VER();
+#endif
+#ifdef STLSOFT_HAS_ATL
+    static void TEST__ATLSTL_VER();
+#endif
     static void TEST__PLATFORMSTL_VER();
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
@@ -84,6 +96,12 @@ int main(int argc, char **argv)
     if (XTESTS_START_RUNNER("test.unit.versions", verbosity))
     {
         XTESTS_RUN_CASE(TEST__STLSOFT_VER);
+#ifdef STLSOFT_HAS_ACE
+        XTESTS_RUN_CASE(TEST__ACESTL_VER);
+#endif
+#ifdef STLSOFT_HAS_ATL
+        XTESTS_RUN_CASE(TEST__ATLSTL_VER);
+#endif
         XTESTS_RUN_CASE(TEST__PLATFORMSTL_VER);
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
@@ -117,6 +135,21 @@ static void TEST__STLSOFT_VER()
 {
 	TEST_INT_EQ(_STLSOFT_VER_1_11_1_RC5, _STLSOFT_VER);
 }
+#ifdef STLSOFT_HAS_ACE
+
+static void TEST__ACESTL_VER()
+{
+    TEST_INT_EQ(_ACESTL_VER_1_2_1, _ACESTL_VER);
+}
+#endif
+#ifdef STLSOFT_HAS_ATL
+
+static void TEST__ATLSTL_VER()
+{
+    TEST_INT_EQ(_ATLSTL_VER_1_7_1, _ATLSTL_VER);
+}
+#endif
+
 static void TEST__PLATFORMSTL_VER()
 {
 	TEST_INT_EQ(_PLATFORMSTL_VER_1_10_0_B01, _PLATFORMSTL_VER);
@@ -129,7 +162,6 @@ static void TEST__UNIXSTL_VER()
 {
 	TEST_INT_EQ(_UNIXSTL_VER_1_8_6_B06, _UNIXSTL_VER);
 }
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 static void TEST__COMSTL_VER()
@@ -142,11 +174,11 @@ static void TEST__WINSTL_VER()
 	TEST_INT_EQ(_WINSTL_VER_1_13_0_B02, _WINSTL_VER);
 }
 #endif
-
 #ifdef STLSOFT_HAS_MFC
+
 static void TEST__MFCSTL_VER()
 {
-    TEST_INT_EQ(_MFCSTL_VER_1_6_1, MFCSTL_VER);
+    TEST_INT_EQ(_MFCSTL_VER_1_6_1, _MFCSTL_VER);
 }
 #endif
 
