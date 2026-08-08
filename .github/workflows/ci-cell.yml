@@ -23,6 +23,10 @@ on:
         required: false
         type: boolean
         default: false
+      with-mfc:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -145,9 +149,16 @@ jobs:
           else
             ACE_FLAG="-DNO_ACE=ON"
           fi
+          # Default MSVC cells suppress MFC discovery (keeps non-MFC cells lean).
+          # **with-mfc** cells leave FindMFC enabled so **MFCSTL** tests build.
+          if [ "${{ inputs.c-compiler }}" = "cl" ] && [ "${{ inputs.with-mfc }}" != "true" ]; then
+            MFC_FLAG="-DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE"
+          else
+            MFC_FLAG=""
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+              $MFC_FLAG \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
@@ -175,6 +186,42 @@ jobs:
               -DNO_SHWILD=TRUE \
               $ACE_FLAG
           fi
+
+      - name: Verify ACE discovered
+        if: inputs.with-ace
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_LIB="$(grep -E '^ACE_LIBRARY:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          ACE_INC="$(grep -E '^ACE_INCLUDE_DIR:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          if [ -z "${ACE_LIB}" ] || [[ "${ACE_LIB}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_LIBRARY was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          if [ -z "${ACE_INC}" ] || [[ "${ACE_INC}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_INCLUDE_DIR was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ACE_LIBRARY=${ACE_LIB}"
+          echo "ACE_INCLUDE_DIR=${ACE_INC}"
+
+      - name: Verify MFC discovered
+        if: inputs.with-mfc
+        shell: bash
+        run: |
+          set -euo pipefail
+          MFC_HAVE="$(grep -E '^MFC_HAVE_MFC:INTERNAL=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          MFC_FOUND="$(grep -E '^MFC_FOUND:(BOOL|INTERNAL|STRING)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          if [ "${MFC_HAVE}" != "1" ] && [ "${MFC_FOUND}" != "YES" ] && [ "${MFC_FOUND}" != "TRUE" ] && [ "${MFC_FOUND}" != "ON" ]; then
+            echo "with-mfc requested but MFC was not found:" >&2
+            grep -i '^MFC_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "MFC_HAVE_MFC=${MFC_HAVE}"
+          echo "MFC_FOUND=${MFC_FOUND}"
+          grep -E '^CMAKE_MFC_FLAG:' build/CMakeCache.txt || true
 
       - name: Verify ACE discovered
         if: inputs.with-ace
