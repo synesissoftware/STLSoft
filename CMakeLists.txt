@@ -140,9 +140,33 @@ option(BUILD_TESTING "Build tests" ON)
 # - xTests - required for testing;
 #
 # optional:
+# - ACE - enables ACESTL examples/tests when found (NO_ACE / --no-ace suppresses);
 # - cstring - facilitates some C tests;
 # - shwild - enhances xTests for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
+
+
+# ############################
+# ACE
+#
+# Discovery (when NO_ACE is not set): find_package(ACE) via cmake/FindACE.cmake
+# (system packages such as libace-dev, or ACE / ACE_ROOT hints).
+
+set(HAS_ACE OFF)
+
+if(NOT NO_ACE)
+
+	find_package(ACE QUIET)
+
+	if(ACE_FOUND)
+
+		set(HAS_ACE ON)
+
+		add_compile_definitions(STLSOFT_HAS_ACE)
+
+		message("-- ACE found")
+	endif()
+endif()
 
 
 # ############################

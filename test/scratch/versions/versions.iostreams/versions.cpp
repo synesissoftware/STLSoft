@@ -9,6 +9,9 @@
 # include <inetstl/inetstl.h>
 # include <winstl/winstl.h>
 #endif
+#ifdef STLSOFT_HAS_ACE
+# include <acestl/acestl.hpp>
+#endif
 
 #include <iomanip>
 #include <iostream>
@@ -57,6 +60,33 @@ int main(int /* argc */, char* /* argv */[])
 
         std::cout << std::endl;
     }
+    #ifdef STLSOFT_HAS_ACE
+
+
+    // _ACESTL_VER
+
+    {
+        std::cout
+            << "ACESTL = "
+            << ((_ACESTL_VER >> 24) & 0xff)
+            << "."
+            << ((_ACESTL_VER >> 16) & 0xff)
+            << "."
+            << ((_ACESTL_VER >> 8) & 0xff)
+            << "."
+            << ((_ACESTL_VER >> 0) & 0xff)
+            << std::endl
+            ;
+        std::cout
+            << "_ACESTL_VER = 0x"
+            << std::hex << std::setfill('0') << std::setw(8) << _ACESTL_VER
+            << std::dec
+            << std::endl
+            ;
+
+        std::cout << std::endl;
+    }
+#endif /* STLSOFT_HAS_ACE */
 
 
     // _PLATFORMSTL_VER
@@ -136,10 +166,6 @@ int main(int /* argc */, char* /* argv */[])
         std::cout << std::endl;
     }
 #endif
-
-
-
-
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX) || \
       defined(PLATFORMSTL_OS_IS_WINDOWS)

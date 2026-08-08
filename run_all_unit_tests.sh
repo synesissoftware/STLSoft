@@ -181,7 +181,32 @@ if [ $status -eq 0 ]; then
     find_name_expr=( \( -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' \) )
   fi
 
-  for f in $(find "$CMakeDir" -type f "${find_name_expr[@]}" -exec test -x {} \; -print | sort)
+  # Exclude build artefacts that can match suite name globs (CMake object
+  # files under CMakeFiles/, etc.).
+  TestPrograms=( $(find "$CMakeDir" -type f "${find_name_expr[@]}" \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    -exec test -x {} \; -print | sort) )
+
+  echo "discovered ${#TestPrograms[@]} ${TestKindDescription} program(s)"
+
+  if [ ${#TestPrograms[@]} -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no matching executable ${TestKindDescription} programs under '$CMakeDir' (execute bits missing after artifact download?)"
+
+    if [ $ListOnly -eq 0 ]; then
+
+      status=1
+    fi
+  fi
+
+  for f in "${TestPrograms[@]}"
   do
 
     if [ $ListOnly -ne 0 ]; then
