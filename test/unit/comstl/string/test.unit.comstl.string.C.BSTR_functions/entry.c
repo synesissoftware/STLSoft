@@ -4,7 +4,7 @@
  * Purpose: Scratch test for BSTR functions.
  *
  * Created: 31st May 2010
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,6 +21,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -97,17 +98,17 @@ static void test_comstl_C_BSTR_create_w_1()
     {
         BSTR s = comstl_C_BSTR_create_w(NULL);
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, s);
-        XTESTS_TEST_INTEGER_EQUAL(0u, SysStringLen(s));
-        XTESTS_TEST_INTEGER_EQUAL(SysStringLen(s), comstl_C_BSTR_len(s));
+        TEST_PTR_EQ(NULL, s);
+        TEST_INT_EQ(0u, SysStringLen(s));
+        TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
     }
 
     {
         BSTR s = comstl_C_BSTR_create_w(L"");
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, s);
-        XTESTS_TEST_INTEGER_EQUAL(0u, SysStringLen(s));
-        XTESTS_TEST_INTEGER_EQUAL(SysStringLen(s), comstl_C_BSTR_len(s));
+        TEST_PTR_NE(NULL, s);
+        TEST_INT_EQ(0u, SysStringLen(s));
+        TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
 
         comstl_C_BSTR_destroy(s);
     }
@@ -128,9 +129,9 @@ static void test_comstl_C_BSTR_create_w_2()
     {
         BSTR const s = comstl_C_BSTR_create_w(strings[i]);
 
-        XTESTS_TEST_WIDE_STRING_EQUAL(strings[i], s);
-        XTESTS_TEST_INTEGER_EQUAL(wcslen(strings[i]), SysStringLen(s));
-        XTESTS_TEST_INTEGER_EQUAL(SysStringLen(s), comstl_C_BSTR_len(s));
+        TEST_WS_EQ(strings[i], s);
+        TEST_INT_EQ(wcslen(strings[i]), SysStringLen(s));
+        TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
 
         comstl_C_BSTR_destroy(s);
     }}
@@ -141,14 +142,14 @@ static void test_comstl_C_BSTR_create_a_1()
     {
         BSTR s = comstl_C_BSTR_create_a(NULL);
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, s);
+        TEST_PTR_EQ(NULL, s);
     }
 
     {
         BSTR s = comstl_C_BSTR_create_a("");
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, s);
-        XTESTS_TEST_INTEGER_EQUAL(0u, SysStringLen(s));
+        TEST_PTR_NE(NULL, s);
+        TEST_INT_EQ(0u, SysStringLen(s));
 
         comstl_C_BSTR_destroy(s);
     }
@@ -169,9 +170,9 @@ static void test_comstl_C_BSTR_create_a_2()
     {
         BSTR const s = comstl_C_BSTR_create_a(strings[i]);
 
-        XTESTS_TEST_WIDE_STRING_EQUAL(m2w(strings[i]), s);
-        XTESTS_TEST_INTEGER_EQUAL(strlen(strings[i]), SysStringLen(s));
-        XTESTS_TEST_INTEGER_EQUAL(SysStringLen(s), comstl_C_BSTR_len(s));
+        TEST_WS_EQ(m2w(strings[i]), s);
+        TEST_INT_EQ(strlen(strings[i]), SysStringLen(s));
+        TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
 
         comstl_C_BSTR_destroy(s);
     }}
@@ -185,9 +186,9 @@ static void test_comstl_C_BSTR_create_len_w(void)
     {
         BSTR const s = comstl_C_BSTR_create_len_w(alphabet, i);
 
-        XTESTS_TEST_WIDE_STRING_EQUAL_N(alphabet, s, (int)i);
-        XTESTS_TEST_INTEGER_EQUAL(i, SysStringLen(s));
-        XTESTS_TEST_INTEGER_EQUAL(SysStringLen(s), comstl_C_BSTR_len(s));
+        TEST_WS_EQ_N(alphabet, s, (int)i);
+        TEST_INT_EQ(i, SysStringLen(s));
+        TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
 
         comstl_C_BSTR_destroy(s);
     }}
@@ -201,9 +202,9 @@ static void test_comstl_C_BSTR_create_len_a(void)
     {
         BSTR const s = comstl_C_BSTR_create_len_a(alphabet, i);
 
-        XTESTS_TEST_WIDE_STRING_EQUAL_N(m2w(alphabet), s, (int)i);
-        XTESTS_TEST_INTEGER_EQUAL(i, SysStringLen(s));
-        XTESTS_TEST_INTEGER_EQUAL(SysStringLen(s), comstl_C_BSTR_len(s));
+        TEST_WS_EQ_N(m2w(alphabet), s, (int)i);
+        TEST_INT_EQ(i, SysStringLen(s));
+        TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
 
         comstl_C_BSTR_destroy(s);
     }}
@@ -214,17 +215,17 @@ static void test_comstl_C_BSTR_compare()
     BSTR    abc =   SysAllocString(L"abc");
     BSTR    def =   SysAllocString(L"def");
 
-    XTESTS_TEST_INTEGER_EQUAL(0, comstl_C_BSTR_compare(NULL, NULL));
-    XTESTS_TEST_INTEGER_EQUAL(0, comstl_C_BSTR_compare(abc, abc));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0, comstl_C_BSTR_compare(abc, def));
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0, comstl_C_BSTR_compare(def, abc));
+    TEST_INT_EQ(0, comstl_C_BSTR_compare(NULL, NULL));
+    TEST_INT_EQ(0, comstl_C_BSTR_compare(abc, abc));
+    TEST_INT_NE(0, comstl_C_BSTR_compare(abc, def));
+    TEST_INT_NE(0, comstl_C_BSTR_compare(def, abc));
 
-    XTESTS_TEST_INTEGER_LESS(0, comstl_C_BSTR_compare(NULL, abc));
-    XTESTS_TEST_INTEGER_GREATER(0, comstl_C_BSTR_compare(abc, NULL));
-    XTESTS_TEST_INTEGER_LESS(0, comstl_C_BSTR_compare(NULL, def));
-    XTESTS_TEST_INTEGER_GREATER(0, comstl_C_BSTR_compare(def, NULL));
-    XTESTS_TEST_INTEGER_LESS(0, comstl_C_BSTR_compare(abc, def));
-    XTESTS_TEST_INTEGER_GREATER(0, comstl_C_BSTR_compare(def, abc));
+    TEST_INT_LT(0, comstl_C_BSTR_compare(NULL, abc));
+    TEST_INT_GT(0, comstl_C_BSTR_compare(abc, NULL));
+    TEST_INT_LT(0, comstl_C_BSTR_compare(NULL, def));
+    TEST_INT_GT(0, comstl_C_BSTR_compare(def, NULL));
+    TEST_INT_LT(0, comstl_C_BSTR_compare(abc, def));
+    TEST_INT_GT(0, comstl_C_BSTR_compare(def, abc));
 
     comstl_C_BSTR_destroy(abc);
     comstl_C_BSTR_destroy(def);

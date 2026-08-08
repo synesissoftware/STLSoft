@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 #include <xtests/util/temp_file.hpp>
 
 /* STLSoft header files */
@@ -82,7 +83,7 @@ static void test_nonexisting_file()
 
     unixstl::memory_mapped_file mmf(f.c_str());
 
-    XTESTS_TEST_FAIL("should not get here");
+    TEST_FAIL("should not get here");
 
     STLSOFT_SUPPRESS_UNUSED(mmf);
 }
@@ -97,8 +98,8 @@ static void test_existing_file_with_known_contents()
 
     unixstl::memory_mapped_file mmf(f.c_str());
 
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(sizeof(bytes), mmf.size());
-    XTESTS_TEST_BOOLEAN_TRUE((0 == ::memcmp(bytes, mmf.memory(), sizeof(bytes))));
+    TEST_INT_GE(sizeof(bytes), mmf.size());
+    TEST_BOOLEAN_TRUE((0 == ::memcmp(bytes, mmf.memory(), sizeof(bytes))));
 }
 } // anonymous namespace
 

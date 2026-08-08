@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *
  * Created: 19th November 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/conversion/sas_to_string.hpp>
@@ -111,9 +112,9 @@ static void test_start_then_stop_immediately()
     // small number of microseconds, but because of rollover we _might_ get
     // a second
 
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1, num_s);
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000, num_ms);
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000000, num_us);
+    TEST_INT_LE(1, num_s);
+    TEST_INT_LE(1000, num_ms);
+    TEST_INT_LE(1000000, num_us);
 
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
@@ -121,13 +122,13 @@ static void test_start_then_stop_immediately()
     // we _know_ that the implementation of `unixstl::stopwatch` has a
     // granularity of us, so ns will be an exact multiple
 
-    XTESTS_TEST_INTEGER_EQUAL(num_us * 1000, num_ns);
+    TEST_INT_EQ(num_us * 1000, num_ns);
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     // we _know_ that the implementation of `winstl::stopwatch` has a
     // granularity of 100ns
 
-    XTESTS_TEST_INTEGER_EQUAL(num_us, num_ns / 1000);
+    TEST_INT_EQ(num_us, num_ns / 1000);
 #endif
 }
 
@@ -145,9 +146,9 @@ static void test_get_epoch_twice()
     // small number of microseconds, but because of rollover we _might_ get
     // a second
 
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1, num_s);
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000, num_ms);
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000000, num_us);
+    TEST_INT_LE(1, num_s);
+    TEST_INT_LE(1000, num_ms);
+    TEST_INT_LE(1000000, num_us);
 
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
@@ -155,13 +156,13 @@ static void test_get_epoch_twice()
     // we _know_ that the implementation of `unixstl::stopwatch` has a
     // granularity of us, so ns will be an exact multiple
 
-    XTESTS_TEST_INTEGER_EQUAL(num_us * 1000, num_ns);
+    TEST_INT_EQ(num_us * 1000, num_ns);
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     // we _know_ that the implementation of `winstl::stopwatch` has a
     // granularity of 100ns
 
-    XTESTS_TEST_INTEGER_EQUAL(num_us, num_ns / 1000);
+    TEST_INT_EQ(num_us, num_ns / 1000);
 #endif
 }
 } // anonymous namespace

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 29th June 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,6 +21,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/memory/null_allocator.hpp>
@@ -361,9 +362,9 @@ static void test_ctor_n_1()
 #endif
     stlsoft::auto_buffer<char> buff(0);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_NE(0u, buff.internal_size());
 }
 
 static void test_ctor_n_2()
@@ -374,9 +375,9 @@ static void test_ctor_n_2()
 #endif
     stlsoft::auto_buffer<char, 10> buff(0);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 }
 
 static void test_ctor_n_3()
@@ -387,9 +388,9 @@ static void test_ctor_n_3()
 #endif
     stlsoft::auto_buffer<char, 10> buff(10);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 }
 
 static void test_ctor_n_v_1()
@@ -400,9 +401,9 @@ static void test_ctor_n_v_1()
 #endif
     stlsoft::auto_buffer<char> buff(0, 'a');
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_NE(0u, buff.internal_size());
 }
 
 static void test_ctor_n_v_2()
@@ -413,9 +414,9 @@ static void test_ctor_n_v_2()
 #endif
     stlsoft::auto_buffer<char, 10> buff(0, 'a');
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 }
 
 static void test_ctor_n_v_3()
@@ -426,12 +427,12 @@ static void test_ctor_n_v_3()
 #endif
     stlsoft::auto_buffer<char, 10> buff(10, 'a');
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 
-    XTESTS_TEST_CHARACTER_EQUAL('a', buff[0]);
-    XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
+    TEST_CHAR_EQ('a', buff[0]);
+    TEST_CHAR_EQ('a', buff[9]);
 }
 
 static void test_ctor_n_v_4()
@@ -442,11 +443,11 @@ static void test_ctor_n_v_4()
 #endif
     stlsoft::auto_buffer<int, 10> buff(10u, 123);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
 
-    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.begin(), buff.end(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.cbegin(), buff.cend(), 0));
+    TEST_INT_EQ(1230, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(1230, std::accumulate(buff.cbegin(), buff.cend(), 0));
 }
 
 #if __cplusplus >= 201103L
@@ -455,8 +456,8 @@ static void test_ctor_initlist_1()
 {
     stlsoft::auto_buffer<int, 10> buff = {};
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
 }
 
 
@@ -464,24 +465,24 @@ static void test_ctor_initlist_2()
 {
     stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 
-    XTESTS_TEST_INTEGER_EQUAL(0, buff[0]);
-    XTESTS_TEST_INTEGER_EQUAL(9, buff[9]);
+    TEST_INT_EQ(0, buff[0]);
+    TEST_INT_EQ(9, buff[9]);
 }
 
 static void test_ctor_initlist_3()
 {
     stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    XTESTS_TEST_INTEGER_EQUAL(11u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(11u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
 
-    XTESTS_TEST_INTEGER_EQUAL(0, buff[0]);
-    XTESTS_TEST_INTEGER_EQUAL(9, buff[9]);
-    XTESTS_TEST_INTEGER_EQUAL(10, buff[10]);
+    TEST_INT_EQ(0, buff[0]);
+    TEST_INT_EQ(9, buff[9]);
+    TEST_INT_EQ(10, buff[10]);
 }
 #endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
@@ -491,9 +492,9 @@ static void test_ctor_move_1()
     stlsoft::auto_buffer<char> rhs(0, 'a');
     stlsoft::auto_buffer<char> buff(std::move(rhs));
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_NE(0u, buff.internal_size());
 }
 
 static void test_ctor_move_2()
@@ -501,9 +502,9 @@ static void test_ctor_move_2()
     stlsoft::auto_buffer<char, 10> rhs(0, 'a');
     stlsoft::auto_buffer<char, 10> buff(std::move(rhs));
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 }
 
 static void test_ctor_move_3()
@@ -511,34 +512,34 @@ static void test_ctor_move_3()
     stlsoft::auto_buffer<char, 10> rhs(10, 'a');
     stlsoft::auto_buffer<char, 10> buff(std::move(rhs));
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 
-    XTESTS_TEST_CHARACTER_EQUAL('a', buff[0]);
-    XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
+    TEST_CHAR_EQ('a', buff[0]);
+    TEST_CHAR_EQ('a', buff[9]);
 }
 
 static void test_ctor_move_4()
 {
     stlsoft::auto_buffer<int, 10> buff(10u, 123);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(10u, buff.internal_size());
 
-    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(1230, std::accumulate(buff.begin(), buff.end(), 0));
 
     stlsoft::auto_buffer<int, 10> buff2(std::move(buff));
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff2.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff2.internal_size());
+    TEST_INT_EQ(10u, buff2.size());
+    TEST_INT_EQ(10u, buff2.internal_size());
 
-    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff2.begin(), buff2.end(), 0));
+    TEST_INT_EQ(1230, std::accumulate(buff2.begin(), buff2.end(), 0));
 }
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
@@ -546,27 +547,27 @@ static void test_ctor_range_pointers_1()
 {
     stlsoft::auto_buffer<int> buff(&INTEGERS[0], &INTEGERS[0] + 0);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_NE(0u, buff.internal_size());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_pointers_2()
 {
     stlsoft::auto_buffer<int, 10> buff(&INTEGERS[0] + 0, &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_pointers_3()
 {
     stlsoft::auto_buffer<int, 100> buff(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(100u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 #if __cplusplus >= 201703L
@@ -576,9 +577,9 @@ static void test_ctor_range_vec_iters_1()
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + 0);
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_NE(0u, buff.internal_size());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_vec_iters_2()
@@ -586,9 +587,9 @@ static void test_ctor_range_vec_iters_2()
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_vec_iters_3()
@@ -596,9 +597,9 @@ static void test_ctor_range_vec_iters_3()
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 100>  buff(src.begin(), src.end());
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(100u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_list_iters_1()
@@ -606,9 +607,9 @@ static void test_ctor_range_list_iters_1()
     std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + 0);
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_NE(0u, buff.internal_size());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_list_iters_2()
@@ -616,9 +617,9 @@ static void test_ctor_range_list_iters_2()
     std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_list_iters_3()
@@ -626,9 +627,9 @@ static void test_ctor_range_list_iters_3()
     std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 100>  buff(src.begin(), src.end());
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(100u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_input_iters_1()
@@ -645,9 +646,9 @@ static void test_ctor_range_input_iters_1()
     stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + 0));
 # endif
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_NE(0u, buff.internal_size());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_input_iters_2()
@@ -664,9 +665,9 @@ static void test_ctor_range_input_iters_2()
     stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 # endif
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_input_iters_3()
@@ -682,9 +683,9 @@ static void test_ctor_range_input_iters_3()
     stlsoft::auto_buffer<int, 100>  buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 # endif
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(100u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_fwd_iters_1()
@@ -701,9 +702,9 @@ static void test_ctor_range_fwd_iters_1()
     stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + 0));
 # endif
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_INT_NE(0u, buff.internal_size());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_fwd_iters_2()
@@ -720,9 +721,9 @@ static void test_ctor_range_fwd_iters_2()
     stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 # endif
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(10u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_ctor_range_fwd_iters_3()
@@ -739,9 +740,9 @@ static void test_ctor_range_fwd_iters_3()
     stlsoft::auto_buffer<int, 100>  buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 # endif
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
-    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_INT_EQ(100u, buff.internal_size());
+    TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 #endif
 
@@ -755,16 +756,16 @@ static void test_resize()
     {
         buff.resize(i);
 
-        XTESTS_TEST_INTEGER_EQUAL(i, buff.size());
-        XTESTS_TEST_POINTER_EQUAL(first, buff.data());
+        TEST_INT_EQ(i, buff.size());
+        TEST_PTR_EQ(first, buff.data());
     }}
 
     { for (size_t i = 1u + buff.internal_size(); i != 10000; ++i)
     {
         buff.resize(i);
 
-        XTESTS_TEST_INTEGER_EQUAL(i, buff.size());
-        XTESTS_TEST_POINTER_NOT_EQUAL(first, buff.data());
+        TEST_INT_EQ(i, buff.size());
+        TEST_PTR_NE(first, buff.data());
     }}
 }
 
@@ -774,25 +775,25 @@ static void test_resize_n_v_1()
 
     ab_int_10_t buff(0u, -9);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 
     int* const p0 = buff.data();
 
     buff.resize(4, 1);
 
-    XTESTS_TEST_INTEGER_EQUAL(4u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(4u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_EQ(p0, buff.data());
+    TEST_INT_EQ(4, std::accumulate(buff.begin(), buff.end(), 0));
 
     buff.resize(8, 10);
 
-    XTESTS_TEST_INTEGER_EQUAL(8u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(44, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(8u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_EQ(p0, buff.data());
+    TEST_INT_EQ(44, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_resize_n_v_2()
@@ -801,32 +802,32 @@ static void test_resize_n_v_2()
 
     ab_int_10_t buff(5u, -9);
 
-    XTESTS_TEST_INTEGER_EQUAL(5u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(-45, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(5u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(-45, std::accumulate(buff.begin(), buff.end(), 0));
 
     int* const p0 = buff.data();
 
     buff.resize(10, -5);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(-70, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_EQ(p0, buff.data());
+    TEST_INT_EQ(-70, std::accumulate(buff.begin(), buff.end(), 0));
 
     buff.resize(5, 9999);
 
-    XTESTS_TEST_INTEGER_EQUAL(5u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(-45, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(5u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_EQ(p0, buff.data());
+    TEST_INT_EQ(-45, std::accumulate(buff.begin(), buff.end(), 0));
 
     buff.resize(11, 100);
 
-    XTESTS_TEST_INTEGER_EQUAL(11u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_NOT_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(555, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(11u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_NE(p0, buff.data());
+    TEST_INT_EQ(555, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_resize_n_v_3()
@@ -835,32 +836,32 @@ static void test_resize_n_v_3()
 
     ab_int_10_t buff(100u, -9);
 
-    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(-900, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(100u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(-900, std::accumulate(buff.begin(), buff.end(), 0));
 
     int* const p0 = buff.data();
 
     buff.resize(10, 9999);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(-90, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(10u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_EQ(p0, buff.data());
+    TEST_INT_EQ(-90, std::accumulate(buff.begin(), buff.end(), 0));
 
     buff.resize(5, 9999);
 
-    XTESTS_TEST_INTEGER_EQUAL(5u, buff.size());
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(-45, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(5u, buff.size());
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_PTR_EQ(p0, buff.data());
+    TEST_INT_EQ(-45, std::accumulate(buff.begin(), buff.end(), 0));
 
     buff.resize(0, 9999);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
-    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
-    XTESTS_TEST_POINTER_NOT_EQUAL(p0, buff.data());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+    TEST_INT_EQ(0u, buff.size());
+    TEST_BOOLEAN_TRUE(buff.empty());
+    TEST_PTR_NE(p0, buff.data());
+    TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_allocator_null()
@@ -878,33 +879,33 @@ static void test_allocator_null()
         {
             buff_10_t buff(size);
 
-            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(buff_10_t::internal_size(), size);
+            TEST_INT_LE(buff_10_t::internal_size(), size);
         }
         catch (std::bad_alloc&)
         {
-            XTESTS_TEST_INTEGER_GREATER(buff_10_t::internal_size(), size);
+            TEST_INT_GT(buff_10_t::internal_size(), size);
         }
 
         try
         {
             buff_100_t buff(size);
 
-            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(buff_100_t::internal_size(), size);
+            TEST_INT_LE(buff_100_t::internal_size(), size);
         }
         catch (std::bad_alloc&)
         {
-            XTESTS_TEST_INTEGER_GREATER(buff_100_t::internal_size(), size);
+            TEST_INT_GT(buff_100_t::internal_size(), size);
         }
 
         try
         {
             buff_1000_t buff(size);
 
-            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(buff_1000_t::internal_size(), size);
+            TEST_INT_LE(buff_1000_t::internal_size(), size);
         }
         catch (std::bad_alloc&)
         {
-            XTESTS_TEST_INTEGER_GREATER(buff_1000_t::internal_size(), size);
+            TEST_INT_GT(buff_1000_t::internal_size(), size);
         }
 
     }}
@@ -947,7 +948,7 @@ static void test_allocator_to_exhaustion()
 # ifdef STLSOFT_CF_THROW_BAD_ALLOC
         try
         {
-            XTESTS_TEST_BOOLEAN_TRUE(buff.resize(size));
+            TEST_BOOLEAN_TRUE(buff.resize(size));
         }
         catch (std::bad_alloc&)
         {}
@@ -980,24 +981,24 @@ static void test_copy_from()
     ,   buff.begin()
     );
 
-    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.begin(), cbuff.end(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.cbegin(), cbuff.cend(), 0));
+    TEST_BOOLEAN_FALSE(buff.empty());
+    TEST_INT_EQ(10u, buff.size());
+    TEST_INT_EQ(-5, std::accumulate(cbuff.begin(), cbuff.end(), 0));
+    TEST_INT_EQ(-5, std::accumulate(cbuff.cbegin(), cbuff.cend(), 0));
 
 
     ab_int_8_t  buff2(0);
 
-    XTESTS_TEST_BOOLEAN_TRUE(buff2.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, buff2.size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff2.crbegin(), buff2.crend(), 0));
+    TEST_BOOLEAN_TRUE(buff2.empty());
+    TEST_INT_EQ(0u, buff2.size());
+    TEST_INT_EQ(0, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
+    TEST_INT_EQ(0, std::accumulate(buff2.crbegin(), buff2.crend(), 0));
 
     buff2.copy_from(cbuff);
 
-    XTESTS_TEST_BOOLEAN_FALSE(buff2.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10u, buff2.size());
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
+    TEST_BOOLEAN_FALSE(buff2.empty());
+    TEST_INT_EQ(10u, buff2.size());
+    TEST_INT_EQ(-5, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
 }
 
 static void test_swap_1()
@@ -1017,33 +1018,33 @@ static void test_swap_1()
             ab2[i] = -int(i);
         }}
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+        TEST_INT_EQ(10u, ab1.size());
+        TEST_INT_EQ(8u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+            TEST_INT_EQ(int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+            TEST_INT_EQ(-int(i), ab2[i]);
         }}
 
 
         ab1.swap(ab2);
 
-        XTESTS_TEST_INTEGER_EQUAL(8u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(10u,  ab2.size());
+        TEST_INT_EQ(8u, ab1.size());
+        TEST_INT_EQ(10u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+            TEST_INT_EQ(-int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+            TEST_INT_EQ(int(i), ab2[i]);
         }}
     }
 
@@ -1062,33 +1063,33 @@ static void test_swap_1()
             ab2[i] = -int(i);
         }}
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+        TEST_INT_EQ(10u, ab1.size());
+        TEST_INT_EQ(8u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+            TEST_INT_EQ(int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+            TEST_INT_EQ(-int(i), ab2[i]);
         }}
 
 
         ab2.swap(ab1);
 
-        XTESTS_TEST_INTEGER_EQUAL(8u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(10u,  ab2.size());
+        TEST_INT_EQ(8u, ab1.size());
+        TEST_INT_EQ(10u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+            TEST_INT_EQ(-int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+            TEST_INT_EQ(int(i), ab2[i]);
         }}
     }
 }
@@ -1110,33 +1111,33 @@ static void test_swap_2()
             ab2[i] = -int(i);
         }}
 
-        XTESTS_TEST_INTEGER_EQUAL(50u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+        TEST_INT_EQ(50u, ab1.size());
+        TEST_INT_EQ(8u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+            TEST_INT_EQ(int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+            TEST_INT_EQ(-int(i), ab2[i]);
         }}
 
 
         ab1.swap(ab2);
 
-        XTESTS_TEST_INTEGER_EQUAL(8u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(50u,  ab2.size());
+        TEST_INT_EQ(8u, ab1.size());
+        TEST_INT_EQ(50u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+            TEST_INT_EQ(-int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+            TEST_INT_EQ(int(i), ab2[i]);
         }}
     }
 
@@ -1155,33 +1156,33 @@ static void test_swap_2()
             ab2[i] = -int(i);
         }}
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+        TEST_INT_EQ(10u, ab1.size());
+        TEST_INT_EQ(8u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+            TEST_INT_EQ(int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+            TEST_INT_EQ(-int(i), ab2[i]);
         }}
 
 
         ab2.swap(ab1);
 
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(10u, ab2.size());
+        TEST_INT_EQ(8u,  ab1.size());
+        TEST_INT_EQ(10u, ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+            TEST_INT_EQ(-int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+            TEST_INT_EQ(int(i), ab2[i]);
         }}
     }
 }
@@ -1203,33 +1204,33 @@ static void test_swap_3()
             ab2[i] = -int(i);
         }}
 
-        XTESTS_TEST_INTEGER_EQUAL(50u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+        TEST_INT_EQ(50u, ab1.size());
+        TEST_INT_EQ(8u,  ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+            TEST_INT_EQ(int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+            TEST_INT_EQ(-int(i), ab2[i]);
         }}
 
 
         ab1.swap(ab2);
 
-        XTESTS_TEST_INTEGER_EQUAL(8u,  ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(50u, ab2.size());
+        TEST_INT_EQ(8u,  ab1.size());
+        TEST_INT_EQ(50u, ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+            TEST_INT_EQ(-int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+            TEST_INT_EQ(int(i), ab2[i]);
         }}
     }
 
@@ -1248,33 +1249,33 @@ static void test_swap_3()
             ab2[i] = -int(i);
         }}
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(18u, ab2.size());
+        TEST_INT_EQ(10u, ab1.size());
+        TEST_INT_EQ(18u, ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+            TEST_INT_EQ(int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+            TEST_INT_EQ(-int(i), ab2[i]);
         }}
 
 
         ab2.swap(ab1);
 
-        XTESTS_TEST_INTEGER_EQUAL(18u, ab1.size());
-        XTESTS_TEST_INTEGER_EQUAL(10u, ab2.size());
+        TEST_INT_EQ(18u, ab1.size());
+        TEST_INT_EQ(10u, ab2.size());
 
         { for (size_t i = 0; i != ab1.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+            TEST_INT_EQ(-int(i), ab1[i]);
         }}
 
         { for (size_t i = 0; i != ab2.size(); ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+            TEST_INT_EQ(int(i), ab2[i]);
         }}
     }
 }
@@ -1300,8 +1301,8 @@ static void test_subscript()
 
     for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(ints); ++i)
     {
-        XTESTS_TEST_INTEGER_EQUAL(ints[i], buff[i]);
-        XTESTS_TEST_INTEGER_EQUAL(ints[i], cbuff[i]);
+        TEST_INT_EQ(ints[i], buff[i]);
+        TEST_INT_EQ(ints[i], cbuff[i]);
     }
 }
 
@@ -1324,8 +1325,8 @@ static void test_data()
     ,   buff.begin()
     );
 
-    XTESTS_TEST(0 == memcmp(&ints[0], buff.data(), sizeof(ints)));
-    XTESTS_TEST(0 == memcmp(&ints[0], cbuff.data(), sizeof(ints)));
+    TEST(0 == memcmp(&ints[0], buff.data(), sizeof(ints)));
+    TEST(0 == memcmp(&ints[0], cbuff.data(), sizeof(ints)));
 }
 
 static void test_front_and_back()
@@ -1347,11 +1348,11 @@ static void test_front_and_back()
     ,   buff.begin()
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(-5, buff.front());
-    XTESTS_TEST_INTEGER_EQUAL(-5, cbuff.front());
+    TEST_INT_EQ(-5, buff.front());
+    TEST_INT_EQ(-5, cbuff.front());
 
-    XTESTS_TEST_INTEGER_EQUAL(4, buff.back());
-    XTESTS_TEST_INTEGER_EQUAL(4, cbuff.back());
+    TEST_INT_EQ(4, buff.back());
+    TEST_INT_EQ(4, cbuff.back());
 }
 
 static void test_begin_and_end()
@@ -1373,9 +1374,9 @@ static void test_begin_and_end()
     ,   buff.begin()
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.begin(), cbuff.end(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(cbuff.begin() + 2, cbuff.end(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(-9, std::accumulate(cbuff.begin(), cbuff.end() -1, 0));
+    TEST_INT_EQ(-5, std::accumulate(cbuff.begin(), cbuff.end(), 0));
+    TEST_INT_EQ(4, std::accumulate(cbuff.begin() + 2, cbuff.end(), 0));
+    TEST_INT_EQ(-9, std::accumulate(cbuff.begin(), cbuff.end() -1, 0));
 }
 
 static void test_rbegin_and_rend()
@@ -1397,15 +1398,15 @@ static void test_rbegin_and_rend()
     ,   buff.begin()
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.rbegin(), cbuff.rend(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() + 0, 0));
-    XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() - 2, 0));
-    XTESTS_TEST_INTEGER_EQUAL(-9, std::accumulate(cbuff.rbegin() + 1, cbuff.rend() - 0, 0));
+    TEST_INT_EQ(-5, std::accumulate(cbuff.rbegin(), cbuff.rend(), 0));
+    TEST_INT_EQ(-5, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() + 0, 0));
+    TEST_INT_EQ(4, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() - 2, 0));
+    TEST_INT_EQ(-9, std::accumulate(cbuff.rbegin() + 1, cbuff.rend() - 0, 0));
 
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.crbegin(), cbuff.crend(), 0));
-    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.crbegin() + 0, cbuff.crend() + 0, 0));
-    XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(cbuff.crbegin() + 0, cbuff.crend() - 2, 0));
-    XTESTS_TEST_INTEGER_EQUAL(-9, std::accumulate(cbuff.crbegin() + 1, cbuff.crend() - 0, 0));
+    TEST_INT_EQ(-5, std::accumulate(cbuff.crbegin(), cbuff.crend(), 0));
+    TEST_INT_EQ(-5, std::accumulate(cbuff.crbegin() + 0, cbuff.crend() + 0, 0));
+    TEST_INT_EQ(4, std::accumulate(cbuff.crbegin() + 0, cbuff.crend() - 2, 0));
+    TEST_INT_EQ(-9, std::accumulate(cbuff.crbegin() + 1, cbuff.crend() - 0, 0));
 }
 } // anonymous namespace
 

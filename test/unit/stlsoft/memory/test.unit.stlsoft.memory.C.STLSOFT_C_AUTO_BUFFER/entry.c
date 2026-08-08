@@ -4,7 +4,7 @@
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *
  * Created: 5th August 2011
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,6 +21,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -177,12 +178,12 @@ static void test_value_type_of_char_internal_1(void)
 
     if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8))
     {
-        XTESTS_TEST_FAIL("unexpected failure");
+        TEST_FAIL("unexpected failure");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(8u, buff.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, buff.ptr);
+        TEST_INT_EQ(8u, buff.size);
+        TEST_PTR_NE(NULL, buff.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(buff);
     }
@@ -197,13 +198,13 @@ static void test_value_type_of_char_internal_2(void)
 
     if (0 != r)
     {
-        XTESTS_TEST_FAIL("unexpected failure");
+        TEST_FAIL("unexpected failure");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(8u, size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr);
-        XTESTS_TEST_POINTER_EQUAL(buff, ptr);
+        TEST_INT_EQ(8u, size);
+        TEST_PTR_NE(NULL, ptr);
+        TEST_PTR_EQ(buff, ptr);
 
         stlsoft_C_auto_buffer_free(sizeof(char), &buff[0], STLSOFT_NUM_ELEMENTS(buff), size, ptr);
     }
@@ -221,9 +222,9 @@ static void test_value_type_of_char_external_1(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(16u, size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr);
-        XTESTS_TEST_POINTER_NOT_EQUAL(buff, ptr);
+        TEST_INT_EQ(16u, size);
+        TEST_PTR_NE(NULL, ptr);
+        TEST_PTR_NE(buff, ptr);
 
         stlsoft_C_auto_buffer_free(sizeof(char), &buff[0], STLSOFT_NUM_ELEMENTS(buff), size, ptr);
     }
@@ -235,12 +236,12 @@ static void test_value_type_of_char_internal_3(void)
 
     if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(XXXX, 8))
     {
-        XTESTS_TEST_FAIL("unexpected failure");
+        TEST_FAIL("unexpected failure");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(8u, XXXX.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, XXXX.ptr);
+        TEST_INT_EQ(8u, XXXX.size);
+        TEST_PTR_NE(NULL, XXXX.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(XXXX);
     }
@@ -255,9 +256,9 @@ static void test_value_type_of_char_external_2(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(16u, buff1.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, buff1.ptr);
-        XTESTS_TEST_POINTER_NOT_EQUAL(buff1.internal_, buff1.ptr);
+        TEST_INT_EQ(16u, buff1.size);
+        TEST_PTR_NE(NULL, buff1.ptr);
+        TEST_PTR_NE(buff1.internal_, buff1.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(buff1);
     }
@@ -275,22 +276,22 @@ static void test_value_type_of_char_external_then_internal_1(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(16u, buff1.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, buff1.ptr);
-        XTESTS_TEST_POINTER_NOT_EQUAL(buff1.internal_, buff1.ptr);
+        TEST_INT_EQ(16u, buff1.size);
+        TEST_PTR_NE(NULL, buff1.ptr);
+        TEST_PTR_NE(buff1.internal_, buff1.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(buff1);
     }
 
     if (0 != (j = STLSOFT_C_AUTO_BUFFER_INITIALISE(buff2, 10)))
     {
-        XTESTS_TEST_FAIL("unexpected failure");
+        TEST_FAIL("unexpected failure");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(10u, buff2.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, buff2.ptr);
-        XTESTS_TEST_POINTER_EQUAL(buff2.internal_, buff2.ptr);
+        TEST_INT_EQ(10u, buff2.size);
+        TEST_PTR_NE(NULL, buff2.ptr);
+        TEST_PTR_EQ(buff2.internal_, buff2.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(buff2);
     }
@@ -302,12 +303,12 @@ static void test_value_type_of_int_internal_1(void)
 
     if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8))
     {
-        XTESTS_TEST_FAIL("unexpected failure");
+        TEST_FAIL("unexpected failure");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(8u, buff.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, buff.ptr);
+        TEST_INT_EQ(8u, buff.size);
+        TEST_PTR_NE(NULL, buff.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(buff);
     }
@@ -322,9 +323,9 @@ static void test_value_type_of_int_external_1(void)
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(16u, buff1.size);
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, buff1.ptr);
-        XTESTS_TEST_POINTER_NOT_EQUAL(buff1.internal_, buff1.ptr);
+        TEST_INT_EQ(16u, buff1.size);
+        TEST_PTR_NE(NULL, buff1.ptr);
+        TEST_PTR_NE(buff1.internal_, buff1.ptr);
 
         STLSOFT_C_AUTO_BUFFER_FREE(buff1);
     }

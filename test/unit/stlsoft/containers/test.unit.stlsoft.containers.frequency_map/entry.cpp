@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -257,21 +258,21 @@ static void test_ctor_default()
     {
         fm_ordered_int_t fm;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(0u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(0u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
 #if __cplusplus >= 201103L
@@ -279,21 +280,21 @@ static void test_ctor_default()
     {
         fm_unordered_int_t fm;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(0u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(0u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 #endif
 }
@@ -305,133 +306,133 @@ static void test_ctor_initializer_list_1()
     {
         fm_ordered_int_t fm = {};
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_FALSE(fm.contains(0));
+        TEST_BOOLEAN_FALSE(fm.contains(1));
+        TEST_BOOLEAN_FALSE(fm.contains(2));
+        TEST_BOOLEAN_FALSE(fm.contains(3));
+        TEST_BOOLEAN_FALSE(fm.contains(4));
+        TEST_BOOLEAN_FALSE(fm.contains(5));
+        TEST_BOOLEAN_FALSE(fm.contains(6));
+        TEST_BOOLEAN_FALSE(fm.contains(7));
+        TEST_BOOLEAN_FALSE(fm.contains(8));
+        TEST_BOOLEAN_FALSE(fm.contains(9));
+        TEST_BOOLEAN_FALSE(fm.contains(10));
+        TEST_BOOLEAN_FALSE(fm.contains(11));
+        TEST_BOOLEAN_FALSE(fm.contains(12));
+        TEST_BOOLEAN_FALSE(fm.contains(13));
+        TEST_BOOLEAN_FALSE(fm.contains(14));
+        TEST_BOOLEAN_FALSE(fm.contains(15));
+        TEST_BOOLEAN_FALSE(fm.contains(16));
+        TEST_BOOLEAN_FALSE(fm.contains(17));
+        TEST_BOOLEAN_FALSE(fm.contains(18));
+        TEST_BOOLEAN_FALSE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(0u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(0u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
     {
         fm_ordered_int_t fm = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(20u, fm.size());
+        TEST_INT_EQ(20u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_TRUE(fm.contains(0));
+        TEST_BOOLEAN_TRUE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_TRUE(fm.contains(4));
+        TEST_BOOLEAN_TRUE(fm.contains(5));
+        TEST_BOOLEAN_TRUE(fm.contains(6));
+        TEST_BOOLEAN_TRUE(fm.contains(7));
+        TEST_BOOLEAN_TRUE(fm.contains(8));
+        TEST_BOOLEAN_TRUE(fm.contains(9));
+        TEST_BOOLEAN_TRUE(fm.contains(10));
+        TEST_BOOLEAN_TRUE(fm.contains(11));
+        TEST_BOOLEAN_TRUE(fm.contains(12));
+        TEST_BOOLEAN_TRUE(fm.contains(13));
+        TEST_BOOLEAN_TRUE(fm.contains(14));
+        TEST_BOOLEAN_TRUE(fm.contains(15));
+        TEST_BOOLEAN_TRUE(fm.contains(16));
+        TEST_BOOLEAN_TRUE(fm.contains(17));
+        TEST_BOOLEAN_TRUE(fm.contains(18));
+        TEST_BOOLEAN_TRUE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(1u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(1u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(1u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(1u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
     {
         fm_ordered_int_t fm = { 2, 2 };
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(1u, fm.size());
+        TEST_INT_EQ(2u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_FALSE(fm.contains(0));
+        TEST_BOOLEAN_FALSE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_FALSE(fm.contains(3));
+        TEST_BOOLEAN_FALSE(fm.contains(4));
+        TEST_BOOLEAN_FALSE(fm.contains(5));
+        TEST_BOOLEAN_FALSE(fm.contains(6));
+        TEST_BOOLEAN_FALSE(fm.contains(7));
+        TEST_BOOLEAN_FALSE(fm.contains(8));
+        TEST_BOOLEAN_FALSE(fm.contains(9));
+        TEST_BOOLEAN_FALSE(fm.contains(10));
+        TEST_BOOLEAN_FALSE(fm.contains(11));
+        TEST_BOOLEAN_FALSE(fm.contains(12));
+        TEST_BOOLEAN_FALSE(fm.contains(13));
+        TEST_BOOLEAN_FALSE(fm.contains(14));
+        TEST_BOOLEAN_FALSE(fm.contains(15));
+        TEST_BOOLEAN_FALSE(fm.contains(16));
+        TEST_BOOLEAN_FALSE(fm.contains(17));
+        TEST_BOOLEAN_FALSE(fm.contains(18));
+        TEST_BOOLEAN_FALSE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(2u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(2u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 }
 
@@ -440,95 +441,95 @@ static void test_ctor_initializer_list_2()
     {
         fm_ordered_int_t fm = { { 2, 2 }, { 3, 1 } };
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(2u, fm.size());
+        TEST_INT_EQ(3u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_FALSE(fm.contains(0));
+        TEST_BOOLEAN_FALSE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_FALSE(fm.contains(4));
+        TEST_BOOLEAN_FALSE(fm.contains(5));
+        TEST_BOOLEAN_FALSE(fm.contains(6));
+        TEST_BOOLEAN_FALSE(fm.contains(7));
+        TEST_BOOLEAN_FALSE(fm.contains(8));
+        TEST_BOOLEAN_FALSE(fm.contains(9));
+        TEST_BOOLEAN_FALSE(fm.contains(10));
+        TEST_BOOLEAN_FALSE(fm.contains(11));
+        TEST_BOOLEAN_FALSE(fm.contains(12));
+        TEST_BOOLEAN_FALSE(fm.contains(13));
+        TEST_BOOLEAN_FALSE(fm.contains(14));
+        TEST_BOOLEAN_FALSE(fm.contains(15));
+        TEST_BOOLEAN_FALSE(fm.contains(16));
+        TEST_BOOLEAN_FALSE(fm.contains(17));
+        TEST_BOOLEAN_FALSE(fm.contains(18));
+        TEST_BOOLEAN_FALSE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(2u, fm.count(2));
+        TEST_INT_EQ(1u, fm.count(3));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(2u, fm[2]);
+        TEST_INT_EQ(1u, fm[3]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
     {
         fm_ordered_int_t fm = { { 1, 1 }, { 2, 1 }, { 3, 3 }, { 4, 4 } };
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(9u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(4u, fm.size());
+        TEST_INT_EQ(9u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_FALSE(fm.contains(0));
+        TEST_BOOLEAN_TRUE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_TRUE(fm.contains(4));
+        TEST_BOOLEAN_FALSE(fm.contains(5));
+        TEST_BOOLEAN_FALSE(fm.contains(6));
+        TEST_BOOLEAN_FALSE(fm.contains(7));
+        TEST_BOOLEAN_FALSE(fm.contains(8));
+        TEST_BOOLEAN_FALSE(fm.contains(9));
+        TEST_BOOLEAN_FALSE(fm.contains(10));
+        TEST_BOOLEAN_FALSE(fm.contains(11));
+        TEST_BOOLEAN_FALSE(fm.contains(12));
+        TEST_BOOLEAN_FALSE(fm.contains(13));
+        TEST_BOOLEAN_FALSE(fm.contains(14));
+        TEST_BOOLEAN_FALSE(fm.contains(15));
+        TEST_BOOLEAN_FALSE(fm.contains(16));
+        TEST_BOOLEAN_FALSE(fm.contains(17));
+        TEST_BOOLEAN_FALSE(fm.contains(18));
+        TEST_BOOLEAN_FALSE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm.count(3));
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm.count(4));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(1u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(3u, fm.count(3));
+        TEST_INT_EQ(4u, fm.count(4));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm[3]);
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm[4]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(1u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(3u, fm[3]);
+        TEST_INT_EQ(4u, fm[4]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 }
 #endif
@@ -546,50 +547,50 @@ static void test_ctor_range_pointers_1()
         fm_ordered_int_t fm(&VALUES[0] + 0, &VALUES[0] + STLSOFT_NUM_ELEMENTS(VALUES));
 #endif
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(20u, fm.size());
+        TEST_INT_EQ(20u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_TRUE(fm.contains(0));
+        TEST_BOOLEAN_TRUE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_TRUE(fm.contains(4));
+        TEST_BOOLEAN_TRUE(fm.contains(5));
+        TEST_BOOLEAN_TRUE(fm.contains(6));
+        TEST_BOOLEAN_TRUE(fm.contains(7));
+        TEST_BOOLEAN_TRUE(fm.contains(8));
+        TEST_BOOLEAN_TRUE(fm.contains(9));
+        TEST_BOOLEAN_TRUE(fm.contains(10));
+        TEST_BOOLEAN_TRUE(fm.contains(11));
+        TEST_BOOLEAN_TRUE(fm.contains(12));
+        TEST_BOOLEAN_TRUE(fm.contains(13));
+        TEST_BOOLEAN_TRUE(fm.contains(14));
+        TEST_BOOLEAN_TRUE(fm.contains(15));
+        TEST_BOOLEAN_TRUE(fm.contains(16));
+        TEST_BOOLEAN_TRUE(fm.contains(17));
+        TEST_BOOLEAN_TRUE(fm.contains(18));
+        TEST_BOOLEAN_TRUE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(4));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(1u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(1u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(1u, fm.count(3));
+        TEST_INT_EQ(1u, fm.count(4));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[4]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[-1]);
+        TEST_INT_EQ(1u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(1u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(1u, fm[3]);
+        TEST_INT_EQ(1u, fm[4]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
 #if __cplusplus >= 201103L
@@ -597,50 +598,50 @@ static void test_ctor_range_pointers_1()
     {
         fm_unordered_int_t fm = { std::begin(VALUES), std::end(VALUES) };
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(20u, fm.size());
+        TEST_INT_EQ(20u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_TRUE(fm.contains(0));
+        TEST_BOOLEAN_TRUE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_TRUE(fm.contains(4));
+        TEST_BOOLEAN_TRUE(fm.contains(5));
+        TEST_BOOLEAN_TRUE(fm.contains(6));
+        TEST_BOOLEAN_TRUE(fm.contains(7));
+        TEST_BOOLEAN_TRUE(fm.contains(8));
+        TEST_BOOLEAN_TRUE(fm.contains(9));
+        TEST_BOOLEAN_TRUE(fm.contains(10));
+        TEST_BOOLEAN_TRUE(fm.contains(11));
+        TEST_BOOLEAN_TRUE(fm.contains(12));
+        TEST_BOOLEAN_TRUE(fm.contains(13));
+        TEST_BOOLEAN_TRUE(fm.contains(14));
+        TEST_BOOLEAN_TRUE(fm.contains(15));
+        TEST_BOOLEAN_TRUE(fm.contains(16));
+        TEST_BOOLEAN_TRUE(fm.contains(17));
+        TEST_BOOLEAN_TRUE(fm.contains(18));
+        TEST_BOOLEAN_TRUE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(4));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(1u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(1u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(1u, fm.count(3));
+        TEST_INT_EQ(1u, fm.count(4));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[4]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[-1]);
+        TEST_INT_EQ(1u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(1u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(1u, fm[3]);
+        TEST_INT_EQ(1u, fm[4]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 #endif
 }
@@ -654,99 +655,99 @@ static void test_ctor_range_list_iters_1()
     {
         fm_ordered_int_t fm(VALUES.begin(), VALUES.end());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(20u, fm.size());
+        TEST_INT_EQ(20u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_TRUE(fm.contains(0));
+        TEST_BOOLEAN_TRUE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_TRUE(fm.contains(4));
+        TEST_BOOLEAN_TRUE(fm.contains(5));
+        TEST_BOOLEAN_TRUE(fm.contains(6));
+        TEST_BOOLEAN_TRUE(fm.contains(7));
+        TEST_BOOLEAN_TRUE(fm.contains(8));
+        TEST_BOOLEAN_TRUE(fm.contains(9));
+        TEST_BOOLEAN_TRUE(fm.contains(10));
+        TEST_BOOLEAN_TRUE(fm.contains(11));
+        TEST_BOOLEAN_TRUE(fm.contains(12));
+        TEST_BOOLEAN_TRUE(fm.contains(13));
+        TEST_BOOLEAN_TRUE(fm.contains(14));
+        TEST_BOOLEAN_TRUE(fm.contains(15));
+        TEST_BOOLEAN_TRUE(fm.contains(16));
+        TEST_BOOLEAN_TRUE(fm.contains(17));
+        TEST_BOOLEAN_TRUE(fm.contains(18));
+        TEST_BOOLEAN_TRUE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(4));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(1u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(1u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(1u, fm.count(3));
+        TEST_INT_EQ(1u, fm.count(4));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[4]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[-1]);
+        TEST_INT_EQ(1u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(1u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(1u, fm[3]);
+        TEST_INT_EQ(1u, fm[4]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
     {
         fm_unordered_int_t fm(VALUES.begin(), VALUES.end());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(20u, fm.size());
+        TEST_INT_EQ(20u, fm.total());
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
-        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
-        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+        TEST_BOOLEAN_FALSE(fm.contains(-1));
+        TEST_BOOLEAN_TRUE(fm.contains(0));
+        TEST_BOOLEAN_TRUE(fm.contains(1));
+        TEST_BOOLEAN_TRUE(fm.contains(2));
+        TEST_BOOLEAN_TRUE(fm.contains(3));
+        TEST_BOOLEAN_TRUE(fm.contains(4));
+        TEST_BOOLEAN_TRUE(fm.contains(5));
+        TEST_BOOLEAN_TRUE(fm.contains(6));
+        TEST_BOOLEAN_TRUE(fm.contains(7));
+        TEST_BOOLEAN_TRUE(fm.contains(8));
+        TEST_BOOLEAN_TRUE(fm.contains(9));
+        TEST_BOOLEAN_TRUE(fm.contains(10));
+        TEST_BOOLEAN_TRUE(fm.contains(11));
+        TEST_BOOLEAN_TRUE(fm.contains(12));
+        TEST_BOOLEAN_TRUE(fm.contains(13));
+        TEST_BOOLEAN_TRUE(fm.contains(14));
+        TEST_BOOLEAN_TRUE(fm.contains(15));
+        TEST_BOOLEAN_TRUE(fm.contains(16));
+        TEST_BOOLEAN_TRUE(fm.contains(17));
+        TEST_BOOLEAN_TRUE(fm.contains(18));
+        TEST_BOOLEAN_TRUE(fm.contains(19));
+        TEST_BOOLEAN_FALSE(fm.contains(20));
+        TEST_BOOLEAN_FALSE(fm.contains(21));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(4));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(1u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(1u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(1u, fm.count(3));
+        TEST_INT_EQ(1u, fm.count(4));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[4]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[-1]);
+        TEST_INT_EQ(1u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(1u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(1u, fm[3]);
+        TEST_INT_EQ(1u, fm[4]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 }
 #endif
@@ -756,39 +757,39 @@ static void test_clear()
     {
         fm_ordered_int_t    fm;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(0u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(0u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
 
         fm.clear();
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(0u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(0u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 
     {
@@ -797,39 +798,39 @@ static void test_clear()
         fm.push_n(1, 3);
         fm.push(2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(2u, fm.size());
+        TEST_INT_EQ(4u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(3u, fm.count(1));
+        TEST_INT_EQ(1u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(3u, fm[1]);
+        TEST_INT_EQ(1u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
 
         fm.clear();
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+        TEST_INT_EQ(0u, fm.count(0));
+        TEST_INT_EQ(0u, fm.count(100));
+        TEST_INT_EQ(0u, fm.count(1));
+        TEST_INT_EQ(0u, fm.count(2));
+        TEST_INT_EQ(0u, fm.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+        TEST_INT_EQ(0u, fm[0]);
+        TEST_INT_EQ(0u, fm[100]);
+        TEST_INT_EQ(0u, fm[1]);
+        TEST_INT_EQ(0u, fm[2]);
+        TEST_INT_EQ(0u, fm[-2]);
     }
 }
 
@@ -839,21 +840,21 @@ static void test_merge()
         fm_ordered_int_t    fm1;
         fm_ordered_int_t    fm2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
 
         fm1.merge(fm2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
     }
 
     {
@@ -864,65 +865,65 @@ static void test_merge()
         fm1.push(2);
         fm2.push_n(-2, 7);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(2u, fm1.size());
+        TEST_INT_EQ(4u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(-2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(0));
+        TEST_INT_EQ(0u, fm1.count(100));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(0u, fm2.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(0u, fm2.count(2));
+        TEST_INT_EQ(0u, fm1.count(-2));
+        TEST_INT_EQ(7u, fm2.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[-2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[0]);
+        TEST_INT_EQ(0u, fm1[100]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(0u, fm2[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(0u, fm2[2]);
+        TEST_INT_EQ(0u, fm1[-2]);
+        TEST_INT_EQ(7u, fm2[-2]);
 
         fm1.merge(fm2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(11u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(3u, fm1.size());
+        TEST_INT_EQ(11u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(0));
+        TEST_INT_EQ(0u, fm1.count(100));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(0u, fm2.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(0u, fm2.count(2));
+        TEST_INT_EQ(7u, fm1.count(-2));
+        TEST_INT_EQ(7u, fm2.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[0]);
+        TEST_INT_EQ(0u, fm1[100]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(0u, fm2[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(0u, fm2[2]);
+        TEST_INT_EQ(7u, fm1[-2]);
+        TEST_INT_EQ(7u, fm2[-2]);
     }
 #if __cplusplus >= 201103L
 
@@ -930,21 +931,21 @@ static void test_merge()
         fm_unordered_int_t  fm1;
         fm_unordered_int_t  fm2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
 
         fm1.merge(fm2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
     }
 
     {
@@ -955,65 +956,65 @@ static void test_merge()
         fm1.push(2);
         fm2.push_n(-2, 7);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(2u, fm1.size());
+        TEST_INT_EQ(4u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(-2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(0));
+        TEST_INT_EQ(0u, fm1.count(100));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(0u, fm2.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(0u, fm2.count(2));
+        TEST_INT_EQ(0u, fm1.count(-2));
+        TEST_INT_EQ(7u, fm2.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[-2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[0]);
+        TEST_INT_EQ(0u, fm1[100]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(0u, fm2[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(0u, fm2[2]);
+        TEST_INT_EQ(0u, fm1[-2]);
+        TEST_INT_EQ(7u, fm2[-2]);
 
         fm1.merge(fm2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(11u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(3u, fm1.size());
+        TEST_INT_EQ(11u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(0));
+        TEST_INT_EQ(0u, fm1.count(100));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(0u, fm2.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(0u, fm2.count(2));
+        TEST_INT_EQ(7u, fm1.count(-2));
+        TEST_INT_EQ(7u, fm2.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[0]);
+        TEST_INT_EQ(0u, fm1[100]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(0u, fm2[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(0u, fm2[2]);
+        TEST_INT_EQ(7u, fm1[-2]);
+        TEST_INT_EQ(7u, fm2[-2]);
     }
 #endif /* C++ */
 }
@@ -1026,21 +1027,21 @@ static void test_op_addassign()
             fm_ordered_int_t    fm1;
             fm_ordered_int_t    fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             fm1 += fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
         }
 
         {
@@ -1051,65 +1052,65 @@ static void test_op_addassign()
             fm1.push(2);
             fm2.push_n(-2, 7);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(2u, fm1.size());
+            TEST_INT_EQ(4u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(-2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(0));
+            TEST_INT_EQ(0u, fm1.count(100));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(0u, fm2.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(0u, fm2.count(2));
+            TEST_INT_EQ(0u, fm1.count(-2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[-2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[0]);
+            TEST_INT_EQ(0u, fm1[100]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(0u, fm2[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(0u, fm2[2]);
+            TEST_INT_EQ(0u, fm1[-2]);
+            TEST_INT_EQ(7u, fm2[-2]);
 
             fm1 += fm2;
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(11u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(3u, fm1.size());
+            TEST_INT_EQ(11u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(0));
+            TEST_INT_EQ(0u, fm1.count(100));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(0u, fm2.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(0u, fm2.count(2));
+            TEST_INT_EQ(7u, fm1.count(-2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[0]);
+            TEST_INT_EQ(0u, fm1[100]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(0u, fm2[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(0u, fm2[2]);
+            TEST_INT_EQ(7u, fm1[-2]);
+            TEST_INT_EQ(7u, fm2[-2]);
         }
     }
 #if __cplusplus >= 201103L
@@ -1120,21 +1121,21 @@ static void test_op_addassign()
             fm_unordered_int_t  fm1;
             fm_unordered_int_t  fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             fm1 += fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
         }
 
         {
@@ -1145,65 +1146,65 @@ static void test_op_addassign()
             fm1.push(2);
             fm2.push_n(-2, 7);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(2u, fm1.size());
+            TEST_INT_EQ(4u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(-2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(0));
+            TEST_INT_EQ(0u, fm1.count(100));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(0u, fm2.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(0u, fm2.count(2));
+            TEST_INT_EQ(0u, fm1.count(-2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[-2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[0]);
+            TEST_INT_EQ(0u, fm1[100]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(0u, fm2[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(0u, fm2[2]);
+            TEST_INT_EQ(0u, fm1[-2]);
+            TEST_INT_EQ(7u, fm2[-2]);
 
             fm1 += fm2;
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(11u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(3u, fm1.size());
+            TEST_INT_EQ(11u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(0));
+            TEST_INT_EQ(0u, fm1.count(100));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(0u, fm2.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(0u, fm2.count(2));
+            TEST_INT_EQ(7u, fm1.count(-2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[100]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[0]);
+            TEST_INT_EQ(0u, fm1[100]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(0u, fm2[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(0u, fm2[2]);
+            TEST_INT_EQ(7u, fm1[-2]);
+            TEST_INT_EQ(7u, fm2[-2]);
         }
     }
 #endif
@@ -1216,18 +1217,18 @@ static void test_op_add()
             fm_ordered_int_t    fm1;
             fm_ordered_int_t    fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             fm_ordered_int_t    fm3 = fm1 + fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm3.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.size());
+            TEST_BOOLEAN_TRUE(fm3.empty());
+            TEST_INT_EQ(0u, fm3.size());
+            TEST_INT_EQ(0u, fm3.size());
         }
 
         {
@@ -1240,21 +1241,21 @@ static void test_op_add()
 
             fm_ordered_int_t    fm3 = fm1 + fm2;
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm3.empty());
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm3.size());
-            XTESTS_TEST_INTEGER_EQUAL(11u, fm3.total());
+            TEST_BOOLEAN_FALSE(fm3.empty());
+            TEST_INT_EQ(3u, fm3.size());
+            TEST_INT_EQ(11u, fm3.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm3.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm3.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm3.count(-2));
+            TEST_INT_EQ(0u, fm3.count(0));
+            TEST_INT_EQ(0u, fm3.count(100));
+            TEST_INT_EQ(3u, fm3.count(1));
+            TEST_INT_EQ(1u, fm3.count(2));
+            TEST_INT_EQ(7u, fm3.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm3[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm3[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm3[-2]);
+            TEST_INT_EQ(0u, fm3[0]);
+            TEST_INT_EQ(0u, fm3[100]);
+            TEST_INT_EQ(3u, fm3[1]);
+            TEST_INT_EQ(1u, fm3[2]);
+            TEST_INT_EQ(7u, fm3[-2]);
         }
     }
 #if __cplusplus >= 201103L
@@ -1264,18 +1265,18 @@ static void test_op_add()
             fm_unordered_int_t  fm1;
             fm_unordered_int_t  fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             fm_unordered_int_t  fm3 = fm1 + fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm3.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.size());
+            TEST_BOOLEAN_TRUE(fm3.empty());
+            TEST_INT_EQ(0u, fm3.size());
+            TEST_INT_EQ(0u, fm3.size());
         }
 
         {
@@ -1288,21 +1289,21 @@ static void test_op_add()
 
             fm_unordered_int_t  fm3 = fm1 + fm2;
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm3.empty());
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm3.size());
-            XTESTS_TEST_INTEGER_EQUAL(11u, fm3.total());
+            TEST_BOOLEAN_FALSE(fm3.empty());
+            TEST_INT_EQ(3u, fm3.size());
+            TEST_INT_EQ(11u, fm3.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm3.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm3.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm3.count(-2));
+            TEST_INT_EQ(0u, fm3.count(0));
+            TEST_INT_EQ(0u, fm3.count(100));
+            TEST_INT_EQ(3u, fm3.count(1));
+            TEST_INT_EQ(1u, fm3.count(2));
+            TEST_INT_EQ(7u, fm3.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm3[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm3[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm3[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm3[-2]);
+            TEST_INT_EQ(0u, fm3[0]);
+            TEST_INT_EQ(0u, fm3[100]);
+            TEST_INT_EQ(3u, fm3[1]);
+            TEST_INT_EQ(1u, fm3[2]);
+            TEST_INT_EQ(7u, fm3[-2]);
         }
     }
 #endif
@@ -1314,125 +1315,125 @@ static void test_push()
         fm_ordered_int_t        fm;
         fm_ordered_int_t const& fmc = fm;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(105));
+        TEST_INT_EQ(0u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(0u, fm.count(105));
 
-        XTESTS_TEST(fm.end() == fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() == fm.find(105));
+        TEST(fm.end() == fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() == fm.find(105));
 
-        XTESTS_TEST(fm.end() == fm.begin());
-        XTESTS_TEST(fmc.end() == fmc.begin());
+        TEST(fm.end() == fm.begin());
+        TEST(fmc.end() == fmc.begin());
 #if __cplusplus >= 201103L
 
         {
             auto l = fm_to_list(fmc);
 
-            XTESTS_TEST_BOOLEAN_TRUE(l.empty());
+            TEST_BOOLEAN_TRUE(l.empty());
         }
 #endif /* C++ */
 
         fm.push(101);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(1u, fm.size());
+        TEST_INT_EQ(1u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(105));
+        TEST_INT_EQ(1u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(0u, fm.count(105));
 
-        XTESTS_TEST(fm.end() != fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() == fm.find(105));
+        TEST(fm.end() != fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() == fm.find(105));
 
-        XTESTS_TEST(fm.end() != fm.begin());
-        XTESTS_TEST(fmc.end() != fmc.begin());
+        TEST(fm.end() != fm.begin());
+        TEST(fmc.end() != fmc.begin());
 #if __cplusplus >= 201103L
 
         {
             auto l = fm_to_list(fmc);
 
-            XTESTS_TEST_INTEGER_EQUAL(1u, l.size());
+            TEST_INT_EQ(1u, l.size());
 
-            XTESTS_TEST(std::make_pair(101, 1u) == l[0]);
+            TEST(std::make_pair(101, 1u) == l[0]);
         }
 #endif /* C++ */
 
         fm.push(105);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(2u, fm.size());
+        TEST_INT_EQ(2u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(105));
+        TEST_INT_EQ(1u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(1u, fm.count(105));
 
-        XTESTS_TEST(fm.end() != fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() != fm.find(105));
+        TEST(fm.end() != fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() != fm.find(105));
 
-        XTESTS_TEST(fm.end() != fm.begin());
-        XTESTS_TEST(fmc.end() != fmc.begin());
+        TEST(fm.end() != fm.begin());
+        TEST(fmc.end() != fmc.begin());
 #if __cplusplus >= 201103L
 
         {
             auto l = fm_to_list(fmc);
 
-            XTESTS_TEST_INTEGER_EQUAL(2u, l.size());
+            TEST_INT_EQ(2u, l.size());
 
-            XTESTS_TEST(std::make_pair(101, 1u) == l[0]);
-            XTESTS_TEST(std::make_pair(105, 1u) == l[1]);
+            TEST(std::make_pair(101, 1u) == l[0]);
+            TEST(std::make_pair(105, 1u) == l[1]);
         }
 #endif /* C++ */
 
         fm.push(101);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(2u, fm.size());
+        TEST_INT_EQ(3u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(105));
+        TEST_INT_EQ(2u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(1u, fm.count(105));
 
-        XTESTS_TEST(fm.end() != fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() != fm.find(105));
+        TEST(fm.end() != fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() != fm.find(105));
 
-        XTESTS_TEST(fm.end() != fm.begin());
-        XTESTS_TEST(fmc.end() != fmc.begin());
+        TEST(fm.end() != fm.begin());
+        TEST(fmc.end() != fmc.begin());
 #if __cplusplus >= 201103L
 
         {
             auto l = fmi_to_list(fmc.crbegin(), fmc.crend());
 
-            XTESTS_TEST_INTEGER_EQUAL(2u, l.size());
+            TEST_INT_EQ(2u, l.size());
 
-            XTESTS_TEST(std::make_pair(101, 2u) == l[0]);
-            XTESTS_TEST(std::make_pair(105, 1u) == l[1]);
+            TEST(std::make_pair(101, 2u) == l[0]);
+            TEST(std::make_pair(105, 1u) == l[1]);
         }
 #endif /* C++ */
     }
@@ -1442,118 +1443,118 @@ static void test_push()
         fm_unordered_int_t          fm;
         fm_unordered_int_t const&   fmc = fm;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+        TEST_BOOLEAN_TRUE(fm.empty());
+        TEST_INT_EQ(0u, fm.size());
+        TEST_INT_EQ(0u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(105));
+        TEST_INT_EQ(0u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(0u, fm.count(105));
 
-        XTESTS_TEST(fm.end() == fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() == fm.find(105));
+        TEST(fm.end() == fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() == fm.find(105));
 
-        XTESTS_TEST(fm.end() == fm.begin());
-        XTESTS_TEST(fmc.end() == fmc.begin());
+        TEST(fm.end() == fm.begin());
+        TEST(fmc.end() == fmc.begin());
 
         {
             auto l = fm_to_list(fmc);
 
-            XTESTS_TEST_BOOLEAN_TRUE(l.empty());
+            TEST_BOOLEAN_TRUE(l.empty());
         }
 
         fm.push(101);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(1u, fm.size());
+        TEST_INT_EQ(1u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(105));
+        TEST_INT_EQ(1u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(0u, fm.count(105));
 
-        XTESTS_TEST(fm.end() != fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() == fm.find(105));
+        TEST(fm.end() != fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() == fm.find(105));
 
-        XTESTS_TEST(fm.end() != fm.begin());
-        XTESTS_TEST(fmc.end() != fmc.begin());
+        TEST(fm.end() != fm.begin());
+        TEST(fmc.end() != fmc.begin());
 
         {
             auto l = fm_to_list(fmc);
 
-            XTESTS_TEST_INTEGER_EQUAL(1u, l.size());
+            TEST_INT_EQ(1u, l.size());
 
-            XTESTS_TEST(std::make_pair(101, 1u) == l[0]);
+            TEST(std::make_pair(101, 1u) == l[0]);
         }
 
         fm.push(105);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(2u, fm.size());
+        TEST_INT_EQ(2u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(105));
+        TEST_INT_EQ(1u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(1u, fm.count(105));
 
-        XTESTS_TEST(fm.end() != fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() != fm.find(105));
+        TEST(fm.end() != fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() != fm.find(105));
 
-        XTESTS_TEST(fm.end() != fm.begin());
-        XTESTS_TEST(fmc.end() != fmc.begin());
+        TEST(fm.end() != fm.begin());
+        TEST(fmc.end() != fmc.begin());
 
         {
             auto l = fm_to_list(fmc);
 
-            XTESTS_TEST_INTEGER_EQUAL(2u, l.size());
+            TEST_INT_EQ(2u, l.size());
 
-            XTESTS_TEST(std::make_pair(101, 1u) == l[0]);
-            XTESTS_TEST(std::make_pair(105, 1u) == l[1]);
+            TEST(std::make_pair(101, 1u) == l[0]);
+            TEST(std::make_pair(105, 1u) == l[1]);
         }
 
         fm.push(101);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm.total());
+        TEST_BOOLEAN_FALSE(fm.empty());
+        TEST_INT_EQ(2u, fm.size());
+        TEST_INT_EQ(3u, fm.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm.count(101));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(102));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(103));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(104));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(105));
+        TEST_INT_EQ(2u, fm.count(101));
+        TEST_INT_EQ(0u, fm.count(102));
+        TEST_INT_EQ(0u, fm.count(103));
+        TEST_INT_EQ(0u, fm.count(104));
+        TEST_INT_EQ(1u, fm.count(105));
 
-        XTESTS_TEST(fm.end() != fm.find(101));
-        XTESTS_TEST(fm.end() == fm.find(102));
-        XTESTS_TEST(fm.end() == fm.find(103));
-        XTESTS_TEST(fm.end() == fm.find(104));
-        XTESTS_TEST(fm.end() != fm.find(105));
+        TEST(fm.end() != fm.find(101));
+        TEST(fm.end() == fm.find(102));
+        TEST(fm.end() == fm.find(103));
+        TEST(fm.end() == fm.find(104));
+        TEST(fm.end() != fm.find(105));
 
-        XTESTS_TEST(fm.end() != fm.begin());
-        XTESTS_TEST(fmc.end() != fmc.begin());
+        TEST(fm.end() != fm.begin());
+        TEST(fmc.end() != fmc.begin());
 
         {
             auto l = fmi_to_list(fmc.cbegin(), fmc.cend());
 
-            XTESTS_TEST_INTEGER_EQUAL(2u, l.size());
+            TEST_INT_EQ(2u, l.size());
 
-            XTESTS_TEST(std::make_pair(101, 2u) == l[0]);
-            XTESTS_TEST(std::make_pair(105, 1u) == l[1]);
+            TEST(std::make_pair(101, 2u) == l[0]);
+            TEST(std::make_pair(105, 1u) == l[1]);
         }
     }
 #endif /* C++ */
@@ -1565,30 +1566,30 @@ static void test_swap()
         fm_ordered_int_t    fm1;
         fm_ordered_int_t    fm2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
 
         fm1.swap(fm2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
 
         fm2.swap(fm1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
     }
 
     {
@@ -1599,66 +1600,66 @@ static void test_swap()
         fm1.push(2);
         fm2.push_n(-2, 7);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(2u, fm1.size());
+        TEST_INT_EQ(4u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(7u, fm2.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(7u, fm2[-2]);
 
         fm1.swap(fm2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(1u, fm1.size());
+        TEST_INT_EQ(7u, fm1.total());
+        TEST_INT_EQ(2u, fm2.size());
+        TEST_INT_EQ(4u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm2.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.count(2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(7u, fm1.count(-2));
+        TEST_INT_EQ(3u, fm2.count(1));
+        TEST_INT_EQ(1u, fm2.count(2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm2[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2[2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(7u, fm1[-2]);
+        TEST_INT_EQ(3u, fm2[1]);
+        TEST_INT_EQ(1u, fm2[2]);
 
         fm2.swap(fm1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-        XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-        XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(2u, fm1.size());
+        TEST_INT_EQ(4u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(7u, fm2.count(-2));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-        XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-        XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-        XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-        XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(7u, fm2[-2]);
     }
 }
 
@@ -1669,30 +1670,30 @@ static void test_swap_std()
             fm_ordered_int_t    fm1;
             fm_ordered_int_t    fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             std::swap(fm1, fm2);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             std::swap(fm2, fm1);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
         }
 
         {
@@ -1703,66 +1704,66 @@ static void test_swap_std()
             fm1.push(2);
             fm2.push_n(-2, 7);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(2u, fm1.size());
+            TEST_INT_EQ(4u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(7u, fm2[-2]);
 
             std::swap(fm1, fm2);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(1u, fm1.size());
+            TEST_INT_EQ(7u, fm1.total());
+            TEST_INT_EQ(2u, fm2.size());
+            TEST_INT_EQ(4u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm2.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.count(2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(7u, fm1.count(-2));
+            TEST_INT_EQ(3u, fm2.count(1));
+            TEST_INT_EQ(1u, fm2.count(2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm2[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2[2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(7u, fm1[-2]);
+            TEST_INT_EQ(3u, fm2[1]);
+            TEST_INT_EQ(1u, fm2[2]);
 
             std::swap(fm2, fm1);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(2u, fm1.size());
+            TEST_INT_EQ(4u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(7u, fm2[-2]);
         }
     }
 #if __cplusplus >= 201103L
@@ -1772,30 +1773,30 @@ static void test_swap_std()
             fm_unordered_int_t  fm1;
             fm_unordered_int_t  fm2;
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             std::swap(fm1, fm2);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
 
             std::swap(fm2, fm1);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_TRUE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.total());
+            TEST_BOOLEAN_TRUE(fm1.empty());
+            TEST_BOOLEAN_TRUE(fm2.empty());
+            TEST_INT_EQ(0u, fm1.size());
+            TEST_INT_EQ(0u, fm1.total());
+            TEST_INT_EQ(0u, fm2.size());
+            TEST_INT_EQ(0u, fm2.total());
         }
 
         {
@@ -1806,66 +1807,66 @@ static void test_swap_std()
             fm1.push(2);
             fm2.push_n(-2, 7);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(2u, fm1.size());
+            TEST_INT_EQ(4u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(7u, fm2[-2]);
 
             std::swap(fm1, fm2);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(1u, fm1.size());
+            TEST_INT_EQ(7u, fm1.total());
+            TEST_INT_EQ(2u, fm2.size());
+            TEST_INT_EQ(4u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1.count(-2));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm2.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.count(2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(7u, fm1.count(-2));
+            TEST_INT_EQ(3u, fm2.count(1));
+            TEST_INT_EQ(1u, fm2.count(2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm2[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2[2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(7u, fm1[-2]);
+            TEST_INT_EQ(3u, fm2[1]);
+            TEST_INT_EQ(1u, fm2[2]);
 
             std::swap(fm2, fm1);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fm1.empty());
-            XTESTS_TEST_BOOLEAN_FALSE(fm2.empty());
-            XTESTS_TEST_INTEGER_EQUAL(2u, fm1.size());
-            XTESTS_TEST_INTEGER_EQUAL(4u, fm1.total());
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm2.size());
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.total());
+            TEST_BOOLEAN_FALSE(fm1.empty());
+            TEST_BOOLEAN_FALSE(fm2.empty());
+            TEST_INT_EQ(2u, fm1.size());
+            TEST_INT_EQ(4u, fm1.total());
+            TEST_INT_EQ(1u, fm2.size());
+            TEST_INT_EQ(7u, fm2.total());
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1.count(0));
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2.count(100));
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1.count(1));
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1.count(2));
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2.count(-2));
+            TEST_INT_EQ(0u, fm1.count(0));
+            TEST_INT_EQ(0u, fm2.count(100));
+            TEST_INT_EQ(3u, fm1.count(1));
+            TEST_INT_EQ(1u, fm1.count(2));
+            TEST_INT_EQ(7u, fm2.count(-2));
 
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm1[0]);
-            XTESTS_TEST_INTEGER_EQUAL(0u, fm2[100]);
-            XTESTS_TEST_INTEGER_EQUAL(3u, fm1[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
-            XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
+            TEST_INT_EQ(0u, fm1[0]);
+            TEST_INT_EQ(0u, fm2[100]);
+            TEST_INT_EQ(3u, fm1[1]);
+            TEST_INT_EQ(1u, fm1[2]);
+            TEST_INT_EQ(7u, fm2[-2]);
         }
     }
 #endif
@@ -1884,8 +1885,8 @@ static void test_iteration_order_1()
         pairs_t const expected = { { 1, 2 }, { 2, 2 }, { 3, 2 }, { 4, 2 }, { 5, 1 }};
         pairs_t const expected_ordered = to_ordered(expected, compare_value_type());
 
-        XTESTS_TEST(expected_ordered == actual_ordered);
-        XTESTS_TEST(expected == actual);
+        TEST(expected_ordered == actual_ordered);
+        TEST(expected == actual);
     }
 
     {
@@ -1899,7 +1900,7 @@ static void test_iteration_order_1()
 
         pairs_t const expected_ordered = to_ordered(expected, compare_value_type());
 
-        XTESTS_TEST(expected_ordered == actual_ordered);
+        TEST(expected_ordered == actual_ordered);
     }
 #endif
 }

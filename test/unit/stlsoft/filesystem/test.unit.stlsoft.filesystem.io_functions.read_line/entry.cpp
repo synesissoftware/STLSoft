@@ -4,7 +4,7 @@
  * Purpose: Unit-test
  *
  * Created: 11th August 2008
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -703,9 +704,9 @@ static void test_1_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_1()
@@ -713,13 +714,13 @@ static void test_1_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_2()
@@ -727,13 +728,13 @@ static void test_1_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_3()
@@ -741,13 +742,13 @@ static void test_1_3()
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_4()
@@ -755,13 +756,13 @@ static void test_1_4()
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_5()
@@ -769,13 +770,13 @@ static void test_1_5()
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_6()
@@ -783,13 +784,13 @@ static void test_1_6()
     read_from_char_buffer   policy("\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_7()
@@ -797,13 +798,13 @@ static void test_1_7()
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(10u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(10u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_8()
@@ -811,17 +812,17 @@ static void test_1_8()
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_9()
@@ -829,41 +830,41 @@ static void test_1_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a\rb", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("a\rb", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("c\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d\re", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("d\re", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("f\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g\rh", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("g\rh", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("i\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j\rk", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("j\rk", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("l\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_10()
@@ -871,21 +872,21 @@ static void test_1_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc\rdef", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("abc\rdef", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("ghi\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_1_11()
@@ -932,9 +933,9 @@ static void test_2_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_1()
@@ -942,13 +943,13 @@ static void test_2_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_2()
@@ -956,13 +957,13 @@ static void test_2_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_3()
@@ -970,13 +971,13 @@ static void test_2_3()
     read_from_char_buffer   policy("\r", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_4()
@@ -984,13 +985,13 @@ static void test_2_4()
     read_from_char_buffer   policy("\n\r", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_5()
@@ -998,13 +999,13 @@ static void test_2_5()
     read_from_char_buffer   policy("\n\n\r", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_6()
@@ -1012,13 +1013,13 @@ static void test_2_6()
     read_from_char_buffer   policy("\n\n\n\r", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_7()
@@ -1026,13 +1027,13 @@ static void test_2_7()
     read_from_char_buffer   policy("\n\n\n\n\n\n\n\n\n\n\r", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(10u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n\n\n\n\n\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(10u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n\n\n\n\n\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_8()
@@ -1040,17 +1041,17 @@ static void test_2_8()
     read_from_char_buffer   policy("\n\n\n\n\n\r\n\n\n\n\n\r", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_9()
@@ -1058,45 +1059,45 @@ static void test_2_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b\nc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("b\nc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\nd", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\nd", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e\nf", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("e\nf", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\ng", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\ng", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h\ni", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("h\ni", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\nj", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\nj", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k\nl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("k\nl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_10()
@@ -1104,21 +1105,21 @@ static void test_2_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def\nghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("def\nghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\njkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("\njkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_2_11()
@@ -1164,9 +1165,9 @@ static void test_3_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_1()
@@ -1174,13 +1175,13 @@ static void test_3_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_2()
@@ -1188,13 +1189,13 @@ static void test_3_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_3()
@@ -1202,13 +1203,13 @@ static void test_3_3()
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_4()
@@ -1216,13 +1217,13 @@ static void test_3_4()
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_5()
@@ -1230,13 +1231,13 @@ static void test_3_5()
     read_from_char_buffer   policy("\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_6()
@@ -1244,13 +1245,13 @@ static void test_3_6()
     read_from_char_buffer   policy("\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_7()
@@ -1258,13 +1259,13 @@ static void test_3_7()
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(10u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(10u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_8()
@@ -1272,17 +1273,17 @@ static void test_3_8()
     read_from_char_buffer   policy("\r\r\r\r\r\r\n\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_9()
@@ -1290,25 +1291,25 @@ static void test_3_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a\rb\nc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("a\rb\nc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d\re\nf", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("d\re\nf", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g\rh\ni", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("g\rh\ni", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j\rk\nl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("j\rk\nl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_10()
@@ -1316,17 +1317,17 @@ static void test_3_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(11u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc\rdef\nghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(11u, line0.size());
+    TEST_MS_EQ_APPROX("abc\rdef\nghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_3_11()
@@ -1373,9 +1374,9 @@ static void test_4_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_1()
@@ -1383,13 +1384,13 @@ static void test_4_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_2()
@@ -1397,13 +1398,13 @@ static void test_4_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_3()
@@ -1411,13 +1412,13 @@ static void test_4_3()
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_4()
@@ -1425,17 +1426,17 @@ static void test_4_4()
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_5()
@@ -1443,21 +1444,21 @@ static void test_4_5()
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_6()
@@ -1465,25 +1466,25 @@ static void test_4_6()
     read_from_char_buffer   policy("\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_7()
@@ -1491,53 +1492,53 @@ static void test_4_7()
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_8()
@@ -1545,57 +1546,57 @@ static void test_4_8()
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_9()
@@ -1603,73 +1604,73 @@ static void test_4_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("b", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("c", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("d", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("e", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("f", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("g", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("h", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("i", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("j", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("k", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("l", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_10()
@@ -1677,29 +1678,29 @@ static void test_4_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("def", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("ghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_4_11()
@@ -1745,9 +1746,9 @@ static void test_5_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_1()
@@ -1755,13 +1756,13 @@ static void test_5_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_2()
@@ -1769,13 +1770,13 @@ static void test_5_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_3()
@@ -1783,13 +1784,13 @@ static void test_5_3()
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_4()
@@ -1797,13 +1798,13 @@ static void test_5_4()
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_5()
@@ -1811,13 +1812,13 @@ static void test_5_5()
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_6()
@@ -1825,21 +1826,21 @@ static void test_5_6()
     read_from_char_buffer   policy("\r\n\n\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_7()
@@ -1847,13 +1848,13 @@ static void test_5_7()
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(9u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(9u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_8()
@@ -1861,17 +1862,17 @@ static void test_5_8()
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_9()
@@ -1879,41 +1880,41 @@ static void test_5_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a\rb", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("a\rb", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("c", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d\re", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("d\re", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("f", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g\rh", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("g\rh", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("i", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j\rk", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("j\rk", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("l", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_10()
@@ -1921,21 +1922,21 @@ static void test_5_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc\rdef", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("abc\rdef", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("ghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_5_11()
@@ -1981,9 +1982,9 @@ static void test_6_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_1()
@@ -1991,13 +1992,13 @@ static void test_6_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_2()
@@ -2005,13 +2006,13 @@ static void test_6_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_3()
@@ -2019,13 +2020,13 @@ static void test_6_3()
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_4()
@@ -2033,13 +2034,13 @@ static void test_6_4()
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_5()
@@ -2047,17 +2048,17 @@ static void test_6_5()
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_6()
@@ -2065,21 +2066,21 @@ static void test_6_6()
     read_from_char_buffer   policy("\r\n\n\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_7()
@@ -2087,49 +2088,49 @@ static void test_6_7()
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_8()
@@ -2137,49 +2138,49 @@ static void test_6_8()
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_9()
@@ -2187,41 +2188,41 @@ static void test_6_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b\nc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("b\nc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("d", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e\nf", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("e\nf", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("g", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h\ni", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("h\ni", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("j", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k\nl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("k\nl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_10()
@@ -2229,21 +2230,21 @@ static void test_6_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def\nghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("def\nghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_6_11()
@@ -2289,9 +2290,9 @@ static void test_7_0()
     read_from_char_buffer   policy("", 0);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_1()
@@ -2299,13 +2300,13 @@ static void test_7_1()
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_2()
@@ -2313,13 +2314,13 @@ static void test_7_2()
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_3()
@@ -2327,13 +2328,13 @@ static void test_7_3()
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_4()
@@ -2341,13 +2342,13 @@ static void test_7_4()
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_5()
@@ -2355,17 +2356,17 @@ static void test_7_5()
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_6()
@@ -2373,25 +2374,25 @@ static void test_7_6()
     read_from_char_buffer   policy("\r\n\n\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_7()
@@ -2399,49 +2400,49 @@ static void test_7_7()
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_8()
@@ -2449,49 +2450,49 @@ static void test_7_8()
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_9()
@@ -2499,57 +2500,57 @@ static void test_7_9()
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("b", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("c", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("d", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("e", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("f", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("g", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("h", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("i", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("j", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("k", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("l", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_10()
@@ -2557,25 +2558,25 @@ static void test_7_10()
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("def", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("ghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_7_11()
@@ -2627,9 +2628,9 @@ static void test_8_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_1()
@@ -2639,13 +2640,13 @@ static void test_8_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_2()
@@ -2655,13 +2656,13 @@ static void test_8_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_3()
@@ -2671,13 +2672,13 @@ static void test_8_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_4()
@@ -2687,13 +2688,13 @@ static void test_8_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_5()
@@ -2703,13 +2704,13 @@ static void test_8_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_6()
@@ -2719,13 +2720,13 @@ static void test_8_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_7()
@@ -2735,13 +2736,13 @@ static void test_8_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(10u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(10u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_8()
@@ -2751,17 +2752,17 @@ static void test_8_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_9()
@@ -2771,41 +2772,41 @@ static void test_8_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a\rb", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("a\rb", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("c\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d\re", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("d\re", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("f\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g\rh", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("g\rh", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("i\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j\rk", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("j\rk", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("l\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_10()
@@ -2815,21 +2816,21 @@ static void test_8_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc\rdef", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("abc\rdef", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("ghi\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_8_11()
@@ -2878,9 +2879,9 @@ static void test_9_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_1()
@@ -2890,13 +2891,13 @@ static void test_9_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_2()
@@ -2906,13 +2907,13 @@ static void test_9_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_3()
@@ -2922,13 +2923,13 @@ static void test_9_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_4()
@@ -2938,13 +2939,13 @@ static void test_9_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_5()
@@ -2954,13 +2955,13 @@ static void test_9_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_6()
@@ -2970,13 +2971,13 @@ static void test_9_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_7()
@@ -2986,13 +2987,13 @@ static void test_9_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(10u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n\n\n\n\n\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(10u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n\n\n\n\n\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_8()
@@ -3002,17 +3003,17 @@ static void test_9_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n\n\n\n\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\n\n\n\n\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_9()
@@ -3022,45 +3023,45 @@ static void test_9_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b\nc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("b\nc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\nd", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\nd", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e\nf", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("e\nf", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\ng", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\ng", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h\ni", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("h\ni", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\nj", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\nj", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k\nl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("k\nl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_10()
@@ -3070,21 +3071,21 @@ static void test_9_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def\nghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("def\nghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\njkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("\njkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_9_11()
@@ -3132,9 +3133,9 @@ static void test_10_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_1()
@@ -3144,13 +3145,13 @@ static void test_10_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_2()
@@ -3160,13 +3161,13 @@ static void test_10_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_3()
@@ -3176,13 +3177,13 @@ static void test_10_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_4()
@@ -3192,13 +3193,13 @@ static void test_10_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_5()
@@ -3208,13 +3209,13 @@ static void test_10_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(2u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(2u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_6()
@@ -3224,13 +3225,13 @@ static void test_10_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_7()
@@ -3240,13 +3241,13 @@ static void test_10_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(10u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(10u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_8()
@@ -3256,17 +3257,17 @@ static void test_10_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_9()
@@ -3276,25 +3277,25 @@ static void test_10_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a\rb\nc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("a\rb\nc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d\re\nf", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("d\re\nf", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g\rh\ni", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("g\rh\ni", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(5u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j\rk\nl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(5u, line0.size());
+    TEST_MS_EQ_APPROX("j\rk\nl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_10()
@@ -3304,17 +3305,17 @@ static void test_10_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(11u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc\rdef\nghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(11u, line0.size());
+    TEST_MS_EQ_APPROX("abc\rdef\nghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_10_11()
@@ -3363,9 +3364,9 @@ static void test_11_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_1()
@@ -3375,13 +3376,13 @@ static void test_11_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_2()
@@ -3391,13 +3392,13 @@ static void test_11_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_3()
@@ -3407,13 +3408,13 @@ static void test_11_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_4()
@@ -3423,17 +3424,17 @@ static void test_11_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_5()
@@ -3443,21 +3444,21 @@ static void test_11_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_6()
@@ -3467,25 +3468,25 @@ static void test_11_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_7()
@@ -3495,53 +3496,53 @@ static void test_11_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_8()
@@ -3551,57 +3552,57 @@ static void test_11_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_9()
@@ -3611,73 +3612,73 @@ static void test_11_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("b", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("c", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("d", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("e", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("f", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("g", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("h", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("i", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("j", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("k", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("l", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_10()
@@ -3687,29 +3688,29 @@ static void test_11_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("def", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("ghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_11_11()
@@ -3757,9 +3758,9 @@ static void test_12_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_1()
@@ -3769,13 +3770,13 @@ static void test_12_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_2()
@@ -3785,13 +3786,13 @@ static void test_12_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_3()
@@ -3801,13 +3802,13 @@ static void test_12_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_4()
@@ -3817,13 +3818,13 @@ static void test_12_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_5()
@@ -3833,13 +3834,13 @@ static void test_12_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_6()
@@ -3849,21 +3850,21 @@ static void test_12_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_7()
@@ -3873,13 +3874,13 @@ static void test_12_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(9u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r\r\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(9u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r\r\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_8()
@@ -3889,17 +3890,17 @@ static void test_12_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(4u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\r\r\r\r", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(4u, line0.size());
+    TEST_MS_EQ_APPROX("\r\r\r\r", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_9()
@@ -3909,41 +3910,41 @@ static void test_12_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a\rb", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("a\rb", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("c", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d\re", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("d\re", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("f", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g\rh", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("g\rh", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("i", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j\rk", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("j\rk", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("l", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_10()
@@ -3953,21 +3954,21 @@ static void test_12_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc\rdef", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("abc\rdef", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("ghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseLfAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_12_11()
@@ -4015,9 +4016,9 @@ static void test_13_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_1()
@@ -4027,13 +4028,13 @@ static void test_13_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_2()
@@ -4043,13 +4044,13 @@ static void test_13_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_3()
@@ -4059,13 +4060,13 @@ static void test_13_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_4()
@@ -4075,13 +4076,13 @@ static void test_13_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_5()
@@ -4091,17 +4092,17 @@ static void test_13_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_6()
@@ -4111,21 +4112,21 @@ static void test_13_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("\n", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("\n", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_7()
@@ -4135,49 +4136,49 @@ static void test_13_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_8()
@@ -4187,49 +4188,49 @@ static void test_13_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_9()
@@ -4239,41 +4240,41 @@ static void test_13_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b\nc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("b\nc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("d", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e\nf", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("e\nf", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("g", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h\ni", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("h\ni", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("j", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k\nl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("k\nl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_10()
@@ -4283,21 +4284,21 @@ static void test_13_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(7u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def\nghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(7u, line0.size());
+    TEST_MS_EQ_APPROX("def\nghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_13_11()
@@ -4345,9 +4346,9 @@ static void test_14_0()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_1()
@@ -4357,13 +4358,13 @@ static void test_14_1()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_2()
@@ -4373,13 +4374,13 @@ static void test_14_2()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(26u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(26u, line0.size());
+    TEST_MS_EQ_APPROX("abcdefghijklmnopqrstuvwxyz", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_3()
@@ -4389,13 +4390,13 @@ static void test_14_3()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_4()
@@ -4405,13 +4406,13 @@ static void test_14_4()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_5()
@@ -4421,17 +4422,17 @@ static void test_14_5()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_6()
@@ -4441,25 +4442,25 @@ static void test_14_6()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_7()
@@ -4469,49 +4470,49 @@ static void test_14_7()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_8()
@@ -4521,49 +4522,49 @@ static void test_14_8()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_9()
@@ -4573,57 +4574,57 @@ static void test_14_9()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("a", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("a", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("b", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("b", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("c", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("c", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("d", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("d", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("e", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("e", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("f", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("f", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("g", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("g", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("h", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("h", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("i", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("i", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("j", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("j", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("k", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("k", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(1u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("l", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(1u, line0.size());
+    TEST_MS_EQ_APPROX("l", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_10()
@@ -4633,25 +4634,25 @@ static void test_14_10()
 
     read_from_iterator_range<std::string::const_iterator> policy(input.begin(), input.end());
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("abc", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("abc", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("def", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("def", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("ghi", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("ghi", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(3u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("jkl", line0);
+    TEST_BOOLEAN_EQ(true, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(3u, line0.size());
+    TEST_MS_EQ_APPROX("jkl", line0);
 
-    XTESTS_TEST_BOOLEAN_EQUAL(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
-    XTESTS_TEST_INTEGER_EQUAL(0u, line0.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", line0);
+    TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
+    TEST_INT_EQ(0u, line0.size());
+    TEST_MS_EQ_APPROX("", line0);
 }
 
 static void test_14_11()

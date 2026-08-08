@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_initialisers`.
  *
  * Created: 9th October 2024
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -143,8 +144,8 @@ static void test_FILETIME()
 
     winstl::init_struct(ft);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, ft.dwLowDateTime);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ft.dwHighDateTime);
+    TEST_INT_EQ(0u, ft.dwLowDateTime);
+    TEST_INT_EQ(0u, ft.dwHighDateTime);
 }
 
 static void test_SYSTEMTIME()
@@ -153,14 +154,14 @@ static void test_SYSTEMTIME()
 
     winstl::init_struct(st);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wYear);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wMonth);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wDayOfWeek);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wDay);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wHour);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wMinute);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wSecond);
-    XTESTS_TEST_INTEGER_EQUAL(0u, st.wMilliseconds);
+    TEST_INT_EQ(0u, st.wYear);
+    TEST_INT_EQ(0u, st.wMonth);
+    TEST_INT_EQ(0u, st.wDayOfWeek);
+    TEST_INT_EQ(0u, st.wDay);
+    TEST_INT_EQ(0u, st.wHour);
+    TEST_INT_EQ(0u, st.wMinute);
+    TEST_INT_EQ(0u, st.wSecond);
+    TEST_INT_EQ(0u, st.wMilliseconds);
 }
 
 static void test_SYSTEM_INFO()
@@ -169,17 +170,17 @@ static void test_SYSTEM_INFO()
 
     winstl::init_struct(si);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwOemId);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.wProcessorArchitecture);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwPageSize);
-    XTESTS_TEST_POINTER_EQUAL(0, si.lpMinimumApplicationAddress);
-    XTESTS_TEST_POINTER_EQUAL(0, si.lpMaximumApplicationAddress);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwActiveProcessorMask);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwNumberOfProcessors);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwProcessorType);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwAllocationGranularity);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.wProcessorLevel);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.wProcessorRevision);
+    TEST_INT_EQ(0u, si.dwOemId);
+    TEST_INT_EQ(0u, si.wProcessorArchitecture);
+    TEST_INT_EQ(0u, si.dwPageSize);
+    TEST_PTR_EQ(0, si.lpMinimumApplicationAddress);
+    TEST_PTR_EQ(0, si.lpMaximumApplicationAddress);
+    TEST_INT_EQ(0u, si.dwActiveProcessorMask);
+    TEST_INT_EQ(0u, si.dwNumberOfProcessors);
+    TEST_INT_EQ(0u, si.dwProcessorType);
+    TEST_INT_EQ(0u, si.dwAllocationGranularity);
+    TEST_INT_EQ(0u, si.wProcessorLevel);
+    TEST_INT_EQ(0u, si.wProcessorRevision);
 }
 
 
@@ -191,19 +192,19 @@ static void test_CONSOLE_SCREEN_BUFFER_INFOEX()
 
     winstl::init_struct(csbix);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(csbix), csbix.cbSize);
+    TEST_INT_EQ(sizeof(csbix), csbix.cbSize);
 
 #if 0
-    XTESTS_TEST((COORD { 0, 0 } == csbix.dwSize));
-    XTESTS_TEST((COORD { 0, 0 } == csbix.dwCursorPosition));
+    TEST((COORD { 0, 0 } == csbix.dwSize));
+    TEST((COORD { 0, 0 } == csbix.dwCursorPosition));
 #endif
-    XTESTS_TEST_INTEGER_EQUAL(0, csbix.wAttributes);
+    TEST_INT_EQ(0, csbix.wAttributes);
 #if 0
-    XTESTS_TEST_INTEGER_EQUAL(0, csbix.srWindow);
-    XTESTS_TEST_INTEGER_EQUAL(0, csbix.dwMaximumWindowSize);
+    TEST_INT_EQ(0, csbix.srWindow);
+    TEST_INT_EQ(0, csbix.dwMaximumWindowSize);
 #endif
-    XTESTS_TEST_INTEGER_EQUAL(0, csbix.wPopupAttributes);
-    XTESTS_TEST_BOOLEAN_FALSE(csbix.bFullscreenSupported);
+    TEST_INT_EQ(0, csbix.wPopupAttributes);
+    TEST_BOOLEAN_FALSE(csbix.bFullscreenSupported);
     // COLORREF csbix.ColorTable[16];
 }
 
@@ -216,24 +217,24 @@ static void test_STARTUPINFOW()
 
     winstl::init_struct(si);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(si), si.cb);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.lpReserved);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.lpDesktop);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.lpTitle);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwX);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwY);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwXSize);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwYSize);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwXCountChars);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwYCountChars);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwFillAttribute);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.dwFlags);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.wShowWindow);
-    XTESTS_TEST_INTEGER_EQUAL(0u, si.cbReserved2);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.lpReserved2);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.hStdInput);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.hStdOutput);
-    XTESTS_TEST_POINTER_EQUAL(NULL, si.hStdError);
+    TEST_INT_EQ(sizeof(si), si.cb);
+    TEST_PTR_EQ(NULL, si.lpReserved);
+    TEST_PTR_EQ(NULL, si.lpDesktop);
+    TEST_PTR_EQ(NULL, si.lpTitle);
+    TEST_INT_EQ(0u, si.dwX);
+    TEST_INT_EQ(0u, si.dwY);
+    TEST_INT_EQ(0u, si.dwXSize);
+    TEST_INT_EQ(0u, si.dwYSize);
+    TEST_INT_EQ(0u, si.dwXCountChars);
+    TEST_INT_EQ(0u, si.dwYCountChars);
+    TEST_INT_EQ(0u, si.dwFillAttribute);
+    TEST_INT_EQ(0u, si.dwFlags);
+    TEST_INT_EQ(0u, si.wShowWindow);
+    TEST_INT_EQ(0u, si.cbReserved2);
+    TEST_PTR_EQ(NULL, si.lpReserved2);
+    TEST_PTR_EQ(NULL, si.hStdInput);
+    TEST_PTR_EQ(NULL, si.hStdOutput);
+    TEST_PTR_EQ(NULL, si.hStdError);
 }
 
 
@@ -245,11 +246,11 @@ static void test_OFSTRUCT()
 
     winstl::init_struct(ofs);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(ofs), static_cast<ss_size_t>(ofs.cBytes));
-    XTESTS_TEST_INTEGER_EQUAL(0u, ofs.fFixedDisk);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ofs.nErrCode);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ofs.Reserved1);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ofs.Reserved2);
+    TEST_INT_EQ(sizeof(ofs), static_cast<ss_size_t>(ofs.cBytes));
+    TEST_INT_EQ(0u, ofs.fFixedDisk);
+    TEST_INT_EQ(0u, ofs.nErrCode);
+    TEST_INT_EQ(0u, ofs.Reserved1);
+    TEST_INT_EQ(0u, ofs.Reserved2);
 #if 0
     CHAR szPathName[OFS_MAXPATHNAME];
 #endif
@@ -264,14 +265,14 @@ static void test_MEMORYSTATUS()
 
     winstl::init_struct(ms);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(ms), ms.dwLength);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwMemoryLoad);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwTotalPhys);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwAvailPhys);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwTotalPageFile);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwAvailPageFile);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwTotalVirtual);
-    XTESTS_TEST_INTEGER_EQUAL(0u, ms.dwAvailVirtual);
+    TEST_INT_EQ(sizeof(ms), ms.dwLength);
+    TEST_INT_EQ(0u, ms.dwMemoryLoad);
+    TEST_INT_EQ(0u, ms.dwTotalPhys);
+    TEST_INT_EQ(0u, ms.dwAvailPhys);
+    TEST_INT_EQ(0u, ms.dwTotalPageFile);
+    TEST_INT_EQ(0u, ms.dwAvailPageFile);
+    TEST_INT_EQ(0u, ms.dwTotalVirtual);
+    TEST_INT_EQ(0u, ms.dwAvailVirtual);
 }
 
 
@@ -283,11 +284,11 @@ static void test_OSVERSIONINFOA()
 
     winstl::init_struct(osvi);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(osvi), osvi.dwOSVersionInfoSize);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvi.dwMajorVersion);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvi.dwMinorVersion);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvi.dwBuildNumber);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvi.dwPlatformId);
+    TEST_INT_EQ(sizeof(osvi), osvi.dwOSVersionInfoSize);
+    TEST_INT_EQ(0u, osvi.dwMajorVersion);
+    TEST_INT_EQ(0u, osvi.dwMinorVersion);
+    TEST_INT_EQ(0u, osvi.dwBuildNumber);
+    TEST_INT_EQ(0u, osvi.dwPlatformId);
 #if 0
     CHAR   szCSDVersion[ 128 ];     // Maintenance string for PSS usage
 #endif
@@ -299,19 +300,19 @@ static void test_OSVERSIONINFOEXA()
 
     winstl::init_struct(osvix);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(osvix), osvix.dwOSVersionInfoSize);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.dwMajorVersion);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.dwMinorVersion);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.dwBuildNumber);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.dwPlatformId);
+    TEST_INT_EQ(sizeof(osvix), osvix.dwOSVersionInfoSize);
+    TEST_INT_EQ(0u, osvix.dwMajorVersion);
+    TEST_INT_EQ(0u, osvix.dwMinorVersion);
+    TEST_INT_EQ(0u, osvix.dwBuildNumber);
+    TEST_INT_EQ(0u, osvix.dwPlatformId);
 #if 0
     CHAR   szCSDVersion[ 128 ];     // Maintenance string for PSS usage
 #endif
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.wServicePackMajor);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.wServicePackMinor);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.wSuiteMask);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.wProductType);
-    XTESTS_TEST_INTEGER_EQUAL(0u, osvix.wReserved);
+    TEST_INT_EQ(0u, osvix.wServicePackMajor);
+    TEST_INT_EQ(0u, osvix.wServicePackMinor);
+    TEST_INT_EQ(0u, osvix.wSuiteMask);
+    TEST_INT_EQ(0u, osvix.wProductType);
+    TEST_INT_EQ(0u, osvix.wReserved);
 }
 
 
@@ -326,17 +327,17 @@ static void test_COMMCONFIG()
 
     winstl::init_struct(cc);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(cc), cc.dwSize);
-    XTESTS_TEST_INTEGER_EQUAL(0u, cc.wVersion);
-    XTESTS_TEST_INTEGER_EQUAL(0u, cc.wReserved);
+    TEST_INT_EQ(sizeof(cc), cc.dwSize);
+    TEST_INT_EQ(0u, cc.wVersion);
+    TEST_INT_EQ(0u, cc.wReserved);
 #if 0
-    XTESTS_TEST_INTEGER_EQUAL(0, cc.dcb);
+    TEST_INT_EQ(0, cc.dcb);
 #endif
-    XTESTS_TEST_INTEGER_EQUAL(0u, cc.dwProviderSubType);
-    XTESTS_TEST_INTEGER_EQUAL(0u, cc.dwProviderOffset);
-    XTESTS_TEST_INTEGER_EQUAL(0u, cc.dwProviderSize);
+    TEST_INT_EQ(0u, cc.dwProviderSubType);
+    TEST_INT_EQ(0u, cc.dwProviderOffset);
+    TEST_INT_EQ(0u, cc.dwProviderSize);
 #if 0
-    XTESTS_TEST_INTEGER_EQUAL(0, cc.wcProviderData);
+    TEST_INT_EQ(0, cc.wcProviderData);
 #endif
 }
 
@@ -349,9 +350,9 @@ static void test_SECURITY_ATTRIBUTES()
 
     winstl::init_struct(sa);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(sa), sa.nLength);
-    XTESTS_TEST_POINTER_EQUAL(NULL, sa.lpSecurityDescriptor);
-    XTESTS_TEST_BOOLEAN_FALSE(sa.bInheritHandle);
+    TEST_INT_EQ(sizeof(sa), sa.nLength);
+    TEST_PTR_EQ(NULL, sa.lpSecurityDescriptor);
+    TEST_BOOLEAN_FALSE(sa.bInheritHandle);
 }
 
 
@@ -363,13 +364,13 @@ static void test_DRAGINFOA()
 
     winstl::init_struct(da);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(da), da.uSize);
+    TEST_INT_EQ(sizeof(da), da.uSize);
 #if 0
     POINT pt;
 #endif
-    XTESTS_TEST_BOOLEAN_FALSE(da.fNC);
-    XTESTS_TEST_POINTER_EQUAL(NULL, da.lpFileList);
-    XTESTS_TEST_INTEGER_EQUAL(0u, da.grfKeyState);
+    TEST_BOOLEAN_FALSE(da.fNC);
+    TEST_PTR_EQ(NULL, da.lpFileList);
+    TEST_INT_EQ(0u, da.grfKeyState);
 }
 
 
@@ -381,34 +382,34 @@ static void test_DCB()
 
     winstl::init_struct(dcb);
 
-    XTESTS_TEST_INTEGER_EQUAL(sizeof(dcb), dcb.DCBlength);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.BaudRate);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fBinary);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fParity);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fOutxCtsFlow);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fOutxDsrFlow);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fDtrControl);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fDsrSensitivity);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fTXContinueOnXoff);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fOutX);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fInX);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fErrorChar);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fNull);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fRtsControl);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fAbortOnError);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.fDummy2);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.wReserved);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.XonLim);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.XoffLim);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.ByteSize);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.Parity);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.StopBits);
-    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.XonChar);
-    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.XoffChar);
-    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.ErrorChar);
-    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.EofChar);
-    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.EvtChar);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dcb.wReserved1);
+    TEST_INT_EQ(sizeof(dcb), dcb.DCBlength);
+    TEST_INT_EQ(0u, dcb.BaudRate);
+    TEST_INT_EQ(0u, dcb.fBinary);
+    TEST_INT_EQ(0u, dcb.fParity);
+    TEST_INT_EQ(0u, dcb.fOutxCtsFlow);
+    TEST_INT_EQ(0u, dcb.fOutxDsrFlow);
+    TEST_INT_EQ(0u, dcb.fDtrControl);
+    TEST_INT_EQ(0u, dcb.fDsrSensitivity);
+    TEST_INT_EQ(0u, dcb.fTXContinueOnXoff);
+    TEST_INT_EQ(0u, dcb.fOutX);
+    TEST_INT_EQ(0u, dcb.fInX);
+    TEST_INT_EQ(0u, dcb.fErrorChar);
+    TEST_INT_EQ(0u, dcb.fNull);
+    TEST_INT_EQ(0u, dcb.fRtsControl);
+    TEST_INT_EQ(0u, dcb.fAbortOnError);
+    TEST_INT_EQ(0u, dcb.fDummy2);
+    TEST_INT_EQ(0u, dcb.wReserved);
+    TEST_INT_EQ(0u, dcb.XonLim);
+    TEST_INT_EQ(0u, dcb.XoffLim);
+    TEST_INT_EQ(0u, dcb.ByteSize);
+    TEST_INT_EQ(0u, dcb.Parity);
+    TEST_INT_EQ(0u, dcb.StopBits);
+    TEST_CHAR_EQ('\0', dcb.XonChar);
+    TEST_CHAR_EQ('\0', dcb.XoffChar);
+    TEST_CHAR_EQ('\0', dcb.ErrorChar);
+    TEST_CHAR_EQ('\0', dcb.EofChar);
+    TEST_CHAR_EQ('\0', dcb.EvtChar);
+    TEST_INT_EQ(0u, dcb.wReserved1);
 }
 } // anonymous namespace
 

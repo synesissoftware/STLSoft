@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 28th May 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */

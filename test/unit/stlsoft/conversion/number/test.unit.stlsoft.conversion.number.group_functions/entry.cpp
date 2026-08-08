@@ -5,7 +5,7 @@
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,6 +28,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -122,8 +123,8 @@ static void TEST_format_thousands_SIMPLE()
     {
         n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), pictures[i], v);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", string_a_t(dest, n - 1));
+        TEST_INT_EQ(2u, n);
+        TEST_MS_EQ("0", string_a_t(dest, n - 1));
     }
 }
 
@@ -135,40 +136,40 @@ static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS()
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987654321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(10u, n);
+    TEST_MS_EQ("987654321", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(11u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98765432,1", string_a_t(dest, n - 1));
+    TEST_INT_EQ(11u, n);
+    TEST_MS_EQ("98765432,1", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "2;1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987654,3,21", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("987654,3,21", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98765,4,321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("98765,4,321", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;3", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("987,654,321", string_a_t(dest, n - 1));
 
     {
         n = stlsoft::format_thousands(static_cast<char*>(NULL), 0u, ";3;3", v);
 
-        XTESTS_TEST_INTEGER_EQUAL(12u, n);
+        TEST_INT_EQ(12u, n);
     }
 
     {
         n = stlsoft::format_thousands(static_cast<char*>(NULL), 12u, ";3;3", v);
 
-        XTESTS_TEST_INTEGER_EQUAL(12u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", string_a_t(dest, n - 1));
+        TEST_INT_EQ(12u, n);
+        TEST_MS_EQ("987,654,321", string_a_t(dest, n - 1));
     }
 
     {
@@ -176,8 +177,8 @@ static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS()
 
         n = stlsoft::format_thousands(static_cast<char*>(NULL), 10u, ";3;3", v);
 
-        XTESTS_TEST_INTEGER_EQUAL(12u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", string_a_t(dest, n - 1));
+        TEST_INT_EQ(12u, n);
+        TEST_MS_EQ("", string_a_t(dest, n - 1));
     }
 }
 
@@ -189,28 +190,28 @@ static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS()
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073,709551615", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1u, n);
+    TEST_MS_EQ("18446744073,709551615", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1844674407370955161,5", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1u, n);
+    TEST_MS_EQ("1844674407370955161,5", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "2;1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073709551,6,15", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1u, n);
+    TEST_MS_EQ("18446744073709551,6,15", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1844674407370955,1,615", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1u, n);
+    TEST_MS_EQ("1844674407370955,1,615", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;3", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073709,551,615", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1u, n);
+    TEST_MS_EQ("18446744073709,551,615", string_a_t(dest, n - 1));
 }
 
 static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS()
@@ -221,28 +222,28 @@ static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATO
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036,854775808", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1u, n);
+    TEST_MS_EQ("-9223372036,854775808", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-922337203685477580,8", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1u, n);
+    TEST_MS_EQ("-922337203685477580,8", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "2;1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036854775,8,08", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1u, n);
+    TEST_MS_EQ("-9223372036854775,8,08", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;1", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-922337203685477,5,808", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1u, n);
+    TEST_MS_EQ("-922337203685477,5,808", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;3", v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036854,775,808", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1u, n);
+    TEST_MS_EQ("-9223372036854,775,808", string_a_t(dest, n - 1));
 }
 
 static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS()
@@ -253,33 +254,33 @@ static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS()
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v, '|', '.');
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987654321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(10u, n);
+    TEST_MS_EQ("987654321", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "1", v, '|', '.');
 
-    XTESTS_TEST_INTEGER_EQUAL(11u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98765432.1", string_a_t(dest, n - 1));
+    TEST_INT_EQ(11u, n);
+    TEST_MS_EQ("98765432.1", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "2|1", v, '|', '.');
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987654.3.21", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("987654.3.21", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "|3|1", v, '|', '.');
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98765.4.321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("98765.4.321", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "|3|3", v, '|', '.');
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987.654.321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("987.654.321", string_a_t(dest, n - 1));
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "|3|1|2", v, '|', '.');
 
-    XTESTS_TEST_INTEGER_EQUAL(13u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987.65.4.321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(13u, n);
+    TEST_MS_EQ("987.65.4.321", string_a_t(dest, n - 1));
 }
 
 static void TEST_translate_thousands_MULTIBYTE()
@@ -289,57 +290,57 @@ static void TEST_translate_thousands_MULTIBYTE()
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(10u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123456,789", dest);
+        TEST_INT_EQ(10u + 1u, n);
+        TEST_MS_EQ("123456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), ";3", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(10u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123456,789", dest);
+        TEST_INT_EQ(10u + 1u, n);
+        TEST_MS_EQ("123456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;3", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_MS_EQ("123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), ";3;3", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_MS_EQ("123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;3;3", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_MS_EQ("123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;0", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_MS_EQ("123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "1;1;1;1;1;1;1;1;1", "123456789", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(17u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1,2,3,4,5,6,7,8,9", dest);
+        TEST_INT_EQ(17u + 1u, n);
+        TEST_MS_EQ("1,2,3,4,5,6,7,8,9", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;3;3", "abcdefghi", ';', ',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc,def,ghi", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_MS_EQ("abc,def,ghi", dest);
     }
 }
 
@@ -350,57 +351,57 @@ static void TEST_translate_thousands_WIDE()
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"3", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(10u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123456,789", dest);
+        TEST_INT_EQ(10u + 1u, n);
+        TEST_WS_EQ(L"123456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L";3", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(10u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123456,789", dest);
+        TEST_INT_EQ(10u + 1u, n);
+        TEST_WS_EQ(L"123456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"3;3", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_WS_EQ(L"123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L";3;3", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_WS_EQ(L"123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"3;3;3", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_WS_EQ(L"123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"3;0", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123,456,789", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_WS_EQ(L"123,456,789", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"1;1;1;1;1;1;1;1;1", L"123456789", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(17u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"1,2,3,4,5,6,7,8,9", dest);
+        TEST_INT_EQ(17u + 1u, n);
+        TEST_WS_EQ(L"1,2,3,4,5,6,7,8,9", dest);
     }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"3;3;3", L"abcdefghi", L';', L',');
 
-        XTESTS_TEST_INTEGER_EQUAL(11u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"abc,def,ghi", dest);
+        TEST_INT_EQ(11u + 1u, n);
+        TEST_WS_EQ(L"abc,def,ghi", dest);
     }
 }
 } // anonymous namespace
