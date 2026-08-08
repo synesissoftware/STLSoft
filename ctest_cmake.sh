@@ -9,8 +9,7 @@ MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 ProjectNameFile="$Dir/.sis/project_name.txt"
 ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
-ExpandWidth=0
-ListOnly=0
+CMakeVerbose=
 RunMake=1
 
 
@@ -20,24 +19,19 @@ RunMake=1
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    --list-only|-l)
-
-      ListOnly=1
-      ;;
-    --expand-width)
-
-      shift
-      ExpandWidth=$1
-      ;;
     --no-make|-M)
 
       RunMake=0
+      ;;
+    --verbose|-V)
+
+      CMakeVerbose=--verbose
       ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) performance-test programs
+Runs CMake's CTest test program(s)
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -45,17 +39,13 @@ Flags/options:
 
     behaviour:
 
-    --expand-width <expand-width>
-        subjects each performance test program's output to expand with the
-        given <expand-width>
-
-    -l
-    --list-only
-        lists the target programs but does not execute them
-
     -M
     --no-make
         does not execute CMake and make before running tests
+
+    -V
+    --verbose
+        verbose test output
 
 
     standard flags:
@@ -86,69 +76,30 @@ status=0
 
 if [ $RunMake -ne 0 ]; then
 
-  if [ $ListOnly -eq 0 ]; then
-    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} performance test programs"
+  echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`) and then running all component and unit test programs"
 
-    mkdir -p $CMakeDir || exit 1
+  mkdir -p $CMakeDir || exit 1
 
-    cd $CMakeDir
+  cd $CMakeDir
 
-    $MakeCmd
-    status=$?
+  $MakeCmd
+  status=$?
 
-    cd ->/dev/null
-  fi
+  cd ->/dev/null
 else
 
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
-
-    exit 1
   fi
 fi
 
 if [ $status -eq 0 ]; then
 
-  if [ $ListOnly -ne 0 ]; then
+  echo "Running CMake tests"
 
-    echo "Listing all ${ProjectName} performance test programs"
-  else
-
-    echo "Running all ${ProjectName} performance test programs"
-  fi
-
-  for f in $(find "$CMakeDir" -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print | sort)
-  do
-
-    if [ $ListOnly -ne 0 ]; then
-
-      echo "would execute $f:"
-
-      continue
-    fi
-
-    echo
-    echo "executing $f:"
-
-    if [ $ExpandWidth -ne 0 ]; then
-
-      $f | expand -t $ExpandWidth
-    else
-
-      $f
-    fi
-
-    if [ $? -eq 0 ]; then
-
-      :
-    else
-
-      status=$?
-
-      break 1
-    fi
-  done
+  ctest --test-dir $CMakeDir $CMakeVerbose
+  status=$?
 fi
 
 exit $status
