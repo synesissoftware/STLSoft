@@ -397,7 +397,7 @@
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_PATCH          2
-#define _STLSOFT_VER_ALPHABETA      0xA1
+#define _STLSOFT_VER_ALPHABETA      0x41
 
 #define _STLSOFT_VER \
     (0\

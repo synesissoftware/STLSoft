@@ -116,7 +116,7 @@ static void test_get_top_vector()
     std::vector<int> v;
     v.push_back(1);
     v.push_back(2);
-    TEST_INTEGER_EQUAL(2, stlsoft::get_top(v));
+    TEST_INTEGER_EQUAL(1, stlsoft::get_top(v));
 }
 """)
 
@@ -788,7 +788,7 @@ static void test_get_top_vector()
     std::vector<int> v;
     v.push_back(1);
     v.push_back(2);
-    TEST_INTEGER_EQUAL(2, stlsoft::get_top(v));
+    TEST_INTEGER_EQUAL(1, stlsoft::get_top(v));
 }
 """)
 
@@ -852,8 +852,16 @@ _add("iterators/index_iterator", """
 static void test_index_iterator()
 {
     int arr[] = { 10, 20, 30 };
-    stlsoft::index_iterator<int*> it(&arr[0], 1);
+
+    stlsoft::index_iterator<int*> it(&arr[0], 0);
+
+    TEST_INTEGER_EQUAL(10, *it);
+    TEST_INTEGER_EQUAL(0, it.index());
+
+    ++it;
+
     TEST_INTEGER_EQUAL(20, *it);
+    TEST_INTEGER_EQUAL(1, it.index());
 }
 """)
 

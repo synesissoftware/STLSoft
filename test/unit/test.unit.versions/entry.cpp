@@ -4,11 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
-<<<<<<< HEAD
  * Updated: 9th August 2026
-=======
- * Updated: 7th August 2026
->>>>>>> dev
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -137,7 +133,7 @@ namespace {
 
 static void TEST__STLSOFT_VER()
 {
-	TEST_INT_EQ(_STLSOFT_VER_1_11_1_RC6, _STLSOFT_VER);
+	TEST_INT_EQ(_STLSOFT_VER_1_11_2_A1, _STLSOFT_VER);
 }
 #ifdef STLSOFT_HAS_ACE
 

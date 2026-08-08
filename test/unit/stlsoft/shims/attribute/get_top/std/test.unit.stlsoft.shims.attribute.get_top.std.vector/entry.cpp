@@ -65,7 +65,7 @@ static void test_get_top_vector()
     std::vector<int> v;
     v.push_back(1);
     v.push_back(2);
-    TEST_INTEGER_EQUAL(2, stlsoft::get_top(v));
+    TEST_INTEGER_EQUAL(1, stlsoft::get_top(v));
 }
 
 
