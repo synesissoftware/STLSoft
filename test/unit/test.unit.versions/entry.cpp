@@ -31,6 +31,9 @@
 #ifdef STLSOFT_HAS_ACE
 # include <acestl/acestl.hpp>
 #endif
+#ifdef STLSOFT_HAS_ATL
+# include <atlstl/atlstl.hpp>
+#endif
 #ifdef STLSOFT_HAS_MFC
 # include <mfcstl/mfcstl.hpp>
 #endif
@@ -58,6 +61,9 @@ namespace {
     static void TEST__STLSOFT_VER();
 #ifdef STLSOFT_HAS_ACE
     static void TEST__ACESTL_VER();
+#endif
+#ifdef STLSOFT_HAS_ATL
+    static void TEST__ATLSTL_VER();
 #endif
     static void TEST__PLATFORMSTL_VER();
 #if 0
@@ -91,6 +97,9 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(TEST__STLSOFT_VER);
 #ifdef STLSOFT_HAS_ACE
         XTESTS_RUN_CASE(TEST__ACESTL_VER);
+#endif
+#ifdef STLSOFT_HAS_ATL
+        XTESTS_RUN_CASE(TEST__ATLSTL_VER);
 #endif
         XTESTS_RUN_CASE(TEST__PLATFORMSTL_VER);
 #if 0
@@ -130,6 +139,13 @@ static void TEST__STLSOFT_VER()
 static void TEST__ACESTL_VER()
 {
     TEST_INT_EQ(_ACESTL_VER_1_2_1, _ACESTL_VER);
+}
+#endif
+#ifdef STLSOFT_HAS_ATL
+
+static void TEST__ATLSTL_VER()
+{
+    TEST_INT_EQ(_ATLSTL_VER_1_7_1, _ATLSTL_VER);
 }
 #endif
 

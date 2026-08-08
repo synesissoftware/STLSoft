@@ -95,8 +95,16 @@ endif(MSVC)
 
 if(WIN32)
 
+	find_package(ATL QUIET)
 	find_package(MFC QUIET)
 endif(WIN32)
+
+if(ATL_FOUND)
+
+	message("-- using Active Template Library")
+
+	add_compile_definitions(STLSOFT_HAS_ATL)
+endif(ATL_FOUND)
 
 if(MFC_FOUND)
 
