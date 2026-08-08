@@ -4,7 +4,7 @@
  * Purpose: Scratch test for memory-map functions.
  *
  * Created: 26th August 2010
- * Updated: 23rd August 2025
+ * Updated: 8th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -157,7 +157,7 @@ static int teardown(void* param)
 
 static void test_1_0()
 {
-    ws_uintptr_t    viewSize;
+    ws_uintptr_t    viewSize    =   0;
     void*           view = winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, 0, 0, &viewSize);
 
     XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
@@ -186,7 +186,7 @@ static void test_1_0()
 
 static void test_1_1()
 {
-    ws_uintptr_t    viewSize;
+    ws_uintptr_t    viewSize    =   0;
     ws_uintptr_t    offset      =   65536;
     ws_uint32_t     requestSize =   8092;
     void*           view        =   winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
@@ -224,7 +224,7 @@ static void test_1_2()
     ws_uint32_t requestSize;
     for (requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
     {
-        ws_uintptr_t    viewSize;
+        ws_uintptr_t    viewSize    =   0;
         ws_uintptr_t    offset      =   65536;
         void*           view        =   winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
         DWORD           err         =   GetLastError();
