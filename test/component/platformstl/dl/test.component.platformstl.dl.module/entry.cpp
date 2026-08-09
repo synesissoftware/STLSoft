@@ -6,9 +6,7 @@
 # include <dlfcn.h>
 #endif
 
-namespace {
-static void test_load_system_library(void);
-} // anonymous namespace
+static void test_load_system_library(void); // anonymous namespace
 
 int main(int argc, char* argv[])
 {
@@ -23,8 +21,6 @@ int main(int argc, char* argv[])
     }
     return retCode;
 }
-
-namespace {
 
 static void test_load_system_library(void)
 {
@@ -44,4 +40,3 @@ static void test_load_system_library(void)
     TEST_PTR_NE(NULL, mod.get_symbol("malloc"));
 #endif
 }
-} // anonymous namespace

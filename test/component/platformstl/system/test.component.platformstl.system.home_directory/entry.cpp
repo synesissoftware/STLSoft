@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_non_empty(void); }
+static void test_non_empty(void);
 
 int main(int argc, char* argv[])
 {
@@ -20,12 +20,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_non_empty(void)
 {
     platformstl::home_directory dir;
     TEST(0u != stlsoft::c_str_len(dir));
 }
-} // anonymous namespace
 

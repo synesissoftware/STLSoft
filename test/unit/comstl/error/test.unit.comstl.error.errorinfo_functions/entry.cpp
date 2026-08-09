@@ -16,11 +16,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_set_and_get_error_info(void);
-
-} // anonymous namespace
+static void test_set_and_get_error_info(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -41,8 +37,6 @@ int main(int argc, char *argv[])
 
     return retCode;
 }
-
-namespace {
 
 static void test_set_and_get_error_info(void)
 {
@@ -71,6 +65,5 @@ static void test_set_and_get_error_info(void)
     ::SetErrorInfo(0, NULL);
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

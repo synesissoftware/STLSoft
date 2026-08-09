@@ -10,12 +10,12 @@
 
 
 
-#include <<winstl/synch/atomic_types.h>>
+#include <winstl/synch/atomic_types.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_compile(void); }
+static void test_compile(void);
 
 int main(int argc, char* argv[])
 {

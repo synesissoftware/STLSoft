@@ -11,11 +11,12 @@
 
 
 #include <winstl/diagnostics/highperformance_stopwatch.hpp>
+#include <winstl/synch/sleep_functions.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_start_stop(void); }
+static void test_start_stop(void);
 
 int main(int argc, char* argv[])
 {

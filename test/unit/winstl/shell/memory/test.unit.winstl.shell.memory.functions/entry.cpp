@@ -10,12 +10,12 @@
 
 
 
-#include <winstl/shell/memory/functions.hpp>
+#include <winstl/shell/memory/functions.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_smoke(void); }
+static void test_smoke(void);
 
 int main(int argc, char* argv[])
 {

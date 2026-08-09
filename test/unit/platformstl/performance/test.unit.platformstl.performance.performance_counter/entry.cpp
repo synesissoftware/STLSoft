@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_query(void); }
+static void test_query(void);
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +20,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_query(void)
 {
     platformstl::performance_counter pc;
@@ -32,4 +30,3 @@ static void test_query(void)
     TEST_INT_GE(0, pc.get_seconds());
     TEST_INT_GE(0, pc.get_microseconds());
 }
-} // anonymous namespace

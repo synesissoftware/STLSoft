@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_query(void); }
+static void test_query(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,12 +19,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_query(void)
 {
     platformstl::processtimes_counter pc;
     TEST_BOOLEAN_TRUE(pc.get_seconds() >= 0);
 }
-} // anonymous namespace
 

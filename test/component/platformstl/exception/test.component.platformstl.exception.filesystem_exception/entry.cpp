@@ -5,7 +5,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_missing_file_throws(void); }
+static void test_missing_file_throws(void);
 
 int main(int argc, char* argv[])
 {
@@ -21,8 +21,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_missing_file_throws(void)
 {
     using ::xtests::cpp::util::temp_file;
@@ -30,5 +28,4 @@ static void test_missing_file_throws(void)
     platformstl::memory_mapped_file mmf(f.c_str());
     TEST_FAIL("should not get here");
 }
-} // anonymous namespace
 

@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_default_construct(void); }
+static void test_default_construct(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,12 +19,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_default_construct(void)
 {
     platformstl::path_buffer_a buf;
     STLSOFT_SUPPRESS_UNUSED(buf);
     TEST_PASSED();
 }
-} // anonymous namespace

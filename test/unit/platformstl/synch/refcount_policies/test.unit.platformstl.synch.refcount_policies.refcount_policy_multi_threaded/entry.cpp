@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <thread>
 
-namespace { static void test_increment_decrement(void); }
+static void test_increment_decrement(void);
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +20,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_increment_decrement(void)
 {
     platformstl::refcount_policy_multi_threaded policy;
@@ -34,5 +32,4 @@ static void test_increment_decrement(void)
     policy.release(rc);
     TEST_INT_EQ(0, rc);
 }
-} // anonymous namespace
 

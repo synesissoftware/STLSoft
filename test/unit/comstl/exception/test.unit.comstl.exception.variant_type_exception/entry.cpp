@@ -16,11 +16,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_status_code(void);
-
-} // anonymous namespace
+static void test_status_code(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -42,8 +38,6 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_status_code(void)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -53,6 +47,5 @@ static void test_status_code(void)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

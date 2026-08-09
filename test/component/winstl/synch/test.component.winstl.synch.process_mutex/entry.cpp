@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_lock_unlock(void); }
+static void test_lock_unlock(void);
 
 int main(int argc, char* argv[])
 {

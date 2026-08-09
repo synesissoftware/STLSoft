@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_create_wait_post(void); }
+static void test_create_wait_post(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,8 +19,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_create_wait_post(void)
 {
     platformstl::semaphore sem(1);
@@ -28,5 +26,4 @@ static void test_create_wait_post(void)
     sem.unlock();
     TEST_PASSED();
 }
-} // anonymous namespace
 

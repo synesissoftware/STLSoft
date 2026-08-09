@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_set_reset(void); }
+static void test_set_reset(void);
 
 int main(int argc, char* argv[])
 {

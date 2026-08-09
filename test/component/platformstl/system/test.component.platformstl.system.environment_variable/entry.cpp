@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_path(void); }
+static void test_path(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,8 +19,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_path(void)
 {
     char const* const path = ::getenv("PATH");
@@ -30,5 +28,4 @@ static void test_path(void)
         TEST_MS_EQ(path, ev_PATH);
     }
 }
-} // anonymous namespace
 

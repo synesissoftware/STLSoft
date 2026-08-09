@@ -10,12 +10,12 @@
 
 
 
-#include <winstl/clipboard/exceptions.hpp>
+#include <winstl/clipboard/error/exceptions.hpp>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_compile(void); }
+static void test_compile(void);
 
 int main(int argc, char* argv[])
 {

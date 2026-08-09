@@ -10,12 +10,13 @@
 
 
 
-#include <winstl/toolhelp/sequence_base.hpp>
+#include <winstl/toolhelp/thread_sequence.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_enumeration(void); }
+static void test_enumeration(void);
 
 int main(int argc, char* argv[])
 {
@@ -33,9 +34,9 @@ int main(int argc, char* argv[])
 
 static void test_enumeration(void)
 {
-    winstl::sequence_base seq;
+    winstl::thread_sequence seq;
     unsigned count = 0;
-    for (winstl::sequence_base::const_iterator i = seq.begin(); i != seq.end(); ++i)
+    for (winstl::thread_sequence::const_iterator i = seq.begin(); i != seq.end(); ++i)
     {
         ++count;
         if (count > 0) break;

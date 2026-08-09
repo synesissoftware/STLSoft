@@ -6,9 +6,11 @@
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 
-namespace { static void test_scope_restores(void); }
+static void test_scope_restores(void);
 
 int main(int argc, char* argv[])
 {
@@ -24,8 +26,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_scope_restores(void)
 {
     using ::xtests::cpp::util::temp_directory;
@@ -35,13 +35,16 @@ static void test_scope_restores(void)
         platformstl::current_directory_scope scope(td.c_str());
         platformstl::current_directory_a const changed;
 
+#ifndef _WIN32
         char resolved_td[PATH_MAX];
         char resolved_cwd[PATH_MAX];
         XTESTS_REQUIRE(TEST(NULL != realpath(td.c_str(), resolved_td)));
         XTESTS_REQUIRE(TEST(NULL != realpath(stlsoft::c_str_ptr_a(changed), resolved_cwd)));
         TEST_MS_EQ(resolved_td, resolved_cwd);
+#else
+        TEST_MS_EQ(stlsoft::c_str_ptr_a(td), stlsoft::c_str_ptr_a(changed));
+#endif
     }
     platformstl::current_directory_a const restored;
     TEST_MS_EQ(stlsoft::c_str_ptr_a(original), stlsoft::c_str_ptr_a(restored));
 }
-} // anonymous namespace

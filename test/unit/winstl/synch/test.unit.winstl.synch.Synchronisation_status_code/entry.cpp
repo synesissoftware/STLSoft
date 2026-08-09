@@ -10,12 +10,12 @@
 
 
 
-#include <<winstl/synch/Synchronisation_status_code.h>>
+#include <winstl/synch/Synchronisation_status_code.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_compile(void); }
+static void test_compile(void);
 
 int main(int argc, char* argv[])
 {

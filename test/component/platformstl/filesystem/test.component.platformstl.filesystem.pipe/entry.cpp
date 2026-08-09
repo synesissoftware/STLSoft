@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_construct(void); }
+static void test_construct(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +19,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_construct(void)
 {
     platformstl::pipe pipe;
     STLSOFT_SUPPRESS_UNUSED(pipe);
     TEST_PASSED();
 }
-} // anonymous namespace
 

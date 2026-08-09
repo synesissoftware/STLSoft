@@ -11,11 +11,12 @@
 
 
 #include <winstl/toolhelp/sequence_value_traits.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_enumeration(void); }
+static void test_enumeration(void);
 
 int main(int argc, char* argv[])
 {

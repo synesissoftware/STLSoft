@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_types_exist(void); }
+static void test_types_exist(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +19,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_types_exist(void)
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::refcount_policy_single_threaded));
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::refcount_policy_multi_threaded));
     TEST_PASSED();
 }
-} // anonymous namespace
 

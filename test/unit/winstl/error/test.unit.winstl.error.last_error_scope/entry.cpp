@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_preserves_error(void); }
+static void test_preserves_error(void);
 
 int main(int argc, char* argv[])
 {

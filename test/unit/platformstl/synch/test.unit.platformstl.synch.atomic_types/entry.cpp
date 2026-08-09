@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_compile(void); }
+static void test_compile(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +19,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_compile(void)
 {
     platformstl::atomic_int_t n = 0;
     STLSOFT_SUPPRESS_UNUSED(n);
     TEST_PASSED();
 }
-} // anonymous namespace
 

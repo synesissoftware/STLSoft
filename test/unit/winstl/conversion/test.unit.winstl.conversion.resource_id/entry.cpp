@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_make_resource_id(void); }
+static void test_make_resource_id(void);
 
 int main(int argc, char* argv[])
 {

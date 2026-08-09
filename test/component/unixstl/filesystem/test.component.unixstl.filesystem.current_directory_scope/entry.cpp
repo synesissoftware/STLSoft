@@ -18,7 +18,9 @@
 #include <stlsoft/stlsoft.h>
 
 #include <string>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include <stdlib.h>
 
 

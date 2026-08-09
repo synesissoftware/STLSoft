@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_obsolete_header_compiles(void); }
+static void test_obsolete_header_compiles(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +19,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_obsolete_header_compiles(void)
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::platform_exception_policy));
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::platformstl_exception));
     TEST_PASSED();
 }
-} // anonymous namespace
 

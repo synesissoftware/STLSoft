@@ -11,12 +11,13 @@
 
 
 #include <winstl/system/module_filename.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_current_module(void); }
+static void test_current_module(void);
 
 int main(int argc, char* argv[])
 {
@@ -35,5 +36,5 @@ int main(int argc, char* argv[])
 static void test_current_module(void)
 {
     winstl::module_filename mf;
-    TEST_UINT_NE(0u, stlsoft::c_str_len(mf));
+    TEST_UINT_NE(0u, mf.length());
 }

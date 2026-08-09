@@ -8,6 +8,8 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 #include <comstl/collections/enumerator_sequence.hpp>
+#include <objbase.h>
+#include <initguid.h>
 #include <comstl/collections/enumeration_policies.hpp>
 #include <comstl/util/value_policies.hpp>
 

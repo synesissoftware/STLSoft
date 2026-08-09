@@ -11,12 +11,14 @@
 
 
 #include <winstl/error/error_desc.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_known_error(void); static void test_success(void); }
+static void test_known_error(void);
+static void test_success(void);
 
 int main(int argc, char* argv[])
 {

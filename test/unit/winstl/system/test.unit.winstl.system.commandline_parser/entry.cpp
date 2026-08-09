@@ -11,12 +11,13 @@
 
 
 #include <winstl/system/commandline_parser.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_query(void); }
+static void test_query(void);
 
 int main(int argc, char* argv[])
 {
@@ -34,6 +35,7 @@ int main(int argc, char* argv[])
 
 static void test_query(void)
 {
-    winstl::commandline_parser obj(GetCommandLineA());
-    TEST_UINT_NE(0u, stlsoft::c_str_len(obj));
+    winstl::commandline_parser parser(GetCommandLineA());
+
+    TEST_UINT_NE(0u, parser.size());
 }

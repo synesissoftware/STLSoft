@@ -11,12 +11,13 @@
 
 
 #include <winstl/filesystem/absolute_path.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_absolute(void); }
+static void test_absolute(void);
 
 int main(int argc, char* argv[])
 {
@@ -35,5 +36,6 @@ int main(int argc, char* argv[])
 static void test_absolute(void)
 {
     winstl::absolute_path ap(".");
-    TEST_UINT_NE(0u, stlsoft::c_str_len(ap));
+
+    TEST_UINT_NE(0u, ap.length());
 }

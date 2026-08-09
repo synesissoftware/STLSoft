@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_get_home_directory(void); }
+static void test_get_home_directory(void);
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +20,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_get_home_directory(void)
 {
     char buff[1001];
@@ -34,4 +32,3 @@ static void test_get_home_directory(void)
         TEST('\0' != buff[0]);
     }
 }
-} // anonymous namespace

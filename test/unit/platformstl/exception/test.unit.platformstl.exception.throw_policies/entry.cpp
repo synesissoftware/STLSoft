@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_policy_type_exists(void); }
+static void test_policy_type_exists(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,12 +19,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_policy_type_exists(void)
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::platform_exception_policy));
     TEST_PASSED();
 }
-} // anonymous namespace
 

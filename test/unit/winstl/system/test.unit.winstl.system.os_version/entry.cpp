@@ -11,12 +11,13 @@
 
 
 #include <winstl/system/os_version.h>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_query(void); }
+static void test_query(void);
 
 int main(int argc, char* argv[])
 {
@@ -34,6 +35,8 @@ int main(int argc, char* argv[])
 
 static void test_query(void)
 {
-    winstl::os_version obj;
-    TEST_UINT_NE(0u, stlsoft::c_str_len(obj));
+    WinSTL_OperatingSystemIdentifier_t const osid = winstl::identify_operating_system();
+
+    TEST_BOOLEAN_NE(WinSTL_OperatingSystemIdentifier_Unknown, osid);
+    TEST_UINT_NE(0u, stlsoft::c_str_len_a(osid));
 }

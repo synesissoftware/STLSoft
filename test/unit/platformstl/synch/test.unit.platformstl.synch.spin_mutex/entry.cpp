@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_lock_unlock(void); }
+static void test_lock_unlock(void);
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +20,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_lock_unlock(void)
 {
     platformstl::spin_mutex mx;
@@ -32,5 +30,4 @@ static void test_lock_unlock(void)
     }
     TEST_PASSED();
 }
-} // anonymous namespace
 

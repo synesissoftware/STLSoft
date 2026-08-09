@@ -6,7 +6,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_file_exists(void); }
+static void test_file_exists(void);
 
 int main(int argc, char* argv[])
 {
@@ -21,8 +21,6 @@ int main(int argc, char* argv[])
     }
     return retCode;
 }
-
-namespace {
 
 static void test_file_exists(void)
 {
@@ -39,4 +37,3 @@ static void test_file_exists(void)
 
     TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(missing.c_str()));
 }
-} // anonymous namespace

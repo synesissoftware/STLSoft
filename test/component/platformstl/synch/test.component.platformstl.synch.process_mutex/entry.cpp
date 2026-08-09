@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_lock_unlock(void); }
+static void test_lock_unlock(void);
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +20,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_lock_unlock(void)
 {
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -33,4 +31,3 @@ static void test_lock_unlock(void)
     mx.unlock();
     TEST_PASSED();
 }
-} // anonymous namespace

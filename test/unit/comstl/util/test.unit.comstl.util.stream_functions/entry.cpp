@@ -16,11 +16,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_get_stream_size(void);
-
-} // anonymous namespace
+static void test_get_stream_size(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -42,8 +38,6 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_get_stream_size(void)
 {
     IStream*            pstm = NULL;
@@ -60,6 +54,5 @@ static void test_get_stream_size(void)
     pstm->Release();
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

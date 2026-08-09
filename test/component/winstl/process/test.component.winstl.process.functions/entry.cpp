@@ -11,11 +11,12 @@
 
 
 #include <winstl/process/functions.h>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_current_pid(void); }
+static void test_current_pid(void);
 
 int main(int argc, char* argv[])
 {

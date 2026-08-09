@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_sleep_zero(void); }
+static void test_sleep_zero(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,12 +19,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_sleep_zero(void)
 {
     platformstl::micro_sleep(0);
     TEST_PASSED();
 }
-} // anonymous namespace
 

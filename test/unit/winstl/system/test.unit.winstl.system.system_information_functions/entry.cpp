@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_memory_status(void); }
+static void test_memory_status(void);
 
 int main(int argc, char* argv[])
 {

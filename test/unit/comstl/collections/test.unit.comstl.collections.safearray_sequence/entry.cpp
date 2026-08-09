@@ -16,11 +16,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_iteration(void);
-
-} // anonymous namespace
+static void test_iteration(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -41,8 +37,6 @@ int main(int argc, char *argv[])
 
     return retCode;
 }
-
-namespace {
 
 static void test_iteration(void)
 {
@@ -75,6 +69,5 @@ static void test_iteration(void)
     ::SafeArrayDestroy(psa);
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

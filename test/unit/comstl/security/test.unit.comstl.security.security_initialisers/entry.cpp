@@ -16,11 +16,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_CoInitSecurity_appid(void);
-
-} // anonymous namespace
+static void test_CoInitSecurity_appid(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -40,8 +36,6 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_CoInitSecurity_appid(void)
 {
     GUID const  appid = GUID_NULL;
@@ -53,6 +47,5 @@ static void test_CoInitSecurity_appid(void)
     TEST_BOOLEAN_TRUE(SUCCEEDED(hr) || RPC_E_TOO_LATE == hr);
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

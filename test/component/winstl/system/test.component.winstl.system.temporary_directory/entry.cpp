@@ -11,12 +11,13 @@
 
 
 #include <winstl/system/temporary_directory.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_non_empty(void); }
+static void test_non_empty(void);
 
 int main(int argc, char* argv[])
 {
@@ -35,5 +36,5 @@ int main(int argc, char* argv[])
 static void test_non_empty(void)
 {
     winstl::temporary_directory dir;
-    TEST_UINT_NE(0u, stlsoft::c_str_len(dir));
+    TEST_UINT_NE(0u, dir.length());
 }

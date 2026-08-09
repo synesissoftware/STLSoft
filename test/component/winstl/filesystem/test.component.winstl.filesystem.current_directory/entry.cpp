@@ -11,12 +11,13 @@
 
 
 #include <winstl/filesystem/current_directory.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_non_empty(void); }
+static void test_non_empty(void);
 
 int main(int argc, char* argv[])
 {

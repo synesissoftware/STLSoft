@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_create(void); }
+static void test_create(void);
 
 int main(int argc, char* argv[])
 {

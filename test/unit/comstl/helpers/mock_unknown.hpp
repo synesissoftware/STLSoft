@@ -12,6 +12,8 @@
 
 #include <comstl/comstl.h>
 
+#include <objbase.h>
+
 namespace test_comstl {
 
 struct mock_unknown

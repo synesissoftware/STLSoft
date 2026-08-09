@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-namespace { static void test_map_view(void); }
+static void test_map_view(void);
 
 int main(int argc, char* argv[])
 {
@@ -22,8 +22,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_map_view(void)
 {
     using ::xtests::cpp::util::temp_file;
@@ -35,5 +33,4 @@ static void test_map_view(void)
     TEST_INT_GE(sizeof(content) - 1, mmf.size());
     TEST_BOOLEAN_TRUE(0 == ::memcmp(content, mmf.memory(), sizeof(content) - 1));
 }
-} // anonymous namespace
 

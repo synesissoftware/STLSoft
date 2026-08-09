@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_allocate_set_get(void); }
+static void test_allocate_set_get(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,8 +19,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_allocate_set_get(void)
 {
     platformstl::tss_index idx;
@@ -29,5 +27,4 @@ static void test_allocate_set_get(void)
     TEST_PTR_EQ(p, idx.get_value());
     TEST_PASSED();
 }
-} // anonymous namespace
 

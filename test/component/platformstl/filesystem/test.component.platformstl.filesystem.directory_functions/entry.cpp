@@ -6,7 +6,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_create_and_remove(void); }
+static void test_create_and_remove(void);
 
 int main(int argc, char* argv[])
 {
@@ -22,8 +22,6 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_create_and_remove(void)
 {
     using ::xtests::cpp::util::temp_directory;
@@ -34,5 +32,4 @@ static void test_create_and_remove(void)
     TEST_BOOLEAN_TRUE(platformstl::filesystem_traits<char>::is_directory(sub.c_str()));
     TEST_BOOLEAN_TRUE(platformstl::remove_directory_recurse(sub.c_str()));
 }
-} // anonymous namespace
 

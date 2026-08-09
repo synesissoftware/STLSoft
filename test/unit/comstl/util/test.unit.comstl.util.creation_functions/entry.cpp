@@ -17,11 +17,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_co_create_instance_filesystem_object(void);
-
-} // anonymous namespace
+static void test_co_create_instance_filesystem_object(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -43,8 +39,6 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_co_create_instance_filesystem_object(void)
 {
     IDispatch*  pdisp = NULL;
@@ -59,6 +53,5 @@ static void test_co_create_instance_filesystem_object(void)
     }
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_open_current_user(void); }
+static void test_open_current_user(void);
 
 int main(int argc, char* argv[])
 {

@@ -98,7 +98,7 @@ static void TEST_failed_connect_with_null_policy()
 
     TEST_BOOLEAN_TRUE(sess.is_open());
 
-    is_bool_t const r = conn.connect(
+    stlsoft::ss_bool_t const r = conn.connect(
             sess.get()
         ,   "invalid-host-that-does-not-exist.invalid"
         ,   21

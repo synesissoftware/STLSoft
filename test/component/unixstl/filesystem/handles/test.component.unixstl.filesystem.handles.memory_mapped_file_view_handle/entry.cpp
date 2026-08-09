@@ -20,7 +20,9 @@
 
 #include <fcntl.h>
 #include <sys/mman.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include <stdlib.h>
 
 

@@ -11,7 +11,7 @@
 # pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
 
-namespace { static void test_default_construct(void); }
+static void test_default_construct(void);
 
 int main(int argc, char* argv[])
 {
@@ -27,15 +27,12 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_default_construct(void)
 {
     platformstl::file_path_buffer_a buf;
     STLSOFT_SUPPRESS_UNUSED(buf);
     TEST_PASSED();
 }
-} // anonymous namespace
 
 #if defined(__clang__)
 # pragma clang diagnostic pop

@@ -21,7 +21,9 @@
 namespace {
 
 
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 
 static void test_is_stopwatch_alias()
 {

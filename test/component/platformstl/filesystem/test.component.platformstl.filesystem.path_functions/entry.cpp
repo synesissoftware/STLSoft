@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_path_squeeze_null_buffer(void); }
+static void test_path_squeeze_null_buffer(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +19,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_path_squeeze_null_buffer(void)
 {
     char const* const input = "abcdef";
     size_t const cch = platformstl::path_squeeze(input, static_cast<char*>(NULL), 0);
     TEST_INT_EQ(7, cch);
 }
-} // anonymous namespace
 

@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_decimal(void); }
+static void test_decimal(void);
 
 int main(int argc, char* argv[])
 {

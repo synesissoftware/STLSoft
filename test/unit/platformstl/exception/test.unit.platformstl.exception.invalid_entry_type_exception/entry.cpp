@@ -12,7 +12,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_type_exists(void); }
+static void test_type_exists(void);
 
 int main(int argc, char* argv[])
 {
@@ -28,12 +28,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_type_exists(void)
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::invalid_entry_type_exception));
     TEST_PASSED();
 }
-} // anonymous namespace
 

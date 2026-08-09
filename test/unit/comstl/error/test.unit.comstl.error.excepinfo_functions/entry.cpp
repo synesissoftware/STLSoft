@@ -17,11 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-namespace {
-
-static void test_EXCEPINFO_free(void);
-
-} // anonymous namespace
+static void test_EXCEPINFO_free(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -43,8 +39,6 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_EXCEPINFO_free(void)
 {
     EXCEPINFO xi;
@@ -61,6 +55,5 @@ static void test_EXCEPINFO_free(void)
     TEST_PTR_EQ(NULL, xi.bstrHelpFile);
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -16,11 +16,7 @@
 
 #include <stdlib.h>
 
-namespace {
-
-static void test_register_is_running_revoke(void);
-
-} // anonymous namespace
+static void test_register_is_running_revoke(void); // anonymous namespace
 
 int main(int argc, char *argv[])
 {
@@ -42,8 +38,6 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_register_is_running_revoke(void)
 {
     IUnknown*   punk = NULL;
@@ -61,6 +55,5 @@ static void test_register_is_running_revoke(void)
     punk->Release();
 }
 
-} // anonymous namespace
 
 /* ///////////////////////////// end of file //////////////////////////// */

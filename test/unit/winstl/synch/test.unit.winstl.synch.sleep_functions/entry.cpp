@@ -15,7 +15,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_sleep_zero(void); }
+static void test_sleep_zero(void);
 
 int main(int argc, char* argv[])
 {

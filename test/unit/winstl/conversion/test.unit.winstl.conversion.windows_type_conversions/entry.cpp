@@ -12,13 +12,15 @@
 
 #include <winstl/conversion/windows_type_conversions.hpp>
 
+#include <windows.h>
+
 #include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>
 
 #include <stdlib.h>
 
-namespace { static void test_WPARAM2HWND(void); }
+static void test_WPARAM2HWND(void);
 
 int main(int argc, char* argv[])
 {

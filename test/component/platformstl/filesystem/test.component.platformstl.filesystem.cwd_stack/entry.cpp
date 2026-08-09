@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_default_empty(void); }
+static void test_default_empty(void);
 
 int main(int argc, char* argv[])
 {
@@ -19,12 +19,9 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-namespace {
-
 static void test_default_empty(void)
 {
     platformstl::cwd_stack stack;
     TEST_BOOLEAN_TRUE(stack.empty());
     TEST_INT_EQ(0, stack.size());
 }
-} // anonymous namespace
