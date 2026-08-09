@@ -4,32 +4,37 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/synch/spin_mutex_policies.hpp`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <unixstl/synch/spin_mutex_policies.hpp>
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <unixstl/synch/spin_mutex_policies.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-
-static void test_default_policy_type_exists()
-{
-    STLSOFT_SUPPRESS_UNUSED(typeid(unixstl::yield_on_N_spin_mutex_policy<1000>));
-    TEST_PASSED();
-}
-
-
+    static void test_default_policy_type_exists(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -43,11 +48,26 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_default_policy_type_exists);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
+
+static void test_default_policy_type_exists()
+{
+    STLSOFT_SUPPRESS_UNUSED(typeid(unixstl::yield_on_N_spin_mutex_policy<1000>));
+    TEST_PASSED();
+}
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

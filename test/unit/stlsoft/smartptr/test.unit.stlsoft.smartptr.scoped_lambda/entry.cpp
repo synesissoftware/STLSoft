@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,22 +16,25 @@
  */
 
 #include <stlsoft/smartptr/scoped_lambda.hpp>
-
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void test_scoped_lambda();
-
+    static void test_scoped_lambda(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -51,8 +56,11 @@ int main(int argc, char* argv[])
 }
 
 
-namespace {
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
+namespace {
 
 static void test_scoped_lambda()
 {
@@ -62,8 +70,6 @@ static void test_scoped_lambda()
     }
     TEST_INTEGER_EQUAL(1, flag);
 }
-
-
 } // anonymous namespace
 
 

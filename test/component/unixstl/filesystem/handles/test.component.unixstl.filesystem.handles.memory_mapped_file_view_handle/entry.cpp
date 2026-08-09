@@ -4,33 +4,80 @@
  * Purpose: Component-tests for UnixSTL `unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp>
 #include <unixstl/filesystem/path.hpp>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
-
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/synch/refcount_policies/refcount_policy_single_threaded.hpp>
-
 #include <fcntl.h>
 #include <sys/mman.h>
-#ifndef _WIN32
 #include <unistd.h>
-#endif
 #include <stdlib.h>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+namespace {
+
+    static void test_view_handle_create_and_destroy(void);
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.handles.memory_mapped_file_view_handle", verbosity))
+    {
+        XTESTS_RUN_CASE(test_view_handle_create_and_destroy);
+
+        XTESTS_PRINT_RESULTS();
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
+
+    return retCode;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
 
 namespace {
 
 using xtests::cpp::util::temp_directory;
-
 typedef unixstl::memory_mapped_file_view_handle<stlsoft::refcount_policy_single_threaded> view_handle_t;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void test_view_handle_create_and_destroy()
 {
@@ -57,27 +104,7 @@ static void test_view_handle_create_and_destroy()
 
     ::close(fd);
 }
-
 } // anonymous namespace
-
-
-int main(int argc, char* argv[])
-{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.handles.memory_mapped_file_view_handle", verbosity))
-    {
-        XTESTS_RUN_CASE(test_view_handle_create_and_destroy);
-
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }
-
-    return retCode;
-}
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

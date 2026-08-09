@@ -6,6 +6,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from canonical_entry import forward_decls_from_impl_block, render_cpp
+
 ROOT = Path(__file__).resolve().parents[2]
 TEST_UNIT = ROOT / "test" / "unit" / "platformstl"
 TEST_COMPONENT = ROOT / "test" / "component" / "platformstl"
@@ -48,43 +50,45 @@ def update_cmake(dir_path: Path, subdirs: list[str]) -> None:
     write(dir_path / "CMakeLists.txt", "\n".join(lines))
 
 
+def canonical_entry(
+    test_name: str,
+    purpose: str,
+    includes: list[str],
+    implementations: str,
+    *,
+    setup: str = "",
+) -> str:
+    """Emit canonical layout; ``implementations`` is one or more static test functions."""
+    funcs = forward_decls_from_impl_block(implementations)
+    if not funcs:
+        raise ValueError(f"no test functions in template for {test_name}")
+    merged = list(includes)
+    for req in ("<xtests/xtests.h>", "<xtests/terse-api.h>", "<stlsoft/stlsoft.h>", "<stdlib.h>"):
+        if not any(req in inc for inc in merged):
+            merged.append(req)
+    return render_cpp(
+        test_name=test_name,
+        purpose=purpose,
+        includes=merged,
+        test_functions=funcs,
+        implementations=implementations,
+        setup_before_runner=setup,
+    )
+
+
 def exception_test(test_name: str, header: str, exc_type: str) -> str:
-    return f"""/* /////////////////////////////////////////////////////////////////////////
- * File:    {test_name}/entry.cpp
- *
- * Purpose: Unit-tests for `{header.strip('<>')}`.
- *
- * Created: 9th August 2026
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-#include {header}
-#include <xtests/terse-api.h>
-#include <stlsoft/stlsoft.h>
-#include <stdlib.h>
-
-namespace {{ static void test_type_exists(void); }}
-
-int main(int argc, char* argv[])
-{{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-    if (XTESTS_START_RUNNER("{test_name}", verbosity))
-    {{
-        XTESTS_RUN_CASE(test_type_exists);
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }}
-    return retCode;
-}}
-
-static void test_type_exists(void)
+    impl = f"""static void test_type_exists(void)
 {{
     STLSOFT_SUPPRESS_UNUSED(typeid({exc_type}));
     TEST_PASSED();
 }}
 """
+    return canonical_entry(
+        test_name,
+        f"Unit-tests for `{header.strip('<>')}`.",
+        [header],
+        impl,
+    )
 
 
 def main() -> None:

@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,68 +16,27 @@
  */
 
 #include <acestl/reactor/custom_event_handler.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <ace/Reactor.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-class test_handler
-    : public acestl::custom_event_handler
-{
-public:
-    test_handler()
-        : m_lastCode(0)
-        , m_lastArg(NULL)
-        , m_eventCount(0)
-    {}
-
-    int handle_custom_event(ACE_Time_Value const& /*current_time*/, long code, void* arg)
-    {
-        m_lastCode = code;
-        m_lastArg = arg;
-        ++m_eventCount;
-
-        return 0;
-    }
-
-    int handle_timeout(ACE_Time_Value const& /*current_time*/, void const* /*arg*/)
-    {
-        return 0;
-    }
-
-    long lastCode() const
-    {
-        return m_lastCode;
-    }
-
-    void* lastArg() const
-    {
-        return m_lastArg;
-    }
-
-    int eventCount() const
-    {
-        return m_eventCount;
-    }
-
-private:
-    long m_lastCode;
-    void* m_lastArg;
-    int m_eventCount;
-};
-
-static void TEST_schedule_and_has_custom_events();
-static void TEST_cancel_custom_event();
-
+    static void TEST_schedule_and_has_custom_events(void);
+    static void TEST_cancel_custom_event(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -97,6 +58,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -122,7 +87,6 @@ static void TEST_cancel_custom_event()
 
     TEST_BOOLEAN_FALSE(handler.has_custom_events(200));
 }
-
 } // anonymous namespace
 
 

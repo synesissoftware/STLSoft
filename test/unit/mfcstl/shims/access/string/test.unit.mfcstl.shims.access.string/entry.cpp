@@ -5,27 +5,38 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/shims/access/string.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_umbrella_includes_compile();
-static void TEST_cstring_shims_via_umbrella();
-static void TEST_cwnd_shims_via_umbrella();
-
+    static void TEST_umbrella_includes_compile(void);
+    static void TEST_cstring_shims_via_umbrella(void);
+    static void TEST_cwnd_shims_via_umbrella(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -48,6 +59,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -78,7 +93,6 @@ static void TEST_cwnd_shims_via_umbrella()
     TEST_PTR_EQ(NULL, static_cast<LPCTSTR>(stlsoft::c_str_ptr_null(w)));
     TEST_INT_EQ(0, _tcslen(stlsoft::c_str_ptr(w)));
 }
-
 } // anonymous namespace
 
 

@@ -5,37 +5,21 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-#define STLSOFT_MINIMUM_SAS_INCLUDES
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/shims/access/string/CComBSTR.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL header files */
 #include <atlbase.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
 
@@ -46,15 +30,15 @@
 
 namespace {
 
-    static void TEST_calls_possible();
-    static void TEST_empty_string();
-    static void TEST_non_empty_string();
-    static void TEST_null_bstr_returns_empty_ptr();
+    static void TEST_calls_possible(void);
+    static void TEST_empty_string(void);
+    static void TEST_non_empty_string(void);
+    static void TEST_null_bstr_returns_empty_ptr(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -66,21 +50,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.atlstl.shims.access.string.CComBSTR", verbosity))
     {
-        HRESULT const hrCoInit = ::CoInitialize(NULL);
-
-        if (SUCCEEDED(hrCoInit))
-        {
-            XTESTS_RUN_CASE(TEST_calls_possible);
-            XTESTS_RUN_CASE(TEST_empty_string);
-            XTESTS_RUN_CASE(TEST_non_empty_string);
-            XTESTS_RUN_CASE(TEST_null_bstr_returns_empty_ptr);
-
-            ::CoUninitialize();
-        }
-        else
-        {
-            XTESTS_TEST_FAIL("CoInitialize() failed");
-        }
+        XTESTS_RUN_CASE(TEST_calls_possible);
+        XTESTS_RUN_CASE(TEST_empty_string);
+        XTESTS_RUN_CASE(TEST_non_empty_string);
+        XTESTS_RUN_CASE(TEST_null_bstr_returns_empty_ptr);
 
         XTESTS_PRINT_RESULTS();
 
@@ -157,7 +130,6 @@ static void TEST_null_bstr_returns_empty_ptr()
     TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_w(s));
     TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(s));
 }
-
 } // anonymous namespace
 
 

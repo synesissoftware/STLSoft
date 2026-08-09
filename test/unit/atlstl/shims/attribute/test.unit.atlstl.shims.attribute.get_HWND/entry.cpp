@@ -5,35 +5,22 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/shims/attribute/get_HWND.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL header files */
 #include <atlbase.h>
 #include <atlwin.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 
 
@@ -43,13 +30,13 @@
 
 namespace {
 
-    static void TEST_null_hwnd();
-    static void TEST_explicit_hwnd_value();
+    static void TEST_null_hwnd(void);
+    static void TEST_explicit_hwnd_value(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -96,7 +83,6 @@ static void TEST_explicit_hwnd_value()
 
     TEST_PTR_EQ(w.m_hWnd, atlstl::get_HWND(w));
 }
-
 } // anonymous namespace
 
 

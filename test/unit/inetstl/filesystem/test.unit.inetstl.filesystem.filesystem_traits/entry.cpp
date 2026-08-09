@@ -5,26 +5,19 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * test component header file include(s)
- */
-
-#include <inetstl/filesystem/filesystem_traits.hpp>
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* xTests header files */
+#include <inetstl/filesystem/filesystem_traits.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
 
@@ -35,16 +28,16 @@
 
 namespace {
 
-    static void TEST_is_dots();
-    static void TEST_ensure_dir_end();
-    static void TEST_has_dir_end();
-    static void TEST_remove_dir_end();
-    static void TEST_is_path_rooted();
-    static void TEST_is_path_absolute();
-    static void TEST_is_path_name_separator();
-    static void TEST_path_separators();
-    static void TEST_pattern_all();
-    static void TEST_stat_data_attributes();
+    static void TEST_is_dots(void);
+    static void TEST_ensure_dir_end(void);
+    static void TEST_has_dir_end(void);
+    static void TEST_remove_dir_end(void);
+    static void TEST_is_path_rooted(void);
+    static void TEST_is_path_absolute(void);
+    static void TEST_is_path_name_separator(void);
+    static void TEST_path_separators(void);
+    static void TEST_pattern_all(void);
+    static void TEST_stat_data_attributes(void);
 } // anonymous namespace
 
 
@@ -52,7 +45,7 @@ namespace {
  * main()
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -82,14 +75,21 @@ int main(int argc, char *argv[])
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * test function implementations
+ * names
  */
 
 namespace {
 
-    typedef inetstl::filesystem_traits<char>                filesystem_traits_m_t;
+typedef inetstl::filesystem_traits<char>                filesystem_traits_m_t;
     typedef inetstl::filesystem_traits<wchar_t>             filesystem_traits_w_t;
+} // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void TEST_is_dots()
 {

@@ -5,27 +5,38 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/shims/attribute/get_kernel_handle.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_event_handle();
-static void TEST_mutex_handle();
-static void TEST_semaphore_handle();
-
+    static void TEST_event_handle(void);
+    static void TEST_mutex_handle(void);
+    static void TEST_semaphore_handle(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -48,6 +59,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -74,7 +89,6 @@ static void TEST_semaphore_handle()
     TEST_PTR_NE(NULL, winstl::get_kernel_handle(sem));
     TEST_PTR_EQ(static_cast<HANDLE>(sem), winstl::get_kernel_handle(sem));
 }
-
 } // anonymous namespace
 
 

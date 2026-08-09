@@ -5,38 +5,63 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <winstl/time/comparison_functions.h>
 #include <winstl/util/struct_initialisers.hpp>
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void test_FILETIME_ordering(void);
-static void test_SYSTEMTIME_ordering(void);
-
+    static void test_FILETIME_ordering(void);
+    static void test_SYSTEMTIME_ordering(void);
 } // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
+
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
     if (XTESTS_START_RUNNER("test.unit.winstl.time.validation_functions", verbosity))
     {
         XTESTS_RUN_CASE(test_FILETIME_ordering);
         XTESTS_RUN_CASE(test_SYSTEMTIME_ordering);
+
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
+
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -60,5 +85,7 @@ static void test_SYSTEMTIME_ordering(void)
     TEST_INT_EQ(0, winstl::compare(st1, st1));
     TEST_INT_LT(0, winstl::compare(st1, st2));
 }
-
 } // anonymous namespace
+
+
+/* ///////////////////////////// end of file //////////////////////////// */

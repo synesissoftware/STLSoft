@@ -7,6 +7,8 @@ import re
 import shutil
 from pathlib import Path
 
+from canonical_entry import file_header
+
 ROOT = Path(__file__).resolve().parents[2]
 TEST_UNIT = ROOT / "test" / "unit" / "winstl"
 TEST_COMPONENT = ROOT / "test" / "component" / "winstl"
@@ -244,33 +246,42 @@ static void test_output(void)
 
 
 def _file_header(test_name: str, area: str, kind: str) -> str:
-    return f"""/* /////////////////////////////////////////////////////////////////////////
- * File:    {test_name}/entry.cpp
- *
- * Purpose: {'Component' if kind == 'component' else 'Unit'}-tests for `{area}`.
- *
- * Created: 9th August 2026
- * Updated: 9th August 2026
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-
-"""
+    return file_header(
+        f"{test_name}/entry.cpp",
+        f"{'Component' if kind == 'component' else 'Unit'}-tests for `{area}`.",
+    )
 
 
 def _main_block(test_name: str, cases: list[str], extra_includes: str = "", setup: str = "") -> str:
     cases_run = "\n        ".join(f"XTESTS_RUN_CASE({c});" for c in cases)
-    return f"""{_file_header(test_name, test_name.split('.', 3)[-1], 'unit' if 'unit' in test_name else 'component')}
-#include {extra_includes or '<xtests/terse-api.h>'}
+    kind = "unit" if ".unit." in test_name else "component"
+    area = test_name.split(".", 3)[-1]
+    return f"""{_file_header(test_name, area, kind)}
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include {extra_includes or '<xtests/xtests.h>'}
+#include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {{
 
 {cases_decl(cases)}
 
 }} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {{
@@ -299,11 +310,27 @@ def cases_decl(cases: list[str]) -> str:
 
 
 def cases_impl(cases: list[str]) -> str:
-    return "\n".join(f"""static void {c}(void)
+    body = "\n".join(
+        f"""static void {c}(void)
 {{
     TEST_PASSED();
 }}
-""" for c in cases)
+"""
+        for c in cases
+    )
+    return f"""
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {{
+
+{body}}} // anonymous namespace
+
+
+/* ///////////////////////////// end of file //////////////////////////// */
+"""
 
 
 # --- specific test generators ---

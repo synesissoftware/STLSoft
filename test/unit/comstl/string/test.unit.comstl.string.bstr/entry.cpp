@@ -4,29 +4,43 @@
  * Purpose: Unit-tests for `comstl::bstr`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-#include <comstl/string/bstr.hpp>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <comstl/string/bstr.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/shims/access/string.hpp>
-
 #include <stdlib.h>
 #include <string.h>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void test_default_construction(void);
-static void test_construction_from_string(void);
-static void test_attach_detach(void);
-
+    static void test_default_construction(void);
+    static void test_construction_from_string(void);
+    static void test_attach_detach(void);
 } // anonymous namespace
 
-int main(int argc, char *argv[])
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -42,11 +56,17 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_attach_detach);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -81,7 +101,7 @@ static void test_attach_detach(void)
 
     ::SysFreeString(detached);
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

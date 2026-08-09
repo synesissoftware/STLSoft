@@ -4,20 +4,64 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/filesystem/path_buffer.hpp`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <unixstl/filesystem/path_buffer.hpp>
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <unixstl/filesystem/path_buffer.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 #include <string.h>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+namespace {
+
+    static void test_default_constructed_empty(void);
+    static void test_assign_and_clear(void);
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    if (XTESTS_START_RUNNER("test.unit.unixstl.filesystem.path_buffer", verbosity))
+    {
+        XTESTS_RUN_CASE(test_default_constructed_empty);
+        XTESTS_RUN_CASE(test_assign_and_clear);
+
+        XTESTS_PRINT_RESULTS();
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
+
+    return retCode;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -39,28 +83,7 @@ static void test_assign_and_clear()
     buf.assign("", 0);
     TEST_INT_EQ(0, buf.size());
 }
-
 } // anonymous namespace
-
-
-int main(int argc, char* argv[])
-{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("test.unit.unixstl.filesystem.path_buffer", verbosity))
-    {
-        XTESTS_RUN_CASE(test_default_constructed_empty);
-        XTESTS_RUN_CASE(test_assign_and_clear);
-
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }
-
-    return retCode;
-}
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

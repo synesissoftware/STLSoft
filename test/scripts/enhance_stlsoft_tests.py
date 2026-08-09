@@ -6,6 +6,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from canonical_entry import AUTO_GENERATED_NOTE, HEADER_NOTE_LINE
+
 ROOT = Path(__file__).resolve().parents[2]
 INCLUDE = ROOT / "include"
 TEST_ROOTS = [ROOT / "test" / "unit" / "stlsoft", ROOT / "test" / "component" / "stlsoft"]
@@ -1296,6 +1298,7 @@ static void test_smoke()
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+{HEADER_NOTE_LINE}
  *
  * ////////////////////////////////////////////////////////////////////// */
 

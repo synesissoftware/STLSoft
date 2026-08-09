@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,24 +16,28 @@
  */
 
 #include <acestl/network/socket_functions.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <ace/Reactor.h>
 #include <ace/SOCK_Stream.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_close_and_deregister_invalid_handle();
-static void TEST_close_and_deregister_open_socket();
-
+    static void TEST_close_and_deregister_invalid_handle(void);
+    static void TEST_close_and_deregister_open_socket(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -54,6 +60,10 @@ int main(int argc, char* argv[])
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
 namespace {
 
 static void TEST_close_and_deregister_invalid_handle()
@@ -72,7 +82,6 @@ static void TEST_close_and_deregister_open_socket()
     TEST_BOOLEAN_TRUE(acestl::close_and_deregister(sk, NULL));
     TEST_BOOLEAN_FALSE(acestl::close_and_deregister(sk, NULL));
 }
-
 } // anonymous namespace
 
 

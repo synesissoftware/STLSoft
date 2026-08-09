@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,27 +16,31 @@
  */
 
 #include <acestl/collections/message_queue_sequence.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/memory/auto_buffer.hpp>
 #include <stlsoft/stlsoft.h>
-
 #include <ace/Message_Queue.h>
 #include <ace/Synch_Traits.h>
-
 #include <algorithm>
 #include <stdlib.h>
 #include <string.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_empty_sequence();
-static void TEST_copy_sequence();
-
+    static void TEST_empty_sequence(void);
+    static void TEST_copy_sequence(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -57,10 +63,22 @@ int main(int argc, char* argv[])
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
+
 namespace {
 
 typedef ACE_Message_Queue<ACE_SYNCH> queue_type;
 typedef acestl::message_queue_sequence<ACE_SYNCH> sequence_type;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void TEST_empty_sequence()
 {
@@ -101,7 +119,6 @@ static void TEST_copy_sequence()
 
     pdeq->release();
 }
-
 } // anonymous namespace
 
 

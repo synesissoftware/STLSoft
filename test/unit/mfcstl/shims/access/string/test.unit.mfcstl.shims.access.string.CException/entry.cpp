@@ -5,25 +5,36 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/shims/access/string/CException.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_memory_exception_message();
-
+    static void TEST_memory_exception_message(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -45,6 +56,10 @@ int main(int argc, char* argv[])
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
 namespace {
 
 static void TEST_memory_exception_message()
@@ -64,7 +79,6 @@ static void TEST_memory_exception_message()
         px->Delete();
     }
 }
-
 } // anonymous namespace
 
 

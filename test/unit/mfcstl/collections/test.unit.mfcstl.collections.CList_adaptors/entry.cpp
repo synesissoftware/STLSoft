@@ -5,27 +5,38 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/collections/CList_adaptors.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_iadaptor_default_empty();
-static void TEST_iadaptor_push_back_and_iterate();
-static void TEST_iadaptor_clear();
-
+    static void TEST_iadaptor_default_empty(void);
+    static void TEST_iadaptor_push_back_and_iterate(void);
+    static void TEST_iadaptor_clear(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -48,6 +59,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -85,7 +100,6 @@ static void TEST_iadaptor_clear()
     TEST_BOOLEAN_TRUE(lip.empty());
     TEST_INT_EQ(0, raw.GetCount());
 }
-
 } // anonymous namespace
 
 

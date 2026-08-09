@@ -5,93 +5,25 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/automation/enumerators.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL / COM header files */
 #include <atlbase.h>
 #include <atlcom.h>
 #include <objidl.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * test types
- */
-
-namespace {
-
-typedef atlstl::copy_enumerator<
-    IEnumString
-,   &IID_IEnumString
-,   LPOLESTR
-,   LPOLESTR
-,   atlstl::copy_policy<LPOLESTR, LPOLESTR>
->                                           string_enumerator_t;
-
-} // anonymous namespace
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * copy_policy specialisation
- */
-
-namespace atlstl {
-
-template <>
-struct copy_policy<LPOLESTR, LPOLESTR>
-{
-    typedef LPOLESTR    external_value_type;
-    typedef LPOLESTR    internal_value_type;
-
-    static void init(external_value_type *xv)
-    {
-        *xv = NULL;
-    }
-
-    static HRESULT copy(external_value_type *xv, internal_value_type const& iv)
-    {
-        *xv = ::SysAllocString(iv);
-
-        return (NULL != *xv) ? S_OK : E_OUTOFMEMORY;
-    }
-
-    static void clear(external_value_type *xv)
-    {
-        if (NULL != *xv)
-        {
-            ::SysFreeString(*xv);
-        }
-
-        *xv = NULL;
-    }
-};
-
-} // namespace atlstl
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,15 +32,15 @@ struct copy_policy<LPOLESTR, LPOLESTR>
 
 namespace {
 
-    static void TEST_init_and_size();
-    static void TEST_next_and_reset();
-    static void TEST_clone();
-    static void TEST_next_null_pointer();
+    static void TEST_init_and_size(void);
+    static void TEST_next_and_reset(void);
+    static void TEST_clone(void);
+    static void TEST_next_null_pointer(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -120,21 +52,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.atlstl.automation.enumerators", verbosity))
     {
-        HRESULT const hrCoInit = ::CoInitialize(NULL);
-
-        if (SUCCEEDED(hrCoInit))
-        {
-            XTESTS_RUN_CASE(TEST_init_and_size);
-            XTESTS_RUN_CASE(TEST_next_and_reset);
-            XTESTS_RUN_CASE(TEST_clone);
-            XTESTS_RUN_CASE(TEST_next_null_pointer);
-
-            ::CoUninitialize();
-        }
-        else
-        {
-            XTESTS_TEST_FAIL("CoInitialize() failed");
-        }
+        XTESTS_RUN_CASE(TEST_init_and_size);
+        XTESTS_RUN_CASE(TEST_next_and_reset);
+        XTESTS_RUN_CASE(TEST_clone);
+        XTESTS_RUN_CASE(TEST_next_null_pointer);
 
         XTESTS_PRINT_RESULTS();
 
@@ -143,6 +64,22 @@ int main(int argc, char* argv[])
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
+
+namespace {
+
+typedef atlstl::copy_enumerator<
+    IEnumString
+,   &IID_IEnumString
+,   LPOLESTR
+,   LPOLESTR
+,   atlstl::copy_policy<LPOLESTR, LPOLESTR>
+>                                           string_enumerator_t;
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -236,7 +173,6 @@ static void TEST_next_null_pointer()
 
     TEST_INT_EQ(E_POINTER, spIface->Next(1, NULL, NULL));
 }
-
 } // anonymous namespace
 
 

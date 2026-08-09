@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,24 +16,28 @@
  */
 
 #include <acestl/shims/logical/is_empty/message_queue.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <ace/Message_Queue.h>
 #include <ace/Synch_Traits.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_empty_queue();
-static void TEST_non_empty_queue();
-
+    static void TEST_empty_queue(void);
+    static void TEST_non_empty_queue(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -54,9 +60,21 @@ int main(int argc, char* argv[])
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
+
 namespace {
 
 typedef ACE_Message_Queue<ACE_SYNCH> queue_type;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void TEST_empty_queue()
 {
@@ -83,7 +101,6 @@ static void TEST_non_empty_queue()
 
     pmb->release();
 }
-
 } // anonymous namespace
 
 

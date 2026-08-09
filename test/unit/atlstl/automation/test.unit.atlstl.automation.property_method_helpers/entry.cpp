@@ -2,64 +2,27 @@
  * File:    test.unit.atlstl.automation.property_method_helpers/entry.cpp
  *
  * Purpose: Unit-tests for `atlstl::get_MemberValue`, `atlstl::put_MemberValue`
- *          and `atlstl::get_ConstantValue`.
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/automation/property_method_helpers.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL header files */
 #include <atlbase.h>
 #include <atlcom.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * test types
- */
-
-namespace {
-
-struct test_object
-{
-    long            m_long;
-    CComBSTR        m_bstr;
-    CComVariant     m_variant;
-    bool            m_bool;
-    size_t          m_size;
-
-    long get_size() const
-    {
-        return static_cast<long>(m_size);
-    }
-};
-
-} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,20 +31,20 @@ struct test_object
 
 namespace {
 
-    static void TEST_get_member_value_integral();
-    static void TEST_get_member_value_bstr();
-    static void TEST_get_member_value_variant();
-    static void TEST_get_member_value_bool();
-    static void TEST_get_member_value_size_t_overflow();
-    static void TEST_get_member_value_method();
-    static void TEST_put_member_value();
-    static void TEST_get_constant_value();
-    static void TEST_null_pointer_returns();
+    static void TEST_get_member_value_integral(void);
+    static void TEST_get_member_value_bstr(void);
+    static void TEST_get_member_value_variant(void);
+    static void TEST_get_member_value_bool(void);
+    static void TEST_get_member_value_size_t_overflow(void);
+    static void TEST_get_member_value_method(void);
+    static void TEST_put_member_value(void);
+    static void TEST_get_constant_value(void);
+    static void TEST_null_pointer_returns(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -93,26 +56,15 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.atlstl.automation.property_method_helpers", verbosity))
     {
-        HRESULT const hrCoInit = ::CoInitialize(NULL);
-
-        if (SUCCEEDED(hrCoInit))
-        {
-            XTESTS_RUN_CASE(TEST_get_member_value_integral);
-            XTESTS_RUN_CASE(TEST_get_member_value_bstr);
-            XTESTS_RUN_CASE(TEST_get_member_value_variant);
-            XTESTS_RUN_CASE(TEST_get_member_value_bool);
-            XTESTS_RUN_CASE(TEST_get_member_value_size_t_overflow);
-            XTESTS_RUN_CASE(TEST_get_member_value_method);
-            XTESTS_RUN_CASE(TEST_put_member_value);
-            XTESTS_RUN_CASE(TEST_get_constant_value);
-            XTESTS_RUN_CASE(TEST_null_pointer_returns);
-
-            ::CoUninitialize();
-        }
-        else
-        {
-            XTESTS_TEST_FAIL("CoInitialize() failed");
-        }
+        XTESTS_RUN_CASE(TEST_get_member_value_integral);
+        XTESTS_RUN_CASE(TEST_get_member_value_bstr);
+        XTESTS_RUN_CASE(TEST_get_member_value_variant);
+        XTESTS_RUN_CASE(TEST_get_member_value_bool);
+        XTESTS_RUN_CASE(TEST_get_member_value_size_t_overflow);
+        XTESTS_RUN_CASE(TEST_get_member_value_method);
+        XTESTS_RUN_CASE(TEST_put_member_value);
+        XTESTS_RUN_CASE(TEST_get_constant_value);
+        XTESTS_RUN_CASE(TEST_null_pointer_returns);
 
         XTESTS_PRINT_RESULTS();
 
@@ -253,7 +205,6 @@ static void TEST_null_pointer_returns()
     TEST_INT_EQ(E_POINTER, atlstl::get_MemberValue(&obj, static_cast<long*>(NULL), &test_object::m_long));
     TEST_INT_EQ(E_POINTER, atlstl::get_ConstantValue(static_cast<long*>(NULL), 1L));
 }
-
 } // anonymous namespace
 
 

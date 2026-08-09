@@ -4,32 +4,41 @@
  * Purpose: Unit-tests for `comstl::acyclic_connector`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-#include <comstl/util/acyclic_connector.hpp>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <comstl/util/acyclic_connector.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/synch/null_mutex.hpp>
-
 #include "../../helpers/mock_unknown.hpp"
-
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {
 
-using test_comstl::mock_unknown;
-
-typedef comstl::acyclic_connector<stlsoft::null_mutex> connector_t;
-
-static void test_query_peer(void);
-
+    static void test_query_peer(void);
 } // anonymous namespace
 
-int main(int argc, char *argv[])
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -43,11 +52,28 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_query_peer);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
+
+namespace {
+
+using test_comstl::mock_unknown;
+typedef comstl::acyclic_connector<stlsoft::null_mutex> connector_t;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -71,7 +97,7 @@ static void test_query_peer(void)
     leftSide->Release();
     rightSide->Release();
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

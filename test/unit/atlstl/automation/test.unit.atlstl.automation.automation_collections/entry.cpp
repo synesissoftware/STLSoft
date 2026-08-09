@@ -5,97 +5,25 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/automation/automation_collections.hpp>
 #include <atlstl/automation/enumerators.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL / COM header files */
 #include <atlbase.h>
 #include <atlcom.h>
 #include <objidl.h>
-
-/* Standard C header files */
 #include <stdlib.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * test types
- */
-
-namespace {
-
-typedef atlstl::copy_enumerator<
-    IEnumString
-,   &IID_IEnumString
-,   LPOLESTR
-,   LPOLESTR
-,   atlstl::copy_policy<LPOLESTR, LPOLESTR>
->                                           string_enumerator_t;
-
-typedef atlstl::generic_automation_collection<
-    string_enumerator_t
->                                           string_collection_t;
-
-} // anonymous namespace
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * copy_policy specialisation
- */
-
-namespace atlstl {
-
-template <>
-struct copy_policy<LPOLESTR, LPOLESTR>
-{
-    typedef LPOLESTR    external_value_type;
-    typedef LPOLESTR    internal_value_type;
-
-    static void init(external_value_type *xv)
-    {
-        *xv = NULL;
-    }
-
-    static HRESULT copy(external_value_type *xv, internal_value_type const& iv)
-    {
-        *xv = ::SysAllocString(iv);
-
-        return (NULL != *xv) ? S_OK : E_OUTOFMEMORY;
-    }
-
-    static void clear(external_value_type *xv)
-    {
-        if (NULL != *xv)
-        {
-            ::SysFreeString(*xv);
-        }
-
-        *xv = NULL;
-    }
-};
-
-} // namespace atlstl
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,15 +32,15 @@ struct copy_policy<LPOLESTR, LPOLESTR>
 
 namespace {
 
-    static void TEST_supports_count_and_get_count();
-    static void TEST_idispatch_count_property();
-    static void TEST_idispatch_newenum();
-    static void TEST_get_count_without_set_count();
+    static void TEST_supports_count_and_get_count(void);
+    static void TEST_idispatch_count_property(void);
+    static void TEST_idispatch_newenum(void);
+    static void TEST_get_count_without_set_count(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -124,21 +52,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.atlstl.automation.automation_collections", verbosity))
     {
-        HRESULT const hrCoInit = ::CoInitialize(NULL);
-
-        if (SUCCEEDED(hrCoInit))
-        {
-            XTESTS_RUN_CASE(TEST_supports_count_and_get_count);
-            XTESTS_RUN_CASE(TEST_idispatch_count_property);
-            XTESTS_RUN_CASE(TEST_idispatch_newenum);
-            XTESTS_RUN_CASE(TEST_get_count_without_set_count);
-
-            ::CoUninitialize();
-        }
-        else
-        {
-            XTESTS_TEST_FAIL("CoInitialize() failed");
-        }
+        XTESTS_RUN_CASE(TEST_supports_count_and_get_count);
+        XTESTS_RUN_CASE(TEST_idispatch_count_property);
+        XTESTS_RUN_CASE(TEST_idispatch_newenum);
+        XTESTS_RUN_CASE(TEST_get_count_without_set_count);
 
         XTESTS_PRINT_RESULTS();
 
@@ -150,10 +67,21 @@ int main(int argc, char* argv[])
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * helpers
+ * names
  */
 
 namespace {
+
+typedef atlstl::copy_enumerator<
+    IEnumString
+,   &IID_IEnumString
+,   LPOLESTR
+,   LPOLESTR
+,   atlstl::copy_policy<LPOLESTR, LPOLESTR>
+>                                           string_enumerator_t;
+typedef atlstl::generic_automation_collection<
+    string_enumerator_t
+>                                           string_collection_t;
 
 static HRESULT create_collection_with_items(
     string_collection_t**   ppColl
@@ -195,7 +123,6 @@ static HRESULT create_collection_with_items(
 
     return S_OK;
 }
-
 } // anonymous namespace
 
 
@@ -293,7 +220,6 @@ static void TEST_get_count_without_set_count()
 
     TEST_INT_EQ(E_UNEXPECTED, spColl->get_Count(&count));
 }
-
 } // anonymous namespace
 
 

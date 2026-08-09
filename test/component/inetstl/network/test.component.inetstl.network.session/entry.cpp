@@ -5,30 +5,21 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * test component header file include(s)
- */
-
-#include <inetstl/network/session.hpp>
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* xTests header files */
+#include <inetstl/network/session.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/exception/throw_policies.hpp>
 #include <stlsoft/stlsoft.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 
 
@@ -38,11 +29,11 @@
 
 namespace {
 
-    static void TEST_default_session();
-    static void TEST_session_with_agent();
-    static void TEST_session_open_close();
-    static void TEST_session_detach();
-    static void TEST_get_handle();
+    static void TEST_default_session(void);
+    static void TEST_session_with_agent(void);
+    static void TEST_session_open_close(void);
+    static void TEST_session_detach(void);
+    static void TEST_get_handle(void);
 } // anonymous namespace
 
 
@@ -50,7 +41,7 @@ namespace {
  * main()
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -75,13 +66,20 @@ int main(int argc, char *argv[])
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * test function implementations
+ * names
  */
 
 namespace {
 
-    typedef inetstl::basic_session<char, stlsoft::null_exception_policy> session_null_x_t;
+typedef inetstl::basic_session<char, stlsoft::null_exception_policy> session_null_x_t;
+} // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void TEST_default_session()
 {

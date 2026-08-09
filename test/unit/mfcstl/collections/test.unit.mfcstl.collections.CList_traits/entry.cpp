@@ -5,28 +5,38 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/collections/CList_traits.hpp>
-
 #include <xtests/terse-api.h>
-
 #include <stlsoft/meta/is_same_type.hpp>
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_CPtrList_traits();
-static void TEST_CStringList_traits();
-static void TEST_CList_specific_traits();
-
+    static void TEST_CPtrList_traits(void);
+    static void TEST_CStringList_traits(void);
+    static void TEST_CList_specific_traits(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -49,6 +59,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -84,7 +98,6 @@ static void TEST_CList_specific_traits()
 
     TEST_PASSED();
 }
-
 } // anonymous namespace
 
 

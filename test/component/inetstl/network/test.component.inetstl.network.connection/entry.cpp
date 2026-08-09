@@ -5,30 +5,21 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * test component header file include(s)
- */
-
-#include <inetstl/network/connection.hpp>
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* xTests header files */
+#include <inetstl/network/connection.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/exception/throw_policies.hpp>
 #include <stlsoft/stlsoft.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 
 
@@ -38,10 +29,10 @@
 
 namespace {
 
-    static void TEST_default_connection();
-    static void TEST_failed_connect_with_null_policy();
-    static void TEST_close_on_unconnected();
-    static void TEST_get_handle();
+    static void TEST_default_connection(void);
+    static void TEST_failed_connect_with_null_policy(void);
+    static void TEST_close_on_unconnected(void);
+    static void TEST_get_handle(void);
 } // anonymous namespace
 
 
@@ -49,7 +40,7 @@ namespace {
  * main()
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -73,14 +64,21 @@ int main(int argc, char *argv[])
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * test function implementations
+ * names
  */
 
 namespace {
 
-    typedef inetstl::basic_session<char, stlsoft::null_exception_policy>    session_null_x_t;
+typedef inetstl::basic_session<char, stlsoft::null_exception_policy>    session_null_x_t;
     typedef inetstl::basic_connection<char, stlsoft::null_exception_policy> connection_null_x_t;
+} // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void TEST_default_connection()
 {

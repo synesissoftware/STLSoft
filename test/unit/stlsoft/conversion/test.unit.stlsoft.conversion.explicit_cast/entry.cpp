@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,24 +16,27 @@
  */
 
 #include <stlsoft/conversion/explicit_cast.hpp>
-
 #include <string.h>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void test_explicit_cast();
-static void test_explicit_cast_assignment();
-
+    static void test_explicit_cast(void);
+    static void test_explicit_cast_assignment(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -54,8 +59,11 @@ int main(int argc, char* argv[])
 }
 
 
-namespace {
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
+namespace {
 
 static void test_explicit_cast()
 {
@@ -70,8 +78,6 @@ static void test_explicit_cast_assignment()
     c = 99;
     TEST_INTEGER_EQUAL(99, static_cast<int>(c));
 }
-
-
 } // anonymous namespace
 
 

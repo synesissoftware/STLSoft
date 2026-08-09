@@ -4,30 +4,78 @@
  * Purpose: Component-tests for UnixSTL `unixstl/filesystem/memory_map_functions.h`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <unixstl/filesystem/memory_map_functions.h>
 #include <unixstl/filesystem/path.hpp>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
-
 #include <stlsoft/stlsoft.h>
-
 #include <fcntl.h>
 #include <sys/mman.h>
-#ifndef _WIN32
 #include <unistd.h>
-#endif
 #include <stdlib.h>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+namespace {
+
+    static void test_unmap_view_of_file(void);
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.memory_map_functions", verbosity))
+    {
+        XTESTS_RUN_CASE(test_unmap_view_of_file);
+
+        XTESTS_PRINT_RESULTS();
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
+
+    return retCode;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
 
 namespace {
 
 using xtests::cpp::util::temp_directory;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void test_unmap_view_of_file()
 {
@@ -50,27 +98,7 @@ static void test_unmap_view_of_file()
     unixstl::unmap_view_of_file(p, sizeof(payload));
     ::close(fd);
 }
-
 } // anonymous namespace
-
-
-int main(int argc, char* argv[])
-{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.memory_map_functions", verbosity))
-    {
-        XTESTS_RUN_CASE(test_unmap_view_of_file);
-
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }
-
-    return retCode;
-}
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

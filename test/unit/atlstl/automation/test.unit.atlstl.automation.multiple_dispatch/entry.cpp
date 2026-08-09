@@ -2,44 +2,70 @@
  * File:    test.unit.atlstl.automation.multiple_dispatch/entry.cpp
  *
  * Purpose: Unit-tests for `atlstl::IDispatchImpl2`, `atlstl::IDispatchImpl3`
- *          and `atlstl::IDispatchImpl4` dispid striping logic.
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/automation/multiple_dispatch.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL header files */
 #include <atlbase.h>
 #include <atlcom.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * helpers
+ * forward declarations
+ */
+
+namespace {
+
+    static void TEST_stripe_flags_are_distinct(void);
+    static void TEST_stripe_round_trip(void);
+    static void TEST_stripe_preserves_negative_dispids(void);
+    static void TEST_header_compiles(void);
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    if (XTESTS_START_RUNNER("test.unit.atlstl.automation.multiple_dispatch", verbosity))
+    {
+        XTESTS_RUN_CASE(TEST_stripe_flags_are_distinct);
+        XTESTS_RUN_CASE(TEST_stripe_round_trip);
+        XTESTS_RUN_CASE(TEST_stripe_preserves_negative_dispids);
+        XTESTS_RUN_CASE(TEST_header_compiles);
+
+        XTESTS_PRINT_RESULTS();
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
+
+    return retCode;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * names
  */
 
 namespace {
@@ -76,48 +102,7 @@ static DISPID remove_stripe(DISPID dispid, unsigned index)
 
     return dispid;
 }
-
 } // anonymous namespace
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * forward declarations
- */
-
-namespace {
-
-    static void TEST_stripe_flags_are_distinct();
-    static void TEST_stripe_round_trip();
-    static void TEST_stripe_preserves_negative_dispids();
-    static void TEST_header_compiles();
-} // anonymous namespace
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * main
- */
-
-int main(int argc, char* argv[])
-{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("test.unit.atlstl.automation.multiple_dispatch", verbosity))
-    {
-        XTESTS_RUN_CASE(TEST_stripe_flags_are_distinct);
-        XTESTS_RUN_CASE(TEST_stripe_round_trip);
-        XTESTS_RUN_CASE(TEST_stripe_preserves_negative_dispids);
-        XTESTS_RUN_CASE(TEST_header_compiles);
-
-        XTESTS_PRINT_RESULTS();
-
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }
-
-    return retCode;
-}
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -167,7 +152,6 @@ static void TEST_header_compiles()
     /* Successful inclusion verifies template declarations are available. */
     TEST_PASSED();
 }
-
 } // anonymous namespace
 
 

@@ -4,27 +4,43 @@
  * Purpose: Unit-tests for COM instance creation helpers.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <comstl/util/creation_functions.hpp>
 #include <comstl/util/initialisers.hpp>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
-static void test_co_create_instance_filesystem_object(void); // anonymous namespace
 
-int main(int argc, char *argv[])
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+namespace {
+
+    static void test_co_create_instance_filesystem_object(void);
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
-
-    comstl::ole_init_nothrow  init;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
@@ -33,11 +49,19 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_co_create_instance_filesystem_object);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void test_co_create_instance_filesystem_object(void)
 {
@@ -52,6 +76,7 @@ static void test_co_create_instance_filesystem_object(void)
         pdisp->Release();
     }
 }
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

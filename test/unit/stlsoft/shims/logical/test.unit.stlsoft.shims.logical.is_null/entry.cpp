@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,24 +16,27 @@
  */
 
 #include <stlsoft/shims/logical/is_null.hpp>
-
 #include <stlsoft/shims/access/string.hpp>
 #include <memory>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void test_is_null_pointer();
-
+    static void test_is_null_pointer(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -53,8 +58,11 @@ int main(int argc, char* argv[])
 }
 
 
-namespace {
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
+namespace {
 
 static void test_is_null_pointer()
 {
@@ -63,8 +71,6 @@ static void test_is_null_pointer()
     TEST_BOOLEAN_TRUE(stlsoft::is_null(p));
     TEST_BOOLEAN_FALSE(stlsoft::is_null(&x));
 }
-
-
 } // anonymous namespace
 
 

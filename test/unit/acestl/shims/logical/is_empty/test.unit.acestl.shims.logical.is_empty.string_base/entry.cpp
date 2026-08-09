@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,23 +16,26 @@
  */
 
 #include <acestl/shims/logical/is_empty/string_base.hpp>
-
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <ace/SString.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_empty_string();
-static void TEST_non_empty_string();
-
+    static void TEST_empty_string(void);
+    static void TEST_non_empty_string(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -53,6 +58,10 @@ int main(int argc, char* argv[])
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
 namespace {
 
 static void TEST_empty_string()
@@ -70,7 +79,6 @@ static void TEST_non_empty_string()
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(s));
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(s, stlsoft::is_empty_type()));
 }
-
 } // anonymous namespace
 
 

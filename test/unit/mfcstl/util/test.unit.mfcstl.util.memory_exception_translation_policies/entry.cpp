@@ -5,29 +5,39 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/util/memory_exception_translation_policies.hpp>
-
 #include <xtests/terse-api.h>
-
 #include <stlsoft/exception/out_of_memory_exception.hpp>
 #include <stlsoft/stlsoft.h>
-
 #include <new>
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_bad_alloc_policy_rethrows_bad_alloc();
-static void TEST_bad_alloc_policy_translates_memory_exception();
-static void TEST_cmemory_exception_policy_rethrows_memory_exception();
-
+    static void TEST_bad_alloc_policy_rethrows_bad_alloc(void);
+    static void TEST_bad_alloc_policy_translates_memory_exception(void);
+    static void TEST_cmemory_exception_policy_rethrows_memory_exception(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -50,6 +60,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -126,7 +140,6 @@ static void TEST_cmemory_exception_policy_rethrows_memory_exception()
         px->Delete();
     }
 }
-
 } // anonymous namespace
 
 

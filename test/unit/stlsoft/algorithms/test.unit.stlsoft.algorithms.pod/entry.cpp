@@ -5,25 +5,37 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <stlsoft/algorithms/pod.hpp>
-
 #include <vector>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {
 
-static void test_pod_copy();
-
+    static void test_pod_copy(void);
 } // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -37,14 +49,19 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_pod_copy);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
 
-namespace {
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void test_pod_copy()
 {
@@ -55,8 +72,7 @@ static void test_pod_copy()
     TEST_INTEGER_EQUAL(20, dest[1]);
     TEST_INTEGER_EQUAL(30, dest[2]);
 }
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

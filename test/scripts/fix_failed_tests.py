@@ -8,6 +8,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from canonical_entry import render_minimal_cpp
+
 ROOT = Path(__file__).resolve().parents[2]
 TEST_ROOTS = [ROOT / "test" / "unit", ROOT / "test" / "component"]
 
@@ -49,49 +51,11 @@ def is_obsolete(area: str) -> bool:
 
 
 def minimal_entry(test_name: str, include: str) -> str:
-    return f"""/* /////////////////////////////////////////////////////////////////////////
- * File:    {test_name}/entry.cpp
- *
- * Purpose: Compile-verified test for component header.
- *
- * Created: 9th August 2026
- * Updated: 9th August 2026
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-#include {include}
-
-#include <xtests/terse-api.h>
-
-#include <stlsoft/stlsoft.h>
-
-#include <stdlib.h>
-
-static void TEST_compile_and_link(void)
-{{
-    TEST_PASSED();
-}}
-
-int main(int argc, char* argv[])
-{{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("{test_name}", verbosity))
-    {{
-        XTESTS_RUN_CASE(TEST_compile_and_link);
-
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }}
-
-    return retCode;
-}}
-
-/* ///////////////////////////// end of file //////////////////////////// */
-"""
+    return render_minimal_cpp(
+        test_name=test_name,
+        purpose="Compile-verified test for component header.",
+        primary_include=include,
+    )
 
 
 def remove_from_cmake(test_name: str) -> bool:

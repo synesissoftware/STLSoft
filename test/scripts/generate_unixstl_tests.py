@@ -6,6 +6,8 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+from canonical_entry import forward_decls_from_impl_block, render_cpp
+
 ROOT = Path(__file__).resolve().parents[2]
 TEST_UNIT = ROOT / "test" / "unit" / "unixstl"
 TEST_COMPONENT = ROOT / "test" / "component" / "unixstl"
@@ -96,54 +98,23 @@ def test_body(area: str, kind: str, header: str, name: str) -> str:
 
 
 def _wrap_entry(name: str, header: str, body: str) -> str:
-    return f"""/* /////////////////////////////////////////////////////////////////////////
- * File:    {name}/entry.cpp
- *
- * Purpose: {'Component' if 'component' in name else 'Unit'}-tests for UnixSTL `{header.strip('<>')}`.
- *
- * Created: 9th August 2026
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-
-#include {header}
-
-#include <xtests/xtests.h>
-#include <xtests/terse-api.h>
-
-#include <stlsoft/stlsoft.h>
-
-#include <stdlib.h>
-
-
-namespace {{
-
-{body}
-
-}} // anonymous namespace
-
-
-int main(int argc, char* argv[])
-{{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("{name}", verbosity))
-    {{
-{_main_cases(body)}
-
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }}
-
-    return retCode;
-}}
-
-
-/* ///////////////////////////// end of file //////////////////////////// */
-"""
+    kind_label = "Component" if "component" in name else "Unit"
+    funcs = forward_decls_from_impl_block(body) or ["TEST_smoke"]
+    if not forward_decls_from_impl_block(body):
+        body = _default_body(name.split(".")[-1])
+    return render_cpp(
+        test_name=name,
+        purpose=f"{kind_label}-tests for UnixSTL `{header.strip('<>')}`.",
+        includes=[
+            header,
+            "<xtests/xtests.h>",
+            "<xtests/terse-api.h>",
+            "<stlsoft/stlsoft.h>",
+            "<stdlib.h>",
+        ],
+        test_functions=funcs,
+        implementations=body,
+    )
 
 
 def _main_cases(body: str) -> str:

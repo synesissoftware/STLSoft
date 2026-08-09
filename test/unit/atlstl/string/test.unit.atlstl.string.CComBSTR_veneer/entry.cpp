@@ -5,37 +5,21 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-#define STLSOFT_MINIMUM_SAS_INCLUDES
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/string/CComBSTR_veneer.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL header files */
 #include <atlbase.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
 
@@ -46,17 +30,17 @@
 
 namespace {
 
-    static void TEST_default_construction();
-    static void TEST_copy_and_assignment();
-    static void TEST_iteration();
-    static void TEST_indexing_and_swap();
-    static void TEST_comparison_operators();
-    static void TEST_string_access_shims();
+    static void TEST_default_construction(void);
+    static void TEST_copy_and_assignment(void);
+    static void TEST_iteration(void);
+    static void TEST_indexing_and_swap(void);
+    static void TEST_comparison_operators(void);
+    static void TEST_string_access_shims(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -68,23 +52,12 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.atlstl.string.CComBSTR_veneer", verbosity))
     {
-        HRESULT const hrCoInit = ::CoInitialize(NULL);
-
-        if (SUCCEEDED(hrCoInit))
-        {
-            XTESTS_RUN_CASE(TEST_default_construction);
-            XTESTS_RUN_CASE(TEST_copy_and_assignment);
-            XTESTS_RUN_CASE(TEST_iteration);
-            XTESTS_RUN_CASE(TEST_indexing_and_swap);
-            XTESTS_RUN_CASE(TEST_comparison_operators);
-            XTESTS_RUN_CASE(TEST_string_access_shims);
-
-            ::CoUninitialize();
-        }
-        else
-        {
-            XTESTS_TEST_FAIL("CoInitialize() failed");
-        }
+        XTESTS_RUN_CASE(TEST_default_construction);
+        XTESTS_RUN_CASE(TEST_copy_and_assignment);
+        XTESTS_RUN_CASE(TEST_iteration);
+        XTESTS_RUN_CASE(TEST_indexing_and_swap);
+        XTESTS_RUN_CASE(TEST_comparison_operators);
+        XTESTS_RUN_CASE(TEST_string_access_shims);
 
         XTESTS_PRINT_RESULTS();
 
@@ -180,7 +153,6 @@ static void TEST_string_access_shims()
     TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_w(empty));
     TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(empty));
 }
-
 } // anonymous namespace
 
 

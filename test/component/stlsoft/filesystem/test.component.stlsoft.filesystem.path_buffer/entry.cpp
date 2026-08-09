@@ -5,27 +5,39 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-#include <stlsoft/filesystem/path_buffer.hpp>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <stlsoft/filesystem/path_buffer.hpp>
 #include <stdio.h>
 #include <string>
 #include <string>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {
 
-static void test_path_buffer_assign();
-
+    static void test_path_buffer_assign(void);
 } // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -39,14 +51,19 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_path_buffer_assign);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
 
-namespace {
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void test_path_buffer_assign()
 {
@@ -55,8 +72,7 @@ static void test_path_buffer_assign()
     TEST_MS_EQ("a/b", pb.c_str());
     TEST_INTEGER_EQUAL(3, static_cast<int>(pb.size()));
 }
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

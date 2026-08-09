@@ -13,6 +13,8 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from canonical_entry import render_cpp
+
 ROOT = Path(__file__).resolve().parents[2]
 INCLUDE = ROOT / "include"
 TEST_UNIT = ROOT / "test" / "unit"
@@ -106,78 +108,31 @@ def discover(project: str, extra_skip_dirs: set[str] | None = None) -> list[Comp
 
 def entry_cpp(comp: Component, kind: str) -> str:
     test_name = comp.test_name(kind)
-    return f"""/* /////////////////////////////////////////////////////////////////////////
- * File:    {test_name}/entry.cpp
- *
- * Purpose: {'Component' if kind == 'component' else 'Unit'}-tests for `{comp.area_path}`.
- *
- * Created: 9th August 2026
- * Updated: 9th August 2026
- *
- * ////////////////////////////////////////////////////////////////////// */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
- */
-
-#include {comp.header_include}
-
-#include <xtests/terse-api.h>
-
-#include <stlsoft/stlsoft.h>
-
-#include <stdlib.h>
-
-
-namespace {{
-
-static void TEST_compile_and_link();
-static void TEST_smoke();
-
-}} // anonymous namespace
-
-
-int main(int argc, char* argv[])
-{{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-
-    if (XTESTS_START_RUNNER("{test_name}", verbosity))
-    {{
-        XTESTS_RUN_CASE(TEST_compile_and_link);
-        XTESTS_RUN_CASE(TEST_smoke);
-
-        XTESTS_PRINT_RESULTS();
-
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }}
-
-    return retCode;
-}}
-
-
-namespace {{
-
-static void TEST_compile_and_link()
+    kind_label = "Component" if kind == "component" else "Unit"
+    return render_cpp(
+        test_name=test_name,
+        purpose=f"{kind_label}-tests for `{comp.area_path}`.",
+        includes=[
+            comp.header_include,
+            "<xtests/xtests.h>",
+            "<xtests/terse-api.h>",
+            "<stlsoft/stlsoft.h>",
+            "<stdlib.h>",
+        ],
+        test_functions=["TEST_compile_and_link", "TEST_smoke"],
+        implementations=f"""static void TEST_compile_and_link(void)
 {{
     /* Exercises primary header inclusion and basic symbol visibility. */
     TEST_PASSED();
 }}
 
-static void TEST_smoke()
+static void TEST_smoke(void)
 {{
     /* TODO: enhance with behavioural assertions for {comp.area_path}. */
     TEST_PASSED();
 }}
-
-}} // anonymous namespace
-
-
-/* ///////////////////////////// end of file //////////////////////////// */
-"""
+""",
+    )
 
 
 def cmake_leaf(comp: Component, kind: str) -> str:

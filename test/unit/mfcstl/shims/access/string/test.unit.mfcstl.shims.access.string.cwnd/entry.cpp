@@ -5,28 +5,37 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#define MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 #include <mfcstl/shims/access/string/cwnd.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_null_hwnd_window();
-static void TEST_c_str_ptr_returns_empty_for_null_hwnd();
-
+    static void TEST_null_hwnd_window(void);
+    static void TEST_c_str_ptr_returns_empty_for_null_hwnd(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -49,6 +58,10 @@ int main(int argc, char* argv[])
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
 namespace {
 
 static void TEST_null_hwnd_window()
@@ -67,7 +80,6 @@ static void TEST_c_str_ptr_returns_empty_for_null_hwnd()
     TEST_INT_EQ(0, _tcslen(stlsoft::c_str_ptr(w)));
     TEST_INT_EQ(0, _tcslen(stlsoft::c_str_data(w)));
 }
-
 } // anonymous namespace
 
 

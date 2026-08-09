@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,28 +16,31 @@
  */
 
 #include <stlsoft/shims/attribute/get_top/std/stack.hpp>
-
 #include <stlsoft/shims/access/string.hpp>
 #include <vector>
 #include <deque>
 #include <list>
 #include <queue>
 #include <stack>
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void test_get_top_stack();
-
+    static void test_get_top_stack(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -57,8 +62,11 @@ int main(int argc, char* argv[])
 }
 
 
-namespace {
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
+namespace {
 
 static void test_get_top_stack()
 {
@@ -67,8 +75,6 @@ static void test_get_top_stack()
     s.push(20);
     TEST_INTEGER_EQUAL(20, stlsoft::get_top(s));
 }
-
-
 } // anonymous namespace
 
 

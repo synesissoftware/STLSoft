@@ -5,24 +5,36 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <stlsoft/error/conversion_error.hpp>
-
-
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {
 
-static void test_conversion_error();
-
+    static void test_conversion_error(void);
 } // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -36,14 +48,19 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_conversion_error);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
 
-namespace {
 
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace {
 
 static void test_conversion_error()
 {
@@ -51,8 +68,7 @@ static void test_conversion_error()
     TEST_INTEGER_EQUAL(42, e.get_error_code());
     TEST_PTR_NE(NULL, e.what());
 }
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

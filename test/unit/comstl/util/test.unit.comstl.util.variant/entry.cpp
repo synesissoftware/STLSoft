@@ -4,27 +4,41 @@
  * Purpose: Unit-tests for `comstl::variant`.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-#include <comstl/util/variant.hpp>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <comstl/util/variant.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {
 
-static void test_default_construction(void);
-static void test_integer_construction(void);
-static void test_copy(void);
-
+    static void test_default_construction(void);
+    static void test_integer_construction(void);
+    static void test_copy(void);
 } // anonymous namespace
 
-int main(int argc, char *argv[])
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -40,11 +54,17 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_copy);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -70,7 +90,7 @@ static void test_copy(void)
 
     TEST_BOOLEAN_TRUE(comstl::VARIANT_equal(&v1, &v2));
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

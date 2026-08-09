@@ -4,31 +4,42 @@
  * Purpose: Unit-tests for COM object identity helpers.
  *
  * Created: 9th August 2026
+ * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-#include <comstl/util/object_functions.h>
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+#include <comstl/util/object_functions.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include "../../helpers/mock_unknown.hpp"
-
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
 
 namespace {
 
-using test_comstl::mock_unknown;
-
-static void test_get_object_identity_null_args(void);
-static void test_is_same_object(void);
-static void test_is_interface_implemented(void);
-
+    static void test_get_object_identity_null_args(void);
+    static void test_is_same_object(void);
+    static void test_is_interface_implemented(void);
 } // anonymous namespace
 
-int main(int argc, char *argv[])
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -44,11 +55,27 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_is_interface_implemented);
 
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * names
+ */
+
+namespace {
+
+using test_comstl::mock_unknown;
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -84,7 +111,7 @@ static void test_is_interface_implemented(void)
     TEST_INT_EQ((int)S_OK, (int)comstl_C_is_interface_implemented(&obj, IID_IUnknown));
     TEST_INT_EQ((int)E_NOINTERFACE, (int)comstl_C_is_interface_implemented(&obj, IID_IDispatch));
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

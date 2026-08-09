@@ -5,8 +5,10 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -14,25 +16,29 @@
  */
 
 #include <acestl/memory/message_block_functions.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <ace/Message_Block.h>
-
 #include <stdlib.h>
 #include <string.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_make_copied_Message_Block_with_data();
-static void TEST_make_copied_Message_Block_nullptr();
-static void TEST_make_copied_Message_Block_array();
-
+    static void TEST_make_copied_Message_Block_with_data(void);
+    static void TEST_make_copied_Message_Block_nullptr(void);
+    static void TEST_make_copied_Message_Block_array(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -55,6 +61,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -92,7 +102,6 @@ static void TEST_make_copied_Message_Block_array()
 
     pmb->release();
 }
-
 } // anonymous namespace
 
 

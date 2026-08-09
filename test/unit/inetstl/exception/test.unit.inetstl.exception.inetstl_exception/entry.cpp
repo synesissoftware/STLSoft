@@ -5,40 +5,23 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * test component header file include(s)
- */
-
-#include <inetstl/exception/inetstl_exception.hpp>
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* xTests header files */
+#include <inetstl/exception/inetstl_exception.hpp>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/diagnostics/ProjectIdentifier.h>
 #include <stlsoft/stlsoft.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
-
-#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-# error This test requires exception support
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
-#ifdef INETSTL_OS_IS_UNIX
-# include <errno.h>
-#endif /* INETSTL_OS_IS_UNIX */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -47,10 +30,10 @@
 
 namespace {
 
-    static void TEST_status_code_only();
-    static void TEST_reason_and_status_code();
-    static void TEST_reason_and_qualifier();
-    static void TEST_project_identifier();
+    static void TEST_status_code_only(void);
+    static void TEST_reason_and_status_code(void);
+    static void TEST_reason_and_qualifier(void);
+    static void TEST_project_identifier(void);
 } // anonymous namespace
 
 
@@ -58,7 +41,7 @@ namespace {
  * main()
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

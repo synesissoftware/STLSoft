@@ -5,35 +5,22 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/string/string_traits.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/string/string_traits.hpp>
-
-/* ATL header files */
 #include <atlbase.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
 
@@ -44,15 +31,15 @@
 
 namespace {
 
-    static void TEST_empty_string();
-    static void TEST_construct();
-    static void TEST_assign_inplace();
-    static void TEST_begin_and_end();
+    static void TEST_empty_string(void);
+    static void TEST_construct(void);
+    static void TEST_assign_inplace(void);
+    static void TEST_begin_and_end(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -64,21 +51,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.atlstl.string.string_traits", verbosity))
     {
-        HRESULT const hrCoInit = ::CoInitialize(NULL);
-
-        if (SUCCEEDED(hrCoInit))
-        {
-            XTESTS_RUN_CASE(TEST_empty_string);
-            XTESTS_RUN_CASE(TEST_construct);
-            XTESTS_RUN_CASE(TEST_assign_inplace);
-            XTESTS_RUN_CASE(TEST_begin_and_end);
-
-            ::CoUninitialize();
-        }
-        else
-        {
-            XTESTS_TEST_FAIL("CoInitialize() failed");
-        }
+        XTESTS_RUN_CASE(TEST_empty_string);
+        XTESTS_RUN_CASE(TEST_construct);
+        XTESTS_RUN_CASE(TEST_assign_inplace);
+        XTESTS_RUN_CASE(TEST_begin_and_end);
 
         XTESTS_PRINT_RESULTS();
 
@@ -134,7 +110,6 @@ static void TEST_begin_and_end()
     TEST_INT_EQ(L'a', b[0]);
     TEST_INT_EQ(L'b', b[1]);
 }
-
 } // anonymous namespace
 
 

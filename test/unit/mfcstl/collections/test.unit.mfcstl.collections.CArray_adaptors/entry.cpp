@@ -5,30 +5,41 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/collections/CArray_adaptors.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <algorithm>
 #include <numeric>
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_cadaptor_default_empty();
-static void TEST_cadaptor_push_back_and_iterate();
-static void TEST_cadaptor_assign_and_compare();
-static void TEST_iadaptor_wraps_underlying_array();
-
+    static void TEST_cadaptor_default_empty(void);
+    static void TEST_cadaptor_push_back_and_iterate(void);
+    static void TEST_cadaptor_assign_and_compare(void);
+    static void TEST_iadaptor_wraps_underlying_array(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -52,6 +63,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -108,7 +123,6 @@ static void TEST_iadaptor_wraps_underlying_array()
     TEST_INT_EQ(4u, raw[0]);
     TEST_INT_EQ(5u, arp[1]);
 }
-
 } // anonymous namespace
 
 

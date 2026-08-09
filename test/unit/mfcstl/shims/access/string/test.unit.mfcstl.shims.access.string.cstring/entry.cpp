@@ -5,28 +5,39 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/shims/access/string/cstring.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 #include <string.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_calls_possible();
-static void TEST_empty_string();
-static void TEST_non_empty_string();
-
+    static void TEST_calls_possible(void);
+    static void TEST_empty_string(void);
+    static void TEST_non_empty_string(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -49,6 +60,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -82,7 +97,6 @@ static void TEST_non_empty_string()
     TEST_MS_EQ(_T("mfcstl"), stlsoft::c_str_data(s));
     TEST_MS_EQ(_T("mfcstl"), stlsoft::c_str_ptr_null(s));
 }
-
 } // anonymous namespace
 
 

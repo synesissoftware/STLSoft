@@ -5,29 +5,40 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/collections/CString_adaptors.hpp>
-
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 #include <string.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_cadaptor_default_empty();
-static void TEST_cadaptor_construct_and_assign();
-static void TEST_cadaptor_append_and_substr();
-static void TEST_iadaptor_wraps_underlying_string();
-
+    static void TEST_cadaptor_default_empty(void);
+    static void TEST_cadaptor_construct_and_assign(void);
+    static void TEST_cadaptor_append_and_substr(void);
+    static void TEST_iadaptor_wraps_underlying_string(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -51,6 +62,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -101,7 +116,6 @@ static void TEST_iadaptor_wraps_underlying_string()
     TEST_INT_EQ(7, raw.GetLength());
     TEST_MS_EQ(_T("adapted"), raw);
 }
-
 } // anonymous namespace
 
 

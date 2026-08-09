@@ -5,26 +5,36 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <mfcstl/shims/logical/is_empty/arrays.hpp>
-
 #include <xtests/terse-api.h>
-
 #include <stlsoft/stlsoft.h>
-
 #include <stdlib.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
 namespace {
 
-static void TEST_empty_arrays();
-static void TEST_non_empty_arrays();
-
+    static void TEST_empty_arrays(void);
+    static void TEST_non_empty_arrays(void);
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -46,6 +56,10 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
@@ -69,7 +83,6 @@ static void TEST_non_empty_arrays()
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(uar));
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(sar));
 }
-
 } // anonymous namespace
 
 

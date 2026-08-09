@@ -5,38 +5,22 @@
  *
  * Created: 9th August 2026
  * Updated: 9th August 2026
+ * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
-#define STLSOFT_MINIMUM_SAS_INCLUDES
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
-/* /////////////////////////////////////
- * test component header file include(s)
- */
-
 #include <atlstl/shims/access/string/CWindow.hpp>
-
-/* /////////////////////////////////////
- * general includes
- */
-
-/* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
-
-/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* ATL header files */
 #include <atlbase.h>
 #include <atlwin.h>
-
-/* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
 
@@ -47,14 +31,14 @@
 
 namespace {
 
-    static void TEST_calls_possible_with_null_hwnd();
-    static void TEST_empty_window_text();
-    static void TEST_proxy_equality_operators();
+    static void TEST_calls_possible_with_null_hwnd(void);
+    static void TEST_empty_window_text(void);
+    static void TEST_proxy_equality_operators(void);
 } // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])
@@ -129,7 +113,6 @@ static void TEST_proxy_equality_operators()
     TEST_BOOLEAN_EQ(1, nullProxy == NULL);
     TEST_BOOLEAN_EQ(1, NULL != static_cast<LPCTSTR>(stlsoft::c_str_ptr(w)));
 }
-
 } // anonymous namespace
 
 
