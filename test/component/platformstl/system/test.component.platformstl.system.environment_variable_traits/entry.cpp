@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::environment_variable_traits`.
  *
  * Created: 30th December 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -98,21 +99,21 @@ static void TEST_set_variable()
     {
         int const r = environment_variable_traits::set_variable("EV_2C4D392B_22CD_4452_9525_382043AD2611", "some-value");
 
-        XTESTS_TEST_INTEGER_EQUAL(0, r);
+        TEST_INT_EQ(0, r);
     }
 
     {
         char const* ev_value = environment_variable_traits::get_variable("EV_2C4D392B_22CD_4452_9525_382043AD2611");
 
-        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ev_value));
+        XTESTS_REQUIRE(TEST_PTR_NE(NULL, ev_value));
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("some-value", ev_value);
+        TEST_MS_EQ("some-value", ev_value);
     }
 
     {
         int const r = environment_variable_traits::erase_variable("EV_2C4D392B_22CD_4452_9525_382043AD2611");
 
-        XTESTS_TEST_INTEGER_EQUAL(0, r);
+        TEST_INT_EQ(0, r);
     }
 }
 #endif /* PLATFORMSTL_ENVVAR_SET_SUPPORTED */

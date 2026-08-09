@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <winstl/system/system_directory.hpp>
@@ -138,12 +139,12 @@ static void test_Kernel32_GetTickCount()
 
         DWORD const tc_after = ::GetTickCount();
 
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(tc_before, tc_dl);
-        XTESTS_TEST_INTEGER_LESS_OR_EQUAL(tc_after, tc_dl);
+        TEST_INT_GE(tc_before, tc_dl);
+        TEST_INT_LE(tc_after, tc_dl);
     }
     catch (winstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -161,12 +162,12 @@ static void test_Kernel32_GetTickCount64()
 
         ULONGLONG const tc_after = ::GetTickCount64();
 
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(tc_before, tc_dl);
-        XTESTS_TEST_INTEGER_LESS_OR_EQUAL(tc_after, tc_dl);
+        TEST_INT_GE(tc_before, tc_dl);
+        TEST_INT_LE(tc_after, tc_dl);
     }
     catch (winstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -181,11 +182,11 @@ static void test_Kernel32_GetSystemInfo()
 
         winstl::dl_call<void>("Kernel32.dll", WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetSystemInfo"), &s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(s1, s2));
+        TEST_BOOLEAN_TRUE(winstl::equal_struct(s1, s2));
     }
     catch (winstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -203,11 +204,11 @@ static void test_Kernel32_GetSystemDirectory()
         ,   static_cast<UINT>(STLSOFT_NUM_ELEMENTS(d2))
         );
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(d1, d2);
+        TEST_MS_EQ(d1, d2);
     }
     catch (winstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -227,11 +228,11 @@ static void test_GetSystemTimeAdjustmentPrecise()
         ,   &timeAdjustmentDisabled
         );
 
-        XTESTS_TEST_BOOLEAN_TRUE(r);
+        TEST_BOOLEAN_TRUE(r);
     }
     catch (winstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
     catch (winstl::winstl_exception& /* x */)
     {}
@@ -254,12 +255,12 @@ static void test_SystemParametersInfo()
 
         if (r)
         {
-            XTESTS_TEST(rc.bottom != -1 || rc.top != -1 || rc.left != -1 || rc.right != -1);
+            TEST(rc.bottom != -1 || rc.top != -1 || rc.left != -1 || rc.right != -1);
         }
     }
     catch (winstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 } // anonymous namespace

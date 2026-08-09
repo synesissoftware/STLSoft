@@ -4,7 +4,7 @@
  * Purpose: Scratch test for memory-map functions.
  *
  * Created: 26th August 2010
- * Updated: 8th August 2026
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -160,7 +161,7 @@ static void test_1_0()
     ws_uintptr_t    viewSize    =   0;
     void*           view = winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, 0, 0, &viewSize);
 
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
+    TEST_PTR_NE(NULL, view);
 
     if (NULL != view)
     {
@@ -176,7 +177,7 @@ static void test_1_0()
             {
                 ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
-                XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
+                TEST_INT_EQ((int)buffer[j], (int)*v);
             }}
         }
 
@@ -194,8 +195,8 @@ static void test_1_1()
 
     STLSOFT_SUPPRESS_UNUSED(err);
 
-    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
-    XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
+    TEST_PTR_NE(NULL, view);
+    TEST_INT_EQ(requestSize, viewSize);
 
     if (NULL != view)
     {
@@ -211,7 +212,7 @@ static void test_1_1()
             {
                 ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
-                XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
+                TEST_INT_EQ((int)buffer[j], (int)*v);
             }}
         }
 
@@ -231,18 +232,18 @@ static void test_1_2()
 
         STLSOFT_SUPPRESS_UNUSED(err);
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
+        TEST_PTR_NE(NULL, view);
         if (0 == requestSize)
         {
-            XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
+            TEST_INT_EQ(TEST_FILE_SIZE - offset, viewSize);
         }
         else if (requestSize <= TEST_FILE_SIZE - offset)
         {
-            XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
+            TEST_INT_EQ(requestSize, viewSize);
         }
         else
         {
-            XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
+            TEST_INT_EQ(TEST_FILE_SIZE - offset, viewSize);
         }
 
         if (NULL != view)
@@ -259,7 +260,7 @@ static void test_1_2()
                 {
                     ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
-                    XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
+                    TEST_INT_EQ((int)buffer[j], (int)*v);
                 }}
             }
 
@@ -288,7 +289,7 @@ static void test_1_3()
 
     { size_t i; for (i = 1; i < j; ++i)
     {
-        XTESTS_TEST_BOOLEAN_TRUE(0 == memcmp(views[i], views[i-1], viewSizes[i]));
+        TEST_BOOLEAN_TRUE(0 == memcmp(views[i], views[i-1], viewSizes[i]));
     }}
 
     { size_t i; for (i = 0; i != j; ++i)

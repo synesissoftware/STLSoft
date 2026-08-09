@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 7th August 2026
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,6 +44,7 @@
 
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* Standard C++ header files */

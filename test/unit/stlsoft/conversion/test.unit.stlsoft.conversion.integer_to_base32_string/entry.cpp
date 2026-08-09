@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_base32_string`.
  *
  * Created: 17th February 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -179,8 +180,8 @@ static void test_zero()
         size_t              n;
         char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), 0, &n);
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", s);
+        TEST_INT_EQ(1u, n);
+        TEST_MS_EQ("0", s);
     }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -189,7 +190,7 @@ static void test_zero()
         char                buf[9];
         char const* const   s   =   stlsoft::integer_to_base32_string(buf, 0);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", s);
+        TEST_MS_EQ("0", s);
     }
 #endif
 }
@@ -201,8 +202,8 @@ static void test_ones()
         size_t              n;
         char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), 1, &n);
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", s);
+        TEST_INT_EQ(1u, n);
+        TEST_MS_EQ("1", s);
     }
 
     {
@@ -210,8 +211,8 @@ static void test_ones()
         size_t              n;
         char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), -1, &n);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-1", s);
+        TEST_INT_EQ(2u, n);
+        TEST_MS_EQ("-1", s);
     }
 }
 
@@ -228,7 +229,7 @@ static void test_fibonacci()
             char*           endptr;
             long long const v = strtoll(mapping.s, &endptr, 32);
 
-            XTESTS_TEST_INTEGER_EQUAL(mapping.v, v);
+            TEST_INT_EQ(mapping.v, v);
         }
 
         // long long
@@ -240,7 +241,7 @@ static void test_fibonacci()
             long long const     v   =   static_cast<long long>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
 
         // long
@@ -252,7 +253,7 @@ static void test_fibonacci()
             long const          v   =   static_cast<long>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
 
         // short
@@ -264,7 +265,7 @@ static void test_fibonacci()
             short const         v   =   static_cast<short>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
 
         // int8_t
@@ -276,7 +277,7 @@ static void test_fibonacci()
             int8_t const        v   =   static_cast<int8_t>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
 
         // int16_t
@@ -288,7 +289,7 @@ static void test_fibonacci()
             int16_t const       v   =   static_cast<int16_t>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
 
         // int32_t
@@ -300,7 +301,7 @@ static void test_fibonacci()
             int32_t const       v   =   static_cast<int32_t>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
 
         // int64_t
@@ -312,7 +313,7 @@ static void test_fibonacci()
             int64_t const       v   =   static_cast<int64_t>(mapping.v);
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), v, &n);
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mapping.s, s);
+            TEST_MS_EQ(mapping.s, s);
         }
     }
 }
@@ -329,8 +330,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(3u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-40", s);
+            TEST_INT_EQ(3u, n);
+            TEST_MS_EQ("-40", s);
         }
 
         {
@@ -338,8 +339,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min() + 1, &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(3u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-3v", s);
+            TEST_INT_EQ(3u, n);
+            TEST_MS_EQ("-3v", s);
         }
 
         {
@@ -347,8 +348,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(2u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3v", s);
+            TEST_INT_EQ(2u, n);
+            TEST_MS_EQ("3v", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -357,7 +358,7 @@ static void test_limits()
             char                buf[4];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3v", s);
+            TEST_MS_EQ("3v", s);
         }
 #endif
     }
@@ -371,8 +372,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(1u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", s);
+            TEST_INT_EQ(1u, n);
+            TEST_MS_EQ("0", s);
         }
 
         {
@@ -380,8 +381,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(2u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("7v", s);
+            TEST_INT_EQ(2u, n);
+            TEST_MS_EQ("7v", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -390,7 +391,7 @@ static void test_limits()
             char                buf[3];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("7v", s);
+            TEST_MS_EQ("7v", s);
         }
 #endif
     }
@@ -404,8 +405,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(5u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-1000", s);
+            TEST_INT_EQ(5u, n);
+            TEST_MS_EQ("-1000", s);
         }
 
         {
@@ -413,8 +414,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min() + 1, &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(4u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-vvv", s);
+            TEST_INT_EQ(4u, n);
+            TEST_MS_EQ("-vvv", s);
         }
 
         {
@@ -422,8 +423,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(3u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("vvv", s);
+            TEST_INT_EQ(3u, n);
+            TEST_MS_EQ("vvv", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -432,7 +433,7 @@ static void test_limits()
             char                buf[6];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("vvv", s);
+            TEST_MS_EQ("vvv", s);
         }
 #endif
     }
@@ -446,8 +447,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(1u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", s);
+            TEST_INT_EQ(1u, n);
+            TEST_MS_EQ("0", s);
         }
 
         {
@@ -455,8 +456,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(4u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1vvv", s);
+            TEST_INT_EQ(4u, n);
+            TEST_MS_EQ("1vvv", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -465,7 +466,7 @@ static void test_limits()
             char                buf[5];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1vvv", s);
+            TEST_MS_EQ("1vvv", s);
         }
 #endif
     }
@@ -479,8 +480,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(8u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-2000000", s);
+            TEST_INT_EQ(8u, n);
+            TEST_MS_EQ("-2000000", s);
         }
 
         {
@@ -488,8 +489,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min() + 1, &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(8u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-1vvvvvv", s);
+            TEST_INT_EQ(8u, n);
+            TEST_MS_EQ("-1vvvvvv", s);
         }
 
         {
@@ -497,8 +498,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(7u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1vvvvvv", s);
+            TEST_INT_EQ(7u, n);
+            TEST_MS_EQ("1vvvvvv", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -507,7 +508,7 @@ static void test_limits()
             char                buf[9];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1vvvvvv", s);
+            TEST_MS_EQ("1vvvvvv", s);
         }
 #endif
     }
@@ -521,8 +522,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(1u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", s);
+            TEST_INT_EQ(1u, n);
+            TEST_MS_EQ("0", s);
         }
 
         {
@@ -530,8 +531,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(7u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3vvvvvv", s);
+            TEST_INT_EQ(7u, n);
+            TEST_MS_EQ("3vvvvvv", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -540,7 +541,7 @@ static void test_limits()
             char                buf[8];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3vvvvvv", s);
+            TEST_MS_EQ("3vvvvvv", s);
         }
 #endif
     }
@@ -554,8 +555,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(14u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-8000000000000", s);
+            TEST_INT_EQ(14u, n);
+            TEST_MS_EQ("-8000000000000", s);
         }
 
         {
@@ -563,8 +564,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min() + 1, &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(14u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-7vvvvvvvvvvvv", s);
+            TEST_INT_EQ(14u, n);
+            TEST_MS_EQ("-7vvvvvvvvvvvv", s);
         }
 
         {
@@ -572,8 +573,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(13u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("7vvvvvvvvvvvv", s);
+            TEST_INT_EQ(13u, n);
+            TEST_MS_EQ("7vvvvvvvvvvvv", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -582,7 +583,7 @@ static void test_limits()
             char                buf[15];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("7vvvvvvvvvvvv", s);
+            TEST_MS_EQ("7vvvvvvvvvvvv", s);
         }
 #endif
     }
@@ -596,8 +597,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::min(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(1u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", s);
+            TEST_INT_EQ(1u, n);
+            TEST_MS_EQ("0", s);
         }
 
         {
@@ -605,8 +606,8 @@ static void test_limits()
             size_t              n;
             char const* const   s   =   stlsoft::integer_to_base32_string(&buf[0], STLSOFT_NUM_ELEMENTS(buf), std::numeric_limits<i_t>::max(), &n);
 
-            XTESTS_TEST_INTEGER_EQUAL(13u, n);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("fvvvvvvvvvvvv", s);
+            TEST_INT_EQ(13u, n);
+            TEST_MS_EQ("fvvvvvvvvvvvv", s);
         }
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -615,7 +616,7 @@ static void test_limits()
             char                buf[14];
             char const* const   s   =   stlsoft::integer_to_base32_string(buf, std::numeric_limits<i_t>::max());
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("fvvvvvvvvvvvv", s);
+            TEST_MS_EQ("fvvvvvvvvvvvv", s);
         }
 #endif
     }

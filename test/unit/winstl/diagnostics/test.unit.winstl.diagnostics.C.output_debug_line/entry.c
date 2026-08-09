@@ -4,7 +4,7 @@
  * Purpose: Unit test for `winstl_C_diagnostics_output_debug_line_1_m()`, etc.
  *
  * Created: 22nd November 2011
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@ static void winstl_C_call_OutputDebugStringA_(char const* s);
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -102,7 +103,7 @@ static void winstl_C_call_OutputDebugStringA_(char const* s)
     if (CSTRING_RC_SUCCESS != rc)
     {
         fprintf(stderr, "CSTRING append failed: %s (%d)\n", cstring_getStatusCodeString(rc), rc);
-        exit(EXIT_FAILURE);
+        exit(EXIT_XTESTS_FAILURE);
     }
 }
 
@@ -127,24 +128,24 @@ static void test_1_0()
 {
     winstl_C_diagnostics_output_debug_line_1_m(NULL);
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\n", string.ptr);
+    TEST_INT_EQ(1u, string.len);
+    TEST_MS_EQ("\n", string.ptr);
 }
 
 static void test_1_1()
 {
     winstl_C_diagnostics_output_debug_line_1_m("");
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\n", string.ptr);
+    TEST_INT_EQ(1u, string.len);
+    TEST_MS_EQ("\n", string.ptr);
 }
 
 static void test_1_2()
 {
     winstl_C_diagnostics_output_debug_line_1_m("abc");
 
-    XTESTS_TEST_INTEGER_EQUAL(4u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc\n", string.ptr);
+    TEST_INT_EQ(4u, string.len);
+    TEST_MS_EQ("abc\n", string.ptr);
 }
 
 static void test_1_3()
@@ -160,9 +161,9 @@ static void test_1_3()
 
             winstl_C_diagnostics_output_debug_line_1_m(s);
 
-            XTESTS_TEST_INTEGER_EQUAL(i + 1, string.len);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s, string.ptr, i);
-            XTESTS_TEST_CHARACTER_EQUAL('\n', string.ptr[i]);
+            TEST_INT_EQ(i + 1, string.len);
+            TEST_MS_EQ_N(s, string.ptr, i);
+            TEST_CHAR_EQ('\n', string.ptr[i]);
 
             free(s);
 
@@ -175,48 +176,48 @@ static void test_1_5()
 {
     winstl_C_diagnostics_output_debug_line_2_m(NULL, NULL);
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\n", string.ptr);
+    TEST_INT_EQ(1u, string.len);
+    TEST_MS_EQ("\n", string.ptr);
 }
 
 static void test_1_6()
 {
     winstl_C_diagnostics_output_debug_line_2_m("", NULL);
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\n", string.ptr);
+    TEST_INT_EQ(1u, string.len);
+    TEST_MS_EQ("\n", string.ptr);
 }
 
 static void test_1_7()
 {
     winstl_C_diagnostics_output_debug_line_2_m(NULL, "");
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\n", string.ptr);
+    TEST_INT_EQ(1u, string.len);
+    TEST_MS_EQ("\n", string.ptr);
 }
 
 static void test_1_8()
 {
     winstl_C_diagnostics_output_debug_line_2_m("", "");
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\n", string.ptr);
+    TEST_INT_EQ(1u, string.len);
+    TEST_MS_EQ("\n", string.ptr);
 }
 
 static void test_1_9()
 {
     winstl_C_diagnostics_output_debug_line_2_m("abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-    XTESTS_TEST_INTEGER_EQUAL(53u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n", string.ptr);
+    TEST_INT_EQ(53u, string.len);
+    TEST_MS_EQ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n", string.ptr);
 }
 
 static void test_1_10()
 {
     winstl_C_diagnostics_output_debug_line_2_m("abcdefghijklm", "nopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-    XTESTS_TEST_INTEGER_EQUAL(53u, string.len);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n", string.ptr);
+    TEST_INT_EQ(53u, string.len);
+    TEST_MS_EQ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n", string.ptr);
 }
 
 static void test_1_11()
@@ -232,10 +233,10 @@ static void test_1_11()
 
             winstl_C_diagnostics_output_debug_line_2_m(s, s);
 
-            XTESTS_TEST_INTEGER_EQUAL(2 * i + 1, string.len);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s, string.ptr + 0, i);
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s, string.ptr + i, i);
-            XTESTS_TEST_CHARACTER_EQUAL('\n', string.ptr[2 * i]);
+            TEST_INT_EQ(2 * i + 1, string.len);
+            TEST_MS_EQ_N(s, string.ptr + 0, i);
+            TEST_MS_EQ_N(s, string.ptr + i, i);
+            TEST_CHAR_EQ('\n', string.ptr[2 * i]);
 
             free(s);
 

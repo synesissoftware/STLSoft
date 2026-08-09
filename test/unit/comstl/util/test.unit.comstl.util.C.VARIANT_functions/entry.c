@@ -4,7 +4,7 @@
  * Purpose: Scratch test for VARIANT functions.
  *
  * Created: 26th October 2008
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,6 +21,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -256,19 +257,19 @@ static void test_VARIANT_equal_VT_EMPTY()
     }
     else
     {
-        XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varEMPTY, &varEMPTY, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varNULL, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varI4, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varBSTR, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varR8, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDECIMAL, NULL));
+        TEST_BOOLEAN_EQ(1, comstl_C_VARIANT_equal(&varEMPTY, &varEMPTY, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varNULL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varI4, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varBSTR, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varR8, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDECIMAL, NULL));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -293,19 +294,19 @@ static void test_VARIANT_equal_VT_NULL()
     }
     else
     {
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varEMPTY, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varNULL, &varNULL, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varI4, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varBSTR, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varR8, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varDECIMAL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varNULL, &varEMPTY, NULL));
+        TEST_BOOLEAN_EQ(1, comstl_C_VARIANT_equal(&varNULL, &varNULL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varNULL, &varI4, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varNULL, &varBSTR, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varNULL, &varR8, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varNULL, &varDECIMAL, NULL));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -330,19 +331,19 @@ static void test_VARIANT_equal_VT_I4()
     }
     else
     {
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varEMPTY, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varNULL, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varI4, &varI4, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varBSTR, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varR8, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varDECIMAL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varI4, &varEMPTY, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varI4, &varNULL, NULL));
+        TEST_BOOLEAN_EQ(1, comstl_C_VARIANT_equal(&varI4, &varI4, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varI4, &varBSTR, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varI4, &varR8, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varI4, &varDECIMAL, NULL));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -367,19 +368,19 @@ static void test_VARIANT_equal_VT_BSTR()
     }
     else
     {
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varEMPTY, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varNULL, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varI4, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varBSTR, &varBSTR, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varR8, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varDECIMAL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varBSTR, &varEMPTY, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varBSTR, &varNULL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varBSTR, &varI4, NULL));
+        TEST_BOOLEAN_EQ(1, comstl_C_VARIANT_equal(&varBSTR, &varBSTR, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varBSTR, &varR8, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varBSTR, &varDECIMAL, NULL));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -404,19 +405,19 @@ static void test_VARIANT_equal_VT_R8()
     }
     else
     {
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varEMPTY, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varNULL, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varI4, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varBSTR, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varR8, &varR8, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varDECIMAL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varR8, &varEMPTY, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varR8, &varNULL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varR8, &varI4, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varR8, &varBSTR, NULL));
+        TEST_BOOLEAN_EQ(1, comstl_C_VARIANT_equal(&varR8, &varR8, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varR8, &varDECIMAL, NULL));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -441,19 +442,19 @@ static void test_VARIANT_equal_VT_DECIMAL()
     }
     else
     {
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varEMPTY, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varNULL, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varI4, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varBSTR, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varR8, NULL));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varDECIMAL, &varDECIMAL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varDECIMAL, &varEMPTY, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varDECIMAL, &varNULL, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varDECIMAL, &varI4, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varDECIMAL, &varBSTR, NULL));
+        TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varDECIMAL, &varR8, NULL));
+        TEST_BOOLEAN_EQ(1, comstl_C_VARIANT_equal(&varDECIMAL, &varDECIMAL, NULL));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
+            TEST_BOOLEAN_EQ(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -489,25 +490,25 @@ static void test_VARIANT_change_type_VT_I4(void)
 
         init_VARIANTS(&varEMPTYX, &varNULLX, &varI4X, &varBSTRX, &varR8X, &varDECIMALX, &varDISPATCHX, &varUNKNOWNX);
 
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varEMPTYX, &varEMPTY, LOCALE_USER_DEFAULT, 0, VT_I4)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, FAILED(comstl_C_VARIANT_change_type(&varNULLX, &varNULL, LOCALE_USER_DEFAULT, 0, VT_I4)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varI4X, &varI4, LOCALE_USER_DEFAULT, 0, VT_I4)));
-        XTESTS_TEST_INTEGER_EQUAL(VT_I4_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varI4X, lVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varBSTRX, &varBSTR, LOCALE_USER_DEFAULT, 0, VT_I4)));
-        XTESTS_TEST_INTEGER_EQUAL(wcstol(VT_BSTR_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, lVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varR8X, &varR8, LOCALE_USER_DEFAULT, 0, VT_I4)));
-        XTESTS_TEST_INTEGER_EQUAL(ceil(VT_R8_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varR8X, lVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_I4)));
-        XTESTS_TEST_INTEGER_EQUAL(VT_DECIMAL_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, lVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varEMPTYX, &varEMPTY, LOCALE_USER_DEFAULT, 0, VT_I4)));
+        TEST_BOOLEAN_EQ(1, FAILED(comstl_C_VARIANT_change_type(&varNULLX, &varNULL, LOCALE_USER_DEFAULT, 0, VT_I4)));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varI4X, &varI4, LOCALE_USER_DEFAULT, 0, VT_I4)));
+        TEST_INT_EQ(VT_I4_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varI4X, lVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varBSTRX, &varBSTR, LOCALE_USER_DEFAULT, 0, VT_I4)));
+        TEST_INT_EQ(wcstol(VT_BSTR_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, lVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varR8X, &varR8, LOCALE_USER_DEFAULT, 0, VT_I4)));
+        TEST_INT_EQ(ceil(VT_R8_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varR8X, lVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_I4)));
+        TEST_INT_EQ(VT_DECIMAL_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, lVal));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_I4)));
-            XTESTS_TEST_INTEGER_EQUAL(VT_DISPATCH_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, lVal));
+            TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_I4)));
+            TEST_INT_EQ(VT_DISPATCH_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, lVal));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_I4)));
-            XTESTS_TEST_INTEGER_EQUAL(wcstol(VT_UNKNOWN_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, lVal));
+            TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_I4)));
+            TEST_INT_EQ(wcstol(VT_UNKNOWN_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, lVal));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -543,25 +544,25 @@ static void test_VARIANT_change_type_VT_R8(void)
 
         init_VARIANTS(&varEMPTYX, &varNULLX, &varI4X, &varBSTRX, &varR8X, &varDECIMALX, &varDISPATCHX, &varUNKNOWNX);
 
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varEMPTYX, &varEMPTY, LOCALE_USER_DEFAULT, 0, VT_R8)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, FAILED(comstl_C_VARIANT_change_type(&varNULLX, &varNULL, LOCALE_USER_DEFAULT, 0, VT_R8)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varI4X, &varI4, LOCALE_USER_DEFAULT, 0, VT_R8)));
-        XTESTS_TEST_FLOATINGPOINT_EQUAL(ceil(VT_I4_VALUE), ceil(COMSTL_ACCESS_VARIANT_MEM_BYREF(varI4X, dblVal)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varBSTRX, &varBSTR, LOCALE_USER_DEFAULT, 0, VT_R8)));
-        XTESTS_TEST_FLOATINGPOINT_EQUAL(wcstod(VT_BSTR_VALUE, NULL), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, dblVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varR8X, &varR8, LOCALE_USER_DEFAULT, 0, VT_R8)));
-        XTESTS_TEST_FLOATINGPOINT_EQUAL(VT_R8_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varR8X, dblVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_R8)));
-        XTESTS_TEST_FLOATINGPOINT_EQUAL((double)VT_DECIMAL_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, dblVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varEMPTYX, &varEMPTY, LOCALE_USER_DEFAULT, 0, VT_R8)));
+        TEST_BOOLEAN_EQ(1, FAILED(comstl_C_VARIANT_change_type(&varNULLX, &varNULL, LOCALE_USER_DEFAULT, 0, VT_R8)));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varI4X, &varI4, LOCALE_USER_DEFAULT, 0, VT_R8)));
+        TEST_FP_EQ(ceil(VT_I4_VALUE), ceil(COMSTL_ACCESS_VARIANT_MEM_BYREF(varI4X, dblVal)));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varBSTRX, &varBSTR, LOCALE_USER_DEFAULT, 0, VT_R8)));
+        TEST_FP_EQ(wcstod(VT_BSTR_VALUE, NULL), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, dblVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varR8X, &varR8, LOCALE_USER_DEFAULT, 0, VT_R8)));
+        TEST_FP_EQ(VT_R8_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varR8X, dblVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_R8)));
+        TEST_FP_EQ((double)VT_DECIMAL_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, dblVal));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_R8)));
-            XTESTS_TEST_FLOATINGPOINT_EQUAL((double)VT_DISPATCH_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, dblVal));
+            TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_R8)));
+            TEST_FP_EQ((double)VT_DISPATCH_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, dblVal));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_R8)));
-            XTESTS_TEST_FLOATINGPOINT_EQUAL((double)wcstol(VT_UNKNOWN_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, dblVal));
+            TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_R8)));
+            TEST_FP_EQ((double)wcstol(VT_UNKNOWN_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, dblVal));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
@@ -597,25 +598,25 @@ static void test_VARIANT_change_type_VT_BSTR(void)
 
         init_VARIANTS(&varEMPTYX, &varNULLX, &varI4X, &varBSTRX, &varR8X, &varDECIMALX, &varDISPATCHX, &varUNKNOWNX);
 
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varEMPTYX, &varEMPTY, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, FAILED(comstl_C_VARIANT_change_type(&varNULLX, &varNULL, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varI4X, &varI4, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-        XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_I4_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varI4X, bstrVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varBSTRX, &varBSTR, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-        XTESTS_TEST_WIDE_STRING_EQUAL(VT_BSTR_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, bstrVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varR8X, &varR8, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-        XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_R8_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, bstrVal));
-        XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-        XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_DECIMAL_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, bstrVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varEMPTYX, &varEMPTY, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+        TEST_BOOLEAN_EQ(1, FAILED(comstl_C_VARIANT_change_type(&varNULLX, &varNULL, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varI4X, &varI4, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+        TEST_WS_EQ(STLSOFT_STRINGIZE_w(VT_I4_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varI4X, bstrVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varBSTRX, &varBSTR, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+        TEST_WS_EQ(VT_BSTR_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, bstrVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varR8X, &varR8, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+        TEST_WS_EQ(STLSOFT_STRINGIZE_w(VT_R8_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, bstrVal));
+        TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+        TEST_WS_EQ(STLSOFT_STRINGIZE_w(VT_DECIMAL_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, bstrVal));
         if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-            XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_DISPATCH_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, bstrVal));
+            TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+            TEST_WS_EQ(STLSOFT_STRINGIZE_w(VT_DISPATCH_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, bstrVal));
         }
         if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
-            XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
-            XTESTS_TEST_WIDE_STRING_EQUAL(VT_UNKNOWN_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, bstrVal));
+            TEST_BOOLEAN_EQ(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
+            TEST_WS_EQ(VT_UNKNOWN_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, bstrVal));
         }
 
         release_VARIANTS(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);

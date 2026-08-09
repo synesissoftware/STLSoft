@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *
  * Created: 4th November 2008
- * Updated: 30th April 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,6 +29,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */
@@ -391,10 +392,10 @@ static void test_ctor_default()
 
     string_t    s;
 
-    XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+    TEST_BOOLEAN_TRUE(s.empty());
+    TEST_INT_EQ(0u, s.size());
+    TEST_INT_GE(0u, s.capacity());
+    TEST_INT_NE(0u, s.max_size());
 }
 
 static void test_ctor_copy()
@@ -405,16 +406,16 @@ static void test_ctor_copy()
         string_t    s1;
         string_t    s2(s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 
     {
         string_t    s1("abc");
         string_t    s2(s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 }
 
@@ -426,16 +427,16 @@ static void test_ctor_s_pos()
         string_t    s1;
         string_t    s2(s1, 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 
     {
         string_t    s1("abc");
         string_t    s2(s1, 1);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 }
 
@@ -447,16 +448,16 @@ static void test_ctor_s_pos_n()
         string_t    s1("abc");
         string_t    s2(s1, 0u, s1.size());
 
-        XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        TEST_INT_EQ(s1.size(), s2.size());
+        TEST_MS_EQ(s1, s2);
     }
 
     {
         string_t    s1("abc");
         string_t    s2(s1, 1u, s1.size() - 1u);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 
     // deliberately over-specify n
@@ -464,8 +465,8 @@ static void test_ctor_s_pos_n()
         string_t    s1("abc");
         string_t    s2(s1, 1u, 500);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 }
 
@@ -476,18 +477,18 @@ static void test_ctor_ccs()
     {
         string_t    s("abc");
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_MS_EQ("abc", s);
     }
 
     {
         string_t    s(static_cast<char const*>(NULL));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 }
 
@@ -505,19 +506,19 @@ static void test_ctor_ccs_n()
     {
         string_t    s(alphabet, 3);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(3u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(3u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 
     {
         string_t    s(static_cast<char const*>(NULL), size_t(0));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 }
 
@@ -535,63 +536,63 @@ static void test_ctor_n_ch()
     {
         string_t    s(0, '~');
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
     }
 
     {
         string_t    s(8, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(8u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(8u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(8u, s.size());
+        TEST_INT_GE(8u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
 #if 0
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
+        TEST_CHAR_EQ('~', s.front());
+        TEST_CHAR_EQ('~', s.back());
 
         string_t const& cs = s;
 
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
+        TEST_CHAR_EQ('~', cs.front());
+        TEST_CHAR_EQ('~', cs.back());
 #endif
     }
 
     {
         string_t    s(9, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(9u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(9u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(9u, s.size());
+        TEST_INT_GE(9u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
 #if 0
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
+        TEST_CHAR_EQ('~', s.front());
+        TEST_CHAR_EQ('~', s.back());
 
         string_t const& cs = s;
 
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
+        TEST_CHAR_EQ('~', cs.front());
+        TEST_CHAR_EQ('~', cs.back());
 #endif
     }
 
     {
         string_t    s(10, '~');
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, s.max_size());
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(10u, s.size());
+        TEST_INT_GE(10u, s.capacity());
+        TEST_INT_NE(0u, s.max_size());
 #if 0
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
+        TEST_CHAR_EQ('~', s.front());
+        TEST_CHAR_EQ('~', s.back());
 
         string_t const& cs = s;
 
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
-        XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
+        TEST_CHAR_EQ('~', cs.front());
+        TEST_CHAR_EQ('~', cs.back());
 #endif
     }
 }
@@ -627,9 +628,9 @@ static void test_assign_ccs()
 
         s2.assign(s1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -638,9 +639,9 @@ static void test_assign_ccs()
 
         s2.assign(s1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -649,9 +650,9 @@ static void test_assign_ccs()
 
         s2.assign(s1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -674,9 +675,9 @@ static void test_assign_ccs_n()
 
         s2.assign(s1, size_t(0));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -685,9 +686,9 @@ static void test_assign_ccs_n()
 
         s2.assign(s1, size_t(0));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -696,9 +697,9 @@ static void test_assign_ccs_n()
 
         s2.assign(s1, 2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ab", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("ab", s2);
     }
 }
 
@@ -721,9 +722,9 @@ static void test_assign_s()
 
         s2.assign(s1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -732,9 +733,9 @@ static void test_assign_s()
 
         s2.assign(s1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 
     {
@@ -744,9 +745,9 @@ static void test_assign_s()
         s2.assign(s1);
         s2.assign(s2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 
 }
@@ -761,9 +762,9 @@ static void test_assign_s_pos_n()
 
         s2.assign(s1, size_t(0), size_t(0));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -772,9 +773,9 @@ static void test_assign_s_pos_n()
 
         s2.assign(s1, 1, 2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 
     {
@@ -783,9 +784,9 @@ static void test_assign_s_pos_n()
 
         s2.assign(s1, 1, 200);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(2u, s2.size());
+        TEST_MS_EQ("bc", s2);
     }
 }
 
@@ -809,9 +810,9 @@ static void test_assign_n_ch()
 
         s2.assign(0, ch1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -820,9 +821,9 @@ static void test_assign_n_ch()
 
         s2.assign(0, ch1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
     }
 
     {
@@ -831,9 +832,9 @@ static void test_assign_n_ch()
 
         s2.assign(3, ch1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("xxx", s2);
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("xxx", s2);
     }
 }
 
@@ -855,9 +856,9 @@ static void test_assign_range()
 
         s.assign(&alphabet[0], &alphabet[0] + 0);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_BOOLEAN_TRUE(s.empty());
+        TEST_INT_EQ(0u, s.size());
+        TEST_MS_EQ("", s);
     }
 
     {
@@ -865,9 +866,9 @@ static void test_assign_range()
 
         s.assign(&alphabet[0], &alphabet[0] + STLSOFT_NUM_ELEMENTS(alphabet) -1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.empty());
-        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+        TEST_BOOLEAN_FALSE(s.empty());
+        TEST_INT_EQ(26u, s.size());
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s);
     }
 }
 
@@ -913,13 +914,13 @@ static void test_append_ccs()
 
     string_t s("abc");
 
-    XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+    TEST_INT_EQ(3u, s.size());
+    TEST_MS_EQ("abc", s);
 
     s.append(alphabet + 19);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abctuvwxyz", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("abctuvwxyz", s);
 }
 
 static void test_append_ccs_too_large()
@@ -937,13 +938,13 @@ static void test_append_ccs_n()
 
     string_t s("abc");
 
-    XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+    TEST_INT_EQ(3u, s.size());
+    TEST_MS_EQ("abc", s);
 
     s.append(alphabet + 3, 7);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("abcdefghij", s);
 }
 
 static void test_append_ccs_n_too_large()
@@ -962,13 +963,13 @@ static void test_append_s()
     string_t        s1(alphabet, 8);
     string_t const  s2(alphabet + 8, 2);
 
-    XTESTS_TEST_INTEGER_EQUAL(8u, s1.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefgh", s1);
+    TEST_INT_EQ(8u, s1.size());
+    TEST_MS_EQ("abcdefgh", s1);
 
     s1.append(s2);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s1.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s1);
+    TEST_INT_EQ(10u, s1.size());
+    TEST_MS_EQ("abcdefghij", s1);
 }
 
 static void test_append_s_too_large()
@@ -988,13 +989,13 @@ static void test_append_s_pos_n()
     string_t        s1(alphabet, 8);
     string_t const  s2(alphabet + 8, 8);
 
-    XTESTS_TEST_INTEGER_EQUAL(8u, s1.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefgh", s1);
+    TEST_INT_EQ(8u, s1.size());
+    TEST_MS_EQ("abcdefgh", s1);
 
     s1.append(s2, 0, 2);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s1.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s1);
+    TEST_INT_EQ(10u, s1.size());
+    TEST_MS_EQ("abcdefghij", s1);
 }
 
 static void test_append_s_pos_n_too_large()
@@ -1013,13 +1014,13 @@ static void test_append_n_ch()
 
     string_t s(alphabet, 9);
 
-    XTESTS_TEST_INTEGER_EQUAL(9u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghi", s);
+    TEST_INT_EQ(9u, s.size());
+    TEST_MS_EQ("abcdefghi", s);
 
     s.append(1, 'j');
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("abcdefghij", s);
 }
 
 static void test_append_n_ch_too_large()
@@ -1037,13 +1038,13 @@ static void test_append_range()
 
     string_t s(alphabet, 8);
 
-    XTESTS_TEST_INTEGER_EQUAL(8u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefgh", s);
+    TEST_INT_EQ(8u, s.size());
+    TEST_MS_EQ("abcdefgh", s);
 
     s.append(alphabet + 8, alphabet + 10);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("abcdefghij", s);
 }
 
 static void test_append_range_too_large()
@@ -1061,13 +1062,13 @@ static void test_opaddassign_ccs()
 
     string_t s("abc");
 
-    XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+    TEST_INT_EQ(3u, s.size());
+    TEST_MS_EQ("abc", s);
 
     s += alphabet + 19;
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abctuvwxyz", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("abctuvwxyz", s);
 }
 
 static void test_opaddassign_ccs_too_large()
@@ -1086,13 +1087,13 @@ static void test_opaddassign_s()
     string_t        s1(alphabet, 8);
     string_t const  s2(alphabet + 8, 2);
 
-    XTESTS_TEST_INTEGER_EQUAL(8u, s1.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefgh", s1);
+    TEST_INT_EQ(8u, s1.size());
+    TEST_MS_EQ("abcdefgh", s1);
 
     s1 += s2;
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s1.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s1);
+    TEST_INT_EQ(10u, s1.size());
+    TEST_MS_EQ("abcdefghij", s1);
 }
 
 static void test_opaddassign_s_too_large()
@@ -1111,13 +1112,13 @@ static void test_opaddassign_ch()
 
     string_t s(9, '~');
 
-    XTESTS_TEST_INTEGER_EQUAL(9u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~~~~~~~~~", s);
+    TEST_INT_EQ(9u, s.size());
+    TEST_MS_EQ("~~~~~~~~~", s);
 
     s += '+';
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~~~~~~~~~+", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("~~~~~~~~~+", s);
 }
 
 static void test_opaddassign_ch_too_large()
@@ -1138,8 +1139,8 @@ static void test_push_back()
     s.push_back('+');
     s.push_back('+');
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~~~~~~~~++", s);
+    TEST_INT_EQ(10u, s.size());
+    TEST_MS_EQ("~~~~~~~~++", s);
 }
 
 static void test_push_back_too_large()
@@ -1157,40 +1158,40 @@ static void test_pop_back()
 
     string_t s(alphabet, 10);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghij", s);
+    TEST_MS_EQ("abcdefghij", s);
 
     s.pop_back();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghi", s);
-
-    s.pop_back();
-    s.pop_back();
-    s.pop_back();
-
-    XTESTS_TEST_INTEGER_EQUAL(6u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", s);
+    TEST_MS_EQ("abcdefghi", s);
 
     s.pop_back();
     s.pop_back();
     s.pop_back();
-    s.pop_back();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ab", s);
-
-    s.pop_back();
-
-    XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", s);
+    TEST_INT_EQ(6u, s.size());
+    TEST_MS_EQ("abcdef", s);
 
     s.pop_back();
+    s.pop_back();
+    s.pop_back();
+    s.pop_back();
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    TEST_MS_EQ("ab", s);
 
     s.pop_back();
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    TEST_INT_EQ(1u, s.size());
+    TEST_MS_EQ("a", s);
+
+    s.pop_back();
+
+    TEST_INT_EQ(0u, s.size());
+    TEST_MS_EQ("", s);
+
+    s.pop_back();
+
+    TEST_INT_EQ(0u, s.size());
+    TEST_MS_EQ("", s);
 }
 
 
@@ -1205,33 +1206,33 @@ static void test_reserve()
 
         s.reserve(0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_MS_EQ("", s);
 
         s.reserve(1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(1u, s.capacity());
+        TEST_MS_EQ("", s);
 
         s.reserve(2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(2u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(2u, s.capacity());
+        TEST_MS_EQ("", s);
 
         s.reserve(8);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(8u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(8u, s.capacity());
+        TEST_MS_EQ("", s);
 
         s.reserve(10);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+        TEST_INT_EQ(0u, s.size());
+        TEST_INT_GE(10u, s.capacity());
+        TEST_MS_EQ("", s);
     }
 
     {
@@ -1239,33 +1240,33 @@ static void test_reserve()
 
         s.reserve(0);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(0u, s.capacity());
+        TEST_MS_EQ("abc", s);
 
         s.reserve(1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(1u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(1u, s.capacity());
+        TEST_MS_EQ("abc", s);
 
         s.reserve(2);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(2u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(2u, s.capacity());
+        TEST_MS_EQ("abc", s);
 
         s.reserve(8);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(8u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(8u, s.capacity());
+        TEST_MS_EQ("abc", s);
 
         s.reserve(10);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s);
+        TEST_INT_EQ(3u, s.size());
+        TEST_INT_GE(10u, s.capacity());
+        TEST_MS_EQ("abc", s);
     }
 }
 
@@ -1286,32 +1287,32 @@ static void test_swap_1()
         string_t s1;
         string_t s2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
 
         s1.swap(s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
     }
 
     {
         string_t    s1("abc");
         string_t    s2;
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
 
         s1.swap(s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -1323,32 +1324,32 @@ static void test_swap_2()
         string_t s1;
         string_t s2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
 
         swap(s1, s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
     }
 
     {
         string_t    s1("abc");
         string_t    s2;
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
 
         swap(s1, s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -1360,32 +1361,32 @@ static void test_swap_3()
         string_t s1;
         string_t s2;
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
 
         std::swap(s1, s2);
 
-        XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
-        XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
     }
 
     {
         string_t s1("abc");
         string_t s2;
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s2);
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
 
         std::swap(s1, s2);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
     }
 }
 
@@ -1396,42 +1397,42 @@ static void test_resize()
     {
         string_t s;
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
 
         s.resize(1, '~');
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~", s);
+        TEST_INT_EQ(1u, s.size());
+        TEST_MS_EQ("~", s);
 
         s.resize(1, '~');
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~", s);
+        TEST_INT_EQ(1u, s.size());
+        TEST_MS_EQ("~", s);
 
         s.resize(8, '~');
 
-        XTESTS_TEST_INTEGER_EQUAL(8u, s.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("~~~~~~~~", s);
+        TEST_INT_EQ(8u, s.size());
+        TEST_MS_EQ("~~~~~~~~", s);
     }
 
     {
         string_t s("abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
+        TEST_INT_EQ(3u, s.size());
 
         s.clear();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
         string_t s("abcdefghij");
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
+        TEST_INT_EQ(10u, s.size());
 
         s.clear();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 }
 
@@ -1451,21 +1452,21 @@ static void test_clear()
     {
         string_t s;
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
 
         s.clear();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 
     {
         string_t s("abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, s.size());
+        TEST_INT_EQ(3u, s.size());
 
         s.clear();
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        TEST_INT_EQ(0u, s.size());
     }
 }
 
@@ -1484,13 +1485,13 @@ static void test_max_size()
     {
         typedef string_10_t string_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, string_t::max_size());
+        TEST_INT_EQ(10u, string_t::max_size());
     }
 
     {
         typedef string_30_t string_t;
 
-        XTESTS_TEST_INTEGER_EQUAL(30u, string_t::max_size());
+        TEST_INT_EQ(30u, string_t::max_size());
     }
 }
 
@@ -1506,7 +1507,7 @@ static void test_capacity()
 
         string_t s;
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, s.capacity());
+        TEST_INT_EQ(10u, s.capacity());
     }
 
     {
@@ -1514,7 +1515,7 @@ static void test_capacity()
 
         string_t s;
 
-        XTESTS_TEST_INTEGER_EQUAL(30u, s.capacity());
+        TEST_INT_EQ(30u, s.capacity());
     }
 }
 
@@ -1534,69 +1535,69 @@ static void test_contains_1()
     string_t const s;
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("z"));
+        TEST_BOOLEAN_TRUE(s.contains(""));
+        TEST_BOOLEAN_FALSE(s.contains("a"));
+        TEST_BOOLEAN_FALSE(s.contains("b"));
+        TEST_BOOLEAN_FALSE(s.contains("c"));
+        TEST_BOOLEAN_FALSE(s.contains("d"));
+        TEST_BOOLEAN_FALSE(s.contains("e"));
+        TEST_BOOLEAN_FALSE(s.contains("i"));
+        TEST_BOOLEAN_FALSE(s.contains("o"));
+        TEST_BOOLEAN_FALSE(s.contains("u"));
+        TEST_BOOLEAN_FALSE(s.contains("x"));
+        TEST_BOOLEAN_FALSE(s.contains("y"));
+        TEST_BOOLEAN_FALSE(s.contains("z"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("ab"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abc"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abcd"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abcde"));
+        TEST_BOOLEAN_FALSE(s.contains("ab"));
+        TEST_BOOLEAN_FALSE(s.contains("abc"));
+        TEST_BOOLEAN_FALSE(s.contains("abcd"));
+        TEST_BOOLEAN_FALSE(s.contains("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abce"));
+        TEST_BOOLEAN_FALSE(s.contains("aa"));
+        TEST_BOOLEAN_FALSE(s.contains("bcde"));
+        TEST_BOOLEAN_FALSE(s.contains("acde"));
+        TEST_BOOLEAN_FALSE(s.contains("abde"));
+        TEST_BOOLEAN_FALSE(s.contains("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abcde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("ab")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abc")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abcd")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('z'));
+        TEST_BOOLEAN_FALSE(s.contains('a'));
+        TEST_BOOLEAN_FALSE(s.contains('b'));
+        TEST_BOOLEAN_FALSE(s.contains('c'));
+        TEST_BOOLEAN_FALSE(s.contains('d'));
+        TEST_BOOLEAN_FALSE(s.contains('e'));
+        TEST_BOOLEAN_FALSE(s.contains('i'));
+        TEST_BOOLEAN_FALSE(s.contains('o'));
+        TEST_BOOLEAN_FALSE(s.contains('u'));
+        TEST_BOOLEAN_FALSE(s.contains('x'));
+        TEST_BOOLEAN_FALSE(s.contains('y'));
+        TEST_BOOLEAN_FALSE(s.contains('z'));
     }
 }
 
@@ -1607,72 +1608,72 @@ static void test_contains_2()
     string_t const s(alphabet);
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(""));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("a"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("b"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("c"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("d"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("e"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("i"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("o"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("u"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("x"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("y"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("z"));
+        TEST_BOOLEAN_TRUE(s.contains(""));
+        TEST_BOOLEAN_TRUE(s.contains("a"));
+        TEST_BOOLEAN_TRUE(s.contains("b"));
+        TEST_BOOLEAN_TRUE(s.contains("c"));
+        TEST_BOOLEAN_TRUE(s.contains("d"));
+        TEST_BOOLEAN_TRUE(s.contains("e"));
+        TEST_BOOLEAN_TRUE(s.contains("i"));
+        TEST_BOOLEAN_TRUE(s.contains("o"));
+        TEST_BOOLEAN_TRUE(s.contains("u"));
+        TEST_BOOLEAN_TRUE(s.contains("x"));
+        TEST_BOOLEAN_TRUE(s.contains("y"));
+        TEST_BOOLEAN_TRUE(s.contains("z"));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("ab"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abcd"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abcde"));
+        TEST_BOOLEAN_TRUE(s.contains("ab"));
+        TEST_BOOLEAN_TRUE(s.contains("abc"));
+        TEST_BOOLEAN_TRUE(s.contains("abcd"));
+        TEST_BOOLEAN_TRUE(s.contains("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("aa"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains("abce"));
+        TEST_BOOLEAN_FALSE(s.contains("aa"));
+        TEST_BOOLEAN_TRUE(s.contains("bcde"));
+        TEST_BOOLEAN_FALSE(s.contains("acde"));
+        TEST_BOOLEAN_FALSE(s.contains("abde"));
+        TEST_BOOLEAN_FALSE(s.contains("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("a")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("b")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("c")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("d")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("e")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("i")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("o")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("u")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("x")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("y")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("a")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("b")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("c")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("d")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("e")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("i")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("o")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("u")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("x")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("y")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("abcde")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("ab")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("abc")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("abcd")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("aa")));
+        TEST_BOOLEAN_TRUE(s.contains(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.contains(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('a'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('b'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('c'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('d'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('e'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('i'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('o'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('u'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('x'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('y'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains('z'));
+        TEST_BOOLEAN_TRUE(s.contains('a'));
+        TEST_BOOLEAN_TRUE(s.contains('b'));
+        TEST_BOOLEAN_TRUE(s.contains('c'));
+        TEST_BOOLEAN_TRUE(s.contains('d'));
+        TEST_BOOLEAN_TRUE(s.contains('e'));
+        TEST_BOOLEAN_TRUE(s.contains('i'));
+        TEST_BOOLEAN_TRUE(s.contains('o'));
+        TEST_BOOLEAN_TRUE(s.contains('u'));
+        TEST_BOOLEAN_TRUE(s.contains('x'));
+        TEST_BOOLEAN_TRUE(s.contains('y'));
+        TEST_BOOLEAN_TRUE(s.contains('z'));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains(' '));
-        XTESTS_TEST_BOOLEAN_FALSE(s.contains('*'));
+        TEST_BOOLEAN_FALSE(s.contains(' '));
+        TEST_BOOLEAN_FALSE(s.contains('*'));
     }
 }
 
@@ -1684,7 +1685,7 @@ static void test_contains_3()
         string_t const s("abdabeabcab");
 
         {
-            XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
+            TEST_BOOLEAN_TRUE(s.contains("abc"));
         }
     }
 
@@ -1692,7 +1693,7 @@ static void test_contains_3()
         string_t const s("abdabeabfab");
 
         {
-            XTESTS_TEST_BOOLEAN_FALSE(s.contains("abc"));
+            TEST_BOOLEAN_FALSE(s.contains("abc"));
         }
     }
 
@@ -1700,8 +1701,8 @@ static void test_contains_3()
         string_t const s("aaaaaaaaaaaaaaaaaaaaaaaaaaab");
 
         {
-            XTESTS_TEST_BOOLEAN_TRUE(s.contains("ab"));
-            XTESTS_TEST_BOOLEAN_FALSE(s.contains("ac"));
+            TEST_BOOLEAN_TRUE(s.contains("ab"));
+            TEST_BOOLEAN_FALSE(s.contains("ac"));
         }
     }
 }
@@ -1713,69 +1714,69 @@ static void test_starts_with_1()
     string_t const s;
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("z"));
+        TEST_BOOLEAN_TRUE(s.starts_with(""));
+        TEST_BOOLEAN_FALSE(s.starts_with("a"));
+        TEST_BOOLEAN_FALSE(s.starts_with("b"));
+        TEST_BOOLEAN_FALSE(s.starts_with("c"));
+        TEST_BOOLEAN_FALSE(s.starts_with("d"));
+        TEST_BOOLEAN_FALSE(s.starts_with("e"));
+        TEST_BOOLEAN_FALSE(s.starts_with("i"));
+        TEST_BOOLEAN_FALSE(s.starts_with("o"));
+        TEST_BOOLEAN_FALSE(s.starts_with("u"));
+        TEST_BOOLEAN_FALSE(s.starts_with("x"));
+        TEST_BOOLEAN_FALSE(s.starts_with("y"));
+        TEST_BOOLEAN_FALSE(s.starts_with("z"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("ab"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abc"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abcd"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abcde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("ab"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abc"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abcd"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abce"));
+        TEST_BOOLEAN_FALSE(s.starts_with("aa"));
+        TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("acde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("ab")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abc")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcd")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('z'));
+        TEST_BOOLEAN_FALSE(s.starts_with('a'));
+        TEST_BOOLEAN_FALSE(s.starts_with('b'));
+        TEST_BOOLEAN_FALSE(s.starts_with('c'));
+        TEST_BOOLEAN_FALSE(s.starts_with('d'));
+        TEST_BOOLEAN_FALSE(s.starts_with('e'));
+        TEST_BOOLEAN_FALSE(s.starts_with('i'));
+        TEST_BOOLEAN_FALSE(s.starts_with('o'));
+        TEST_BOOLEAN_FALSE(s.starts_with('u'));
+        TEST_BOOLEAN_FALSE(s.starts_with('x'));
+        TEST_BOOLEAN_FALSE(s.starts_with('y'));
+        TEST_BOOLEAN_FALSE(s.starts_with('z'));
     }
 }
 
@@ -1786,69 +1787,69 @@ static void test_starts_with_2()
     string_t const s(alphabet);
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(""));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("z"));
+        TEST_BOOLEAN_TRUE(s.starts_with(""));
+        TEST_BOOLEAN_TRUE(s.starts_with("a"));
+        TEST_BOOLEAN_FALSE(s.starts_with("b"));
+        TEST_BOOLEAN_FALSE(s.starts_with("c"));
+        TEST_BOOLEAN_FALSE(s.starts_with("d"));
+        TEST_BOOLEAN_FALSE(s.starts_with("e"));
+        TEST_BOOLEAN_FALSE(s.starts_with("i"));
+        TEST_BOOLEAN_FALSE(s.starts_with("o"));
+        TEST_BOOLEAN_FALSE(s.starts_with("u"));
+        TEST_BOOLEAN_FALSE(s.starts_with("x"));
+        TEST_BOOLEAN_FALSE(s.starts_with("y"));
+        TEST_BOOLEAN_FALSE(s.starts_with("z"));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("ab"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("abc"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("abcd"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with("abcde"));
+        TEST_BOOLEAN_TRUE(s.starts_with("ab"));
+        TEST_BOOLEAN_TRUE(s.starts_with("abc"));
+        TEST_BOOLEAN_TRUE(s.starts_with("abcd"));
+        TEST_BOOLEAN_TRUE(s.starts_with("abcde"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with("abce"));
+        TEST_BOOLEAN_FALSE(s.starts_with("aa"));
+        TEST_BOOLEAN_FALSE(s.starts_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("acde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abde"));
+        TEST_BOOLEAN_FALSE(s.starts_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("ab")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("abc")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcd")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcde")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("ab")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("abc")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcd")));
+        TEST_BOOLEAN_TRUE(s.starts_with(string_t("abcde")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.starts_with(string_t("abce")));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.starts_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.starts_with('z'));
+        TEST_BOOLEAN_TRUE(s.starts_with('a'));
+        TEST_BOOLEAN_FALSE(s.starts_with('b'));
+        TEST_BOOLEAN_FALSE(s.starts_with('c'));
+        TEST_BOOLEAN_FALSE(s.starts_with('d'));
+        TEST_BOOLEAN_FALSE(s.starts_with('e'));
+        TEST_BOOLEAN_FALSE(s.starts_with('i'));
+        TEST_BOOLEAN_FALSE(s.starts_with('o'));
+        TEST_BOOLEAN_FALSE(s.starts_with('u'));
+        TEST_BOOLEAN_FALSE(s.starts_with('x'));
+        TEST_BOOLEAN_FALSE(s.starts_with('y'));
+        TEST_BOOLEAN_FALSE(s.starts_with('z'));
     }
 }
 
@@ -1859,70 +1860,70 @@ static void test_ends_with_1()
     string_t const s;
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("y"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("z"));
+        TEST_BOOLEAN_TRUE(s.ends_with(""));
+        TEST_BOOLEAN_FALSE(s.ends_with("a"));
+        TEST_BOOLEAN_FALSE(s.ends_with("b"));
+        TEST_BOOLEAN_FALSE(s.ends_with("c"));
+        TEST_BOOLEAN_FALSE(s.ends_with("d"));
+        TEST_BOOLEAN_FALSE(s.ends_with("e"));
+        TEST_BOOLEAN_FALSE(s.ends_with("i"));
+        TEST_BOOLEAN_FALSE(s.ends_with("o"));
+        TEST_BOOLEAN_FALSE(s.ends_with("u"));
+        TEST_BOOLEAN_FALSE(s.ends_with("x"));
+        TEST_BOOLEAN_FALSE(s.ends_with("y"));
+        TEST_BOOLEAN_FALSE(s.ends_with("z"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("yz"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("xyz"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("wxyz"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("vwxyz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("yz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("xyz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("wxyz"));
+        TEST_BOOLEAN_FALSE(s.ends_with("vwxyz"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abce"));
+        TEST_BOOLEAN_FALSE(s.ends_with("aa"));
+        TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("acde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("yz")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("xyz")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("wxyz")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("vwxyz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("yz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("xyz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("wxyz")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("vwxyz")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
     }
 
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('y'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('z'));
+        TEST_BOOLEAN_FALSE(s.ends_with('a'));
+        TEST_BOOLEAN_FALSE(s.ends_with('b'));
+        TEST_BOOLEAN_FALSE(s.ends_with('c'));
+        TEST_BOOLEAN_FALSE(s.ends_with('d'));
+        TEST_BOOLEAN_FALSE(s.ends_with('e'));
+        TEST_BOOLEAN_FALSE(s.ends_with('i'));
+        TEST_BOOLEAN_FALSE(s.ends_with('o'));
+        TEST_BOOLEAN_FALSE(s.ends_with('u'));
+        TEST_BOOLEAN_FALSE(s.ends_with('x'));
+        TEST_BOOLEAN_FALSE(s.ends_with('y'));
+        TEST_BOOLEAN_FALSE(s.ends_with('z'));
     }
 }
 
@@ -1933,70 +1934,70 @@ static void test_ends_with_2()
     string_t const s(alphabet);
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(""));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("a"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("b"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("c"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("d"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("e"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("i"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("o"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("u"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("x"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("y"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("z"));
+        TEST_BOOLEAN_TRUE(s.ends_with(""));
+        TEST_BOOLEAN_FALSE(s.ends_with("a"));
+        TEST_BOOLEAN_FALSE(s.ends_with("b"));
+        TEST_BOOLEAN_FALSE(s.ends_with("c"));
+        TEST_BOOLEAN_FALSE(s.ends_with("d"));
+        TEST_BOOLEAN_FALSE(s.ends_with("e"));
+        TEST_BOOLEAN_FALSE(s.ends_with("i"));
+        TEST_BOOLEAN_FALSE(s.ends_with("o"));
+        TEST_BOOLEAN_FALSE(s.ends_with("u"));
+        TEST_BOOLEAN_FALSE(s.ends_with("x"));
+        TEST_BOOLEAN_FALSE(s.ends_with("y"));
+        TEST_BOOLEAN_TRUE(s.ends_with("z"));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("yz"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("xyz"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("wxyz"));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with("vwxyz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("yz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("xyz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("wxyz"));
+        TEST_BOOLEAN_TRUE(s.ends_with("vwxyz"));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("aa"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("acde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abde"));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with("abce"));
+        TEST_BOOLEAN_FALSE(s.ends_with("aa"));
+        TEST_BOOLEAN_FALSE(s.ends_with("bcde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("acde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abde"));
+        TEST_BOOLEAN_FALSE(s.ends_with("abce"));
     }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("z")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("a")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("b")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("c")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("d")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("e")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("i")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("o")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("u")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("x")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("y")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("z")));
 
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("yz")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("xyz")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("wxyz")));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with(string_t("vwxyz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("yz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("xyz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("wxyz")));
+        TEST_BOOLEAN_TRUE(s.ends_with(string_t("vwxyz")));
 
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("aa")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("bcde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("acde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abde")));
+        TEST_BOOLEAN_FALSE(s.ends_with(string_t("abce")));
     }
 
 
     {
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('a'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('b'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('c'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('d'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('e'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('i'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('o'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('u'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('x'));
-        XTESTS_TEST_BOOLEAN_FALSE(s.ends_with('y'));
-        XTESTS_TEST_BOOLEAN_TRUE(s.ends_with('z'));
+        TEST_BOOLEAN_FALSE(s.ends_with('a'));
+        TEST_BOOLEAN_FALSE(s.ends_with('b'));
+        TEST_BOOLEAN_FALSE(s.ends_with('c'));
+        TEST_BOOLEAN_FALSE(s.ends_with('d'));
+        TEST_BOOLEAN_FALSE(s.ends_with('e'));
+        TEST_BOOLEAN_FALSE(s.ends_with('i'));
+        TEST_BOOLEAN_FALSE(s.ends_with('o'));
+        TEST_BOOLEAN_FALSE(s.ends_with('u'));
+        TEST_BOOLEAN_FALSE(s.ends_with('x'));
+        TEST_BOOLEAN_FALSE(s.ends_with('y'));
+        TEST_BOOLEAN_TRUE(s.ends_with('z'));
     }
 }
 
@@ -2010,17 +2011,17 @@ static void test_at()
     {
         string_t s("abc");
 
-        XTESTS_TEST_CHARACTER_EQUAL('a', s.at(0u));
-        XTESTS_TEST_CHARACTER_EQUAL('b', s.at(1u));
-        XTESTS_TEST_CHARACTER_EQUAL('c', s.at(2u));
+        TEST_CHAR_EQ('a', s.at(0u));
+        TEST_CHAR_EQ('b', s.at(1u));
+        TEST_CHAR_EQ('c', s.at(2u));
     }
 
     {
         string_t const s("abc");
 
-        XTESTS_TEST_CHARACTER_EQUAL('a', s.at(0u));
-        XTESTS_TEST_CHARACTER_EQUAL('b', s.at(1u));
-        XTESTS_TEST_CHARACTER_EQUAL('c', s.at(2u));
+        TEST_CHAR_EQ('a', s.at(0u));
+        TEST_CHAR_EQ('b', s.at(1u));
+        TEST_CHAR_EQ('c', s.at(2u));
     }
 
     {
@@ -2060,14 +2061,14 @@ static void test_copy()
 
     string_t const s_alphabet(alphabet);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s_alphabet);
+    TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", s_alphabet);
 
     {
         string_t    s;
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, cch);
+        TEST_INT_EQ(0u, cch);
     }
 
     {
@@ -2075,7 +2076,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 10);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, cch);
+        TEST_INT_EQ(0u, cch);
     }
 
     {
@@ -2083,7 +2084,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 0);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, cch);
+        TEST_INT_EQ(3u, cch);
     }
 
     {
@@ -2091,7 +2092,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 2);
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, cch);
+        TEST_INT_EQ(1u, cch);
     }
 
     {
@@ -2099,7 +2100,7 @@ static void test_copy()
         char        dest[101];
         size_t      cch = s.copy(&dest[0], STLSOFT_NUM_ELEMENTS(dest), 3);
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, cch);
+        TEST_INT_EQ(0u, cch);
     }
 
     {
@@ -2108,8 +2109,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 26);
         dest[26] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(26u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", dest);
+        TEST_INT_EQ(26u, n);
+        TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", dest);
     }
 
     {
@@ -2118,8 +2119,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20);
         dest[20] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(20u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrst", dest);
+        TEST_INT_EQ(20u, n);
+        TEST_MS_EQ("abcdefghijklmnopqrst", dest);
     }
 
     {
@@ -2128,8 +2129,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20, 6);
         dest[20] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(20u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghijklmnopqrstuvwxyz", dest);
+        TEST_INT_EQ(20u, n);
+        TEST_MS_EQ("ghijklmnopqrstuvwxyz", dest);
     }
 
     {
@@ -2138,8 +2139,8 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20, 16);
         dest[10] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(10u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("qrstuvwxyz", dest);
+        TEST_INT_EQ(10u, n);
+        TEST_MS_EQ("qrstuvwxyz", dest);
     }
 }
 
@@ -2153,10 +2154,10 @@ static void test_substr()
     string_t        s4 = s1.substr(0, s1.size() * 2);
     string_t        s5 = s1.substr();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s4);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    TEST_MS_EQ(s1, s2);
+    TEST_MS_EQ(s1, s3);
+    TEST_MS_EQ(s1, s4);
+    TEST_MS_EQ(s1, s5);
 }
 
 static void test_substr_throw()
@@ -2166,7 +2167,7 @@ static void test_substr_throw()
     string_t const  s1("abcdefghi");
     string_t        s2 = s1.substr(s1.size() + 1);
 
-    XTESTS_TEST_FAIL("should not get here");
+    TEST_FAIL("should not get here");
 }
 
 
@@ -2187,7 +2188,7 @@ static void TEST_overlong_ctor()
     {
 #ifdef XTESTS_USE_SHWILD
 
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of 11 element(s)) that is too large for static limit (of 10 element(s))", x.what());
+        TEST_MS_MATCHES("operation would result in static_string (of 11 element(s)) that is too large for static limit (of 10 element(s))", x.what());
 #else
 
         STLSOFT_SUPPRESS_UNUSED(x);
@@ -2228,7 +2229,7 @@ static void TEST_overlong_resize()
     {
 #ifdef XTESTS_USE_SHWILD
 
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of ?* element(s)) that is too large for static limit (of 10 element(s))", x.what());
+        TEST_MS_MATCHES("operation would result in static_string (of ?* element(s)) that is too large for static limit (of 10 element(s))", x.what());
 #else
 
         STLSOFT_SUPPRESS_UNUSED(x);
@@ -2259,7 +2260,7 @@ static void test_insertion_1()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+        TEST_MS_EQ("abcdef", ss.str());
     }
 
     {
@@ -2271,7 +2272,7 @@ static void test_insertion_1()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+        TEST_MS_EQ("abcdef", ss.str());
     }
 }
 
@@ -2293,7 +2294,7 @@ static void test_insertion_2()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdef", ss.str());
+        TEST_MS_EQ("abcdef", ss.str());
     }
 }
 
@@ -2318,7 +2319,7 @@ static void test_insertion_3()
             << s3
             ;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("____abc__def", ss.str());
+        TEST_MS_EQ("____abc__def", ss.str());
     }
 }
 
@@ -2385,7 +2386,7 @@ static void test_insertion_4()
     std::string const expected = Expected::fn(s2, s3);
 #endif
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(
+    TEST_MS_EQ(
         expected
         , ss.str());
 
@@ -2405,47 +2406,47 @@ static void test_string_access_shims()
     {
         string_t    s;
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len_a(s));
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len(s));
+        TEST_INT_EQ(0u, stlsoft::c_str_len_a(s));
+        TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data_a(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_data_a(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_data_a(s));
+        TEST_MS_EQ("", stlsoft::c_str_data_a(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_data(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_data(s));
+        TEST_MS_EQ("", stlsoft::c_str_data(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr_a(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_ptr_a(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_ptr_a(s));
+        TEST_MS_EQ("", stlsoft::c_str_ptr_a(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr(s));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_ptr(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_ptr(s));
+        TEST_MS_EQ("", stlsoft::c_str_ptr(s));
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null_a(s));
+        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_a(s));
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
+        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
     }
 
     {
         wstring_t   s;
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len_w(s));
-//      XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::c_str_len(s));
+        TEST_INT_EQ(0u, stlsoft::c_str_len_w(s));
+//      TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data_w(s));
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_data_w(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_data_w(s));
+        TEST_WS_EQ(L"", stlsoft::c_str_data_w(s));
 
-//      XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data(s));
-//      XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_data(s));
+//      TEST_PTR_NE(NULL, stlsoft::c_str_data(s));
+//      TEST_WS_EQ(L"", stlsoft::c_str_data(s));
 
-        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr_w(s));
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_ptr_w(s));
+        TEST_PTR_NE(NULL, stlsoft::c_str_ptr_w(s));
+        TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(s));
 
-//      XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr(s));
-//      XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_ptr(s));
+//      TEST_PTR_NE(NULL, stlsoft::c_str_ptr(s));
+//      TEST_WS_EQ(L"", stlsoft::c_str_ptr(s));
 
-        XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null_w(s));
+        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_w(s));
 
-//      XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
+//      TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
     }
 }
 } // anonymous namespace

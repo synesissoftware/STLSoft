@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::new_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>

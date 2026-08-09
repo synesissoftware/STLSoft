@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 28th April 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 #include <platformstl/filesystem/path.hpp>
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
 
@@ -159,14 +160,14 @@ static void test_empty_directory()
 
     readdir_sequence_t rds(dir);
 
-    XTESTS_TEST_BOOLEAN_TRUE(rds.empty());
+    TEST_BOOLEAN_TRUE(rds.empty());
 }
 
 static void test_non_empty_directory()
 {
     readdir_sequence_t rds(".");
 
-    XTESTS_TEST_BOOLEAN_FALSE(rds.empty());
+    TEST_BOOLEAN_FALSE(rds.empty());
 }
 
 #ifdef PLATFORM_SUPPORTS_SOCKETS_

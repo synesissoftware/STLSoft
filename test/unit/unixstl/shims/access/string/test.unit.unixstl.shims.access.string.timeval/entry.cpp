@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 28th April 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,6 +23,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -143,7 +144,7 @@ static void test_calls_possible()
         stlsoft::c_str_ptr_null_a(tv);
         stlsoft::c_str_ptr_null(tv);
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 
     {
@@ -162,7 +163,7 @@ static void test_calls_possible()
         stlsoft::c_str_ptr_null_a(tv);
         stlsoft::c_str_ptr_null(tv);
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 }
 
@@ -171,16 +172,16 @@ static void test_c_str_len()
     {
         struct timeval tv = get_fixed_date();
 
-        XTESTS_TEST_INTEGER_EQUAL(27u, stlsoft::c_str_len_a(tv));
-        XTESTS_TEST_INTEGER_EQUAL(27u, stlsoft::c_str_len(tv));
+        TEST_INT_EQ(27u, stlsoft::c_str_len_a(tv));
+        TEST_INT_EQ(27u, stlsoft::c_str_len(tv));
     }
 
     {
         struct timeval  tv_ =   get_fixed_date();
         struct timeval* tv  =   &tv_;
 
-        XTESTS_TEST_INTEGER_EQUAL(27u, stlsoft::c_str_len_a(tv));
-        XTESTS_TEST_INTEGER_EQUAL(27u, stlsoft::c_str_len(tv));
+        TEST_INT_EQ(27u, stlsoft::c_str_len_a(tv));
+        TEST_INT_EQ(27u, stlsoft::c_str_len(tv));
     }
 }
 
@@ -189,16 +190,16 @@ static void test_c_str_ptr()
     {
         struct timeval tv = get_fixed_date();
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(get_fixed_date_string(), stlsoft::c_str_ptr_a(tv));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(get_fixed_date_string(), stlsoft::c_str_ptr(tv));
+        TEST_MS_EQ(get_fixed_date_string(), stlsoft::c_str_ptr_a(tv));
+        TEST_MS_EQ(get_fixed_date_string(), stlsoft::c_str_ptr(tv));
     }
 
     {
         struct timeval  tv_ =   get_fixed_date();
         struct timeval* tv  =   &tv_;
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(get_fixed_date_string(), stlsoft::c_str_ptr_a(tv));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(get_fixed_date_string(), stlsoft::c_str_ptr(tv));
+        TEST_MS_EQ(get_fixed_date_string(), stlsoft::c_str_ptr_a(tv));
+        TEST_MS_EQ(get_fixed_date_string(), stlsoft::c_str_ptr(tv));
     }
 }
 
@@ -209,8 +210,8 @@ static void test_invalid_value_conversion()
 
         tv.tv_usec  =   -1;
 
-        XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+        TEST_INT_EQ(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
+        TEST_MS_EQ("(invalid time)", stlsoft::c_str_ptr_a(tv));
     }
 
     {
@@ -218,8 +219,8 @@ static void test_invalid_value_conversion()
 
         tv.tv_sec   =   -1;
 
-        XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+        TEST_INT_EQ(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
+        TEST_MS_EQ("(invalid time)", stlsoft::c_str_ptr_a(tv));
     }
 
     {
@@ -228,8 +229,8 @@ static void test_invalid_value_conversion()
         tv.tv_sec   =   -1;
         tv.tv_usec  =   -1;
 
-        XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+        TEST_INT_EQ(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
+        TEST_MS_EQ("(invalid time)", stlsoft::c_str_ptr_a(tv));
     }
 }
 } // anonymous namespace

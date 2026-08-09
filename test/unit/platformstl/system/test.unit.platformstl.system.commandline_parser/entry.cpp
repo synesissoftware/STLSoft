@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::commandline_parser` / `winstl::commandline_parser`.
  *
  * Created: 29th December 2024
- * Updated: 22nd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -122,123 +123,123 @@ static void TEST_EMPTY_STRING()
 {
     commandline_parser_a const clp("");
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, clp.size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
+    TEST_INT_EQ(0u, clp.size());
+    TEST_INT_EQ(0, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
+    TEST_PTR_EQ(NULL, clp[0]);
 }
 
 static void TEST_WHITESPACE_ONLY_STRING()
 {
     commandline_parser_a const clp("  \t\n");
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, clp.size());
-    XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
+    TEST_INT_EQ(0u, clp.size());
+    TEST_INT_EQ(0, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
+    TEST_PTR_EQ(NULL, clp[0]);
 }
 
 static void TEST_ONE_VALUE()
 {
     commandline_parser_a const clp(" abc ");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(1u, clp.size()));
+    TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+    TEST_MS_EQ("abc", clp[0]);
+    TEST_PTR_EQ(NULL, clp[1]);
 }
 
 static void TEST_TWO_VALUES()
 {
     commandline_parser_a const clp(" abc def");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(2, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(2u, clp.size()));
+    TEST_INT_EQ(2, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", clp[1]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[2]);
+    TEST_MS_EQ("abc", clp[0]);
+    TEST_MS_EQ("def", clp[1]);
+    TEST_PTR_EQ(NULL, clp[2]);
 }
 
 static void TEST_ONE_FLAG()
 {
     commandline_parser_a const clp("--flag1");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(1u, clp.size()));
+    TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+    TEST_MS_EQ("--flag1", clp[0]);
+    TEST_PTR_EQ(NULL, clp[1]);
 }
 
 static void TEST_TWO_FLAGS()
 {
     commandline_parser_a const clp("--flag1 \t -f2\t");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(2, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(2u, clp.size()));
+    TEST_INT_EQ(2, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-f2", clp[1]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[2]);
+    TEST_MS_EQ("--flag1", clp[0]);
+    TEST_MS_EQ("-f2", clp[1]);
+    TEST_PTR_EQ(NULL, clp[2]);
 }
 
 static void TEST_ONE_OPTION()
 {
     commandline_parser_a const clp("--option1=abc");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(1u, clp.size()));
+    TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=abc", clp[0]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+    TEST_MS_EQ("--option1=abc", clp[0]);
+    TEST_PTR_EQ(NULL, clp[1]);
 }
 
 static void TEST_DOC_EXAMPLE()
 {
     commandline_parser_a const clp("abc \"d e f\" ghi");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(3, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(3u, clp.size()));
+    TEST_INT_EQ(3, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", clp[1]);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghi", clp[2]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[3]);
+    TEST_MS_EQ("abc", clp[0]);
+    TEST_MS_EQ("d e f", clp[1]);
+    TEST_MS_EQ("ghi", clp[2]);
+    TEST_PTR_EQ(NULL, clp[3]);
 }
 
 static void TEST_ONE_OPTION_WITH_SPACES_1()
 {
     commandline_parser_a const clp("--option1=\"a b c\"");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(1u, clp.size()));
+    TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+    TEST_MS_EQ("--option1=a b c", clp[0]);
+    TEST_PTR_EQ(NULL, clp[1]);
 }
 
 static void TEST_ONE_OPTION_WITH_SPACES_2()
 {
     commandline_parser_a const clp("--option1=\"a b \"c");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(1u, clp.size()));
+    TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+    TEST_MS_EQ("--option1=a b c", clp[0]);
+    TEST_PTR_EQ(NULL, clp[1]);
 }
 
 static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
 {
     commandline_parser_a const clp("--option1=\"\"\"a \"\"b \"c");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
-    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+    XTESTS_REQUIRE(TEST_INT_EQ(1u, clp.size()));
+    TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
-    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+    TEST_MS_EQ("--option1=a b c", clp[0]);
+    TEST_PTR_EQ(NULL, clp[1]);
 }
 } // anonymous namespace
 

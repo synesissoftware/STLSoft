@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 28th April 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */

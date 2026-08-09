@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::environment_variable`.
  *
  * Created: 11th August 2010
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,6 +23,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -79,7 +80,7 @@ static void test_1_00()
     {
         unixstl::environment_variable ev_PATH("PATH");
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(PATH, ev_PATH);
+        TEST_MS_EQ(PATH, ev_PATH);
     }
 }
 } // anonymous namespace
