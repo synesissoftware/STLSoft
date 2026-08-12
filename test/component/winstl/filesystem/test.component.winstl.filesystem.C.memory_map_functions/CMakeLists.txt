@@ -1,4 +1,2 @@
-list(APPEND X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED
-	4702
-)
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 define_automated_test_program(test.component.winstl.filesystem.C.memory_map_functions entry.c)

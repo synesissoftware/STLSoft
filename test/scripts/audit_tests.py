@@ -531,7 +531,7 @@ Components intentionally **not** covered by automated unit/component tests in th
 def render_philosophy() -> str:
     return """## Testing philosophy
 
-STLSoft uses the [xTests](https://github.com/synesissoftware/xTests) framework. Each test program is a standalone executable with one `entry.cpp` or `entry.c` per CMake target.
+STLSoft uses the [xTests](https://github.com/synesissoftware/xTests) framework. Each **automated** test program (unit/component) is a standalone executable with one `entry.cpp` or `entry.c` per CMake target. Scratch and performance programs use `main.c` / `main.cpp` instead.
 
 ### Unit tests (`test/unit/`)
 
@@ -642,6 +642,8 @@ See [Legend](#legend) for per-file table symbols.
 
 New auto-generated tests should carry a header note: `{AUTO_GEN_NOTE}` (Phase 1+).
 
+**C-language coverage** (Phase 2.7): see [`TESTING-C.md`](TESTING-C.md) — which ostensibly C API headers are validated by `entry.c` (C translation units). `entry.cpp` does not substitute for C validation. Regenerate with `python3 test/scripts/audit_c_tests.py`.
+
 ## Maintenance scripts (`test/scripts/`)
 
 The scripts under [`test/scripts/`](test/scripts/) are **part of the repository** — commit them alongside `TESTING.md`. They support inventory regeneration, scaffolding, and bulk test normalisation:
@@ -649,6 +651,9 @@ The scripts under [`test/scripts/`](test/scripts/) are **part of the repository*
 | Script | Role |
 |--------|------|
 | [`audit_tests.py`](test/scripts/audit_tests.py) | Regenerate this inventory (`TESTING.md`) |
+| [`audit_c_tests.py`](test/scripts/audit_c_tests.py) | C API vs `entry.c`/`entry.cpp` audit (`TESTING-C.md`, Phase 2.7) |
+| [`prune_obsolete_tests.py`](test/scripts/prune_obsolete_tests.py) | Remove tests targeting obsolete shim headers (`FILE_DEPRECATED` + `#error`) |
+| [`scaffold_c_api_tests.py`](test/scripts/scaffold_c_api_tests.py) | Scaffold `entry.c` peers for C API headers (`needs_c_test` in `TESTING-C.md`) |
 | [`scaffold_missing_tests.py`](test/scripts/scaffold_missing_tests.py) | Scaffold missing unit/component test programs |
 | [`enhance_stlsoft_tests.py`](test/scripts/enhance_stlsoft_tests.py) | STLSoft-specific test enhancement |
 | [`generate_unixstl_tests.py`](test/scripts/generate_unixstl_tests.py) | UnixSTL bulk generation |

@@ -1,5 +1,7 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(integer_to_string)
 add_subdirectory(number)
+add_subdirectory(test.unit.stlsoft.conversion.C.itoslice)
 add_subdirectory(test.unit.stlsoft.conversion.any_cast)
 add_subdirectory(test.unit.stlsoft.conversion.byte_format_functions)
 add_subdirectory(test.unit.stlsoft.conversion.char2str)
@@ -15,10 +17,9 @@ add_subdirectory(test.unit.stlsoft.conversion.sap_cast)
 add_subdirectory(test.unit.stlsoft.conversion.sas_to_string)
 add_subdirectory(test.unit.stlsoft.conversion.string_to_bool)
 add_subdirectory(test.unit.stlsoft.conversion.string_to_integer)
+add_subdirectory(test.unit.stlsoft.conversion.string_to_integer_range)
 add_subdirectory(test.unit.stlsoft.conversion.truncation_cast)
 add_subdirectory(test.unit.stlsoft.conversion.truncation_test)
 add_subdirectory(test.unit.stlsoft.conversion.try_parse_to)
 add_subdirectory(test.unit.stlsoft.conversion.union_cast)
 add_subdirectory(test.unit.stlsoft.conversion.w2m)
-
-# ############################## end of file ############################# #

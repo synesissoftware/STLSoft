@@ -13,6 +13,30 @@ TARGETS = [
 
 FOOTER = "\n\n# ############################## end of file ############################# #\n"
 
+HEADER = (
+    "# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten\n"
+)
+
+# Tests for language- or compiler-specific APIs: (cmake condition, comment).
+CONDITIONAL_SUBDIRS: dict[str, tuple[str, str]] = {
+    "test.unit.stlsoft.shims.attribute.get_ptr.std.auto_ptr": (
+        "CMAKE_CXX_STANDARD LESS 17",
+        "std::auto_ptr removed in C++17",
+    ),
+    "test.unit.stlsoft.shims.logical.is_null.std.auto_ptr": (
+        "CMAKE_CXX_STANDARD LESS 17",
+        "std::auto_ptr removed in C++17",
+    ),
+    "test.unit.stlsoft.string.shim_string_vc5_": (
+        'CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND MSVC_VERSION LESS 1200',
+        "VC5-only string shim",
+    ),
+    "test.unit.stlsoft.smartptr.scoped_handle.scoped_handle_borland": (
+        'CMAKE_CXX_COMPILER_ID STREQUAL "Borland" OR CMAKE_CXX_COMPILER_ID STREQUAL "Embarcadero"',
+        "Borland/Embarcadero-only scoped_handle",
+    ),
+}
+
 
 def has_content(directory: Path) -> bool:
     if not directory.is_dir():
@@ -37,14 +61,25 @@ def write_cmake(directory: Path) -> bool:
     lines: list[str] = []
     for sub in subdirs:
         if sub.name.startswith("test."):
-            lines.append(f"add_subdirectory({sub.name})")
+            entry = f"add_subdirectory({sub.name})"
         elif has_content(sub):
-            lines.append(f"add_subdirectory({sub.name})")
+            entry = f"add_subdirectory({sub.name})"
+        else:
+            continue
+
+        if sub.name in CONDITIONAL_SUBDIRS:
+            condition, comment = CONDITIONAL_SUBDIRS[sub.name]
+            lines.append(f"if({condition})")
+            lines.append(f"\t# {comment}")
+            lines.append(f"\t{entry}")
+            lines.append("endif()")
+        else:
+            lines.append(entry)
 
     if not lines:
         return False
 
-    content = "\n".join(lines) + FOOTER
+    content = HEADER + "\n".join(lines) + FOOTER
     cmake = directory / "CMakeLists.txt"
     if cmake.exists() and cmake.read_text() == content:
         return False

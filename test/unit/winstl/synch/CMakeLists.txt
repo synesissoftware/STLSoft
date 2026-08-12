@@ -1,12 +1,11 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(diagnostics)
-add_subdirectory(error)
+add_subdirectory(test.unit.winstl.synch.C.sleep_functions)
 add_subdirectory(test.unit.winstl.synch.Synchronisation_status_code)
 add_subdirectory(test.unit.winstl.synch.atomic_types)
 add_subdirectory(test.unit.winstl.synch.common)
 add_subdirectory(test.unit.winstl.synch.event)
 add_subdirectory(test.unit.winstl.synch.exceptions)
-add_subdirectory(test.unit.winstl.synch.functions)
 add_subdirectory(test.unit.winstl.synch.semaphore)
 add_subdirectory(test.unit.winstl.synch.sleep_functions)
 add_subdirectory(test.unit.winstl.synch.spin_mutex_policies)

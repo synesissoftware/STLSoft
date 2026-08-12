@@ -15,7 +15,7 @@
  * includes
  */
 
-#include <stlsoft/diagnostics/ProjectIdentifier.hpp>
+#include <stlsoft/diagnostics/ProjectIdentifier.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>

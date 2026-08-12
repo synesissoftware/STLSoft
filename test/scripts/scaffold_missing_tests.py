@@ -20,6 +20,8 @@ INCLUDE = ROOT / "include"
 TEST_UNIT = ROOT / "test" / "unit"
 TEST_COMPONENT = ROOT / "test" / "component"
 
+from obsolete_headers import is_obsolete_header  # noqa: E402
+
 SKIP_DIRS = {"internal", "api", "obsolete", "util"}
 SKIP_FILES = {
     "atlstl.hpp", "comstl.h", "inetstl.h", "mfcstl.hpp", "platformstl.h",
@@ -99,6 +101,8 @@ def discover(project: str, extra_skip_dirs: set[str] | None = None) -> list[Comp
         if any(p in skip for p in parts):
             continue
         if path.name in SKIP_FILES or path.name.endswith("_.h") or ".fwd." in path.name:
+            continue
+        if is_obsolete_header(path):
             continue
         if project == "stlsoft" and parts[1] in STL_SOFT_SKIP_AREAS:
             continue

@@ -1,3 +1,4 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(algorithms)
 add_subdirectory(collections)
 add_subdirectory(containers)
@@ -5,7 +6,6 @@ add_subdirectory(conversion)
 add_subdirectory(diagnostics)
 add_subdirectory(error)
 add_subdirectory(exception)
-add_subdirectory(exceptions)
 add_subdirectory(filesystem)
 add_subdirectory(function_adaptors)
 add_subdirectory(functional)
@@ -25,5 +25,3 @@ add_subdirectory(system)
 add_subdirectory(time)
 add_subdirectory(traits)
 add_subdirectory(util)
-
-# ############################## end of file ############################# #

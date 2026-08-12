@@ -1,4 +1,12 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(test.unit.winstl.window.C.creation_functions)
+add_subdirectory(test.unit.winstl.window.C.font_functions)
+add_subdirectory(test.unit.winstl.window.C.functions)
+add_subdirectory(test.unit.winstl.window.C.gdi_functions)
+add_subdirectory(test.unit.winstl.window.C.menu_functions)
+add_subdirectory(test.unit.winstl.window.C.message_functions)
+add_subdirectory(test.unit.winstl.window.C.scale_functions)
+add_subdirectory(test.unit.winstl.window.C.textmetrics_functions)
 add_subdirectory(test.unit.winstl.window.colour_constants)
 add_subdirectory(test.unit.winstl.window.scale_functions)
 add_subdirectory(test.unit.winstl.window.window_traits)

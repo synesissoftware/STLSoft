@@ -1,3 +1,4 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(common)
 add_subdirectory(test.unit.stlsoft.iterators.adapted_iterator_traits)
 add_subdirectory(test.unit.stlsoft.iterators.associative_select_iterator)
@@ -15,5 +16,3 @@ add_subdirectory(test.unit.stlsoft.iterators.string_concatenator_iterator)
 add_subdirectory(test.unit.stlsoft.iterators.transform_filter_iterator)
 add_subdirectory(test.unit.stlsoft.iterators.transform_iterator)
 add_subdirectory(test.unit.stlsoft.iterators.unary_function_output_iterator_adaptor)
-
-# ############################## end of file ############################# #

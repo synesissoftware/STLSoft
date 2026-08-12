@@ -1,5 +1,7 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(refcount_policies)
+add_subdirectory(test.unit.platformstl.synch.C.atomic_functions)
+add_subdirectory(test.unit.platformstl.synch.C.sleep_functions)
 add_subdirectory(test.unit.platformstl.synch.atomic_functions)
 add_subdirectory(test.unit.platformstl.synch.atomic_types)
 add_subdirectory(test.unit.platformstl.synch.refcount_policies)

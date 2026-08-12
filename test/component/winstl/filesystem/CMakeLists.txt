@@ -1,6 +1,12 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(handles)
+add_subdirectory(test.component.winstl.filesystem.C.file_creation_functions)
+add_subdirectory(test.component.winstl.filesystem.C.file_information_functions)
+add_subdirectory(test.component.winstl.filesystem.C.link_functions)
 add_subdirectory(test.component.winstl.filesystem.C.memory_map_functions)
+add_subdirectory(test.component.winstl.filesystem.C.memory_map_sparse_region_functions)
+add_subdirectory(test.component.winstl.filesystem.C.path_classify_functions)
+add_subdirectory(test.component.winstl.filesystem.C.path_parse_functions)
 add_subdirectory(test.component.winstl.filesystem.absolute_path)
 add_subdirectory(test.component.winstl.filesystem.current_directory)
 add_subdirectory(test.component.winstl.filesystem.current_directory_scope)

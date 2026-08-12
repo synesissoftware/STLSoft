@@ -1,8 +1,13 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(test.unit.stlsoft.string.c_string.C.strnchr)
+add_subdirectory(test.unit.stlsoft.string.c_string.C.strnicmp)
+add_subdirectory(test.unit.stlsoft.string.c_string.C.strnistrn)
+add_subdirectory(test.unit.stlsoft.string.c_string.C.strnpbrkn)
+add_subdirectory(test.unit.stlsoft.string.c_string.C.strnrchr)
+add_subdirectory(test.unit.stlsoft.string.c_string.C.strnstrn)
 add_subdirectory(test.unit.stlsoft.string.c_string.strnchr)
 add_subdirectory(test.unit.stlsoft.string.c_string.strnicmp)
 add_subdirectory(test.unit.stlsoft.string.c_string.strnistrn)
 add_subdirectory(test.unit.stlsoft.string.c_string.strnpbrkn)
 add_subdirectory(test.unit.stlsoft.string.c_string.strnrchr)
 add_subdirectory(test.unit.stlsoft.string.c_string.strnstrn)
-
-# ############################## end of file ############################# #

@@ -15,7 +15,7 @@
  * includes
  */
 
-#include <stlsoft/diagnostics/LibraryIdentifier.hpp>
+#include <stlsoft/diagnostics/LibraryIdentifier.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>

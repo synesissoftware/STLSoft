@@ -336,39 +336,6 @@ static void test_policy_type_exists(void)
 """,
     )
 
-    # error exceptions (obsolete header; ensure it still compiles)
-    write(
-        TEST_UNIT / "error/test.unit.platformstl.error.exceptions/entry.cpp",
-        """#include <platformstl/error/exceptions.hpp>
-#include <xtests/terse-api.h>
-#include <stlsoft/stlsoft.h>
-#include <stdlib.h>
-
-namespace { static void test_obsolete_header_compiles(void); }
-
-int main(int argc, char* argv[])
-{
-    int retCode = EXIT_SUCCESS;
-    int verbosity = 2;
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
-    if (XTESTS_START_RUNNER("test.unit.platformstl.error.exceptions", verbosity))
-    {
-        XTESTS_RUN_CASE(test_obsolete_header_compiles);
-        XTESTS_PRINT_RESULTS();
-        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-    }
-    return retCode;
-}
-
-static void test_obsolete_header_compiles(void)
-{
-    STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::platform_exception_policy));
-    STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::platformstl_exception));
-    TEST_PASSED();
-}
-""",
-    )
-
     # atomic_types
     write(
         TEST_UNIT / "synch/test.unit.platformstl.synch.atomic_types/entry.cpp",
@@ -1467,7 +1434,7 @@ static void test_path_get_ext(void)
     update_cmake(TEST_UNIT / "synch/refcount_policies", [
         "test.unit.platformstl.synch.refcount_policies.refcount_policy_multi_threaded",
     ])
-    update_cmake(TEST_UNIT / "error", ["test.unit.platformstl.error.error_desc", "test.unit.platformstl.error.exceptions"])
+    update_cmake(TEST_UNIT / "error", ["test.unit.platformstl.error.error_desc"])
     update_cmake(TEST_UNIT / "exception", [
         "test.unit.platformstl.exception.access_exception",
         "test.unit.platformstl.exception.entry_not_found_exception",

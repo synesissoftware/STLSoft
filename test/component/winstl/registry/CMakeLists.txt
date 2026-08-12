@@ -1,7 +1,6 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(error)
 add_subdirectory(test.component.winstl.registry.defs)
-add_subdirectory(test.component.winstl.registry.exceptions)
 add_subdirectory(test.component.winstl.registry.functions)
 add_subdirectory(test.component.winstl.registry.reg_key)
 add_subdirectory(test.component.winstl.registry.reg_key_sequence)

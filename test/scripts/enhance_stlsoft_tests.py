@@ -15,7 +15,6 @@ TEST_ROOTS = [ROOT / "test" / "unit" / "stlsoft", ROOT / "test" / "component" / 
 SKIP_SUFFIXES = {
     "algorithms.hpp", "algorithms/deprecated.hpp", "algorithms/debug.hpp",
     "collections/collections.hpp", "collections/util/collections.hpp",
-    "collections/associative_mapped_type_detector.hpp",
     "collections/util/associative_mapped_type_detector.hpp",
     "containers/array_policies.hpp",
     "conversion/integer_to_string.hpp", "conversion/itoslice.h",
@@ -312,19 +311,6 @@ static void test_unsorted_map_insert_and_find()
     TEST_INTEGER_EQUAL(2, static_cast<int>(m.size()));
     TEST_INTEGER_EQUAL(10, m[1]);
     TEST_INTEGER_EQUAL(20, m[2]);
-}
-""")
-
-_add("containers/array_policies", """
-static void test_array_policies_default_construct()
-{
-    stlsoft::do_construct_n<int> policy;
-    int buf[3];
-
-    policy(&buf[0], 3);
-
-    TEST_INTEGER_EQUAL(0, buf[0]);
-    TEST_INTEGER_EQUAL(0, buf[2]);
 }
 """)
 

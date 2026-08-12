@@ -15,7 +15,7 @@
  * includes
  */
 
-#include <stlsoft/util/nulldef.hpp>
+#include <stlsoft/util/nulldef.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>

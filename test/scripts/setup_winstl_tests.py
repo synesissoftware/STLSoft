@@ -10,8 +10,15 @@ from pathlib import Path
 from canonical_entry import file_header
 
 ROOT = Path(__file__).resolve().parents[2]
+TEST_ROOT = ROOT / "test"
 TEST_UNIT = ROOT / "test" / "unit" / "winstl"
 TEST_COMPONENT = ROOT / "test" / "component" / "winstl"
+
+# CMakeLists.txt under these paths (relative to test/) are wrapped in a platform guard.
+CMAKE_PLATFORM_GUARDS: dict[str, str] = {
+    "component/inetstl/network": "_BUILD_AS_WIN32",
+    "unit/inetstl/filesystem": "_BUILD_AS_WIN32",
+}
 
 # Directories to remove entirely (GUI-heavy / interactive / out of scope).
 REMOVE_DIRS = [
@@ -116,10 +123,18 @@ def write_cmake_hierarchy(base: Path) -> int:
             continue
         lines = [f"add_subdirectory({s})" for s in subdirs]
         lines.extend(f"add_subdirectory({t})" for t in tests)
+        body = "\n".join(lines)
+        guard = None
+        try:
+            guard = CMAKE_PLATFORM_GUARDS.get(d.relative_to(TEST_ROOT).as_posix())
+        except ValueError:
+            pass
+        if guard and body:
+            body = f"if({guard})\n\n{body}\n\nendif({guard})\n"
         content = (
             "# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten\n"
-            + "\n".join(lines)
-            + ("\n" if lines else "")
+            + body
+            + ("\n" if body and not body.endswith("\n") else "")
         )
         cm = d / "CMakeLists.txt"
         if not cm.exists() or cm.read_text() != content:

@@ -1,16 +1,6 @@
-# MFC link settings must be in scope before leaf targets call
-# define_automated_test_program() (see stlsoft_prepare_mfc_target).
-# **CMAKE_MFC_FLAG** is a normal variable and would otherwise leak to later
-# sibling directories after this **add_subdirectory** returns.
-set(_stlsoft_cmake_mfc_flag_save "${CMAKE_MFC_FLAG}")
-
-stlsoft_prepare_mfc_target()
-
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(collections)
 add_subdirectory(memory)
 add_subdirectory(shims)
 add_subdirectory(string)
 add_subdirectory(util)
-
-set(CMAKE_MFC_FLAG "${_stlsoft_cmake_mfc_flag_save}")
-unset(_stlsoft_cmake_mfc_flag_save)

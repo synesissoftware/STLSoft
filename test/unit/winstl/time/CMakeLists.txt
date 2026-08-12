@@ -1,4 +1,11 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(test.unit.winstl.time.C.comparison_functions)
+add_subdirectory(test.unit.winstl.time.C.conversion_functions)
+add_subdirectory(test.unit.winstl.time.C.creation_functions)
+add_subdirectory(test.unit.winstl.time.C.elicitation_functions)
+add_subdirectory(test.unit.winstl.time.C.localisation_functions)
+add_subdirectory(test.unit.winstl.time.C.modification_functions)
+add_subdirectory(test.unit.winstl.time.C.validation_functions)
 add_subdirectory(test.unit.winstl.time.comparison_functions)
 add_subdirectory(test.unit.winstl.time.comparison_operators)
 add_subdirectory(test.unit.winstl.time.conversion_functions)

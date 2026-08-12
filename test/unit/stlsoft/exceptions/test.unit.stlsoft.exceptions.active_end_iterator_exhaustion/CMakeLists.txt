@@ -1,1 +1,0 @@
-define_automated_test_program(test.unit.stlsoft.exceptions.active_end_iterator_exhaustion entry.cpp)

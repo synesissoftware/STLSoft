@@ -1,3 +1,4 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_base32_string)
 add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_base36_string)
 add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_decimal_string)
@@ -6,5 +7,3 @@ add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_lc_st
 add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_octal_string)
 add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_string)
 add_subdirectory(test.unit.stlsoft.conversion.integer_to_string.integer_to_zeropadded_decimal_string)
-
-# ############################## end of file ############################# #

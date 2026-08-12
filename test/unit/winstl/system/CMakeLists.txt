@@ -1,4 +1,8 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(test.unit.winstl.system.C.console_functions)
+add_subdirectory(test.unit.winstl.system.C.memory_functions)
+add_subdirectory(test.unit.winstl.system.C.os_version)
+add_subdirectory(test.unit.winstl.system.C.system_information_functions)
 add_subdirectory(test.unit.winstl.system.commandline_parser)
 add_subdirectory(test.unit.winstl.system.console_colour_scope)
 add_subdirectory(test.unit.winstl.system.console_ctrl_handler_scope)
