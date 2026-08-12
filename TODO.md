@@ -46,6 +46,7 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites;
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
+* [ ] Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;
 
 ### 1.11.3
 
