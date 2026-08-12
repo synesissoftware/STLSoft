@@ -11,6 +11,7 @@ only a C translation unit can.
 from __future__ import annotations
 
 import re
+import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -159,9 +160,17 @@ def test_targets_header(test_path: str, include_path: str, area: str) -> bool:
     if compact and compact in tp:
         return True
     area_dots = area.replace("/", ".")
-    if f".c.{area_dots}" in test_path.lower() or f".c.{stem.lower()}" in test_path.lower():
+    low = test_path.lower()
+    stem_l = stem.lower()
+    # Infix ``.C.<subject>`` (legacy) and suffix ``.<subject>.C`` (canonical).
+    if (
+        f".c.{area_dots}" in low
+        or f".c.{stem_l}" in low
+        or f".{area_dots}.c" in low
+        or f".{stem_l}.c" in low
+    ):
         return True
-    return area_matches_test(area, test_path) and stem.lower() in test_path.lower()
+    return area_matches_test(area, test_path) and stem_l in test_path.lower()
 
 
 def c_test_includes_header(test_path: str, include_path: str) -> bool:

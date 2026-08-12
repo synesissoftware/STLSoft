@@ -2,7 +2,7 @@
 """Scaffold entry.c peer programs for C API headers lacking C validation.
 
 For each header flagged ``needs_c_test`` by ``audit_c_tests.py``, creates a
-sibling ``test.*.C.<leaf>`` directory next to an existing ``entry.cpp`` peer
+sibling ``test.*.<leaf>.C`` directory next to an existing ``entry.cpp`` peer
 when one exists, otherwise under ``test/unit/<project>/…``.
 
 Regenerates affected CMakeLists.txt chains via the same hierarchy logic as
@@ -61,7 +61,8 @@ def pick_cpp_peer(row) -> str | None:
         name = Path(p).parent.name
         suffix = name.split(f"test.unit.{project}.")[-1]
         suffix = suffix.split(f"test.component.{project}.")[-1]
-        exact_area = suffix == f"C.{area_dots.split('/')[-1]}" or suffix == area_dots
+        leaf = area_dots.split(".")[-1]
+        exact_area = suffix in (f"{leaf}.C", f"C.{leaf}", area_dots)
         area_in_name = area_dots.replace(".", "_") in name or area_dots in name
         return (
             0 if exact_area else (0 if area_in_name else 1),
@@ -79,12 +80,33 @@ def infer_kind(area: str, cpp_peer: str | None = None) -> str:
     return "component" if any(k in low for k in COMPONENT_KEYWORDS) else "unit"
 
 
-def default_test_name(project: str, area: str, cpp_peer: str | None = None) -> str:
+def _test_name_parts(
+    project: str, area: str, cpp_peer: str | None = None
+) -> tuple[str, str]:
     kind = infer_kind(area, cpp_peer)
     parts = area.split("/")
     leaf = parts[-1]
     prefix = ".".join(["test", kind, project, *parts[:-1]])
+    return prefix, leaf
+
+
+def default_test_name(project: str, area: str, cpp_peer: str | None = None) -> str:
+    """Canonical C program identity: ``test.<kind>.<project>.<area>.<leaf>.C``."""
+    prefix, leaf = _test_name_parts(project, area, cpp_peer)
+    return f"{prefix}.{leaf}.C"
+
+
+def legacy_test_name(project: str, area: str, cpp_peer: str | None = None) -> str:
+    """Pre-``subject.C`` identity (``test.*.C.<leaf>``); kept to skip existing peers."""
+    prefix, leaf = _test_name_parts(project, area, cpp_peer)
     return f"{prefix}.C.{leaf}"
+
+
+def names_for_header(project: str, area: str, cpp_peer: str | None = None) -> set[str]:
+    return {
+        default_test_name(project, area, cpp_peer),
+        legacy_test_name(project, area, cpp_peer),
+    }
 
 
 def leaf_dir_for_test(test_name: str, project: str, area: str) -> Path:
@@ -122,6 +144,11 @@ def scaffold_row(row, *, dry_run: bool, force: bool = False) -> Path | None:
 
     if (leaf / "entry.c").exists() and not force:
         return None
+    legacy_leaf = leaf_dir_for_test(
+        legacy_test_name(row.project, row.area, cpp_peer), row.project, row.area
+    )
+    if (legacy_leaf / "entry.c").exists() and not force:
+        return None
 
     include = f"<{resolve_include(row.include_path)}>"
     purpose = f"C validation for `{row.area}` (compiles header in a C translation unit)."
@@ -157,6 +184,15 @@ PROJECTS = (
     "unixstl",
     "winstl",
 )
+
+
+def iter_c_test_cmakes():
+    """Leaf CMakeLists for C-language test programs (suffix ``.C`` or infix ``.C.``)."""
+    for entry in sorted(TEST.rglob("CMakeLists.txt")):
+        name = entry.parent.name
+        if not ((name.endswith(".C") or ".C." in name) and (entry.parent / "entry.c").exists()):
+            continue
+        yield entry
 
 
 def regenerate_all_cmake() -> int:
@@ -213,10 +249,10 @@ def main() -> int:
 
     if args.fix_cmake:
         fixed = 0
-        for entry in sorted(TEST.rglob("test.*.C.*/CMakeLists.txt")):
+        for entry in iter_c_test_cmakes():
             test_name = entry.parent.name
             match = next(
-                (r for r in rows if default_test_name(r.project, r.area) == test_name),
+                (r for r in rows if test_name in names_for_header(r.project, r.area)),
                 None,
             )
             peer = pick_cpp_peer(match) if match else None

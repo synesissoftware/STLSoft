@@ -195,7 +195,7 @@ def enhanced_body(kind: str, test_name: str, area: str, header_include: str, ent
     if area.startswith("performance/") or (area.startswith("diagnostics/") and kind == "component"):
         return _counter_test(test_name, h, is_cpp, area)
     if area.startswith("diagnostics/") and kind == "unit":
-        if "C.output_debug" in test_name:
+        if "output_debug_line.C" in test_name or "C.output_debug" in test_name:
             return None
         return f"""{_file_header(test_name, area, 'unit')}
 #include <winstl/diagnostics/printf_debug_string.h>

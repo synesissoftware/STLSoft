@@ -170,7 +170,7 @@ def render_c(
     run_lines: Iterable[str] | None = None,
     auto_generated: bool = True,
 ) -> str:
-    """Render a canonical C entry.c (file-scope linkage; exemplar: C.SystemInformation)."""
+    """Render a canonical C entry.c (file-scope linkage; exemplar: SystemInformation.C)."""
     funcs = list(test_functions)
     if not funcs:
         funcs = ["TEST_compile_and_link"]
