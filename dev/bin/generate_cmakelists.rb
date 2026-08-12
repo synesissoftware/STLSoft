@@ -7,7 +7,7 @@
 #           compatible with Synesis Information Systems' libraries.
 #
 # Created:  9th January 2025
-# Updated:  23rd August 2025
+# Updated:  12th August 2026
 #
 # Author:   Matthew Wilson
 #
@@ -34,7 +34,12 @@ require 'recls'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 1
-PROGRAM_VER_PATCH = 3
+PROGRAM_VER_PATCH = 4
+
+
+EYECATCHER = '# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten'
+
+
 
 FILES_TO_IGNORE = [
   'implicit_link.c',
@@ -99,7 +104,7 @@ climate = LibCLImate::Climate.new do |cl|
 
   cl.info_lines = [
     'STLSoft Development Tools',
-    'Copyright Synesis Software Pty Ltd (c) 1999-2019, Synesis Information Systems Pty Ltd (c) 2019-2025',
+    'Copyright Synesis Software Pty Ltd (c) 1999-2019, Synesis Information Systems Pty Ltd (c) 2019-2026',
     :version,
     "Creates or regenerates CMakeLists.txt files in a manner compatible with Synesis Information Systems' libraries",
     nil,
@@ -156,7 +161,7 @@ directories.each do |directory|
         num_missing_makelists_created += 1
 
         regenerate_cml = true
-      elsif lines[0].strip == '# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten'
+      elsif lines[0].strip == EYECATCHER
 
         regenerate_cml = true
 
@@ -213,7 +218,7 @@ directories.each do |directory|
           end
 
           f << <<-END_of_
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+#{EYECATCHER}
 #{macro}(#{subdirectory.basename} #{fe_prg.basename})
 END_of_
         end
@@ -235,7 +240,7 @@ END_of_
         File.open(cml_path, 'w') do |f|
 
           f << <<-END_of_
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+#{EYECATCHER}
 END_of_
 
           subdirectory_names = contents.map { |fe| fe.basename }.to_a.sort
