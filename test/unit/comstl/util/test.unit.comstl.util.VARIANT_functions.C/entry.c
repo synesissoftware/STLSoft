@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.comstl.util.C.VARIANT_functions/entry.c
+ * File:    test.unit.comstl.util.VARIANT_functions.C/entry.c
  *
  * Purpose: Scratch test for VARIANT functions.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.component.winstl.filesystem.C.memory_map_functions/entry.c
+ * File:    test.component.winstl.filesystem.memory_map_functions.C/entry.c
  *
  * Purpose: Scratch test for memory-map functions.
  *
