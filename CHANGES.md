@@ -1,7 +1,12 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc6 - 9th August 2026
+## 1.11.2-alpha - 20th August 2026
+
+TBC
+
+
+## 1.11.1-rc6 - 12th August 2026
 
 * **Test coverage expansion (1.11.2 increment)** — comprehensive unit- and component-test suites across all sub-projects; **~640 new** test programs (from **86** to **~708** buildable on Unix/macOS);
 * **ACESTL** — full unit + component coverage (`shims`, `memory/message_block_functions`, `collections/message_queue_sequence`, `network/socket_functions`, `reactor/custom_event_handler`, …); gated on **`HAS_ACE`**;

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.winstl.api.internal.C.DynamicLinkLibrary/entry.c
+ * File:    test.unit.winstl.api.internal.DynamicLinkLibrary.C/entry.c
  *
  * Created: 25th May 2025
  * Updated: 9th August 2026

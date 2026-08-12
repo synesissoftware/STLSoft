@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.memory.C.STLSOFT_C_AUTO_BUFFER/entry.c
+ * File:    test.unit.stlsoft.memory.auto_buffer.C/entry.c
  *
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *
  * Created: 5th August 2011
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.C.STLSOFT_C_AUTO_BUFFER", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.auto_buffer.C", verbosity))
     {
         XTESTS_RUN_CASE(test_value_type_of_char_internal_1);
         XTESTS_RUN_CASE(test_value_type_of_char_internal_2);
