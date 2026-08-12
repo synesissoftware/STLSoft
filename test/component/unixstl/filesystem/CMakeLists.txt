@@ -1,6 +1,6 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(handles)
-add_subdirectory(test.component.unixstl.filesystem.C.memory_map_functions)
+add_subdirectory(test.component.unixstl.filesystem.memory_map_functions.C)
 add_subdirectory(test.component.unixstl.filesystem.current_directory)
 add_subdirectory(test.component.unixstl.filesystem.current_directory_scope)
 add_subdirectory(test.component.unixstl.filesystem.directory_functions)

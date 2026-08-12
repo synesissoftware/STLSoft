@@ -1,6 +1,6 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(test.unit.unixstl.filesystem.C.path_classify_functions)
-add_subdirectory(test.unit.unixstl.filesystem.C.path_parse_functions)
+add_subdirectory(test.unit.unixstl.filesystem.path_classify_functions.C)
+add_subdirectory(test.unit.unixstl.filesystem.path_parse_functions.C)
 add_subdirectory(test.unit.unixstl.filesystem.file_path_buffer)
 add_subdirectory(test.unit.unixstl.filesystem.filesystem_traits)
 add_subdirectory(test.unit.unixstl.filesystem.functionals)

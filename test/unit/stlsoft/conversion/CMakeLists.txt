@@ -1,7 +1,7 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(integer_to_string)
 add_subdirectory(number)
-add_subdirectory(test.unit.stlsoft.conversion.C.itoslice)
+add_subdirectory(test.unit.stlsoft.conversion.itoslice.C)
 add_subdirectory(test.unit.stlsoft.conversion.any_cast)
 add_subdirectory(test.unit.stlsoft.conversion.byte_format_functions)
 add_subdirectory(test.unit.stlsoft.conversion.char2str)

@@ -1,2 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(test.unit.winstl.internal.C.windows_version_)
+add_subdirectory(test.unit.winstl.internal.windows_version_.C)

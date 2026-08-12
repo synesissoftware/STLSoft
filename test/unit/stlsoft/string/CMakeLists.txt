@@ -1,6 +1,6 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(c_string)
-add_subdirectory(test.unit.stlsoft.string.C.copy_functions)
+add_subdirectory(test.unit.stlsoft.string.copy_functions.C)
 add_subdirectory(test.unit.stlsoft.string.c_string_traits)
 add_subdirectory(test.unit.stlsoft.string.case_functions)
 add_subdirectory(test.unit.stlsoft.string.char_alt_traits)
