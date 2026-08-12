@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.platformstl.system.C.console_functions/entry.c
+ * File:    test.unit.comstl.util.refcount_functions.C/entry.c
  *
- * Purpose: C validation for `system/console_functions` (compiles header in a C translation unit).
+ * Purpose: C validation for `util/refcount_functions` (compiles header in a C translation unit).
  *
  * Created: 9th August 2026
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -15,7 +15,7 @@
  * includes
  */
 
-#include <platformstl/system/console_functions.h>
+#include <comstl/util/refcount_functions.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.platformstl.system.C.console_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.refcount_functions.C", verbosity))
     {
         XTESTS_RUN_CASE(TEST_compile_and_link);
 

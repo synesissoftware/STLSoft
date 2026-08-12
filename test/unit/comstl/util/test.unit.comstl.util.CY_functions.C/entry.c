@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.comstl.util.C.CY_functions/entry.c
+ * File:    test.unit.comstl.util.CY_functions.C/entry.c
  *
  * Purpose: Unit-tests for `comstl_C_CY_compare`.
  *
  * Created: 9th August 2026
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.comstl.util.C.CY_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.CY_functions.C", verbosity))
     {
         XTESTS_RUN_CASE(test_compare_equal_hi_and_lo);
         XTESTS_RUN_CASE(test_compare_less);

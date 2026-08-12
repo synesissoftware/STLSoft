@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.comstl.util.C.object_functions/entry.c
+ * File:    test.unit.platformstl.synch.sleep_functions.C/entry.c
  *
- * Purpose: C validation for `util/object_functions` (compiles header in a C translation unit).
+ * Purpose: C validation for `synch/sleep_functions` (compiles header in a C translation unit).
  *
  * Created: 9th August 2026
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -15,7 +15,7 @@
  * includes
  */
 
-#include <comstl/util/object_functions.h>
+#include <platformstl/synch/sleep_functions.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.comstl.util.C.object_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.platformstl.synch.sleep_functions.C", verbosity))
     {
         XTESTS_RUN_CASE(TEST_compile_and_link);
 
