@@ -4,7 +4,7 @@
  * Purpose: Scratch test for VARIANT functions.
  *
  * Created: 26th October 2008
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.comstl.util.C.VARIANT_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.VARIANT_functions.C", verbosity))
     {
         XTESTS_RUN_CASE(test_VARIANT_equal_VT_EMPTY);
         XTESTS_RUN_CASE(test_VARIANT_equal_VT_NULL);

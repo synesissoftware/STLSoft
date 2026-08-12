@@ -4,7 +4,7 @@
  * Purpose: Scratch test for memory-map functions.
  *
  * Created: 26th August 2010
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.filesystem.C.memory_map_functions", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.filesystem.memory_map_functions.C", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-static char const   TEST_FILE_NAME[]    =   "test.component.winstl.filesystem.C.memory_map_functions.DATAFILE";
+static char const   TEST_FILE_NAME[]    =   "test.component.winstl.filesystem.memory_map_functions.C.DATAFILE";
 #ifdef __cplusplus
 static size_t const TEST_BUFFER_SIZE    =   0x1000;
 static size_t const TEST_NUM_BUFFERS    =   0x100;

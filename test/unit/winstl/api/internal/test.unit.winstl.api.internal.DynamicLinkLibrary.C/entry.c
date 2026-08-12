@@ -2,7 +2,7 @@
  * File:    test.unit.winstl.api.internal.DynamicLinkLibrary.C/entry.c
  *
  * Created: 25th May 2025
- * Updated: 9th August 2026
+ * Updated: 12th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.winstl.api.internal.C.DynamicLinkLibrary", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.winstl.api.internal.DynamicLinkLibrary.C", verbosity))
     {
         XTESTS_RUN_CASE(TEST_GMFN_INVALID);
         XTESTS_RUN_CASE(TEST_GMFN_VALID);
