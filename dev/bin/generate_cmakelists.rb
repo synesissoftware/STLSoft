@@ -36,7 +36,6 @@ PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 1
 PROGRAM_VER_PATCH = 4
 
-
 EYECATCHER = '# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten'
 
 
@@ -48,6 +47,7 @@ FILES_TO_IGNORE = [
   /\.vcproj$/,
   /\.vcxproj$/,
   /\.vcxproj.filters$/,
+  lambda { |fe| fe.directory_parts.include?('include/') },
 ]
 
 
@@ -70,7 +70,7 @@ def dead_directory? subdirectory, contents, **options
   false
 end
 
-def strip_excludes contents, ignore_list, **options
+def strip_excludes entries, ignore_list, **options
 
   def match_item fe, ignore_list
 
@@ -83,6 +83,9 @@ def strip_excludes contents, ignore_list, **options
       when ::String
 
         return true if ignore == fe.basename
+      when ::Proc
+
+        return true if ignore.call fe
       else
       end
     end
@@ -90,7 +93,7 @@ def strip_excludes contents, ignore_list, **options
     false
   end
 
-  contents.reject { |fe| match_item fe, ignore_list }
+  entries.reject { |fe| match_item fe, ignore_list }
 end
 
 
