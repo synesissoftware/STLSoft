@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th August 2026
+ * Updated: 17th August 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -389,7 +389,7 @@
 # define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 2 (31st May 2025) */
 # define _STLSOFT_VER_1_11_1_RC3    0x010b01c3  /*!< Version 1.11.1 rc 3 (23rd August 2025) */
 # define _STLSOFT_VER_1_11_1_RC4    0x010b01c4  /*!< Version 1.11.1 rc 4 (1st July 2026) */
-# define _STLSOFT_VER_1_11_1_RC5    0x010b01c5  /*!< Version 1.11.1 rc 5 (9th August 2026) */
+# define _STLSOFT_VER_1_11_1_RC5    0x010b01c5  /*!< Version 1.11.1 rc 5 (19th August 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
@@ -543,6 +543,10 @@
 # undef STLSOFT_COMPILER_IS_SUNPRO
 #endif /* STLSOFT_COMPILER_IS_SUNPRO */
 
+#ifdef STLSOFT_COMPILER_IS_TINYCC
+# undef STLSOFT_COMPILER_IS_TINYCC
+#endif /* STLSOFT_COMPILER_IS_TINYCC */
+
 #ifdef STLSOFT_COMPILER_IS_VECTORC
 # undef STLSOFT_COMPILER_IS_VECTORC
 #endif /* STLSOFT_COMPILER_IS_VECTORC */
@@ -574,6 +578,7 @@
      defined(__MWERKS__) ||        /* Metrowerks */ \
      defined(__SUNPRO_C) ||        /* Sun Pro C */ \
      defined(__SUNPRO_CC) ||       /* Sun Pro C++ */ \
+     defined(__TINYC__) ||         /* Tiny C Compiler */ \
      defined(__VECTORC) ||         /* VectorC */ \
      defined(__WATCOMC__) ||       /* Watcom */ \
      0
@@ -595,6 +600,21 @@
 # ifndef __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME
 #  error When using the custom compiler option you must define the symbol __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME, e.g. #define __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME <stlsoft/internal/cccap/my_compiler.h>
 # endif /* !__STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME */
+
+#elif defined(__TINYC__)
+ /* **************************** Tiny C Compiler **************************** */
+ /* Must precede `__GNUC__` / `_MSC_VER`: some TinyCC builds (including the
+  * `mob` development branch) define `__GNUC__`, and some Windows builds may
+  * define `_MSC_VER`, while remaining C-only.
+  *
+  * Recognised as `STLSOFT_COMPILER_IS_TINYCC` with `cccap/tinycc.h`.
+  */
+# ifdef __cplusplus
+#  error Tiny C Compiler does not support C++ compilation
+# endif /* __cplusplus */
+# define STLSOFT_COMPILER_IS_TINYCC
+# define STLSOFT_COMPILER_LABEL_STRING                     "Tiny C Compiler"
+# define STLSOFT_COMPILER_VERSION_STRING                   "Tiny C Compiler " STLSOFT_STRINGIZE(__TINYC__)
 
 #elif defined(__clang__)
  /* ******************************* Clang ******************************* */
@@ -968,6 +988,8 @@
 # include <stlsoft/internal/cccap/mwerks.h>
 #elif defined(STLSOFT_COMPILER_IS_SUNPRO)
 # include <stlsoft/internal/cccap/sunpro.h>
+#elif defined(STLSOFT_COMPILER_IS_TINYCC)
+# include <stlsoft/internal/cccap/tinycc.h>
 #elif defined(STLSOFT_COMPILER_IS_VECTORC)
 # include <stlsoft/internal/cccap/vectorc.h>
 #elif defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -2500,6 +2522,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
       defined(STLSOFT_COMPILER_IS_GCC) ||\
       defined(STLSOFT_COMPILER_IS_MWERKS) ||\
       defined(STLSOFT_COMPILER_IS_SUNPRO) ||\
+      defined(STLSOFT_COMPILER_IS_TINYCC) ||\
       0
 
 # define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## LL)
@@ -3523,6 +3546,9 @@ private:
     friend friend_type
 
 # endif /* __GNUC_MINOR__ */
+#elif defined(STLSOFT_COMPILER_IS_TINYCC)
+
+ /* Tiny CC is C-only. We don't support template friends. */
 #else /* ? compiler */
 
 # error Compiler not discriminated
@@ -3805,7 +3831,7 @@ inline void stlsoft_suppress_unused_func(size_t )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# ifdef __GNUC__
+# ifdef STLSOFT_CF_gcc_pragma_diagnostic_pop
 
 #  pragma GCC diagnostic push
 #  pragma GCC diagnostic ignored "-Wunused-function"
@@ -3841,7 +3867,7 @@ stlsoft_C_always_true_(void) STLSOFT_NOEXCEPT
     return 1;
 }
 
-# ifdef __GNUC__
+# ifdef STLSOFT_CF_gcc_pragma_diagnostic_pop
 
 #  pragma GCC diagnostic pop
 # endif

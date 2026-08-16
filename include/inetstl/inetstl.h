@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 22nd August 2025
+ * Updated: 17th August 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,9 +49,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     577
+# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    12
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 0
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     578
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -135,12 +135,13 @@
 # define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
 # define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
 # define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 rc 2) */
+# define _INETSTL_VER_1_5_0_RC01 0x010500c1  /*!< Version 1.5.0 rc 1 (with STLSoft 1.11.1 rc 5) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
 #define _INETSTL_VER_REVISION    0
-#define _INETSTL_VER             _INETSTL_VER_1_5_0_A02
+#define _INETSTL_VER             _INETSTL_VER_1_5_0_RC01
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -246,6 +247,12 @@
 # if _MSC_VER < 1020
 #  error Versions of Visual C++ prior to 4.2 are not supported by the InetSTL libraries
 # endif /* _MSC_VER */
+
+#elif defined(STLSOFT_COMPILER_IS_TINYCC)
+/* Tiny C Compiler */
+# if __TINYC__ < 928
+#  error Versions of Tiny C Compiler prior to 0.9.28 are not supported by the InetSTL libraries
+# endif /* __TINYC__ */
 
 #elif defined(STLSOFT_COMPILER_IS_VECTORC)
 /* VectorC C/C++ */

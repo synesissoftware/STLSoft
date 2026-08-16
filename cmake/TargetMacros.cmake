@@ -53,6 +53,10 @@ function(define_automated_test_program program_name entry_point_source_name)
 		)
 	endif()
 
+	# Automated tests always link xTests (C++). Use the C++ driver so a
+	# C-only compiler such as TinyCC is not invoked as the linker.
+	set_property(TARGET ${program_name} PROPERTY LINKER_LANGUAGE CXX)
+
 	set(X_GCC_CUSTOM_WARNINGS_ "")
 
 	if(X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
@@ -73,16 +77,19 @@ function(define_automated_test_program program_name entry_point_source_name)
 
 	target_compile_options(${program_name}
 		PRIVATE
-			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			$<$<OR:$<COMPILE_LANG_AND_ID:C,GNU,Clang,AppleClang>,$<COMPILE_LANG_AND_ID:CXX,GNU,Clang,AppleClang>>:
 				-Werror -Wall -Wextra -pedantic
 
 				${GCC_WARN_NO_cxx11_long_long}
 				${X_GCC_CUSTOM_WARNINGS_}
 			>
-			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
+			$<$<COMPILE_LANG_AND_ID:CXX,Clang,AppleClang>:
 				-Wno-unused-lambda-capture
 			>
-			$<$<CXX_COMPILER_ID:MSVC>:
+			$<$<COMPILE_LANG_AND_ID:C,TinyCC>:
+				-Wall
+			>
+			$<$<OR:$<COMPILE_LANG_AND_ID:C,MSVC>,$<COMPILE_LANG_AND_ID:CXX,MSVC>>:
 				/WX /W4
 
 				${X_MSVC_CUSTOM_WARNINGS_}
@@ -140,16 +147,19 @@ function(define_example_program program_name entry_point_source_name)
 
 	target_compile_options(${program_name}
 		PRIVATE
-			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			$<$<OR:$<COMPILE_LANG_AND_ID:C,GNU,Clang,AppleClang>,$<COMPILE_LANG_AND_ID:CXX,GNU,Clang,AppleClang>>:
 				-Werror -Wall -Wextra -pedantic
 
 				${GCC_WARN_NO_cxx11_long_long}
 				${X_GCC_CUSTOM_WARNINGS_}
 			>
-			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
+			$<$<COMPILE_LANG_AND_ID:CXX,Clang,AppleClang>:
 				-Wno-unused-lambda-capture
 			>
-			$<$<CXX_COMPILER_ID:MSVC>:
+			$<$<COMPILE_LANG_AND_ID:C,TinyCC>:
+				-Wall
+			>
+			$<$<OR:$<COMPILE_LANG_AND_ID:C,MSVC>,$<COMPILE_LANG_AND_ID:CXX,MSVC>>:
 				/WX /W4
 
 				${X_MSVC_CUSTOM_WARNINGS_}

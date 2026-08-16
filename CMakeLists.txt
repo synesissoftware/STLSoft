@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  7th August 2026
+# Updated:  17th August 2026
 #
 # ######################################################################## #
 
@@ -92,6 +92,22 @@ else(MSVC)
 		# enable **prepare_cmake.sh** to be simple)
 	endif(MSVC_USE_MT)
 endif(MSVC)
+
+# TinyCC is C-only. Keep CXX on a real C++ compiler (pass CMAKE_CXX_COMPILER
+# explicitly) and restrict TinyCC to C translation units.
+#
+# The CMake TinyCC module does not record C language dialects, so requiring
+# C17 (the project default) would fail configure. TinyCC's default is C99
+# (`__STDC_VERSION__` 199901L); some builds also accept `-std=c11`.
+if(CMAKE_C_COMPILER_ID STREQUAL "TinyCC")
+
+	message(STATUS "C compiler is TinyCC; C TUs use TinyCC; C++ TUs use ${CMAKE_CXX_COMPILER_ID}")
+
+	set(CMAKE_C_STANDARD 99)
+	set(CMAKE_C_STANDARD_REQUIRED OFF)
+	set(CMAKE_C99_STANDARD_COMPILE_OPTION "-std=c99")
+	set(CMAKE_C99_EXTENSION_COMPILE_OPTION "-std=c99")
+endif()
 
 if(WIN32)
 

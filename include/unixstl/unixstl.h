@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 22nd August 2025
+ * Updated: 17th August 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,9 +49,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     129
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    12
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 0
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -153,12 +153,13 @@
 # define _UNIXSTL_VER_1_8_6_B04 0x01080684  /*!< Version 1.8.8 beta 4 (with STLSoft 1.11.1 beta 8) */
 # define _UNIXSTL_VER_1_8_6_B05 0x01080685  /*!< Version 1.8.8 beta 5 (with STLSoft 1.11.1 rc 2) */
 # define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.8 beta 6 (with STLSoft 1.11.1 rc 3) */
+# define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.8 beta 7 (with STLSoft 1.11.1 rc 5) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
 #define _UNIXSTL_VER_REVISION   6
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_6_B06
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_6_B07
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -231,6 +232,12 @@
 #   error Versions of Sun Pro C prior to 5.9 are not supported by the UNIXSTL libraries
 #  endif /* __SUNPRO_CC */
 # endif /* __cplusplus */
+
+#elif defined(STLSOFT_COMPILER_IS_TINYCC)
+ /* ******************************* Tiny C Compiler ********************* */
+# if __TINYC__ < 928
+#  error Versions of Tiny C Compiler prior to 0.9.28 are not supported by the UNIXSTL libraries
+# endif /* __TINYC__ */
 
 #else
  /* *********************** No recognised compiler ********************** */
