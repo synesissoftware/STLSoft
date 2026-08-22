@@ -6,13 +6,13 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [Functional improvements](#functional-improvements)
-  - [Code changes (1.10.x)](#code-changes-110x)
+  - [Code changes (from 1.10.x track)](#code-changes-from-110x-track)
   - [Code changes (1.11.x)](#code-changes-111x)
   - [Code changes (1.12+)](#code-changes-112)
   - [abandoned TODOs](#abandoned-todos)
 - [Performance improvements](#performance-improvements)
 - [Packaging improvements](#packaging-improvements)
-  - [Administrative (1.10.x)](#administrative-110x)
+  - [Administrative (from 1.10.x track)](#administrative-from-110x-track)
   - [Administrative (1.11.x)](#administrative-111x)
   - [Building/executing automated tests (1.11.x)](#buildingexecuting-automated-tests-111x)
   - [Administrative (1.12+)](#administrative-112)
@@ -21,9 +21,9 @@
 ## Functional improvements
 
 
-### Code changes (1.10.x)
+### Code changes (from 1.10.x track)
 
-* [ ] GitHub README.md badges - version, build, etc;
+* [x] ~~~GitHub **README.md** badges — version, build, etc.~~~ — ✅;
 * [ ] STLSoft-related blog posts (focusing on new components);
 * [ ] fix Doxygen build;
 * [x] ~~~CMake~~~ - ✅;
@@ -42,7 +42,6 @@
 
 * [ ] find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract all code to worker functions;
 * [ ] integrate **STLSoft**'s exception-hierarchies with new standard exception design;
-* [ ] C++ 11/14/17/20/23 compatibility - partial; further coming in 1.12;
 * [ ] further system_traits refactoring:
   * [ ] joining common code via **CRTP**;
   * [ ] abstracting out string stuff (into `stlsoft::`);
@@ -57,7 +56,7 @@
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 * [x] ~~~`unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`~~~ - ✅;
 * [x] ~~~`unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`~~~ - ✅;
-* [ ] standardise (via **INTERNAL**) of following:
+* [x] ~~~standardise (via **INTERNAL**) the following:~~~ — ✅;
   * [x] ~~~`ExpandEnvironmentStringsA/W()`~~~ - ✅;
   * [x] ~~~`GetEnvironmentVariableA/W()`~~~ - ✅;
   * [x] ~~~`GetModuleFileNameA/W()`~~~ - ✅;
@@ -69,10 +68,10 @@
 
 ### Code changes (1.12+)
 
-* [ ] C++ 11/14/17/20/23/26 compatibility — inventory remaining gaps and record concrete per-standard fixes here (partial work already tracked under **Code changes (1.11.x)**);
+* [ ] C++ 11/14/17/20/23/26 compatibility — inventory remaining gaps and record concrete per-standard fixes here;
 * [ ] syslog in variadic templates, a la `winstl::output_debug_line()`;
 * [ ] Simple thread-pool (bring from **SS** work circa 2000);
-* [ ] include/*stl*/error => include/*stl*/diagnostics;
+* [ ] review the relationship between **include/*stl*/error** and **include/*stl*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] memory-mapped-file class minor issues;
 * [ ] canonicalise all exception messages - consistency, lower-case, etc.;
 * [ ] bring in `platformstl::properties_file` from 1.12 project;
@@ -100,23 +99,20 @@
 ## Packaging improvements
 
 
-### Administrative (1.10.x)
+### Administrative (from 1.10.x track)
 
-* [ ] GitHub README.md image features - version, build, etc;
-* [ ] STLSoft 1.10-related blog posts (focusing on new components);
-* [ ] fix Doxygen build;
-* [x] ~~~CMake~~~ - ✅;
+* \<none>;
 
 
 ### Administrative (1.11.x)
 
-* [ ] flesh out [**README.md**](./README.md);
-* [ ] convert to https://github.com/synesissoftware/STLSoft;
+* [x] ~~~flesh out [**README.md**](./README.md);~~~ — ✅;
+* [x] ~~~use https://github.com/synesissoftware/STLSoft as the canonical repository and URL base;~~~ — ✅;
 * [ ] take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 * [ ] Documentation improvements;
 * [-] ~~~update the downloads on SourceForge~~~ - ❌ (canonical distribution is now GitHub);
 * [-] ~~~sort the SourceForge site~~~ - ❌ (canonical presence is now GitHub);
-* [ ] STLSoft 1.11-related blog posts (focusing on new components);
+* [ ] STLSoft-related blog posts (focusing on new components);
 * [ ] Website - currently http://stlsoft.org/ is *VERY* out of date;
 * [ ] Set-up donation;
 * [ ] Ensure all permutations (in below table) work;
