@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 22nd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */
@@ -1779,7 +1780,7 @@ static void TEST_patterns_all()
 
 static void TEST_pathComparisonIsCaseSensitive()
 {
-    XTESTS_TEST_ENUM_EQUAL(0, filesystem_traits_m_t::pathComparisonIsCaseSensitive);
+    TEST_ENUM_EQ(0, filesystem_traits_m_t::pathComparisonIsCaseSensitive);
 }
 
 static void TEST_str_fs_compare()

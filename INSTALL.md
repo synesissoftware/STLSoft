@@ -76,6 +76,8 @@ $ ./prepare_cmake.sh -m -v
 >
 > Use the `'--help'` flag for the full usage of this script.
 >
+> To exercise **ACESTL**, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`**) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery.
+>
 > To build and exercise the **STLSoft** unit-tests and you are installing **STLSoft** _for the first time_, then you must do the following steps:
 > 1. Configure and install **STLSoft** _without_ tests, by specifying flags `-E` and `-T`;
 > 2. Configure, build, and install **xTests**;

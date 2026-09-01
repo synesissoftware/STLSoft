@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::snprintf`, `stlsoft::snwprintf`.
  *
  * Created: 23rd March 2025
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */
@@ -105,7 +106,7 @@ static void TEST_stlsoft_C_snprintf_3()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft_C_snprintf(buff, dimensionof(buff), "");
 
-        REQUIRE(TEST_INT_EQ(0, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(0, r));
         TEST_CHAR_EQ('\0', buff[0]);
     }
 
@@ -113,7 +114,7 @@ static void TEST_stlsoft_C_snprintf_3()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft_C_snprintf(buff, dimensionof(buff), "%d", 123);
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -124,7 +125,7 @@ static void TEST_stlsoft_C_snprintf_3()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft_C_snprintf(buff, dimensionof(buff), "%s", "123");
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -139,7 +140,7 @@ static void TEST_stlsoft_C_snprintf_2()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft_C_snprintf(buff, "");
 
-        REQUIRE(TEST_INT_EQ(0, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(0, r));
         TEST_CHAR_EQ('\0', buff[0]);
     }
 
@@ -147,7 +148,7 @@ static void TEST_stlsoft_C_snprintf_2()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft_C_snprintf(buff, "%d", 123);
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -158,7 +159,7 @@ static void TEST_stlsoft_C_snprintf_2()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft_C_snprintf(buff, "%s", "123");
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -173,7 +174,7 @@ static void TEST_snprintf_3()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft::snprintf(buff, dimensionof(buff), "");
 
-        REQUIRE(TEST_INT_EQ(0, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(0, r));
         TEST_CHAR_EQ('\0', buff[0]);
     }
 
@@ -181,7 +182,7 @@ static void TEST_snprintf_3()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft::snprintf(buff, dimensionof(buff), "%d", 123);
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -192,7 +193,7 @@ static void TEST_snprintf_3()
         char        buff[101] = { '~', '~', '~', '~', };
         int const   r = stlsoft::snprintf(buff, dimensionof(buff), "%s", "123");
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -209,7 +210,7 @@ static void TEST_snprintf_2()
 
         // fprintf(stderr, "%s:%d:%s: buff='%.*s'\n", __STLSOFT_FILE_LINE_FUNCTION__, r, buff);
 
-        REQUIRE(TEST_INT_EQ(0, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(0, r));
         TEST_CHAR_EQ('\0', buff[0]);
     }
 
@@ -219,7 +220,7 @@ static void TEST_snprintf_2()
 
         // fprintf(stderr, "%s:%d:%s: buff='%.*s'\n", __STLSOFT_FILE_LINE_FUNCTION__, r, buff);
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);
@@ -232,7 +233,7 @@ static void TEST_snprintf_2()
 
         // fprintf(stderr, "%s:%d:%s: buff='%.*s'\n", __STLSOFT_FILE_LINE_FUNCTION__, r, buff);
 
-        REQUIRE(TEST_INT_EQ(3, r));
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
         TEST_CHAR_EQ('1', buff[0]);
         TEST_CHAR_EQ('2', buff[1]);
         TEST_CHAR_EQ('3', buff[2]);

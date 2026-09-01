@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::doomgram`.
  *
  * Created: 13th May 2013
- * Updated: 29th May 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -120,34 +121,34 @@ static void TEST_doomgram_DEFAULT_CONSTRUCT()
     stlsoft::ss_uint64_t    min_event_time_ns;
     stlsoft::ss_uint64_t    max_event_time_ns;
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(0u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_FALSE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_BOOLEAN_FALSE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+    TEST_INT_EQ(0, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(0u, total_event_time_ns);
+    TEST_INT_EQ(0u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_FALSE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_BOOLEAN_FALSE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(0, dg.num_events_in_1ns());
+    TEST_INT_EQ(0, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(0, dg.num_events_in_1us());
+    TEST_INT_EQ(0, dg.num_events_in_10us());
+    TEST_INT_EQ(0, dg.num_events_in_100us());
+    TEST_INT_EQ(0, dg.num_events_in_1ms());
+    TEST_INT_EQ(0, dg.num_events_in_10ms());
+    TEST_INT_EQ(0, dg.num_events_in_100ms());
+    TEST_INT_EQ(0, dg.num_events_in_1s());
+    TEST_INT_EQ(0, dg.num_events_in_10s());
+    TEST_INT_EQ(0, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("____________", strip, 12);
+        TEST_MS_EQ_N("____________", strip, 12);
     }
 }
 
@@ -160,36 +161,36 @@ static void TEST_doomgram_SINGLE_TIMING_EVENT()
 
     dg.push_event_time_ms(13);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(13000000u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(13000000u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(13000000, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(13000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+    TEST_INT_EQ(1, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(13000000u, total_event_time_ns);
+    TEST_INT_EQ(13000000u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(13000000, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(13000000u, max_event_time_ns);
+    TEST_INT_EQ(0, dg.num_events_in_1ns());
+    TEST_INT_EQ(0, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(0, dg.num_events_in_1us());
+    TEST_INT_EQ(0, dg.num_events_in_10us());
+    TEST_INT_EQ(0, dg.num_events_in_100us());
+    TEST_INT_EQ(0, dg.num_events_in_1ms());
+    TEST_INT_EQ(1, dg.num_events_in_10ms());
+    TEST_INT_EQ(0, dg.num_events_in_100ms());
+    TEST_INT_EQ(0, dg.num_events_in_1s());
+    TEST_INT_EQ(0, dg.num_events_in_10s());
+    TEST_INT_EQ(0, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("_______a____", strip, 12);
+        TEST_MS_EQ_N("_______a____", strip, 12);
     }
 }
 
@@ -205,36 +206,36 @@ static void TEST_doomgram_ZERO_TIME_EVENTS()
     dg.push_event_time_ms(0);
     dg.push_event_time_s(0);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(4, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(0u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(0, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(0u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+    TEST_INT_EQ(4, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(0u, total_event_time_ns);
+    TEST_INT_EQ(0u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(0, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(0u, max_event_time_ns);
+    TEST_INT_EQ(0, dg.num_events_in_1ns());
+    TEST_INT_EQ(0, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(0, dg.num_events_in_1us());
+    TEST_INT_EQ(0, dg.num_events_in_10us());
+    TEST_INT_EQ(0, dg.num_events_in_100us());
+    TEST_INT_EQ(0, dg.num_events_in_1ms());
+    TEST_INT_EQ(0, dg.num_events_in_10ms());
+    TEST_INT_EQ(0, dg.num_events_in_100ms());
+    TEST_INT_EQ(0, dg.num_events_in_1s());
+    TEST_INT_EQ(0, dg.num_events_in_10s());
+    TEST_INT_EQ(0, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("____________", strip, 12);
+        TEST_MS_EQ_N("____________", strip, 12);
     }
 }
 
@@ -258,36 +259,36 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1()
     dg.push_event_time_s(  80);
     dg.push_event_time_s( 700);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(12, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(789123456789u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(789123456789u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(9, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(700000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+    TEST_INT_EQ(12, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(789123456789u, total_event_time_ns);
+    TEST_INT_EQ(789123456789u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(9, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(700000000000u, max_event_time_ns);
+    TEST_INT_EQ(1, dg.num_events_in_1ns());
+    TEST_INT_EQ(1, dg.num_events_in_10ns());
+    TEST_INT_EQ(1, dg.num_events_in_100ns());
+    TEST_INT_EQ(1, dg.num_events_in_1us());
+    TEST_INT_EQ(1, dg.num_events_in_10us());
+    TEST_INT_EQ(1, dg.num_events_in_100us());
+    TEST_INT_EQ(1, dg.num_events_in_1ms());
+    TEST_INT_EQ(1, dg.num_events_in_10ms());
+    TEST_INT_EQ(1, dg.num_events_in_100ms());
+    TEST_INT_EQ(1, dg.num_events_in_1s());
+    TEST_INT_EQ(1, dg.num_events_in_10s());
+    TEST_INT_EQ(1, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaaaaaaaaaaa", strip, 12);
+        TEST_MS_EQ_N("aaaaaaaaaaaa", strip, 12);
     }
 }
 
@@ -311,36 +312,36 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2()
     dg.push_event_time_ms( 80000);
     dg.push_event_time_ms(700000);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(12, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(789123456789u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(789123456789u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(9, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(700000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+    TEST_INT_EQ(12, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(789123456789u, total_event_time_ns);
+    TEST_INT_EQ(789123456789u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(9, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(700000000000u, max_event_time_ns);
+    TEST_INT_EQ(1, dg.num_events_in_1ns());
+    TEST_INT_EQ(1, dg.num_events_in_10ns());
+    TEST_INT_EQ(1, dg.num_events_in_100ns());
+    TEST_INT_EQ(1, dg.num_events_in_1us());
+    TEST_INT_EQ(1, dg.num_events_in_10us());
+    TEST_INT_EQ(1, dg.num_events_in_100us());
+    TEST_INT_EQ(1, dg.num_events_in_1ms());
+    TEST_INT_EQ(1, dg.num_events_in_10ms());
+    TEST_INT_EQ(1, dg.num_events_in_100ms());
+    TEST_INT_EQ(1, dg.num_events_in_1s());
+    TEST_INT_EQ(1, dg.num_events_in_10s());
+    TEST_INT_EQ(1, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaaaaaaaaaaa", strip, 12);
+        TEST_MS_EQ_N("aaaaaaaaaaaa", strip, 12);
     }
 }
 
@@ -364,36 +365,36 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3()
     dg.push_event_time_ns( 80000000000);
     dg.push_event_time_ns(700000000000);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(12, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(789123456789u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(789123456789u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(9, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(700000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+    TEST_INT_EQ(12, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(789123456789u, total_event_time_ns);
+    TEST_INT_EQ(789123456789u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(9, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(700000000000u, max_event_time_ns);
+    TEST_INT_EQ(1, dg.num_events_in_1ns());
+    TEST_INT_EQ(1, dg.num_events_in_10ns());
+    TEST_INT_EQ(1, dg.num_events_in_100ns());
+    TEST_INT_EQ(1, dg.num_events_in_1us());
+    TEST_INT_EQ(1, dg.num_events_in_10us());
+    TEST_INT_EQ(1, dg.num_events_in_100us());
+    TEST_INT_EQ(1, dg.num_events_in_1ms());
+    TEST_INT_EQ(1, dg.num_events_in_10ms());
+    TEST_INT_EQ(1, dg.num_events_in_100ms());
+    TEST_INT_EQ(1, dg.num_events_in_1s());
+    TEST_INT_EQ(1, dg.num_events_in_10s());
+    TEST_INT_EQ(1, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaaaaaaaaaaa", strip, 12);
+        TEST_MS_EQ_N("aaaaaaaaaaaa", strip, 12);
     }
 }
 
@@ -414,36 +415,36 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4()
     dg.push_event_time_us( 80000000);
     dg.push_event_time_us(700000000);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(9, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(789123456000u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(789123456000u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(6000, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(700000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+    TEST_INT_EQ(9, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(789123456000u, total_event_time_ns);
+    TEST_INT_EQ(789123456000u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(6000, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(700000000000u, max_event_time_ns);
+    TEST_INT_EQ(0, dg.num_events_in_1ns());
+    TEST_INT_EQ(0, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(1, dg.num_events_in_1us());
+    TEST_INT_EQ(1, dg.num_events_in_10us());
+    TEST_INT_EQ(1, dg.num_events_in_100us());
+    TEST_INT_EQ(1, dg.num_events_in_1ms());
+    TEST_INT_EQ(1, dg.num_events_in_10ms());
+    TEST_INT_EQ(1, dg.num_events_in_100ms());
+    TEST_INT_EQ(1, dg.num_events_in_1s());
+    TEST_INT_EQ(1, dg.num_events_in_10s());
+    TEST_INT_EQ(1, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("___aaaaaaaaa", strip, 12);
+        TEST_MS_EQ_N("___aaaaaaaaa", strip, 12);
     }
 }
 
@@ -463,36 +464,36 @@ static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS()
     dg.push_event_time_s(5);
     dg.push_event_time_s(309);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(8, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(314248103033u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(314248103033u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(10, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(309000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+    TEST_INT_EQ(8, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(314248103033u, total_event_time_ns);
+    TEST_INT_EQ(314248103033u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(10, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(309000000000u, max_event_time_ns);
+    TEST_INT_EQ(0, dg.num_events_in_1ns());
+    TEST_INT_EQ(2, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(2, dg.num_events_in_1us());
+    TEST_INT_EQ(1, dg.num_events_in_10us());
+    TEST_INT_EQ(0, dg.num_events_in_100us());
+    TEST_INT_EQ(0, dg.num_events_in_1ms());
+    TEST_INT_EQ(0, dg.num_events_in_10ms());
+    TEST_INT_EQ(1, dg.num_events_in_100ms());
+    TEST_INT_EQ(1, dg.num_events_in_1s());
+    TEST_INT_EQ(0, dg.num_events_in_10s());
+    TEST_INT_EQ(1, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("_a_aa___aa_a", strip, 12);
+        TEST_MS_EQ_N("_a_aa___aa_a", strip, 12);
     }
 }
 
@@ -514,36 +515,36 @@ static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS()
     dg.push_event_time_s(5);
     dg.push_event_time_s(309);
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(10, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(318569103049u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(318569103049u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(11, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(309000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(3, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+    TEST_INT_EQ(10, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(318569103049u, total_event_time_ns);
+    TEST_INT_EQ(318569103049u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(11, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(309000000000u, max_event_time_ns);
+    TEST_INT_EQ(0, dg.num_events_in_1ns());
+    TEST_INT_EQ(3, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(2, dg.num_events_in_1us());
+    TEST_INT_EQ(1, dg.num_events_in_10us());
+    TEST_INT_EQ(0, dg.num_events_in_100us());
+    TEST_INT_EQ(0, dg.num_events_in_1ms());
+    TEST_INT_EQ(0, dg.num_events_in_10ms());
+    TEST_INT_EQ(1, dg.num_events_in_100ms());
+    TEST_INT_EQ(2, dg.num_events_in_1s());
+    TEST_INT_EQ(0, dg.num_events_in_10s());
+    TEST_INT_EQ(1, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("_a_aa___aa_a", strip, 12);
+        TEST_MS_EQ_N("_a_aa___aa_a", strip, 12);
     }
 }
 
@@ -574,36 +575,36 @@ static void TEST_doomgram_MANY_CUMULATIVE_TIMINGS()
         dg.push_event_time_s(1);
     }}
 
-    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+    TEST_BOOLEAN_FALSE(dg.has_overflowed());
 
-    XTESTS_TEST_INTEGER_EQUAL(11110, dg.event_count());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(10101010000u, total_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(10101010000u, dg.total_event_time_ns_raw());
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(1, min_event_time_ns);
-    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(1000000000u, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(10000, dg.num_events_in_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1000, dg.num_events_in_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
-    XTESTS_TEST_INTEGER_EQUAL(100, dg.num_events_in_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(10, dg.num_events_in_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+    TEST_INT_EQ(11110, dg.event_count());
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    TEST_INT_EQ(10101010000u, total_event_time_ns);
+    TEST_INT_EQ(10101010000u, dg.total_event_time_ns_raw());
+    TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    TEST_INT_EQ(1, min_event_time_ns);
+    TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    TEST_INT_EQ(1000000000u, max_event_time_ns);
+    TEST_INT_EQ(10000, dg.num_events_in_1ns());
+    TEST_INT_EQ(0, dg.num_events_in_10ns());
+    TEST_INT_EQ(0, dg.num_events_in_100ns());
+    TEST_INT_EQ(1000, dg.num_events_in_1us());
+    TEST_INT_EQ(0, dg.num_events_in_10us());
+    TEST_INT_EQ(0, dg.num_events_in_100us());
+    TEST_INT_EQ(100, dg.num_events_in_1ms());
+    TEST_INT_EQ(0, dg.num_events_in_10ms());
+    TEST_INT_EQ(0, dg.num_events_in_100ms());
+    TEST_INT_EQ(10, dg.num_events_in_1s());
+    TEST_INT_EQ(0, dg.num_events_in_10s());
+    TEST_INT_EQ(0, dg.num_events_ge_100s());
 
     {
         char    strip[12];
 
         stlsoft::gram_to_strip(dg, &strip);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("e__d__c__b__", strip, 12);
+        TEST_MS_EQ_N("e__d__c__b__", strip, 12);
     }
 }
 
@@ -624,21 +625,21 @@ static void TEST_doomgram_OVERFLOW_BY_SECONDS()
     {
         bool r = dg.push_event_time_s(18446744073);
 
-        XTESTS_TEST_BOOLEAN_TRUE(r);
+        TEST_BOOLEAN_TRUE(r);
     }
 
     // add in 0 more
     {
         bool r = dg.push_event_time_s(0);
 
-        XTESTS_TEST_BOOLEAN_TRUE(r);
+        TEST_BOOLEAN_TRUE(r);
     }
 
     // add in 1 more to overflow
     {
         bool r = dg.push_event_time_s(1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(r);
+        TEST_BOOLEAN_FALSE(r);
     }
 }
 
@@ -659,91 +660,91 @@ static void TEST_doomgram_OVERFLOW_BY_MICROSECONDS()
     {
         bool r = dg.push_event_time_us(18446744073709550);
 
-        XTESTS_TEST_BOOLEAN_TRUE(r);
+        TEST_BOOLEAN_TRUE(r);
     }
 
     // add in 1 more to max
     {
         bool r = dg.push_event_time_us(1);
 
-        XTESTS_TEST_BOOLEAN_TRUE(r);
+        TEST_BOOLEAN_TRUE(r);
     }
 
     // add in 0 more
     {
         bool r = dg.push_event_time_us(0);
 
-        XTESTS_TEST_BOOLEAN_TRUE(r);
+        TEST_BOOLEAN_TRUE(r);
     }
 
     // add in 1 more to overflow
     {
         bool r = dg.push_event_time_us(1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(r);
+        TEST_BOOLEAN_FALSE(r);
     }
 }
 
 static void TEST_calc_doom_1()
 {
     {
-        XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::calc_doom(0));
+        TEST_INT_EQ(0u, stlsoft::calc_doom(0));
     }
 
     {
         for (unsigned i = 1; i != 10; ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(1u, stlsoft::calc_doom(i));
+            TEST_INT_EQ(1u, stlsoft::calc_doom(i));
         }
     }
 
     {
         for (unsigned i = 10; i != 100; ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(2u, stlsoft::calc_doom(i));
+            TEST_INT_EQ(2u, stlsoft::calc_doom(i));
         }
     }
 
     {
         for (unsigned i = 100; i != 1000; ++i)
         {
-            XTESTS_TEST_INTEGER_EQUAL(3u, stlsoft::calc_doom(i));
+            TEST_INT_EQ(3u, stlsoft::calc_doom(i));
         }
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(4u, stlsoft::calc_doom(1000));
-        XTESTS_TEST_INTEGER_EQUAL(4u, stlsoft::calc_doom(9999));
+        TEST_INT_EQ(4u, stlsoft::calc_doom(1000));
+        TEST_INT_EQ(4u, stlsoft::calc_doom(9999));
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(5u, stlsoft::calc_doom(10000));
-        XTESTS_TEST_INTEGER_EQUAL(5u, stlsoft::calc_doom(99999));
+        TEST_INT_EQ(5u, stlsoft::calc_doom(10000));
+        TEST_INT_EQ(5u, stlsoft::calc_doom(99999));
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(6u, stlsoft::calc_doom(100000));
-        XTESTS_TEST_INTEGER_EQUAL(6u, stlsoft::calc_doom(999999));
+        TEST_INT_EQ(6u, stlsoft::calc_doom(100000));
+        TEST_INT_EQ(6u, stlsoft::calc_doom(999999));
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(7u, stlsoft::calc_doom(1000000));
-        XTESTS_TEST_INTEGER_EQUAL(7u, stlsoft::calc_doom(9999999));
+        TEST_INT_EQ(7u, stlsoft::calc_doom(1000000));
+        TEST_INT_EQ(7u, stlsoft::calc_doom(9999999));
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(8u, stlsoft::calc_doom(10000000));
-        XTESTS_TEST_INTEGER_EQUAL(8u, stlsoft::calc_doom(99999999));
+        TEST_INT_EQ(8u, stlsoft::calc_doom(10000000));
+        TEST_INT_EQ(8u, stlsoft::calc_doom(99999999));
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(9u, stlsoft::calc_doom(100000000));
-        XTESTS_TEST_INTEGER_EQUAL(9u, stlsoft::calc_doom(999999999));
+        TEST_INT_EQ(9u, stlsoft::calc_doom(100000000));
+        TEST_INT_EQ(9u, stlsoft::calc_doom(999999999));
     }
 
     {
-        XTESTS_TEST_INTEGER_EQUAL(10u, stlsoft::calc_doom(1000000000));
-        XTESTS_TEST_INTEGER_EQUAL(10u, stlsoft::calc_doom(9999999999));
+        TEST_INT_EQ(10u, stlsoft::calc_doom(1000000000));
+        TEST_INT_EQ(10u, stlsoft::calc_doom(9999999999));
     }
 }
 
@@ -757,7 +758,7 @@ static void TEST_UNSIGNED_OVERFLOW()
         ss_uint64_t  b   =   0x8000000000000001;
         ss_uint64_t  c   =   a + b;
 
-        XTESTS_TEST_INTEGER_EQUAL(1, c);
+        TEST_INT_EQ(1, c);
     }
 
     {
@@ -773,8 +774,8 @@ static void TEST_UNSIGNED_OVERFLOW()
 
                 if (s > 255)
                 {
-                    XTESTS_TEST_INTEGER_LESS(a, c);
-                    XTESTS_TEST_INTEGER_LESS(b, c);
+                    TEST_INT_LT(a, c);
+                    TEST_INT_LT(b, c);
                 }
             }
         }

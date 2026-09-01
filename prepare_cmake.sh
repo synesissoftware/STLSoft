@@ -4,14 +4,24 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+if [[ -n "$MSYSTEM" ]]; then
+
+  DefaultMakeCmd=mingw32-make.exe
+  MinGW=1
+else
+
+  DefaultMakeCmd=make
+fi
 MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 
 Configuration=Release
 ExamplesDisabled=0
 MSVC_MT=0
-MinGW=0
+MinGW="${MinGW:=0}"
+NO_ACE=0
 NO_cstring=0
 NO_shwild=0
 RunMake=0
@@ -49,6 +59,10 @@ while [[ $# -gt 0 ]]; do
     --msvc-mt)
 
       MSVC_MT=1
+      ;;
+    --no-ace)
+
+      NO_ACE=1
       ;;
     --no-cstring)
 
@@ -108,6 +122,12 @@ Flags/options:
         selected; the default is the dynamic runtime library. Has no effect
         when not using Visual C++
 
+    --no-ace
+        suppresses discovery of ACE (ACESTL examples/tests will not be built)
+
+    --no-cstring
+        suppresses discovery of cstring package
+
     --no-shwild
         suppresses discovery of shwild package
 
@@ -152,10 +172,11 @@ mkdir -p $CMakeDir || exit 1
 
 cd $CMakeDir
 
-echo "Executing CMake (in ${CMakeDir})"
+echo "Executing CMake for ${ProjectName} (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_ACE -eq 0 ]; then CMakeNoACE="OFF" ; else CMakeNoACE="ON" ; fi
 if [ $NO_cstring -eq 0 ]; then CMakeNoCstring="OFF" ; else CMakeNoCstring="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
@@ -168,6 +189,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_ACE:BOOL=$CMakeNoACE \
     -DNO_CSTRING:BOOL=$CMakeNoCstring \
     -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
@@ -183,6 +205,7 @@ else
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DNO_ACE:BOOL=$CMakeNoACE \
     -DNO_CSTRING:BOOL=$CMakeNoCstring \
     -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
@@ -195,7 +218,7 @@ status=0
 
 if [ $RunMake -ne 0 ]; then
 
-  echo "Executing build (via command \`$MakeCmd\`)"
+  echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`)"
 
   $MakeCmd
   status=$?

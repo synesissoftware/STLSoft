@@ -5,148 +5,131 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Functional improvements](#functional-improvements)
-  - [Code changes (from 1.10.x track)](#code-changes-from-110x-track)
-  - [Code changes (1.11.x)](#code-changes-111x)
-  - [Code changes (1.12+)](#code-changes-112)
-  - [abandoned TODOs](#abandoned-todos)
-- [Performance improvements](#performance-improvements)
-- [Packaging improvements](#packaging-improvements)
-  - [Administrative (from 1.10.x track)](#administrative-from-110x-track)
-  - [Administrative (1.11.x)](#administrative-111x)
-  - [Building/executing automated tests (1.11.x)](#buildingexecuting-automated-tests-111x)
-  - [Administrative (1.12+)](#administrative-112)
+- [1.11](#111)
+  - [1.11.1](#1111)
+  - [1.11.2](#1112)
+  - [1.11.3](#1113)
+  - [1.11.4](#1114)
+  - [1.11.5](#1115)
+  - [1.11.6](#1116)
+  - [1.11.7](#1117)
+  - [1.11.8](#1118)
+  - [1.11.9](#1119)
+  - [1.11.10](#11110)
+  - [1.11.11](#11111)
+- [1.12](#112)
+- [Requires clarification by project maintainers](#requires-clarification-by-project-maintainers)
+- [Abandoned](#abandoned)
 
 
-## Functional improvements
+## 1.11
 
 
-### Code changes (from 1.10.x track)
+### 1.11.1
 
-* [x] ~~~GitHub **README.md** badges — version, build, etc.~~~ — ✅;
-* [ ] STLSoft-related blog posts (focusing on new components);
-* [ ] fix Doxygen build;
-* [x] ~~~CMake~~~ - ✅;
-* [ ] `invoke_ACE_OS_snprintf` should be implemented in terms of `stlsoft_C_snprintf()`;
-* [ ] `invalid_integral_range_policy::operator ()` should be implemented in terms of `stlsoft_C_snprintf()`;
-* [ ] `stlsoft::auto_buffer<>::copy_from()` should be template and work with other instances (with different `V_internalSize`);
-* [ ] hash specialisations for all possible key types (incl. `stlsoft::basic_simple_string<>`, etc.);
-* [x] ~~~final filesystem fixes (found during testing of [**recls**](https://github.com/synesissoftware/recls) 1.10's significantly improved functionality)~~~ - ✅;
-* [x] ~~~apply `stlsoft::unit::string_insert()` to UNIXSTL/WinSTL `basic_path<>`~~~ - ✅;
-* [x] ~~~C++ 11/14/17/20 compatibility - partial~~~ - ✅;
-* [x] ~~~better documentation markup for `stlsoft::translate_thousands()`, `stlsoft::format_thousands()`, `stlsoft::integer_to_lc_string()`, `winstl::format_thousands()`, ...~~~ - ✅;
-* [x] ~~~apply `stlsoft::string_insert()` to **WinSTL** time type shims~~~ - ✅;
+* [x] ~~~CI: exercise **MFCSTL** on a Windows cell (drop / gate `CMAKE_DISABLE_FIND_PACKAGE_MFC`; confirm MSVC+MFC on the runner)~~~ - ✅;
+* [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
+* [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
+* [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~;
+* [ ] Remove **WTL**;
+* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
+* [ ] bring in some essential unit-tests from interal repo;
 
 
-### Code changes (1.11.x)
+### 1.11.2
 
-* [ ] find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract all code to worker functions;
-* [ ] integrate **STLSoft**'s exception-hierarchies with new standard exception design;
-* [ ] further system_traits refactoring:
-  * [ ] joining common code via **CRTP**;
-  * [ ] abstracting out string stuff (into `stlsoft::`);
-  * [ ] sorting the "safe-string" stuff;
-  * [ ] abstracted file-system operations such as `#make_writeable()` / `#make_readonly()`;
-  * [x] ~~~**winstl/api/internal/get_home_directory_.h**~~~ - ✅;
-  * [x] ~~~add `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()`~~~ - ✅;
-  * [x] ~~~tries first for `"USERPROFILE"` and then falls back to `"HOMEDRIVE"` and `"HOMEPATH"`~~~ - ✅;
-  * [x] ~~~implement `winstl_C_get_home_directory_a()` / `winstl_C_get_home_directory_w()` (**winstl/system/directory_functions.h**) in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()`~~~ - ✅;
-  * [x] ~~~add **test.component.winstl.system.directory_functions**~~~ - ✅;
-  * [x] ~~~implement **unixstl_C_get_home_directory_invoke_getenv_a_()** in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()`~~~ - ✅;
+Dedicated increment: **test analysis and coverage only** — no other product changes in this release.
+
+* [ ] Existing test consistency (deep analysis);
+* [ ] Complete coverage of currently tested components (improvement / completion);
+* [ ] Coverage of currently untested components;
+
+
+### 1.11.3
+
+* [ ] Remove defunct compilers;
+* [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
+* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
+* [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
+* [ ] Add **test.performance.stlsoft.util.bit_functions**;
+* [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
+
+
+### 1.11.4
+
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
-* [x] ~~~`unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`~~~ - ✅;
-* [x] ~~~`unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`~~~ - ✅;
-* [x] ~~~standardise (via **INTERNAL**) the following:~~~ — ✅;
-  * [x] ~~~`ExpandEnvironmentStringsA/W()`~~~ - ✅;
-  * [x] ~~~`GetEnvironmentVariableA/W()`~~~ - ✅;
-  * [x] ~~~`GetModuleFileNameA/W()`~~~ - ✅;
-  * [x] ~~~`GetSystemDirectoryA/W()`~~~ - ✅;
-    * [x] ~~~needs to set `ERROR_INSUFFICIENT_BUFFER`~~~ - ✅;
-  * [x] ~~~`GetWindowsDirectoryA/W()`~~~ - ✅;
-    * [x] ~~~needs to set `ERROR_INSUFFICIENT_BUFFER`~~~ - ✅;
 
 
-### Code changes (1.12+)
+### 1.11.5
 
-* [ ] C++ 11/14/17/20/23/26 compatibility — inventory remaining gaps and record concrete per-standard fixes here;
-* [ ] syslog in variadic templates, a la `winstl::output_debug_line()`;
+* [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
+
+
+### 1.11.6
+
+* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+
+
+### 1.11.7
+
+* [ ] Review the relationship between **include/*stl*/error** and **include/*stl*/diagnostics**, and retain or consolidate only distinct responsibilities;
+* [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
+
+
+### 1.11.8
+
+* [ ] Move **include/stlsoft/util/string/**`*printf.h` into **api/internal** and deprecate the old headers;
+
+
+### 1.11.9
+
+* [ ] Centralise `mbstowcs` / `mbstowcs_s` and `wcstombs` / `wcstombs_s` in a single function;
+
+
+### 1.11.10
+
+* [ ] Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only);
+
+
+### 1.11.11
+
+* [ ] Doxygen build (**Doxyfile**, **generate_doxygen.sh**) and deeper API documentation — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+
+
+## 1.12
+
+From **1.12** onwards, every new component or feature must ship with an **example**, **unit tests**, and a **blog entry** on the new Website (website work is contemporaneous with 1.12). See **oss-library-modernisation** (STLSoft 1.12+ feature completeness).
+
+* [ ] Assess all **1.12** (separate internal repository) contents for inclusion, component by component;
+* [ ] Inventory remaining C++11/14/17/20/23/26 gaps and record concrete per-standard fixes (see NOTE above);
+* [ ] Further `system_traits` structural refactoring (CRTP common code; string abstraction into `stlsoft::`; safe-string sorting; `#make_writeable()` / `#make_readonly()`);
+* [ ] `stlsoft::auto_buffer<>::copy_from()` — template across differing `V_internalSize`;
+* [ ] Hash specialisations for all appropriate key types (incl. `stlsoft::basic_simple_string<>`, etc.);
+* [ ] Syslog in variadic templates, a la `winstl::output_debug_line()`;
 * [ ] Simple thread-pool (bring from **SS** work circa 2000);
-* [ ] review the relationship between **include/*stl*/error** and **include/*stl*/diagnostics**, and retain or consolidate only distinct responsibilities;
-* [ ] memory-mapped-file class minor issues;
-* [ ] canonicalise all exception messages - consistency, lower-case, etc.;
-* [ ] bring in `platformstl::properties_file` from 1.12 project;
-* [ ] bring in `platformstl::temporary_directory_contents` from 1.12 project;
-* [ ] move include/stlsoft/util/string/*printf.h code to api/internal, and deprecate;
-* [ ] same with the include/stlsoft/std/* files;
-* [ ] rename all HAS files to remove the trailing _ (as that _might_ conflict with actual symbols; in any case, have the header name exact). Maybe further disambiguate with has_file/... and has_construct/...;
-* [ ] deprecate various iterator types ...;
-* [ ] centralise `mbstowcs`/`mbstowcs_s` and `wcstombs`/`wcstombs_s` in single function;
-* [ ] have `basic_path_buffer` use pre and post eye-catcher (`STLSOFT_DEBUG`-only);
-* [ ] standard names of integer-to-string and string-to-integer to allow for coming enhancements for multiple bases;
+* [ ] Bring in `platformstl::properties_file` from the unpublished 1.12 tree;
+* [ ] Bring in `platformstl::temporary_directory_contents` from the unpublished 1.12 tree;
+* [ ] Memory-mapped-file class minor issues;
+* [ ] Deprecate various iterator types;
+* [ ] Standard names of integer-to-string and string-to-integer (for multiple bases; may already be done — verify);
+* [ ] Remove defunct / outmoded components;
+* [ ] New Website (contemporaneous with 1.12);
+* [ ] STLSoft-related blog posts on the new Website (focusing on new components);
+* [ ] Set-up donation;
+* [ ] Work out how to provide compiler/language-dialect compatibility reporting in an automated or semi-automated manner henceforth (replaces the retired manual matrix);
 
 
-### abandoned TODOs
+## Requires clarification by project maintainers
+
+* [ ] Integrate **STLSoft**'s exception hierarchies with the new standard exception design — **1.12**; requires further elaboration by the project maintainer before implementation;
+
+
+## Abandoned
 
 * [-] ~~~custom radix in integer_to_string - abandoned for performance reasons, and obviated by new conversion functions (oct, dec, hex) in 1.10~~~ - ❌;
-
-
-## Performance improvements
-
-* [x] ~~~optimise `char_traits<>` and/or `pod_fill_n()` block operations (e.g. in terms of `mem***()`)~~~ - ✅;
-* [ ] **test.performance.stlsoft.util.bit_functions**;
-
-
-## Packaging improvements
-
-
-### Administrative (from 1.10.x track)
-
-* \<none>;
-
-
-### Administrative (1.11.x)
-
-* [x] ~~~flesh out [**README.md**](./README.md);~~~ — ✅;
-* [x] ~~~use https://github.com/synesissoftware/STLSoft as the canonical repository and URL base;~~~ — ✅;
-* [ ] take down https://github.com/synesissoftware/STLSoft-1.10-delta;
-* [ ] Documentation improvements;
-* [-] ~~~update the downloads on SourceForge~~~ - ❌ (canonical distribution is now GitHub);
-* [-] ~~~sort the SourceForge site~~~ - ❌ (canonical presence is now GitHub);
-* [ ] STLSoft-related blog posts (focusing on new components);
-* [ ] Website - currently http://stlsoft.org/ is *VERY* out of date;
-* [ ] Set-up donation;
-* [ ] Ensure all permutations (in below table) work;
-
-
-### Building/executing automated tests (1.11.x)
-
-| C++   | C   | Clang 15.0 (macOS, ARM64) | Clang 17.0 (macOS, x64) | GCC 11.4 (Linux)  | GCC 13.2 (Linux)  | GCC 14.2 (Linux)  | GCC 14.2 (MinGW, Windows) | Visual C++ 17.x (Windows) |
-| ----- | --- | :-----------------------: | :---------------------: | :---------------: | :---------------: | :---------------: | :-----------------------: | :-----------------------: |
-| 23    | 23  |                           | ✅                       |                   | ✅                 | ✅                 |                           |                           |
-| 23    | 17  |                           | ✅                       |                   |                   |                   |                           |                              |
-| 20    | 23  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 20    | 17  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
-| 20    | 11  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 20    | 99  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 20    | 90  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 17    | 17  |                           | ✅                       | ✅                | ✅                 | ✅                 |                            | ✅                           |
-| 17    | 11  |                           | ✅                       |                   |                   |                   | ✅                         |                       |
-| 17    | 99  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 17    | 90  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 14    | 11  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
-| 14    | 99  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 14    | 90  |                           | ✅                       |                   |                   |                   |                           | ✅                            |
-| 11    | 11  |                           | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
-| 11    | 99  |                           | ✅                       |                   |                   | ✅                 |                           |                             |
-| 11    | 90  |                           | ✅                       |                   |                   |                   |                           |                             |
-| 98    | 99  |                           | ✅                       | ✅                | ✅                 | ✅                 | ✅                          | ✅                            |
-| 98    | 90  |                           | ✅                       |                   | ❌                 | ❌                 |                           | ✅                            |
-
-
-### Administrative (1.12+)
-
-* [ ] DO NOT just branch over; instead, take each component at a time and consider files such as include/stlsoft/util/std/stdio_overload_detectors.hpp even still having a purpose - Maybe this is a 1.12 thing?;
-* [-] ~~~VC++ common makefile(s) (legacy build trees removed; CMake-only)~~~ - ❌;
+* [-] ~~~SourceSafe-era “do not branch the whole monorepo” note~~~ - ❌ (obsolete under Git; superseded by assessing the separate 1.12 internal repository for inclusion);
+* [-] ~~~Manual C/C++ dialect compatibility matrix in **TODO.md**~~~ - ❌ (CI is the record of actively exercised builds; automated/semi-automated reporting deferred to **1.12**);
+* [-] ~~~Migrate/deprecate **include/stlsoft/std/**`*` in parallel with `*printf.h`~~~ - ❌ (cut);
 
 
 <!-- ########################### end of file ########################### -->

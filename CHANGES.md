@@ -1,7 +1,7 @@
-# **STLSoft** Changes <!-- omit in toc -->
+# STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc5 - 4th August 2026
+## 1.11.1-rc5 - 9th August 2026
 
 * Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);
 * Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;
@@ -12,6 +12,7 @@
 * CMake — minimum version **3.20**; **BUILD_TESTING** option; project homepage URL; patch/revision version regex;
 * Project boilerplate — **.gitattributes**, **.vimrc**, **.vscode/settings.json**;
 * **test.unit.versions** — aligned with **1.11.1-rc5** (**_STLSOFT_VER_1_11_1_RC5**);
+* All unit/component test assertions use xTests Terse API;
 
 
 ## 1.11.1-rc4 - 29th July 2026

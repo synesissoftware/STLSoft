@@ -6,10 +6,30 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 [[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
 MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 ListOnly=0
 RunMake=1
 SkipInteractive=0
+
+
+# ##########################################################
+# colours
+
+if command -v tput > /dev/null; then
+
+  SisClr_Blue=${FG_BLUE:-$(tput setaf 4)}
+  SisClr_Red=${FG_BLUE:-$(tput setaf 1)}
+  SisClr_Bold=${FD_BOLD:-$(tput bold)}
+  SisClr_None=${FD_NONE:-$(tput sgr0)}
+else
+
+  SisClr_Blue=
+  SisClr_Red=
+  SisClr_Bold=
+  SisClr_None=
+fi
 
 
 # ##########################################################
@@ -148,7 +168,7 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all example programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} example programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -180,25 +200,54 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all example programs"
+    echo "Listing all ${ProjectName} example programs"
   else
 
-    echo "Running all example programs"
+    echo "Running all ${ProjectName} example programs"
   fi
 
-  for f in $(find "$CMakeDir/examples" -type f -exec test -x {} \; -print | sort)
+  # Exclude CMake / build artefacts that can become +x after artifact restore.
+  ExamplePrograms=( $(find "$CMakeDir/examples" -type f \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.cmake' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    ! -name 'CMakeLists.txt' \
+    ! -name 'CTestTestfile.cmake' \
+    ! -name 'Makefile' \
+    ! -name 'cmake_install.cmake' \
+    -exec test -x {} \; -print | sort) )
+
+  echo "discovered ${#ExamplePrograms[@]} example program(s)"
+
+  if [ ${#ExamplePrograms[@]} -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no matching executable example programs under '$CMakeDir/examples' (execute bits missing after artifact download?)"
+
+    if [ $ListOnly -eq 0 ]; then
+
+      status=1
+    fi
+  fi
+
+  for f in "${ExamplePrograms[@]}"
   do
 
     if is_skipped_interactive_example "$f"; then
 
       if [ $ListOnly -ne 0 ]; then
 
-        echo "would skip $f (interactive; --skip-interactive)"
+        echo "would skip $SisClr_Blue$SisClr_Bold$f$SisClr_None (interactive; --skip-interactive)"
 
       else
 
         echo
-        echo "skipping $f (interactive; --skip-interactive)"
+        echo "skipping $SisClr_Blue$SisClr_Bold$f$SisClr_None (interactive; --skip-interactive)"
       fi
 
       continue
@@ -206,13 +255,13 @@ if [ $status -eq 0 ]; then
 
     if [ $ListOnly -ne 0 ]; then
 
-      echo "would execute $f:"
+      echo "would execute $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
       continue
     fi
 
     echo
-    echo "executing $f:"
+    echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
     if $f; then
 

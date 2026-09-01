@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::system_traits`.
  *
  * Created: 29th January 2013
- * Updated: 15th August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <platformstl/system/environment_variable.hpp>
@@ -96,7 +97,7 @@ static void TEST_INSUFFICIENT_SPACE()
 
             size_t const cch = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
-            XTESTS_TEST_INTEGER_EQUAL(i - 1, cch);
+            TEST_INT_EQ(i - 1, cch);
         }}
     }
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -109,7 +110,7 @@ static void TEST_INSUFFICIENT_SPACE()
 
             size_t const cch = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
-            XTESTS_TEST_INTEGER_EQUAL(required, cch);
+            TEST_INT_EQ(required, cch);
         }}
     }
 #endif
@@ -117,7 +118,7 @@ static void TEST_INSUFFICIENT_SPACE()
     stlsoft::auto_buffer<char>  buff(required);
     size_t const                actual = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
-    XTESTS_TEST_INTEGER_EQUAL(required - 1, actual);
+    TEST_INT_EQ(required - 1, actual);
 }
 
 static void TEST_get_home_directory()
@@ -130,8 +131,8 @@ static void TEST_get_home_directory()
     stlsoft::auto_buffer<char>          buff(1 + HOME.size());
     size_t const                        cch = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
-    XTESTS_TEST_INTEGER_EQUAL(HOME.size(), cch);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(HOME), buff.data());
+    TEST_INT_EQ(HOME.size(), cch);
+    TEST_MS_EQ(std::string(HOME), buff.data());
 
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
@@ -141,8 +142,8 @@ static void TEST_get_home_directory()
     stlsoft::auto_buffer<char>          buff(1 + HOMEDRIVE.size() + HOMEPATH.size());
     size_t const                        cch = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
-    XTESTS_TEST_INTEGER_EQUAL(HOMEDRIVE.size() + HOMEPATH.size(), cch);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(HOMEDRIVE) + std::string(HOMEPATH), buff.data());
+    TEST_INT_EQ(HOMEDRIVE.size() + HOMEPATH.size(), cch);
+    TEST_MS_EQ(std::string(HOMEDRIVE) + std::string(HOMEPATH), buff.data());
 #endif
 }
 } // anonymous namespace

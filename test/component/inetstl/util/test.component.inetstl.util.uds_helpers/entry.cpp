@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::environment_variable`.
  *
  * Created: 21st February 2025
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */
@@ -104,7 +105,7 @@ static void TEST_INSUFFICIENT_SPACE()
         TEST_INT_EQ(-1, r);
         TEST_INT_EQ(EINVAL, errno);
         TEST_INT_EQ(0, cb_actual);
-        XTESTS_TEST_CHARACTER_EQUAL('~', buff[0]);
+        TEST_CHAR_EQ('~', buff[0]);
     }
 
     {
@@ -123,7 +124,7 @@ static void TEST_INSUFFICIENT_SPACE()
         TEST_INT_EQ(-1, r);
         TEST_INT_EQ(EINVAL, errno);
         TEST_INT_EQ(0, cb_actual);
-        XTESTS_TEST_CHARACTER_EQUAL('~', buff[0]);
+        TEST_CHAR_EQ('~', buff[0]);
     }
 }
 
@@ -145,9 +146,9 @@ static void TEST_EMPTY_path()
         TEST_INT_EQ(0, r);
         TEST_INT_EQ(0, errno);
         TEST_INT_EQ(3, cb_actual);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('1', buff[0]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('2', buff[1]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('3', buff[2]);
+        TEST_CHAR_NE('1', buff[0]);
+        TEST_CHAR_NE('2', buff[1]);
+        TEST_CHAR_NE('3', buff[2]);
     }
 
     {
@@ -166,9 +167,9 @@ static void TEST_EMPTY_path()
         TEST_INT_EQ(0, r);
         TEST_INT_EQ(0, errno);
         TEST_INT_EQ(3, cb_actual);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('1', buff[0]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('2', buff[1]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('3', buff[2]);
+        TEST_CHAR_NE('1', buff[0]);
+        TEST_CHAR_NE('2', buff[1]);
+        TEST_CHAR_NE('3', buff[2]);
     }
 
     {
@@ -187,10 +188,10 @@ static void TEST_EMPTY_path()
         TEST_INT_EQ(0, r);
         TEST_INT_EQ(0, errno);
         TEST_INT_EQ(3, cb_actual);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('1', buff[0]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('2', buff[1]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('3', buff[2]);
-        XTESTS_TEST_CHARACTER_EQUAL('4', buff[3]);
+        TEST_CHAR_NE('1', buff[0]);
+        TEST_CHAR_NE('2', buff[1]);
+        TEST_CHAR_NE('3', buff[2]);
+        TEST_CHAR_EQ('4', buff[3]);
     }
 
     {
@@ -209,10 +210,10 @@ static void TEST_EMPTY_path()
         TEST_INT_EQ(0, r);
         TEST_INT_EQ(0, errno);
         TEST_INT_EQ(3, cb_actual);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('1', buff[0]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('2', buff[1]);
-        XTESTS_TEST_CHARACTER_NOT_EQUAL('3', buff[2]);
-        XTESTS_TEST_CHARACTER_EQUAL('4', buff[3]);
+        TEST_CHAR_NE('1', buff[0]);
+        TEST_CHAR_NE('2', buff[1]);
+        TEST_CHAR_NE('3', buff[2]);
+        TEST_CHAR_EQ('4', buff[3]);
     }
 }
 
@@ -381,7 +382,7 @@ static void TEST_VALID_paths()
 
         if (104 == cb_sun_path)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123", sa_un.sun_path, 104);
+            TEST_MS_EQ_N("/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123", sa_un.sun_path, 104);
         }
         else
         {
@@ -415,7 +416,7 @@ static void TEST_VALID_paths()
 
         if (104 == cb_sun_path)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567", sa_un.sun_path, 108);
+            TEST_MS_EQ_N("/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567", sa_un.sun_path, 108);
         }
         else
         {

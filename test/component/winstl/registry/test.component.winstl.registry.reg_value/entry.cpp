@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value`.
  *
  * Created: 23rd February 2009
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp>
@@ -174,7 +175,7 @@ static void test_none_value()
 
     ::RegSetValueEx(rootKey->get(), stlsoft::c_str_ptr(guid), 0, REG_NONE, NULL, 0);
 
-    XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_NONE), rootKey->get_value(guid).type());
+    TEST_INT_EQ(DWORD(REG_NONE), rootKey->get_value(guid).type());
 }
 
 static void test_0_dword()
@@ -184,8 +185,8 @@ static void test_0_dword()
 
     rootKey->set_value(guid, value);
 
-    XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_DWORD), rootKey->get_value(guid).type());
-    XTESTS_TEST_INTEGER_EQUAL(value, rootKey->get_value(guid).value_dword());
+    TEST_INT_EQ(DWORD(REG_DWORD), rootKey->get_value(guid).type());
+    TEST_INT_EQ(value, rootKey->get_value(guid).value_dword());
 }
 
 static void test_empty_string()
@@ -195,8 +196,8 @@ static void test_empty_string()
 
     rootKey->set_value(guid, value);
 
-    XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_SZ), rootKey->get_value(guid).type());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(value, rootKey->get_value(guid).value_sz());
+    TEST_INT_EQ(DWORD(REG_SZ), rootKey->get_value(guid).type());
+    TEST_MS_EQ(value, rootKey->get_value(guid).value_sz());
 }
 
 static void test_many_dwords()
@@ -218,8 +219,8 @@ static void test_many_dwords()
         {
             const DWORD value = values[j];
 
-            XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_DWORD), rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).type());
-            XTESTS_TEST_INTEGER_EQUAL(value, rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).value_dword());
+            TEST_INT_EQ(DWORD(REG_DWORD), rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).type());
+            TEST_INT_EQ(value, rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).value_dword());
         }}
     }}
 }
@@ -243,8 +244,8 @@ static void test_many_strings()
         {
             char const* value = values[j];
 
-            XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_SZ), rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).type());
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL(value, rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).value_sz());
+            TEST_INT_EQ(DWORD(REG_SZ), rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).type());
+            TEST_MS_EQ(value, rootKey->get_value(get_value_name(stlsoft::c_str_ptr(guid), j)).value_sz());
         }}
     }}
 }
@@ -257,8 +258,8 @@ static void test_empty_multistring()
 
     rootKey->set_value(guid, value, 0);
 
-    XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_MULTI_SZ), rootKey->get_value(guid).type());
-    XTESTS_TEST_INTEGER_EQUAL(0u, rootKey->get_value(guid).value_multi_sz().size());
+    TEST_INT_EQ(DWORD(REG_MULTI_SZ), rootKey->get_value(guid).type());
+    TEST_INT_EQ(0u, rootKey->get_value(guid).value_multi_sz().size());
 }
 
 static void test_multistring_multibyte()
@@ -269,11 +270,11 @@ static void test_multistring_multibyte()
 
     rootKey->set_value(guid, values, STLSOFT_NUM_ELEMENTS(values));
 
-    XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_MULTI_SZ), rootKey->get_value(guid).type());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(values), rootKey->get_value(guid).value_multi_sz().size()));
+    TEST_INT_EQ(DWORD(REG_MULTI_SZ), rootKey->get_value(guid).type());
+    XTESTS_REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(values), rootKey->get_value(guid).value_multi_sz().size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(values); ++i)
     {
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(values[i], rootKey->get_value(guid).value_multi_sz()[i]);
+        TEST_MS_EQ(values[i], rootKey->get_value(guid).value_multi_sz()[i]);
     }}
 }
 
@@ -287,11 +288,11 @@ static void test_multistring_wide()
 
     key.set_value(stlsoft::c_str_ptr_w(guid), values, STLSOFT_NUM_ELEMENTS(values));
 
-    XTESTS_TEST_INTEGER_EQUAL(DWORD(REG_MULTI_SZ), key.get_value(stlsoft::c_str_ptr_w(guid)).type());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(values), key.get_value(stlsoft::c_str_ptr_w(guid)).value_multi_sz().size()));
+    TEST_INT_EQ(DWORD(REG_MULTI_SZ), key.get_value(stlsoft::c_str_ptr_w(guid)).type());
+    XTESTS_REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(values), key.get_value(stlsoft::c_str_ptr_w(guid)).value_multi_sz().size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(values); ++i)
     {
-        XTESTS_TEST_WIDE_STRING_EQUAL(values[i], key.get_value(stlsoft::c_str_ptr_w(guid)).value_multi_sz()[i]);
+        TEST_WS_EQ(values[i], key.get_value(stlsoft::c_str_ptr_w(guid)).value_multi_sz()[i]);
     }}
 }
 } // anonymous namespace

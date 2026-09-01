@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `platformstl::pid_sequence`.
  *
  * Created: 22nd August 2025
- * Updated: 22nd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */

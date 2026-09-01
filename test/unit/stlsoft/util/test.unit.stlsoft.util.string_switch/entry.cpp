@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 9th June 2010
- * Updated: 23rd March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -205,7 +206,7 @@ static void test_1_1()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_FALSE(
+        TEST_BOOLEAN_FALSE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -217,7 +218,7 @@ static void test_1_1()
     );
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -228,7 +229,7 @@ static void test_1_1()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_2()
@@ -237,7 +238,7 @@ static void test_1_2()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -249,7 +250,7 @@ static void test_1_2()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_3()
@@ -258,7 +259,7 @@ static void test_1_3()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -271,7 +272,7 @@ static void test_1_3()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_4()
@@ -280,7 +281,7 @@ static void test_1_4()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -294,7 +295,7 @@ static void test_1_4()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_5()
@@ -303,7 +304,7 @@ static void test_1_5()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -318,7 +319,7 @@ static void test_1_5()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_6()
@@ -327,7 +328,7 @@ static void test_1_6()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -343,7 +344,7 @@ static void test_1_6()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_7()
@@ -352,7 +353,7 @@ static void test_1_7()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -369,7 +370,7 @@ static void test_1_7()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_8()
@@ -378,7 +379,7 @@ static void test_1_8()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -396,7 +397,7 @@ static void test_1_8()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_9()
@@ -405,7 +406,7 @@ static void test_1_9()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -424,7 +425,7 @@ static void test_1_9()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_10()
@@ -433,7 +434,7 @@ static void test_1_10()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -453,7 +454,7 @@ static void test_1_10()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_1_11()
@@ -476,7 +477,7 @@ static void test_1_11()
     int         var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch2(
                 VAR
             ,   &var
@@ -486,7 +487,7 @@ static void test_1_11()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 
@@ -500,7 +501,7 @@ static void test_2_1()
     int         var       =   0x00;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_FALSE(
+        TEST_BOOLEAN_FALSE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -513,7 +514,7 @@ static void test_2_1()
     );
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -525,7 +526,7 @@ static void test_2_1()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(0x02, var);
+    TEST_INT_EQ(0x02, var);
 }
 
 static void test_2_2()
@@ -534,7 +535,7 @@ static void test_2_2()
     int         var       =   0x10;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -547,7 +548,7 @@ static void test_2_2()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(0x12, var);
+    TEST_INT_EQ(0x12, var);
 }
 
 
@@ -561,7 +562,7 @@ static void test_3_1()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_FALSE(
+        TEST_BOOLEAN_FALSE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -573,7 +574,7 @@ static void test_3_1()
     );
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -584,7 +585,7 @@ static void test_3_1()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_2()
@@ -593,7 +594,7 @@ static void test_3_2()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -605,7 +606,7 @@ static void test_3_2()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_3()
@@ -614,7 +615,7 @@ static void test_3_3()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -627,7 +628,7 @@ static void test_3_3()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_4()
@@ -636,7 +637,7 @@ static void test_3_4()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -650,7 +651,7 @@ static void test_3_4()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_5()
@@ -659,7 +660,7 @@ static void test_3_5()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -674,7 +675,7 @@ static void test_3_5()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_6()
@@ -683,7 +684,7 @@ static void test_3_6()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -699,7 +700,7 @@ static void test_3_6()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_7()
@@ -708,7 +709,7 @@ static void test_3_7()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -725,7 +726,7 @@ static void test_3_7()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_8()
@@ -734,7 +735,7 @@ static void test_3_8()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -752,7 +753,7 @@ static void test_3_8()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_9()
@@ -761,7 +762,7 @@ static void test_3_9()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -780,7 +781,7 @@ static void test_3_9()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_10()
@@ -789,7 +790,7 @@ static void test_3_10()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch(
                 VAR
             ,   &var
@@ -809,7 +810,7 @@ static void test_3_10()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 
 static void test_3_11()
@@ -832,7 +833,7 @@ static void test_3_11()
     int             var = -1;
 
     XTESTS_REQUIRE(
-        XTESTS_TEST_BOOLEAN_TRUE(
+        TEST_BOOLEAN_TRUE(
             stlsoft::string_switch2(
                 VAR
             ,   &var
@@ -842,7 +843,7 @@ static void test_3_11()
         )
     );
 
-    XTESTS_TEST_INTEGER_EQUAL(11, var);
+    TEST_INT_EQ(11, var);
 }
 } // anonymous namespace
 

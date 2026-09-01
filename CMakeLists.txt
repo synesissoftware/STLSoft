@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  30th July 2026
+# Updated:  7th August 2026
 #
 # ######################################################################## #
 
@@ -14,6 +14,9 @@
 # CMake
 
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.31")
+	cmake_policy(SET CMP0177 NEW)
+endif()
 
 # require out-of-source builds
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
@@ -92,14 +95,43 @@ endif(MSVC)
 
 if(WIN32)
 
+	find_package(ATL QUIET)
 	find_package(MFC QUIET)
 endif(WIN32)
 
+if(ATL_FOUND)
+
+	message("-- using Active Template Library")
+
+	add_compile_definitions(STLSOFT_HAS_ATL)
+endif(ATL_FOUND)
+
 if(MFC_FOUND)
 
-	add_compile_definitions(STLSOFT_HAS_MFC)
+	# Shared MFC (/MD + _AFXDLL) unless the project is configured for the
+	# static CRT (**MSVC_USE_MT**), in which case static MFC is required.
+	#
+	# **CMAKE_MFC_FLAG** / **_AFXDLL** are applied only to MFC-consuming
+	# targets (see **test/unit/mfcstl** and **test.unit.versions**). Setting
+	# them project-wide would force every subsequent MSVC executable to link
+	# MFC. Without them on those targets, `find_package(MFC)` can succeed
+	# while mfcstl tests fail to link — the historical GHA failure mode.
 
-	message("-- using Microsoft Foundation Classes")
+	if(MSVC_USE_MT)
+
+		set(STLSOFT_MFC_FLAG 1)
+		set(STLSOFT_MFC_SHARED OFF)
+
+		message("-- using Microsoft Foundation Classes (static; MSVC_USE_MT)")
+	else(MSVC_USE_MT)
+
+		set(STLSOFT_MFC_FLAG 2)
+		set(STLSOFT_MFC_SHARED ON)
+
+		message("-- using Microsoft Foundation Classes (shared)")
+	endif(MSVC_USE_MT)
+
+	add_compile_definitions(STLSOFT_HAS_MFC)
 endif(MFC_FOUND)
 
 
@@ -137,9 +169,33 @@ option(BUILD_TESTING "Build tests" ON)
 # - xTests - required for testing;
 #
 # optional:
+# - ACE - enables ACESTL examples/tests when found (NO_ACE / --no-ace suppresses);
 # - cstring - facilitates some C tests;
 # - shwild - enhances xTests for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
+
+
+# ############################
+# ACE
+#
+# Discovery (when NO_ACE is not set): find_package(ACE) via cmake/FindACE.cmake
+# (system packages such as libace-dev, or ACE / ACE_ROOT hints).
+
+set(HAS_ACE OFF)
+
+if(NOT NO_ACE)
+
+	find_package(ACE QUIET)
+
+	if(ACE_FOUND)
+
+		set(HAS_ACE ON)
+
+		add_compile_definitions(STLSOFT_HAS_ACE)
+
+		message("-- ACE found")
+	endif()
+endif()
 
 
 # ############################
