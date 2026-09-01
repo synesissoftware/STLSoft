@@ -1,0 +1,11 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(test.unit.unixstl.exception.access_exception)
+add_subdirectory(test.unit.unixstl.exception.entry_not_found_exception)
+add_subdirectory(test.unit.unixstl.exception.file_not_found_exception)
+add_subdirectory(test.unit.unixstl.exception.filesystem_exception)
+add_subdirectory(test.unit.unixstl.exception.invalid_entry_type_exception)
+add_subdirectory(test.unit.unixstl.exception.invalid_file_type_exception)
+add_subdirectory(test.unit.unixstl.exception.operating_environment_exception)
+add_subdirectory(test.unit.unixstl.exception.security_exception)
+add_subdirectory(test.unit.unixstl.exception.throw_policies)
+add_subdirectory(test.unit.unixstl.exception.unixstl_exception)

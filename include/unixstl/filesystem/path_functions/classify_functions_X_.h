@@ -89,7 +89,7 @@
 
 STLSOFT_INLINE
 UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_
-unixstl_C_path_classify_alwaysInvalidChars_X_()
+unixstl_C_path_classify_alwaysInvalidChars_X_(void)
 {
     typedef UNIXSTL_C_PATH_CLASSIFY_IMPL_char_t_             char_t;
 

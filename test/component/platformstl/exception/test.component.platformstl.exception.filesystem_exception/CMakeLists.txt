@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.platformstl.exception.filesystem_exception entry.cpp)

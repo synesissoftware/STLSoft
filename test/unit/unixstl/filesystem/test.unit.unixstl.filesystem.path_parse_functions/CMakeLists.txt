@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.unixstl.filesystem.path_parse_functions entry.cpp)

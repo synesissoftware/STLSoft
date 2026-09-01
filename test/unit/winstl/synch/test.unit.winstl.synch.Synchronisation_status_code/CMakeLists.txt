@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.winstl.synch.Synchronisation_status_code entry.cpp)

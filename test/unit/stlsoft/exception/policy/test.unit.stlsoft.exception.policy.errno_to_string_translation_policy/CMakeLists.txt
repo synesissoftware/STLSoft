@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.exception.policy.errno_to_string_translation_policy entry.cpp)

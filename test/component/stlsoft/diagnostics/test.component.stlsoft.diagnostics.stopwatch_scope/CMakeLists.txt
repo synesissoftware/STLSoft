@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.stlsoft.diagnostics.stopwatch_scope entry.cpp)

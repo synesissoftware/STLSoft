@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.stlsoft.filesystem.searchspec_sequence entry.cpp)

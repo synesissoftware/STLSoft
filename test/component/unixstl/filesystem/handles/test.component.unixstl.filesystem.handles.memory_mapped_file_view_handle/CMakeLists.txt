@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.unixstl.filesystem.handles.memory_mapped_file_view_handle entry.cpp)

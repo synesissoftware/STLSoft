@@ -1,6 +1,27 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.2-alpha1 - 20th August 2026
+
+TBC
+
+
+## 1.11.1-rc6 - 12th August 2026
+
+* **Test coverage expansion (1.11.2 increment)** — comprehensive unit- and component-test suites across all sub-projects; **~640 new** test programs (from **86** to **~708** buildable on Unix/macOS);
+* **ACESTL** — full unit + component coverage (`shims`, `memory/message_block_functions`, `collections/message_queue_sequence`, `network/socket_functions`, `reactor/custom_event_handler`, …); gated on **`HAS_ACE`**;
+* **ATLSTL** — **11** unit tests; **`DEFERRED.md`** documents skipped GUI/`module_scope` components;
+* **MFCSTL** — **21** new unit tests (collections, shims, string, util);
+* **COMSTL** — **27** unit + **1** component (`rot_functions`); **`SKIPPED.md`** for SAPI/typelib/cross-apartment cases;
+* **INETSTL** — exception, filesystem traits/functionals, network session/connection (WinInet sequences intentionally excluded);
+* **UnixSTL** — **56** tests (full public API);
+* **PlatformSTL** — **53** tests (full public API);
+* **WinSTL** — **~200** tests (unit + component; GUI/interactive scopes excluded);
+* **STLSoft** — **~300** unit + **~13** component tests for substantive components (`meta/`, `obsolete/`, `internal/` excluded);
+* Test infrastructure scripts under **`test/scripts/`** (`scaffold_missing_tests.py`, `generate_*_tests.py`, `fix_failed_tests.py`, …);
+* **`test.unit.versions`** — aligned with **1.11.1-rc6** (**`_STLSOFT_VER_1_11_1_RC6`**);
+
+
 ## 1.11.1-rc5 - 9th August 2026
 
 * Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);

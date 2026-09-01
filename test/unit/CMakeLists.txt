@@ -15,6 +15,10 @@ if(MFC_FOUND)
 
 	add_subdirectory(mfcstl)
 endif(MFC_FOUND)
+if(ATL_FOUND)
+
+	add_subdirectory(atlstl)
+endif(ATL_FOUND)
 add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
 if(_BUILD_AS_UNIX)

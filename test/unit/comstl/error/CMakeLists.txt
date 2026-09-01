@@ -1,0 +1,5 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(test.unit.comstl.error.errorinfo_functions)
+add_subdirectory(test.unit.comstl.error.errorinfo_functions.C)
+add_subdirectory(test.unit.comstl.error.excepinfo_functions)
+add_subdirectory(test.unit.comstl.error.excepinfo_functions.C)
