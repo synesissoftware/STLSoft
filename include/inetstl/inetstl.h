@@ -231,7 +231,7 @@
 
 #elif defined(STLSOFT_COMPILER_IS_INTEL)
  /* ******************************* Intel ******************************* */
- # if (__INTEL_COMPILER < 700)
+# if (__INTEL_COMPILER < 700)
 #  error Versions of Intel C++ prior to 7.0 are not supported by the InetSTL libraries
 # endif /* __INTEL_COMPILER */
 

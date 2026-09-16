@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 20th March 2025
+ * Updated: 18th August 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      57
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -452,9 +452,9 @@ typedef as_int32_t          int32_t;            //!< 32-bit integer
 typedef as_sint32_t         sint32_t;           //!< 32-bit signed integer
 typedef as_uint32_t         uint32_t;           //!< 32-bit unsigned integer
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef as_int64_t         int64_t;            //!< 64-bit integer
- typedef as_sint64_t        sint64_t;           //!< 64-bit signed integer
- typedef as_uint64_t        uint64_t;           //!< 64-bit unsigned integer
+typedef as_int64_t          int64_t;            //!< 64-bit integer
+typedef as_sint64_t         sint64_t;           //!< 64-bit signed integer
+typedef as_uint64_t         uint64_t;           //!< 64-bit unsigned integer
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 //typedef as_short_t          short_t;            //!< short integer
 typedef as_int_t            int_t;              //!< integer

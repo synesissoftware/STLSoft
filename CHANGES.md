@@ -1,4 +1,4 @@
-# STLSoft - CHANGES <!-- omit in toc -->
+# STLSoft - Changes <!-- omit in toc -->
 
 
 ## 1.11.1-rc5 - 9th August 2026

@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th August 2026
+ * Updated: 18th August 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 17
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     606
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     607
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -2322,10 +2322,10 @@ typedef STLSOFT_UI64_T_BASE_TYPE                            STLSOFT_UI64_T_BASE_
 
 /* ptr-bit */
 #ifdef STLSOFT_SPTR_T_BASE_TYPE
- typedef STLSOFT_SPTR_T_BASE_TYPE                           STLSOFT_SPTR_T_BASE_TYPE_;
+typedef STLSOFT_SPTR_T_BASE_TYPE                            STLSOFT_SPTR_T_BASE_TYPE_;
 #endif
 #ifdef STLSOFT_UPTR_T_BASE_TYPE
- typedef STLSOFT_UPTR_T_BASE_TYPE                           STLSOFT_UPTR_T_BASE_TYPE_;
+typedef STLSOFT_UPTR_T_BASE_TYPE                            STLSOFT_UPTR_T_BASE_TYPE_;
 #endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

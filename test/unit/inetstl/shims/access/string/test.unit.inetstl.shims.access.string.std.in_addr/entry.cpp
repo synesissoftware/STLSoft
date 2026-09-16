@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 9th August 2026
+ * Updated: 18th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,7 +72,7 @@ namespace {
  * types
  */
 
- namespace {
+namespace {
 
     typedef std::basic_string<char>                         string_a_t;
     typedef std::basic_string<wchar_t>                      string_w_t;

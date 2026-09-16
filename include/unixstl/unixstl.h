@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 22nd August 2025
+ * Updated: 18th August 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     129
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -779,9 +779,9 @@ typedef us_int32_t                                          int32_t;        /*!<
 typedef us_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
 typedef us_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef us_int64_t                                         int64_t;        /*!< 64-bit integer */
- typedef us_sint64_t                                        sint64_t;       /*!< 64-bit signed integer */
- typedef us_uint64_t                                        uint64_t;       /*!< 64-bit unsigned integer */
+typedef us_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef us_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef us_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /* typedef us_short_t                                          short_t; */        /*!< short integer */
 typedef us_int_t                                            int_t;          /*!< integer */

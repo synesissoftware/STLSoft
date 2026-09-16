@@ -35,6 +35,7 @@ Must resolve before finalising the **1.11.1** release:
 
 Other **1.11.1** items:
 
+* [x] ~~~CI: exercise **MFCSTL** on a Windows cell (drop / gate `CMAKE_DISABLE_FIND_PACKAGE_MFC`; confirm MSVC+MFC on the runner)~~~ - ✅;
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~;
