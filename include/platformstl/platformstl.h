@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 22nd August 2025
+ * Updated: 17th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 7
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     62
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 8
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -63,35 +63,41 @@
 /* /////////////////////////////////////////////////////////////////////////
  * PlatformSTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * The major version is denoted by the _PLATFORMSTL_VER_MAJOR preprocessor symbol.
- * A change to the major version component implies that a dramatic change has
- * occurred in the libraries, such that considerable changes to source dependent
- * on previous versions would need to be effected.
+ * The major version is denoted by the _PLATFORMSTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
  *
- * The minor version is denoted by the _PLATFORMSTL_VER_MINOR preprocessor symbol.
- * Changes to the minor version component imply that a significant change has
- * occurred to the libraries, either in the addition of new functionality or in
- * the destructive change to one or more components such that recomplilation and
- * code change may be necessitated.
+ * The minor version is denoted by the _PLATFORMSTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
  *
- * The revision version is denoted by the _PLATFORMSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the changes.
+ * The patch version is denoted by the _PLATFORMSTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
  *
  * In addition to the individual version symbols - _PLATFORMSTL_VER_MAJOR,
- * _PLATFORMSTL_VER_MINOR and _PLATFORMSTL_VER_REVISION - a composite symbol _PLATFORMSTL_VER
- * is defined, where the upper 8 bits are 0, bits 16-23 represent the major
- * component,  bits 8-15 represent the minor component, and bits 0-7 represent
- * the revision component.
+ * _PLATFORMSTL_VER_MINOR and _PLATFORMSTL_VER_PATCH - a composite symbol
+ * _PLATFORMSTL_VER is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _PLATFORMSTL_VER_1_0_1.
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _PLATFORMSTL_VER_1_0_1.
  *
- * Thus the symbol _PLATFORMSTL_VER may be compared meaningfully with a specific
- * version symbol, e.g.# if _PLATFORMSTL_VER >= _PLATFORMSTL_VER_1_0_1
+ * Thus the symbol _PLATFORMSTL_VER may be compared meaningfully with a
+ * specific version symbol, e.g.
+ * #if _PLATFORMSTL_VER >= _PLATFORMSTL_VER_1_0_1
  */
 
 /** \def _PLATFORMSTL_VER_MAJOR
@@ -102,8 +108,13 @@
  * The minor version number of PlatformSTL
  */
 
-/** \def _PLATFORMSTL_VER_REVISION
- * The revision version number of PlatformSTL
+/** \def _PLATFORMSTL_VER_PATCH
+ * The patch version number of PlatformSTL
+ */
+
+/** \def _PLATFORMSTL_VER_ALPHABETA
+ * The alpha/beta number of PlatformSTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _PLATFORMSTL_VER
@@ -139,8 +150,20 @@
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
-#define _PLATFORMSTL_VER_REVISION   0
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_10_0_B01
+#define _PLATFORMSTL_VER_PATCH      0
+#define _PLATFORMSTL_VER_ALPHABETA  0x81
+
+#define _PLATFORMSTL_VER \
+    (0\
+        |   (   _PLATFORMSTL_VER_MAJOR       << 24   ) \
+        |   (   _PLATFORMSTL_VER_MINOR       << 16   ) \
+        |   (   _PLATFORMSTL_VER_PATCH       <<  8   ) \
+        |   (   _PLATFORMSTL_VER_ALPHABETA   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _PLATFORMSTL_VER_REVISION                          _PLATFORMSTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
