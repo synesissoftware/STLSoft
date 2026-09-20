@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::format_thousands`.
  *
  * Created: 30th November 2024
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,6 +58,7 @@ hooked_GetLocaleInfoW(
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -231,8 +232,8 @@ static void TEST_format_thousands_SIMPLE()
 
         n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-        XTESTS_TEST_INTEGER_EQUAL(2u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", string_a_t(dest, n - 1));
+        TEST_INT_EQ(2u, n);
+        TEST_MS_EQ("0", string_a_t(dest, n - 1));
 
         s_picture_m = NULL;
     }
@@ -247,46 +248,46 @@ static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS()
     s_picture_m = "9";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(10u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987654321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(10u, n);
+    TEST_MS_EQ("987654321", string_a_t(dest, n - 1));
 
     s_picture_m = "1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(11u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98765432,1", string_a_t(dest, n - 1));
+    TEST_INT_EQ(11u, n);
+    TEST_MS_EQ("98765432,1", string_a_t(dest, n - 1));
 
     s_picture_m = "2;1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987654,3,21", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("987654,3,21", string_a_t(dest, n - 1));
 
     s_picture_m = "3;1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98765,4,321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("98765,4,321", string_a_t(dest, n - 1));
 
     s_picture_m = "3;3";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(12u, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", string_a_t(dest, n - 1));
+    TEST_INT_EQ(12u, n);
+    TEST_MS_EQ("987,654,321", string_a_t(dest, n - 1));
 
     {
         s_picture_m = ";3;3";
         n = winstl::format_thousands(static_cast<char*>(NULL), 0u, v);
 
-        XTESTS_TEST_INTEGER_EQUAL(12u, n);
+        TEST_INT_EQ(12u, n);
     }
 
     {
         s_picture_m = ";3;3";
         n = winstl::format_thousands(static_cast<char*>(NULL), 12u, v);
 
-        XTESTS_TEST_INTEGER_EQUAL(12u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", string_a_t(dest, n - 1));
+        TEST_INT_EQ(12u, n);
+        TEST_MS_EQ("987,654,321", string_a_t(dest, n - 1));
     }
 
     {
@@ -295,8 +296,8 @@ static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS()
         s_picture_m = ";3;3";
         n = winstl::format_thousands(static_cast<char*>(NULL), 10u, v);
 
-        XTESTS_TEST_INTEGER_EQUAL(12u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", string_a_t(dest, n - 1));
+        TEST_INT_EQ(12u, n);
+        TEST_MS_EQ("", string_a_t(dest, n - 1));
     }
 
     s_picture_m = NULL;
@@ -311,32 +312,32 @@ static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS()
     s_picture_m = "9";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073,709551615", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1, n);
+    TEST_MS_EQ("18446744073,709551615", string_a_t(dest, n - 1));
 
     s_picture_m = "1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1844674407370955161,5", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1, n);
+    TEST_MS_EQ("1844674407370955161,5", string_a_t(dest, n - 1));
 
     s_picture_m = "2;1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073709551,6,15", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1, n);
+    TEST_MS_EQ("18446744073709551,6,15", string_a_t(dest, n - 1));
 
     s_picture_m = "3;1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1844674407370955,1,615", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1, n);
+    TEST_MS_EQ("1844674407370955,1,615", string_a_t(dest, n - 1));
 
     s_picture_m = ";3;3";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073709,551,615", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1, n);
+    TEST_MS_EQ("18446744073709,551,615", string_a_t(dest, n - 1));
 
     s_picture_m = NULL;
 }
@@ -350,32 +351,32 @@ static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATO
     s_picture_m = "9";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036,854775808", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1, n);
+    TEST_MS_EQ("-9223372036,854775808", string_a_t(dest, n - 1));
 
     s_picture_m = "1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-922337203685477580,8", string_a_t(dest, n - 1));
+    TEST_INT_EQ(21u + 1, n);
+    TEST_MS_EQ("-922337203685477580,8", string_a_t(dest, n - 1));
 
     s_picture_m = "2;1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036854775,8,08", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1, n);
+    TEST_MS_EQ("-9223372036854775,8,08", string_a_t(dest, n - 1));
 
     s_picture_m = ";3;1";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-922337203685477,5,808", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1, n);
+    TEST_MS_EQ("-922337203685477,5,808", string_a_t(dest, n - 1));
 
     s_picture_m = ";3;3";
     n = winstl::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), v);
 
-    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036854,775,808", string_a_t(dest, n - 1));
+    TEST_INT_EQ(22u + 1, n);
+    TEST_MS_EQ("-9223372036854,775,808", string_a_t(dest, n - 1));
 
     s_picture_m = NULL;
 }

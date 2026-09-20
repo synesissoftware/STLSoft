@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 29th May 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/smartptr/scoped_handle.hpp>
@@ -244,11 +245,11 @@ static void test_example_so_abs1()
 
         int const r = unixstl::dl_call<int>(h_example_so, "abs1", -123);
 
-        XTESTS_TEST_INTEGER_EQUAL(123, r);
+        TEST_INT_EQ(123, r);
     }
     catch (unixstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -260,11 +261,11 @@ static void test_example_so_add2()
 
         int const r = unixstl::dl_call<int>(h_example_so, "add2", 101, 22);
 
-        XTESTS_TEST_INTEGER_EQUAL(123, r);
+        TEST_INT_EQ(123, r);
     }
     catch (unixstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -276,11 +277,11 @@ static void test_example_so_add3()
 
         int const r = unixstl::dl_call<int>(h_example_so, "add3", 101, 2, 20);
 
-        XTESTS_TEST_INTEGER_EQUAL(123, r);
+        TEST_INT_EQ(123, r);
     }
     catch (unixstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 
@@ -292,11 +293,11 @@ static void test_example_so_add10()
 
         int const r = unixstl::dl_call<int>(h_example_so, "add10", 1, 2, 10, 20, 30, 6, 7, 8, 9, 30);
 
-        XTESTS_TEST_INTEGER_EQUAL(123, r);
+        TEST_INT_EQ(123, r);
     }
     catch (unixstl::missing_entry_point_exception& x)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
 } // anonymous namespace

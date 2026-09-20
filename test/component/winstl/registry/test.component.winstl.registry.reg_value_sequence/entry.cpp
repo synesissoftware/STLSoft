@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value_sequence`.
  *
  * Created: 22nd October 2024
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <winstl/registry/reg_key.hpp>
@@ -139,7 +140,7 @@ static void test_1_12()
     {
         reg_value const v(*i);
 
-        XTESTS_TEST_ENUM_NOT_EQUAL(REG_NONE, v.type());
+        TEST_ENUM_NE(REG_NONE, v.type());
 
         value_names.push_back(v.name().c_str());
         value_values.push_back(v.value_sz().c_str());

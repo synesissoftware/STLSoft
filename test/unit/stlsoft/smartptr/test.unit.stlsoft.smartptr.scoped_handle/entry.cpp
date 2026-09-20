@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::scoped_handle`.
  *
  * Created: 16th October 2008
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/conversion/union_cast.hpp>
@@ -178,60 +179,60 @@ static void test_types_exist()
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::scoped_handle<char*>));
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::scoped_handle<void>));
 
-    XTESTS_TEST_PASSED();
+    TEST_PASSED();
 }
 
 static void test_1_0()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(false), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+        TEST_INT_EQ(0, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(false), free_int, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+        TEST_INT_EQ(0, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
 
         {
             stlsoft::scoped_handle<int> scoper_2(alloc_int(true), free_int, -1);
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_intCount);
+            TEST_INT_EQ(2, s_intCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 }
 
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
@@ -241,214 +242,214 @@ static void test_1_0()
 
 static void test_1_1()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+    TEST_INT_EQ(0, s_doubleCount);
 
     {
         stlsoft::scoped_handle<double>  scoper(alloc_double(true), free_double_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_doubleCount);
+        TEST_INT_EQ(1, s_doubleCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+    TEST_INT_EQ(0, s_doubleCount);
 
     {
         stlsoft::scoped_handle<double>  scoper(alloc_double(true), free_double);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_doubleCount);
+        TEST_INT_EQ(1, s_doubleCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+    TEST_INT_EQ(0, s_doubleCount);
 
     {
         stlsoft::scoped_handle<double>  scoper(alloc_double(false), free_double_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+        TEST_INT_EQ(0, s_doubleCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+    TEST_INT_EQ(0, s_doubleCount);
 
     {
         stlsoft::scoped_handle<double>  scoper(alloc_double(false), free_double);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+        TEST_INT_EQ(0, s_doubleCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+    TEST_INT_EQ(0, s_doubleCount);
 
     {
         stlsoft::scoped_handle<double>  scoper(alloc_double(true), free_double_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_doubleCount);
+        TEST_INT_EQ(1, s_doubleCount);
 
         {
             stlsoft::scoped_handle<double>  scoper_2(alloc_double(true), free_double);
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_doubleCount);
+            TEST_INT_EQ(2, s_doubleCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_doubleCount);
+        TEST_INT_EQ(1, s_doubleCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_doubleCount);
+    TEST_INT_EQ(0, s_doubleCount);
 }
 
 static void test_1_2()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+    TEST_INT_EQ(0, s_voidstarCount);
 
     {
         stlsoft::scoped_handle<void*>   scoper(alloc_voidstar(true), free_voidstar_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidstarCount);
+        TEST_INT_EQ(1, s_voidstarCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+    TEST_INT_EQ(0, s_voidstarCount);
 
     {
         stlsoft::scoped_handle<void*>   scoper(alloc_voidstar(true), free_voidstar);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidstarCount);
+        TEST_INT_EQ(1, s_voidstarCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+    TEST_INT_EQ(0, s_voidstarCount);
 
     {
         stlsoft::scoped_handle<void*>   scoper(alloc_voidstar(false), free_voidstar_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+        TEST_INT_EQ(0, s_voidstarCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+    TEST_INT_EQ(0, s_voidstarCount);
 
     {
         stlsoft::scoped_handle<void*>   scoper(alloc_voidstar(false), free_voidstar);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+        TEST_INT_EQ(0, s_voidstarCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+    TEST_INT_EQ(0, s_voidstarCount);
 
     {
         stlsoft::scoped_handle<void*>   scoper(alloc_voidstar(true), free_voidstar_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidstarCount);
+        TEST_INT_EQ(1, s_voidstarCount);
 
         {
             stlsoft::scoped_handle<void*>   scoper_2(alloc_voidstar(true), free_voidstar);
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_voidstarCount);
+            TEST_INT_EQ(2, s_voidstarCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidstarCount);
+        TEST_INT_EQ(1, s_voidstarCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidstarCount);
+    TEST_INT_EQ(0, s_voidstarCount);
 }
 
 static void test_1_3()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+    TEST_INT_EQ(0, s_personCount);
 
     {
         stlsoft::scoped_handle<Person*> scoper(alloc_Personstar(true), free_Personstar_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_personCount);
+        TEST_INT_EQ(1, s_personCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+    TEST_INT_EQ(0, s_personCount);
 
     {
         stlsoft::scoped_handle<Person*> scoper(alloc_Personstar(true), free_Personstar);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_personCount);
+        TEST_INT_EQ(1, s_personCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+    TEST_INT_EQ(0, s_personCount);
 
     {
         stlsoft::scoped_handle<Person*> scoper(alloc_Personstar(false), free_Personstar_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+        TEST_INT_EQ(0, s_personCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+    TEST_INT_EQ(0, s_personCount);
 
     {
         stlsoft::scoped_handle<Person*> scoper(alloc_Personstar(false), free_Personstar);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+        TEST_INT_EQ(0, s_personCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+    TEST_INT_EQ(0, s_personCount);
 
     {
         stlsoft::scoped_handle<Person*> scoper(alloc_Personstar(true), free_Personstar_v);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_personCount);
+        TEST_INT_EQ(1, s_personCount);
 
         {
             stlsoft::scoped_handle<Person*> scoper_2(alloc_Personstar(true), free_Personstar);
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_personCount);
+            TEST_INT_EQ(2, s_personCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_personCount);
+        TEST_INT_EQ(1, s_personCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_personCount);
+    TEST_INT_EQ(0, s_personCount);
 }
 
 static void test_1_4()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(false), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+        TEST_INT_EQ(0, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(false), free_int, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+        TEST_INT_EQ(0, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
 
         {
             stlsoft::scoped_handle<int> scoper_2(alloc_int(true), free_int, -1);
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_intCount);
+            TEST_INT_EQ(2, s_intCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 }
 
 static void test_1_5()
@@ -457,79 +458,79 @@ static void test_1_5()
 
 static void test_1_6()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidCount);
+    TEST_INT_EQ(0, s_voidCount);
 
     {
         alloc_void();
 
         stlsoft::scoped_handle<void>    scoper(free_void_1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(scoper.empty());
+        TEST_BOOLEAN_FALSE(scoper.empty());
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidCount);
+        TEST_INT_EQ(1, s_voidCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidCount);
+    TEST_INT_EQ(0, s_voidCount);
 
     {
         alloc_void();
 
         stlsoft::scoped_handle<void>    scoper(free_void_2);
 
-        XTESTS_TEST_BOOLEAN_FALSE(scoper.empty());
+        TEST_BOOLEAN_FALSE(scoper.empty());
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidCount);
+        TEST_INT_EQ(1, s_voidCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidCount);
+    TEST_INT_EQ(0, s_voidCount);
 
     {
         alloc_void();
 
         stlsoft::scoped_handle<void>    scoper(free_void_3);
 
-        XTESTS_TEST_BOOLEAN_FALSE(scoper.empty());
+        TEST_BOOLEAN_FALSE(scoper.empty());
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidCount);
+        TEST_INT_EQ(1, s_voidCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidCount);
+    TEST_INT_EQ(0, s_voidCount);
 
     {
         alloc_void();
 
         stlsoft::scoped_handle<void>    scoper(free_void_4);
 
-        XTESTS_TEST_BOOLEAN_FALSE(scoper.empty());
+        TEST_BOOLEAN_FALSE(scoper.empty());
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidCount);
+        TEST_INT_EQ(1, s_voidCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidCount);
+    TEST_INT_EQ(0, s_voidCount);
 
     {
         alloc_void();
 
         stlsoft::scoped_handle<void>    scoper(free_void_1);
 
-        XTESTS_TEST_BOOLEAN_FALSE(scoper.empty());
+        TEST_BOOLEAN_FALSE(scoper.empty());
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidCount);
+        TEST_INT_EQ(1, s_voidCount);
 
         {
             alloc_void();
 
             stlsoft::scoped_handle<void> scoper_2(free_void_2);
 
-            XTESTS_TEST_BOOLEAN_FALSE(scoper_2.empty());
+            TEST_BOOLEAN_FALSE(scoper_2.empty());
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_voidCount);
+            TEST_INT_EQ(2, s_voidCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_voidCount);
+        TEST_INT_EQ(1, s_voidCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_voidCount);
+    TEST_INT_EQ(0, s_voidCount);
 }
 
 static void test_1_7()
@@ -546,7 +547,7 @@ static void test_1_9()
 
 static void test_1_10()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
 #if 0
     int i;
@@ -555,53 +556,53 @@ static void test_1_10()
         i = alloc_int(true);
         stlsoft::scoped_handle<int> scoper(&i, free_int_v_p, -1);
 
-        XTESTS_TEST_INTEGER_NOT_EQUAL(0, i);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_NE(0, i);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
-    XTESTS_TEST_INTEGER_EQUAL(0, i);
+    TEST_INT_EQ(0, s_intCount);
+    TEST_INT_EQ(0, i);
 #endif
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(false), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+        TEST_INT_EQ(0, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(false), free_int, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+        TEST_INT_EQ(0, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 
     {
         stlsoft::scoped_handle<int> scoper(alloc_int(true), free_int_v, -1);
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
 
         {
             stlsoft::scoped_handle<int> scoper_2(alloc_int(true), free_int, -1);
 
-            XTESTS_TEST_INTEGER_EQUAL(2, s_intCount);
+            TEST_INT_EQ(2, s_intCount);
         }
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_intCount);
+        TEST_INT_EQ(1, s_intCount);
     }
 
-    XTESTS_TEST_INTEGER_EQUAL(0, s_intCount);
+    TEST_INT_EQ(0, s_intCount);
 }
 
 static void test_1_11()

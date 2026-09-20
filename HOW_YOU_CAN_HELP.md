@@ -1,5 +1,6 @@
 # STLSoft - How You Can Help <!-- omit in toc -->
 
+
 ## Table of Contents <!-- omit in toc -->
 
 There are several ways in which you can help the **STLSoft** project:
@@ -25,9 +26,9 @@ problem as you think is relevant, including:
 
 * the compiler you're using
 * the architecture and operating system you're targeting
-* the version of STLSoft
-* the version of other 3rd-party libraries, such as Boost, Loki, ...
-* whether you're building using CMake, the provided makefiles, or via an IDE
+* the version of **STLSoft**
+* the version of other 3rd-party libraries, such as Boost, Loki, …
+* whether you're building using **CMake**, the provided makefiles, or via an IDE
 * a section of the build output, including the warnings/errors involved
 
 
@@ -48,38 +49,34 @@ Or provide your suggested work via a pull-request:
 ## Volunteer your help
 
 If you have any components you'd like to submit to the libraries, or you
-would like to offer any other help, please get in contact.
+would like to offer any other help, please open an issue or pull request at:
 
-In particular, at the moment we're hoping to move to redevelop the STLSoft
-website using MediaWiki and we'd be keen to hear from anyone who has skills
-in this area (as we don't!)
+  https://github.com/synesissoftware/STLSoft
 
 
 ## Sponsor development
 
 If you value the diligence and effort that's gone into bringing you this
-software, then:
-
-  contact Matt Wilson via stlsoft@gmail.com
+software, please get in contact via
+https://www.synesis.com.au/contact.html
+or email Matt Wilson at stlsoft@gmail.com.
 
 
 ## Write articles, blog-posts about your experiences
 
-If you've written articles or blogged about STLSoft, let us know and we'll
-list them on the website, at:
-
-  http://www.stlsoft.org/
+If you've written articles or blogged about **STLSoft**, let us know (via
+[GitHub Issues](https://github.com/synesissoftware/STLSoft/issues)) and we
+may link to them from the project.
 
 If you haven't yet, please consider doing so.
 
 
 ## Help flesh out the Wikipedia page for STLSoft
 
-Martin Moene has made a great start with the STLSoft Wikipedia page, but
-there's lots more to be done. You can help out by updating the STLSoft
-Wikipedia page at:
+Martin Moene has made a great start with the **STLSoft** Wikipedia page, but
+there's lots more to be done. You can help out by updating the page at:
 
-  http://en.wikipedia.org/wiki/STLSoft
+  https://en.wikipedia.org/wiki/STLSoft
 
 
 <!-- ########################### end of file ########################### -->
