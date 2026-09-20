@@ -72,6 +72,7 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 
 ### 1.11.7
 
+* [ ] Review the relationship between **include/*stl*/error** and **include/*stl*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
 
 
