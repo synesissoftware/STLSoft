@@ -7,9 +7,6 @@ on:
       - dev
       - boilerplate
       - idiomatic
-      - update.3
-      - update.4
-      - ace
       - rc1
       - rc2
       - rc3

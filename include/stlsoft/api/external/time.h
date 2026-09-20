@@ -5,11 +5,11 @@
  *          time functions.
  *
  * Created: 30th September 2024
- * Updated: 29th May 2025
+ * Updated: 20th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -112,6 +112,7 @@
 # if 1 &&\
      !defined(__MINGW64__) &&\
      1
+
 #  define STLSOFT_LF_SUPPORT_GCC_asctime_r
 #  define STLSOFT_LF_SUPPORT_GCC_ctime_r
 #  define STLSOFT_LF_SUPPORT_GCC_gmtime_r
@@ -126,9 +127,11 @@
  * - STLSOFT_LF_SUPPORT_MSVCRT_localtime_s
  */
 #if 0
-#elif defined(_WIN32) &&\
+#elif 1 &&\
+      defined(_WIN32) &&\
       defined(_MSC_VER) &&\
-      defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+      defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) &&\
+      1
 
 # define STLSOFT_LF_SUPPORT_MSVCRT_asctime_s
 # define STLSOFT_LF_SUPPORT_MSVCRT_ctime_s
@@ -146,8 +149,10 @@
  */
 
 #if 0
-#elif defined(__cplusplus) &&\
-      __cplusplus >= 201103L
+#elif 1 &&\
+      defined(__cplusplus) &&\
+      __cplusplus >= 201103L &&\
+      1
 
 # define STLSOFT_LF_SUPPORT_STD_asctime_s
 # define STLSOFT_LF_SUPPORT_STD_ctime_s
@@ -156,10 +161,21 @@
 #endif
 
 #if 0
-#elif defined(__cplusplus) &&\
-      __cplusplus >= 202302L
+#elif 1 &&\
+      defined(__cplusplus) &&\
+      __cplusplus >= 202302L &&\
+      1
 
-# ifndef _MSC_VER
+ /* C++23 claims POSIX gmtime_r/localtime_r in the working draft, but MinGW
+  * (and MSVC) do not provide them; keep the MSVC exclusion and also exclude
+  * MinGW so discrimination falls through to gmtime()/localtime() (or *_s).
+  */
+# if 1 &&\
+     !defined(_MSC_VER) && \
+     !defined(__MINGW32__) && \
+     !defined(__MINGW64__) &&\
+     1
+
 #  define STLSOFT_LF_SUPPORT_STD_gmtime_r
 #  define STLSOFT_LF_SUPPORT_STD_localtime_r
 # endif

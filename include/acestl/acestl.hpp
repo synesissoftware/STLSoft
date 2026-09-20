@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 18th August 2026
+ * Updated: 17th September 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -62,11 +62,40 @@
 /* /////////////////////////////////////////////////////////////////////////
  * ACESTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _ACESTL_VER_1_0_1.
+ * The major version is denoted by the _ACESTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
+ *
+ * The minor version is denoted by the _ACESTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
+ *
+ * The patch version is denoted by the _ACESTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
+ *
+ * In addition to the individual version symbols - _ACESTL_VER_MAJOR,
+ * _ACESTL_VER_MINOR and _ACESTL_VER_PATCH - a composite symbol _ACESTL_VER
+ * is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
+ *
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _ACESTL_VER_1_0_1.
+ *
+ * Thus the symbol _ACESTL_VER may be compared meaningfully with a specific
+ * version symbol, e.g. #if _ACESTL_VER >= _ACESTL_VER_1_0_1
  */
 
 /** \def _ACESTL_VER_MAJOR
@@ -86,12 +115,16 @@
  * recompilation and code change may be necessitated.
  */
 
-/** \def _ACESTL_VER_REVISION
- * The revision version number of ACESTL
+/** \def _ACESTL_VER_PATCH
+ * The patch version number of ACESTL
  *
- * A change to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the
- * changes.
+ * A change to the patch version component imply that a bug has been fixed.
+ * Dependent code should be recompiled in order to pick up the changes.
+ */
+
+/** \def _ACESTL_VER_ALPHABETA
+ * The alpha/beta number of ACESTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _ACESTL_VER
@@ -116,8 +149,20 @@
 
 #define _ACESTL_VER_MAJOR      1
 #define _ACESTL_VER_MINOR      2
-#define _ACESTL_VER_REVISION   1
-#define _ACESTL_VER            _ACESTL_VER_1_2_1
+#define _ACESTL_VER_PATCH      1
+#define _ACESTL_VER_ALPHABETA  0xFF
+
+#define _ACESTL_VER \
+    (0\
+        |   (   _ACESTL_VER_MAJOR       << 24   ) \
+        |   (   _ACESTL_VER_MINOR       << 16   ) \
+        |   (   _ACESTL_VER_PATCH       <<  8   ) \
+        |   (   _ACESTL_VER_ALPHABETA   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _ACESTL_VER_REVISION                               _ACESTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

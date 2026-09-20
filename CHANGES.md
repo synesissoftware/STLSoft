@@ -1,4 +1,32 @@
-# STLSoft - Changes <!-- omit in toc -->
+# STLSoft - CHANGES <!-- omit in toc -->
+
+
+## 1.11.2-alpha1 - 10th October 2026
+
+
+
+## 1.11.1-rc6 - 21st September 2026
+
+* CMake/CI — optional **ACE** discovery (**cmake/FindACE.cmake**, **NO_ACE** / **prepare_cmake.sh --no-ace**); dedicated **cell-ace** job (**with-ace**);
+* CI — exercise **ATLSTL** on Windows via **with-atl** cell (**cmake/FindATL.cmake**);
+* CI — exercise **MFCSTL** on Windows via **with-mfc** cell (**stlsoft_prepare_mfc_target**);
+* CI — restore executable bits after artifact download; fail when zero unit tests discovered; do not chmod/run CMake artefacts as examples;
+* CMake — prefer tree headers over installed **STLSoft** (`NO_SYSTEM_FROM_IMPORTED`); set **CMP0177** on CMake ≥ 3.31;
+* **ACESTL** — `invoke_ACE_OS_snprintf` implemented in terms of `stlsoft_C_snprintf()`; unit tests for **ACE_String_Base** / **ACE_Time_Value** string-access shims;
+* **TODO.md** — restructured **1.11** / **1.12** roadmap; marked ACE/ATL/MFC CI and terse-API items complete;
+* Scripts — **.sis/project_name.txt**; colourised **run_all_***.sh / **execute_performance_tests.sh**; new **ctest_cmake.sh**; MSYS auto-MinGW in **prepare_cmake.sh**;
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+* **INSTALL.md** / **README.md** — **ACE** / **ACESTL** discovery notes;
+* **test.unit.versions** — aligned with **1.11.1-rc6** (**_STLSOFT_VER_1_11_1_RC6**);
+* All unit/component test assertions use **xTests** Terse API;
+* Renamed C-language test/example programs to **subject.C** form (e.g. **test.unit.comstl.string.BSTR_functions.C**);
+* Fixed `stlsoft::unused_return_value_monitor<>` copy constructor — clear `m_bUsed` on the source object (was incorrectly using pointer dereference);
+* fix: MinGW compatibility;
+* fix: C90 compatibility;
+* Fixed `stlsoft::string_to_integer_range<>()` — call renamed `try_string_to_integer_4slre_` helper;
+* Added `stlsoft::sinteger64` copy constructor;
+* **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS (`__APPLE__`); added **test.unit.stlsoft.api.external.string**;
 
 
 ## 1.11.1-rc5 - 9th August 2026

@@ -38,9 +38,10 @@ Other **1.11.1** items:
 * [x] ~~~CI: exercise **MFCSTL** on a Windows cell (drop / gate `CMAKE_DISABLE_FIND_PACKAGE_MFC`; confirm MSVC+MFC on the runner)~~~ - ✅;
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
-* [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~;
+* [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
 * [ ] Remove **WTL**;
 * [ ] bring in some essential unit-tests from internal repo;
+* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
 
 
 ### 1.11.2
@@ -79,6 +80,7 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 
 ### 1.11.7
 
+* [ ] Review the relationship between **include/*stl*/error** and **include/*stl*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
 
 

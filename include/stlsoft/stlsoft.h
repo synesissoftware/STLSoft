@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 18th August 2026
+ * Updated: 10th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 17
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     607
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 18
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     606
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -76,15 +76,40 @@
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version
  *
- * The libraries version information is comprised of major, minor and
- * revision components.
+ * The libraries version information is comprised of major, minor and patch
+ * components.
+ *
+ * The major version is denoted by the _STLSOFT_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
+ *
+ * The minor version is denoted by the _STLSOFT_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
+ *
+ * The patch version is denoted by the _STLSOFT_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
+ *
+ * In addition to the individual version symbols - _STLSOFT_VER_MAJOR,
+ * _STLSOFT_VER_MINOR and _STLSOFT_VER_PATCH - a composite symbol
+ * _STLSOFT_VER is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
  * Each release of the libraries will bear a different version, and that
  * version will also have its own symbol: Version 1.0.1 specifies
  * _STLSOFT_VER_1_0_1.
  *
  * Thus the symbol _STLSOFT_VER may be compared meaningfully with a specific
- * version symbol, e.g.# if _STLSOFT_VER >= _STLSOFT_VER_1_0_1
+ * version symbol, e.g. #if _STLSOFT_VER >= _STLSOFT_VER_1_0_1
  */
 
 /** \def _STLSOFT_VER_MAJOR
@@ -104,24 +129,29 @@
  * that recompilation and code change may be necessitated.
  */
 
-/** \def _STLSOFT_VER_REVISION
- * The revision version number of STLSoft
+/** \def _STLSOFT_VER_PATCH
+ * The patch version number of STLSoft
  *
- * A change to the revision version component imply that a bug has been
+ * A change to the patch version component imply that a bug has been
  * fixed. Dependent code should be recompiled in order to pick up the
  * changes.
+ */
+
+/** \def _STLSOFT_VER_ALPHABETA
+ * The alpha/beta number of STLSoft, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _STLSOFT_VER
  * The current composite version number of STLSoft
  *
  * In addition to the individual version symbols - _STLSOFT_VER_MAJOR,
- * _STLSOFT_VER_MINOR and _STLSOFT_VER_REVISION - a composite symbol
+ * _STLSOFT_VER_MINOR and _STLSOFT_VER_PATCH - a composite symbol
  * _STLSOFT_VER is defined, where:
  *  - bits 24-31: the major version
  *  - bits 16-23: the minor version
- *  - bits 8-15: the revision version
- *  - bits 0-7: the beta number; if not a beta, it is 0xFF
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease, it is 0xFF
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -389,13 +419,16 @@
 # define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 2 (31st May 2025) */
 # define _STLSOFT_VER_1_11_1_RC3    0x010b01c3  /*!< Version 1.11.1 rc 3 (23rd August 2025) */
 # define _STLSOFT_VER_1_11_1_RC4    0x010b01c4  /*!< Version 1.11.1 rc 4 (1st July 2026) */
-# define _STLSOFT_VER_1_11_1_RC5    0x010b01c5  /*!< Version 1.11.1 rc 5 (9th August 2026) */
+# define _STLSOFT_VER_1_11_1_RC5    0x010b01c5  /*!< Version 1.11.1 rc 5 (4th August 2026) */
+# define _STLSOFT_VER_1_11_1_RC6    0x010b01c6  /*!< Version 1.11.1 rc 6 (21st September 2026) */
+
+# define _STLSOFT_VER_1_11_2_A01    0x010b0241  /*!< Version 1.11.1 alpha 2 (10th October 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
-#define _STLSOFT_VER_PATCH          1
-#define _STLSOFT_VER_ALPHABETA      0xc5
+#define _STLSOFT_VER_PATCH          2
+#define _STLSOFT_VER_ALPHABETA      0x41
 
 #define _STLSOFT_VER \
     (0\
@@ -405,7 +438,9 @@
         |   (   _STLSOFT_VER_ALPHABETA  <<  0   )\
     )
 
-#define _STLSOFT_VER_REVISION       _STLSOFT_VER_PATCH
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _STLSOFT_VER_REVISION                              _STLSOFT_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////
