@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_insert`.
  *
  * Created: 14th November 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -175,7 +176,7 @@ int main(int argc, char *argv[])
             stm
                 << ct;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1234", stm.str());
+            TEST_MS_EQ("1234", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::dec | std::showbase)", "", [] {
@@ -189,7 +190,7 @@ int main(int argc, char *argv[])
                 << std::showbase
                 << ct;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1234", stm.str());
+            TEST_MS_EQ("1234", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::hex | std::showbase)", "", [] {
@@ -203,7 +204,7 @@ int main(int argc, char *argv[])
                 << std::showbase
                 << ct;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0x4d2", stm.str());
+            TEST_MS_EQ("0x4d2", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::hex | std::showbase | std::showpos)", "", [] {
@@ -218,7 +219,7 @@ int main(int argc, char *argv[])
                 << std::showpos
                 << ct;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("+0x4d2", stm.str());
+            TEST_MS_EQ("+0x4d2", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::oct | std::showbase | std::showpos)", "", [] {
@@ -233,7 +234,7 @@ int main(int argc, char *argv[])
                 << std::showpos
                 << ct;
 
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("+02322", stm.str());
+            TEST_MS_EQ("+02322", stm.str());
         });
 
 

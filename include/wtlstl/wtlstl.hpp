@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 12th May 2003
- * Updated: 20th March 2025
+ * Updated: 17th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -63,32 +63,37 @@
 /* /////////////////////////////////////////////////////////////////////////
  * WTLSTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * The major version is denoted by the _WTLSTL_VER_MAJOR preprocessor symbol.
- * A change to the major version component implies that a dramatic change has
- * occurred in the libraries, such that considerable changes to source dependent
- * on previous versions would need to be effected.
+ * The major version is denoted by the _WTLSTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
  *
- * The minor version is denoted by the _WTLSTL_VER_MINOR preprocessor symbol.
- * Changes to the minor version component imply that a significant change has
- * occurred to the libraries, either in the addition of new functionality or in
- * the destructive change to one or more components such that recomplilation and
- * code change may be necessitated.
+ * The minor version is denoted by the _WTLSTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
  *
- * The revision version is denoted by the _WTLSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the changes.
+ * The patch version is denoted by the _WTLSTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
  *
  * In addition to the individual version symbols - _WTLSTL_VER_MAJOR,
- * _WTLSTL_VER_MINOR and _WTLSTL_VER_REVISION - a composite symbol _WTLSTL_VER
- * is defined, where the upper 8 bits are 0, bits 16-23 represent the major
- * component,  bits 8-15 represent the minor component, and bits 0-7 represent
- * the revision component.
+ * _WTLSTL_VER_MINOR and _WTLSTL_VER_PATCH - a composite symbol _WTLSTL_VER
+ * is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _WTLSTL_VER_1_0_1.
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _WTLSTL_VER_1_0_1.
  *
  * Thus the symbol _WTLSTL_VER may be compared meaningfully with a specific
  * version symbol, e.g. #if _WTLSTL_VER >= _WTLSTL_VER_1_0_1
@@ -102,8 +107,13 @@
  * The minor version number of WTLSTL
  */
 
-/** \def _WTLSTL_VER_REVISION
- * The revision version number of WTLSTL
+/** \def _WTLSTL_VER_PATCH
+ * The patch version number of WTLSTL
+ */
+
+/** \def _WTLSTL_VER_ALPHABETA
+ * The alpha/beta number of WTLSTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _WTLSTL_VER
@@ -121,8 +131,20 @@
 
 #define _WTLSTL_VER_MAJOR       1
 #define _WTLSTL_VER_MINOR       2
-#define _WTLSTL_VER_REVISION    5
-#define _WTLSTL_VER             _WTLSTL_VER_1_2_5
+#define _WTLSTL_VER_PATCH       5
+#define _WTLSTL_VER_ALPHABETA   0xFF
+
+#define _WTLSTL_VER \
+    (0\
+        |   (   _WTLSTL_VER_MAJOR       << 24   ) \
+        |   (   _WTLSTL_VER_MINOR       << 16   ) \
+        |   (   _WTLSTL_VER_PATCH       <<  8   ) \
+        |   (   _WTLSTL_VER_ALPHABETA   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _WTLSTL_VER_REVISION                               _WTLSTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

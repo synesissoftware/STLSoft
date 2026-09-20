@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 22nd August 2025
+ * Updated: 17th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     577
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 3
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     578
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -63,32 +63,37 @@
 /* /////////////////////////////////////////////////////////////////////////
  * InetSTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * The major version is denoted by the _INETSTL_VER_MAJOR preprocessor symbol.
- * A change to the major version component implies that a dramatic change has
- * occurred in the libraries, such that considerable changes to source dependent
- * on previous versions would need to be effected.
+ * The major version is denoted by the _INETSTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
  *
- * The minor version is denoted by the _INETSTL_VER_MINOR preprocessor symbol.
- * Changes to the minor version component imply that a significant change has
- * occurred to the libraries, either in the addition of new functionality or in
- * the destructive change to one or more components such that recomplilation and
- * code change may be necessitated.
+ * The minor version is denoted by the _INETSTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
  *
- * The revision version is denoted by the _INETSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the changes.
+ * The patch version is denoted by the _INETSTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
  *
  * In addition to the individual version symbols - _INETSTL_VER_MAJOR,
- * _INETSTL_VER_MINOR and _INETSTL_VER_REVISION - a composite symbol _INETSTL_VER
- * is defined, where the upper 8 bits are 0, bits 16-23 represent the major
- * component,  bits 8-15 represent the minor component, and bits 0-7 represent
- * the revision component.
+ * _INETSTL_VER_MINOR and _INETSTL_VER_PATCH - a composite symbol
+ * _INETSTL_VER is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _INETSTL_VER_1_0_1.
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _INETSTL_VER_1_0_1.
  *
  * Thus the symbol _INETSTL_VER may be compared meaningfully with a specific
  * version symbol, e.g. #if _INETSTL_VER >= _INETSTL_VER_1_0_1
@@ -102,8 +107,13 @@
  * The minor version number of InetSTL
  */
 
-/** \def _INETSTL_VER_REVISION
- * The revision version number of InetSTL
+/** \def _INETSTL_VER_PATCH
+ * The patch version number of InetSTL
+ */
+
+/** \def _INETSTL_VER_ALPHABETA
+ * The alpha/beta number of InetSTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _INETSTL_VER
@@ -139,8 +149,20 @@
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
-#define _INETSTL_VER_REVISION    0
-#define _INETSTL_VER             _INETSTL_VER_1_5_0_A02
+#define _INETSTL_VER_PATCH       0
+#define _INETSTL_VER_ALPHABETA   0x42
+
+#define _INETSTL_VER \
+    (0\
+        |   (   _INETSTL_VER_MAJOR       << 24   ) \
+        |   (   _INETSTL_VER_MINOR       << 16   ) \
+        |   (   _INETSTL_VER_PATCH       <<  8   ) \
+        |   (   _INETSTL_VER_ALPHABETA   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _INETSTL_VER_REVISION                              _INETSTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

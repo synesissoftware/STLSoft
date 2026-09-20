@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -82,7 +83,7 @@ static void test_empty()
 {
     stlsoft::environment_block_a block;
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, block.size());
+    TEST_INT_EQ(0u, block.size());
 }
 
 static void test_1_element()
@@ -91,8 +92,8 @@ static void test_1_element()
 
     block.push_back("key-1", "value-1");
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, block.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-1=value-1", block.base()[0]);
+    TEST_INT_EQ(1u, block.size());
+    TEST_MS_EQ("key-1=value-1", block.base()[0]);
 }
 
 static void test_2_elements()
@@ -102,9 +103,9 @@ static void test_2_elements()
     block.push_back("key-1", "value-1");
     block.push_back("key-0", "value-0");
 
-    XTESTS_TEST_INTEGER_EQUAL(2u, block.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-1=value-1", block.base()[0]);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-0=value-0", block.base()[1]);
+    TEST_INT_EQ(2u, block.size());
+    TEST_MS_EQ("key-1=value-1", block.base()[0]);
+    TEST_MS_EQ("key-0=value-0", block.base()[1]);
 }
 
 static void test_clear()
@@ -115,11 +116,11 @@ static void test_clear()
     block.push_back("key-1", "value-1");
     block.push_back("key-3", "value-3");
 
-    XTESTS_TEST_INTEGER_EQUAL(3u, block.size());
+    TEST_INT_EQ(3u, block.size());
 
     block.clear();
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, block.size());
+    TEST_INT_EQ(0u, block.size());
 }
 } // anonymous namespace
 

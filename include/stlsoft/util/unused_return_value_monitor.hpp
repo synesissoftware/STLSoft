@@ -4,11 +4,11 @@
  * Purpose: Basic functionals.
  *
  * Created: 8th June 2002
- * Updated: 20th March 2025
+ * Updated: 12th August 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT      60
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION  9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -186,7 +186,7 @@ public:
         , m_monitorFn(rhs.m_monitorFn)
         , m_bUsed(rhs.m_bUsed)
     {
-        const_cast<class_type&>(rhs)->m_bUsed = false;
+        const_cast<class_type&>(rhs).m_bUsed = false;
     }
     /// Destructor
     ///

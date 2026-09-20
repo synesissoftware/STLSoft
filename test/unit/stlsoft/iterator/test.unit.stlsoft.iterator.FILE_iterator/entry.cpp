@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::FILE_iterator`.
  *
  * Created: 24th March 2025
- * Updated: 29th May 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
  */
 
 /* xTests header files */
+#include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_file.hpp>
 
@@ -121,10 +122,10 @@ static void test_1()
     {
         platformstl::file_lines     lines(f.c_str());
 
-        REQUIRE(TEST_INT_EQ(3u, lines.size()));
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", lines[0], lines[0].size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("", lines[1], lines[1].size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("jklmnopqrstuvwxyz", lines[2], lines[2].size());
+        XTESTS_REQUIRE(TEST_INT_EQ(3u, lines.size()));
+        TEST_MS_EQ_N("abc", lines[0], lines[0].size());
+        TEST_MS_EQ_N("", lines[1], lines[1].size());
+        TEST_MS_EQ_N("jklmnopqrstuvwxyz", lines[2], lines[2].size());
     }
 }
 } // anonymous namespace

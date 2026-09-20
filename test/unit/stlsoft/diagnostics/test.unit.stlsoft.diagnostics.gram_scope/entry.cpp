@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *
  * Created: 15th December 2024
- * Updated: 1st July 2026
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <platformstl/diagnostics/stopwatch.hpp>
@@ -98,8 +99,8 @@ static void TEST_gram_scope_CONSTRUCT_FROM_INSTANCES()
 
     // need high permissiveness in time range, due to latencies caused by
     // (presumably) contention in CI
-    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10000000, total_time_ns);
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(100000000, total_time_ns);
+    TEST_INT_GE(10000000, total_time_ns);
+    TEST_INT_LE(100000000, total_time_ns);
 }
 } // anonymous namespace
 

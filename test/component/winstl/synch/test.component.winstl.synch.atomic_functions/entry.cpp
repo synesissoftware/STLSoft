@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 23rd August 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 
@@ -258,7 +259,7 @@ namespace {
 
             winstl::atomic_decrement(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(-1, v);
+            TEST_INT_EQ(-1, v);
         }
 
         static void test_a_large_number()
@@ -290,7 +291,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(0, v);
+            TEST_INT_EQ(0, v);
         }
     } // namespace atomic_decrement
 
@@ -302,7 +303,7 @@ namespace {
 
             winstl::atomic_increment(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(+1, v);
+            TEST_INT_EQ(+1, v);
         }
 
         static void test_a_large_number()
@@ -334,7 +335,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
+            TEST_INT_EQ(FinalValue, v);
         }
     } // namespace atomic_increment
 
@@ -345,8 +346,8 @@ namespace {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_postadd(&v, 7);
 
-            XTESTS_TEST_INTEGER_EQUAL(7, v);
-            XTESTS_TEST_INTEGER_EQUAL(0, r);
+            TEST_INT_EQ(7, v);
+            TEST_INT_EQ(0, r);
         }
 
         static void test_a_large_number()
@@ -380,7 +381,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
+            TEST_INT_EQ((FinalValue * Increment), v);
         }
     } // namespace atomic_postadd
 
@@ -391,8 +392,8 @@ namespace {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_postdecrement(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(-1, v);
-            XTESTS_TEST_INTEGER_EQUAL(0, r);
+            TEST_INT_EQ(-1, v);
+            TEST_INT_EQ(0, r);
         }
 
         static void test_a_large_number()
@@ -424,7 +425,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(0, v);
+            TEST_INT_EQ(0, v);
         }
     } // namespace atomic_postdecrement
 
@@ -435,8 +436,8 @@ namespace {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_postincrement(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(+1, v);
-            XTESTS_TEST_INTEGER_EQUAL(0, r);
+            TEST_INT_EQ(+1, v);
+            TEST_INT_EQ(0, r);
         }
 
         static void test_a_large_number()
@@ -468,7 +469,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
+            TEST_INT_EQ(FinalValue, v);
         }
     } // namespace atomic_postincrement
 
@@ -479,8 +480,8 @@ namespace {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_preadd(&v, 7);
 
-            XTESTS_TEST_INTEGER_EQUAL(7, v);
-            XTESTS_TEST_INTEGER_EQUAL(7, r);
+            TEST_INT_EQ(7, v);
+            TEST_INT_EQ(7, r);
         }
 
         static void test_a_large_number()
@@ -513,7 +514,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
+            TEST_INT_EQ((FinalValue * Increment), v);
         }
     } // namespace atomic_preadd
 
@@ -524,8 +525,8 @@ namespace {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_predecrement(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(-1, v);
-            XTESTS_TEST_INTEGER_EQUAL(-1, r);
+            TEST_INT_EQ(-1, v);
+            TEST_INT_EQ(-1, r);
         }
 
         static void test_a_large_number()
@@ -557,7 +558,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(0, v);
+            TEST_INT_EQ(0, v);
         }
     } // namespace atomic_predecrement
 
@@ -568,8 +569,8 @@ namespace {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_preincrement(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(+1, v);
-            XTESTS_TEST_INTEGER_EQUAL(+1, r);
+            TEST_INT_EQ(+1, v);
+            TEST_INT_EQ(+1, r);
         }
 
         static void test_a_large_number()
@@ -601,7 +602,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
+            TEST_INT_EQ(FinalValue, v);
         }
     } // namespace atomic_preincrement
 
@@ -615,7 +616,7 @@ namespace {
 
             winstl::atomic_decrement32(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(-1, v);
+            TEST_INT_EQ(-1, v);
         }
 
         static void test_a_large_number()
@@ -647,7 +648,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(0, v);
+            TEST_INT_EQ(0, v);
         }
     } // namespace atomic_decrement32
 
@@ -659,7 +660,7 @@ namespace {
 
             winstl::atomic_increment32(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(+1, v);
+            TEST_INT_EQ(+1, v);
         }
 
         static void test_a_large_number()
@@ -691,7 +692,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
+            TEST_INT_EQ(FinalValue, v);
         }
     } // namespace atomic_increment32
 
@@ -702,8 +703,8 @@ namespace {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_postadd32(&v, 7);
 
-            XTESTS_TEST_INTEGER_EQUAL(7, v);
-            XTESTS_TEST_INTEGER_EQUAL(0, r);
+            TEST_INT_EQ(7, v);
+            TEST_INT_EQ(0, r);
         }
 
         static void test_a_large_number()
@@ -736,7 +737,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
+            TEST_INT_EQ((FinalValue * Increment), v);
         }
     } // namespace atomic_postadd32
 
@@ -747,8 +748,8 @@ namespace {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_postdecrement32(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(-1, v);
-            XTESTS_TEST_INTEGER_EQUAL(0, r);
+            TEST_INT_EQ(-1, v);
+            TEST_INT_EQ(0, r);
         }
 
         static void test_a_large_number()
@@ -780,7 +781,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(0, v);
+            TEST_INT_EQ(0, v);
         }
     } // namespace atomic_postdecrement32
 
@@ -791,8 +792,8 @@ namespace {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_postincrement32(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(+1, v);
-            XTESTS_TEST_INTEGER_EQUAL(0, r);
+            TEST_INT_EQ(+1, v);
+            TEST_INT_EQ(0, r);
         }
 
         static void test_a_large_number()
@@ -824,7 +825,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
+            TEST_INT_EQ(FinalValue, v);
         }
     } // namespace atomic_postincrement32
 
@@ -835,8 +836,8 @@ namespace {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_preadd32(&v, 7);
 
-            XTESTS_TEST_INTEGER_EQUAL(7, v);
-            XTESTS_TEST_INTEGER_EQUAL(7, r);
+            TEST_INT_EQ(7, v);
+            TEST_INT_EQ(7, r);
         }
 
         static void test_a_large_number()
@@ -869,7 +870,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
+            TEST_INT_EQ((FinalValue * Increment), v);
         }
     } // namespace atomic_preadd32
 
@@ -880,8 +881,8 @@ namespace {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_predecrement32(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(-1, v);
-            XTESTS_TEST_INTEGER_EQUAL(-1, r);
+            TEST_INT_EQ(-1, v);
+            TEST_INT_EQ(-1, r);
         }
 
         static void test_a_large_number()
@@ -913,7 +914,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(0, v);
+            TEST_INT_EQ(0, v);
         }
     } // namespace atomic_predecrement32
 
@@ -924,8 +925,8 @@ namespace {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_preincrement32(&v);
 
-            XTESTS_TEST_INTEGER_EQUAL(+1, v);
-            XTESTS_TEST_INTEGER_EQUAL(+1, r);
+            TEST_INT_EQ(+1, v);
+            TEST_INT_EQ(+1, r);
         }
 
         static void test_a_large_number()
@@ -957,7 +958,7 @@ namespace {
                 (*i).join();
             }
 
-            XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
+            TEST_INT_EQ(FinalValue, v);
         }
     } // namespace atomic_preincrement32
 } // anonymous namespace

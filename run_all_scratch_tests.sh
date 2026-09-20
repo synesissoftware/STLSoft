@@ -6,10 +6,30 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 [[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
 MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 ListOnly=0
 RunMake=1
 Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
+
+
+# ##########################################################
+# colours
+
+if command -v tput > /dev/null; then
+
+  SisClr_Blue=${FG_BLUE:-$(tput setaf 4)}
+  SisClr_Red=${FG_BLUE:-$(tput setaf 1)}
+  SisClr_Bold=${FD_BOLD:-$(tput bold)}
+  SisClr_None=${FD_NONE:-$(tput sgr0)}
+else
+
+  SisClr_Blue=
+  SisClr_Red=
+  SisClr_Bold=
+  SisClr_None=
+fi
 
 
 # ##########################################################
@@ -85,7 +105,7 @@ status=0
 if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
-    echo "Executing make and then running all scratch test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} scratch test programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -110,10 +130,10 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all scratch test programs"
+    echo "Listing all ${ProjectName} scratch test programs"
   else
 
-    echo "Running all scratch test programs"
+    echo "Running all ${ProjectName} scratch test programs"
   fi
 
   for f in $(find "$CMakeDir" -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' ')' -exec test -x {} \; -print | sort)
@@ -121,7 +141,7 @@ if [ $status -eq 0 ]; then
 
     if [ $ListOnly -ne 0 ]; then
 
-      echo "would execute $f:"
+      echo "would execute $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
       continue
     fi
@@ -132,7 +152,7 @@ if [ $status -eq 0 ]; then
     fi
     if [ $Verbosity -ge 2 ]; then
 
-      echo "executing $f:"
+      echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
     fi
 
     if $f; then
@@ -149,3 +169,4 @@ exit $status
 
 
 # ############################## end of file ############################# #
+

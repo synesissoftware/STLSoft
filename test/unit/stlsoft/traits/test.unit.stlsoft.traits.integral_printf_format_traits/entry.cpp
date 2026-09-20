@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_printf_format_traits`.
  *
  * Created: 20th October 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -107,37 +108,37 @@ static void test_char()
     >                                                       ipft_t;
 
 #ifdef STLSOFT_CF_char_IS_UNSIGNED
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%u", ipft_t::decimal_format_a());
 #else /* ? STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%d", ipft_t::decimal_format_a());
 #endif /* STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
 #ifdef STLSOFT_CF_char_IS_UNSIGNED
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::decimal_format_w());
 #else /* ? STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::decimal_format_w());
 #endif /* STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
 #ifdef STLSOFT_CF_char_IS_UNSIGNED
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::format_a());
+    TEST_MS_EQ("%u", ipft_t::format_a());
 #else /* ? STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::format_a());
+    TEST_MS_EQ("%d", ipft_t::format_a());
 #endif /* STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
 #ifdef STLSOFT_CF_char_IS_UNSIGNED
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::format_w());
+    TEST_WS_EQ(L"%u", ipft_t::format_w());
 #else /* ? STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::format_w());
+    TEST_WS_EQ(L"%d", ipft_t::format_w());
 #endif /* STLSOFT_CF_char_IS_UNSIGNED */
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
     {
@@ -147,24 +148,24 @@ static void test_char()
             int_t const v   =   123;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::decimal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+            TEST_MS_EQ("123", buff);
         }
 
         {
             int_t const v   =   123;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::hexadecimal_format_a(false), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("7b", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(2, r));
+            TEST_MS_EQ("7b", buff);
         }
 
         {
             int_t const v   =   123;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::octal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("173", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+            TEST_MS_EQ("173", buff);
         }
     }
 }
@@ -176,22 +177,22 @@ static void test_char_signed()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%d", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%d", ipft_t::format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
@@ -202,22 +203,22 @@ static void test_char_unsigned()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%u", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%u", ipft_t::format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
@@ -228,22 +229,22 @@ static void test_short_signed()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%d", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%d", ipft_t::format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
     {
@@ -253,24 +254,24 @@ static void test_short_signed()
             int_t const v   =   -12345;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::decimal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(6, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-12345", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(6, r));
+            TEST_MS_EQ("-12345", buff);
         }
 
         {
             int_t const v   =   12345;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::hexadecimal_format_a(false), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(4, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3039", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(4, r));
+            TEST_MS_EQ("3039", buff);
         }
 
         {
             int_t const v   =   12345;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::octal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(5, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("30071", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(5, r));
+            TEST_MS_EQ("30071", buff);
         }
     }
 }
@@ -282,22 +283,22 @@ static void test_short_unsigned()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%u", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%u", ipft_t::format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
@@ -308,22 +309,22 @@ static void test_int_signed()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%d", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%d", ipft_t::format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%d", ipft_t::format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
@@ -334,22 +335,22 @@ static void test_int_unsigned()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%u", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%u", ipft_t::format_a());
+    TEST_MS_EQ("%x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%u", ipft_t::format_w());
+    TEST_WS_EQ(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
     {
@@ -359,24 +360,24 @@ static void test_int_unsigned()
             int_t const v   =   9090909;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::decimal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(7, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("9090909", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(7, r));
+            TEST_MS_EQ("9090909", buff);
         }
 
         {
             int_t const v   =   9090909;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::hexadecimal_format_a(true), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(6, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("8AB75D", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(6, r));
+            TEST_MS_EQ("8AB75D", buff);
         }
 
         {
             int_t const v   =   9090909;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::octal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(8, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("42533535", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(8, r));
+            TEST_MS_EQ("42533535", buff);
         }
     }
 }
@@ -388,22 +389,22 @@ static void test_long_signed()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%ld", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lx", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lX", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lo", ipft_t::octal_format_a());
+    TEST_MS_EQ("%ld", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%lx", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%lX", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%lo", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%ld", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lx", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lX", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lo", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%ld", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%lx", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%lX", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%lo", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%ld", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lx", ipft_t::hex_format_a());
+    TEST_MS_EQ("%ld", ipft_t::format_a());
+    TEST_MS_EQ("%lx", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%ld", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lx", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%ld", ipft_t::format_w());
+    TEST_WS_EQ(L"%lx", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
@@ -414,22 +415,22 @@ static void test_long_unsigned()
         int_t
     >                                                       ipft_t;
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lu", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lx", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lX", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lo", ipft_t::octal_format_a());
+    TEST_MS_EQ("%lu", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%lx", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%lX", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%lo", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lu", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lx", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lX", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lo", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%lu", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%lx", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%lX", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%lo", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lu", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lx", ipft_t::hex_format_a());
+    TEST_MS_EQ("%lu", ipft_t::format_a());
+    TEST_MS_EQ("%lx", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lu", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lx", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%lu", ipft_t::format_w());
+    TEST_WS_EQ(L"%lx", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 #ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
@@ -443,41 +444,41 @@ static void test_long_long_signed()
 
 # if 0
 # elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64d", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%I64d", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%I64x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%I64X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%I64o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64d", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%I64d", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%I64x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%I64X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%I64o", ipft_t::octal_format_w());
 
 #  include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64d", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%I64d", ipft_t::format_a());
+    TEST_MS_EQ("%I64x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64d", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%I64d", ipft_t::format_w());
+    TEST_WS_EQ(L"%I64x", ipft_t::hex_format_w());
 #  include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 # elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lld", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llx", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llX", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llo", ipft_t::octal_format_a());
+    TEST_MS_EQ("%lld", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%llx", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%llX", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%llo", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lld", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llx", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llX", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llo", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%lld", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%llx", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%llX", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%llo", ipft_t::octal_format_w());
 
 #  include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%lld", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llx", ipft_t::hex_format_a());
+    TEST_MS_EQ("%lld", ipft_t::format_a());
+    TEST_MS_EQ("%llx", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%lld", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llx", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%lld", ipft_t::format_w());
+    TEST_WS_EQ(L"%llx", ipft_t::hex_format_w());
 #  include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 # else
 
@@ -491,24 +492,24 @@ static void test_long_long_signed()
             int_t const v   =   123456789123456789;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::decimal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(18, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123456789123456789", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(18, r));
+            TEST_MS_EQ("123456789123456789", buff);
         }
 
         {
             int_t const v   =   123456789123456789;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::hexadecimal_format_a(true), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(15, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1B69B4BACD05F15", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(15, r));
+            TEST_MS_EQ("1B69B4BACD05F15", buff);
         }
 
         {
             int_t const v   =   123456789123456789;
             int const   r   =   stlsoft::snprintf(buff, STLSOFT_NUM_ELEMENTS(buff), ipft_t::octal_format_a(), v);
 
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(19, r));
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("6664664565464057425", buff);
+            XTESTS_REQUIRE(TEST_INT_EQ(19, r));
+            TEST_MS_EQ("6664664565464057425", buff);
         }
     }
 }
@@ -523,41 +524,41 @@ static void test_long_long_unsigned()
 # if 0
 # elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64u", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64x", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64X", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64o", ipft_t::octal_format_a());
+    TEST_MS_EQ("%I64u", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%I64x", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%I64X", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%I64o", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64u", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64x", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64X", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64o", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%I64u", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%I64x", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%I64X", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%I64o", ipft_t::octal_format_w());
 
 #  include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64u", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%I64x", ipft_t::hex_format_a());
+    TEST_MS_EQ("%I64u", ipft_t::format_a());
+    TEST_MS_EQ("%I64x", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64u", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%I64x", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%I64u", ipft_t::format_w());
+    TEST_WS_EQ(L"%I64x", ipft_t::hex_format_w());
 #  include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 # elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llu", ipft_t::decimal_format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llx", ipft_t::hexadecimal_format_a(false));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llX", ipft_t::hexadecimal_format_a(true));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llo", ipft_t::octal_format_a());
+    TEST_MS_EQ("%llu", ipft_t::decimal_format_a());
+    TEST_MS_EQ("%llx", ipft_t::hexadecimal_format_a(false));
+    TEST_MS_EQ("%llX", ipft_t::hexadecimal_format_a(true));
+    TEST_MS_EQ("%llo", ipft_t::octal_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llu", ipft_t::decimal_format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llx", ipft_t::hexadecimal_format_w(false));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llX", ipft_t::hexadecimal_format_w(true));
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llo", ipft_t::octal_format_w());
+    TEST_WS_EQ(L"%llu", ipft_t::decimal_format_w());
+    TEST_WS_EQ(L"%llx", ipft_t::hexadecimal_format_w(false));
+    TEST_WS_EQ(L"%llX", ipft_t::hexadecimal_format_w(true));
+    TEST_WS_EQ(L"%llo", ipft_t::octal_format_w());
 
 #  include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llu", ipft_t::format_a());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%llx", ipft_t::hex_format_a());
+    TEST_MS_EQ("%llu", ipft_t::format_a());
+    TEST_MS_EQ("%llx", ipft_t::hex_format_a());
 
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llu", ipft_t::format_w());
-    XTESTS_TEST_WIDE_STRING_EQUAL(L"%llx", ipft_t::hex_format_w());
+    TEST_WS_EQ(L"%llu", ipft_t::format_w());
+    TEST_WS_EQ(L"%llx", ipft_t::hex_format_w());
 #  include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 # else
 

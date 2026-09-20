@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::cmdargs`.
  *
  * Created: 29th December 2024
- * Updated: 20th March 2025
+ * Updated: 9th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -138,12 +139,12 @@ static void TEST_EMPTY()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values().size());
+    TEST_MS_EQ("", ca.program_name());
+    TEST_INT_EQ(0u, ca.size());
+    TEST_INT_EQ(0u, ca.options_size());
+    TEST_INT_EQ(0u, ca.values_size());
+    TEST_INT_EQ(0u, ca.options().size());
+    TEST_INT_EQ(0u, ca.values().size());
 }
 
 static void TEST_PROGRAM_ONLY()
@@ -156,12 +157,12 @@ static void TEST_PROGRAM_ONLY()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values().size());
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(0u, ca.size());
+    TEST_INT_EQ(0u, ca.options_size());
+    TEST_INT_EQ(0u, ca.values_size());
+    TEST_INT_EQ(0u, ca.options().size());
+    TEST_INT_EQ(0u, ca.values().size());
 }
 
 static void TEST_1_VALUE()
@@ -175,13 +176,13 @@ static void TEST_1_VALUE()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(1u, ca.size());
+    TEST_INT_EQ(0u, ca.options_size());
+    TEST_INT_EQ(1u, ca.values_size());
+    TEST_INT_EQ(0u, ca.options().size());
+    TEST_INT_EQ(1u, ca.values().size());
+    TEST_MS_EQ("abc", streamable_to_string(ca.values()[0]));
 }
 
 static void TEST_2_VALUES()
@@ -196,14 +197,14 @@ static void TEST_2_VALUES()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(2u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(2u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(2u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", streamable_to_string(ca.values()[1]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(2u, ca.size());
+    TEST_INT_EQ(0u, ca.options_size());
+    TEST_INT_EQ(2u, ca.values_size());
+    TEST_INT_EQ(0u, ca.options().size());
+    TEST_INT_EQ(2u, ca.values().size());
+    TEST_MS_EQ("abc", streamable_to_string(ca.values()[0]));
+    TEST_MS_EQ("d e f", streamable_to_string(ca.values()[1]));
 }
 
 static void TEST_3_VALUES()
@@ -219,15 +220,15 @@ static void TEST_3_VALUES()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(3u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(3u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(3u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", streamable_to_string(ca.values()[1]));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghi", streamable_to_string(ca.values()[2]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(3u, ca.size());
+    TEST_INT_EQ(0u, ca.options_size());
+    TEST_INT_EQ(3u, ca.values_size());
+    TEST_INT_EQ(0u, ca.options().size());
+    TEST_INT_EQ(3u, ca.values().size());
+    TEST_MS_EQ("abc", streamable_to_string(ca.values()[0]));
+    TEST_MS_EQ("d e f", streamable_to_string(ca.values()[1]));
+    TEST_MS_EQ("ghi", streamable_to_string(ca.values()[2]));
 }
 
 static void TEST_1_OPTION()
@@ -241,13 +242,13 @@ static void TEST_1_OPTION()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-abc", streamable_to_string(ca.options()[0]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(1u, ca.size());
+    TEST_INT_EQ(1u, ca.options_size());
+    TEST_INT_EQ(0u, ca.values_size());
+    TEST_INT_EQ(1u, ca.options().size());
+    TEST_INT_EQ(0u, ca.values().size());
+    TEST_MS_EQ("-abc", streamable_to_string(ca.options()[0]));
 }
 
 static void TEST_1_OPTION_WITH_VALUE()
@@ -261,13 +262,13 @@ static void TEST_1_OPTION_WITH_VALUE()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--abc=d e f", streamable_to_string(ca.options()[0]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(1u, ca.size());
+    TEST_INT_EQ(1u, ca.options_size());
+    TEST_INT_EQ(0u, ca.values_size());
+    TEST_INT_EQ(1u, ca.options().size());
+    TEST_INT_EQ(0u, ca.values().size());
+    TEST_MS_EQ("--abc=d e f", streamable_to_string(ca.options()[0]));
 }
 
 static void TEST_1_OPTION_WITH_VALUE_AND_1_VALUE()
@@ -282,14 +283,14 @@ static void TEST_1_OPTION_WITH_VALUE_AND_1_VALUE()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(2u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--abc=d e f", streamable_to_string(ca.options()[0]));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("v", streamable_to_string(ca.values()[0]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(2u, ca.size());
+    TEST_INT_EQ(1u, ca.options_size());
+    TEST_INT_EQ(1u, ca.values_size());
+    TEST_INT_EQ(1u, ca.options().size());
+    TEST_INT_EQ(1u, ca.values().size());
+    TEST_MS_EQ("--abc=d e f", streamable_to_string(ca.options()[0]));
+    TEST_MS_EQ("v", streamable_to_string(ca.values()[0]));
 }
 
 static void TEST_SINGLE_DASH()
@@ -303,13 +304,13 @@ static void TEST_SINGLE_DASH()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-", streamable_to_string(ca.options()[0]));
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(1u, ca.size());
+    TEST_INT_EQ(1u, ca.options_size());
+    TEST_INT_EQ(0u, ca.values_size());
+    TEST_INT_EQ(1u, ca.options().size());
+    TEST_INT_EQ(0u, ca.values().size());
+    TEST_MS_EQ("-", streamable_to_string(ca.options()[0]));
 }
 
 static void TEST_DOUBLE_DASH()
@@ -323,12 +324,12 @@ static void TEST_DOUBLE_DASH()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(0u, ca.values().size());
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(0u, ca.size());
+    TEST_INT_EQ(0u, ca.options_size());
+    TEST_INT_EQ(0u, ca.values_size());
+    TEST_INT_EQ(0u, ca.options().size());
+    TEST_INT_EQ(0u, ca.values().size());
 }
 
 static void TEST_DOUBLE_DASH_WITH_VALUES_AND_OPTIONS()
@@ -346,12 +347,12 @@ static void TEST_DOUBLE_DASH_WITH_VALUES_AND_OPTIONS()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
-    XTESTS_TEST_INTEGER_EQUAL(4u, ca.size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options_size());
-    XTESTS_TEST_INTEGER_EQUAL(3u, ca.values_size());
-    XTESTS_TEST_INTEGER_EQUAL(1u, ca.options().size());
-    XTESTS_TEST_INTEGER_EQUAL(3u, ca.values().size());
+    TEST_MS_EQ("my-program", ca.program_name());
+    TEST_INT_EQ(4u, ca.size());
+    TEST_INT_EQ(1u, ca.options_size());
+    TEST_INT_EQ(3u, ca.values_size());
+    TEST_INT_EQ(1u, ca.options().size());
+    TEST_INT_EQ(3u, ca.values().size());
 }
 } // anonymous namespace
 

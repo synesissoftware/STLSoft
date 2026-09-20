@@ -151,6 +151,7 @@ If you'd like to help out with the project, please raise an issue via [GitHub Is
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
 | — | Installation and use of **STLSoft** (100% header-only) | ✅ None |
+| **ACE** | **ACESTL** examples / tests | ⚪ Optional (`NO_ACE` / **`--no-ace`**; `ACE` / `ACE_ROOT` or system package) |
 | [**xTests**](https://github.com/synesissoftware/xTests) | Component- / unit-tests (`BUILD_TESTING`) | ⚪ Tests only |
 
 
@@ -160,19 +161,20 @@ Projects that depend on **STLSoft** — though for some it is only for tests —
 
 * [**2be**](https://github.com/synesissoftware/2be) (tests only);
 * [**b64**](https://github.com/synesissoftware/b64) (C++ API only);
-* [**CLASP**](https://github.com/synesissoftware/CLASP);
+* [**CLASP**](https://github.com/synesissoftware/CLASP) (C++ API, tests only);
 * [**cstring**](https://github.com/synesissoftware/cstring) (tests only);
 * [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) (tests only);
 * [**FastFormat**](https://github.com/synesissoftware/FastFormat);
 * [**libCLImate**](https://github.com/synesissoftware/libCLImate);
 * [**libpath**](https://github.com/synesissoftware/libpath) (tests only);
 * [**Pantheios**](https://github.com/synesissoftware/Pantheios);
+* [**Pantheios.Extras.AtExit**](https://github.com/synesissoftware/Pantheios.Extras.AtExit);
 * [**Pantheios.Extras.DiagUtil**](https://github.com/synesissoftware/Pantheios.Extras.DiagUtil);
 * [**Pantheios.Extras.Main**](https://github.com/synesissoftware/Pantheios.Extras.Main);
 * [**Pantheios.Extras.xHelpers**](https://github.com/synesissoftware/Pantheios.Extras.xHelpers);
 * [**recls**](https://github.com/synesissoftware/recls);
 * [**shwild**](https://github.com/synesissoftware/shwild) (C++ API only);
-* [**UNIXem**](https://github.com/synesissoftware/UNIXem);
+* [**UNIXem**](https://github.com/synesissoftware/UNIXem) (tests only);
 * [**VOLE**](https://github.com/synesissoftware/VOLE) (tests only);
 * [**xTests**](https://github.com/synesissoftware/xTests);
 
