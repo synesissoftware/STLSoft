@@ -7,15 +7,11 @@ on:
       - dev
       - boilerplate
       - idiomatic
-      - update.3
-      - update.4
-      - ace
       - rc1
       - rc2
       - rc3
       - rc4
       - rc5
-      - STLSOFT_API_EXTERNAL_string_stricmp
   pull_request:
 
 concurrency:
