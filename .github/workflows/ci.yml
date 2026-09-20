@@ -15,6 +15,7 @@ on:
       - rc3
       - rc4
       - rc5
+      - STLSOFT_API_EXTERNAL_string_stricmp
   pull_request:
 
 concurrency:
