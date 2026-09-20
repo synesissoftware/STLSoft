@@ -1,6 +1,7 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(algorithms)
 add_subdirectory(collections)
+add_subdirectory(api)
+add_subdirectory(algorithms)
 add_subdirectory(containers)
 add_subdirectory(conversion)
 add_subdirectory(diagnostics)

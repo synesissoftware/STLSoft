@@ -4,11 +4,11 @@
  * Purpose: External preprocessor aliases for string functions.
  *
  * Created: 15th November 2002
- * Updated: 27th December 2024
+ * Updated: 17th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -76,6 +76,7 @@
     ) ||\
     (\
         0 ||\
+        defined(__APPLE__) ||\
         defined(__linux__) ||\
         defined(__linux) ||\
         defined(linux) ||\
@@ -167,11 +168,11 @@
 
 #  define STLSOFT_API_EXTERNAL_string_stricmp               STLSOFT_NS_GLOBAL_(stricmp)
 
-  /* GCC */
-# elif defined(STLSOFT_COMPILER_IS_GCC)
+  /* Clang / GCC */
+# elif defined(STLSOFT_COMPILER_IS_CLANG) ||\
+       defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
 #  elif defined(STLSOFT_MINGW)
 
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
@@ -251,11 +252,11 @@
 
 #  define STLSOFT_API_EXTERNAL_string_wcsicmp               STLSOFT_NS_GLOBAL_(wcsicmp)
 
-  /* GCC */
-# elif defined(STLSOFT_COMPILER_IS_GCC)
+  /* Clang / GCC */
+# elif defined(STLSOFT_COMPILER_IS_CLANG) ||\
+       defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
 #  elif defined(STLSOFT_MINGW)
 
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
@@ -333,11 +334,11 @@
 
 #  define STLSOFT_API_EXTERNAL_string_strnicmp              STLSOFT_NS_GLOBAL_(strnicmp)
 
-  /* GCC */
-# elif defined(STLSOFT_COMPILER_IS_GCC)
+  /* Clang / GCC */
+# elif defined(STLSOFT_COMPILER_IS_CLANG) ||\
+       defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
 #  elif defined(STLSOFT_MINGW)
 
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
@@ -411,11 +412,11 @@
 
 #  define STLSOFT_API_EXTERNAL_string_wcsnicmp              STLSOFT_NS_GLOBAL_(wcsnicmp)
 
-  /* GCC */
-# elif defined(STLSOFT_COMPILER_IS_GCC)
+  /* Clang / GCC */
+# elif defined(STLSOFT_COMPILER_IS_CLANG) ||\
+       defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
 #  elif defined(STLSOFT_MINGW)
 
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
