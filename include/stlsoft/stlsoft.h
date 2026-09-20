@@ -76,15 +76,40 @@
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version
  *
- * The libraries version information is comprised of major, minor and
- * revision components.
+ * The libraries version information is comprised of major, minor and patch
+ * components.
+ *
+ * The major version is denoted by the _STLSOFT_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
+ *
+ * The minor version is denoted by the _STLSOFT_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
+ *
+ * The patch version is denoted by the _STLSOFT_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
+ *
+ * In addition to the individual version symbols - _STLSOFT_VER_MAJOR,
+ * _STLSOFT_VER_MINOR and _STLSOFT_VER_PATCH - a composite symbol
+ * _STLSOFT_VER is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
  * Each release of the libraries will bear a different version, and that
  * version will also have its own symbol: Version 1.0.1 specifies
  * _STLSOFT_VER_1_0_1.
  *
  * Thus the symbol _STLSOFT_VER may be compared meaningfully with a specific
- * version symbol, e.g.# if _STLSOFT_VER >= _STLSOFT_VER_1_0_1
+ * version symbol, e.g. #if _STLSOFT_VER >= _STLSOFT_VER_1_0_1
  */
 
 /** \def _STLSOFT_VER_MAJOR
@@ -104,24 +129,29 @@
  * that recompilation and code change may be necessitated.
  */
 
-/** \def _STLSOFT_VER_REVISION
- * The revision version number of STLSoft
+/** \def _STLSOFT_VER_PATCH
+ * The patch version number of STLSoft
  *
- * A change to the revision version component imply that a bug has been
+ * A change to the patch version component imply that a bug has been
  * fixed. Dependent code should be recompiled in order to pick up the
  * changes.
+ */
+
+/** \def _STLSOFT_VER_ALPHABETA
+ * The alpha/beta number of STLSoft, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _STLSOFT_VER
  * The current composite version number of STLSoft
  *
  * In addition to the individual version symbols - _STLSOFT_VER_MAJOR,
- * _STLSOFT_VER_MINOR and _STLSOFT_VER_REVISION - a composite symbol
+ * _STLSOFT_VER_MINOR and _STLSOFT_VER_PATCH - a composite symbol
  * _STLSOFT_VER is defined, where:
  *  - bits 24-31: the major version
  *  - bits 16-23: the minor version
- *  - bits 8-15: the revision version
- *  - bits 0-7: the beta number; if not a beta, it is 0xFF
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease, it is 0xFF
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -406,7 +436,9 @@
         |   (   _STLSOFT_VER_ALPHABETA  <<  0   )\
     )
 
-#define _STLSOFT_VER_REVISION       _STLSOFT_VER_PATCH
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _STLSOFT_VER_REVISION                              _STLSOFT_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////

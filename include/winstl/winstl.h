@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 1st July 2026
+ * Updated: 17th September 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    12
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        242
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    13
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        243
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -63,8 +63,8 @@
 /* /////////////////////////////////////////////////////////////////////////
  * WinSTL version
  *
- * The libraries version information is comprised of major, minor and
- * revision components.
+ * The libraries version information is comprised of major, minor and patch
+ * components.
  *
  * The major version is denoted by the _WINSTL_VER_MAJOR preprocessor
  * symbol. A change to the major version component implies that a dramatic
@@ -75,18 +75,21 @@
  * symbol. Changes to the minor version component imply that a significant
  * change has occurred to the libraries, either in the addition of new
  * functionality or in the destructive change to one or more components such
- * that recomplilation and code change may be necessitated.
+ * that recompilation and code change may be necessitated.
  *
- * The revision version is denoted by the _WINSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has
- * been fixed. Dependent code should be recompiled in order to pick up the
+ * The patch version is denoted by the _WINSTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
  * changes.
  *
  * In addition to the individual version symbols - _WINSTL_VER_MAJOR,
- * _WINSTL_VER_MINOR and _WINSTL_VER_REVISION - a composite symbol
- * _WINSTL_VER is defined, where the upper 8 bits are 0, bits 16-23
- * represent the major component,  bits 8-15 represent the minor component,
- * and bits 0-7 represent the revision component.
+ * _WINSTL_VER_MINOR and _WINSTL_VER_PATCH - a composite symbol _WINSTL_VER
+ * is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
  * Each release of the libraries will bear a different version, and that
  * version will also have its own symbol: Version 1.0.1 specifies
@@ -104,8 +107,12 @@
  * The minor version number of the \ref group__project__winstl project "WinSTL" project
  */
 
-/** \def _WINSTL_VER_REVISION
- * The revision version number of the \ref group__project__winstl project "WinSTL" project
+/** \def _WINSTL_VER_PATCH
+ * The patch version number of the \ref group__project__winstl project "WinSTL" project
+ */
+
+/** \def _WINSTL_VER_ALPHABETA
+ * The alpha/beta number of the \ref group__project__winstl project "WinSTL" project, in the range 1-0xFE for prerelease versions, and 0xFF for a released version
  */
 
 /** \def _WINSTL_VER
@@ -180,8 +187,20 @@
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       13
-#define _WINSTL_VER_REVISION    0
-#define _WINSTL_VER             _WINSTL_VER_1_13_0_B02
+#define _WINSTL_VER_PATCH       0
+#define _WINSTL_VER_ALPHABETA   0x82
+
+#define _WINSTL_VER \
+    (0\
+        |   (   _WINSTL_VER_MAJOR       << 24   ) \
+        |   (   _WINSTL_VER_MINOR       << 16   ) \
+        |   (   _WINSTL_VER_PATCH       <<  8   ) \
+        |   (   _WINSTL_VER_ALPHABETA   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _WINSTL_VER_REVISION                               _WINSTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

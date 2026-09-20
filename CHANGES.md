@@ -11,6 +11,8 @@
 * **ACESTL** — `invoke_ACE_OS_snprintf` implemented in terms of `stlsoft_C_snprintf()`; unit tests for **ACE_String_Base** / **ACE_Time_Value** string-access shims;
 * **TODO.md** — restructured **1.11** / **1.12** roadmap; marked ACE/ATL/MFC CI and terse-API items complete;
 * Scripts — **.sis/project_name.txt**; colourised **run_all_***.sh / **execute_performance_tests.sh**; new **ctest_cmake.sh**; MSYS auto-MinGW in **prepare_cmake.sh**;
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
 * **INSTALL.md** / **README.md** — **ACE** / **ACESTL** discovery notes;
 * **test.unit.versions** — aligned with **1.11.1-rc6** (**_STLSOFT_VER_1_11_1_RC6**);
 * All unit/component test assertions use **xTests** Terse API;
