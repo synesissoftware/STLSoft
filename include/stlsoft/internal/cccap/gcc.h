@@ -4,14 +4,14 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 31st May 2025
+ * Updated: 20th September 2026
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -271,12 +271,17 @@
 #ifndef __cplusplus
 
 # if defined(__STDC_VERSION__) &&\
-     __STDC_VERSION__ >= 201112L
+     __STDC_VERSION__ >= 199901L
 
 #  define STLSOFT_CUSTOM_C_INLINE                           static inline
 # else /* ? C version */
 
-#  define STLSOFT_CUSTOM_C_INLINE                           extern inline
+ /* ISO C90 has no `inline`; GNU `extern inline` is rejected under
+  * pedantic -Werror. Plain `static` in headers then trips
+  * -Wunused-function; GCC/Clang `__attribute__((unused))` is accepted
+  * under -std=c90 -pedantic.
+  */
+#  define STLSOFT_CUSTOM_C_INLINE                           static __attribute__((unused))
 # endif /* C version */
 #endif
 
