@@ -3,7 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
-| 21st September 2026 | Release of [STLSoft 1.11.1-rc6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc6) | ACE/ATL/MFC CI; misc. fixes |
+| 21st September 2026 | Release of [STLSoft 1.11.1-rc6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc6) | ACE/ATL/MFC CI; Clang/macOS `stricmp` aliases |
 | 4th August 2026     | Release of [STLSoft 1.11.1-rc5](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc5) | `basic_simple_string<>#resize()`; **CHANGES.md**; docs |
 | 29th July 2026      | Release of [STLSoft 1.11.1-rc4](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc4) | GitHub Actions CI; VC++ 18.x; MinGW |
 | 23rd August 2025    | Release of [STLSoft 1.11.1-rc3](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) | `pid_sequence`; `codepage_sequence` |

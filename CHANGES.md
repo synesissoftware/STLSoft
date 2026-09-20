@@ -22,6 +22,7 @@
 * fix: C90 compatibility;
 * Fixed `stlsoft::string_to_integer_range<>()` — call renamed `try_string_to_integer_4slre_` helper;
 * Added `stlsoft::sinteger64` copy constructor;
+* **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS (`__APPLE__`); added **test.unit.stlsoft.api.external.string**;
 
 
 ## 1.11.1-rc5 - 4th August 2026
