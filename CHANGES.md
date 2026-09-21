@@ -1,7 +1,7 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.2-alpha1 - 20th August 2026
+## 1.11.2-alpha1 - 4th October 2026
 
 TBC
 
