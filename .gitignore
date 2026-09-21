@@ -43,6 +43,32 @@ __pycache__/
 /examples/cpp/lib/
 /examples/lib/
 
+/examples/bin
+/examples/c/bin
+/examples/cpp/bin
+
+/examples/lib
+/examples/c/lib
+/examples/cpp/lib
+
+projects/util/vc10-generated/
+
+perf_test/
+
+scripts/internal/
+
+/include/b64/
+/include/shwild/
+/include/xcontract/
+/include/xcover/
+/include/xtests/
+/src/b64/
+/src/shwild/
+/src/xcontract/
+/src/xcover/
+/src/xtests/
+
+Debug Multithreaded DLL/
 Debug Multithreaded Dll/
 Debug Multithreaded DLL/
 Debug Multithreaded pseudoUnix/

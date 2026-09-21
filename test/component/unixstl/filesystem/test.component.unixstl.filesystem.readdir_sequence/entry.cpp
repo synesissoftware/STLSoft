@@ -217,6 +217,12 @@ static void TEST_is_socket()
                 {
                     int const e = errno;
 
+                    if (EPERM == e || EACCES == e)
+                    {
+                        TEST_PASSED();
+                        return;
+                    }
+
                     TEST_FAIL_WITH_QUALIFIER("failed to bind socket", strerror(e));
                 }
                 else

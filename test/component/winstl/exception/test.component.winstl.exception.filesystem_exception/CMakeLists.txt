@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.exception.filesystem_exception entry.cpp)

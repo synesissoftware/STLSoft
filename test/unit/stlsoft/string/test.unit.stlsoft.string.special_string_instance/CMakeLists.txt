@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.string.special_string_instance entry.cpp)

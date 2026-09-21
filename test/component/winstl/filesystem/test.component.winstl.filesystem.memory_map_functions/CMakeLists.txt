@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.filesystem.memory_map_functions entry.cpp)

@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.winstl.system.system_information_functions entry.cpp)

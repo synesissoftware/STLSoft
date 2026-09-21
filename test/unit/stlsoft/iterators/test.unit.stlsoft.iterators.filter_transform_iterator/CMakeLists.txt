@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterators.filter_transform_iterator entry.cpp)

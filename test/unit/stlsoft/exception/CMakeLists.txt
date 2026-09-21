@@ -1,0 +1,12 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(policy)
+add_subdirectory(special)
+add_subdirectory(test.unit.stlsoft.exception.library_identifier_provider)
+add_subdirectory(test.unit.stlsoft.exception.os_exception)
+add_subdirectory(test.unit.stlsoft.exception.out_of_memory_exception)
+add_subdirectory(test.unit.stlsoft.exception.project_exception)
+add_subdirectory(test.unit.stlsoft.exception.project_identifier_provider)
+add_subdirectory(test.unit.stlsoft.exception.root_exception)
+add_subdirectory(test.unit.stlsoft.exception.status_code_provider)
+add_subdirectory(test.unit.stlsoft.exception.throw_policies)
+add_subdirectory(util)

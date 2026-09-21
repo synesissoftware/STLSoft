@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.performance.performance_counter_init entry.cpp)

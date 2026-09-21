@@ -6,7 +6,11 @@ set(_stlsoft_cmake_mfc_flag_save "${CMAKE_MFC_FLAG}")
 
 stlsoft_prepare_mfc_target()
 
+add_subdirectory(collections)
 add_subdirectory(memory)
+add_subdirectory(shims)
+add_subdirectory(string)
+add_subdirectory(util)
 
 set(CMAKE_MFC_FLAG "${_stlsoft_cmake_mfc_flag_save}")
 unset(_stlsoft_cmake_mfc_flag_save)

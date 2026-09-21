@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.filesystem.file_creation_functions entry.cpp)

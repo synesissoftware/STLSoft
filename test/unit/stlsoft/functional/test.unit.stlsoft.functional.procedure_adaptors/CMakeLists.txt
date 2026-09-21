@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.functional.procedure_adaptors entry.cpp)

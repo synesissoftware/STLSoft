@@ -4,11 +4,11 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     20th March 2025
+ * Updated:     12th August 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      40
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  9
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,7 +117,7 @@ private:
     }
 
     template <ss_typename_param_k const_iterator>
-    static const_iterator advance_(const_iterator it, delimiter_type const& delimiter)
+    static const_iterator advance_(const_iterator it, delimiter_type const& /* delimiter */)
     {
         return it + 1;
     }
@@ -138,31 +138,31 @@ public:
     }
 
     template <ss_typename_param_k const_iterator>
-    static bool test_start_token_advance(const_iterator &it, const_iterator end, delimiter_type const& delimiter)
+    static bool test_start_token_advance(const_iterator &it, const_iterator /* end */, delimiter_type const& delimiter)
     {
         return equal_(delimiter, it) ? (it = advance_(it, delimiter), true) : false;
     }
 
     template <ss_typename_param_k const_iterator>
-    static bool test_end_token_advance(const_iterator &it, const_iterator end, delimiter_type const& delimiter)
+    static bool test_end_token_advance(const_iterator &it, const_iterator /* end */, delimiter_type const& delimiter)
     {
         return equal_(delimiter, it) ? (it = advance_(it, delimiter), true) : false;
     }
 
     template <ss_typename_param_k const_iterator>
-    static const_iterator nonskip_move_to_start(const_iterator it, const_iterator end, delimiter_type const& delimiter)
+    static const_iterator nonskip_move_to_start(const_iterator it, const_iterator /* end */, delimiter_type const& /* delimiter */)
     {
         return it;
     }
 
     template <ss_typename_param_k const_iterator>
-    static bool test_end_token(const_iterator it, const_iterator end, delimiter_type const& delimiter)
+    static bool test_end_token(const_iterator it, const_iterator /* end */, delimiter_type const& delimiter)
     {
         return equal_(delimiter, it);
     }
 
     template <ss_typename_param_k const_iterator>
-    static const_iterator find_next_start(const_iterator it, const_iterator end, delimiter_type const& delimiter)
+    static const_iterator find_next_start(const_iterator it, const_iterator /* end */, delimiter_type const& delimiter)
     {
         return advance_(it, delimiter);
     }

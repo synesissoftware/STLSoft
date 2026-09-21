@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.winstl.exception.policy.windows_status_code_to_string_translation_policy entry.cpp)

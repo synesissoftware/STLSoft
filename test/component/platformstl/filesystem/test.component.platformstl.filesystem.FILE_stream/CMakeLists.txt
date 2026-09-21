@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.platformstl.filesystem.FILE_stream entry.cpp)

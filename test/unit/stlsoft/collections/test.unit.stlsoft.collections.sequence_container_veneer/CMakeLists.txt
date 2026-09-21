@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.collections.sequence_container_veneer entry.cpp)

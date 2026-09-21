@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterators.string_concatenator_iterator entry.cpp)
