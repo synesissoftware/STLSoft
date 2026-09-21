@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/util/defs.hpp
+ * File:    winstl/registry/util/defs.hpp
  *
- * Purpose:     Contains common type and feature discriminations for the Registry Library.
+ * Purpose: Contains common type and feature discriminations for the
+ *          Registry Library.
  *
- * Created:     19th January 2002
- * Updated:     20th March 2025
+ * Created: 19th January 2002
+ * Updated: 18th August 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +55,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MAJOR     4
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MINOR     0
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_REVISION  6
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      73
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -224,19 +225,19 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 // ANSI
 
  /// String type for ANSI character encoding used by the Registry library.
- typedef STLSOFT_NS_QUAL(basic_simple_string)<ws_char_a_t>  reg_string_a_t;
+typedef STLSOFT_NS_QUAL(basic_simple_string)<ws_char_a_t>   reg_string_a_t;
 
 # define _WINSTL_REG_STRING_STRING_A_DEFINED
 
 // Unicode
 
  /// String type for Unicode character encoding used by the Registry library.
- typedef STLSOFT_NS_QUAL(basic_simple_string)<ws_char_w_t>  reg_string_w_t;
+typedef STLSOFT_NS_QUAL(basic_simple_string)<ws_char_w_t>   reg_string_w_t;
 
 // TCHAR
 
  /// String type for TCHAR character encoding used by the Registry library.
- typedef STLSOFT_NS_QUAL(basic_simple_string)<TCHAR>        reg_string_t;
+typedef STLSOFT_NS_QUAL(basic_simple_string)<TCHAR>         reg_string_t;
 
 # define _WINSTL_REG_STRING_STRING_W_DEFINED
 
