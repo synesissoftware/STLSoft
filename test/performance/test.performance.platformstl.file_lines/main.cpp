@@ -90,6 +90,13 @@ const std::size_t NUM_WARMUPS = 2;
  * helpers
  */
 
+enum line_ending_t
+{
+        line_ending_lf     =   0
+    ,   line_ending_crlf
+    ,   line_ending_cr
+};
+
 std::string
 make_line(
     std::size_t length
@@ -105,10 +112,31 @@ make_line(
     return line;
 }
 
+char const*
+line_ending_name_(
+    line_ending_t ending
+)
+{
+    switch (ending)
+    {
+    case line_ending_cr:
+
+        return "CR";
+    case line_ending_crlf:
+
+        return "CRLF";
+    case line_ending_lf:
+    default:
+
+        return "LF";
+    }
+}
+
 bool
 write_test_file(
-    std::size_t num_lines
-,   std::size_t line_length
+    std::size_t     num_lines
+,   std::size_t     line_length
+,   line_ending_t   ending
 )
 {
     std::ofstream stm(TEST_FILE_NAME, std::ios::binary | std::ios::trunc);
@@ -118,11 +146,32 @@ write_test_file(
         return false;
     }
 
+    char const* eol     =   "\n";
+    std::size_t eol_len =   1u;
+
+    switch (ending)
+    {
+    case line_ending_cr:
+
+        eol = "\r";
+        break;
+    case line_ending_crlf:
+
+        eol     =   "\r\n";
+        eol_len =   2u;
+        break;
+    case line_ending_lf:
+    default:
+
+        break;
+    }
+
     std::string const line = make_line(line_length);
 
     for (std::size_t i = 0; num_lines != i; ++i)
     {
-        stm << line << '\n';
+        stm.write(line.data(), static_cast<std::streamsize>(line.size()));
+        stm.write(eol, static_cast<std::streamsize>(eol_len));
     }
 
     return static_cast<bool>(stm);
@@ -199,8 +248,9 @@ display_result(
 
 void
 run_scenario(
-    std::size_t num_lines
-,   std::size_t line_length
+    std::size_t     num_lines
+,   std::size_t     line_length
+,   line_ending_t   ending
 )
 {
     char scenario[64];
@@ -208,12 +258,14 @@ run_scenario(
     stlsoft::snprintf(
         scenario
     ,   sizeof(scenario)
-    ,   "%lu lines x %lu chars"
+    ,   "%lu %s x %lu %s"
     ,   static_cast<unsigned long>(num_lines)
+    ,   (1u == num_lines) ? "line" : "lines"
     ,   static_cast<unsigned long>(line_length)
+    ,   line_ending_name_(ending)
     );
 
-    if (!write_test_file(num_lines, line_length))
+    if (!write_test_file(num_lines, line_length, ending))
     {
         std::cerr
             << "failed to write "
@@ -225,7 +277,7 @@ run_scenario(
     }
 
     result_t const getline = time_(NUM_ITERATIONS, []() -> std::size_t {
-        std::ifstream stm(TEST_FILE_NAME);
+        std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
         std::vector<std::string> lines;
         std::string line;
         std::size_t anchor = 0;
@@ -284,8 +336,40 @@ int main(int /*argc*/, char* /*argv*/[])
         << std::endl
         ;
 
-    run_scenario(1000, 64);
-    run_scenario(5000, 80);
+    struct scenario_t
+    {
+        std::size_t     num_lines;
+        std::size_t     line_length;
+        line_ending_t   ending;
+    };
+
+    /* LF, then CRLF, then CR. The two large shapes match the original LF
+     * runs. The small shapes (one line, a handful of lines, about 2KB) are
+     * the fixed-cost region a later small-file path has to beat.
+     */
+    scenario_t const scenarios[] =
+    {
+            { 1000, 64, line_ending_lf,   },
+            { 1000, 64, line_ending_crlf, },
+            { 1000, 64, line_ending_cr,   },
+            { 5000, 80, line_ending_lf,   },
+            { 5000, 80, line_ending_crlf, },
+            { 5000, 80, line_ending_cr,   },
+            {    1, 16, line_ending_lf,   },
+            {    1, 16, line_ending_crlf, },
+            {    1, 16, line_ending_cr,   },
+            {    8, 32, line_ending_lf,   },
+            {    8, 32, line_ending_crlf, },
+            {    8, 32, line_ending_cr,   },
+            {   32, 64, line_ending_lf,   },
+            {   32, 64, line_ending_crlf, },
+            {   32, 64, line_ending_cr,   },
+    };
+
+    { for (std::size_t i = 0; STLSOFT_NUM_ELEMENTS(scenarios) != i; ++i)
+    {
+        run_scenario(scenarios[i].num_lines, scenarios[i].line_length, scenarios[i].ending);
+    }}
 
     std::remove(TEST_FILE_NAME);
 
