@@ -16,13 +16,19 @@
 
 #include <platformstl/filesystem/file_lines.hpp>
 #include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>
+#include <stlsoft/string/string_view.hpp>
+#include <stlsoft/util/string/snprintf.h>
 
+#include <cstddef>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <string>
+#if __cplusplus >= 201703L
+# include <string_view>
+#endif /* C++17+ */
 #include <utility>
 #include <vector>
 
@@ -39,6 +45,26 @@ typedef std::pair<
 ,   std::size_t
 >                                                           result_t;
 
+typedef platformstl::basic_file_lines<
+    char
+,   std::string
+>                                                           file_lines_std_string_t;
+typedef platformstl::basic_file_lines<
+    char
+,   stlsoft::simple_string
+>                                                           file_lines_stlsoft_simple_string_t;
+typedef platformstl::basic_file_lines<
+    char
+,   stlsoft::string_view
+>                                                           file_lines_stlsoft_string_view_t;
+#if __cplusplus >= 201703L
+
+typedef platformstl::basic_file_lines<
+    char
+,   std::string_view
+>                                                           file_lines_std_string_view_t;
+#endif /* C++17+ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -48,6 +74,12 @@ namespace {
 
 char const TEST_FILE_NAME[] = "test.performance.platformstl.file_lines.txt";
 
+std::size_t const COLUMN_WIDTH_ANCHOR           = 12;
+std::size_t const COLUMN_WIDTH_IMPLEMENTATION   = 48;
+std::size_t const COLUMN_WIDTH_ITERATIONS       = 12;
+std::size_t const COLUMN_WIDTH_NS_PER_OPERATION = 12;
+std::size_t const COLUMN_WIDTH_SCENARIO         = 24;
+std::size_t const COLUMN_WIDTH_TOTAL_TIME       = 16;
 const std::size_t NUM_ITERATIONS = 1000;
 const std::size_t NUM_WARMUPS = 2;
 
@@ -96,6 +128,21 @@ write_test_file(
     return static_cast<bool>(stm);
 }
 
+template <typename T_file_lines>
+std::size_t
+read_file_lines_()
+{
+    T_file_lines lines(TEST_FILE_NAME);
+    std::size_t anchor = lines.size();
+
+    for (typename T_file_lines::const_iterator i = lines.begin(); lines.end() != i; ++i)
+    {
+        anchor += (*i).size();
+    }
+
+    return anchor;
+}
+
 template <typename F>
 result_t
 time_(
@@ -138,19 +185,15 @@ display_result(
 )
 {
     std::cout
-        << '\t'
-        << scenario
-        << '\t'
-        << implementation
-        << '\t'
-        << num_iterations
-        << '\t'
-        << std::setw(16) << std::right << result.first
-        << '\t'
-        << std::setw(12) << std::right << std::fixed << std::setprecision(3)
+        << std::left
+        << std::setw(COLUMN_WIDTH_SCENARIO) << scenario
+        << std::setw(COLUMN_WIDTH_IMPLEMENTATION) << implementation
+        << std::right
+        << std::setw(COLUMN_WIDTH_ITERATIONS) << num_iterations
+        << std::setw(COLUMN_WIDTH_TOTAL_TIME) << result.first
+        << std::setw(COLUMN_WIDTH_NS_PER_OPERATION) << std::fixed << std::setprecision(3)
         << (static_cast<double>(result.first) / num_iterations)
-        << '\t'
-        << result.second
+        << std::setw(COLUMN_WIDTH_ANCHOR) << result.second
         << std::endl;
 }
 
@@ -162,7 +205,7 @@ run_scenario(
 {
     char scenario[64];
 
-    std::snprintf(
+    stlsoft::snprintf(
         scenario
     ,   sizeof(scenario)
     ,   "%lu lines x %lu chars"
@@ -181,18 +224,6 @@ run_scenario(
         return;
     }
 
-    result_t const file_lines = time_(NUM_ITERATIONS, []() -> std::size_t {
-        platformstl::file_lines_a lines(TEST_FILE_NAME);
-        std::size_t anchor = lines.size();
-
-        for (platformstl::file_lines_a::const_iterator i = lines.begin(); lines.end() != i; ++i)
-        {
-            anchor += (*i).size();
-        }
-
-        return anchor;
-    });
-
     result_t const getline = time_(NUM_ITERATIONS, []() -> std::size_t {
         std::ifstream stm(TEST_FILE_NAME);
         std::vector<std::string> lines;
@@ -208,8 +239,30 @@ run_scenario(
         return lines.size() + anchor;
     });
 
-    display_result(scenario, "platformstl::file_lines", NUM_ITERATIONS, file_lines);
-    display_result(scenario, "std::ifstream+getline", NUM_ITERATIONS, getline);
+    result_t const file_lines_std_string = time_(NUM_ITERATIONS, []() -> std::size_t {
+        return read_file_lines_<file_lines_std_string_t>();
+    });
+
+    result_t const file_lines_stlsoft_simple_string = time_(NUM_ITERATIONS, []() -> std::size_t {
+        return read_file_lines_<file_lines_stlsoft_simple_string_t>();
+    });
+
+    result_t const file_lines_stlsoft_string_view = time_(NUM_ITERATIONS, []() -> std::size_t {
+        return read_file_lines_<file_lines_stlsoft_string_view_t>();
+    });
+
+    display_result(scenario, "vector<std::string>+getline", NUM_ITERATIONS, getline);
+    display_result(scenario, "basic_file_lines<std::string>", NUM_ITERATIONS, file_lines_std_string);
+    display_result(scenario, "basic_file_lines<stlsoft::simple_string>", NUM_ITERATIONS, file_lines_stlsoft_simple_string);
+    display_result(scenario, "basic_file_lines<stlsoft::string_view>", NUM_ITERATIONS, file_lines_stlsoft_string_view);
+#if __cplusplus >= 201703L
+
+    result_t const file_lines_std_string_view = time_(NUM_ITERATIONS, []() -> std::size_t {
+        return read_file_lines_<file_lines_std_string_view_t>();
+    });
+
+    display_result(scenario, "basic_file_lines<std::string_view>", NUM_ITERATIONS, file_lines_std_string_view);
+#endif /* C++17+ */
 }
 
 
@@ -220,7 +273,14 @@ run_scenario(
 int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout
-        << "scenario\timplementation\titerations\ttotal-ns\tns/op\tanchor"
+        << std::left
+        << std::setw(COLUMN_WIDTH_SCENARIO) << "scenario"
+        << std::setw(COLUMN_WIDTH_IMPLEMENTATION) << "implementation"
+        << std::right
+        << std::setw(COLUMN_WIDTH_ITERATIONS) << "iterations"
+        << std::setw(COLUMN_WIDTH_TOTAL_TIME) << "total-ns"
+        << std::setw(COLUMN_WIDTH_NS_PER_OPERATION) << "ns/op"
+        << std::setw(COLUMN_WIDTH_ANCHOR) << "anchor"
         << std::endl
         ;
 
