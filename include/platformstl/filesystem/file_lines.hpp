@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     53
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -413,7 +413,6 @@ private: // implementation
         char_type const*        s0      =   begin;
         char_type               prev    =   '\0';
 
-#if 1
         { for (; begin != end; ++begin)
         {
             char_type const     c   =   *begin;
@@ -437,7 +436,13 @@ private: // implementation
                 {
                     --eol;
 
+#if __cplusplus >= 201103L
+
+                    m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
                     m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
 
                     s0 = begin;
                 }
@@ -448,7 +453,13 @@ private: // implementation
                     --eol;
                 }
 
+#if __cplusplus >= 201103L
+
+                m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
                 m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
 
                 s0 = begin + 1;
                 break;
@@ -457,7 +468,13 @@ private: // implementation
                 {
                     --eol;
 
+#if __cplusplus >= 201103L
+
+                    m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
                     m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
 
                     s0 = begin;
                 }
@@ -475,9 +492,14 @@ private: // implementation
                 --eol;
             }
 
+#if __cplusplus >= 201103L
+
+            m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
             m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
         }
-#endif
 
         // Now determine whether we require the ongoing presence of the
         // underlying mapping. We can discard it if:
