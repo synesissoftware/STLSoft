@@ -392,16 +392,6 @@ private: // implementation
         size_t                  cch     =   static_cast<size_type>(cb / sizeof(char_type));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        // check if it looks like a binary file
-        if (base + cch != std::find(base, base + cch, '\0'))
-        {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(invalid_file_type_exception("file is binary (or unsupported text encoding)", 0, path));
-#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
-            return;
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        }
-
         // 2. Create the contents string
 
         m_contents = base_string_type_(base, cch);
@@ -422,7 +412,6 @@ private: // implementation
         char_type const* const  end     =   begin + cch;
         char_type const*        s0      =   begin;
         char_type               prev    =   '\0';
-//        bool const              hasLF   =   (base + cch != std::find(base, base + cch, '\n'));
 
 #if 1
         { for (; begin != end; ++begin)
@@ -432,6 +421,17 @@ private: // implementation
 
             switch (c)
             {
+            case '\0':
+
+                // reject if it looks like a binary file
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+                STLSOFT_THROW_X(invalid_file_type_exception("file is binary (or unsupported text encoding)", 0, path));
+#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+                return;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             case '\r':
                 if ('\r' == prev)
                 {
