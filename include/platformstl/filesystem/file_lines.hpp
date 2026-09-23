@@ -106,6 +106,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 # include <stlsoft/string/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
+# include <stlsoft/util/minmax.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX */
 
 #ifndef STLSOFT_INCL_ALGORITHM
 # define STLSOFT_INCL_ALGORITHM
@@ -407,7 +410,9 @@ private: // implementation
 
         // 3. Parse the file, and populate the strings collection
 
-        m_strings.reserve(1u + (cch / 10u));
+        size_t const    numReserved = maximum(static_cast<size_t>(128), 1u + (cch / 10u));
+
+        m_strings.reserve(numReserved);
 
         // This can work with EOL of CRLF or of LF, or a combination of the
         // two.
