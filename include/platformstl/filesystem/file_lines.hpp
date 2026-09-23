@@ -4,7 +4,7 @@
  * Purpose: Platform header for the file_lines components.
  *
  * Created: 25th October 2007
- * Updated: 20th March 2025
+ * Updated: 23rd September 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     52
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -432,7 +432,7 @@ private: // implementation
                 {
                     --eol;
 
-                    m_strings.push_back(value_string_type_(s0, eol));
+                    m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
 
                     s0 = begin;
                 }
@@ -443,7 +443,7 @@ private: // implementation
                     --eol;
                 }
 
-                m_strings.push_back(value_string_type_(s0, eol));
+                m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
 
                 s0 = begin + 1;
                 break;
@@ -452,7 +452,7 @@ private: // implementation
                 {
                     --eol;
 
-                    m_strings.push_back(value_string_type_(s0, eol));
+                    m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
 
                     s0 = begin;
                 }
@@ -470,7 +470,7 @@ private: // implementation
                 --eol;
             }
 
-            m_strings.push_back(value_string_type_(s0, eol));
+            m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
         }
 #endif
 
