@@ -23,6 +23,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -284,7 +285,7 @@ run_scenario(
         return;
     }
 
-    result_t const getline = time_(NUM_ITERATIONS, []() -> std::size_t {
+    result_t const getc = time_(NUM_ITERATIONS, []() -> std::size_t {
         std::vector<std::string> lines;
         std::string line;
         std::size_t anchor = 0;
@@ -320,6 +321,27 @@ run_scenario(
         return lines.size() + anchor;
     });
 
+    result_t const getline = time_(NUM_ITERATIONS, [ending]() -> std::size_t {
+        std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
+        std::vector<std::string> lines;
+        std::string line;
+        std::size_t anchor = 0;
+        char const delimiter = (line_ending_cr == ending) ? '\r' : '\n';
+
+        while (std::getline(stm, line, delimiter))
+        {
+            if (line_ending_crlf == ending && !line.empty() && '\r' == line.back())
+            {
+                line.pop_back();
+            }
+
+            anchor += line.size();
+            lines.push_back(line);
+        }
+
+        return lines.size() + anchor;
+    });
+
     result_t const file_lines_std_string = time_(NUM_ITERATIONS, []() -> std::size_t {
         return read_file_lines_<file_lines_std_string_t>();
     });
@@ -332,6 +354,7 @@ run_scenario(
         return read_file_lines_<file_lines_stlsoft_string_view_t>();
     });
 
+    display_result(scenario, "vector<std::string>+getc", NUM_ITERATIONS, getc);
     display_result(scenario, "vector<std::string>+getline", NUM_ITERATIONS, getline);
     display_result(scenario, "basic_file_lines<std::string>", NUM_ITERATIONS, file_lines_std_string);
     display_result(scenario, "basic_file_lines<stlsoft::simple_string>", NUM_ITERATIONS, file_lines_stlsoft_simple_string);
