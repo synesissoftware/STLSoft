@@ -22,7 +22,6 @@
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
-#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -139,13 +138,6 @@ write_test_file(
 ,   line_ending_t   ending
 )
 {
-    std::ofstream stm(TEST_FILE_NAME, std::ios::binary | std::ios::trunc);
-
-    if (!stm)
-    {
-        return false;
-    }
-
     char const* eol     =   "\n";
     std::size_t eol_len =   1u;
 
@@ -168,13 +160,28 @@ write_test_file(
 
     std::string const line = make_line(line_length);
 
-    for (std::size_t i = 0; num_lines != i; ++i)
+    std::FILE* stm = std::fopen(TEST_FILE_NAME, "wb");
+
+    if (NULL == stm)
     {
-        stm.write(line.data(), static_cast<std::streamsize>(line.size()));
-        stm.write(eol, static_cast<std::streamsize>(eol_len));
+        return false;
     }
 
-    return static_cast<bool>(stm);
+    for (std::size_t i = 0; num_lines != i; ++i)
+    {
+        if (line.size() != std::fwrite(line.data(), 1u, line.size(), stm))
+        {
+            std::fclose(stm);
+            return false;
+        }
+        if (eol_len != std::fwrite(eol, 1u, eol_len, stm))
+        {
+            std::fclose(stm);
+            return false;
+        }
+    }
+
+    return (0 == std::fclose(stm));
 }
 
 template <typename T_file_lines>
@@ -277,16 +284,38 @@ run_scenario(
     }
 
     result_t const getline = time_(NUM_ITERATIONS, []() -> std::size_t {
-        std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
         std::vector<std::string> lines;
         std::string line;
         std::size_t anchor = 0;
 
-        while (std::getline(stm, line))
+        std::FILE* stm = std::fopen(TEST_FILE_NAME, "rb");
+
+        if (NULL == stm)
+        {
+            return 0u;
+        }
+
+        for (int ch = std::fgetc(stm); EOF != ch; ch = std::fgetc(stm))
+        {
+            if ('\n' == ch)
+            {
+                anchor += line.size();
+                lines.push_back(line);
+                line.clear();
+            }
+            else
+            {
+                line.push_back(static_cast<char>(ch));
+            }
+        }
+
+        if (0u != line.size())
         {
             anchor += line.size();
             lines.push_back(line);
         }
+
+        std::fclose(stm);
 
         return lines.size() + anchor;
     });
