@@ -15,6 +15,7 @@
  */
 
 #include <platformstl/filesystem/file_lines.hpp>
+#include <stlsoft/api/internal/stdio.h>
 #include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>
 #include <stlsoft/string/string_view.hpp>
 #include <stlsoft/util/string/snprintf.h>
@@ -160,28 +161,28 @@ write_test_file(
 
     std::string const line = make_line(line_length);
 
-    std::FILE* stm = std::fopen(TEST_FILE_NAME, "wb");
+    FILE* stm = NULL;
 
-    if (NULL == stm)
+    if (0 != STLSOFT_API_INTERNAL_stdio_fopen_m(TEST_FILE_NAME, "wb", &stm))
     {
         return false;
     }
 
     for (std::size_t i = 0; num_lines != i; ++i)
     {
-        if (line.size() != std::fwrite(line.data(), 1u, line.size(), stm))
+        if (line.size() != fwrite(line.data(), 1u, line.size(), stm))
         {
-            std::fclose(stm);
+            fclose(stm);
             return false;
         }
-        if (eol_len != std::fwrite(eol, 1u, eol_len, stm))
+        if (eol_len != fwrite(eol, 1u, eol_len, stm))
         {
-            std::fclose(stm);
+            fclose(stm);
             return false;
         }
     }
 
-    return (0 == std::fclose(stm));
+    return (0 == fclose(stm));
 }
 
 template <typename T_file_lines>
@@ -287,15 +288,14 @@ run_scenario(
         std::vector<std::string> lines;
         std::string line;
         std::size_t anchor = 0;
+        FILE* stm = NULL;
 
-        std::FILE* stm = std::fopen(TEST_FILE_NAME, "rb");
-
-        if (NULL == stm)
+        if (0 != STLSOFT_API_INTERNAL_stdio_fopen_m(TEST_FILE_NAME, "rb", &stm))
         {
             return 0u;
         }
 
-        for (int ch = std::fgetc(stm); EOF != ch; ch = std::fgetc(stm))
+        for (int ch = fgetc(stm); EOF != ch; ch = fgetc(stm))
         {
             if ('\n' == ch)
             {
@@ -315,7 +315,7 @@ run_scenario(
             lines.push_back(line);
         }
 
-        std::fclose(stm);
+        fclose(stm);
 
         return lines.size() + anchor;
     });
