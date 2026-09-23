@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     54
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 4
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -199,7 +199,6 @@ public: // construction
     /// Creates an empty instance
     basic_file_lines()
         : m_mmf()
-        , m_contents()
         , m_strings()
     {}
     /// Creates an instance from the (contents of) the given path
@@ -207,7 +206,6 @@ public: // construction
     ss_explicit_k
     basic_file_lines(S const& path)
         : m_mmf()
-        , m_contents()
         , m_strings()
     {
         create_(path);
@@ -220,7 +218,6 @@ public: // construction
     /// Move the
     basic_file_lines(class_type&& rhs) STLSOFT_NOEXCEPT
         : m_mmf(std::move(rhs.m_mmf))
-        , m_contents(std::move(rhs.m_contents))
         , m_strings(std::move(rhs.m_strings))
     {}
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
@@ -392,13 +389,12 @@ private: // implementation
         size_t                  cch     =   static_cast<size_type>(cb / sizeof(char_type));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        // 2. Create the contents string
+        if (0u == cb)
+        {
+            return;
+        }
 
-        m_contents = base_string_type_(base, cch);
-
-        STLSOFT_ASSERT(cch == m_contents.size());
-
-        // 3. Parse the file, and populate the strings collection
+        // 2. Parse the file, and populate the strings collection
 
         size_t const    numReserved = maximum(static_cast<size_t>(128), 1u + (cch / 10u));
 
@@ -407,7 +403,7 @@ private: // implementation
         // This can work with EOL of CRLF or of LF, or a combination of the
         // two.
 
-        char_type const* const  base1   =   m_contents.data();
+        char_type const* const  base1   =   base;
         char_type const*        begin   =   base1;
         char_type const* const  end     =   begin + cch;
         char_type const*        s0      =   begin;
@@ -541,9 +537,8 @@ private: // implementation
     }
 
 private: // fields
-    HRW_Ref_type        m_mmf;
-    base_string_type_   m_contents;
-    strings_type_       m_strings;
+    HRW_Ref_type    m_mmf;
+    strings_type_   m_strings;
 };
 
 
