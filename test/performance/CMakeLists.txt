@@ -1,6 +1,7 @@
 
 if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2011)
 
+	add_subdirectory(test.performance.platformstl.file_lines)
 	add_subdirectory(test.performance.platformstl.stopwatch)
 endif()
 
