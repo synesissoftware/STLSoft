@@ -58,10 +58,10 @@ typedef platformstl::stopwatch                              stopwatch_t;
 typedef stopwatch_t::interval_type                          interval_t;
 
 using stlsoft::ss_size_t;
-using stlsoft::uint8_t;
-using stlsoft::uint16_t;
-using stlsoft::uint32_t;
-using stlsoft::uint64_t;
+using stlsoft::ss_uint8_t;
+using stlsoft::ss_uint16_t;
+using stlsoft::ss_uint32_t;
+using stlsoft::ss_uint64_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -203,17 +203,17 @@ emit_result_row(
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-    uint8_t  xor8[XOR_RANGE_LEN];
-    uint16_t xor16[XOR_RANGE_LEN];
-    uint32_t xor32[XOR_RANGE_LEN];
-    uint64_t xor64[XOR_RANGE_LEN];
+    ss_uint8_t  xor8[XOR_RANGE_LEN];
+    ss_uint16_t xor16[XOR_RANGE_LEN];
+    ss_uint32_t xor32[XOR_RANGE_LEN];
+    ss_uint64_t xor64[XOR_RANGE_LEN];
 
     for (ss_size_t i = 0; XOR_RANGE_LEN != i; ++i)
     {
-        xor8[i]  = static_cast<uint8_t>(i * 3u + 1u);
-        xor16[i] = static_cast<uint16_t>(i * 7u + 1u);
-        xor32[i] = static_cast<uint32_t>(i * 11u + 1u);
-        xor64[i] = static_cast<uint64_t>(i * 13u + 1u);
+        xor8[i]  = static_cast<ss_uint8_t>(i * 3u + 1u);
+        xor16[i] = static_cast<ss_uint16_t>(i * 7u + 1u);
+        xor32[i] = static_cast<ss_uint32_t>(i * 11u + 1u);
+        xor64[i] = static_cast<ss_uint64_t>(i * 13u + 1u);
     }
 
     emit_header_row();
@@ -230,7 +230,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = i;
+            ss_uint32_t const v = i;
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -242,7 +242,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = i;
+            ss_uint64_t const v = i;
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -277,7 +277,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = i;
+            ss_uint32_t const v = i;
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -289,7 +289,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = i;
+            ss_uint64_t const v = i;
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -324,7 +324,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = i;
+            ss_uint32_t const v = i;
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -336,7 +336,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = i;
+            ss_uint64_t const v = i;
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -387,7 +387,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = ~uint32_t(i);
+            ss_uint32_t const v = ~ss_uint32_t(i);
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -399,7 +399,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = ~uint64_t(i);
+            ss_uint64_t const v = ~ss_uint64_t(i);
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -434,7 +434,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = ~uint32_t(i);
+            ss_uint32_t const v = ~ss_uint32_t(i);
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -446,7 +446,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = ~uint64_t(i);
+            ss_uint64_t const v = ~ss_uint64_t(i);
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -481,7 +481,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = ~uint32_t(i);
+            ss_uint32_t const v = ~ss_uint32_t(i);
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -493,7 +493,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = ~uint64_t(i);
+            ss_uint64_t const v = ~ss_uint64_t(i);
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -505,7 +505,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            int const v = static_cast<int>(~uint32_t(i));
+            int const v = static_cast<int>(~ss_uint32_t(i));
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -535,8 +535,8 @@ int main(int /*argc*/, char* /*argv*/[])
     // ------------------------------------------------------------------
 
     {
-        uint32_t volatile ones32 = ~uint32_t(0);
-        uint64_t volatile ones64 = ~uint64_t(0);
+        ss_uint32_t volatile ones32 = ~ss_uint32_t(0);
+        ss_uint64_t volatile ones64 = ~ss_uint64_t(0);
 
 
         // count_bits_by_Kernighan_method (max)
@@ -550,7 +550,7 @@ int main(int /*argc*/, char* /*argv*/[])
             sw.start();
             for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
             {
-                uint32_t const v = ones32;
+                ss_uint32_t const v = ones32;
 
                 STLSOFT_SUPPRESS_UNUSED(i);
                 anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
@@ -563,7 +563,7 @@ int main(int /*argc*/, char* /*argv*/[])
             sw.start();
             for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
             {
-                uint64_t const v = ones64;
+                ss_uint64_t const v = ones64;
 
                 STLSOFT_SUPPRESS_UNUSED(i);
                 anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
@@ -599,7 +599,7 @@ int main(int /*argc*/, char* /*argv*/[])
             sw.start();
             for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
             {
-                uint32_t const v = ones32;
+                ss_uint32_t const v = ones32;
 
                 STLSOFT_SUPPRESS_UNUSED(i);
                 anchor_value += stlsoft::count_bits_by_8bit_table(v);
@@ -612,7 +612,7 @@ int main(int /*argc*/, char* /*argv*/[])
             sw.start();
             for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
             {
-                uint64_t const v = ones64;
+                ss_uint64_t const v = ones64;
 
                 STLSOFT_SUPPRESS_UNUSED(i);
                 anchor_value += stlsoft::count_bits_by_8bit_table(v);
@@ -648,7 +648,7 @@ int main(int /*argc*/, char* /*argv*/[])
             sw.start();
             for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
             {
-                uint32_t const v = ones32;
+                ss_uint32_t const v = ones32;
 
                 STLSOFT_SUPPRESS_UNUSED(i);
                 anchor_value += stlsoft::count_bits(v);
@@ -661,7 +661,7 @@ int main(int /*argc*/, char* /*argv*/[])
             sw.start();
             for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
             {
-                uint64_t const v = ones64;
+                ss_uint64_t const v = ones64;
 
                 STLSOFT_SUPPRESS_UNUSED(i);
                 anchor_value += stlsoft::count_bits(v);
@@ -715,7 +715,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = ~uint32_t(0) ^ (uint32_t(1) << (i % 32u));
+            ss_uint32_t const v = ~ss_uint32_t(0) ^ (ss_uint32_t(1) << (i % 32u));
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -727,7 +727,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = ~uint64_t(0) ^ (uint64_t(1) << (i % 64u));
+            ss_uint64_t const v = ~ss_uint64_t(0) ^ (ss_uint64_t(1) << (i % 64u));
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -762,7 +762,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = ~uint32_t(0) ^ (uint32_t(1) << (i % 32u));
+            ss_uint32_t const v = ~ss_uint32_t(0) ^ (ss_uint32_t(1) << (i % 32u));
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -774,7 +774,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = ~uint64_t(0) ^ (uint64_t(1) << (i % 64u));
+            ss_uint64_t const v = ~ss_uint64_t(0) ^ (ss_uint64_t(1) << (i % 64u));
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -809,7 +809,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = ~uint32_t(0) ^ (uint32_t(1) << (i % 32u));
+            ss_uint32_t const v = ~ss_uint32_t(0) ^ (ss_uint32_t(1) << (i % 32u));
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -821,7 +821,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = ~uint64_t(0) ^ (uint64_t(1) << (i % 64u));
+            ss_uint64_t const v = ~ss_uint64_t(0) ^ (ss_uint64_t(1) << (i % 64u));
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -833,7 +833,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            int const v = static_cast<int>(~uint32_t(0) ^ (uint32_t(1) << (i % 32u)));
+            int const v = static_cast<int>(~ss_uint32_t(0) ^ (ss_uint32_t(1) << (i % 32u)));
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -868,7 +868,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint8_t const v = static_cast<uint8_t>(i & 0xff);
+            ss_uint8_t const v = static_cast<ss_uint8_t>(i & 0xff);
 
             anchor_value += stlsoft::find_highest_bit(v);
         }
@@ -880,7 +880,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint16_t const v = static_cast<uint16_t>(i & 0xffff);
+            ss_uint16_t const v = static_cast<ss_uint16_t>(i & 0xffff);
 
             anchor_value += stlsoft::find_highest_bit(v);
         }
@@ -892,7 +892,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint32_t const v = i;
+            ss_uint32_t const v = i;
 
             anchor_value += stlsoft::find_highest_bit(v);
         }
@@ -904,7 +904,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            uint64_t const v = i;
+            ss_uint64_t const v = i;
 
             anchor_value += stlsoft::find_highest_bit(v);
         }
