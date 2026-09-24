@@ -72,7 +72,7 @@ namespace {
 
     ss_size_t const NUM_ITERATIONS   = 20000000;
     ss_size_t const XOR_RANGE_LEN    = 64;
-    int const       FN_COL_WIDTH     = 36;
+    int const       FN_COL_WIDTH     = 42;
     int const       METRIC_COL_WIDTH = 16;
 } // anonymous namespace
 
@@ -361,6 +361,491 @@ int main(int /*argc*/, char* /*argv*/[])
         {
             emit_result_row(
                 "count_bits()"
+            ,   NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   &int_int
+            ,   anchor_value
+            );
+        }
+    }
+
+
+    // ------------------------------------------------------------------
+    // Dense inputs (~i): high popcount — favourable to the table path
+    // ------------------------------------------------------------------
+
+    // count_bits_by_Kernighan_method (dense)
+    for (int W = 2; 0 != W; --W)
+    {
+        stopwatch_t sw;
+
+        int anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint32_t const v = ~uint32_t(i);
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint64_t const v = ~uint64_t(i);
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (1 == W)
+        {
+            emit_result_row(
+                "count_bits_by_Kernighan_method()/~i"
+            ,   NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+    }
+
+
+    // count_bits_by_8bit_table (dense)
+    for (int W = 2; 0 != W; --W)
+    {
+        stopwatch_t sw;
+
+        int anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint32_t const v = ~uint32_t(i);
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint64_t const v = ~uint64_t(i);
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (1 == W)
+        {
+            emit_result_row(
+                "count_bits_by_8bit_table()/~i"
+            ,   NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+    }
+
+
+    // count_bits (dense)
+    for (int W = 2; 0 != W; --W)
+    {
+        stopwatch_t sw;
+
+        int anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint32_t const v = ~uint32_t(i);
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint64_t const v = ~uint64_t(i);
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            int const v = static_cast<int>(~uint32_t(i));
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_int = sw.get_nanoseconds();
+
+
+        if (1 == W)
+        {
+            emit_result_row(
+                "count_bits()/~i"
+            ,   NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   &int_int
+            ,   anchor_value
+            );
+        }
+    }
+
+
+    // ------------------------------------------------------------------
+    // Max density (all-ones). Source via volatile so inlining cannot
+    // constant-fold popcount(~0) to a literal.
+    // ------------------------------------------------------------------
+
+    {
+        uint32_t volatile ones32 = ~uint32_t(0);
+        uint64_t volatile ones64 = ~uint64_t(0);
+
+
+        // count_bits_by_Kernighan_method (max)
+        for (int W = 2; 0 != W; --W)
+        {
+            stopwatch_t sw;
+
+            int anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                uint32_t const v = ones32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                uint64_t const v = ones64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            if (1 == W)
+            {
+                emit_result_row(
+                    "count_bits_by_Kernighan_method()/ones"
+                ,   NULL
+                ,   NULL
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   NULL
+                ,   anchor_value
+                );
+            }
+        }
+
+
+        // count_bits_by_8bit_table (max)
+        for (int W = 2; 0 != W; --W)
+        {
+            stopwatch_t sw;
+
+            int anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                uint32_t const v = ones32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_8bit_table(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                uint64_t const v = ones64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_8bit_table(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            if (1 == W)
+            {
+                emit_result_row(
+                    "count_bits_by_8bit_table()/ones"
+                ,   NULL
+                ,   NULL
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   NULL
+                ,   anchor_value
+                );
+            }
+        }
+
+
+        // count_bits (max)
+        for (int W = 2; 0 != W; --W)
+        {
+            stopwatch_t sw;
+
+            int anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                uint32_t const v = ones32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                uint64_t const v = ones64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                int const v = static_cast<int>(ones32);
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits(v);
+            }
+            sw.stop();
+
+            interval_t const int_int = sw.get_nanoseconds();
+
+
+            if (1 == W)
+            {
+                emit_result_row(
+                    "count_bits()/ones"
+                ,   NULL
+                ,   NULL
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   &int_int
+                ,   anchor_value
+                );
+            }
+        }
+    }
+
+
+    // ------------------------------------------------------------------
+    // Close-to-max: all-ones with one rotating bit cleared (31 / 63 ones)
+    // ------------------------------------------------------------------
+
+    // count_bits_by_Kernighan_method (close-to-max)
+    for (int W = 2; 0 != W; --W)
+    {
+        stopwatch_t sw;
+
+        int anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint32_t const v = ~uint32_t(0) ^ (uint32_t(1) << (i % 32u));
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint64_t const v = ~uint64_t(0) ^ (uint64_t(1) << (i % 64u));
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (1 == W)
+        {
+            emit_result_row(
+                "count_bits_by_Kernighan_method()/ones^1"
+            ,   NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+    }
+
+
+    // count_bits_by_8bit_table (close-to-max)
+    for (int W = 2; 0 != W; --W)
+    {
+        stopwatch_t sw;
+
+        int anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint32_t const v = ~uint32_t(0) ^ (uint32_t(1) << (i % 32u));
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint64_t const v = ~uint64_t(0) ^ (uint64_t(1) << (i % 64u));
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (1 == W)
+        {
+            emit_result_row(
+                "count_bits_by_8bit_table()/ones^1"
+            ,   NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+    }
+
+
+    // count_bits (close-to-max)
+    for (int W = 2; 0 != W; --W)
+    {
+        stopwatch_t sw;
+
+        int anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint32_t const v = ~uint32_t(0) ^ (uint32_t(1) << (i % 32u));
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            uint64_t const v = ~uint64_t(0) ^ (uint64_t(1) << (i % 64u));
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            int const v = static_cast<int>(~uint32_t(0) ^ (uint32_t(1) << (i % 32u)));
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_int = sw.get_nanoseconds();
+
+
+        if (1 == W)
+        {
+            emit_result_row(
+                "count_bits()/ones^1"
             ,   NULL
             ,   NULL
             ,   &int_uint32
