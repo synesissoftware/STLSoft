@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR      3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT       20
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION   2
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -539,8 +539,9 @@ count_bits(
     ss_uint32_t v
 ) STLSOFT_NOEXCEPT
 {
-# if defined(STLSOFT_BIT_COUNT_BY_Kernighan)
-    return count_bits_by_Kernighan(v);
+# if 0
+# elif defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_by_Kernighan_method(v);
 # else
     return count_bits_by_8bit_table(v);
 # endif
@@ -558,8 +559,9 @@ count_bits(
     ss_uint64_t v
 ) STLSOFT_NOEXCEPT
 {
-# if defined(STLSOFT_BIT_COUNT_BY_Kernighan)
-    return count_bits_by_Kernighan(v);
+# if 0
+# elif defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_by_Kernighan_method(v);
 # else
     return count_bits_by_8bit_table(v);
 # endif
