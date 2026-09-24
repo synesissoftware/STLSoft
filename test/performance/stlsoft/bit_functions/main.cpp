@@ -41,7 +41,9 @@
 #include <iostream>
 #include <string>
 
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,6 +79,7 @@ emit_result_row(
 ,   interval_t const*       uint64_ns
 ,   interval_t const*       int_ns
 ,   ss_uint64_t             anchor_value
+,   bool                    report_per_element
 );
 
 
@@ -198,7 +201,10 @@ namespace {
             ++n;
         }
 
-        void emit(char const* function_name) const
+        void emit(
+            char const* function_name
+        ,   bool        report_per_element = false
+        ) const
         {
             interval_t const med_u8  = has_u8  ? median_sample(u8, n)  : 0;
             interval_t const med_u16 = has_u16 ? median_sample(u16, n) : 0;
@@ -214,6 +220,7 @@ namespace {
             ,   has_u64 ? &med_u64 : NULL
             ,   has_si  ? &med_si  : NULL
             ,   anchor
+            ,   report_per_element
             );
         }
     };
@@ -261,6 +268,12 @@ emit_absent_metric_cell()
 }
 
 void
+emit_rate_cell(
+    interval_t const*   total_ns
+,   double              divisor
+);
+
+void
 emit_header_row()
 {
     std::cout
@@ -271,8 +284,90 @@ emit_header_row()
     emit_metric_cell("uint32_t");
     emit_metric_cell("uint64_t");
     emit_metric_cell("int");
+    emit_metric_cell("uint8_t ns");
+    emit_metric_cell("uint16_t ns");
+    emit_metric_cell("uint32_t ns");
+    emit_metric_cell("uint64_t ns");
+    emit_metric_cell("int ns");
+    emit_metric_cell("uint8_t el");
+    emit_metric_cell("uint16_t el");
+    emit_metric_cell("uint32_t el");
+    emit_metric_cell("uint64_t el");
     emit_metric_cell("anchor");
     std::cout << std::endl;
+}
+
+bool
+env_is_truey(
+    char const* name
+)
+{
+    char const* const env = ::getenv(name);
+
+    if (NULL == env || '\0' == *env)
+    {
+        return false;
+    }
+
+    if (0 == ::strcmp(env, "1") ||
+        0 == ::strcmp(env, "ok") ||
+        0 == ::strcmp(env, "on") ||
+        0 == ::strcmp(env, "true") ||
+        0 == ::strcmp(env, "yes") ||
+        0 == ::strcmp(env, "y") ||
+        0 == ::strcmp(env, "OK") ||
+        0 == ::strcmp(env, "ON") ||
+        0 == ::strcmp(env, "TRUE") ||
+        0 == ::strcmp(env, "YES") ||
+        0 == ::strcmp(env, "Y"))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+void
+maybe_emit_group_gap(
+    char const* function_name
+)
+{
+    static bool have_prev = false;
+    static char prev_key[64] = "";
+
+    if (!env_is_truey("SIS_PERFTESTS_GROUPGAPS"))
+    {
+        return;
+    }
+
+    char const* const slash = ::strrchr(function_name, '/');
+    char const* const pattern = (NULL == slash) ? "" : slash;
+    char const*       family = "other";
+
+    if (0 == ::strncmp(function_name, "count_bits", 10))
+    {
+        family = "count";
+    }
+    else if (0 == ::strncmp(function_name, "find_highest_bit", 16))
+    {
+        family = "find";
+    }
+    else if (0 == ::strncmp(function_name, "calculate_xor", 13))
+    {
+        family = "xor";
+    }
+
+    char key[64];
+
+    snprintf(key, sizeof(key), "%s%s", family, pattern);
+
+    if (have_prev && 0 != ::strcmp(prev_key, key))
+    {
+        std::cout << std::endl;
+    }
+
+    snprintf(prev_key, sizeof(prev_key), "%s", key);
+    have_prev = true;
 }
 
 void
@@ -284,8 +379,11 @@ emit_result_row(
 ,   interval_t const*       uint64_ns
 ,   interval_t const*       int_ns
 ,   ss_uint64_t             anchor_value
+,       bool                    report_per_element
 )
 {
+    maybe_emit_group_gap(function_name);
+
     std::cout
         << std::setw(FN_COL_WIDTH) << std::left << function_name
         ;
@@ -335,8 +433,53 @@ emit_result_row(
         emit_absent_metric_cell();
     }
 
+    double const per_call    = double(NUM_ITERATIONS);
+    double const per_element = double(NUM_ITERATIONS) * double(XOR_RANGE_LEN + 1) / 2.0;
+
+    emit_rate_cell(uint8_ns, per_call);
+    emit_rate_cell(uint16_ns, per_call);
+    emit_rate_cell(uint32_ns, per_call);
+    emit_rate_cell(uint64_ns, per_call);
+    emit_rate_cell(int_ns, per_call);
+
+    if (report_per_element)
+    {
+        emit_rate_cell(uint8_ns, per_element);
+        emit_rate_cell(uint16_ns, per_element);
+        emit_rate_cell(uint32_ns, per_element);
+        emit_rate_cell(uint64_ns, per_element);
+    }
+    else
+    {
+        emit_absent_metric_cell();
+        emit_absent_metric_cell();
+        emit_absent_metric_cell();
+        emit_absent_metric_cell();
+    }
+
     emit_metric_cell(thousands(anchor_value).c_str());
     std::cout << std::endl;
+}
+
+void
+emit_rate_cell(
+    interval_t const*   total_ns
+,   double              divisor
+)
+{
+    if (NULL == total_ns)
+    {
+        emit_absent_metric_cell();
+
+        return;
+    }
+
+    char            buf[32];
+    double const    rate = (0.0 == divisor) ? 0.0 : (double(*total_ns) / divisor);
+
+    snprintf(buf, sizeof(buf), "%.3f", rate);
+
+    emit_metric_cell(buf);
 }
 
 void
@@ -374,6 +517,12 @@ emit_build_banner()
         << "samples: "
         << NUM_SAMPLES
         << " (median; 1 warmup discarded)"
+        << std::endl;
+    std::cout
+        << "width columns are loop ns; ns columns are ns/call; el columns are ns/element"
+        << std::endl;
+    std::cout
+        << "Env: SIS_PERFTESTS_GROUPGAPS."
         << std::endl;
 }
 
@@ -1149,6 +1298,571 @@ int main(int /*argc*/, char* /*argv*/[])
     }
 
 
+    // ------------------------------------------------------------------
+    // All-zero. Volatile so the call is not constant-folded to 0.
+    // ------------------------------------------------------------------
+
+    {
+        ss_uint32_t volatile zero32 = 0;
+        ss_uint64_t volatile zero64 = 0;
+
+
+        // count_bits_by_Kernighan_method (zero)
+        for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+        {
+            if (int(NUM_SAMPLES) + 1 == W)
+            {
+                rows.clear();
+            }
+
+            stopwatch_t sw;
+
+            ss_uint64_t anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint32_t const v = zero32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint64_t const v = zero64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            if (W <= int(NUM_SAMPLES))
+            {
+                rows.push(
+                    NULL
+                ,   NULL
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   NULL
+                ,   anchor_value
+                );
+            }
+
+            if (1 == W)
+            {
+                rows.emit("count_bits_by_Kernighan_method()/0");
+            }
+        }
+
+
+        // count_bits_by_8bit_table (zero)
+        for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+        {
+            if (int(NUM_SAMPLES) + 1 == W)
+            {
+                rows.clear();
+            }
+
+            stopwatch_t sw;
+
+            ss_uint64_t anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint32_t const v = zero32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_8bit_table(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint64_t const v = zero64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits_by_8bit_table(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            if (W <= int(NUM_SAMPLES))
+            {
+                rows.push(
+                    NULL
+                ,   NULL
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   NULL
+                ,   anchor_value
+                );
+            }
+
+            if (1 == W)
+            {
+                rows.emit("count_bits_by_8bit_table()/0");
+            }
+        }
+
+
+        // count_bits (zero)
+        for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+        {
+            if (int(NUM_SAMPLES) + 1 == W)
+            {
+                rows.clear();
+            }
+
+            stopwatch_t sw;
+
+            ss_uint64_t anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint32_t const v = zero32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint64_t const v = zero64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                int const v = static_cast<int>(zero32);
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::count_bits(v);
+            }
+            sw.stop();
+
+            interval_t const int_int = sw.get_nanoseconds();
+
+
+            if (W <= int(NUM_SAMPLES))
+            {
+                rows.push(
+                    NULL
+                ,   NULL
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   &int_int
+                ,   anchor_value
+                );
+            }
+
+            if (1 == W)
+            {
+                rows.emit("count_bits()/0");
+            }
+        }
+    }
+
+
+    // ------------------------------------------------------------------
+    // Single rotating bit. The 64-bit shift reaches bits 32..63.
+    // ------------------------------------------------------------------
+
+    // count_bits_by_Kernighan_method (bit)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = ss_uint32_t(1) << (i % 32u);
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = ss_uint64_t(1) << (i % 64u);
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("count_bits_by_Kernighan_method()/bit");
+        }
+    }
+
+
+    // count_bits_by_8bit_table (bit)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = ss_uint32_t(1) << (i % 32u);
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = ss_uint64_t(1) << (i % 64u);
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("count_bits_by_8bit_table()/bit");
+        }
+    }
+
+
+    // count_bits (bit)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = ss_uint32_t(1) << (i % 32u);
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = ss_uint64_t(1) << (i % 64u);
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            int const v = static_cast<int>(ss_uint32_t(1) << (i % 32u));
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_int = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   &int_int
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("count_bits()/bit");
+        }
+    }
+
+
+    // ------------------------------------------------------------------
+    // Both halves live. uint32 high 16 bits vary; uint64 high half is i.
+    // ------------------------------------------------------------------
+
+    // count_bits_by_Kernighan_method (wide)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = (ss_uint32_t(i) << 16) | ss_uint32_t(i & 0xffffu);
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = (ss_uint64_t(i) << 32) | ss_uint64_t(i);
+
+            anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("count_bits_by_Kernighan_method()/wide");
+        }
+    }
+
+
+    // count_bits_by_8bit_table (wide)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = (ss_uint32_t(i) << 16) | ss_uint32_t(i & 0xffffu);
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = (ss_uint64_t(i) << 32) | ss_uint64_t(i);
+
+            anchor_value += stlsoft::count_bits_by_8bit_table(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("count_bits_by_8bit_table()/wide");
+        }
+    }
+
+
+    // count_bits (wide)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = (ss_uint32_t(i) << 16) | ss_uint32_t(i & 0xffffu);
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = (ss_uint64_t(i) << 32) | ss_uint64_t(i);
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            int const v = static_cast<int>((ss_uint32_t(i) << 16) | ss_uint32_t(i & 0xffffu));
+
+            anchor_value += stlsoft::count_bits(v);
+        }
+        sw.stop();
+
+        interval_t const int_int = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                NULL
+            ,   NULL
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   &int_int
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("count_bits()/wide");
+        }
+    }
+
+
     // find_highest_bit
     for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
     {
@@ -1229,6 +1943,262 @@ int main(int /*argc*/, char* /*argv*/[])
     }
 
 
+    // ------------------------------------------------------------------
+    // find_highest_bit: zero, one rotating bit, both halves live.
+    // ------------------------------------------------------------------
+
+    {
+        ss_uint8_t  volatile zero8  = 0;
+        ss_uint16_t volatile zero16 = 0;
+        ss_uint32_t volatile zero32 = 0;
+        ss_uint64_t volatile zero64 = 0;
+
+
+        // find_highest_bit (zero)
+        for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+        {
+            if (int(NUM_SAMPLES) + 1 == W)
+            {
+                rows.clear();
+            }
+
+            stopwatch_t sw;
+
+            ss_uint64_t anchor_value = 0;
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint8_t const v = zero8;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::find_highest_bit(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint8 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint16_t const v = zero16;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::find_highest_bit(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint16 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint32_t const v = zero32;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::find_highest_bit(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+            sw.start();
+            for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+            {
+                ss_uint64_t const v = zero64;
+
+                STLSOFT_SUPPRESS_UNUSED(i);
+                anchor_value += stlsoft::find_highest_bit(v);
+            }
+            sw.stop();
+
+            interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+            if (W <= int(NUM_SAMPLES))
+            {
+                rows.push(
+                    &int_uint8
+                ,   &int_uint16
+                ,   &int_uint32
+                ,   &int_uint64
+                ,   NULL
+                ,   anchor_value
+                );
+            }
+
+            if (1 == W)
+            {
+                rows.emit("find_highest_bit()/0");
+            }
+        }
+    }
+
+
+    // find_highest_bit (bit)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint8_t const v = static_cast<ss_uint8_t>(1u << (i % 8u));
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint8 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint16_t const v = static_cast<ss_uint16_t>(1u << (i % 16u));
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint16 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = ss_uint32_t(1) << (i % 32u);
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = ss_uint64_t(1) << (i % 64u);
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                &int_uint8
+            ,   &int_uint16
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("find_highest_bit()/bit");
+        }
+    }
+
+
+    // find_highest_bit (wide)
+    for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
+    {
+        if (int(NUM_SAMPLES) + 1 == W)
+        {
+            rows.clear();
+        }
+
+        stopwatch_t sw;
+
+        ss_uint64_t anchor_value = 0;
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint8_t const v = static_cast<ss_uint8_t>(i & 0xff);
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint8 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint16_t const v = static_cast<ss_uint16_t>(i & 0xffff);
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint16 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint32_t const v = (ss_uint32_t(i) << 16) | ss_uint32_t(i & 0xffffu);
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint32 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            ss_uint64_t const v = (ss_uint64_t(i) << 32) | ss_uint64_t(i);
+
+            anchor_value += stlsoft::find_highest_bit(v);
+        }
+        sw.stop();
+
+        interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        if (W <= int(NUM_SAMPLES))
+        {
+            rows.push(
+                &int_uint8
+            ,   &int_uint16
+            ,   &int_uint32
+            ,   &int_uint64
+            ,   NULL
+            ,   anchor_value
+            );
+        }
+
+        if (1 == W)
+        {
+            rows.emit("find_highest_bit()/wide");
+        }
+    }
+
+
     // calculate_xor_over_range
     for (int W = int(NUM_SAMPLES) + 1; 0 != W; --W)
     {
@@ -1304,7 +2274,7 @@ int main(int /*argc*/, char* /*argv*/[])
 
         if (1 == W)
         {
-            rows.emit("calculate_xor_over_range()");
+            rows.emit("calculate_xor_over_range()", true);
         }
     }
 
