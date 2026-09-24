@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
  * Created: 19th March 2010
- * Updated: 9th August 2026
+ * Updated: 24th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,11 +44,11 @@
 
 namespace {
 
-    static void test_count_bits_Kernighan();
-    static void test_count_bits_8bit_table();
-    static void test_find_high_bit_32();
-    static void test_find_high_bit_64();
-    static void test_calculate_xor_over_range_8_bit();
+    static void TEST_count_bits_Kernighan_method();
+    static void TEST_count_bits_8bit_table();
+    static void TEST_find_high_bit_FOR_32();
+    static void TEST_find_high_bit_FOR_64();
+    static void TEST_calculate_xor_over_range_FOR_8_BIT();
 } // anonymous namespace
 
 
@@ -65,11 +65,11 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.util.bit_functions", verbosity))
     {
-        XTESTS_RUN_CASE(test_count_bits_Kernighan);
-        XTESTS_RUN_CASE(test_count_bits_8bit_table);
-        XTESTS_RUN_CASE(test_find_high_bit_32);
-        XTESTS_RUN_CASE(test_find_high_bit_64);
-        XTESTS_RUN_CASE(test_calculate_xor_over_range_8_bit);
+        XTESTS_RUN_CASE(TEST_count_bits_Kernighan_method);
+        XTESTS_RUN_CASE(TEST_count_bits_8bit_table);
+        XTESTS_RUN_CASE(TEST_find_high_bit_FOR_32);
+        XTESTS_RUN_CASE(TEST_find_high_bit_FOR_64);
+        XTESTS_RUN_CASE(TEST_calculate_xor_over_range_FOR_8_BIT);
 
         XTESTS_PRINT_RESULTS();
 
@@ -97,7 +97,8 @@ namespace {
 
     using platformstl::stopwatch;
 
-static void test_count_bits_Kernighan()
+
+static void TEST_count_bits_Kernighan_method()
 {
     stopwatch sw;
 
@@ -159,7 +160,7 @@ static void test_count_bits_Kernighan()
     fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(sw.get_nanoseconds()));
 }
 
-static void test_count_bits_8bit_table()
+static void TEST_count_bits_8bit_table()
 {
     stopwatch sw;
 
@@ -221,7 +222,7 @@ static void test_count_bits_8bit_table()
     fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(sw.get_nanoseconds()));
 }
 
-static void test_find_high_bit_32()
+static void TEST_find_high_bit_FOR_32()
 {
     TEST_INT_EQ(0u, stlsoft::find_highest_bit(uint32_t(0)));
 
@@ -243,7 +244,7 @@ static void test_find_high_bit_32()
     TEST_INT_EQ(32u, stlsoft::find_highest_bit(uint32_t(0x80000000)));
 }
 
-static void test_find_high_bit_64()
+static void TEST_find_high_bit_FOR_64()
 {
     TEST_INT_EQ(0u, stlsoft::find_highest_bit(uint64_t(0)));
 
@@ -274,7 +275,7 @@ static void test_find_high_bit_64()
     TEST_INT_EQ(45u, stlsoft::find_highest_bit(uint64_t(STLSOFT_GEN_UINT64_SUFFIX(0x1c3c3c3c3c3c))));
 }
 
-static void test_calculate_xor_over_range_8_bit()
+static void TEST_calculate_xor_over_range_FOR_8_BIT()
 {
     uint8_t const elements[] =
     {
