@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/bits/count_functions.h
+ * File:    stlsoft/util/bits/count_functions.h
  *
- * Purpose:     Bit count functions.
+ * Purpose: Bit count functions.
  *
- * Created:     2nd June 2010
- * Updated:     11th March 2024
+ * Created: 2nd June 2010
+ * Updated: 24th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR    3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT     19
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR      1
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR      3
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION   1
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -364,7 +364,6 @@ namespace ximpl_bit_functions
 
         return &s_table;
     }
-
 # ifdef __cplusplus
 } /* namespace ximpl_bit_functions */
 # endif /* __cplusplus */
@@ -612,7 +611,10 @@ count_bits(
 }
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
@@ -626,8 +628,6 @@ count_bits(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS */
 

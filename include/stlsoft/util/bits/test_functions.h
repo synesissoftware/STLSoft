@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/bits/test_functions.h
+ * File:    stlsoft/util/bits/test_functions.h
  *
- * Purpose:     Bit test functions
+ * Purpose: Bit test functions
  *
- * Created:     2nd June 2010
- * Updated:     11th March 2024
+ * Created: 2nd June 2010
+ * Updated: 24th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_EDIT        12
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -231,11 +231,12 @@ find_highest_bit(
 {
     return stlsoft_C_find_highest_bit_in_8bit_unsigned_integer(v);
 }
-
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
@@ -249,8 +250,6 @@ find_highest_bit(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS */
 
