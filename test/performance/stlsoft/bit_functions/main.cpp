@@ -99,7 +99,17 @@ namespace {
     ,   ss_size_t           n
     )
     {
-        interval_t sorted[NUM_SAMPLES];
+        interval_t sorted[NUM_SAMPLES] = {};
+
+        if (0 == n)
+        {
+            return 0;
+        }
+
+        if (n > NUM_SAMPLES)
+        {
+            n = NUM_SAMPLES;
+        }
 
         for (ss_size_t i = 0; n != i; ++i)
         {
