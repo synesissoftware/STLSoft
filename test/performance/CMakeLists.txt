@@ -1,4 +1,6 @@
 
+add_subdirectory(stlsoft)
+
 if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2011)
 
 	add_subdirectory(test.performance.platformstl.stopwatch)
