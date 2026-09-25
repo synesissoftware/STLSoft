@@ -1,6 +1,17 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc7 - 25th September 2026
+
+* Added `count_bits_by_intrinsic()` and `find_highest_bit_by_intrinsic()` (unselected by default; `count_bits()` keeps the 8-bit table; `find_highest_bit()` keeps the scan);
+* Added **stlsoft/api/external/bitfns.h** and **stlsoft/api/internal/bitfns.h** — detection and adaptations for `popcount` / `clz` / `_BitScanReverse` intrinsics (GCC/Clang builtins preferred over MSVC when both are visible);
+* Clang cccap — `STLSOFT_CLANG_VER`; documented shared `STLSOFT_GCC_VER` (also noted in GCC cccap);
+* Fixed `count_bits()` overloads when `STLSOFT_BIT_COUNT_BY_Kernighan` is defined;
+* Unit tests for intrinsic popcount / highest-bit helpers; broader width coverage for bit-function overloads;
+* Performance suite **test/performance/stlsoft/bit_functions** (density patterns, intrinsic rows, median / ns-per-call reporting);
+* Strategy note **strategy/BIT_FUNCTIONS.md** — measurements and default choice (table for `count_bits()`; keep intrinsics unselected pending cross-toolchain evidence);
+
+
 ## 1.11.1-rc6 - 21st September 2026
 
 * CMake/CI — optional **ACE** discovery (**cmake/FindACE.cmake**, **NO_ACE** / **prepare_cmake.sh --no-ace**); dedicated **cell-ace** job (**with-ace**);
