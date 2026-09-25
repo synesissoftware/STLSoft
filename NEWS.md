@@ -3,6 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
+| 25th September 2026 | Release of [STLSoft 1.11.1-rc7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc7) | bit-function intrinsics; table default for `count_bits()` |
 | 21st September 2026 | Release of [STLSoft 1.11.1-rc6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc6) | ACE/ATL/MFC CI; Clang/macOS `stricmp` aliases |
 | 4th August 2026     | Release of [STLSoft 1.11.1-rc5](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc5) | `basic_simple_string<>#resize()`; **CHANGES.md**; docs |
 | 29th July 2026      | Release of [STLSoft 1.11.1-rc4](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc4) | GitHub Actions CI; VC++ 18.x; MinGW |
