@@ -145,7 +145,7 @@ STLSOFT_API_INTERNAL_bitfns_popcount_uint64(
     return STLSOFT_API_EXTERNAL_bitfns_popcount_ullong(STLSOFT_C_CAST(unsigned long long, v));
 #  elif defined(STLSOFT_API_EXTERNAL_bitfns_popcnt_uint64)
 
-    return STLSOFT_API_EXTERNAL_bitfns_popcnt_uint64(STLSOFT_C_CAST(unsigned __int64, v));
+    return STLSOFT_C_CAST(int, STLSOFT_API_EXTERNAL_bitfns_popcnt_uint64(STLSOFT_C_CAST(unsigned __int64, v)));
 #  else
 
 #   error Unexpected

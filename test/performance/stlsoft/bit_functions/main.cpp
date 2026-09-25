@@ -302,7 +302,14 @@ env_is_truey(
     char const* name
 )
 {
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
     char const* const env = ::getenv(name);
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif
 
     if (NULL == env || '\0' == *env)
     {
@@ -518,9 +525,12 @@ emit_build_banner()
     std::cout
         << "width columns are loop ns; ns columns are ns/call; el columns are ns/element"
         << std::endl;
-    std::cout
-        << "Env: SIS_PERFTESTS_GROUPGAPS."
-        << std::endl;
+    if (env_is_truey("SIS_PERFTESTS_GROUPGAPS"))
+    {
+        std::cout
+            << "Env: SIS_PERFTESTS_GROUPGAPS=1"
+            << std::endl;
+    }
 }
 
 
@@ -1245,8 +1255,8 @@ int main(int /*argc*/, char* /*argv*/[])
     // ------------------------------------------------------------------
 
     {
-        ss_uint8_t  volatile ones8  = ~ss_uint8_t(0);
-        ss_uint16_t volatile ones16 = ~ss_uint16_t(0);
+        ss_uint8_t  volatile ones8  = ss_uint8_t(~ss_uint8_t(0));
+        ss_uint16_t volatile ones16 = ss_uint16_t(~ss_uint16_t(0));
         ss_uint32_t volatile ones32 = ~ss_uint32_t(0);
         ss_uint64_t volatile ones64 = ~ss_uint64_t(0);
 
@@ -1633,7 +1643,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint8_t const v = ~ss_uint8_t(0) ^ (ss_uint8_t(1) << (i % 8u));
+            ss_uint8_t const v = ss_uint8_t(~ss_uint8_t(0)) ^ (ss_uint8_t(1) << (i % 8u));
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -1645,7 +1655,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint16_t const v = ~ss_uint16_t(0) ^ (ss_uint16_t(1) << (i % 16u));
+            ss_uint16_t const v = ss_uint16_t(~ss_uint16_t(0)) ^ (ss_uint16_t(1) << (i % 16u));
 
             anchor_value += stlsoft::count_bits_by_Kernighan_method(v);
         }
@@ -1713,7 +1723,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint8_t const v = ~ss_uint8_t(0) ^ (ss_uint8_t(1) << (i % 8u));
+            ss_uint8_t const v = ss_uint8_t(~ss_uint8_t(0)) ^ (ss_uint8_t(1) << (i % 8u));
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -1725,7 +1735,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint16_t const v = ~ss_uint16_t(0) ^ (ss_uint16_t(1) << (i % 16u));
+            ss_uint16_t const v = ss_uint16_t(~ss_uint16_t(0)) ^ (ss_uint16_t(1) << (i % 16u));
 
             anchor_value += stlsoft::count_bits_by_8bit_table(v);
         }
@@ -1793,7 +1803,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint8_t const v = ~ss_uint8_t(0) ^ (ss_uint8_t(1) << (i % 8u));
+            ss_uint8_t const v = ss_uint8_t(~ss_uint8_t(0)) ^ (ss_uint8_t(1) << (i % 8u));
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -1805,7 +1815,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint16_t const v = ~ss_uint16_t(0) ^ (ss_uint16_t(1) << (i % 16u));
+            ss_uint16_t const v = ss_uint16_t(~ss_uint16_t(0)) ^ (ss_uint16_t(1) << (i % 16u));
 
             anchor_value += stlsoft::count_bits(v);
         }
@@ -1887,7 +1897,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint8_t const v = ~ss_uint8_t(0) ^ (ss_uint8_t(1) << (i % 8u));
+            ss_uint8_t const v = ss_uint8_t(~ss_uint8_t(0)) ^ (ss_uint8_t(1) << (i % 8u));
 
             anchor_value += stlsoft::count_bits_by_intrinsic(v);
         }
@@ -1899,7 +1909,7 @@ int main(int /*argc*/, char* /*argv*/[])
         sw.start();
         for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
         {
-            ss_uint16_t const v = ~ss_uint16_t(0) ^ (ss_uint16_t(1) << (i % 16u));
+            ss_uint16_t const v = ss_uint16_t(~ss_uint16_t(0)) ^ (ss_uint16_t(1) << (i % 16u));
 
             anchor_value += stlsoft::count_bits_by_intrinsic(v);
         }
