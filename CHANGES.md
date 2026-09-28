@@ -1,6 +1,11 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc7 - 29th September 2026
+
+* add component tests for `stlsoft::environment_variable_exists()`;
+
+
 ## 1.11.1-rc6 - 21st September 2026
 
 * CMake/CI — optional **ACE** discovery (**cmake/FindACE.cmake**, **NO_ACE** / **prepare_cmake.sh --no-ace**); dedicated **cell-ace** job (**with-ace**);

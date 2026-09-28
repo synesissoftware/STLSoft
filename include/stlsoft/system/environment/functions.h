@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/environment/functions.h
+ * File:    stlsoft/system/environment/functions.h
  *
- * Purpose:     Environment functions.
+ * Purpose: Environment functions.
  *
- * Created:     4th March 2011
- * Updated:     11th March 2024
+ * Created: 4th March 2011
+ * Updated: 28th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        12
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    2
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,13 +94,13 @@ namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * API functions
+ * API functions (C)
  */
 
-/** Indicates whether the named environment variable exists
+/** Indicates whether the named environment variable exists.
  *
- * \retval 0 The environment variable does not exist
- * \retval !0 The environment variable does exist
+ * \retval 0 The environment variable does not exist;
+ * \retval !0 The environment variable does exist;
  *
  * \pre (NULL != name)
  */
@@ -108,7 +108,7 @@ STLSOFT_INLINE
 ss_truthy_t
 stlsoft_C_environment_variable_exists_a(
     char const* name
-)
+) STLSOFT_NOEXCEPT
 {
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
     defined(STLSOFT_COMPILER_IS_MSVC)
@@ -148,10 +148,15 @@ stlsoft_C_environment_variable_exists_a(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * C++ API functions
+ * language
  */
 
 #ifdef __cplusplus
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API functions (C++)
+ */
 
 /** \see stlsoft_C_environment_variable_exists_a
  */
@@ -164,9 +169,17 @@ environment_variable_exists(
     return stlsoft_C_environment_variable_exists_a(name);
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * language
+ */
+
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
