@@ -126,7 +126,7 @@ static void TEST_environment_variable_exists_WHEN_ABSENT()
     char const* const name = VAR_NAME;
 
     TEST_BOOLEAN_FALSE(stlsoft::environment_variable_exists(name));
-    TEST_BOOLEAN_FALSE(stlsoft::stlsoft_C_environment_variable_exists_a(name));
+    TEST_BOOLEAN_FALSE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
     TEST_BOOLEAN_FALSE(stlsoft::environment_variable_exists("STLSOFT_CT_ENV_VAR_EXISTS_NO_SUCH"));
 }
 
@@ -137,7 +137,7 @@ static void TEST_environment_variable_exists_WHEN_PRESENT()
     char const* const name = VAR_NAME;
 
     TEST_BOOLEAN_TRUE(stlsoft::environment_variable_exists(name));
-    TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_a(name));
+    TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
 }
 
 static void TEST_environment_variable_exists_WHEN_ERASED()

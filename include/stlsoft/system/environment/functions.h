@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    2
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        14
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    3
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,7 @@ namespace stlsoft
  */
 STLSOFT_INLINE
 ss_truthy_t
-stlsoft_C_environment_variable_exists_a(
+stlsoft_C_environment_variable_exists_m(
     char const* name
 ) STLSOFT_NOEXCEPT
 {
@@ -145,6 +145,21 @@ stlsoft_C_environment_variable_exists_a(
     return NULL != STLSOFT_NS_GLOBAL(getenv)(name);
 #endif
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** [DEPRECATED]  \see stlsoft_C_environment_variable_exists_m
+ *
+ */
+STLSOFT_DEPRECATED_("`stlsoft_C_environment_variable_exists_a()` is deprecated, and will be removed from a future release, and you should instead use `stlsoft_C_environment_variable_exists_m()`") // applied here rather than on template because above class_type precipitates
+STLSOFT_INLINE
+ss_truthy_t
+stlsoft_C_environment_variable_exists_a(
+    char const* name
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_environment_variable_exists_m(name);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,7 +173,7 @@ stlsoft_C_environment_variable_exists_a(
  * API functions (C++)
  */
 
-/** \see stlsoft_C_environment_variable_exists_a
+/** \see stlsoft_C_environment_variable_exists_m
  */
 inline
 ss_truthy_t
@@ -166,7 +181,7 @@ environment_variable_exists(
     char const* name
 )
 {
-    return stlsoft_C_environment_variable_exists_a(name);
+    return stlsoft_C_environment_variable_exists_m(name);
 }
 
 
