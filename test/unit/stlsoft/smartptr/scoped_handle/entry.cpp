@@ -48,21 +48,8 @@ namespace {
     static void test_1_2();
     static void test_1_3();
     static void test_1_4();
-    static void test_1_5();
     static void test_1_6();
-    static void test_1_7();
-    static void test_1_8();
-    static void test_1_9();
     static void test_1_10();
-    static void test_1_11();
-    static void test_1_12();
-    static void test_1_13();
-    static void test_1_14();
-    static void test_1_15();
-    static void test_1_16();
-    static void test_1_17();
-    static void test_1_18();
-    static void test_1_19();
 #endif /* compiler */
 } // anonymous namespace
 
@@ -91,21 +78,8 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_1_2);
         XTESTS_RUN_CASE(test_1_3);
         XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
         XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
         XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
 #endif /* compiler */
 
         XTESTS_PRINT_RESULTS();
@@ -452,10 +426,6 @@ static void test_1_4()
     TEST_INT_EQ(0, s_intCount);
 }
 
-static void test_1_5()
-{
-}
-
 static void test_1_6()
 {
     TEST_INT_EQ(0, s_voidCount);
@@ -533,18 +503,6 @@ static void test_1_6()
     TEST_INT_EQ(0, s_voidCount);
 }
 
-static void test_1_7()
-{
-}
-
-static void test_1_8()
-{
-}
-
-static void test_1_9()
-{
-}
-
 static void test_1_10()
 {
     TEST_INT_EQ(0, s_intCount);
@@ -603,42 +561,6 @@ static void test_1_10()
     }
 
     TEST_INT_EQ(0, s_intCount);
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
-
-static void test_1_13()
-{
-}
-
-static void test_1_14()
-{
-}
-
-static void test_1_15()
-{
-}
-
-static void test_1_16()
-{
-}
-
-static void test_1_17()
-{
-}
-
-static void test_1_18()
-{
-}
-
-static void test_1_19()
-{
 }
 #endif /* compiler */
 } // anonymous namespace
@@ -803,5 +725,4 @@ namespace {
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
-
 

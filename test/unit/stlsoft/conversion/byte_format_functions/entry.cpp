@@ -61,17 +61,6 @@ namespace {
     static void test_format_bytes_5_byte_4_grouping();
     static void test_format_bytes_5_byte_8_grouping();
     static void test_format_bytes_5_byte_16_grouping();
-
-    static void test_1_21();
-    static void test_1_22();
-    static void test_1_23();
-    static void test_1_24();
-    static void test_1_25();
-    static void test_1_26();
-    static void test_1_27();
-    static void test_1_28();
-    static void test_1_29();
-    static void test_1_30();
 } // anonymous namespace
 
 
@@ -103,17 +92,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_format_bytes_5_byte_4_grouping);
         XTESTS_RUN_CASE(test_format_bytes_5_byte_8_grouping);
         XTESTS_RUN_CASE(test_format_bytes_5_byte_16_grouping);
-
-        XTESTS_RUN_CASE(test_1_21);
-        XTESTS_RUN_CASE(test_1_22);
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_24);
-        XTESTS_RUN_CASE(test_1_25);
-        XTESTS_RUN_CASE(test_1_26);
-        XTESTS_RUN_CASE(test_1_27);
-        XTESTS_RUN_CASE(test_1_28);
-        XTESTS_RUN_CASE(test_1_29);
-        XTESTS_RUN_CASE(test_1_30);
 
 #ifdef STLSOFT_USE_XCOVER
         XCOVER_REPORT_FILE_COVERAGE("*stlsoft*/simple_string.hpp", NULL);
@@ -207,7 +185,6 @@ static void test_format_bytes_1_byte_16_grouping()
     TEST_MS_EQ_N("00000000000000000000000000000001", sz, static_cast<int>(n));
 }
 
-
 static void test_format_bytes_5_byte_1_grouping()
 {
     char                    sz[1001];
@@ -276,47 +253,6 @@ static void test_format_bytes_5_byte_16_grouping()
                                             );
 
     TEST_MS_EQ_N("00000000000000000000000504030201", sz, static_cast<int>(n));
-}
-
-
-static void test_1_21()
-{
-}
-
-static void test_1_22()
-{
-}
-
-static void test_1_23()
-{
-}
-
-static void test_1_24()
-{
-}
-
-static void test_1_25()
-{
-}
-
-static void test_1_26()
-{
-}
-
-static void test_1_27()
-{
-}
-
-static void test_1_28()
-{
-}
-
-static void test_1_29()
-{
-}
-
-static void test_1_30()
-{
 }
 } // anonymous namespace
 

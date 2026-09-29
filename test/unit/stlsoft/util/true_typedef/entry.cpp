@@ -48,7 +48,6 @@
 namespace {
 
     static void test_int_spec();
-    static void test_Integer_spec();
     static void test_double_spec();
     static void test_stdstring_spec();
 } // anonymous namespace
@@ -68,7 +67,6 @@ int main(int argc, char *argv[])
     if (XTESTS_START_RUNNER("test.unit.stlsoft.util.true_typedef", verbosity))
     {
         XTESTS_RUN_CASE(test_int_spec);
-        XTESTS_RUN_CASE(test_Integer_spec);
         XTESTS_RUN_CASE(test_double_spec);
         XTESTS_RUN_CASE(test_stdstring_spec);
 
@@ -643,11 +641,6 @@ static void test_int_spec()
 
         TEST(65455 == v);
     }
-}
-
-static void test_Integer_spec()
-{
-
 }
 
 static void test_double_spec()

@@ -62,18 +62,11 @@ namespace {
     static void test_write();
     static void test_truncate();
     static void test_swap();
-    static void test_1_8();
-    static void test_1_9();
     static void test_append_c_string();
     static void test_append_c_string_after_truncate();
-    static void test_1_12();
     static void test_null_string();
     static void test_reserve();
     static void test_resize();
-    static void test_1_16();
-    static void test_1_17();
-    static void test_1_18();
-    static void test_1_19();
     static void test_insertion_1();
     static void test_insertion_2();
     static void test_insertion_3();
@@ -103,18 +96,11 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_write);
         XTESTS_RUN_CASE(test_truncate);
         XTESTS_RUN_CASE(test_swap);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
         XTESTS_RUN_CASE(test_append_c_string);
         XTESTS_RUN_CASE(test_append_c_string_after_truncate);
-        XTESTS_RUN_CASE(test_1_12);
         XTESTS_RUN_CASE(test_null_string);
         XTESTS_RUN_CASE(test_reserve);
         XTESTS_RUN_CASE(test_resize);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
         XTESTS_RUN_CASE(test_insertion_1);
         XTESTS_RUN_CASE(test_insertion_2);
         XTESTS_RUN_CASE(test_insertion_3);
@@ -382,14 +368,6 @@ static void test_swap()
     }
 }
 
-static void test_1_8()
-{
-}
-
-static void test_1_9()
-{
-}
-
 static void test_append_c_string()
 {
     char const* strings[] =
@@ -443,10 +421,6 @@ static void test_append_c_string_after_truncate()
         TEST_PTR_EQ(ptr, str);
         TEST_MS_EQ(std::string(alphabet, 3u * (i + 1)), str);
     }}
-}
-
-static void test_1_12()
-{
 }
 
 static void test_null_string()
@@ -532,22 +506,6 @@ static void test_resize()
         TEST_INT_EQ(0u, s.size());
     }
 
-}
-
-static void test_1_16()
-{
-}
-
-static void test_1_17()
-{
-}
-
-static void test_1_18()
-{
-}
-
-static void test_1_19()
-{
 }
 
 static void test_insertion_1()
@@ -856,7 +814,6 @@ static void test_insertion_3()
         }
     }
 }
-
 
 static void test_insertion_4()
 {

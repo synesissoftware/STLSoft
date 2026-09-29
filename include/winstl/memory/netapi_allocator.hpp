@@ -4,11 +4,11 @@
  * Purpose:     netapi_allocator class.
  *
  * Created:     23rd March 2006
- * Updated:     20th March 2025
+ * Updated:     30th September 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_REVISION 9
-# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     31
+# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -167,8 +167,10 @@ private:
     {
         STLSOFT_SUPPRESS_UNUSED(hint);
 
+        size_type const bytes = n * sizeof(value_type);
+        DWORD const     byte_count = static_cast<DWORD>(bytes);
         LPVOID          pv;
-        NET_API_STATUS  status = ::NetApiBufferAllocate(n * sizeof(value_type), &pv);
+        NET_API_STATUS  status = ::NetApiBufferAllocate(byte_count, &pv);
 
         return (NERR_Success == status) ? static_cast<void*>(pv) : NULL;
     }
