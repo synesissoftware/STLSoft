@@ -1,6 +1,4 @@
-
-add_subdirectory(platformstl)
-add_subdirectory(stlsoft)
+add_subdirectory(diagnostics)
 
 
 # ############################## end of file ############################# #

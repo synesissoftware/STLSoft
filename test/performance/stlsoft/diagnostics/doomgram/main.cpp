@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.doomgram/main.cpp
+ * File:    doomgram/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::doomgram<>`.
  *
  * Created: 11th December 2024
- * Updated: 17th December 2024
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

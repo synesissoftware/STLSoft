@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.conversion.integer_to_string/main.cpp
+ * File:    integer_to_string/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::integer_to_string<>`.
  *
  * Created: 29th October 2016
- * Updated: 29th May 2025
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

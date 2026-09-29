@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.simple_string.op_eq/main.cpp
+ * File:    simple_string.compare/main.cpp
  *
- * Purpose: Perf-test for `stlsoft::basic_simple_string#operator ==()`.
+ * Purpose: Perf-test for `stlsoft::basic_simple_string#compare()`.
  *
  * Created: 15th March 2024
- * Updated: 28th May 2024
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -100,6 +100,7 @@ do_equal_as_ccs(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
+,   double&
 )
 {
     stopwatch   sw;
@@ -113,14 +114,77 @@ do_equal_as_ccs(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            if (s1 == s2.c_str())
-            {
-                anchoring_value += i;
-            }
-            else
-            {
-                anchoring_value -= 1;
-            }
+            int const r = s1.compare(s2.c_str());
+
+            anchoring_value += r;
+        }
+
+        sw.stop();
+    }
+
+    return std::make_pair(sw.get_nanoseconds(), anchoring_value);
+}
+
+STLSOFT_NOINLINE
+std::pair<
+    interval_type   // total_time_ns
+,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
+>
+do_equal_as_p_n_ccs(
+    string_t const&     s1
+,   string_t const&     s2
+,   ss_size_t           num_iterations
+,   unsigned&
+)
+{
+    stopwatch   sw;
+    ss_sint64_t anchoring_value = 0;
+
+    for (int W = 2; W > 0; --W)
+    {
+        anchoring_value = 0;
+
+        sw.start();
+
+        for (ss_size_t i = 0; i != num_iterations; ++i)
+        {
+            int const r = s1.compare(0, s1.size(), s2.c_str());
+
+            anchoring_value += r;
+        }
+
+        sw.stop();
+    }
+
+    return std::make_pair(sw.get_nanoseconds(), anchoring_value);
+}
+
+STLSOFT_NOINLINE
+std::pair<
+    interval_type   // total_time_ns
+,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
+>
+do_equal_as_p_n_ccs_n(
+    string_t const&     s1
+,   string_t const&     s2
+,   ss_size_t           num_iterations
+,   unsigned&
+)
+{
+    stopwatch   sw;
+    ss_sint64_t anchoring_value = 0;
+
+    for (int W = 2; W > 0; --W)
+    {
+        anchoring_value = 0;
+
+        sw.start();
+
+        for (ss_size_t i = 0; i != num_iterations; ++i)
+        {
+            int const r = s1.compare(0, s1.size(), s2.c_str(), s2.size());
+
+            anchoring_value += r;
         }
 
         sw.stop();
@@ -151,14 +215,77 @@ do_equal_as_scr(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            if (s1 == s2)
-            {
-                anchoring_value += i;
-            }
-            else
-            {
-                anchoring_value -= 1;
-            }
+            int const r = s1.compare(s2);
+
+            anchoring_value += r;
+        }
+
+        sw.stop();
+    }
+
+    return std::make_pair(sw.get_nanoseconds(), anchoring_value);
+}
+
+STLSOFT_NOINLINE
+std::pair<
+    interval_type   // total_time_ns
+,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
+>
+do_equal_as_p_n_scr(
+    string_t const&     s1
+,   string_t const&     s2
+,   ss_size_t           num_iterations
+,   char const*&
+)
+{
+    stopwatch   sw;
+    ss_sint64_t anchoring_value = 0;
+
+    for (int W = 2; W > 0; --W)
+    {
+        anchoring_value = 0;
+
+        sw.start();
+
+        for (ss_size_t i = 0; i != num_iterations; ++i)
+        {
+            int const r = s1.compare(0, s1.size(), s2);
+
+            anchoring_value += r;
+        }
+
+        sw.stop();
+    }
+
+    return std::make_pair(sw.get_nanoseconds(), anchoring_value);
+}
+
+STLSOFT_NOINLINE
+std::pair<
+    interval_type   // total_time_ns
+,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
+>
+do_equal_as_p_n_scr_p_n(
+    string_t const&     s1
+,   string_t const&     s2
+,   ss_size_t           num_iterations
+,   wchar_t const*&
+)
+{
+    stopwatch   sw;
+    ss_sint64_t anchoring_value = 0;
+
+    for (int W = 2; W > 0; --W)
+    {
+        anchoring_value = 0;
+
+        sw.start();
+
+        for (ss_size_t i = 0; i != num_iterations; ++i)
+        {
+            int const r = s1.compare(0, s1.size(), s2, 0, s2.size());
+
+            anchoring_value += r;
         }
 
         sw.stop();
@@ -295,8 +422,111 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
             string_t const& s1  =   fields[1];
             string_t const& s2  =   fields[2];
+            double          dummy;
 
-            auto const      r   =   do_equal_as_ccs(s1, s2, NUM_ITERATIONS);
+            auto const      r   =   do_equal_as_ccs(s1, s2, NUM_ITERATIONS, dummy);
+
+            display_results(
+                std::cout
+            ,   fields[0].c_str()
+            ,   NUM_ITERATIONS
+#if 0
+#elif defined(USE_std_string)
+            ,   "std::string"
+#else
+            ,   "stlsoft::simple_string"
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+                "(HAS_equal)"
+# endif
+#endif
+            ,   r
+            );
+        }
+    }
+
+    // sc& <=> p, n, cc*
+    {
+        std::cout << "sc& <=> p, n, cc*:" << std::endl;
+
+        for (auto i : line_tokeniser)
+        {
+            field_tokeniser_t       field_tokeniser(i, field_delim);
+            std::vector<string_t>   fields(field_tokeniser.begin(), field_tokeniser.end());
+
+            if (0 == fields.size())
+            {
+                continue;
+            }
+
+            if (3 != fields.size())
+            {
+                std::cerr
+                    << program_name << ": "
+                    << "UNEXPECTED: "
+                    << "scenario line '"
+                    << i
+                    << "' contains " << fields.size() << " field(s), not 3 as required"
+                    << std::endl;
+
+                return EXIT_FAILURE;
+            }
+
+            string_t const& s1  =   fields[1];
+            string_t const& s2  =   fields[2];
+            unsigned        dummy;
+
+            auto const      r   =   do_equal_as_p_n_ccs(s1, s2, NUM_ITERATIONS, dummy);
+
+            display_results(
+                std::cout
+            ,   fields[0].c_str()
+            ,   NUM_ITERATIONS
+#if 0
+#elif defined(USE_std_string)
+            ,   "std::string"
+#else
+            ,   "stlsoft::simple_string"
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+                "(HAS_equal)"
+# endif
+#endif
+            ,   r
+            );
+        }
+    }
+
+    // sc& <=> p, n, cc*, n
+    {
+        std::cout << "sc& <=> p, n, cc*, n:" << std::endl;
+
+        for (auto i : line_tokeniser)
+        {
+            field_tokeniser_t       field_tokeniser(i, field_delim);
+            std::vector<string_t>   fields(field_tokeniser.begin(), field_tokeniser.end());
+
+            if (0 == fields.size())
+            {
+                continue;
+            }
+
+            if (3 != fields.size())
+            {
+                std::cerr
+                    << program_name << ": "
+                    << "UNEXPECTED: "
+                    << "scenario line '"
+                    << i
+                    << "' contains " << fields.size() << " field(s), not 3 as required"
+                    << std::endl;
+
+                return EXIT_FAILURE;
+            }
+
+            string_t const& s1  =   fields[1];
+            string_t const& s2  =   fields[2];
+            unsigned        dummy;
+
+            auto const      r   =   do_equal_as_p_n_ccs_n(s1, s2, NUM_ITERATIONS, dummy);
 
             display_results(
                 std::cout
@@ -364,6 +594,108 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
             ,   r
             );
         }
+    }
+
+    // sc& <=> p, n, sc&
+    {
+        std::cout << "sc& <=> p/n/sc&:" << std::endl;
+
+        for (auto i : line_tokeniser)
+        {
+            field_tokeniser_t       field_tokeniser(i, field_delim);
+            std::vector<string_t>   fields(field_tokeniser.begin(), field_tokeniser.end());
+
+            if (0 == fields.size())
+            {
+                continue;
+            }
+
+            if (3 != fields.size())
+            {
+                std::cerr
+                    << program_name << ": "
+                    << "UNEXPECTED: "
+                    << "scenario line '"
+                    << i
+                    << "' contains " << fields.size() << " field(s), not 3 as required"
+                    << std::endl;
+
+                return EXIT_FAILURE;
+            }
+
+            string_t const& s1  =   fields[1];
+            string_t const& s2  =   fields[2];
+            char const*     dummy;
+
+            auto const      r   =   do_equal_as_p_n_scr(s1, s2, NUM_ITERATIONS, dummy);
+
+            display_results(
+                std::cout
+            ,   fields[0].c_str()
+            ,   NUM_ITERATIONS
+#if 0
+#elif defined(USE_std_string)
+            ,   "std::string"
+#else
+            ,   "stlsoft::simple_string"
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+                "(HAS_equal)"
+# endif
+#endif
+            ,   r
+            );
+        }
+    }
+
+    // sc& <=> p, n, sc&, p, n
+    {
+        std::cout << "sc& <=> p/n/sc&/p/n:" << std::endl;
+
+        for (auto i : line_tokeniser)
+        {
+            field_tokeniser_t       field_tokeniser(i, field_delim);
+            std::vector<string_t>   fields(field_tokeniser.begin(), field_tokeniser.end());
+
+            if (0 == fields.size())
+            {
+                continue;
+            }
+
+            if (3 != fields.size())
+            {
+                std::cerr
+                    << program_name << ": "
+                    << "UNEXPECTED: "
+                    << "scenario line '"
+                    << i
+                    << "' contains " << fields.size() << " field(s), not 3 as required"
+                    << std::endl;
+
+                return EXIT_FAILURE;
+            }
+
+            string_t const& s1  =   fields[1];
+            string_t const& s2  =   fields[2];
+            wchar_t const*  dummy;
+
+            auto const      r   =   do_equal_as_p_n_scr_p_n(s1, s2, NUM_ITERATIONS, dummy);
+
+             display_results(
+                std::cout
+            ,   fields[0].c_str()
+            ,   NUM_ITERATIONS
+#if 0
+#elif defined(USE_std_string)
+            ,   "std::string"
+#else
+            ,   "stlsoft::simple_string"
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+                "(HAS_equal)"
+# endif
+#endif
+            ,   r
+            );
+       }
     }
 
     return EXIT_SUCCESS;

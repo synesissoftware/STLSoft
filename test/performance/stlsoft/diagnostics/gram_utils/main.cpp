@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.gram_utils/main.cpp
+ * File:    gram_utils/main.cpp
  *
  * Purpose: Perf-test for gram_utils
  *
  * Created: 17th December 2024
- * Updated: 19th December 2024
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

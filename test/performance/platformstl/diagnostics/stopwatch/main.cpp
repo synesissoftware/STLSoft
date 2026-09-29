@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.platformstl.stopwatch/main.cpp
+ * File:    stopwatch/main.cpp
  *
  * Purpose: Perf-test for stopwatch types.
  *
  * Created: 15th March 2024
- * Updated: 16th December 2024
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.auto_buffer/main.cpp
+ * File:    auto_buffer/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 29th JuneMay 2025
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
