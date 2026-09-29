@@ -1,6 +1,18 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc7 - 30th September 2026
+
+* **simple_string** — counted construction, `assign`, `append`, and `push_back` keep an embedded NUL, including assignment of a single `'\0'`;
+* **string_begins_with** — a `wchar_t` prefix compares with `char_traits<C>::compare_max` (`wcsncmp`);
+* **char_traits_safe** — a count of 0 compares equal; a non-zero count orders a null pointer before a live pointer;
+* **winstl::netapi_allocator** — pass a `DWORD` byte count to `NetApiBufferAllocate`; the unit test links **netapi32**;
+* **stlsoft/std/cstring.hpp** — suppress CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
+* Test directories — short leaf names under **test/unit**, **test/component**, **test/scratch**, and **test/performance**; executable names stay `test.<kind>.*`;
+* String-comparison units — `strnicmp` (C and C++), `c_string_traits`, `char_traits` / `char_traits_safe`, `strcmp` / `strncmp`, BSTR compare, `string_begins_with`, `special_string_instance::equal`, and compare edges on `simple_string`, `static_string`, `string_view`, and `string_slice`;
+* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**);
+
+
 ## 1.11.1-rc6 - 21st September 2026
 
 * CMake/CI — optional **ACE** discovery (**cmake/FindACE.cmake**, **NO_ACE** / **prepare_cmake.sh --no-ace**); dedicated **cell-ace** job (**with-ace**);
