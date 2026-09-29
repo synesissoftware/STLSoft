@@ -99,27 +99,18 @@ typedef stlsoft::null_allocator<int> allocator_t;
 
 static void expect_out_of_memory(allocator_t& ator, allocator_t::size_type n)
 {
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER >= 1200
-# pragma warning(push)
-# pragma warning(disable : 4702)
-#endif /* compiler */
+    int threw = 0;
 
     try
     {
         static_cast<void>(ator.allocate(n));
-
-        TEST_FAIL("should not get here");
     }
     catch (stlsoft::out_of_memory_exception&)
     {
-        TEST_PASSED();
+        threw = 1;
     }
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER >= 1200
-# pragma warning(pop)
-#endif /* compiler */
+    TEST_INT_EQ(1, threw);
 }
 
 static void test_alloc_0()
