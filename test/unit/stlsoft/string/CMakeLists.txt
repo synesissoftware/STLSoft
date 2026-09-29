@@ -2,6 +2,7 @@
 add_subdirectory(c_string.strnicmp)
 add_subdirectory(c_string.strnicmp.C)
 add_subdirectory(c_string_traits)
+add_subdirectory(char_traits)
 add_subdirectory(copy_functions)
 add_subdirectory(exception_string)
 add_subdirectory(shim_string)
