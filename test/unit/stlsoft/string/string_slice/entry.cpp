@@ -57,6 +57,9 @@ namespace {
     static void test_greater_than_operator_1();
     static void test_lessgreaterequal_operators_1();
     static void test_lessgreaterequal_operators_2();
+    static void TEST_compare_EMPTY();
+    static void TEST_compare_EMBEDDED_NUL();
+    static void TEST_compare_HIGH_BIT();
     static void test_insertion_1();
     static void test_insertion_2();
     static void test_insertion_3();
@@ -94,6 +97,9 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_greater_than_operator_1);
         XTESTS_RUN_CASE(test_lessgreaterequal_operators_1);
         XTESTS_RUN_CASE(test_lessgreaterequal_operators_2);
+        XTESTS_RUN_CASE(TEST_compare_EMPTY);
+        XTESTS_RUN_CASE(TEST_compare_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_compare_HIGH_BIT);
         XTESTS_RUN_CASE(test_insertion_1);
         XTESTS_RUN_CASE(test_insertion_2);
         XTESTS_RUN_CASE(test_insertion_3);
@@ -404,6 +410,74 @@ static void test_lessgreaterequal_operators_2()
 
     TEST_BOOLEAN_TRUE(slice1 <= slice2);
     TEST_BOOLEAN_TRUE(slice1_w <= slice2_w);
+}
+
+static void TEST_compare_EMPTY()
+{
+    stlsoft::string_slice<char> const       empty;
+    stlsoft::string_slice<char> const       empty2;
+    stlsoft::string_slice<char> const       a("a");
+    stlsoft::string_slice<wchar_t> const    wempty;
+    stlsoft::string_slice<wchar_t> const    wempty2;
+    stlsoft::string_slice<wchar_t> const    wa(L"a");
+
+    TEST_INT_EQ(0, empty.compare(empty2));
+    TEST_INT_EQ(0, empty.compare(""));
+    TEST_INT_LT(0, empty.compare(a));
+    TEST_INT_LT(0, empty.compare("a"));
+    TEST_INT_GT(0, a.compare(empty));
+    TEST_INT_GT(0, a.compare(""));
+
+    TEST_INT_EQ(0, wempty.compare(wempty2));
+    TEST_INT_EQ(0, wempty.compare(L""));
+    TEST_INT_LT(0, wempty.compare(wa));
+    TEST_INT_LT(0, wempty.compare(L"a"));
+    TEST_INT_GT(0, wa.compare(wempty));
+    TEST_INT_GT(0, wa.compare(L""));
+}
+
+static void TEST_compare_EMBEDDED_NUL()
+{
+    char const      src_x[] = { 'a', '\0', 'x' };
+    char const      src_y[] = { 'a', '\0', 'y' };
+    char const      src_b[] = { 'b', '\0', 'x' };
+    wchar_t const   wsrc_x[] = { L'a', L'\0', L'x' };
+    wchar_t const   wsrc_y[] = { L'a', L'\0', L'y' };
+
+    stlsoft::string_slice<char> const       s_ax(src_x, 3);
+    stlsoft::string_slice<char> const       s_ay(src_y, 3);
+    stlsoft::string_slice<char> const       s_bx(src_b, 3);
+    stlsoft::string_slice<char> const       s_ax2(src_x, 3);
+    stlsoft::string_slice<wchar_t> const    w_ax(wsrc_x, 3);
+    stlsoft::string_slice<wchar_t> const    w_ay(wsrc_y, 3);
+
+    TEST_INT_EQ(3u, s_ax.size());
+    TEST_INT_EQ(int('a'), int(s_ax.data()[0]));
+    TEST_INT_EQ(0, int(s_ax.data()[1]));
+    TEST_INT_EQ(int('x'), int(s_ax.data()[2]));
+    TEST_INT_EQ(0, s_ax.compare(s_ax2));
+    TEST_INT_LT(0, s_ax.compare("ax"));
+    TEST_INT_LT(0, s_ax.compare(s_ay));
+    TEST_INT_GT(0, s_bx.compare(s_ax));
+    TEST_INT_LT(0, stlsoft::string_slice<char>("a").compare(s_ax));
+
+    TEST_INT_EQ(3u, w_ax.size());
+    TEST_INT_EQ(int(L'a'), int(w_ax.data()[0]));
+    TEST_INT_EQ(0, int(w_ax.data()[1]));
+    TEST_INT_EQ(int(L'x'), int(w_ax.data()[2]));
+    TEST_INT_LT(0, w_ax.compare(L"ax"));
+    TEST_INT_LT(0, w_ax.compare(w_ay));
+}
+
+static void TEST_compare_HIGH_BIT()
+{
+    char const  small[] = { char(0x01) };
+    char const  large[] = { char(0xFF) };
+    stlsoft::string_slice<char> const   lo(small, 1);
+    stlsoft::string_slice<char> const   hi(large, 1);
+
+    TEST_INT_LT(0, lo.compare(hi));
+    TEST_INT_GT(0, hi.compare(lo));
 }
 
 static void test_insertion_1()
