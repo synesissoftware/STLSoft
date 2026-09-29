@@ -22,6 +22,11 @@ concurrency:
 env:
   BUILD_TYPE: Release
 
+# TEMPORARY (file_lines.perf): only the Windows/MinGW cell runs, so the
+# file_lines performance segfault can be chased without the rest of the
+# matrix. Restore Linux, macOS, windows-cl, ACE, ATL, MFC, and the other
+# install-smoke rows when that crash is located.
+
 jobs:
   cell:
     name: CI (${{ matrix.id }})
@@ -29,26 +34,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - id: linux-clang
-            os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - id: linux-gcc
-            os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - id: macos-clang
-            os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - id: macos-gcc
-            os: macos-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - id: windows-cl
-            os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
           - id: windows-mingw
             os: windows-latest
             c_compiler: mingw
@@ -66,6 +51,7 @@ jobs:
     secrets: inherit
 
   cell-ace:
+    if: false
     name: CI ACE (${{ matrix.id }})
     strategy:
       fail-fast: false
@@ -88,6 +74,7 @@ jobs:
     secrets: inherit
 
   cell-atl:
+    if: false
     name: CI ATL (${{ matrix.id }})
     strategy:
       fail-fast: false
@@ -110,6 +97,7 @@ jobs:
     secrets: inherit
 
   cell-mfc:
+    if: false
     name: CI MFC (${{ matrix.id }})
     strategy:
       fail-fast: false
@@ -138,18 +126,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
           - os: windows-latest
             c_compiler: mingw
             cpp_compiler: g++

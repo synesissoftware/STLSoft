@@ -5,7 +5,7 @@
  *          std::ifstream + std::getline.
  *
  * Created: 23rd September 2026
- * Updated: 23rd September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -83,6 +83,11 @@ std::size_t const COLUMN_WIDTH_SCENARIO         = 24;
 std::size_t const COLUMN_WIDTH_TOTAL_TIME       = 16;
 const std::size_t NUM_ITERATIONS = 1000;
 const std::size_t NUM_WARMUPS = 2;
+
+/* TEMPORARY: stderr progress for the MinGW segfault. Flushed per line so
+ * the last message is the step that died.
+ */
+bool trace_step_ = false;
 
 } // anonymous namespace
 
@@ -190,12 +195,36 @@ template <typename T_file_lines>
 std::size_t
 read_file_lines_()
 {
+    if (trace_step_)
+    {
+        std::cerr << "[file_lines.perf]   construct" << std::endl;
+    }
+
     T_file_lines lines(TEST_FILE_NAME);
+
+    if (trace_step_)
+    {
+        std::cerr
+            << "[file_lines.perf]   iterate size="
+            << lines.size()
+            << std::endl
+            ;
+    }
+
     std::size_t anchor = lines.size();
 
     for (typename T_file_lines::const_iterator i = lines.begin(); lines.end() != i; ++i)
     {
         anchor += (*i).size();
+    }
+
+    if (trace_step_)
+    {
+        std::cerr
+            << "[file_lines.perf]   walked anchor="
+            << anchor
+            << std::endl
+            ;
     }
 
     return anchor;
@@ -204,12 +233,15 @@ read_file_lines_()
 template <typename F>
 result_t
 time_(
-    std::size_t num_iterations
+    char const* label
+,   std::size_t num_iterations
 ,   F           fn
 )
 {
     interval_t interval = 0;
     std::size_t anchor = 0;
+
+    std::cerr << "[file_lines.perf] " << label << " begin" << std::endl;
 
     for (std::size_t w = NUM_WARMUPS; 0 != w; --w)
     {
@@ -220,7 +252,40 @@ time_(
 
         for (std::size_t i = 0; num_iterations != i; ++i)
         {
+            bool const trace_iter = (0u == i) || (0u == (i % 100u)) || (num_iterations - 1u == i);
+
+            if (trace_iter)
+            {
+                std::cerr
+                    << "[file_lines.perf] "
+                    << label
+                    << " warmup="
+                    << w
+                    << " iter="
+                    << i
+                    << " enter"
+                    << std::endl
+                    ;
+            }
+
+            trace_step_ = trace_iter;
             anchor += fn();
+            trace_step_ = false;
+
+            if (trace_iter)
+            {
+                std::cerr
+                    << "[file_lines.perf] "
+                    << label
+                    << " warmup="
+                    << w
+                    << " iter="
+                    << i
+                    << " leave anchor="
+                    << anchor
+                    << std::endl
+                    ;
+            }
         }
 
         sw.stop();
@@ -230,6 +295,8 @@ time_(
             interval = sw.get_nanoseconds();
         }
     }
+
+    std::cerr << "[file_lines.perf] " << label << " end" << std::endl;
 
     return std::make_pair(interval, anchor);
 }
@@ -274,10 +341,12 @@ run_scenario(
     ,   line_ending_name_(ending)
     );
 
+    std::cerr << "[file_lines.perf] scenario " << scenario << " write" << std::endl;
+
     if (!write_test_file(num_lines, line_length, ending))
     {
         std::cerr
-            << "failed to write "
+            << "[file_lines.perf] failed to write "
             << TEST_FILE_NAME
             << std::endl
             ;
@@ -285,7 +354,9 @@ run_scenario(
         return;
     }
 
-    result_t const getc = time_(NUM_ITERATIONS, []() -> std::size_t {
+    std::cerr << "[file_lines.perf] scenario " << scenario << " wrote" << std::endl;
+
+    result_t const getc = time_("vector<std::string>+getc", NUM_ITERATIONS, []() -> std::size_t {
         std::vector<std::string> lines;
         std::string line;
         std::size_t anchor = 0;
@@ -321,7 +392,7 @@ run_scenario(
         return lines.size() + anchor;
     });
 
-    result_t const getline = time_(NUM_ITERATIONS, [ending]() -> std::size_t {
+    result_t const getline = time_("vector<std::string>+getline", NUM_ITERATIONS, [ending]() -> std::size_t {
         std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
         std::vector<std::string> lines;
         std::string line;
@@ -342,15 +413,15 @@ run_scenario(
         return lines.size() + anchor;
     });
 
-    result_t const file_lines_std_string = time_(NUM_ITERATIONS, []() -> std::size_t {
+    result_t const file_lines_std_string = time_("basic_file_lines<std::string>", NUM_ITERATIONS, []() -> std::size_t {
         return read_file_lines_<file_lines_std_string_t>();
     });
 
-    result_t const file_lines_stlsoft_simple_string = time_(NUM_ITERATIONS, []() -> std::size_t {
+    result_t const file_lines_stlsoft_simple_string = time_("basic_file_lines<stlsoft::simple_string>", NUM_ITERATIONS, []() -> std::size_t {
         return read_file_lines_<file_lines_stlsoft_simple_string_t>();
     });
 
-    result_t const file_lines_stlsoft_string_view = time_(NUM_ITERATIONS, []() -> std::size_t {
+    result_t const file_lines_stlsoft_string_view = time_("basic_file_lines<stlsoft::string_view>", NUM_ITERATIONS, []() -> std::size_t {
         return read_file_lines_<file_lines_stlsoft_string_view_t>();
     });
 
@@ -361,7 +432,7 @@ run_scenario(
     display_result(scenario, "basic_file_lines<stlsoft::string_view>", NUM_ITERATIONS, file_lines_stlsoft_string_view);
 #if __cplusplus >= 201703L
 
-    result_t const file_lines_std_string_view = time_(NUM_ITERATIONS, []() -> std::size_t {
+    result_t const file_lines_std_string_view = time_("basic_file_lines<std::string_view>", NUM_ITERATIONS, []() -> std::size_t {
         return read_file_lines_<file_lines_std_string_view_t>();
     });
 
@@ -376,6 +447,9 @@ run_scenario(
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    std::cerr << std::unitbuf;
+    std::cerr << "[file_lines.perf] start" << std::endl;
+
     std::cout
         << std::left
         << std::setw(COLUMN_WIDTH_SCENARIO) << "scenario"
@@ -423,7 +497,11 @@ int main(int /*argc*/, char* /*argv*/[])
         run_scenario(scenarios[i].num_lines, scenarios[i].line_length, scenarios[i].ending);
     }}
 
+    std::cerr << "[file_lines.perf] remove " << TEST_FILE_NAME << std::endl;
+
     std::remove(TEST_FILE_NAME);
+
+    std::cerr << "[file_lines.perf] done" << std::endl;
 
     return EXIT_SUCCESS;
 }
