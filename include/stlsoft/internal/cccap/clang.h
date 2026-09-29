@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for Clang C/C++.
  *
  * Created: 14th March 2015
- * Updated: 20th September 2026
+ * Updated: 25th September 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MAJOR    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    11
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     33
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    12
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,6 +100,46 @@
 /* /////////////////////////////////////////////////////////////////////////
  * custom macros
  */
+
+#define STLSOFT_CLANG_VER                                   \
+                                                            \
+    (                                                       \
+        (__clang_major__                    * 10000)        \
+    +                                                       \
+        (__clang_minor__                    * 100)          \
+    +                                                       \
+        (__clang_patchlevel__               * 1)            \
+    )
+
+#ifdef __GNUC__
+
+# ifdef __GNUC_PATCHLEVEL__
+
+#  define STLSOFT_INTERNAL_GCC_PATCHLEVEL_                  __GNUC_PATCHLEVEL__
+# else /* ? __GNUC_PATCHLEVEL__ */
+
+#  define STLSOFT_INTERNAL_GCC_PATCHLEVEL_                  (0)
+# endif /* __GNUC_PATCHLEVEL__ */
+
+/** \def STLSOFT_GCC_VER A composite version object-like macro comprising
+ *  the major*10000 + minor*100 + patch, e.g. 30401 (3.4.1).
+ *
+ * \note Because several compilers (e.g. Clang) may offer GCC compatibility,
+ *  the presence of this symbol does NOT, in and of itself, mean that the
+ *  compiler is actually GCC. Rather, code must first check for definition
+ *  of STLSOFT_COMPILER_IS_GCC.
+ *
+ */
+# define STLSOFT_GCC_VER                                    \
+                                                            \
+    (                                                       \
+        (__GNUC__                           * 10000)        \
+    +                                                       \
+        (__GNUC_MINOR__                     * 100)          \
+    +                                                       \
+        (STLSOFT_INTERNAL_GCC_PATCHLEVEL_   * 1)            \
+    )
+#endif /* __GNUC__ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
