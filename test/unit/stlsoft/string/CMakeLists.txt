@@ -1,4 +1,6 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(c_string.strnicmp)
+add_subdirectory(c_string.strnicmp.C)
 add_subdirectory(copy_functions)
 add_subdirectory(exception_string)
 add_subdirectory(shim_string)
