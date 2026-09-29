@@ -21,7 +21,7 @@
 struct counted_chars
 {
     char const*         p;
-    stlsoft::ss_size_t  n;
+    size_t              n;
 };
 
 namespace stlsoft
@@ -30,7 +30,7 @@ inline char const* c_str_data(counted_chars const& s)
 {
     return s.p;
 }
-inline ss_size_t c_str_len(counted_chars const& s)
+inline size_t c_str_len(counted_chars const& s)
 {
     return s.n;
 }
@@ -112,7 +112,7 @@ template <
 struct fixed_ssi_policy
 {
     typedef C                                               char_type;
-    typedef stlsoft::ss_size_t                              size_type;
+    typedef size_t                                          size_type;
     typedef size_type                                     (*pfn_type)(char_type*, size_type);
     typedef ss_typename_type_k stlsoft::allocator_selector<
         char_type
@@ -155,7 +155,7 @@ inline wchar_t const* content_chars(content_abc const*, wchar_t const*)
 {
     return L"abc";
 }
-inline stlsoft::ss_size_t content_length(content_abc const*)
+inline size_t content_length(content_abc const*)
 {
     return 3;
 }
@@ -164,7 +164,7 @@ inline char const* content_chars(content_empty const*, char const*)
 {
     return "";
 }
-inline stlsoft::ss_size_t content_length(content_empty const*)
+inline size_t content_length(content_empty const*)
 {
     return 0;
 }
@@ -175,7 +175,7 @@ inline char const* content_chars(content_embedded const*, char const*)
 
     return s;
 }
-inline stlsoft::ss_size_t content_length(content_embedded const*)
+inline size_t content_length(content_embedded const*)
 {
     return 3;
 }

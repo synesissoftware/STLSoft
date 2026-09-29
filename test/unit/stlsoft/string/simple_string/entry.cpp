@@ -127,6 +127,12 @@ namespace {
     static void test_compare_2();
     static void test_compare_3();
     static void test_compare_4();
+    static void TEST_compare_EMPTY();
+    static void TEST_ctor_EMBEDDED_NUL();
+    static void TEST_append_EMBEDDED_NUL();
+    static void TEST_assign_EMBEDDED_NUL();
+    static void TEST_compare_EMBEDDED_NUL();
+    static void TEST_compare_WCHAR();
     static void test_equality_operators_1();
 #ifndef USE_std_string
     static void test_equal_p_n_ccs_n();
@@ -295,6 +301,12 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_compare_2);
         XTESTS_RUN_CASE(test_compare_3);
         XTESTS_RUN_CASE(test_compare_4);
+        XTESTS_RUN_CASE(TEST_compare_EMPTY);
+        XTESTS_RUN_CASE(TEST_ctor_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_append_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_assign_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_compare_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_compare_WCHAR);
         XTESTS_RUN_CASE(test_equality_operators_1);
 #ifndef USE_std_string
         XTESTS_RUN_CASE(test_equal_p_n_ccs_n);
@@ -462,8 +474,8 @@ namespace {
 #endif
 
 
-    static char const       alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    static wchar_t const    alphabet_w[] = L"abcdefghijklmnopqrstuvwxyz";
+    static char const       alphabet[]      =   "abcdefghijklmnopqrstuvwxyz";
+    static wchar_t const    alphabet_w[]    =   L"abcdefghijklmnopqrstuvwxyz";
 
 
 // construction
@@ -1469,6 +1481,165 @@ static void test_compare_4()
         TEST_INT_LT(0, s1.compare(s2.c_str()));
         TEST_INT_LT(0, s1.compare(0u, s1.size(), s2));
     }
+}
+
+static void TEST_compare_EMPTY()
+{
+    string_t const  empty;
+    string_t const  empty2;
+    string_t const  a("a");
+
+    TEST_INT_EQ(0, empty.compare(empty2));
+    TEST_INT_EQ(0, empty.compare(""));
+    TEST_INT_LT(0, empty.compare(a));
+    TEST_INT_LT(0, empty.compare("a"));
+    TEST_INT_GT(0, a.compare(empty));
+    TEST_INT_GT(0, a.compare(""));
+}
+
+static void expect_embedded_char_(string_t const& s)
+{
+    TEST_INT_EQ(3u, s.size());
+    TEST_INT_EQ(int('a'), int(s.data()[0]));
+    TEST_INT_EQ(0, int(s.data()[1]));
+    TEST_INT_EQ(int('x'), int(s.data()[2]));
+}
+
+static void expect_embedded_wchar_(wstring_t const& s)
+{
+    TEST_INT_EQ(3u, s.size());
+    TEST_INT_EQ(int(L'a'), int(s.data()[0]));
+    TEST_INT_EQ(0, int(s.data()[1]));
+    TEST_INT_EQ(int(L'x'), int(s.data()[2]));
+}
+
+static void TEST_ctor_EMBEDDED_NUL()
+{
+    char const src[] = { 'a', '\0', 'x' };
+    wchar_t const wsrc[] = { L'a', L'\0', L'x' };
+
+    expect_embedded_char_(string_t(src, 3));
+    expect_embedded_wchar_(wstring_t(wsrc, 3));
+}
+
+static void TEST_append_EMBEDDED_NUL()
+{
+    char const src[] = { 'a', '\0', 'x' };
+    char const tail[] = { '\0', 'x' };
+    wchar_t const wsrc[] = { L'a', L'\0', L'x' };
+    wchar_t const wtail[] = { L'\0', L'x' };
+    string_t    s;
+    string_t    prefixed("q");
+    string_t    pushed;
+    wstring_t   ws;
+    wstring_t   wprefixed(L"q");
+    wstring_t   wpushed;
+
+    s.append(src, 3);
+    prefixed.append(tail, 2);
+    pushed.push_back('a');
+    pushed.push_back('\0');
+    pushed.push_back('x');
+    ws.append(wsrc, 3);
+    wprefixed.append(wtail, 2);
+    wpushed.push_back(L'a');
+    wpushed.push_back(L'\0');
+    wpushed.push_back(L'x');
+
+    expect_embedded_char_(s);
+    expect_embedded_char_(pushed);
+    TEST_INT_EQ(3u, prefixed.size());
+    TEST_INT_EQ(int('q'), int(prefixed.data()[0]));
+    TEST_INT_EQ(0, int(prefixed.data()[1]));
+    TEST_INT_EQ(int('x'), int(prefixed.data()[2]));
+
+    expect_embedded_wchar_(ws);
+    expect_embedded_wchar_(wpushed);
+    TEST_INT_EQ(3u, wprefixed.size());
+    TEST_INT_EQ(int(L'q'), int(wprefixed.data()[0]));
+    TEST_INT_EQ(0, int(wprefixed.data()[1]));
+    TEST_INT_EQ(int(L'x'), int(wprefixed.data()[2]));
+}
+
+static void TEST_assign_EMBEDDED_NUL()
+{
+    char const src[] = { 'a', '\0', 'x' };
+    wchar_t const wsrc[] = { L'a', L'\0', L'x' };
+    string_t    empty;
+    string_t    existing("z");
+    string_t    filled("abc");
+    wstring_t   wempty;
+    wstring_t   wexisting(L"z");
+    wstring_t   wfilled(L"abc");
+
+    empty.assign(src, 3);
+    existing.reserve(32);
+    existing.assign(src, 3);
+    filled.assign(3, '\0');
+    wempty.assign(wsrc, 3);
+    wexisting.reserve(32);
+    wexisting.assign(wsrc, 3);
+    wfilled.assign(3, L'\0');
+
+    expect_embedded_char_(empty);
+    expect_embedded_char_(existing);
+    expect_embedded_char_(string_t(existing));
+    TEST_INT_EQ(3u, filled.size());
+    TEST_INT_EQ(0, int(filled.data()[0]));
+    TEST_INT_EQ(0, int(filled.data()[1]));
+    TEST_INT_EQ(0, int(filled.data()[2]));
+
+    expect_embedded_wchar_(wempty);
+    expect_embedded_wchar_(wexisting);
+    expect_embedded_wchar_(wstring_t(wexisting));
+    TEST_INT_EQ(3u, wfilled.size());
+    TEST_INT_EQ(0, int(wfilled.data()[0]));
+    TEST_INT_EQ(0, int(wfilled.data()[1]));
+    TEST_INT_EQ(0, int(wfilled.data()[2]));
+}
+
+static void TEST_compare_EMBEDDED_NUL()
+{
+    char const src_x[] = { 'a', '\0', 'x' };
+    char const src_y[] = { 'a', '\0', 'y' };
+    char const src_b[] = { 'b', '\0', 'x' };
+    string_t const s_ax(src_x, 3);
+    string_t const s_ay(src_y, 3);
+    string_t const s_bx(src_b, 3);
+    string_t const s_ax2(src_x, 3);
+
+    expect_embedded_char_(s_ax);
+    TEST_INT_EQ(0, s_ax.compare(s_ax2));
+    TEST_INT_LT(0, s_ax.compare("ax"));
+    TEST_INT_LT(0, s_ax.compare(s_ay));
+    TEST_INT_GT(0, s_bx.compare(s_ax));
+    TEST_INT_LT(0, string_t("a").compare(s_ax));
+}
+
+static void TEST_compare_WCHAR()
+{
+    wstring_t const abc(L"abc");
+    wstring_t const abd(L"abd");
+    wstring_t const empty;
+    wstring_t       w_ax;
+    wstring_t       w_ay;
+
+    w_ax.push_back(L'a');
+    w_ax.push_back(L'\0');
+    w_ax.push_back(L'x');
+    w_ay.push_back(L'a');
+    w_ay.push_back(L'\0');
+    w_ay.push_back(L'y');
+
+    TEST_INT_EQ(0, abc.compare(wstring_t(L"abc")));
+    TEST_INT_LT(0, abc.compare(abd));
+    TEST_INT_GT(0, abd.compare(abc));
+    TEST_INT_EQ(0, empty.compare(wstring_t()));
+    TEST_INT_EQ(0, empty.compare(L""));
+    TEST_INT_LT(0, empty.compare(abc));
+    expect_embedded_wchar_(w_ax);
+    TEST_INT_LT(0, w_ax.compare(L"ax"));
+    TEST_INT_LT(0, w_ax.compare(w_ay));
 }
 
 static void test_equality_operators_1()
@@ -3688,13 +3859,41 @@ static void test_string_traits()
 
 static void test_concatenation_1()
 {
-    string_t    s1(alphabet);
-    string_t    s2(s1, 0, 10);
-    string_t    s3(s1, 10, 10);
-    string_t    s4(s1, 20, 6);
-    string_t    s5 = s2 + s3 + s4;
+    {
+        string_t    s1(alphabet);
 
-    TEST_MS_EQ(s1, s5);
+
+        string_t    s2(s1, 0, 10);
+
+        string_t    s3(s1, 10, 10);
+
+        string_t    s4(s1, 20, 6);
+
+        string_t    s5 = s2 + s3 + s4;
+
+        TEST_MS_EQ(s1, s5);
+    }
+
+    {
+        static char const alphabet_with_NUL_vowels[] = "\0bcd\0fgh\0jklmn\0pqrst\0vwxyz";
+
+        string_t    s1(alphabet_with_NUL_vowels, 26);
+
+        TEST_INT_EQ(26, s1.length());
+
+        string_t    s2(s1, 0, 10);
+
+        string_t    s3(s1, 10, 10);
+
+        string_t    s4(s1, 20, 6);
+
+        string_t    s5 = s2 + s3 + s4;
+
+        TEST_MS_EQ(s1, s5);
+        TEST_INT_EQ(26, s5.length());
+
+        TEST_EQ(0, memcmp(alphabet_with_NUL_vowels, s5.data(), sizeof(char) * s5.length()));
+    }
 }
 
 static void test_concatenation_2()
