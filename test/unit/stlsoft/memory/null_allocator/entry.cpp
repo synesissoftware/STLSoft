@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::null_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -99,16 +99,18 @@ typedef stlsoft::null_allocator<int> allocator_t;
 
 static void expect_out_of_memory(allocator_t& ator, allocator_t::size_type n)
 {
+    int threw = 0;
+
     try
     {
         static_cast<void>(ator.allocate(n));
-
-        TEST_FAIL("should not get here");
     }
     catch (stlsoft::out_of_memory_exception&)
     {
-        TEST_PASSED();
+        threw = 1;
     }
+
+    TEST_INT_EQ(1, threw);
 }
 
 static void test_alloc_0()
