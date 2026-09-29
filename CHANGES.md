@@ -1,9 +1,12 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc7 - 29th September 2026
+## 1.11.1-rc7 - 30th September 2026
 
 * add component tests for `stlsoft::environment_variable_exists()`;
+* Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable target names unchanged;
+* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
+* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**);
 
 
 ## 1.11.1-rc6 - 21st September 2026
