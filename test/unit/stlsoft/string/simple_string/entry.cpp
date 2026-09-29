@@ -3861,14 +3861,9 @@ static void test_concatenation_1()
 {
     {
         string_t    s1(alphabet);
-
-
         string_t    s2(s1, 0, 10);
-
         string_t    s3(s1, 10, 10);
-
         string_t    s4(s1, 20, 6);
-
         string_t    s5 = s2 + s3 + s4;
 
         TEST_MS_EQ(s1, s5);
@@ -3882,11 +3877,8 @@ static void test_concatenation_1()
         TEST_INT_EQ(26, s1.length());
 
         string_t    s2(s1, 0, 10);
-
         string_t    s3(s1, 10, 10);
-
         string_t    s4(s1, 20, 6);
-
         string_t    s5 = s2 + s3 + s4;
 
         TEST_MS_EQ(s1, s5);
