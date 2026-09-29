@@ -47,13 +47,10 @@ namespace {
     static void TEST_starts_with_dots();
 
     static void TEST_ensure_dir_end_1(); // TODO: rename to `dirname_ensure_pns()`
-    static void TEST_ensure_dir_end_4(); // TODO: rename to `dirname_ensure_pns()`
 
     static void TEST_has_dir_end_1();
-    static void TEST_has_dir_end_2();
 
     static void TEST_remove_dir_end_1();
-    static void TEST_remove_dir_end_3();
 
     static void TEST_find_last_path_name_separator();
     static void TEST_find_next_path_name_separator();
@@ -77,7 +74,6 @@ namespace {
     static void TEST_pathComparisonIsCaseSensitive();
 
     static void TEST_str_fs_compare();
-    static void TEST_str_fs_n_compare();
 } // anonymous namespace
 
 
@@ -98,13 +94,10 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_starts_with_dots);
 
         XTESTS_RUN_CASE(TEST_ensure_dir_end_1);
-        XTESTS_RUN_CASE(TEST_ensure_dir_end_4);
 
         XTESTS_RUN_CASE(TEST_has_dir_end_1);
-        XTESTS_RUN_CASE(TEST_has_dir_end_2);
 
         XTESTS_RUN_CASE(TEST_remove_dir_end_1);
-        XTESTS_RUN_CASE(TEST_remove_dir_end_3);
 
         XTESTS_RUN_CASE(TEST_path_is_absolute_1);
         XTESTS_RUN_CASE(TEST_path_is_absolute_2);
@@ -129,7 +122,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_pathComparisonIsCaseSensitive);
 
         XTESTS_RUN_CASE(TEST_str_fs_compare);
-        XTESTS_RUN_CASE(TEST_str_fs_n_compare);
 
         XTESTS_PRINT_RESULTS();
 
@@ -492,10 +484,6 @@ static void TEST_ensure_dir_end_1()
     }
 }
 
-static void TEST_ensure_dir_end_4()
-{
-}
-
 static void TEST_has_dir_end_1()
 {
     // empty string
@@ -705,10 +693,6 @@ static void TEST_has_dir_end_1()
         }
 #endif
     }
-}
-
-static void TEST_has_dir_end_2()
-{
 }
 
 static void TEST_remove_dir_end_1()
@@ -972,11 +956,6 @@ static void TEST_remove_dir_end_1()
         }
 #endif
     }
-}
-
-static void TEST_remove_dir_end_3()
-{
-
 }
 
 static void TEST_path_is_absolute_1()
@@ -1837,11 +1816,6 @@ static void TEST_str_fs_compare()
             TEST_INT_EQ(0, filesystem_traits_w_t::str_fs_compare(L"C:\\DIR\\FILE.EXT", L"c:\\dir\\file.ext"));
         }
     }
-}
-
-static void TEST_str_fs_n_compare()
-{
-
 }
 } /* anonymous namespace */
 

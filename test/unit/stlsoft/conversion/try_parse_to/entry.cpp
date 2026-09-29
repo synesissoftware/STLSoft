@@ -94,9 +94,6 @@ namespace
     static void test_try_hex_5_int(void);
     static void test_try_hex_6_int(void);
     static void test_try_hex_7_int(void);
-    static void test_try_hex_8_int(void);
-    static void test_try_hex_9_int(void);
-    static void test_try_hex_10_int(void);
 
 } // anonymous namespace
 
@@ -145,9 +142,6 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_try_hex_5_int);
         XTESTS_RUN_CASE(test_try_hex_6_int);
         XTESTS_RUN_CASE(test_try_hex_7_int);
-        XTESTS_RUN_CASE(test_try_hex_8_int);
-        XTESTS_RUN_CASE(test_try_hex_9_int);
-        XTESTS_RUN_CASE(test_try_hex_10_int);
 
         XTESTS_PRINT_RESULTS();
 
@@ -600,7 +594,6 @@ static void test_try_12_int()
 #endif
 }
 
-
 static void test_try_1_uint64()
 {
     uint64_t i;
@@ -710,8 +703,6 @@ static void test_try_10_uint64()
     TEST_MS_EQ("a", endptr);
 }
 
-
-
 static void test_try_hex_1_int()
 {
     uint64_t i;
@@ -780,18 +771,6 @@ static void test_try_hex_7_int()
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<sint64_t>("-0x0aZ", 5, "", &i, &endptr)));
     TEST_INT_EQ(-10, i);
     TEST_MS_EQ("Z", endptr);
-}
-
-static void test_try_hex_8_int()
-{
-}
-
-static void test_try_hex_9_int()
-{
-}
-
-static void test_try_hex_10_int()
-{
 }
 } // anonymous namespace
 

@@ -1,3 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(platformstl)
-add_subdirectory(stlsoft)
+define_example_program(test.performance.stlsoft.bit_functions main.cpp)

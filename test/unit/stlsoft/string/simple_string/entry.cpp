@@ -117,11 +117,8 @@ namespace {
 
     // attributes
 
-    static void test_size();
     static void test_max_size();
-    static void test_length();
     static void test_capacity();
-    static void test_empty();
 
 
     // comparison
@@ -288,11 +285,8 @@ int main(int argc, char* argv[])
 
         // attributes
 
-        XTESTS_RUN_CASE(test_size);
         XTESTS_RUN_CASE(test_max_size);
-        XTESTS_RUN_CASE(test_length);
         XTESTS_RUN_CASE(test_capacity);
-        XTESTS_RUN_CASE(test_empty);
 
 
         // comparison
@@ -1331,23 +1325,12 @@ static void test_erase_pos_and_cch()
 
 // attributes
 
-static void test_size()
-{
-    {
-
-    }
-}
 
 static void test_max_size()
 {
     string_t s;
 
     TEST_INT_GE(1000000u, s.max_size());
-}
-
-static void test_length()
-{
-
 }
 
 static void test_capacity()
@@ -1365,10 +1348,6 @@ static void test_capacity()
     TEST_INT_GE(1000u, s.capacity());
 }
 
-static void test_empty()
-{
-
-}
 
 
 // comparison

@@ -55,15 +55,6 @@ namespace {
     static void test_1_8();
     static void test_1_9();
     static void test_1_10();
-    static void test_1_11();
-    static void test_1_12();
-    static void test_1_13();
-    static void test_1_14();
-    static void test_1_15();
-    static void test_1_16();
-    static void test_1_17();
-    static void test_1_18();
-    static void test_1_19();
 
     // CR-only
     static void test_2_0();
@@ -77,15 +68,6 @@ namespace {
     static void test_2_8();
     static void test_2_9();
     static void test_2_10();
-    static void test_2_11();
-    static void test_2_12();
-    static void test_2_13();
-    static void test_2_14();
-    static void test_2_15();
-    static void test_2_16();
-    static void test_2_17();
-    static void test_2_18();
-    static void test_2_19();
 
     // CRLF-only
     static void test_3_0();
@@ -99,15 +81,6 @@ namespace {
     static void test_3_8();
     static void test_3_9();
     static void test_3_10();
-    static void test_3_11();
-    static void test_3_12();
-    static void test_3_13();
-    static void test_3_14();
-    static void test_3_15();
-    static void test_3_16();
-    static void test_3_17();
-    static void test_3_18();
-    static void test_3_19();
 
     // LF or CR (but not CRLF)
     static void test_4_0();
@@ -121,15 +94,6 @@ namespace {
     static void test_4_8();
     static void test_4_9();
     static void test_4_10();
-    static void test_4_11();
-    static void test_4_12();
-    static void test_4_13();
-    static void test_4_14();
-    static void test_4_15();
-    static void test_4_16();
-    static void test_4_17();
-    static void test_4_18();
-    static void test_4_19();
 
     // LF or CRLF
     static void test_5_0();
@@ -143,15 +107,6 @@ namespace {
     static void test_5_8();
     static void test_5_9();
     static void test_5_10();
-    static void test_5_11();
-    static void test_5_12();
-    static void test_5_13();
-    static void test_5_14();
-    static void test_5_15();
-    static void test_5_16();
-    static void test_5_17();
-    static void test_5_18();
-    static void test_5_19();
 
     // CR or CRLF
     static void test_6_0();
@@ -165,15 +120,6 @@ namespace {
     static void test_6_8();
     static void test_6_9();
     static void test_6_10();
-    static void test_6_11();
-    static void test_6_12();
-    static void test_6_13();
-    static void test_6_14();
-    static void test_6_15();
-    static void test_6_16();
-    static void test_6_17();
-    static void test_6_18();
-    static void test_6_19();
 
     // 0 === (LF or CR or CRLF)
     static void test_7_0();
@@ -187,15 +133,6 @@ namespace {
     static void test_7_8();
     static void test_7_9();
     static void test_7_10();
-    static void test_7_11();
-    static void test_7_12();
-    static void test_7_13();
-    static void test_7_14();
-    static void test_7_15();
-    static void test_7_16();
-    static void test_7_17();
-    static void test_7_18();
-    static void test_7_19();
 
 
     // LF-only
@@ -210,15 +147,6 @@ namespace {
     static void test_8_8();
     static void test_8_9();
     static void test_8_10();
-    static void test_8_11();
-    static void test_8_12();
-    static void test_8_13();
-    static void test_8_14();
-    static void test_8_15();
-    static void test_8_16();
-    static void test_8_17();
-    static void test_8_18();
-    static void test_8_19();
 
     // CR-only
     static void test_9_0();
@@ -232,15 +160,6 @@ namespace {
     static void test_9_8();
     static void test_9_9();
     static void test_9_10();
-    static void test_9_11();
-    static void test_9_12();
-    static void test_9_13();
-    static void test_9_14();
-    static void test_9_15();
-    static void test_9_16();
-    static void test_9_17();
-    static void test_9_18();
-    static void test_9_19();
 
     // CRLF-only
     static void test_10_0();
@@ -254,15 +173,6 @@ namespace {
     static void test_10_8();
     static void test_10_9();
     static void test_10_10();
-    static void test_10_11();
-    static void test_10_12();
-    static void test_10_13();
-    static void test_10_14();
-    static void test_10_15();
-    static void test_10_16();
-    static void test_10_17();
-    static void test_10_18();
-    static void test_10_19();
 
     // LF or CR (but not CRLF)
     static void test_11_0();
@@ -276,15 +186,6 @@ namespace {
     static void test_11_8();
     static void test_11_9();
     static void test_11_10();
-    static void test_11_11();
-    static void test_11_12();
-    static void test_11_13();
-    static void test_11_14();
-    static void test_11_15();
-    static void test_11_16();
-    static void test_11_17();
-    static void test_11_18();
-    static void test_11_19();
 
     // LF or CRLF
     static void test_12_0();
@@ -298,15 +199,6 @@ namespace {
     static void test_12_8();
     static void test_12_9();
     static void test_12_10();
-    static void test_12_11();
-    static void test_12_12();
-    static void test_12_13();
-    static void test_12_14();
-    static void test_12_15();
-    static void test_12_16();
-    static void test_12_17();
-    static void test_12_18();
-    static void test_12_19();
 
     // CR or CRLF
     static void test_13_0();
@@ -320,15 +212,6 @@ namespace {
     static void test_13_8();
     static void test_13_9();
     static void test_13_10();
-    static void test_13_11();
-    static void test_13_12();
-    static void test_13_13();
-    static void test_13_14();
-    static void test_13_15();
-    static void test_13_16();
-    static void test_13_17();
-    static void test_13_18();
-    static void test_13_19();
 
     // 0 === (LF or CR or CRLF)
     static void test_14_0();
@@ -342,15 +225,6 @@ namespace {
     static void test_14_8();
     static void test_14_9();
     static void test_14_10();
-    static void test_14_11();
-    static void test_14_12();
-    static void test_14_13();
-    static void test_14_14();
-    static void test_14_15();
-    static void test_14_16();
-    static void test_14_17();
-    static void test_14_18();
-    static void test_14_19();
 } // anonymous namespace
 
 
@@ -378,15 +252,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_1_8);
         XTESTS_RUN_CASE(test_1_9);
         XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
 
         XTESTS_RUN_CASE(test_2_0);
         XTESTS_RUN_CASE(test_2_1);
@@ -399,15 +264,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_2_8);
         XTESTS_RUN_CASE(test_2_9);
         XTESTS_RUN_CASE(test_2_10);
-        XTESTS_RUN_CASE(test_2_11);
-        XTESTS_RUN_CASE(test_2_12);
-        XTESTS_RUN_CASE(test_2_13);
-        XTESTS_RUN_CASE(test_2_14);
-        XTESTS_RUN_CASE(test_2_15);
-        XTESTS_RUN_CASE(test_2_16);
-        XTESTS_RUN_CASE(test_2_17);
-        XTESTS_RUN_CASE(test_2_18);
-        XTESTS_RUN_CASE(test_2_19);
 
         XTESTS_RUN_CASE(test_3_0);
         XTESTS_RUN_CASE(test_3_1);
@@ -420,15 +276,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_3_8);
         XTESTS_RUN_CASE(test_3_9);
         XTESTS_RUN_CASE(test_3_10);
-        XTESTS_RUN_CASE(test_3_11);
-        XTESTS_RUN_CASE(test_3_12);
-        XTESTS_RUN_CASE(test_3_13);
-        XTESTS_RUN_CASE(test_3_14);
-        XTESTS_RUN_CASE(test_3_15);
-        XTESTS_RUN_CASE(test_3_16);
-        XTESTS_RUN_CASE(test_3_17);
-        XTESTS_RUN_CASE(test_3_18);
-        XTESTS_RUN_CASE(test_3_19);
 
         XTESTS_RUN_CASE(test_4_0);
         XTESTS_RUN_CASE(test_4_1);
@@ -441,15 +288,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_4_8);
         XTESTS_RUN_CASE(test_4_9);
         XTESTS_RUN_CASE(test_4_10);
-        XTESTS_RUN_CASE(test_4_11);
-        XTESTS_RUN_CASE(test_4_12);
-        XTESTS_RUN_CASE(test_4_13);
-        XTESTS_RUN_CASE(test_4_14);
-        XTESTS_RUN_CASE(test_4_15);
-        XTESTS_RUN_CASE(test_4_16);
-        XTESTS_RUN_CASE(test_4_17);
-        XTESTS_RUN_CASE(test_4_18);
-        XTESTS_RUN_CASE(test_4_19);
 
         XTESTS_RUN_CASE(test_5_0);
         XTESTS_RUN_CASE(test_5_1);
@@ -462,15 +300,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_5_8);
         XTESTS_RUN_CASE(test_5_9);
         XTESTS_RUN_CASE(test_5_10);
-        XTESTS_RUN_CASE(test_5_11);
-        XTESTS_RUN_CASE(test_5_12);
-        XTESTS_RUN_CASE(test_5_13);
-        XTESTS_RUN_CASE(test_5_14);
-        XTESTS_RUN_CASE(test_5_15);
-        XTESTS_RUN_CASE(test_5_16);
-        XTESTS_RUN_CASE(test_5_17);
-        XTESTS_RUN_CASE(test_5_18);
-        XTESTS_RUN_CASE(test_5_19);
 
         XTESTS_RUN_CASE(test_6_0);
         XTESTS_RUN_CASE(test_6_1);
@@ -483,15 +312,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_6_8);
         XTESTS_RUN_CASE(test_6_9);
         XTESTS_RUN_CASE(test_6_10);
-        XTESTS_RUN_CASE(test_6_11);
-        XTESTS_RUN_CASE(test_6_12);
-        XTESTS_RUN_CASE(test_6_13);
-        XTESTS_RUN_CASE(test_6_14);
-        XTESTS_RUN_CASE(test_6_15);
-        XTESTS_RUN_CASE(test_6_16);
-        XTESTS_RUN_CASE(test_6_17);
-        XTESTS_RUN_CASE(test_6_18);
-        XTESTS_RUN_CASE(test_6_19);
 
         XTESTS_RUN_CASE(test_7_0);
         XTESTS_RUN_CASE(test_7_1);
@@ -504,15 +324,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_7_8);
         XTESTS_RUN_CASE(test_7_9);
         XTESTS_RUN_CASE(test_7_10);
-        XTESTS_RUN_CASE(test_7_11);
-        XTESTS_RUN_CASE(test_7_12);
-        XTESTS_RUN_CASE(test_7_13);
-        XTESTS_RUN_CASE(test_7_14);
-        XTESTS_RUN_CASE(test_7_15);
-        XTESTS_RUN_CASE(test_7_16);
-        XTESTS_RUN_CASE(test_7_17);
-        XTESTS_RUN_CASE(test_7_18);
-        XTESTS_RUN_CASE(test_7_19);
 
         XTESTS_RUN_CASE(test_8_0);
         XTESTS_RUN_CASE(test_8_1);
@@ -525,15 +336,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_8_8);
         XTESTS_RUN_CASE(test_8_9);
         XTESTS_RUN_CASE(test_8_10);
-        XTESTS_RUN_CASE(test_8_11);
-        XTESTS_RUN_CASE(test_8_12);
-        XTESTS_RUN_CASE(test_8_13);
-        XTESTS_RUN_CASE(test_8_14);
-        XTESTS_RUN_CASE(test_8_15);
-        XTESTS_RUN_CASE(test_8_16);
-        XTESTS_RUN_CASE(test_8_17);
-        XTESTS_RUN_CASE(test_8_18);
-        XTESTS_RUN_CASE(test_8_19);
 
         XTESTS_RUN_CASE(test_9_0);
         XTESTS_RUN_CASE(test_9_1);
@@ -546,15 +348,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_9_8);
         XTESTS_RUN_CASE(test_9_9);
         XTESTS_RUN_CASE(test_9_10);
-        XTESTS_RUN_CASE(test_9_11);
-        XTESTS_RUN_CASE(test_9_12);
-        XTESTS_RUN_CASE(test_9_13);
-        XTESTS_RUN_CASE(test_9_14);
-        XTESTS_RUN_CASE(test_9_15);
-        XTESTS_RUN_CASE(test_9_16);
-        XTESTS_RUN_CASE(test_9_17);
-        XTESTS_RUN_CASE(test_9_18);
-        XTESTS_RUN_CASE(test_9_19);
 
         XTESTS_RUN_CASE(test_10_0);
         XTESTS_RUN_CASE(test_10_1);
@@ -567,15 +360,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_10_8);
         XTESTS_RUN_CASE(test_10_9);
         XTESTS_RUN_CASE(test_10_10);
-        XTESTS_RUN_CASE(test_10_11);
-        XTESTS_RUN_CASE(test_10_12);
-        XTESTS_RUN_CASE(test_10_13);
-        XTESTS_RUN_CASE(test_10_14);
-        XTESTS_RUN_CASE(test_10_15);
-        XTESTS_RUN_CASE(test_10_16);
-        XTESTS_RUN_CASE(test_10_17);
-        XTESTS_RUN_CASE(test_10_18);
-        XTESTS_RUN_CASE(test_10_19);
 
         XTESTS_RUN_CASE(test_11_0);
         XTESTS_RUN_CASE(test_11_1);
@@ -588,15 +372,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_11_8);
         XTESTS_RUN_CASE(test_11_9);
         XTESTS_RUN_CASE(test_11_10);
-        XTESTS_RUN_CASE(test_11_11);
-        XTESTS_RUN_CASE(test_11_12);
-        XTESTS_RUN_CASE(test_11_13);
-        XTESTS_RUN_CASE(test_11_14);
-        XTESTS_RUN_CASE(test_11_15);
-        XTESTS_RUN_CASE(test_11_16);
-        XTESTS_RUN_CASE(test_11_17);
-        XTESTS_RUN_CASE(test_11_18);
-        XTESTS_RUN_CASE(test_11_19);
 
         XTESTS_RUN_CASE(test_12_0);
         XTESTS_RUN_CASE(test_12_1);
@@ -609,15 +384,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_12_8);
         XTESTS_RUN_CASE(test_12_9);
         XTESTS_RUN_CASE(test_12_10);
-        XTESTS_RUN_CASE(test_12_11);
-        XTESTS_RUN_CASE(test_12_12);
-        XTESTS_RUN_CASE(test_12_13);
-        XTESTS_RUN_CASE(test_12_14);
-        XTESTS_RUN_CASE(test_12_15);
-        XTESTS_RUN_CASE(test_12_16);
-        XTESTS_RUN_CASE(test_12_17);
-        XTESTS_RUN_CASE(test_12_18);
-        XTESTS_RUN_CASE(test_12_19);
 
         XTESTS_RUN_CASE(test_13_0);
         XTESTS_RUN_CASE(test_13_1);
@@ -630,15 +396,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_13_8);
         XTESTS_RUN_CASE(test_13_9);
         XTESTS_RUN_CASE(test_13_10);
-        XTESTS_RUN_CASE(test_13_11);
-        XTESTS_RUN_CASE(test_13_12);
-        XTESTS_RUN_CASE(test_13_13);
-        XTESTS_RUN_CASE(test_13_14);
-        XTESTS_RUN_CASE(test_13_15);
-        XTESTS_RUN_CASE(test_13_16);
-        XTESTS_RUN_CASE(test_13_17);
-        XTESTS_RUN_CASE(test_13_18);
-        XTESTS_RUN_CASE(test_13_19);
 
         XTESTS_RUN_CASE(test_14_0);
         XTESTS_RUN_CASE(test_14_1);
@@ -651,15 +408,6 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_14_8);
         XTESTS_RUN_CASE(test_14_9);
         XTESTS_RUN_CASE(test_14_10);
-        XTESTS_RUN_CASE(test_14_11);
-        XTESTS_RUN_CASE(test_14_12);
-        XTESTS_RUN_CASE(test_14_13);
-        XTESTS_RUN_CASE(test_14_14);
-        XTESTS_RUN_CASE(test_14_15);
-        XTESTS_RUN_CASE(test_14_16);
-        XTESTS_RUN_CASE(test_14_17);
-        XTESTS_RUN_CASE(test_14_18);
-        XTESTS_RUN_CASE(test_14_19);
 
         XTESTS_PRINT_RESULTS();
 
@@ -889,45 +637,6 @@ static void test_1_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
-
-static void test_1_13()
-{
-}
-
-static void test_1_14()
-{
-}
-
-static void test_1_15()
-{
-}
-
-static void test_1_16()
-{
-}
-
-static void test_1_17()
-{
-}
-
-static void test_1_18()
-{
-}
-
-static void test_1_19()
-{
-}
-
-
-
-
 static void test_2_0()
 {
     read_from_char_buffer   policy("", 0);
@@ -1122,44 +831,6 @@ static void test_2_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_11()
-{
-}
-
-static void test_2_12()
-{
-}
-
-static void test_2_13()
-{
-}
-
-static void test_2_14()
-{
-}
-
-static void test_2_15()
-{
-}
-
-static void test_2_16()
-{
-}
-
-static void test_2_17()
-{
-}
-
-static void test_2_18()
-{
-}
-
-static void test_2_19()
-{
-}
-
-
-
 static void test_3_0()
 {
     read_from_char_buffer   policy("", 0);
@@ -1329,45 +1000,6 @@ static void test_3_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_3_11()
-{
-}
-
-static void test_3_12()
-{
-}
-
-static void test_3_13()
-{
-}
-
-static void test_3_14()
-{
-}
-
-static void test_3_15()
-{
-}
-
-static void test_3_16()
-{
-}
-
-static void test_3_17()
-{
-}
-
-static void test_3_18()
-{
-}
-
-static void test_3_19()
-{
-}
-
-
-
 
 static void test_4_0()
 {
@@ -1703,44 +1335,6 @@ static void test_4_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_11()
-{
-}
-
-static void test_4_12()
-{
-}
-
-static void test_4_13()
-{
-}
-
-static void test_4_14()
-{
-}
-
-static void test_4_15()
-{
-}
-
-static void test_4_16()
-{
-}
-
-static void test_4_17()
-{
-}
-
-static void test_4_18()
-{
-}
-
-static void test_4_19()
-{
-}
-
-
-
 static void test_5_0()
 {
     read_from_char_buffer   policy("", 0);
@@ -1938,44 +1532,6 @@ static void test_5_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_5_11()
-{
-}
-
-static void test_5_12()
-{
-}
-
-static void test_5_13()
-{
-}
-
-static void test_5_14()
-{
-}
-
-static void test_5_15()
-{
-}
-
-static void test_5_16()
-{
-}
-
-static void test_5_17()
-{
-}
-
-static void test_5_18()
-{
-}
-
-static void test_5_19()
-{
-}
-
-
 
 static void test_6_0()
 {
@@ -2246,44 +1802,6 @@ static void test_6_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_6_11()
-{
-}
-
-static void test_6_12()
-{
-}
-
-static void test_6_13()
-{
-}
-
-static void test_6_14()
-{
-}
-
-static void test_6_15()
-{
-}
-
-static void test_6_16()
-{
-}
-
-static void test_6_17()
-{
-}
-
-static void test_6_18()
-{
-}
-
-static void test_6_19()
-{
-}
-
-
 
 static void test_7_0()
 {
@@ -2579,48 +2097,6 @@ static void test_7_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_11()
-{
-}
-
-static void test_7_12()
-{
-}
-
-static void test_7_13()
-{
-}
-
-static void test_7_14()
-{
-}
-
-static void test_7_15()
-{
-}
-
-static void test_7_16()
-{
-}
-
-static void test_7_17()
-{
-}
-
-static void test_7_18()
-{
-}
-
-static void test_7_19()
-{
-}
-
-
-
-
-
-
-
 static void test_8_0()
 {
     std::string const   input("");
@@ -2832,45 +2308,6 @@ static void test_8_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_8_11()
-{
-}
-
-static void test_8_12()
-{
-}
-
-static void test_8_13()
-{
-}
-
-static void test_8_14()
-{
-}
-
-static void test_8_15()
-{
-}
-
-static void test_8_16()
-{
-}
-
-static void test_8_17()
-{
-}
-
-static void test_8_18()
-{
-}
-
-static void test_8_19()
-{
-}
-
-
-
 
 static void test_9_0()
 {
@@ -3088,44 +2525,6 @@ static void test_9_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_11()
-{
-}
-
-static void test_9_12()
-{
-}
-
-static void test_9_13()
-{
-}
-
-static void test_9_14()
-{
-}
-
-static void test_9_15()
-{
-}
-
-static void test_9_16()
-{
-}
-
-static void test_9_17()
-{
-}
-
-static void test_9_18()
-{
-}
-
-static void test_9_19()
-{
-}
-
-
-
 static void test_10_0()
 {
     std::string const   input("");
@@ -3317,45 +2716,6 @@ static void test_10_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_10_11()
-{
-}
-
-static void test_10_12()
-{
-}
-
-static void test_10_13()
-{
-}
-
-static void test_10_14()
-{
-}
-
-static void test_10_15()
-{
-}
-
-static void test_10_16()
-{
-}
-
-static void test_10_17()
-{
-}
-
-static void test_10_18()
-{
-}
-
-static void test_10_19()
-{
-}
-
-
-
 
 static void test_11_0()
 {
@@ -3713,44 +3073,6 @@ static void test_11_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_11()
-{
-}
-
-static void test_11_12()
-{
-}
-
-static void test_11_13()
-{
-}
-
-static void test_11_14()
-{
-}
-
-static void test_11_15()
-{
-}
-
-static void test_11_16()
-{
-}
-
-static void test_11_17()
-{
-}
-
-static void test_11_18()
-{
-}
-
-static void test_11_19()
-{
-}
-
-
-
 static void test_12_0()
 {
     std::string const   input("");
@@ -3970,44 +3292,6 @@ static void test_12_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_12_11()
-{
-}
-
-static void test_12_12()
-{
-}
-
-static void test_12_13()
-{
-}
-
-static void test_12_14()
-{
-}
-
-static void test_12_15()
-{
-}
-
-static void test_12_16()
-{
-}
-
-static void test_12_17()
-{
-}
-
-static void test_12_18()
-{
-}
-
-static void test_12_19()
-{
-}
-
-
 
 static void test_13_0()
 {
@@ -4300,44 +3584,6 @@ static void test_13_10()
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
 }
-
-static void test_13_11()
-{
-}
-
-static void test_13_12()
-{
-}
-
-static void test_13_13()
-{
-}
-
-static void test_13_14()
-{
-}
-
-static void test_13_15()
-{
-}
-
-static void test_13_16()
-{
-}
-
-static void test_13_17()
-{
-}
-
-static void test_13_18()
-{
-}
-
-static void test_13_19()
-{
-}
-
-
 
 static void test_14_0()
 {
@@ -4653,42 +3899,6 @@ static void test_14_10()
     TEST_BOOLEAN_EQ(false, read_line_from_policy(policy, line0, read_line_flags::flags_t(0)));
     TEST_INT_EQ(0u, line0.size());
     TEST_MS_EQ_APPROX("", line0);
-}
-
-static void test_14_11()
-{
-}
-
-static void test_14_12()
-{
-}
-
-static void test_14_13()
-{
-}
-
-static void test_14_14()
-{
-}
-
-static void test_14_15()
-{
-}
-
-static void test_14_16()
-{
-}
-
-static void test_14_17()
-{
-}
-
-static void test_14_18()
-{
-}
-
-static void test_14_19()
-{
 }
 } // anonymous namespace
 
