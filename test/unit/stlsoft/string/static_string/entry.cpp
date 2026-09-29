@@ -63,7 +63,6 @@ namespace {
     static void test_ctor_ccs_n_too_large();
     static void test_ctor_n_ch();
     static void test_ctor_n_ch_too_large();
-    static void test_ctor_range();
     static void test_ctor_range_too_large();
 
     // `assign()`
@@ -79,10 +78,7 @@ namespace {
     static void test_assign_n_ch_too_large();
     static void test_assign_range();
     static void test_assign_range_too_large();
-    static void test_opassign_ccs();
     static void test_opassign_ccs_too_large();
-    static void test_opassign_s();
-    static void test_opassign_ch();
 
     // `append()`
 
@@ -121,11 +117,8 @@ namespace {
 
     // attributes
 
-    static void test_size();
     static void test_max_size();
-    static void test_length();
     static void test_capacity();
-    static void test_empty();
 
 
     // comparison
@@ -153,9 +146,6 @@ namespace {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
     static void TEST_overlong_ctor();
-    static void TEST_overlong_append();
-    static void TEST_overlong_assign();
-    static void TEST_overlong_reserve();
     static void TEST_overlong_resize();
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -205,7 +195,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE_THAT_THROWS(test_ctor_ccs_n_too_large, std::length_error);
         XTESTS_RUN_CASE(test_ctor_n_ch);
         XTESTS_RUN_CASE_THAT_THROWS(test_ctor_n_ch_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_ctor_range);
         XTESTS_RUN_CASE_THAT_THROWS(test_ctor_range_too_large, std::length_error);
 
         // `assign()`
@@ -221,10 +210,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE_THAT_THROWS(test_assign_n_ch_too_large, std::length_error);
         XTESTS_RUN_CASE(test_assign_range);
         XTESTS_RUN_CASE_THAT_THROWS(test_assign_range_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_opassign_ccs);
         XTESTS_RUN_CASE_THAT_THROWS(test_opassign_ccs_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_opassign_s);
-        XTESTS_RUN_CASE(test_opassign_ch);
 
         // `append()`
 
@@ -263,11 +249,8 @@ int main(int argc, char* argv[])
 
         // attributes
 
-        XTESTS_RUN_CASE(test_size);
         XTESTS_RUN_CASE(test_max_size);
-        XTESTS_RUN_CASE(test_length);
         XTESTS_RUN_CASE(test_capacity);
-        XTESTS_RUN_CASE(test_empty);
 
         // comparison
 
@@ -294,9 +277,6 @@ int main(int argc, char* argv[])
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
         XTESTS_RUN_CASE(TEST_overlong_ctor);
-        XTESTS_RUN_CASE(TEST_overlong_append);
-        XTESTS_RUN_CASE(TEST_overlong_assign);
-        XTESTS_RUN_CASE(TEST_overlong_reserve);
         XTESTS_RUN_CASE(TEST_overlong_resize);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -604,10 +584,6 @@ static void test_ctor_n_ch_too_large()
     string_t s(11, '~');
 }
 
-static void test_ctor_range()
-{
-}
-
 static void test_ctor_range_too_large()
 {
     typedef string_30_t  string_t;
@@ -881,11 +857,6 @@ static void test_assign_range_too_large()
     s.assign(&alphabet2[0], &alphabet2[0] + STLSOFT_NUM_ELEMENTS(alphabet2) -1);
 }
 
-static void test_opassign_ccs()
-{
-
-}
-
 static void test_opassign_ccs_too_large()
 {
     typedef string_10_t string_t;
@@ -895,15 +866,7 @@ static void test_opassign_ccs_too_large()
     s = alphabet;
 }
 
-static void test_opassign_s()
-{
 
-}
-
-static void test_opassign_ch()
-{
-
-}
 
 
 // `append()`
@@ -1473,12 +1436,6 @@ static void test_clear()
 
 // attributes
 
-static void test_size()
-{
-    {
-
-    }
-}
 
 static void test_max_size()
 {
@@ -1493,11 +1450,6 @@ static void test_max_size()
 
         TEST_INT_EQ(30u, string_t::max_size());
     }
-}
-
-static void test_length()
-{
-
 }
 
 static void test_capacity()
@@ -1519,10 +1471,6 @@ static void test_capacity()
     }
 }
 
-static void test_empty()
-{
-
-}
 
 
 
@@ -2194,21 +2142,6 @@ static void TEST_overlong_ctor()
         STLSOFT_SUPPRESS_UNUSED(x);
 #endif // XTESTS_USE_SHWILD
     }
-}
-
-static void TEST_overlong_append()
-{
-
-}
-
-static void TEST_overlong_assign()
-{
-
-}
-
-static void TEST_overlong_reserve()
-{
-
 }
 
 static void TEST_overlong_resize()

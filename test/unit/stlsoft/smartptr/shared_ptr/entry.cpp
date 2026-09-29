@@ -52,7 +52,6 @@ namespace {
 #endif
     static void test_swap();
     static void test_std_swap();
-    static void test_1_1();
 } // anonymous namespace
 
 
@@ -81,7 +80,6 @@ int main(int argc, char* argv[])
 #endif
         XTESTS_RUN_CASE(test_swap);
         XTESTS_RUN_CASE(test_std_swap);
-        XTESTS_RUN_CASE(test_1_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -544,10 +542,6 @@ static void test_std_swap()
         TEST_MS_EQ("123", *ptr2);
         TEST_INT_EQ(3u, ptr2->size());
     }
-}
-
-static void test_1_1()
-{
 }
 } // anonymous namespace
 
