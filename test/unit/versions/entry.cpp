@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -171,7 +171,7 @@ static void TEST__COMSTL_VER()
 
 static void TEST__WINSTL_VER()
 {
-	TEST_INT_EQ(_WINSTL_VER_1_13_0_B02, _WINSTL_VER);
+	TEST_INT_EQ(_WINSTL_VER_1_13_0_B03, _WINSTL_VER);
 }
 #endif
 #ifdef STLSOFT_HAS_MFC

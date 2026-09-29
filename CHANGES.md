@@ -8,9 +8,11 @@
 * **char_traits_safe** — a count of 0 compares equal; a non-zero count orders a null pointer before a live pointer;
 * **winstl::netapi_allocator** — pass a `DWORD` byte count to `NetApiBufferAllocate`; the unit test links **netapi32**;
 * **stlsoft/std/cstring.hpp** — suppress CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
-* Test directories — short leaf names under **test/unit**, **test/component**, **test/scratch**, and **test/performance**; executable names stay `test.<kind>.*`;
+* **winstl** — **1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**), with **STLSoft 1.11.1-rc7**;
+* Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable names stay `test.<kind>.*`;
+* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
 * String-comparison units — `strnicmp` (C and C++), `c_string_traits`, `char_traits` / `char_traits_safe`, `strcmp` / `strncmp`, BSTR compare, `string_begins_with`, `special_string_instance::equal`, and compare edges on `simple_string`, `static_string`, `string_view`, and `string_slice`;
-* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**);
+* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**) and **WinSTL 1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**);
 
 
 ## 1.11.1-rc6 - 21st September 2026

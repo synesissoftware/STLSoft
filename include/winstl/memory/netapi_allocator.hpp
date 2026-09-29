@@ -4,7 +4,7 @@
  * Purpose:     netapi_allocator class.
  *
  * Created:     23rd March 2006
- * Updated:     29th September 2026
+ * Updated:     30th September 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_REVISION 10
-# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     32
+# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

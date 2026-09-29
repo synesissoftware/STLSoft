@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::null_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
