@@ -12,6 +12,7 @@ on:
       - rc3
       - rc4
       - rc5
+      - file_lines.perf
   pull_request:
 
 concurrency:
