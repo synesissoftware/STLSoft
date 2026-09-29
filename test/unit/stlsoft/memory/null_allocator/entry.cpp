@@ -29,9 +29,12 @@
 #include <xtests/terse-api.h>
 
 /* STLSoft header files */
+#include <stlsoft/exception/out_of_memory_exception.hpp>
 #include <stlsoft/stlsoft.h>
 
 /* Standard C++ header files */
+#include <list>
+#include <vector>
 
 /* Standard C header files */
 #include <assert.h>
@@ -92,39 +95,92 @@ int main(int argc, char *argv[])
 
 namespace {
 
+typedef stlsoft::null_allocator<int> allocator_t;
+
+static void expect_out_of_memory(allocator_t& ator, allocator_t::size_type n)
+{
+    try
+    {
+        static_cast<void>(ator.allocate(n));
+
+        TEST_FAIL("should not get here");
+    }
+    catch (stlsoft::out_of_memory_exception&)
+    {
+        TEST_PASSED();
+    }
+}
+
 static void test_alloc_0()
 {
+    allocator_t a1;
+    allocator_t a2;
 
+    TEST_BOOLEAN_TRUE(a1 == a2);
+    TEST_BOOLEAN_FALSE(a1 != a2);
+
+    expect_out_of_memory(a1, 0);
 }
 
 static void test_alloc_small()
 {
+    allocator_t ator;
 
+    expect_out_of_memory(ator, 4);
 }
 
 static void test_alloc_medium()
 {
+    allocator_t ator;
 
+    expect_out_of_memory(ator, 256);
 }
 
 static void test_alloc_large()
 {
+    allocator_t ator;
 
+    expect_out_of_memory(ator, 4096);
 }
 
 static void test_alloc_toolarge()
 {
+    allocator_t                     ator;
+    allocator_t::size_type const    too_large = ator.max_size() + 1;
 
+    expect_out_of_memory(ator, too_large);
 }
 
 static void test_specialise_list()
 {
+    try
+    {
+        std::list<int, allocator_t> items;
 
+        items.push_back(1);
+
+        TEST_FAIL("should not get here");
+    }
+    catch (stlsoft::out_of_memory_exception&)
+    {
+        TEST_PASSED();
+    }
 }
 
 static void test_specialise_vector()
 {
+    try
+    {
+        std::vector<int, allocator_t> v;
 
+        v.push_back(1);
+
+        TEST_FAIL("should not get here");
+    }
+    catch (stlsoft::out_of_memory_exception&)
+    {
+        TEST_PASSED();
+    }
 }
 } // anonymous namespace
 
