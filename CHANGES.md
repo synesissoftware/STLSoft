@@ -3,15 +3,22 @@
 
 ## 1.11.1-rc7 - 30th September 2026
 
+* Renamed `stlsoft_C_environment_variable_exists_a()` to `stlsoft_C_environment_variable_exists_m()`; the `_a` form remains as a deprecated forwarder;
+* Component tests for `stlsoft::environment_variable_exists()` (**test/component/stlsoft/system/environment_variable_exists**), including `std::string` / `simple_string` shims and UNIX empty-value behaviour;
 * Added `count_bits_by_intrinsic()` and `find_highest_bit_by_intrinsic()` (unselected by default; `count_bits()` keeps the 8-bit table; `find_highest_bit()` keeps the scan);
 * Added **stlsoft/api/external/bitfns.h** and **stlsoft/api/internal/bitfns.h** — detection and adaptations for `popcount` / `clz` / `_BitScanReverse` intrinsics (GCC/Clang builtins preferred over MSVC when both are visible);
 * Clang cccap — `STLSOFT_CLANG_VER`; documented shared `STLSOFT_GCC_VER` (also noted in GCC cccap);
 * Fixed `count_bits()` overloads when `STLSOFT_BIT_COUNT_BY_Kernighan` is defined;
 * Unit tests for intrinsic popcount / highest-bit helpers; broader width coverage for bit-function overloads;
-* Performance suite **test/performance/stlsoft/bit_functions** (density patterns, intrinsic rows, median / ns-per-call reporting);
+* Performance suite **test/performance/stlsoft/util/bit_functions** (density patterns, intrinsic rows, median / ns-per-call reporting);
 * Strategy note **strategy/BIT_FUNCTIONS.md** — measurements and default choice (table for `count_bits()`; keep intrinsics unselected pending cross-toolchain evidence);
+* CI — performance job exports **SIS_PERFTESTS_GROUPGAPS=1**;
+* **platformstl::FILE_stream** — added `write_binary()` (writes every byte, including embedded NULs) and deprecated `write(void const*, size_t)` in its favour;
+* Component tests for `platformstl::file_lines` (**test/component/platformstl/filesystem/file_lines**);
+* Fixed `winstl::netapi_allocator` — pass a **DWORD** byte count to `NetApiBufferAllocate`;
+* Unit tests — removed empty case functions; filled the nine allocator suites (round-trip sizes, `max_size()`, `std::list` / `std::vector`; `null_allocator` throws `out_of_memory_exception`);
 * Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable target names unchanged;
-* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **stlsoft/bit_functions**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
+* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
 * **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**);
 
 
