@@ -39,6 +39,7 @@ namespace
     static void TEST_string_begins_with_EMPTY_PREFIX();
     static void TEST_string_begins_with_LONGER_PREFIX();
     static void TEST_string_begins_with_CASE_SENSITIVE();
+    static void TEST_string_begins_with_WCHAR();
 
 } /* anonymous namespace */
 
@@ -61,6 +62,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_string_begins_with_EMPTY_PREFIX);
         XTESTS_RUN_CASE(TEST_string_begins_with_LONGER_PREFIX);
         XTESTS_RUN_CASE(TEST_string_begins_with_CASE_SENSITIVE);
+        XTESTS_RUN_CASE(TEST_string_begins_with_WCHAR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -132,6 +134,39 @@ static void TEST_string_begins_with_CASE_SENSITIVE()
     TEST_BOOLEAN_FALSE(begins("aBc"));
     TEST_BOOLEAN_TRUE(begins("Abc"));
     TEST_BOOLEAN_TRUE(begins("Ab"));
+}
+
+static void TEST_string_begins_with_WCHAR()
+{
+    stlsoft::string_begins_with_function<wchar_t> const begins = stlsoft::string_begins_with(L"ab");
+    stlsoft::simple_wstring const abc(L"abc");
+    wchar_t const embedded[] = { L'a', L'\0', L'x' };
+    stlsoft::string_begins_with_function<wchar_t> const begins_n(embedded);
+    stlsoft::string_begins_with_function<wchar_t> const begins_abc = stlsoft::string_begins_with(L"abc");
+    stlsoft::string_begins_with_function<wchar_t> const begins_empty = stlsoft::string_begins_with(L"");
+    stlsoft::string_begins_with_function<wchar_t> const begins_long = stlsoft::string_begins_with(L"abcd");
+    stlsoft::string_begins_with_function<wchar_t> const begins_case = stlsoft::string_begins_with(L"Ab");
+
+    TEST_BOOLEAN_TRUE(begins(L"abc"));
+    TEST_BOOLEAN_TRUE(begins(L"ab"));
+    TEST_BOOLEAN_TRUE(begins(L"abcd"));
+    TEST_BOOLEAN_TRUE(begins(abc));
+
+    TEST_BOOLEAN_TRUE(begins_n(L"abc"));
+    TEST_BOOLEAN_FALSE(begins_n(L"xbc"));
+
+    TEST_BOOLEAN_FALSE(begins_abc(L"abd"));
+    TEST_BOOLEAN_FALSE(begins_abc(L"ab"));
+    TEST_BOOLEAN_FALSE(begins_abc(L""));
+
+    TEST_BOOLEAN_TRUE(begins_empty(L"abc"));
+    TEST_BOOLEAN_TRUE(begins_empty(L""));
+
+    TEST_BOOLEAN_FALSE(begins_long(L"abc"));
+    TEST_BOOLEAN_TRUE(begins_long(L"abcd"));
+
+    TEST_BOOLEAN_FALSE(begins_case(L"abc"));
+    TEST_BOOLEAN_TRUE(begins_case(L"Abc"));
 }
 
 } /* anonymous namespace */
