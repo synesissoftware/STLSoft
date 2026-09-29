@@ -322,6 +322,82 @@ display_result(
         << std::endl;
 }
 
+#if defined(STLSOFT_MINGW)
+
+/* MinGW libstdc++ `std::ifstream` segfaults on open. FILE* already reads
+ * this fixture, so the getline baseline uses that source and still times
+ * `std::getline`.
+ */
+class fread_streambuf
+    : public std::streambuf
+{
+public:
+    explicit fread_streambuf(FILE* stm)
+        : stm_(stm)
+    {
+        setg(buffer_, buffer_, buffer_);
+    }
+
+private:
+    fread_streambuf(fread_streambuf const&);
+    void operator =(fread_streambuf const&);
+
+    int_type underflow()
+    {
+        if (gptr() < egptr())
+        {
+            return traits_type::to_int_type(*gptr());
+        }
+
+        std::size_t const n = std::fread(buffer_, 1u, sizeof(buffer_), stm_);
+
+        if (0u == n)
+        {
+            return traits_type::eof();
+        }
+
+        setg(buffer_, buffer_, buffer_ + n);
+
+        return traits_type::to_int_type(*gptr());
+    }
+
+private:
+    FILE*   stm_;
+    char    buffer_[4096];
+};
+
+#endif /* STLSOFT_MINGW */
+
+std::size_t
+read_getline_(
+    std::istream&   stm
+,   line_ending_t   ending
+)
+{
+    std::vector<std::string> lines;
+    std::string line;
+    std::size_t anchor = 0;
+    char const delimiter = (line_ending_cr == ending) ? '\r' : '\n';
+
+    if (trace_step_)
+    {
+        std::cerr << "[file_lines.perf]   getline read" << std::endl;
+    }
+
+    while (std::getline(stm, line, delimiter))
+    {
+        if (line_ending_crlf == ending && !line.empty() && '\r' == line.back())
+        {
+            line.pop_back();
+        }
+
+        anchor += line.size();
+        lines.push_back(line);
+    }
+
+    return lines.size() + anchor;
+}
+
 void
 run_scenario(
     std::size_t     num_lines
@@ -392,26 +468,48 @@ run_scenario(
         return lines.size() + anchor;
     });
 
-    result_t const getline = time_("vector<std::string>+getline", NUM_ITERATIONS, [ending]() -> std::size_t {
-        std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
-        std::vector<std::string> lines;
-        std::string line;
-        std::size_t anchor = 0;
-        char const delimiter = (line_ending_cr == ending) ? '\r' : '\n';
+#if defined(STLSOFT_MINGW)
 
-        while (std::getline(stm, line, delimiter))
+    /* Avoid std::ifstream. Its constructor is the MinGW segfault. */
+    result_t const getline = time_("vector<std::string>+getline(FILE*)", NUM_ITERATIONS, [ending]() -> std::size_t {
+        FILE* fp = NULL;
+
+        if (trace_step_)
         {
-            if (line_ending_crlf == ending && !line.empty() && '\r' == line.back())
-            {
-                line.pop_back();
-            }
-
-            anchor += line.size();
-            lines.push_back(line);
+            std::cerr << "[file_lines.perf]   getline open" << std::endl;
         }
 
-        return lines.size() + anchor;
+        if (0 != STLSOFT_API_INTERNAL_stdio_fopen_m(TEST_FILE_NAME, "rb", &fp))
+        {
+            return 0u;
+        }
+
+        std::size_t anchor = 0;
+
+        {
+            fread_streambuf buf(fp);
+            std::istream stm(&buf);
+
+            anchor = read_getline_(stm, ending);
+        }
+
+        fclose(fp);
+
+        return anchor;
     });
+#else /* ? STLSOFT_MINGW */
+
+    result_t const getline = time_("vector<std::string>+getline", NUM_ITERATIONS, [ending]() -> std::size_t {
+        if (trace_step_)
+        {
+            std::cerr << "[file_lines.perf]   getline open" << std::endl;
+        }
+
+        std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
+
+        return read_getline_(stm, ending);
+    });
+#endif /* STLSOFT_MINGW */
 
     result_t const file_lines_std_string = time_("basic_file_lines<std::string>", NUM_ITERATIONS, []() -> std::size_t {
         return read_file_lines_<file_lines_std_string_t>();
@@ -426,7 +524,13 @@ run_scenario(
     });
 
     display_result(scenario, "vector<std::string>+getc", NUM_ITERATIONS, getc);
+#if defined(STLSOFT_MINGW)
+
+    display_result(scenario, "vector<std::string>+getline(FILE*)", NUM_ITERATIONS, getline);
+#else /* ? STLSOFT_MINGW */
+
     display_result(scenario, "vector<std::string>+getline", NUM_ITERATIONS, getline);
+#endif /* STLSOFT_MINGW */
     display_result(scenario, "basic_file_lines<std::string>", NUM_ITERATIONS, file_lines_std_string);
     display_result(scenario, "basic_file_lines<stlsoft::simple_string>", NUM_ITERATIONS, file_lines_stlsoft_simple_string);
     display_result(scenario, "basic_file_lines<stlsoft::string_view>", NUM_ITERATIONS, file_lines_stlsoft_string_view);
