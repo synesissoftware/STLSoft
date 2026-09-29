@@ -1490,8 +1490,10 @@ static void TEST_compare_CHAR()
 
     string_t const  abc("abc");
     string_t const  abd("abd");
-    char const      small[] = { char(0x01), '\0' };
-    char const      large[] = { char(0xFF), '\0' };
+    unsigned char const below_u[] = { 0x01, 0 };
+    unsigned char const above_u[] = { 0xFF, 0 };
+    char const* const   below = reinterpret_cast<char const*>(below_u);
+    char const* const   above = reinterpret_cast<char const*>(above_u);
 
     TEST_INT_EQ(0, abc.compare(string_t("abc")));
     TEST_INT_EQ(0, abc.compare("abc"));
@@ -1499,7 +1501,7 @@ static void TEST_compare_CHAR()
     TEST_INT_LT(0, abc.compare("abd"));
     TEST_INT_GT(0, abd.compare(abc));
     TEST_INT_GT(0, abd.compare("abc"));
-    TEST_INT_LT(0, string_t(small).compare(large));
+    TEST_INT_LT(0, string_t(below).compare(above));
 }
 
 static void TEST_compare_EMPTY()

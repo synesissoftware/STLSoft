@@ -86,8 +86,10 @@ namespace
 
 static void TEST_strcmp_CHAR()
 {
-    char const small[] = { (char)0x01, '\0' };
-    char const large[] = { (char)0xFF, '\0' };
+    unsigned char const below_u[] = { 0x01, 0 };
+    unsigned char const above_u[] = { 0xFF, 0 };
+    char const* const   below = reinterpret_cast<char const*>(below_u);
+    char const* const   above = reinterpret_cast<char const*>(above_u);
 
     TEST_INT_EQ(0, stlsoft::strcmp("abc", "abc"));
     TEST_INT_EQ(0, stlsoft::strcmp("", ""));
@@ -96,7 +98,7 @@ static void TEST_strcmp_CHAR()
     TEST_INT_GT(0, stlsoft::strcmp("abd", "abc"));
     TEST_INT_GT(0, stlsoft::strcmp("a", ""));
     TEST_INT_LT(0, stlsoft::strcmp("A", "a"));
-    TEST_INT_LT(0, stlsoft::strcmp(small, large));
+    TEST_INT_LT(0, stlsoft::strcmp(below, above));
 }
 
 static void TEST_strcmp_WCHAR()

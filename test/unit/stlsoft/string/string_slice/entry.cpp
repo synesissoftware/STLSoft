@@ -471,10 +471,12 @@ static void TEST_compare_EMBEDDED_NUL()
 
 static void TEST_compare_HIGH_BIT()
 {
-    char const  small[] = { char(0x01) };
-    char const  large[] = { char(0xFF) };
-    stlsoft::string_slice<char> const   lo(small, 1);
-    stlsoft::string_slice<char> const   hi(large, 1);
+    unsigned char const below_u[] = { 0x01 };
+    unsigned char const above_u[] = { 0xFF };
+    char const* const   below = reinterpret_cast<char const*>(below_u);
+    char const* const   above = reinterpret_cast<char const*>(above_u);
+    stlsoft::string_slice<char> const   lo(below, 1);
+    stlsoft::string_slice<char> const   hi(above, 1);
 
     TEST_INT_LT(0, lo.compare(hi));
     TEST_INT_GT(0, hi.compare(lo));

@@ -203,26 +203,28 @@ static void TEST_compare_null_ONE_NULL()
 
 static void TEST_compare_HIGH_BIT_UNSIGNED_ORDER()
 {
-    char const small = (char)0x01;
-    char const large = (char)0xFF;
-    char const s_small[] = { small };
-    char const s_large[] = { large };
+    unsigned char const below_u[] = { 0x01 };
+    unsigned char const above_u[] = { 0xFF };
+    char const* const   s_below = reinterpret_cast<char const*>(below_u);
+    char const* const   s_above = reinterpret_cast<char const*>(above_u);
+    char const          below = s_below[0];
+    char const          above = s_above[0];
 
-    TEST_BOOLEAN_TRUE(a_traits_t::eq(large, large));
-    TEST_BOOLEAN_FALSE(a_traits_t::eq(small, large));
+    TEST_BOOLEAN_TRUE(a_traits_t::eq(above, above));
+    TEST_BOOLEAN_FALSE(a_traits_t::eq(below, above));
 
-    if (small < large)
+    if (below < above)
     {
-        TEST_BOOLEAN_TRUE(a_traits_t::lt(small, large));
+        TEST_BOOLEAN_TRUE(a_traits_t::lt(below, above));
     }
     else
     {
-        TEST_BOOLEAN_FALSE(a_traits_t::lt(small, large));
-        TEST_BOOLEAN_TRUE(a_traits_t::lt(large, small));
+        TEST_BOOLEAN_FALSE(a_traits_t::lt(below, above));
+        TEST_BOOLEAN_TRUE(a_traits_t::lt(above, below));
     }
 
-    TEST_INT_LT(0, a_traits_t::compare(s_small, s_large, 1));
-    TEST_INT_GT(0, a_traits_t::compare(s_large, s_small, 1));
+    TEST_INT_LT(0, a_traits_t::compare(s_below, s_above, 1));
+    TEST_INT_GT(0, a_traits_t::compare(s_above, s_below, 1));
 
     wchar_t const w_small[] = { 0x0001 };
     wchar_t const w_large[] = { 0x00FF };

@@ -99,6 +99,12 @@ typedef stlsoft::null_allocator<int> allocator_t;
 
 static void expect_out_of_memory(allocator_t& ator, allocator_t::size_type n)
 {
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1200
+# pragma warning(push)
+# pragma warning(disable : 4702)
+#endif /* compiler */
+
     try
     {
         static_cast<void>(ator.allocate(n));
@@ -109,6 +115,11 @@ static void expect_out_of_memory(allocator_t& ator, allocator_t::size_type n)
     {
         TEST_PASSED();
     }
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1200
+# pragma warning(pop)
+#endif /* compiler */
 }
 
 static void test_alloc_0()

@@ -160,11 +160,16 @@ static void TEST_c_string_strnicmp_ASCII_CASE_FOLD()
 
 static void TEST_c_string_strnicmp_HIGH_BIT()
 {
-    char const same1[] = { (char)0xE9, 'A', '\0' };
-    char const same2[] = { (char)0xE9, 'a', '\0' };
-    char const later[] = { (char)0xE9, 'B', '\0' };
-    char const lo[] = { (char)0xE1, '\0' };
-    char const hi[] = { (char)0xE2, '\0' };
+    unsigned char const same1_u[] = { 0xE9, 'A', 0 };
+    unsigned char const same2_u[] = { 0xE9, 'a', 0 };
+    unsigned char const later_u[] = { 0xE9, 'B', 0 };
+    unsigned char const lo_u[] = { 0xE1, 0 };
+    unsigned char const hi_u[] = { 0xE2, 0 };
+    char const* const   same1 = reinterpret_cast<char const*>(same1_u);
+    char const* const   same2 = reinterpret_cast<char const*>(same2_u);
+    char const* const   later = reinterpret_cast<char const*>(later_u);
+    char const* const   lo = reinterpret_cast<char const*>(lo_u);
+    char const* const   hi = reinterpret_cast<char const*>(hi_u);
 
     TEST_INT_EQ(0, stlsoft::c_string::strnicmp(same1, same2, 2));
     TEST_INT_LT(0, stlsoft::c_string::strnicmp(same1, later, 2));
