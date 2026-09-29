@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    itoslice.c
+ * File:    itoslice/main.c
  *
  * Purpose: Scratch test for `stlsoft_C_itoslice_a()` etc.
  *
  * Created: 18th December 2016
- * Updated: 30th May 2025
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

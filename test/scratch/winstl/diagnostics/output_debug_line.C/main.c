@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.scratch.winstl.diagnostics.C.output_debug_line.c
+ * File:    output_debug_line.C/main.c
  *
  * Purpose: Scratch test for `winstl_C_diagnostics_output_debug_line_1_m()`, etc.
  *
  * Created: 5th January 2011
- * Updated: 23rd August 2025
+ * Updated: 29th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
