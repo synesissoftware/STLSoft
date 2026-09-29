@@ -3,15 +3,19 @@
 
 ## 1.11.1-rc7 - 30th September 2026
 
-* **simple_string** — counted construction, `assign`, `append`, and `push_back` keep an embedded NUL, including assignment of a single `'\0'`;
+* **simple_string** — counted construction, `assign`, `append`, `push_back`, and concatenation keep an embedded NUL, including assignment of a single `'\0'`;
 * **string_begins_with** — a `wchar_t` prefix compares with `char_traits<C>::compare_max` (`wcsncmp`);
 * **char_traits_safe** — a count of 0 compares equal; a non-zero count orders a null pointer before a live pointer;
+* **platformstl::FILE_stream** — `write(void const*, size_t)` is deprecated; `write_binary()` writes every byte, including an embedded NUL;
+* **platformstl::file_lines** — component tests cover LF, CR, and CRLF splits, including an empty line, and reject an embedded NUL;
 * **winstl::netapi_allocator** — pass a `DWORD` byte count to `NetApiBufferAllocate`; the unit test links **netapi32**;
 * **stlsoft/std/cstring.hpp** — suppress CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
 * **winstl** — **1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**), with **STLSoft 1.11.1-rc7**;
 * Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable names stay `test.<kind>.*`;
 * **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
 * String-comparison units — `strnicmp` (C and C++), `c_string_traits`, `char_traits` / `char_traits_safe`, `strcmp` / `strncmp`, BSTR compare, `string_begins_with`, `special_string_instance::equal`, and compare edges on `simple_string`, `static_string`, `string_view`, and `string_slice`;
+* Allocator units — **comstl::task_allocator**, **mfcstl::afx_allocator**, **malloc_allocator**, **new_allocator**, **null_allocator**, and WinSTL **global_allocator**, **netapi_allocator**, **processheap_allocator**, and **shell_allocator** exercise allocation and container use;
+* Empty placeholder cases removed from existing unit suites;
 * **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**) and **WinSTL 1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**);
 
 
