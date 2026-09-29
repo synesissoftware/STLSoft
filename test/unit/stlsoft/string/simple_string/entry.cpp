@@ -1589,9 +1589,19 @@ static void TEST_assign_EMBEDDED_NUL()
     TEST_INT_EQ(0, int(filled.data()[1]));
     TEST_INT_EQ(0, int(filled.data()[2]));
 
+    string_t    nul_ch;
+    wstring_t   wnul_ch;
+
+    nul_ch = '\0';
+    wnul_ch = L'\0';
+
     expect_embedded_wchar_(wempty);
     expect_embedded_wchar_(wexisting);
     expect_embedded_wchar_(wstring_t(wexisting));
+    TEST_INT_EQ(1u, nul_ch.size());
+    TEST_INT_EQ(0, int(nul_ch.data()[0]));
+    TEST_INT_EQ(1u, wnul_ch.size());
+    TEST_INT_EQ(0, int(wnul_ch.data()[0]));
     TEST_INT_EQ(3u, wfilled.size());
     TEST_INT_EQ(0, int(wfilled.data()[0]));
     TEST_INT_EQ(0, int(wfilled.data()[1]));

@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      286
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      287
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -3561,9 +3561,7 @@ inline
 ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const&
 basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
 {
-    char_type   sz[2] = { ch, traits_type::to_char_type(0) };
-
-    return assign(sz);
+    return assign(&ch, 1);
 }
 
 
@@ -3595,17 +3593,6 @@ basic_simple_string<C, T, A>::append(
         }
         else
         {
-#if 1
-            // We're taking a length here, which may have been done already.
-            // This should be optimised out in a subsequent release
-            size_type len = traits_type::length_max(s, cch);
-
-            if (len < cch)
-            {
-                cch = len;
-            }
-#endif /* 0 */
-
             string_buffer*  old_buffer  =   ss_nullptr_k;
             string_buffer*  buffer      =   string_buffer_from_member_pointer_(m_buffer);
             size_type const buf_len     =   buffer->length;
