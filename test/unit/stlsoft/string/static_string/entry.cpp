@@ -123,6 +123,10 @@ namespace {
 
     // comparison
 
+    static void TEST_compare_CHAR();
+    static void TEST_compare_EMPTY();
+    static void TEST_compare_EMBEDDED_NUL();
+    static void TEST_compare_WCHAR();
     static void test_contains_1();
     static void test_contains_2();
     static void test_contains_3();
@@ -254,6 +258,10 @@ int main(int argc, char* argv[])
 
         // comparison
 
+        XTESTS_RUN_CASE(TEST_compare_CHAR);
+        XTESTS_RUN_CASE(TEST_compare_EMPTY);
+        XTESTS_RUN_CASE(TEST_compare_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_compare_WCHAR);
         XTESTS_RUN_CASE(test_contains_1);
         XTESTS_RUN_CASE(test_contains_2);
         XTESTS_RUN_CASE(test_contains_3);
@@ -1475,6 +1483,89 @@ static void test_capacity()
 
 
 // comparison
+
+static void TEST_compare_CHAR()
+{
+    typedef string_10_t string_t;
+
+    string_t const  abc("abc");
+    string_t const  abd("abd");
+    char const      small[] = { char(0x01), '\0' };
+    char const      large[] = { char(0xFF), '\0' };
+
+    TEST_INT_EQ(0, abc.compare(string_t("abc")));
+    TEST_INT_EQ(0, abc.compare("abc"));
+    TEST_INT_LT(0, abc.compare(abd));
+    TEST_INT_LT(0, abc.compare("abd"));
+    TEST_INT_GT(0, abd.compare(abc));
+    TEST_INT_GT(0, abd.compare("abc"));
+    TEST_INT_LT(0, string_t(small).compare(large));
+}
+
+static void TEST_compare_EMPTY()
+{
+    typedef string_10_t string_t;
+
+    string_t const  empty;
+    string_t const  empty2;
+    string_t const  a("a");
+
+    TEST_INT_EQ(0, empty.compare(empty2));
+    TEST_INT_EQ(0, empty.compare(""));
+    TEST_INT_LT(0, empty.compare(a));
+    TEST_INT_LT(0, empty.compare("a"));
+    TEST_INT_GT(0, a.compare(empty));
+    TEST_INT_GT(0, a.compare(""));
+}
+
+static void TEST_compare_EMBEDDED_NUL()
+{
+    typedef string_10_t string_t;
+
+    char const      src_x[] = { 'a', '\0', 'x' };
+    char const      src_y[] = { 'a', '\0', 'y' };
+    char const      src_b[] = { 'b', '\0', 'x' };
+    string_t const  s_ax(src_x, 3);
+    string_t const  s_ay(src_y, 3);
+    string_t const  s_bx(src_b, 3);
+    string_t const  s_ax2(src_x, 3);
+
+    TEST_INT_EQ(3u, s_ax.size());
+    TEST_INT_EQ(int('a'), int(s_ax.data()[0]));
+    TEST_INT_EQ(0, int(s_ax.data()[1]));
+    TEST_INT_EQ(int('x'), int(s_ax.data()[2]));
+    TEST_INT_EQ(0, s_ax.compare(s_ax2));
+    TEST_INT_LT(0, s_ax.compare("ax"));
+    TEST_INT_LT(0, s_ax.compare(s_ay));
+    TEST_INT_GT(0, s_bx.compare(s_ax));
+    TEST_INT_LT(0, string_t("a").compare(s_ax));
+}
+
+static void TEST_compare_WCHAR()
+{
+    typedef wstring_10_t string_t;
+
+    string_t const  abc(L"abc");
+    string_t const  abd(L"abd");
+    string_t const  empty;
+    wchar_t const   src_x[] = { L'a', L'\0', L'x' };
+    wchar_t const   src_y[] = { L'a', L'\0', L'y' };
+    string_t const  w_ax(src_x, 3);
+    string_t const  w_ay(src_y, 3);
+
+    TEST_INT_EQ(0, abc.compare(string_t(L"abc")));
+    TEST_INT_LT(0, abc.compare(abd));
+    TEST_INT_GT(0, abd.compare(abc));
+    TEST_INT_EQ(0, empty.compare(string_t()));
+    TEST_INT_EQ(0, empty.compare(L""));
+    TEST_INT_LT(0, empty.compare(abc));
+    TEST_INT_EQ(3u, w_ax.size());
+    TEST_INT_EQ(int(L'a'), int(w_ax.data()[0]));
+    TEST_INT_EQ(0, int(w_ax.data()[1]));
+    TEST_INT_EQ(int(L'x'), int(w_ax.data()[2]));
+    TEST_INT_LT(0, w_ax.compare(L"ax"));
+    TEST_INT_LT(0, w_ax.compare(w_ay));
+}
 
 static void test_contains_1()
 {
