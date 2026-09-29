@@ -252,11 +252,23 @@ static void TEST_char_traits_safe_compare()
 
 static void TEST_char_traits_safe_compare_NULL()
 {
-    /* compare() forwards to char_traits::compare. A null argument is
-     * defined only when n is 0. compare_max() uses compare_maxnull().
+    /* A count of 0 compares no characters, so a null pointer and a live
+     * pointer are equal. A non-zero count orders a null pointer before a
+     * live pointer, and two null pointers compare equal.
      */
     TEST_INT_EQ(0, a_safe_t::compare(NULL, NULL, 0));
+    TEST_INT_EQ(0, a_safe_t::compare(NULL, NULL, 4));
+    TEST_INT_EQ(0, a_safe_t::compare(NULL, "a", 0));
+    TEST_INT_EQ(-1, a_safe_t::compare(NULL, "a", 1));
+    TEST_INT_EQ(0, a_safe_t::compare("a", NULL, 0));
+    TEST_INT_EQ(1, a_safe_t::compare("a", NULL, 1));
+
     TEST_INT_EQ(0, w_safe_t::compare(NULL, NULL, 0));
+    TEST_INT_EQ(0, w_safe_t::compare(NULL, NULL, 4));
+    TEST_INT_EQ(0, w_safe_t::compare(NULL, L"a", 0));
+    TEST_INT_EQ(-1, w_safe_t::compare(NULL, L"a", 1));
+    TEST_INT_EQ(0, w_safe_t::compare(L"a", NULL, 0));
+    TEST_INT_EQ(1, w_safe_t::compare(L"a", NULL, 1));
 
     TEST_INT_EQ(0, a_safe_t::compare_max(NULL, NULL, 4));
     TEST_INT_EQ(-1, a_safe_t::compare_max(NULL, "a", 1));
