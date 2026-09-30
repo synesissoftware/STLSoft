@@ -12,7 +12,6 @@ on:
       - rc3
       - rc4
       - rc5
-      - file_lines.perf
   pull_request:
 
 concurrency:
@@ -22,11 +21,6 @@ concurrency:
 env:
   BUILD_TYPE: Release
 
-# TEMPORARY (file_lines.perf): only Windows/MinGW runs, and only the build
-# plus the performance job. Examples, unit, component, scratch, smoke, and
-# the other OS/compiler cells stay off until the file_lines crash is
-# located.
-
 jobs:
   cell:
     name: CI (${{ matrix.id }})
@@ -34,6 +28,26 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - id: linux-clang
+            os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - id: linux-gcc
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - id: macos-clang
+            os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - id: macos-gcc
+            os: macos-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - id: windows-cl
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
           - id: windows-mingw
             os: windows-latest
             c_compiler: mingw
@@ -45,14 +59,12 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
-      perf-only: true
       with-ace: false
       with-atl: false
       with-mfc: false
     secrets: inherit
 
   cell-ace:
-    if: false
     name: CI ACE (${{ matrix.id }})
     strategy:
       fail-fast: false
@@ -75,7 +87,6 @@ jobs:
     secrets: inherit
 
   cell-atl:
-    if: false
     name: CI ATL (${{ matrix.id }})
     strategy:
       fail-fast: false
@@ -98,7 +109,6 @@ jobs:
     secrets: inherit
 
   cell-mfc:
-    if: false
     name: CI MFC (${{ matrix.id }})
     strategy:
       fail-fast: false
@@ -121,13 +131,24 @@ jobs:
     secrets: inherit
 
   install-smoke:
-    if: false
     name: Install smoke (${{ matrix.os }}, ${{ matrix.c_compiler }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         include:
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
           - os: windows-latest
             c_compiler: mingw
             cpp_compiler: g++

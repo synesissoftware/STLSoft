@@ -31,12 +31,6 @@ on:
         required: false
         type: boolean
         default: false
-      # TEMPORARY (file_lines.perf): skip examples, unit, component, and
-      # scratch so only the build and the performance job run.
-      perf-only:
-        required: false
-        type: boolean
-        default: false
 
 jobs:
   build:
@@ -298,7 +292,6 @@ jobs:
           retention-days: 1
 
   run-examples:
-    if: ${{ !inputs.perf-only }}
     name: Examples (${{ inputs.cell-id }})
     needs: build
     runs-on: ${{ inputs.os }}
@@ -362,7 +355,6 @@ jobs:
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M --skip-interactive
 
   test-unit:
-    if: ${{ !inputs.perf-only }}
     name: Unit tests (${{ inputs.cell-id }})
     needs: build
     runs-on: ${{ inputs.os }}
@@ -426,7 +418,6 @@ jobs:
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
 
   test-component:
-    if: ${{ !inputs.perf-only }}
     name: Component tests (${{ inputs.cell-id }})
     needs: build
     runs-on: ${{ inputs.os }}
@@ -490,7 +481,6 @@ jobs:
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
 
   test-scratch:
-    if: ${{ !inputs.perf-only }}
     name: Scratch tests (${{ inputs.cell-id }})
     needs: build
     continue-on-error: true
@@ -610,19 +600,10 @@ jobs:
             -exec chmod +x {} +
 
       - name: Run performance tests
-        shell: msys2 {0}
+        shell: bash
         run: |
           set -euo pipefail
-          # TEMPORARY (file_lines.perf): msys2 shell so /mingw64/bin is
-          # real.
-          echo "dll-hunt: PATH=$PATH"
-          command -v g++ || true
-          g++ -print-file-name=libstdc++-6.dll || true
-          ls -la /mingw64/bin/libstdc++*.dll /mingw64/bin/libgcc_s*.dll /mingw64/bin/libwinpthread*.dll 2>/dev/null || true
-          # Gaps between pattern groups in the bit-functions harness.
-          export SIS_PERFTESTS_GROUPGAPS=1
-          # TEMPORARY (file_lines.perf): only the crashing program; full
-          # matrix now that the staged probe passed (incl. ifstream).
-          export SIS_PERFTESTS_MATCH=file_lines
-          export SIS_FILE_LINES_PERF_FULL=1
+          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+          fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M
