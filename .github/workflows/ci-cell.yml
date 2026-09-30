@@ -610,12 +610,15 @@ jobs:
             -exec chmod +x {} +
 
       - name: Run performance tests
-        shell: bash
+        shell: msys2 {0}
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-          fi
+          # TEMPORARY (file_lines.perf): msys2 shell so /mingw64/bin is
+          # real.
+          echo "dll-hunt: PATH=$PATH"
+          command -v g++ || true
+          g++ -print-file-name=libstdc++-6.dll || true
+          ls -la /mingw64/bin/libstdc++*.dll /mingw64/bin/libgcc_s*.dll /mingw64/bin/libwinpthread*.dll 2>/dev/null || true
           # Gaps between pattern groups in the bit-functions harness.
           export SIS_PERFTESTS_GROUPGAPS=1
           # TEMPORARY (file_lines.perf): only the crashing program.

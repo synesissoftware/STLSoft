@@ -188,6 +188,56 @@ if [ $status -eq 0 ]; then
       echo "breadcrumb: (none)"
     fi
 
+    # TEMPORARY (file_lines.perf): 127 + no breadcrumb => PE loader / DLL
+    # search. Dump PATH, probe MinGW runtimes, copy them beside the exe,
+    # and retry once.
+    if [ $child_ec -eq 127 ]; then
+
+      echo "dll-hunt: PATH=$PATH"
+      if command -v g++ >/dev/null 2>&1; then
+
+        echo "dll-hunt: g++=$(command -v g++)"
+        echo "dll-hunt: libstdc++=$(g++ -print-file-name=libstdc++-6.dll)"
+        echo "dll-hunt: libgcc=$(g++ -print-file-name=libgcc_s_seh-1.dll)"
+      fi
+      for d in /mingw64/bin /ucrt64/bin; do
+
+        if [ -d "$d" ]; then
+
+          ls -la "$d"/libstdc++*.dll "$d"/libgcc_s*.dll "$d"/libwinpthread*.dll 2>/dev/null || true
+        fi
+      done
+      if command -v cygcheck >/dev/null 2>&1; then
+
+        cygcheck "$f" || true
+      fi
+
+      exe_dir=$(dirname "$f")
+      for dll in libgcc_s_seh-1.dll libstdc++-6.dll libwinpthread-1.dll; do
+
+        for d in /mingw64/bin /ucrt64/bin; do
+
+          if [ -f "$d/$dll" ]; then
+
+            cp -f "$d/$dll" "$exe_dir/"
+            echo "dll-hunt: copied $d/$dll -> $exe_dir/"
+          fi
+        done
+      done
+      rm -f file_lines.perf.trace.txt
+      $f
+      child_ec=$?
+      echo "child-exit-after-dll-copy=$child_ec"
+      if [ -f file_lines.perf.trace.txt ]; then
+
+        echo "breadcrumb-after-dll-copy:"
+        cat file_lines.perf.trace.txt
+      else
+
+        echo "breadcrumb-after-dll-copy: (none)"
+      fi
+    fi
+
     if [ $child_ec -eq 0 ]; then
 
       :
