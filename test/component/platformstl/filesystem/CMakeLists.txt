@@ -1,2 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(test.component.platformstl.filesystem.file_lines)
+add_subdirectory(file_lines)

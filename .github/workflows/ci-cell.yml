@@ -606,4 +606,6 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
+          # Gaps between pattern groups in the bit-functions harness.
+          export SIS_PERFTESTS_GROUPGAPS=1
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M

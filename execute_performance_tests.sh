@@ -152,17 +152,19 @@ if [ $status -eq 0 ]; then
     if [ $ExpandWidth -ne 0 ]; then
 
       $f | expand -t $ExpandWidth
+      child_ec=${PIPESTATUS[0]}
     else
 
       $f
+      child_ec=$?
     fi
 
-    if [ $? -eq 0 ]; then
+    if [ $child_ec -eq 0 ]; then
 
       :
     else
 
-      status=$?
+      status=$child_ec
 
       break 1
     fi
