@@ -554,8 +554,18 @@ run_scenario(
  * when SIS_FILE_LINES_PERF_FULL is set.
  */
 
+char const TRACE_FILE_NAME_[] = "file_lines.perf.trace.txt";
+
 static void trace_c_(char const* stage)
 {
+    /* Disk first: CI showed exit 1 with no console lines from this exe. */
+    if (FILE* const tf = std::fopen(TRACE_FILE_NAME_, "a"))
+    {
+        std::fprintf(tf, "[file_lines.perf] %s\n", stage);
+        std::fflush(tf);
+        std::fclose(tf);
+    }
+
     std::fprintf(stdout, "[file_lines.perf] %s\n", stage);
     std::fprintf(stderr, "[file_lines.perf] %s\n", stage);
     std::fflush(stdout);

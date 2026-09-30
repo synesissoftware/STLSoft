@@ -136,8 +136,17 @@ if [ $status -eq 0 ]; then
     echo "Running all ${ProjectName} performance test programs"
   fi
 
+  # TEMPORARY (file_lines.perf): optional substring filter, e.g.
+  # SIS_PERFTESTS_MATCH=file_lines to skip stopwatch while hunting.
+  Match=${SIS_PERFTESTS_MATCH:-}
+
   for f in $(find "$CMakeDir" -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print | sort)
   do
+
+    if [ -n "$Match" ] && [[ "$f" != *"$Match"* ]]; then
+
+      continue
+    fi
 
     if [ $ListOnly -ne 0 ]; then
 
@@ -149,20 +158,42 @@ if [ $status -eq 0 ]; then
     echo
     echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
 
+    # TEMPORARY (file_lines.perf): size / imports and a cwd breadcrumb so a
+    # silent child death still leaves something to cat. Capture child_ec
+    # before any other command overwrites $?.
+    ls -la "$f" || true
+    if command -v objdump >/dev/null 2>&1; then
+
+      objdump -p "$f" 2>/dev/null | grep -i "DLL Name" || true
+    fi
+    rm -f file_lines.perf.trace.txt
+
     if [ $ExpandWidth -ne 0 ]; then
 
       $f | expand -t $ExpandWidth
+      child_ec=${PIPESTATUS[0]}
     else
 
       $f
+      child_ec=$?
     fi
 
-    if [ $? -eq 0 ]; then
+    echo "child-exit=$child_ec"
+    if [ -f file_lines.perf.trace.txt ]; then
+
+      echo "breadcrumb:"
+      cat file_lines.perf.trace.txt
+    else
+
+      echo "breadcrumb: (none)"
+    fi
+
+    if [ $child_ec -eq 0 ]; then
 
       :
     else
 
-      status=$?
+      status=$child_ec
 
       break 1
     fi

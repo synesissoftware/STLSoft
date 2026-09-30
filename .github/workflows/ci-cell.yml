@@ -618,4 +618,6 @@ jobs:
           fi
           # Gaps between pattern groups in the bit-functions harness.
           export SIS_PERFTESTS_GROUPGAPS=1
+          # TEMPORARY (file_lines.perf): only the crashing program.
+          export SIS_PERFTESTS_MATCH=file_lines
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M
