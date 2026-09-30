@@ -51,7 +51,7 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
 * [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
-* [ ] Add **test.performance.stlsoft.util.bit_functions**;
+* [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 
 

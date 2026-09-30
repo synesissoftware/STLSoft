@@ -1,6 +1,6 @@
-# STLSoft.b - Bit Functions <!-- omit in toc -->
+# STLSoft - Bit Functions <!-- omit in toc -->
 
-Strategy note for **STLSoft.b** bit utilities. Measurements are of the performance program **test/performance/stlsoft/bit_functions/main.cpp**. Library sources are **include/stlsoft/util/bits/count_functions.h**, **include/stlsoft/util/bits/test_functions.h**, and **include/stlsoft/util/bits/xor_functions.h**. Intrinsic detection and naming live in **include/stlsoft/api/external/bitfns.h** and **include/stlsoft/api/internal/bitfns.h**.
+Strategy note for **STLSoft** bit utilities. Measurements are of the performance program **test/performance/stlsoft/util/bit_functions/main.cpp**. Library sources are **include/stlsoft/util/bits/count_functions.h**, **include/stlsoft/util/bits/test_functions.h**, and **include/stlsoft/util/bits/xor_functions.h**. Intrinsic detection and naming live in **include/stlsoft/api/external/bitfns.h** and **include/stlsoft/api/internal/bitfns.h**.
 
 
 ## Question
