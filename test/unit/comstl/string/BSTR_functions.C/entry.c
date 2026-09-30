@@ -42,6 +42,9 @@ static void test_comstl_C_BSTR_create_a_2(void);
 static void test_comstl_C_BSTR_create_len_w(void);
 static void test_comstl_C_BSTR_create_len_a(void);
 static void test_comstl_C_BSTR_compare(void);
+static void TEST_comstl_C_BSTR_compare_EMPTY(void);
+static void TEST_comstl_C_BSTR_compare_EMBEDDED_NUL(void);
+static void TEST_comstl_C_BSTR_compare_PREFIX_LENGTH(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,6 +67,9 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_comstl_C_BSTR_create_len_w);
         XTESTS_RUN_CASE(test_comstl_C_BSTR_create_len_a);
         XTESTS_RUN_CASE(test_comstl_C_BSTR_compare);
+        XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_EMPTY);
+        XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_EMBEDDED_NUL);
+        XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_PREFIX_LENGTH);
 
         XTESTS_PRINT_RESULTS();
 
@@ -229,6 +235,59 @@ static void test_comstl_C_BSTR_compare()
 
     comstl_C_BSTR_destroy(abc);
     comstl_C_BSTR_destroy(def);
+}
+
+static void TEST_comstl_C_BSTR_compare_EMPTY()
+{
+    BSTR const empty = comstl_C_BSTR_create_w(L"");
+    BSTR const a = comstl_C_BSTR_create_w(L"a");
+
+    TEST_PTR_NE(NULL, empty);
+    TEST_INT_EQ(0u, SysStringLen(empty));
+
+    TEST_INT_EQ(0, comstl_C_BSTR_compare(empty, empty));
+    TEST_INT_EQ(-1, comstl_C_BSTR_compare(NULL, empty));
+    TEST_INT_EQ(1, comstl_C_BSTR_compare(empty, NULL));
+    TEST_INT_LT(0, comstl_C_BSTR_compare(empty, a));
+    TEST_INT_GT(0, comstl_C_BSTR_compare(a, empty));
+
+    comstl_C_BSTR_destroy(empty);
+    comstl_C_BSTR_destroy(a);
+}
+
+static void TEST_comstl_C_BSTR_compare_EMBEDDED_NUL()
+{
+    wchar_t const ax[] = { L'a', L'\0', L'x' };
+    wchar_t const ay[] = { L'a', L'\0', L'y' };
+    wchar_t const bx[] = { L'b', L'\0', L'x' };
+    BSTR const s_ax = comstl_C_BSTR_create_len_w(ax, 3);
+    BSTR const s_ay = comstl_C_BSTR_create_len_w(ay, 3);
+    BSTR const s_bx = comstl_C_BSTR_create_len_w(bx, 3);
+
+    TEST_INT_EQ(3u, SysStringLen(s_ax));
+    TEST_INT_EQ(0, comstl_C_BSTR_compare(s_ax, s_ay));
+    TEST_INT_GT(0, comstl_C_BSTR_compare(s_bx, s_ax));
+
+    comstl_C_BSTR_destroy(s_ax);
+    comstl_C_BSTR_destroy(s_ay);
+    comstl_C_BSTR_destroy(s_bx);
+}
+
+static void TEST_comstl_C_BSTR_compare_PREFIX_LENGTH()
+{
+    wchar_t const abc[] = L"abc";
+    BSTR const ab = comstl_C_BSTR_create_len_w(abc, 2);
+    BSTR const ab_full = comstl_C_BSTR_create_w(L"ab");
+    BSTR const abc_full = comstl_C_BSTR_create_w(L"abc");
+
+    TEST_INT_EQ(2u, SysStringLen(ab));
+    TEST_INT_EQ(0, comstl_C_BSTR_compare(ab, ab_full));
+    TEST_INT_LT(0, comstl_C_BSTR_compare(ab, abc_full));
+    TEST_INT_GT(0, comstl_C_BSTR_compare(abc_full, ab));
+
+    comstl_C_BSTR_destroy(ab);
+    comstl_C_BSTR_destroy(ab_full);
+    comstl_C_BSTR_destroy(abc_full);
 }
 
 

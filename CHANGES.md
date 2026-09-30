@@ -3,28 +3,34 @@
 
 ## 1.11.1-rc7 - 30th September 2026
 
+* **simple_string** — counted construction, `assign`, `append`, `push_back`, and concatenation keep an embedded NUL, including assignment of a single `'\0'`;
+* **string_begins_with** — a `wchar_t` prefix compares with `char_traits<C>::compare_max` (`wcsncmp`);
+* **char_traits_safe** — a count of 0 compares equal; a non-zero count orders a null pointer before a live pointer;
+* **platformstl::FILE_stream** — added `write_binary()` (writes every byte, including embedded NULs) and deprecated `write(void const*, size_t)` in its favour;
+* `platformstl::basic_file_lines<>` — parse directly from the memory-mapped base (dropped the full-file `m_contents` heap copy); fold the binary/NUL reject into the parse loop; C++11+ `emplace_back`; floor line-reservation at 128;
+* Approximate measured gains for `platformstl::basic_file_lines<>` on the new harness (1000×64 LF): view-based forms (~`stlsoft::string_view` / `std::string_view`) about **10–20×** faster than `fgetc` line accumulation and typically **comparable to or slightly ahead of** `std::getline` (~1.2× on MinGW CI); owning-string forms remain competitive with `std::getline` while avoiding the extra full-file copy;
 * Renamed `stlsoft_C_environment_variable_exists_a()` to `stlsoft_C_environment_variable_exists_m()`; the `_a` form remains as a deprecated forwarder;
-* Component tests for `stlsoft::environment_variable_exists()` (**test/component/stlsoft/system/environment_variable_exists**), including `std::string` / `simple_string` shims and UNIX empty-value behaviour;
 * Added `count_bits_by_intrinsic()` and `find_highest_bit_by_intrinsic()` (unselected by default; `count_bits()` keeps the 8-bit table; `find_highest_bit()` keeps the scan);
 * Added **stlsoft/api/external/bitfns.h** and **stlsoft/api/internal/bitfns.h** — detection and adaptations for `popcount` / `clz` / `_BitScanReverse` intrinsics (GCC/Clang builtins preferred over MSVC when both are visible);
 * Clang cccap — `STLSOFT_CLANG_VER`; documented shared `STLSOFT_GCC_VER` (also noted in GCC cccap);
 * Fixed `count_bits()` overloads when `STLSOFT_BIT_COUNT_BY_Kernighan` is defined;
+* Strategy note **strategy/BIT_FUNCTIONS.md** — measurements and default choice (table for `count_bits()`; keep intrinsics unselected pending cross-toolchain evidence);
+* **winstl::netapi_allocator** — pass a `DWORD` byte count to `NetApiBufferAllocate`; the unit test links **netapi32**;
+* **stlsoft/std/cstring.hpp** — suppress CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
+* **winstl** — **1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**), with **STLSoft 1.11.1-rc7**;
+* CMake — Windows GNU (**MinGW**) test/example programs static-link **libgcc** / **libstdc++** so PE images load when runner **PATH** does not match the build toolchain;
+* CI — performance job exports **SIS_PERFTESTS_GROUPGAPS=1**;
+* **execute_performance_tests.sh** — capture the child exit code after optional `expand` piping (was overwriting a failed status with `$?` from the success branch);
+* Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable names stay `test.<kind>.*`;
+* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **platformstl/filesystem**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
+* String-comparison units — `strnicmp` (C and C++), `c_string_traits`, `char_traits` / `char_traits_safe`, `strcmp` / `strncmp`, BSTR compare, `string_begins_with`, `special_string_instance::equal`, and compare edges on `simple_string`, `static_string`, `string_view`, and `string_slice`;
+* Component tests for `stlsoft::environment_variable_exists()` (**test/component/stlsoft/system/environment_variable_exists**), including `std::string` / `simple_string` shims and UNIX empty-value behaviour;
+* Component tests for `platformstl::file_lines` (**test/component/platformstl/filesystem/file_lines**) cover LF, CR, and CRLF splits, including an empty line, and reject an embedded NUL;
 * Unit tests for intrinsic popcount / highest-bit helpers; broader width coverage for bit-function overloads;
 * Performance suite **test/performance/stlsoft/util/bit_functions** (density patterns, intrinsic rows, median / ns-per-call reporting);
-* Strategy note **strategy/BIT_FUNCTIONS.md** — measurements and default choice (table for `count_bits()`; keep intrinsics unselected pending cross-toolchain evidence);
-* CI — performance job exports **SIS_PERFTESTS_GROUPGAPS=1**;
-* **platformstl::FILE_stream** — added `write_binary()` (writes every byte, including embedded NULs) and deprecated `write(void const*, size_t)` in its favour;
-* Component tests for `platformstl::file_lines` (**test/component/platformstl/filesystem/file_lines**);
-* `platformstl::basic_file_lines<>` — parse directly from the memory-mapped base (dropped the full-file `m_contents` heap copy); fold the binary/NUL reject into the parse loop; C++11+ `emplace_back`; floor line-reservation at 128;
-* Approximate measured gains for `platformstl::basic_file_lines<>` on the new harness (1000×64 LF): view-based forms (~`stlsoft::string_view` / `std::string_view`) about **10–20×** faster than `fgetc` line accumulation and typically **comparable to or slightly ahead of** `std::getline` (~1.2× on MinGW CI); owning-string forms remain competitive with `std::getline` while avoiding the extra full-file copy;
 * Performance suite **test/performance/platformstl/filesystem/file_lines** — comparative harness vs `fgetc` / `std::getline` (LF / CRLF / CR; mid-size and small-file shapes; C++11+);
-* CMake — Windows GNU (**MinGW**) test/example programs static-link **libgcc** / **libstdc++** so PE images load when runner **PATH** does not match the build toolchain;
-* **execute_performance_tests.sh** — capture the child exit code after optional `expand` piping (was overwriting a failed status with `$?` from the success branch);
-* Fixed `winstl::netapi_allocator` — pass a **DWORD** byte count to `NetApiBufferAllocate`;
-* Unit tests — removed empty case functions; filled the nine allocator suites (round-trip sizes, `max_size()`, `std::list` / `std::vector`; `null_allocator` throws `out_of_memory_exception`);
-* Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable target names unchanged;
-* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **platformstl/filesystem**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
-* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**);
+* Unit tests — removed empty placeholder cases; filled the nine allocator suites (**comstl::task_allocator**, **mfcstl::afx_allocator**, **malloc_allocator**, **new_allocator**, **null_allocator**, and WinSTL **global_allocator**, **netapi_allocator**, **processheap_allocator**, and **shell_allocator**) with round-trip sizes, `max_size()`, and `std::list` / `std::vector` use (`null_allocator` throws `out_of_memory_exception`);
+* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**) and **WinSTL 1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**);
 
 
 ## 1.11.1-rc6 - 21st September 2026
