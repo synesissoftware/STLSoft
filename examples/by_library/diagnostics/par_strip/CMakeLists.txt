@@ -1,4 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(doomgram)
-add_subdirectory(gram_scope)
-add_subdirectory(par_strip)
+define_example_program(par_strip main.cpp)
