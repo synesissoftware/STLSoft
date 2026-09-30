@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,6 +28,8 @@
 #include <platformstl/filesystem/file_lines.hpp>
 #include <platformstl/filesystem/path_functions.h>
 #include <stlsoft/containers/frequency_map.hpp>
+
+#include "perf_group_gaps.hpp"
 
 #include <cstddef>
 #include <cstdlib>
@@ -192,6 +194,8 @@ int main(int argc, char* argv[])
 
     char const* casename;
 
+    perf_maybe_emit_groupgaps_banner(std::cout);
+
     std::cout << "creating array(s)" << std::endl;
 
     auto arrays_of_integers = create_integers_arrays(
@@ -230,6 +234,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "reserve";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;
@@ -354,6 +360,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "ctor(n, v)";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;
@@ -487,6 +495,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "copy construction";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;
@@ -626,6 +636,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "range construction";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;
@@ -768,6 +780,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "range construction (from list)";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;
@@ -914,6 +928,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "range construction (from input-iterator)";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;
@@ -1049,6 +1065,8 @@ int main(int argc, char* argv[])
     {
         char const* const grpname = "move ctor";
 
+        /* Gap between named auto_buffer operation groups. */
+        perf_maybe_emit_group_gap(stdout, grpname);
         fprintf(stdout, "%s:\n", grpname);
 
         platformstl::stopwatch::interval_type   tm_vec = 0;

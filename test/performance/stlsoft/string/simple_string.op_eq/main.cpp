@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::basic_simple_string#operator ==()`.
  *
  * Created: 15th March 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,6 +49,8 @@
 #include <stlsoft/string/string_tokeniser.hpp>
 #include <platformstl/diagnostics/stopwatch.hpp>
 #include <platformstl/filesystem/path_functions.h>
+
+#include "perf_group_gaps.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -207,6 +209,8 @@ int main(int argc, char* argv[])
 {
     stlsoft::string_slice_m_t const program_name = platformstl::get_executable_name_from_path(argv[0]);
 
+    perf_maybe_emit_groupgaps_banner(std::cout);
+
     // FOOLING THE OPTIMISER:
     //
     // - load the scenarios (from `SCENARIOS`);
@@ -268,6 +272,8 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
     // sc& <=> cc*
     {
+        /* Gap between compare-form sections. */
+        perf_maybe_emit_group_gap(std::cout, "sc& <=> cc*");
         std::cout << "sc& <=> cc*:" << std::endl;
 
         for (auto i : line_tokeniser)
@@ -318,6 +324,8 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
     // sc& <=> sc&
     {
+        /* Gap between compare-form sections. */
+        perf_maybe_emit_group_gap(std::cout, "sc& <=> sc&");
         std::cout << "sc& <=> sc&:" << std::endl;
 
         for (auto i : line_tokeniser)

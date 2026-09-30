@@ -4,7 +4,7 @@
  * Purpose: Perf-test for stopwatch types.
  *
  * Created: 15th March 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,8 @@
 #include <platformstl/diagnostics/processtimes_stopwatch.hpp>
 #include <platformstl/synch/sleep_functions.h>
 #include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>
+
+#include "perf_group_gaps.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -280,6 +282,8 @@ int main(int /* argc */, char* /* argv */[])
 
 #define DEFINE_TYPE_AND_NAME(t)                             char const* const type_name = #t; typedef t sw_t
 
+    perf_maybe_emit_groupgaps_banner(std::cout);
+
     std::cout
         << '\t'
         << "type"
@@ -300,6 +304,8 @@ int main(int /* argc */, char* /* argv */[])
 
     // start-stop
     {
+        /* Gap between stopwatch cost/scenario sections. */
+        perf_maybe_emit_group_gap(std::cout, "start-stop");
         std::cout << "`start()` - `stop()`(cost):" << std::endl;
 
         {
@@ -340,6 +346,8 @@ int main(int /* argc */, char* /* argv */[])
 
     // pause-unpause
     {
+        /* Gap between stopwatch cost/scenario sections. */
+        perf_maybe_emit_group_gap(std::cout, "pause-unpause");
         std::cout << "`pause()` - `unpause()` (cost):" << std::endl;
 
         {

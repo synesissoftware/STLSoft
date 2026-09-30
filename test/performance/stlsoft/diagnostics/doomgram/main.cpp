@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::doomgram<>`.
  *
  * Created: 11th December 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,6 +35,8 @@
 #else
 # include <platformstl/diagnostics/stopwatch.hpp>
 #endif /* C++11+ */
+
+#include "perf_group_gaps.hpp"
 
 /* Standard header files */
 
@@ -147,6 +149,9 @@ display_results(
     > const&            r
 )
 {
+    /* Gap when the ordering / type group label changes. */
+    perf_maybe_emit_group_gap(stm, ordering_label);
+
     stm
         << '\t'
         << ordering_label << ": " << test_name
@@ -410,6 +415,8 @@ run_tests(
 int main(int /* argc */, char* /* argv */[])
 {
     // pipe to expand: `test.performance.stlsoft.doomgram | expand -t 8,64,80,96,112,128,160`
+
+    perf_maybe_emit_groupgaps_banner(std::cout);
 
     std::cout << std::endl;
     intervals_t const intervals_o = run_tests<doomgram>().first;

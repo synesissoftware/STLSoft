@@ -20,6 +20,8 @@
 #include <stlsoft/string/string_view.hpp>
 #include <stlsoft/util/string/snprintf.h>
 
+#include "perf_group_gaps.hpp"
+
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
@@ -242,6 +244,9 @@ display_result(
 ,   result_t const& result
 )
 {
+    /* Gap when the scenario label changes, not between implementations. */
+    perf_maybe_emit_group_gap(std::cout, scenario);
+
     std::cout
         << std::left
         << std::setw(COLUMN_WIDTH_SCENARIO) << scenario
@@ -376,6 +381,8 @@ run_scenario(
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    perf_maybe_emit_groupgaps_banner(std::cout);
+
     std::cout
         << std::left
         << std::setw(COLUMN_WIDTH_SCENARIO) << "scenario"
