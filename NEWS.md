@@ -3,7 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
-| 30th September 2026 | Release of [STLSoft 1.11.1-rc7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc7) | bit-function intrinsics; `basic_file_lines::write_binary()`; `environment_variable_exists_m()`; nested **test/performance**; shortened test directories |
+| 30th September 2026 | Release of [STLSoft 1.11.1-rc7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc7) | bit-function intrinsics; `FILE_stream::write_binary()`; `basic_file_lines<>` mmap parse (~10–20× vs `fgetc`); **file_lines** perf; MinGW static runtime; nested **test/performance** |
 | 21st September 2026 | Release of [STLSoft 1.11.1-rc6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc6) | ACE/ATL/MFC CI; Clang/macOS `stricmp` aliases |
 | 4th August 2026     | Release of [STLSoft 1.11.1-rc5](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc5) | `basic_simple_string<>#resize()`; **CHANGES.md**; docs |
 | 29th July 2026      | Release of [STLSoft 1.11.1-rc4](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc4) | GitHub Actions CI; VC++ 18.x; MinGW |

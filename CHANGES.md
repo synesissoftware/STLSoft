@@ -15,10 +15,15 @@
 * CI — performance job exports **SIS_PERFTESTS_GROUPGAPS=1**;
 * **platformstl::FILE_stream** — added `write_binary()` (writes every byte, including embedded NULs) and deprecated `write(void const*, size_t)` in its favour;
 * Component tests for `platformstl::file_lines` (**test/component/platformstl/filesystem/file_lines**);
+* `platformstl::basic_file_lines<>` — parse directly from the memory-mapped base (dropped the full-file `m_contents` heap copy); fold the binary/NUL reject into the parse loop; C++11+ `emplace_back`; floor line-reservation at 128;
+* Approximate measured gains for `platformstl::basic_file_lines<>` on the new harness (1000×64 LF): view-based forms (~`stlsoft::string_view` / `std::string_view`) about **10–20×** faster than `fgetc` line accumulation and typically **comparable to or slightly ahead of** `std::getline` (~1.2× on MinGW CI); owning-string forms remain competitive with `std::getline` while avoiding the extra full-file copy;
+* Performance suite **test/performance/platformstl/filesystem/file_lines** — comparative harness vs `fgetc` / `std::getline` (LF / CRLF / CR; mid-size and small-file shapes; C++11+);
+* CMake — Windows GNU (**MinGW**) test/example programs static-link **libgcc** / **libstdc++** so PE images load when runner **PATH** does not match the build toolchain;
+* **execute_performance_tests.sh** — capture the child exit code after optional `expand` piping (was overwriting a failed status with `$?` from the success branch);
 * Fixed `winstl::netapi_allocator` — pass a **DWORD** byte count to `NetApiBufferAllocate`;
 * Unit tests — removed empty case functions; filled the nine allocator suites (round-trip sizes, `max_size()`, `std::list` / `std::vector`; `null_allocator` throws `out_of_memory_exception`);
 * Test tree — leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (for example **glob_sequence**); executable target names unchanged;
-* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
+* **test/performance** — programs nested by sub-project and area (**platformstl/diagnostics**, **platformstl/filesystem**, **stlsoft/containers**, **stlsoft/conversion**, **stlsoft/diagnostics**, **stlsoft/memory**, **stlsoft/string**, **stlsoft/util**);
 * **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**);
 
 
