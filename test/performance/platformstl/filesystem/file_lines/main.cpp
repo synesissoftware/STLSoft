@@ -23,6 +23,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
+#include <exception>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -546,11 +547,207 @@ run_scenario(
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * startup probe
+ *
+ * TEMPORARY. Flushed C stdio, including a constructor before main, so a
+ * crash during C++ startup still leaves a line. The full matrix runs only
+ * when SIS_FILE_LINES_PERF_FULL is set.
+ */
+
+static void trace_c_(char const* stage)
+{
+    std::fprintf(stdout, "[file_lines.perf] %s\n", stage);
+    std::fprintf(stderr, "[file_lines.perf] %s\n", stage);
+    std::fflush(stdout);
+    std::fflush(stderr);
+}
+
+#if defined(__GNUC__)
+
+__attribute__((constructor(101)))
+static void trace_pre_main_early_()
+{
+    std::setvbuf(stdout, NULL, _IONBF, 0);
+    std::setvbuf(stderr, NULL, _IONBF, 0);
+    trace_c_("constructor early");
+}
+
+__attribute__((constructor(65535)))
+static void trace_pre_main_late_()
+{
+    trace_c_("constructor late");
+}
+
+#endif /* __GNUC__ */
+
+static int probe_()
+{
+    trace_c_("probe write");
+
+    if (!write_test_file(1u, 3u, line_ending_lf))
+    {
+        trace_c_("probe write failed");
+
+        return EXIT_FAILURE;
+    }
+
+    trace_c_("probe write done");
+    trace_c_("probe fgetc");
+
+    {
+        FILE* stm = NULL;
+
+        if (0 != STLSOFT_API_INTERNAL_stdio_fopen_m(TEST_FILE_NAME, "rb", &stm))
+        {
+            trace_c_("probe fgetc open failed");
+
+            return EXIT_FAILURE;
+        }
+
+        int const ch = std::fgetc(stm);
+
+        std::fclose(stm);
+        std::fprintf(stderr, "[file_lines.perf] probe fgetc ch=%d\n", ch);
+        std::fflush(stderr);
+    }
+
+#if defined(STLSOFT_MINGW)
+
+    trace_c_("probe streambuf getline");
+
+    {
+        FILE* fp = NULL;
+
+        if (0 != STLSOFT_API_INTERNAL_stdio_fopen_m(TEST_FILE_NAME, "rb", &fp))
+        {
+            trace_c_("probe streambuf open failed");
+
+            return EXIT_FAILURE;
+        }
+
+        std::size_t anchor = 0u;
+
+        {
+            fread_streambuf buf(fp);
+            std::istream stm(&buf);
+
+            trace_c_("probe streambuf opened");
+
+            anchor = read_getline_(stm, line_ending_lf);
+        }
+
+        std::fclose(fp);
+        std::fprintf(stderr, "[file_lines.perf] probe streambuf anchor=%lu\n", static_cast<unsigned long>(anchor));
+        std::fflush(stderr);
+    }
+
+#endif /* STLSOFT_MINGW */
+
+    trace_c_("probe file_lines std::string");
+
+    try
+    {
+        file_lines_std_string_t lines(TEST_FILE_NAME);
+
+        std::fprintf(stderr, "[file_lines.perf] probe file_lines std::string size=%lu\n", static_cast<unsigned long>(lines.size()));
+        std::fflush(stderr);
+    }
+    catch (std::exception const& x)
+    {
+        std::fprintf(stderr, "[file_lines.perf] probe file_lines std::string exception: %s\n", x.what());
+        std::fflush(stderr);
+
+        return EXIT_FAILURE;
+    }
+
+    trace_c_("probe file_lines simple_string");
+
+    try
+    {
+        file_lines_stlsoft_simple_string_t lines(TEST_FILE_NAME);
+
+        std::fprintf(stderr, "[file_lines.perf] probe file_lines simple_string size=%lu\n", static_cast<unsigned long>(lines.size()));
+        std::fflush(stderr);
+    }
+    catch (std::exception const& x)
+    {
+        std::fprintf(stderr, "[file_lines.perf] probe file_lines simple_string exception: %s\n", x.what());
+        std::fflush(stderr);
+
+        return EXIT_FAILURE;
+    }
+
+    trace_c_("probe file_lines string_view");
+
+    try
+    {
+        file_lines_stlsoft_string_view_t lines(TEST_FILE_NAME);
+
+        std::fprintf(stderr, "[file_lines.perf] probe file_lines string_view size=%lu\n", static_cast<unsigned long>(lines.size()));
+        std::fflush(stderr);
+    }
+    catch (std::exception const& x)
+    {
+        std::fprintf(stderr, "[file_lines.perf] probe file_lines string_view exception: %s\n", x.what());
+        std::fflush(stderr);
+
+        return EXIT_FAILURE;
+    }
+
+    /* Known MinGW crash site. Last, so the lines above still appear. */
+    trace_c_("probe ifstream");
+
+    try
+    {
+        std::ifstream stm(TEST_FILE_NAME, std::ios::binary);
+
+        trace_c_("probe ifstream opened");
+
+        std::size_t const anchor = read_getline_(stm, line_ending_lf);
+
+        std::fprintf(stderr, "[file_lines.perf] probe ifstream anchor=%lu\n", static_cast<unsigned long>(anchor));
+        std::fflush(stderr);
+    }
+    catch (std::exception const& x)
+    {
+        std::fprintf(stderr, "[file_lines.perf] probe ifstream exception: %s\n", x.what());
+        std::fflush(stderr);
+
+        return EXIT_FAILURE;
+    }
+
+    trace_c_("probe passed");
+
+    return EXIT_SUCCESS;
+}
+
+/* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    trace_c_("main");
+
+    int const probe = probe_();
+
+    if (0 != probe)
+    {
+        trace_c_("probe failed");
+
+        return probe;
+    }
+
+    char const* const full = std::getenv("SIS_FILE_LINES_PERF_FULL");
+
+    if (NULL == full || '\0' == full[0] || '0' == full[0])
+    {
+        trace_c_("full matrix skipped");
+        std::remove(TEST_FILE_NAME);
+
+        return EXIT_SUCCESS;
+    }
+
     std::cerr << std::unitbuf;
     std::cerr << "[file_lines.perf] start" << std::endl;
 

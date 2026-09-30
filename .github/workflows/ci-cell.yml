@@ -31,6 +31,12 @@ on:
         required: false
         type: boolean
         default: false
+      # TEMPORARY (file_lines.perf): skip examples, unit, component, and
+      # scratch so only the build and the performance job run.
+      perf-only:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -292,6 +298,7 @@ jobs:
           retention-days: 1
 
   run-examples:
+    if: ${{ !inputs.perf-only }}
     name: Examples (${{ inputs.cell-id }})
     needs: build
     runs-on: ${{ inputs.os }}
@@ -355,6 +362,7 @@ jobs:
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M --skip-interactive
 
   test-unit:
+    if: ${{ !inputs.perf-only }}
     name: Unit tests (${{ inputs.cell-id }})
     needs: build
     runs-on: ${{ inputs.os }}
@@ -418,6 +426,7 @@ jobs:
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
 
   test-component:
+    if: ${{ !inputs.perf-only }}
     name: Component tests (${{ inputs.cell-id }})
     needs: build
     runs-on: ${{ inputs.os }}
@@ -481,6 +490,7 @@ jobs:
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
 
   test-scratch:
+    if: ${{ !inputs.perf-only }}
     name: Scratch tests (${{ inputs.cell-id }})
     needs: build
     continue-on-error: true

@@ -22,10 +22,10 @@ concurrency:
 env:
   BUILD_TYPE: Release
 
-# TEMPORARY (file_lines.perf): only the Windows/MinGW cell runs, so the
-# file_lines performance segfault can be chased without the rest of the
-# matrix. Restore Linux, macOS, windows-cl, ACE, ATL, MFC, and the other
-# install-smoke rows when that crash is located.
+# TEMPORARY (file_lines.perf): only Windows/MinGW runs, and only the build
+# plus the performance job. Examples, unit, component, scratch, smoke, and
+# the other OS/compiler cells stay off until the file_lines crash is
+# located.
 
 jobs:
   cell:
@@ -45,6 +45,7 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      perf-only: true
       with-ace: false
       with-atl: false
       with-mfc: false
@@ -120,6 +121,7 @@ jobs:
     secrets: inherit
 
   install-smoke:
+    if: false
     name: Install smoke (${{ matrix.os }}, ${{ matrix.c_compiler }})
     runs-on: ${{ matrix.os }}
     strategy:
