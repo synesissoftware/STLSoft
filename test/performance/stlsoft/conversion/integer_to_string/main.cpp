@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::integer_to_string<>`.
  *
  * Created: 29th October 2016
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,6 +22,8 @@
 #include <stlsoft/util/true_typedef.hpp>
 
 #include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>
+
+#include "perf_group_gaps.hpp"
 
 #include <cstdlib>
 #include <iostream>
@@ -410,7 +412,10 @@ int main(int argc, char* argv[])
 
     size_t total = 0;
 
+    perf_maybe_emit_groupgaps_banner(stdout);
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "std::to_string() - base 0");
     fprintf(stdout, "std::to_string() - base 0\n");
 
     {
@@ -431,6 +436,8 @@ int main(int argc, char* argv[])
         total += execute_xtos<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "std::to_string() - base max() - N");
     fprintf(stdout, "std::to_string() - base max() - N\n");
 
     {
@@ -454,6 +461,8 @@ int main(int argc, char* argv[])
     }
 
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "snprintf() - base 0");
     fprintf(stdout, "snprintf() - base 0\n");
 
     {
@@ -474,6 +483,8 @@ int main(int argc, char* argv[])
         total += execute_printf<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "snprintf() - base max() - N");
     fprintf(stdout, "snprintf() - base max() - N\n");
 
     {
@@ -497,6 +508,8 @@ int main(int argc, char* argv[])
     }
 
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_decimal_string() - base 0");
     fprintf(stdout, "integer_to_decimal_string() - base 0\n");
 
     {
@@ -520,6 +533,8 @@ int main(int argc, char* argv[])
         total += execute_dec<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_decimal_string() - base max() - N");
     fprintf(stdout, "integer_to_decimal_string() - base max() - N\n");
 
     {
@@ -543,6 +558,8 @@ int main(int argc, char* argv[])
     }
 
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_octal_string() - base 0");
     fprintf(stdout, "integer_to_octal_string() - base 0\n");
 
     {
@@ -566,6 +583,8 @@ int main(int argc, char* argv[])
         total += execute_oct<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_octal_string() - base max() - N");
     fprintf(stdout, "integer_to_octal_string() - base max() - N\n");
 
 
@@ -589,6 +608,8 @@ int main(int argc, char* argv[])
 #undef N
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_hexadecimal_string() - base 0");
     fprintf(stdout, "integer_to_hexadecimal_string() - base 0\n");
 
     {
@@ -612,6 +633,8 @@ int main(int argc, char* argv[])
         total += execute_hex<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_hexadecimal_string() - base max() - N");
     fprintf(stdout, "integer_to_hexadecimal_string() - base max() - N\n");
 
     {
@@ -635,6 +658,8 @@ int main(int argc, char* argv[])
     }
 
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_base32_string() - base 0");
     fprintf(stdout, "integer_to_base32_string() - base 0\n");
 
     {
@@ -658,6 +683,8 @@ int main(int argc, char* argv[])
         total += execute_b32<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_base32_string() - base max() - N");
     fprintf(stdout, "integer_to_base32_string() - base max() - N\n");
 
     {
@@ -681,6 +708,8 @@ int main(int argc, char* argv[])
     }
 
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_base36_string() - base 0");
     fprintf(stdout, "integer_to_base36_string() - base 0\n");
 
     {
@@ -704,6 +733,8 @@ int main(int argc, char* argv[])
         total += execute_b36<  signed long long>(warmups, loops, iterations, stopwatch, 0);
     }
 
+    /* Gap between API / base-family sections. */
+    perf_maybe_emit_group_gap(stdout, "integer_to_base36_string() - base max() - N");
     fprintf(stdout, "integer_to_base36_string() - base max() - N\n");
 
     {

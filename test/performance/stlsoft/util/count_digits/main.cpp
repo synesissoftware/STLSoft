@@ -4,7 +4,7 @@
  * Purpose: Perf-test for digit-counting functions.
  *
  * Created: 18th December 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,8 @@
 # include <platformstl/diagnostics/stopwatch.hpp>
 #endif /* C++11+ */
 #include <stlsoft/conversion/number/grouping_functions.hpp>
+
+#include "perf_group_gaps.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -90,7 +92,11 @@ thousands(
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    perf_maybe_emit_groupgaps_banner(std::cout);
+
     // count_decimal_digits
+    /* Gap between digit-count function families. */
+    perf_maybe_emit_group_gap(std::cout, "count_decimal_digits");
     for (int W = 2; 0 != W; --W)
     {
         stopwatch_t sw;
@@ -181,6 +187,8 @@ int main(int /*argc*/, char* /*argv*/[])
 
 
     // count_hexadecimal_digits
+    /* Gap between digit-count function families. */
+    perf_maybe_emit_group_gap(std::cout, "count_hexadecimal_digits");
     for (int W = 2; 0 != W; --W)
     {
         stopwatch_t sw;

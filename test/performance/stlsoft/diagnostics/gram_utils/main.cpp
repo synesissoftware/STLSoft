@@ -4,7 +4,7 @@
  * Purpose: Perf-test for gram_utils
  *
  * Created: 17th December 2024
- * Updated: 29th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,8 @@
 # include <platformstl/diagnostics/stopwatch.hpp>
 #endif /* C++11+ */
 #include <stlsoft/conversion/number/grouping_functions.hpp>
+
+#include "perf_group_gaps.hpp"
 
 /* Standard header files */
 
@@ -94,6 +96,8 @@ thousands(
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    perf_maybe_emit_groupgaps_banner(std::cout);
+
     stopwatch_t sw;
 
     for (int W = 2; 0 != W; --W)

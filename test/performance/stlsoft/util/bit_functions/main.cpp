@@ -4,7 +4,7 @@
  * Purpose: Perf-test for bit functions.
  *
  * Created: 24th September 2026
- * Updated: 25th September 2026
+ * Updated: 30th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,8 @@
 # include <platformstl/diagnostics/stopwatch.hpp>
 #endif /* C++11+ */
 #include <stlsoft/conversion/number/grouping_functions.hpp>
+
+#include "perf_group_gaps.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -297,56 +299,12 @@ emit_header_row()
     std::cout << std::endl;
 }
 
-bool
-env_is_truey(
-    char const* name
-)
-{
-#if defined(_MSC_VER)
-# pragma warning(push)
-# pragma warning(disable : 4996)
-#endif
-    char const* const env = ::getenv(name);
-#if defined(_MSC_VER)
-# pragma warning(pop)
-#endif
-
-    if (NULL == env || '\0' == *env)
-    {
-        return false;
-    }
-
-    if (0 == ::strcmp(env, "1") ||
-        0 == ::strcmp(env, "ok") ||
-        0 == ::strcmp(env, "on") ||
-        0 == ::strcmp(env, "true") ||
-        0 == ::strcmp(env, "yes") ||
-        0 == ::strcmp(env, "y") ||
-        0 == ::strcmp(env, "OK") ||
-        0 == ::strcmp(env, "ON") ||
-        0 == ::strcmp(env, "TRUE") ||
-        0 == ::strcmp(env, "YES") ||
-        0 == ::strcmp(env, "Y"))
-    {
-        return true;
-    }
-
-    return false;
-}
-
 void
 maybe_emit_group_gap(
     char const* function_name
 )
 {
-    static bool have_prev = false;
-    static char prev_key[64] = "";
-
-    if (!env_is_truey("SIS_PERFTESTS_GROUPGAPS"))
-    {
-        return;
-    }
-
+    /* Gap when bit-function family + pattern group changes. */
     char const* const slash = ::strrchr(function_name, '/');
     char const* const pattern = (NULL == slash) ? "" : slash;
     char const*       family = "other";
@@ -368,13 +326,7 @@ maybe_emit_group_gap(
 
     snprintf(key, sizeof(key), "%s%s", family, pattern);
 
-    if (have_prev && 0 != ::strcmp(prev_key, key))
-    {
-        std::cout << std::endl;
-    }
-
-    snprintf(prev_key, sizeof(prev_key), "%s", key);
-    have_prev = true;
+    perf_maybe_emit_group_gap(std::cout, key);
 }
 
 void
@@ -525,12 +477,7 @@ emit_build_banner()
     std::cout
         << "width columns are loop ns; ns columns are ns/call; el columns are ns/element"
         << std::endl;
-    if (env_is_truey("SIS_PERFTESTS_GROUPGAPS"))
-    {
-        std::cout
-            << "Env: SIS_PERFTESTS_GROUPGAPS=1"
-            << std::endl;
-    }
+    perf_maybe_emit_groupgaps_banner(std::cout);
 }
 
 
