@@ -4,7 +4,7 @@
  * Purpose: Environment functions.
  *
  * Created: 4th March 2011
- * Updated: 28th September 2026
+ * Updated: 8th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    3
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        15
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    4
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ stlsoft_C_environment_variable_exists_m(
 
     if (0 == e)
     {
-        if ('\0' == buff[0])
+        if (0 == n)
         {
             // variable doesn't exist
             return 0;
