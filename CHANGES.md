@@ -3,6 +3,7 @@
 
 ## 1.11.1-rc8 - 10th October 2026
 
+* Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
 * Scripts — **build_cmake.sh**, **clean_cmake.sh**, **ctest_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, **run_all_examples.sh**, and **run_all_scratch_tests.sh** rewritten to the common Synesis helper-script layout: builds go through `cmake --build` (with `--config` selected from `SIS_CMAKE_CONFIG` for multi-config generators) rather than `make` / `mingw32-make`; coloured output (`-A` / `--always-use-colours`, `SIS_CMAKE_ALWAYS_USE_COLOURS`, `NO_COLOR`); quoted paths and arguments; `.sis/project_name.txt` used in all status messages;
 * **prepare_cmake.sh** — added `--build-shared-libs` and `-s` / `--stlsoft-root-dir`; honours `SIS_CMAKE_GENERATOR` and `SIS_CMAKE_MINGW`; every `-D` option is passed on all generator paths;
 * **run_all_unit_tests.sh** / **.cmd** — now run unit-test programs only (`--unit-only` accepted for compatibility; `--component-only` removed);
