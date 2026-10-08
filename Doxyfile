@@ -1,0 +1,72 @@
+# Doxyfile for STLSoft (C/C++ API; 100% header-only)
+
+PROJECT_NAME           = "STLSoft"
+PROJECT_BRIEF          = "Robust, lightweight, cross-platform, template software"
+PROJECT_NUMBER         = 1.11.1-rc8
+
+# Overridden at generation time by generate_doxygen.sh (respects
+# SIS_CMAKE_BUILD_DIR).
+OUTPUT_DIRECTORY       = _build/doxygen
+CREATE_SUBDIRS         = NO
+
+OUTPUT_LANGUAGE        = English
+TAB_SIZE               = 4
+# Many header names recur across sub-projects (e.g. **functions.h**), so
+# retain the path relative to include/.
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = include
+STRIP_FROM_INC_PATH    = include
+TIMESTAMP              = NO
+
+INPUT                  = include \
+                         doc
+FILE_PATTERNS          = *.h \
+                         *.hpp \
+                         *.md
+RECURSIVE              = YES
+
+USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
+
+EXAMPLE_PATH           = examples
+EXAMPLE_RECURSIVE      = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+SEARCHENGINE           = YES
+SOURCE_BROWSER         = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+VERBATIM_HEADERS       = YES
+
+MARKDOWN_SUPPORT       = YES
+JAVADOC_AUTOBRIEF      = YES
+QUIET                  = YES
+
+# Undocumented-member and parameter warnings are disabled (unlike the
+# smaller C libraries) because the very large template corpus would bury
+# genuine documentation errors.
+WARN_IF_UNDOCUMENTED   = NO
+WARN_NO_PARAMDOC       = NO
+WARN_IF_DOC_ERROR      = YES
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SKIP_FUNCTION_MACROS   = YES
+# Skip internal version/edit noise.
+PREDEFINED             = STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+HAVE_DOT               = NO
+
+
+# ########################### end of file ########################### #
