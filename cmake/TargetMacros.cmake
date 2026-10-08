@@ -53,6 +53,20 @@ function(define_automated_test_program program_name entry_point_source_name)
 		)
 	endif()
 
+	# MinGW PE images that dynamically link libgcc/libstdc++ can fail at
+	# process load (exit 127, no user code) when the runner PATH does not
+	# match the toolchain that built the binary. Static-link those runtimes
+	# on Windows GNU targets so test/example/performance exes are self-
+	# contained for the C++ runtime.
+	if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+		target_link_options(${program_name}
+			PRIVATE
+				-static-libgcc
+				-static-libstdc++
+		)
+	endif()
+
 	set(X_GCC_CUSTOM_WARNINGS_ "")
 
 	if(X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
@@ -117,6 +131,16 @@ function(define_example_program program_name entry_point_source_name)
 		target_link_libraries(${program_name}
 			ws2_32
 			wsock32
+		)
+	endif()
+
+	# See define_automated_test_program: same MinGW PE loader mitigation.
+	if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+		target_link_options(${program_name}
+			PRIVATE
+				-static-libgcc
+				-static-libstdc++
 		)
 	endif()
 
