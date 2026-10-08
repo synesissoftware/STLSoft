@@ -4,11 +4,11 @@
  * Purpose: Process functions.
  *
  * Created: 12th March 2006
- * Updated: 24th December 2024
+ * Updated: 8th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 7
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     35
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,6 +144,8 @@ winstl_C_CreateProcess9_a(
 ,   LPPROCESS_INFORMATION   pi
 )
 {
+    /* apply Null Object (Variable) pattern */
+
     STARTUPINFO         si_;
     PROCESS_INFORMATION pi_;
     BOOL                b;
@@ -158,7 +160,18 @@ winstl_C_CreateProcess9_a(
         pi = &pi_;
     }
 
-    b = STLSOFT_NS_GLOBAL(CreateProcessA)(NULL, stlsoft_const_cast(ws_char_a_t*, cmdLine), processAttributes, threadAttributes, inheritsHandles, creationFlags, stlsoft_const_cast(ws_char_a_t*, environment), currentDirectory, si, pi);
+    b = STLSOFT_NS_GLOBAL(CreateProcessA)(
+            NULL
+        ,   stlsoft_const_cast(ws_char_a_t*, cmdLine)
+        ,   processAttributes
+        ,   threadAttributes
+        ,   inheritsHandles
+        ,   creationFlags
+        ,   stlsoft_const_cast(ws_char_a_t*, environment)
+        ,   currentDirectory
+        ,   si
+        ,   pi
+        );
 
     if (b)
     {
