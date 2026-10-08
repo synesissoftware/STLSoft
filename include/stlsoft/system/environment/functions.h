@@ -102,65 +102,6 @@ namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_INLINE
-int
-stlsoft_C_environment_variable_lookup_m_(
-    char const* name                /* name of environment variable */
-,   ss_size_t   cchBuff             /* number of elements in `buff` */
-,   char        buff[/* cchBuff */] /* pointer to buffer to receive result */
-,   ss_size_t*  pcchActual          /* pointer to variable to receive actual length */
-)
-{
-    STLSOFT_ASSERT(NULL != name);
-    STLSOFT_ASSERT(NULL != buff);
-    STLSOFT_ASSERT(NULL != pcchActual);
-
-#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
-    defined(STLSOFT_COMPILER_IS_MSVC)
-
-    return STLSOFT_NS_GLOBAL(getenv_s)(pcchActual, &buff[0], cchBuff, name);
-#else
-
-    {
-        char const* const v = STLSOFT_NS_GLOBAL(getenv)(name);
-
-        if (NULL == v)
-        {
-            *pcchActual = 0;
-
-            return EINVAL;
-        }
-        else
-        {
-            ss_size_t const len = STLSOFT_NS_GLOBAL(strlen)(v);
-
-            if (cchBuff < len + 1)
-            {
-                *pcchActual = 0;
-
-                return ERANGE;
-            }
-            else
-            {
-                STLSOFT_NS_GLOBAL(memcpy(buff, v, sizeof(char)* (len + 1)));
-
-                *pcchActual = len;
-
-                return 0;
-            }
-        }
-    }
-#endif
-}
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * API functions (C)
  */
 
