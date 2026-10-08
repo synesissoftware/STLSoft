@@ -23,7 +23,7 @@ FOR %%a IN (%*) DO (
 		)
 		ECHO ^
 
-Runs all ^(matching^) unit-test programs ^
+Runs all ^(matching^) performance-test programs ^
 
 ^
 
@@ -37,9 +37,11 @@ Flags/options: ^
 
 ^
 
-    --unit-only ^
+    --gap-groups ^
 
-        accepted for compatibility; this script always runs unit tests only ^
+        sets SIS_PERFTESTS_GROUPGAPS=1 so performance programs emit a ^
+
+        blank line between scenario groups ^
 
 ^
 
@@ -53,9 +55,9 @@ Flags/options: ^
 
 
 		EXIT /B 0
-	) ELSE IF /I {--unit-only}=={%%a} (
+	) ELSE IF /I {--gap-groups}=={%%a} (
 
-		REM Benign: this script is already unit-only
+		SET SIS_PERFTESTS_GROUPGAPS=1
 	) ELSE (
 
 		ECHO "%SCRIPT_DIRECTORY%: unrecognised argument '%%a'; use --help for usage" 1>&2
@@ -81,9 +83,9 @@ IF NOT DEFINED ProjectName (
     EXIT /B 1
 )
 
-ECHO Running all %ProjectName% unit-test programs
+ECHO Running all %ProjectName% performance-test programs
 
-FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I test.*unit.*\.exe$`) DO (
+FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I test.*performance.*\.exe$`) DO (
 
 	ECHO .
 	ECHO executing %%f

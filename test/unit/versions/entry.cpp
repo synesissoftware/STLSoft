@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 30th September 2026
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -160,7 +160,7 @@ static void TEST__PLATFORMSTL_VER()
 
 static void TEST__UNIXSTL_VER()
 {
-	TEST_INT_EQ(_UNIXSTL_VER_1_8_6_B06, _UNIXSTL_VER);
+	TEST_INT_EQ(_UNIXSTL_VER_1_8_6_B07, _UNIXSTL_VER);
 }
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
@@ -171,7 +171,7 @@ static void TEST__COMSTL_VER()
 
 static void TEST__WINSTL_VER()
 {
-	TEST_INT_EQ(_WINSTL_VER_1_13_0_B03, _WINSTL_VER);
+	TEST_INT_EQ(_WINSTL_VER_1_13_0_B04, _WINSTL_VER);
 }
 #endif
 #ifdef STLSOFT_HAS_MFC
