@@ -120,7 +120,7 @@
 #endif /* !STLSOFT_INCL_H_FCNTL */
 #ifdef _WIN32
 # include <io.h>
-# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+# if defined(STLSOFT_COMPILER_IS_INTEL) ||\
      defined(STLSOFT_COMPILER_IS_MSVC)
 #  include <direct.h>
 # endif /* os && compiler */
@@ -177,7 +177,7 @@
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
 namespace unixstl
@@ -3217,7 +3217,7 @@ public: // file-system control
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace unixstl
 # else

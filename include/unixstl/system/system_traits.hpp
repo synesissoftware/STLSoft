@@ -87,7 +87,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 #if 0
-#elif defined(_WIN32) || \
+#elif defined(_WIN32) ||\
       defined(_WIN64)
 # include <ctype.h>
 #endif /* Windows */
@@ -100,10 +100,10 @@
 # include <fcntl.h>
 #endif /* !STLSOFT_INCL_H_FCNTL */
 #if 0
-#elif defined(_WIN32) || \
+#elif defined(_WIN32) ||\
       defined(_WIN64)
 # include <io.h>
-# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+# if defined(STLSOFT_COMPILER_IS_INTEL) ||\
      defined(STLSOFT_COMPILER_IS_MSVC)
 #  include <direct.h>
 # endif /* os && compiler */
@@ -151,7 +151,7 @@
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
 namespace unixstl
@@ -872,7 +872,7 @@ public:
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace unixstl
 # else
