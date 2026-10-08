@@ -3,6 +3,8 @@
 
 ## 1.11.1-rc8 - 10th October 2026
 
+* Added `stlsoft_C_environment_variable_strtoll_m()` and `stlsoft::environment_variable_strtoll()`, with UNIX `getenv()` / `strtoll()` and Windows `getenv_s()` / `STLSOFT_C_AUTO_BUFFER` support; added component tests;
+* Added `unixstl_C_get_current_process_id()` (**unixstl/process/functions.h**, new), `winstl_C_get_current_process_id()` (**winstl/process/functions.h**), and `platformstl_C_get_current_process_id()` (**platformstl/process/functions.h**, new), in terms of `getpid()` / `_getpid()`;
 * **unixstl::filesystem_traits** — added `rewind_dir()` (wrapping `rewinddir()`) to complement `open_dir()`, `read_dir()`, and `close_dir()`, so that a directory search may be restarted from its first entry without closing and reopening the handle;
 
 * Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
@@ -22,6 +24,8 @@
 * Added **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** — HTML API documentation generated from the public headers into **_build/doxygen/html**;
 * **remove_cmake_artefacts.sh** — no longer removes **docs** or **Doxyfile**; iterates arrays safely;
 * **batch_compile_check**, **execute_performance_tests.sh** — quote the `$(dirname ...)` directory resolution;
+
+
 * Scripts — **build_cmake.sh**, **clean_cmake.sh**, **ctest_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, **run_all_examples.sh**, and **run_all_scratch_tests.sh** rewritten to the common Synesis helper-script layout: builds go through `cmake --build` (with `--config` selected from `SIS_CMAKE_CONFIG` for multi-config generators) rather than `make` / `mingw32-make`; coloured output (`-A` / `--always-use-colours`, `SIS_CMAKE_ALWAYS_USE_COLOURS`, `NO_COLOR`); quoted paths and arguments; `.sis/project_name.txt` used in all status messages;
 * **prepare_cmake.sh** — added `--build-shared-libs` and `-s` / `--stlsoft-root-dir`; honours `SIS_CMAKE_GENERATOR` and `SIS_CMAKE_MINGW`; every `-D` option is passed on all generator paths;
 * **run_all_unit_tests.sh** / **.cmd** — now run unit-test programs only (`--unit-only` accepted for compatibility; `--component-only` removed);
