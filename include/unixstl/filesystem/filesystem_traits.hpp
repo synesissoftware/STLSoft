@@ -2628,7 +2628,7 @@ public: // file-system state
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode)
     {
 #if 0
-#elif defined(_WIN32) && \
+#elif defined(_WIN32) &&\
       ( 0 ||\
         defined(STLSOFT_COMPILER_IS_INTEL) ||\
         defined(STLSOFT_COMPILER_IS_MSVC) ||\
@@ -2646,7 +2646,7 @@ public: // file-system state
     static bool_type close_file(file_handle_type h)
     {
 #if 0
-#elif defined(_WIN32) && \
+#elif defined(_WIN32) &&\
       ( 0 ||\
         defined(STLSOFT_COMPILER_IS_INTEL) ||\
         defined(STLSOFT_COMPILER_IS_MSVC) ||\
