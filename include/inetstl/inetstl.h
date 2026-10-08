@@ -195,8 +195,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0182
-# error This version of the InetSTL libraries requires STLSoft version 1.11.1 beta 2, or later
+#if _STLSOFT_VER < 0x010B01C8
+# error This version of the InetSTL libraries requires STLSoft version 1.11.1 rc 8, or later
 #endif /* _STLSOFT_VER */
 
 
