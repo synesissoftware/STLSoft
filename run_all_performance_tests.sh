@@ -1,6 +1,24 @@
 #! /bin/bash
 
 # ##########################################################
+# functions - 1
+
+sis_cmake_is_truey() {
+  case "$(printf '%s' "${1:-}" | tr '[:upper:]' '[:lower:]')" in
+
+    1|ok|on|true|yes|y)
+
+      return 0
+    ;;
+    *)
+
+      return 1
+      ;;
+  esac
+}
+
+
+# ##########################################################
 # constants and variables
 
 Basename=$(basename "$0")
@@ -11,23 +29,9 @@ ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 ScriptPath=$0
 
 AlwaysUseColours=${SIS_CMAKE_ALWAYS_USE_COLOURS:-${SIS_ALWAYS_USE_COLOURS:-0}}
-Directories=(
-  CMakeFiles
-  Testing
-  cmake
-  examples
-  projects
-  src
-  test
-)
-Files=(
-  CMakeCache.txt
-  CTestTestfile.cmake
-  DartConfiguration.tcl
-  Makefile
-  cmake_install.cmake
-  install_manifest.txt
-)
+GapGroups=0
+ListOnly=0
+RunMake=1
 SisUseColours=0
 
 
@@ -90,24 +94,27 @@ ScriptPathClr="${SisClr_Blue}${SisClr_Bold}${ScriptPath}${SisClr_None}"
 
 
 # ##########################################################
-# operating environment detection
+# functions - 2
 
-OsName="$(uname -s 2>/dev/null || echo Unknown)"
-case "${OsName}" in
-  CYGWIN*|MINGW*|MSYS_NT*|Windows_NT)
+sis_cmake_build() {
 
-    Directories+=(
-      ARM64
-      Win32
-      x64
-    )
-    Files+=(
-      "*.filters"
-      "*.sln"
-      "*.vcxproj"
-    )
-    ;;
-esac
+  local config="${SIS_CMAKE_CONFIG:-Release}"
+  local args=(--build "$CMakeDir")
+  if [ -f "$CMakeDir/CMakeCache.txt" ] && grep -q '^CMAKE_CONFIGURATION_TYPES:' "$CMakeDir/CMakeCache.txt" 2>/dev/null; then
+
+    args+=(--config "$config")
+  fi
+  if [ "$#" -gt 0 ]; then
+
+    local t
+    for t in "$@"; do
+
+      args+=(--target "$t")
+    done
+  fi
+
+  cmake "${args[@]}"
+}
 
 
 # ##########################################################
@@ -120,11 +127,23 @@ while [[ $# -gt 0 ]]; do
 
       # AlwaysUseColours=1 - this is handled by the for loop above
       ;;
+    --gap-groups)
+
+      GapGroups=1
+      ;;
+    --list-only|-l)
+
+      ListOnly=1
+      ;;
+    --no-make|-M)
+
+      RunMake=0
+      ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Removes all known CMake artefacts
+Runs all (matching) performance-test programs
 
 ${ScriptPath} [ ... flags/options ... ]
 
@@ -136,6 +155,18 @@ Flags/options:
     --always-use-colors
     --always-use-colours
         forces use of colours even when stdout is not a TTY
+
+    --gap-groups
+        sets SIS_PERFTESTS_GROUPGAPS=1 so performance programs emit a blank
+        line between scenario groups
+
+    -l
+    --list-only
+        lists the target programs but does not execute them
+
+    -M
+    --no-make
+        does not execute a build before running programs
 
 
     standard flags:
@@ -162,52 +193,98 @@ done
 # ##########################################################
 # main()
 
-if [ ! -d "$CMakeDir" ]; then
+if [ $GapGroups -ne 0 ]; then
 
-  echo "${ScriptPathClr}: CMake build directory '${CMakeDirClr}' not found so nothing to do; use script 'prepare_cmake.sh' if you wish to prepare CMake artefacts"
-
-  exit 0
+  export SIS_PERFTESTS_GROUPGAPS=1
 fi
 
-echo "Removing all ${ProjectNameClr} cmake artefacts in '${CMakeDirClr}'"
+status=0
 
-num_dirs_removed=0
-num_files_removed=0
+if [ $RunMake -ne 0 ]; then
 
-for d in "${Directories[@]}"; do
+  if [ $ListOnly -eq 0 ]; then
 
-  fq_dir_path="$CMakeDir/$d"
+    echo
+    echo "Executing build of ${ProjectNameClr} (via cmake --build) and then running all performance-test programs"
 
-  [ -d "$fq_dir_path" ] || continue
+    mkdir -p "$CMakeDir" || exit 1
 
-  echo "removing directory '$d'"
+    if [ ! -f "$CMakeDir/CMakeCache.txt" ]; then
 
-  rm -dfr "$fq_dir_path"
+      >&2 echo "${ScriptPathClr}: '${CMakeDirClr}' is not configured; use prepare_cmake.sh first"
 
-  num_dirs_removed=$((num_dirs_removed+1))
-done
+      exit 1
+    fi
 
-for f in "${Files[@]}"; do
-
-  for fq_file_path in "$CMakeDir"/$f; do
-
-    [ -f "$fq_file_path" ] || continue
-
-    echo "removing file '$fq_file_path'"
-
-    rm -f "$fq_file_path"
-
-    num_files_removed=$((num_files_removed+1))
-  done
-done
-
-if [ 0 -eq $num_dirs_removed ] && [ 0 -eq $num_files_removed ]; then
-
-  echo "nothing to do"
+    sis_cmake_build
+    status=$?
+  fi
 else
 
-  echo "removed $num_dirs_removed directories and $num_files_removed files"
+  if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ]; then
+
+    >&2 echo "${ScriptPathClr}: cannot run in '--no-make' mode without a previous successful configure/build"
+
+    exit 1
+  fi
 fi
+
+if [ $status -eq 0 ]; then
+
+  if [ $ListOnly -ne 0 ]; then
+
+    echo
+    echo "Listing all ${ProjectNameClr} performance-test programs"
+  else
+
+    echo
+    echo "Running all ${ProjectNameClr} performance-test programs"
+  fi
+
+  NumPrograms=0
+
+  while IFS= read -r -d '' f; do
+
+    case "$f" in
+      *.pdb|*.ilk|*.log|*.obj|*.o)
+        continue
+        ;;
+    esac
+
+    NumPrograms=$((NumPrograms + 1))
+
+    fClr="${SisClr_Blue}${SisClr_Bold}${f}${SisClr_None}"
+
+    if [ $ListOnly -ne 0 ]; then
+
+      echo "would execute ${fClr}:"
+
+      continue
+    fi
+
+    echo
+    echo "executing ${fClr}:"
+
+    if "$f"; then
+
+      :
+    else
+
+      status=$?
+
+      break 1
+    fi
+  done < <(find "$CMakeDir" -type f \( -name 'test_performance*' -o -name 'test.performance.*' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
+
+  if [ $NumPrograms -eq 0 ]; then
+
+    echo "${ScriptPathClr}: found no performance-test programs under '${CMakeDirClr}' (none found)"
+
+    exit 0
+  fi
+fi
+
+exit $status
 
 
 # ############################## end of file ############################# #

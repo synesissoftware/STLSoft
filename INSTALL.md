@@ -23,17 +23,17 @@ There are three options for installing **STLSoft**, depending on how you obtain 
 
 If you obtain the latest release as an archive from the [**STLSoft** GitHub Releases](https://github.com/synesissoftware/STLSoft/releases) page (legacy archives may also still appear on [SourceForge](https://sourceforge.net/projects/stlsoft/)):
 
-1. Download the latest distribution, e.g. [**STLSoft-1.11.1-rc7.zip**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/1.11.1-rc7.zip);
+1. Download the latest distribution, e.g. [**STLSoft-1.11.1-rc8.zip**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/1.11.1-rc8.zip);
 
 2. Unzip it to a directory of your choice, as in:
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip STLSoft-1.11.1-rc7.zip
+$ unzip STLSoft-1.11.1-rc8.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc7`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc8`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 
 ### Cloning project, using environment variables
@@ -100,16 +100,16 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 Unless you are certain that your projects, and all the projects upon which they depend, all use **STLSoft** via **CMake** then it is recommended that you define an `STLSOFT` environment variable.
 
 For example, if you're using **UNIX** and you install to
-**/usr/local/stlsoft/STLSoft-1.11.1-rc7**
+**/usr/local/stlsoft/STLSoft-1.11.1-rc8**
 then you should set the environment variable `STLSOFT` to
-**/usr/local/stlsoft/STLSoft-1.11.1-rc7**
-in which case the file `stlsoft/stlsoft.h`, for example, will be located in `/usr/local/stlsoft/STLSoft-1.11.1-rc7/include/stlsoft/stlsoft.h`.
+**/usr/local/stlsoft/STLSoft-1.11.1-rc8**
+in which case the file `stlsoft/stlsoft.h`, for example, will be located in `/usr/local/stlsoft/STLSoft-1.11.1-rc8/include/stlsoft/stlsoft.h`.
 
 Conversely, if you're using **Windows** and you install to
-**C:\3pty\STLSoft\STLSoft-1.11.1-rc7**
+**C:\3pty\STLSoft\STLSoft-1.11.1-rc8**
 then you should set the environment variable `STLSOFT` to
-**C:\3pty\STLSoft\STLSoft-1.11.1-rc7**
-in which case the file `stlsoft/stlsoft.h`, for example, will be located in `C:\3pty\STLSoft\STLSoft-1.11.1-rc7\include\stlsoft\stlsoft.h`.
+**C:\3pty\STLSoft\STLSoft-1.11.1-rc8**
+in which case the file `stlsoft/stlsoft.h`, for example, will be located in `C:\3pty\STLSoft\STLSoft-1.11.1-rc8\include\stlsoft\stlsoft.h`.
 
 The makefiles / project files of several other open-source projects expect this symbol, including:
 
@@ -143,7 +143,10 @@ This project comes with a number of scripts useful for building with **CMake**, 
 | **build_cmake.sh** | Executes **CMake**-generated artefacts to (re)build the project.<br/><br/>Meaningful only once `prepare_cmake.sh` has been run to generate the **CMake** build artefacts.<br/><br/>Use `./build_cmake.sh --help` for further information. |
 | **clean_cmake.sh** | Executes **CMake**-generated artefacts to clean the project.<br/><br/>Meaningful only once `prepare_cmake.sh` has been run and a build has been run.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
 | **run_all_examples.sh** | Runs all (matching) example programs.<br/><br/>Performs a build and then recursively runs executables under the examples tree. See also [**EXAMPLES.md**](./EXAMPLES.md).<br/><br/>Use `./run_all_examples.sh --help` for further information. |
-| **run_all_unit_tests.sh** | Runs all (matching) unit-test programs.<br/><br/>Performs a build and then recursively runs executable programs matching the shell patterns `test_*` and `test.*`.<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
+| **run_all_unit_tests.sh** | Runs all (matching) unit-test programs.<br/><br/>Performs a build and then recursively runs executable programs matching the shell patterns `test_unit*` and `test.unit.*`.<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
+| **run_all_component_tests.sh** | Runs all (matching) component-test programs.<br/><br/>Performs a build and then recursively runs executable programs matching the shell patterns `test_component*` and `test.component.*`.<br/><br/>Use `./run_all_component_tests.sh --help` for further information. |
+| **run_all_automated_tests.sh** | Runs all (matching) automated test programs: unit tests followed by component tests.<br/><br/>Use `./run_all_automated_tests.sh --help` for further information. |
+| **generate_doxygen.sh** | Generates HTML API documentation from the public headers via **Doxygen**.<br/><br/>Writes to `./_build/doxygen/html/` (see **SIS_CMAKE_BUILD_DIR**); requires `doxygen` on the `PATH`.<br/><br/>Use `./generate_doxygen.sh --help` for further information. |
 | **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes known **CMake** build artefacts from the build directory (currently `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
 
 

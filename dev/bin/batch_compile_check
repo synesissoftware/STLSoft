@@ -14,7 +14,7 @@
 
 
 ScriptPath=$0
-ProjectDir=$(cd $(dirname "$ScriptPath"); pwd)
+ProjectDir=$(cd "$(dirname "$ScriptPath")" && pwd)
 Basename=$(basename "$ScriptPath")
 IncludeDir="$ProjectDir/../../include"
 ScratchDir="$ProjectDir/../../scratch"
