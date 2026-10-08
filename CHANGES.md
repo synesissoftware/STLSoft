@@ -4,6 +4,18 @@
 ## 1.11.1-rc8 - 10th October 2026
 
 * Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
+* Scripts — **build_cmake.sh**, **clean_cmake.sh**, **ctest_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, **run_all_examples.sh**, and **run_all_scratch_tests.sh** rewritten to the common Synesis helper-script layout: builds go through `cmake --build` (with `--config` selected from `SIS_CMAKE_CONFIG` for multi-config generators) rather than `make` / `mingw32-make`; coloured output (`-A` / `--always-use-colours`, `SIS_CMAKE_ALWAYS_USE_COLOURS`, `NO_COLOR`); quoted paths and arguments; `.sis/project_name.txt` used in all status messages;
+* **prepare_cmake.sh** — added `--build-shared-libs` and `-s` / `--stlsoft-root-dir`; honours `SIS_CMAKE_GENERATOR` and `SIS_CMAKE_MINGW`; every `-D` option is passed on all generator paths;
+* **run_all_unit_tests.sh** / **.cmd** — now run unit-test programs only (`--unit-only` accepted for compatibility; `--component-only` removed);
+* Added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd** (with `--gap-groups`), and **run_all_automated_tests.sh** / **.cmd** (unit then component; `--unit-only` / `--component-only`);
+* **run_all_examples.sh** — retains `--skip-interactive` (**.github/ci_skip_interactive_examples.txt**, which prevents headless CI hanging on GUI examples) and its discovery of every executable under the **examples** tree, and now exports `SIS_EXAMPLE_SMOKE=1`; **run_all_scratch_tests.sh** / **.cmd** — removed `--verbosity`;
+* **remove_cmake_artefacts.sh** — no longer removes **docs** or **Doxyfile**; iterates arrays safely;
+* Added **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** — HTML API documentation generated from the public headers into **_build/doxygen/html**;
+* **batch_compile_check**, **execute_performance_tests.sh** — quote the `$(dirname ...)` directory resolution;
+* **.gitattributes** — Linguist language-bar policy: public C headers and sources are classified as C, C++ headers and sources as C++, and `*.cmake` as CMake; helper scripts, IDE project files, **CMakeLists.txt**, and **makefile** are excluded from the advertised language mix (`-linguist-detectable`);
+* CI — **ci-cell.yml** runs component tests via **run_all_component_tests.sh**;
+* **INSTALL.md** — documented **run_all_component_tests.sh**, **run_all_automated_tests.sh**, and **generate_doxygen.sh**; corrected the unit-test discovery patterns;
+* **test.unit.versions** — aligned with **1.11.1-rc8** (**_STLSOFT_VER_1_11_1_RC8**);
 
 
 ## 1.11.1-rc7 - 30th September 2026
