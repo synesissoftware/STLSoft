@@ -1,7 +1,7 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc8 - 9th October 2026
+## 1.11.1-rc8 - 10th October 2026
 
 * add component tests for `stlsoft::environment_variable_exists()`;
 
