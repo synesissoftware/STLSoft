@@ -5,11 +5,11 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th March 2025
+ * Updated: 8th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      140
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -462,7 +462,7 @@ public:
     typedef us_char_a_t                                     char_type;
     typedef us_size_t                                       size_type;
     typedef us_ptrdiff_t                                    difference_type;
-    typedef system_traits<us_char_a_t>                      class_type;
+    typedef system_traits<char_type>                        class_type;
     typedef us_int_t                                        int_type;
     typedef us_bool_t                                       bool_type;
     typedef void*                                           module_type;
@@ -743,7 +743,7 @@ public:
     typedef us_char_w_t                                     char_type;
     typedef us_size_t                                       size_type;
     typedef us_ptrdiff_t                                    difference_type;
-    typedef system_traits<us_char_a_t>                      class_type;
+    typedef system_traits<char_type>                        class_type;
     typedef us_int_t                                        int_type;
     typedef us_bool_t                                       bool_type;
     typedef void*                                           module_type;
