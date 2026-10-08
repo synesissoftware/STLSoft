@@ -1,6 +1,20 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc8 - 10th October 2026
+
+* **unixstl::filesystem_traits** — added `rewind_dir()` (wrapping `rewinddir()`) to complement `open_dir()`, `read_dir()`, and `close_dir()`, so that a directory search may be restarted from its first entry without closing and reopening the handle;
+* **unixstl::filesystem_traits** — `class_type` is now defined in terms of `char_type` (the wide-character specialisation previously named the narrow specialisation);
+* **unixstl** / **winstl** `system_traits` and `filesystem_traits` — canonicalised the conditional-compilation guards (no behavioural change);
+* **unixstl** — **1.8.6 beta 7** (**_UNIXSTL_VER_1_8_6_B07**), with **STLSoft 1.11.1-rc8**;
+* **winstl** — **1.13.0 beta 4** (**_WINSTL_VER_1_13_0_B04**), with **STLSoft 1.11.1-rc8**;
+* **inetstl** — **1.5.0 alpha 3** (**_INETSTL_VER_1_5_0_A03**), with **STLSoft 1.11.1-rc8**;
+* Component tests for `unixstl::filesystem_traits` (**test/component/unixstl/filesystem/filesystem_traits/opendir**) cover `open_dir()`, `read_dir()`, `rewind_dir()` (before any read, after a partial read, after exhaustion, on an empty directory, and repeatedly), and `close_dir()`;
+* Scratch test **test/scratch/unixstl/filesystem/rewind_dir** — exercises `rewind_dir()` over a directory given on the command-line;
+* Example **examples/by_project/unixstl/filesystem/rewind_dir** — enumerates a directory in two passes (count, then collect), using `rewind_dir()` between them;
+* **test.unit.versions** — aligned with **1.11.1-rc8** (**_STLSOFT_VER_1_11_1_RC8**);
+
+
 ## 1.11.1-rc7 - 30th September 2026
 
 * **simple_string** — counted construction, `assign`, `append`, `push_back`, and concatenation keep an embedded NUL, including assignment of a single `'\0'`;

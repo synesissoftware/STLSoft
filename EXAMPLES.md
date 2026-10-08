@@ -15,6 +15,7 @@
 | **glob_sequence** | [by_project/unixstl/filesystem/glob_sequence](./examples/by_project/unixstl/filesystem/glob_sequence/main.cpp) | Unix | List selected filesystem entries with `unixstl::glob_sequence` |
 | **home_directory** | [by_project/unixstl/system/home_directory](./examples/by_project/unixstl/system/home_directory/main.cpp) | Unix | Illustrates use of `unixstl::home_directory` |
 | **readdir_sequence** | [by_project/unixstl/filesystem/readdir_sequence](./examples/by_project/unixstl/filesystem/readdir_sequence/main.cpp) | Unix | List filesystem entries with `unixstl::readdir_sequence` |
+| **rewind_dir** | [by_project/unixstl/filesystem/rewind_dir](./examples/by_project/unixstl/filesystem/rewind_dir/main.cpp) | Unix | Enumerate a directory twice with `unixstl::filesystem_traits<>::rewind_dir()` |
 | | | | |
 | **C.output_debug_line** | [by_project/winstl/diagnostics/C.output_debug_line](./examples/by_project/winstl/diagnostics/C.output_debug_line/main.c) | Windows | Emit debug strings with the C API `winstl_C_diagnostics_output_debug_line_*` |
 | **codepages** | [by_project/winstl/i18n/codepages](./examples/by_project/winstl/i18n/codepages/main.cpp) | Windows | Enumerate system code pages with `winstl::codepage_sequence` |

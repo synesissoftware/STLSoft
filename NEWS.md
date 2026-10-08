@@ -3,6 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
+| 10th October 2026   | Release of [STLSoft 1.11.1-rc8](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc8) | `unixstl::filesystem_traits<>::rewind_dir()`; `class_type` fix; **UNIXSTL** 1.8.6 beta 7 |
 | 30th September 2026 | Release of [STLSoft 1.11.1-rc7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc7) | counted NULs; `wchar_t` `string_begins_with`; bit intrinsics; `write_binary()`; `file_lines` mmap (~10–20× vs `fgetc`); compare and allocator units; MinGW static runtime; short test directories; nested **test/performance** |
 | 21st September 2026 | Release of [STLSoft 1.11.1-rc6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc6) | ACE/ATL/MFC CI; Clang/macOS `stricmp` aliases |
 | 4th August 2026     | Release of [STLSoft 1.11.1-rc5](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc5) | `basic_simple_string<>#resize()`; **CHANGES.md**; docs |

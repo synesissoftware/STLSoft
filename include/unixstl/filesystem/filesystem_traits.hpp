@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     16
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      189
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     17
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -731,6 +731,11 @@ public:
     static DIR*                 open_dir(char_type const* dir);
     /// Read an entry from the file-system search
     static struct dirent const* read_dir(DIR* h);
+    /// Resets the file-system search to the first entry, such that the
+    ///   next call to read_dir() returns the first entry
+    ///
+    /// \pre NULL != h
+    static void                 rewind_dir(DIR* h);
     /// Closes the handle of the file-system search
     static void                 close_dir(DIR* h);
 /// @}
@@ -2183,6 +2188,12 @@ public: // file-system enumeration
     {
         return ::readdir(h);
     }
+    static void rewind_dir(DIR* h)
+    {
+        UNIXSTL_ASSERT(NULL != h);
+
+        ::rewinddir(h);
+    }
     static void close_dir(DIR* h)
     {
         ::closedir(h);
@@ -3181,6 +3192,8 @@ public: // file-system enumeration
     static DIR* open_dir(char_type const* dir)
     ;
     static struct dirent const* read_dir(DIR* h)
+    ;
+    static void rewind_dir(DIR* h)
     ;
     static void close_dir(DIR* h)
     ;
