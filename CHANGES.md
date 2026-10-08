@@ -4,6 +4,7 @@
 ## 1.11.1-rc8 - 10th October 2026
 
 * Added `stlsoft_C_environment_variable_strtoll_m()` and `stlsoft::environment_variable_strtoll()`, with UNIX `getenv()` / `strtoll()` and Windows `getenv_s()` / `STLSOFT_C_AUTO_BUFFER` support; added component tests;
+* Added `unixstl_C_get_current_process_id()` (**unixstl/process/functions.h**, new), `winstl_C_get_current_process_id()` (**winstl/process/functions.h**), and `platformstl_C_get_current_process_id()` (**platformstl/process/functions.h**, new), in terms of `getpid()` / `_getpid()`;
 
 * Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
 

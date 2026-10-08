@@ -1,3 +1,3 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(process)
-add_subdirectory(system)
+define_automated_test_program(test.unit.platformstl.process.functions entry.c)
+
