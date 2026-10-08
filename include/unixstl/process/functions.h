@@ -50,10 +50,10 @@
 #define UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR       1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT        1
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR      1
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      0
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,9 +68,12 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#if defined(_WIN32) && \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_INTEL))
+#if 0
+#elif defined(_WIN32) &&\
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        defined(STLSOFT_COMPILER_IS_INTEL) ||\
+        0)
 
 # ifndef STLSOFT_INCL_H_PROCESS
 #  define STLSOFT_INCL_H_PROCESS
@@ -124,9 +127,12 @@ STLSOFT_INLINE
 int
 unixstl_C_get_current_process_id(void)
 {
-#if defined(_WIN32) && \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_INTEL))
+#if 0
+#elif defined(_WIN32) && \
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        defined(STLSOFT_COMPILER_IS_INTEL) ||\
+        0)
 
     return STLSOFT_NS_GLOBAL(_getpid)();
 #else

@@ -89,9 +89,12 @@ static void TEST_EQUALS_NATIVE_PROCESS_ID(void)
     int expected;
     int actual;
 
-#if defined(_WIN32) && \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_INTEL))
+#if 0
+#elif defined(_WIN32) && \
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        defined(STLSOFT_COMPILER_IS_INTEL) ||\
+        0)
 
     expected = _getpid();
 #else
