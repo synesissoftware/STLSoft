@@ -1696,9 +1696,10 @@ public:
     {
         return WINSTL_CONST_MAX_PATH;
     }
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
+      _MSC_VER < 1200
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
     static
     size_type
     get_full_path_name(
