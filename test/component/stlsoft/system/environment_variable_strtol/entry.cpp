@@ -1,6 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/stlsoft/system/
- *         environment_variable_strtol/entry.cpp
+ * File:    test/component/stlsoft/system/environment_variable_strtol/entry.cpp
  *
  * Purpose: Component tests for
  *          `stlsoft_C_environment_variable_strtoll_m()`.
