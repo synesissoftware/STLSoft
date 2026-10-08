@@ -86,8 +86,9 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
-#if defined(_WIN32) || \
-    defined(_WIN64)
+#if 0
+#elif defined(_WIN32) || \
+      defined(_WIN64)
 # include <ctype.h>
 #endif /* Windows */
 #ifndef STLSOFT_INCL_H_ERRNO
@@ -98,8 +99,9 @@
 # define STLSOFT_INCL_H_FCNTL
 # include <fcntl.h>
 #endif /* !STLSOFT_INCL_H_FCNTL */
-#if defined(_WIN32) || \
-    defined(_WIN64)
+#if 0
+#elif defined(_WIN32) || \
+      defined(_WIN64)
 # include <io.h>
 # if defined(STLSOFT_COMPILER_IS_INTEL) || \
      defined(STLSOFT_COMPILER_IS_MSVC)
@@ -408,9 +410,12 @@ public: // types
 public:
     static bool_type close_handle(handle_type h)
     {
-#if defined(_WIN32) && \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_INTEL))
+#if 0
+#elif defined(_WIN32) &&\
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        defined(STLSOFT_COMPILER_IS_INTEL) ||\
+        0)
 
         return 0 == ::_close(h);
 #else /* ? _WIN32 */
@@ -484,7 +489,6 @@ public:
         for (;; ++ps1, ++ps2)
         {
             int_type d = int_type(*ps1) - int_type(*ps2);
-
 #ifdef _WIN32
 
             if (0 != d)
@@ -540,7 +544,6 @@ public:
         for (; 0 != cch; ++ps1, ++ps2, --cch)
         {
             int_type d = int_type(*ps1) - int_type(*ps2);
-
 #ifdef _WIN32
 
             if (0 != d)
