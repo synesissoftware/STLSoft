@@ -478,7 +478,7 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
@@ -606,4 +606,6 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M
+          # --gap-groups sets SIS_PERFTESTS_GROUPGAPS=1 for blank lines
+          # between pattern / scenario groups in performance output.
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M --gap-groups

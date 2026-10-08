@@ -4,11 +4,11 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 20th March 2025
+ * Updated: 29th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        101
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -678,7 +678,12 @@ public:
     ,   size_type           cch
     ) STLSOFT_NOEXCEPT
     {
-        return parent_class_type::compare(s1, s2, cch);
+        if (0 == cch)
+        {
+            return 0;
+        }
+
+        return parent_class_type::compare_null(s1, s2, cch);
     }
 
     /// Compares, using compare_max(), \c s1 with \c s2, either or both of which may be \c nullptr

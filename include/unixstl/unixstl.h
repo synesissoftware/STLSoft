@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     131
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 5
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -163,12 +163,13 @@
 # define _UNIXSTL_VER_1_8_6_B04 0x01080684  /*!< Version 1.8.8 beta 4 (with STLSoft 1.11.1 beta 8) */
 # define _UNIXSTL_VER_1_8_6_B05 0x01080685  /*!< Version 1.8.8 beta 5 (with STLSoft 1.11.1 rc 2) */
 # define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.8 beta 6 (with STLSoft 1.11.1 rc 3) */
+# define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.8 beta 7 (with STLSoft 1.11.1 rc 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
 #define _UNIXSTL_VER_PATCH      6
-#define _UNIXSTL_VER_ALPHABETA  0x86
+#define _UNIXSTL_VER_ALPHABETA  0x87
 
 #define _UNIXSTL_VER \
     (0\
@@ -199,8 +200,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0187
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 beta 7, or later
+#if _STLSOFT_VER < 0x010B01C8
+# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 rc 8, or later
 #endif /* _STLSOFT_VER */
 
 

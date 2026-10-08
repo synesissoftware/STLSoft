@@ -5,11 +5,11 @@
  *          Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 20th March 2025
+ * Updated: 8th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,10 +53,10 @@
 #define INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    5
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     98
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,23 +135,23 @@ struct filesystem_traits
 /// @{
 public:
     /// The character type
-    typedef C                       char_type;
+    typedef C                                               char_type;
     /// The size type
-    typedef is_size_t               size_type;
+    typedef is_size_t                                       size_type;
     /// The difference type
-    typedef is_ptrdiff_t            difference_type;
+    typedef is_ptrdiff_t                                    difference_type;
     /// The find data type
-    typedef WIN32_FIND_DATA         find_data_type;
+    typedef WIN32_FIND_DATA                                 find_data_type;
     /// The stat data type
-    typedef WIN32_FIND_DATA         stat_data_type;
+    typedef WIN32_FIND_DATA                                 stat_data_type;
     /// The current instantion of the type
-    typedef filesystem_traits<C>    class_type;
+    typedef filesystem_traits<C>                            class_type;
     /// The (signed) integer type
-    typedef is_int_t                int_type;
+    typedef is_int_t                                        int_type;
     /// The Boolean type
-    typedef is_bool_t               bool_type;
+    typedef is_bool_t                                       bool_type;
     /// The type of system error codes
-    typedef DWORD                   error_type;
+    typedef DWORD                                           error_type;
 /// @}
 
 /// \name File-system entry names
@@ -274,15 +274,15 @@ struct filesystem_traits<is_char_a_t>
     : public STLSOFT_NS_QUAL(c_string_traits)<is_char_a_t>
 {
 public:
-    typedef is_char_a_t                     char_type;
-    typedef is_size_t                       size_type;
-    typedef is_ptrdiff_t                    difference_type;
-    typedef WIN32_FIND_DATAA                find_data_type;
-    typedef WIN32_FIND_DATAA                stat_data_type;
-    typedef filesystem_traits<is_char_a_t>  class_type;
-    typedef is_int_t                        int_type;
-    typedef is_bool_t                       bool_type;
-    typedef DWORD                           error_type;
+    typedef is_char_a_t                                     char_type;
+    typedef is_size_t                                       size_type;
+    typedef is_ptrdiff_t                                    difference_type;
+    typedef WIN32_FIND_DATAA                                find_data_type;
+    typedef WIN32_FIND_DATAA                                stat_data_type;
+    typedef filesystem_traits<is_char_a_t>                  class_type;
+    typedef is_int_t                                        int_type;
+    typedef is_bool_t                                       bool_type;
+    typedef DWORD                                           error_type;
 
 public:
     // File-system entry names
@@ -553,15 +553,15 @@ struct filesystem_traits<is_char_w_t>
     : public STLSOFT_NS_QUAL(c_string_traits)<is_char_w_t>
 {
 public:
-    typedef is_char_w_t                     char_type;
-    typedef is_size_t                       size_type;
-    typedef is_ptrdiff_t                    difference_type;
-    typedef WIN32_FIND_DATAW                find_data_type;
-    typedef WIN32_FIND_DATAW                stat_data_type;
-    typedef filesystem_traits<is_char_w_t>  class_type;
-    typedef is_int_t                        int_type;
-    typedef is_bool_t                       bool_type;
-    typedef DWORD                           error_type;
+    typedef is_char_w_t                                     char_type;
+    typedef is_size_t                                       size_type;
+    typedef is_ptrdiff_t                                    difference_type;
+    typedef WIN32_FIND_DATAW                                find_data_type;
+    typedef WIN32_FIND_DATAW                                stat_data_type;
+    typedef filesystem_traits<is_char_w_t>                  class_type;
+    typedef is_int_t                                        int_type;
+    typedef is_bool_t                                       bool_type;
+    typedef DWORD                                           error_type;
 
 public:
 

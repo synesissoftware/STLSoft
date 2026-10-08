@@ -4,11 +4,11 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 31st July 2026
+ * Updated: 29th September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1993-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      285
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     0
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      287
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1747,9 +1747,9 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 
     ss_size_t const members = (STLSOFT_RAW_OFFSETOF(string_buffer, contents) + (sizeof(char_type) - 1)) / sizeof(char_type);
 
-    capacity += 1;                                              // For null terminator
-    capacity += members;                                        // Include the internal members.
-    capacity = (alloc_quantum + capacity) & ~alloc_quantum;     // Round up to (alloc_quantum + 1)
+    capacity += 1;                                              // for NUL-terminator
+    capacity += members;                                        // include the internal members.
+    capacity = (alloc_quantum + capacity) & ~alloc_quantum;     // round up to (alloc_quantum + 1)
 
     byte_ator_type          byte_ator;
 # ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
@@ -1798,16 +1798,9 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 )
 {
-    size_type   length      =   traits_type::length_max_null(s, cch);
-    size_type   capacity    =   cch;
-
-    if (cch < length)
-    {
-        length = cch;
-    }
-
-    return alloc_buffer_(s, capacity, length);
+    return alloc_buffer_(s, cch, cch);
 }
+
 
 template <
     ss_typename_param_k C
@@ -2077,10 +2070,10 @@ template <
 >
 inline
 basic_simple_string<C, T, A>::basic_simple_string(
-    ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
-,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 )
-    : m_buffer(alloc_buffer_(s, cch))
+    : m_buffer(alloc_buffer_(s, cch, cch))
 {
     STLSOFT_ASSERT(is_valid());
 }
@@ -3043,7 +3036,7 @@ inline
 ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference
 basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const STLSOFT_NOEXCEPT
 {
-    STLSOFT_MESSAGE_ASSERT("index access out of range in simple_string", index < size() + 1); // Valid to return (const) reference to nul-terminator
+    STLSOFT_MESSAGE_ASSERT("index access out of range in simple_string", index < size() + 1); // Valid to return (const) reference to NUL-terminator
 
     STLSOFT_ASSERT(is_valid());
 
@@ -3422,7 +3415,7 @@ basic_simple_string<C, T, A>::assign(
             }
             else
             {
-                member_pointer const new_buffer = alloc_buffer_(s, cch, cch);
+                member_pointer const new_buffer = alloc_buffer_(s, cch);
 
                 destroy_buffer_(m_buffer);
 
@@ -3568,9 +3561,7 @@ inline
 ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const&
 basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
 {
-    char_type   sz[2] = { ch, traits_type::to_char_type(0) };
-
-    return assign(sz);
+    return assign(&ch, 1);
 }
 
 
@@ -3602,17 +3593,6 @@ basic_simple_string<C, T, A>::append(
         }
         else
         {
-#if 1
-            // We're taking a length here, which may have been done already.
-            // This should be optimised out in a subsequent release
-            size_type len = traits_type::length_max(s, cch);
-
-            if (len < cch)
-            {
-                cch = len;
-            }
-#endif /* 0 */
-
             string_buffer*  old_buffer  =   ss_nullptr_k;
             string_buffer*  buffer      =   string_buffer_from_member_pointer_(m_buffer);
             size_type const buf_len     =   buffer->length;
@@ -3620,7 +3600,7 @@ basic_simple_string<C, T, A>::append(
             if (buffer->capacity - buf_len < 1 + cch)
             {
                 // Allocate a new buffer of sufficient size
-                member_pointer const new_buffer = alloc_buffer_(buffer->contents, buf_len + cch);
+                member_pointer const new_buffer = alloc_buffer_(buffer->contents, buf_len + cch, buf_len);
 
                 if (ss_nullptr_k == new_buffer) // Some allocators do not throw on failure!
                 {

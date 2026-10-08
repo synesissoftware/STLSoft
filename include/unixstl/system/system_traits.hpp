@@ -5,11 +5,11 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th March 2025
+ * Updated: 8th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      140
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,8 +86,9 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
-#if defined(_WIN32) || \
-    defined(_WIN64)
+#if 0
+#elif defined(_WIN32) ||\
+      defined(_WIN64)
 # include <ctype.h>
 #endif /* Windows */
 #ifndef STLSOFT_INCL_H_ERRNO
@@ -98,10 +99,11 @@
 # define STLSOFT_INCL_H_FCNTL
 # include <fcntl.h>
 #endif /* !STLSOFT_INCL_H_FCNTL */
-#if defined(_WIN32) || \
-    defined(_WIN64)
+#if 0
+#elif defined(_WIN32) ||\
+      defined(_WIN64)
 # include <io.h>
-# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+# if defined(STLSOFT_COMPILER_IS_INTEL) ||\
      defined(STLSOFT_COMPILER_IS_MSVC)
 #  include <direct.h>
 # endif /* os && compiler */
@@ -149,7 +151,7 @@
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
 namespace unixstl
@@ -408,9 +410,12 @@ public: // types
 public:
     static bool_type close_handle(handle_type h)
     {
-#if defined(_WIN32) && \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_INTEL))
+#if 0
+#elif defined(_WIN32) &&\
+      ( 0 ||\
+        defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        defined(STLSOFT_COMPILER_IS_INTEL) ||\
+        0)
 
         return 0 == ::_close(h);
 #else /* ? _WIN32 */
@@ -462,7 +467,7 @@ public:
     typedef us_char_a_t                                     char_type;
     typedef us_size_t                                       size_type;
     typedef us_ptrdiff_t                                    difference_type;
-    typedef system_traits<us_char_a_t>                      class_type;
+    typedef system_traits<char_type>                        class_type;
     typedef us_int_t                                        int_type;
     typedef us_bool_t                                       bool_type;
     typedef void*                                           module_type;
@@ -484,7 +489,6 @@ public:
         for (;; ++ps1, ++ps2)
         {
             int_type d = int_type(*ps1) - int_type(*ps2);
-
 #ifdef _WIN32
 
             if (0 != d)
@@ -540,7 +544,6 @@ public:
         for (; 0 != cch; ++ps1, ++ps2, --cch)
         {
             int_type d = int_type(*ps1) - int_type(*ps2);
-
 #ifdef _WIN32
 
             if (0 != d)
@@ -743,7 +746,7 @@ public:
     typedef us_char_w_t                                     char_type;
     typedef us_size_t                                       size_type;
     typedef us_ptrdiff_t                                    difference_type;
-    typedef system_traits<us_char_a_t>                      class_type;
+    typedef system_traits<char_type>                        class_type;
     typedef us_int_t                                        int_type;
     typedef us_bool_t                                       bool_type;
     typedef void*                                           module_type;
@@ -869,7 +872,7 @@ public:
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace unixstl
 # else
