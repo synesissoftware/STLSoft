@@ -32,6 +32,7 @@ AlwaysUseColours=${SIS_CMAKE_ALWAYS_USE_COLOURS:-${SIS_ALWAYS_USE_COLOURS:-0}}
 ListOnly=0
 RunMake=1
 SisUseColours=0
+SkipInteractive=0
 
 
 # ##########################################################
@@ -115,6 +116,66 @@ sis_cmake_build() {
   cmake "${args[@]}"
 }
 
+example_stem()
+{
+  local p="${1//\\//}"
+
+  p="${p##*/}"
+
+  case "$p" in
+    *.exe|*.EXE) p="${p%.*}" ;;
+  esac
+
+  echo "$p"
+}
+
+names_match()
+{
+  local a b
+
+  a=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+  b=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+
+  [ "$a" = "$b" ]
+}
+
+# Examples listed in .github/ci_skip_interactive_examples.txt require an
+# interactive desktop (GUI dialogs, etc.) and would hang a headless CI run.
+is_skipped_interactive_example()
+{
+  local name f_norm line line_stem skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
+
+  [ $SkipInteractive -ne 0 ] || return 1
+
+  if [ ! -f "$skip_file" ]; then
+
+    >&2 echo "${ScriptPathClr}: --skip-interactive: skip list not found at '$skip_file'"
+
+    return 1
+  fi
+
+  f_norm="${1//\\//}"
+  name=$(example_stem "$f_norm")
+
+  while IFS= read -r line || [ -n "$line" ]; do
+
+    line="${line//$'\r'/}"
+
+    case "$line" in
+      ''|\#*) continue ;;
+    esac
+
+    line_stem=$(example_stem "$line")
+
+    if names_match "$name" "$line_stem"; then
+
+      return 0
+    fi
+  done < "$skip_file"
+
+  return 1
+}
+
 
 # ##########################################################
 # command-line handling
@@ -133,6 +194,10 @@ while [[ $# -gt 0 ]]; do
     --no-make|-M)
 
       RunMake=0
+      ;;
+    --skip-interactive)
+
+      SkipInteractive=1
       ;;
     --help)
 
@@ -158,6 +223,11 @@ Flags/options:
     -M
     --no-make
         does not execute a build before running programs
+
+    --skip-interactive
+        skips examples listed in .github/ci_skip_interactive_examples.txt
+        (GUI / desktop-interactive programs unsuitable for headless CI;
+        list stems or names, e.g. shell_functions or shell_functions.exe)
 
 
     standard flags:
@@ -231,19 +301,60 @@ if [ $status -eq 0 ]; then
   # no-arg built-in tmpfile demo (see example.c.cstring_vector).
   export SIS_EXAMPLE_SMOKE=1
 
-  NumPrograms=0
+  if [ ! -d "$CMakeDir/examples" ]; then
 
-  while IFS= read -r -d '' f; do
+    >&2 echo "${ScriptPathClr}: examples build tree not found at '${CMakeDirClr}/examples'"
 
-    case "$f" in
-      *.pdb|*.ilk|*.log|*.obj|*.o)
-        continue
-        ;;
-    esac
+    exit 1
+  fi
 
-    NumPrograms=$((NumPrograms + 1))
+  # Exclude CMake / build artefacts that can become +x after artifact restore.
+  ExamplePrograms=( $(find "$CMakeDir/examples" -type f \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.cmake' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    ! -name 'CMakeLists.txt' \
+    ! -name 'CTestTestfile.cmake' \
+    ! -name 'Makefile' \
+    ! -name 'cmake_install.cmake' \
+    -exec test -x {} \; -print | sort) )
+
+  echo "discovered ${#ExamplePrograms[@]} example program(s)"
+
+  if [ ${#ExamplePrograms[@]} -eq 0 ]; then
+
+    >&2 echo "${ScriptPathClr}: no matching executable example programs under '${CMakeDirClr}/examples' (execute bits missing after artifact download?)"
+
+    if [ $ListOnly -eq 0 ]; then
+
+      status=1
+    fi
+  fi
+
+  for f in "${ExamplePrograms[@]}"
+  do
 
     fClr="${SisClr_Blue}${SisClr_Bold}${f}${SisClr_None}"
+
+    if is_skipped_interactive_example "$f"; then
+
+      if [ $ListOnly -ne 0 ]; then
+
+        echo "would skip ${fClr} (interactive; --skip-interactive)"
+      else
+
+        echo
+        echo "skipping ${fClr} (interactive; --skip-interactive)"
+      fi
+
+      continue
+    fi
 
     if [ $ListOnly -ne 0 ]; then
 
@@ -264,14 +375,7 @@ if [ $status -eq 0 ]; then
 
       break 1
     fi
-  done < <(find "$CMakeDir" -type f \( -name 'example*' ! -name '*.md' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
-
-  if [ $NumPrograms -eq 0 ]; then
-
-    echo "${ScriptPathClr}: found no example programs under '${CMakeDirClr}' (none found)"
-
-    exit 0
-  fi
+  done
 fi
 
 exit $status

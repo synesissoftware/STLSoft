@@ -288,9 +288,12 @@ if [ $status -eq 0 ]; then
 
   if [ $NumPrograms -eq 0 ]; then
 
-    echo "${ScriptPathClr}: found no component-test programs under '${CMakeDirClr}' (none found)"
+    >&2 echo "${ScriptPathClr}: no matching executable component-test programs under '${CMakeDirClr}' (execute bits missing after artifact download?)"
 
-    exit 0
+    if [ $ListOnly -eq 0 ]; then
+
+      exit 1
+    fi
   fi
 fi
 

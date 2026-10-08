@@ -34,11 +34,14 @@ Configuration=Release
 ExamplesDisabled=0
 MinGW=$(sis_cmake_is_truey "${SIS_CMAKE_MINGW:-}" && echo 1 || echo 0)
 MSVC_MT=0
+NO_ACE=0
+NO_cstring=0
 NO_shwild=0
 RunMake=0
 SisUseColours=0
 STLSoftDirGiven=
 TestingDisabled=0
+USE_UNIXem=0
 VerboseMakefile=0
 
 
@@ -162,6 +165,14 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
+    --no-ace)
+
+      NO_ACE=1
+      ;;
+    --no-cstring)
+
+      NO_cstring=1
+      ;;
     --no-shwild)
 
       NO_shwild=1
@@ -174,6 +185,10 @@ while [[ $# -gt 0 ]]; do
 
       shift
       STLSoftDirGiven=$1
+      ;;
+    --use-unixem)
+
+      USE_UNIXem=1
       ;;
     --help)
 
@@ -219,6 +234,12 @@ Flags/options:
     --msvc-mt
         when using Visual C++ (MSVC), select the static runtime library
 
+    --no-ace
+        suppresses discovery of ACE (ACESTL examples/tests will not be built)
+
+    --no-cstring
+        suppresses discovery of cstring package
+
     --no-shwild
         prevents recognising shwild library (NO_SHWILD=ON); xTests
         pattern-match assertions are then unavailable
@@ -232,6 +253,12 @@ Flags/options:
         specifies the STLSoft root-directory, which will be passed to CMake
         as the variable STLSOFT, and which will override the environment
         variable STLSOFT (if present)
+
+    --use-unixem
+        when building on Windows, use the UNIXem library and define the
+        preprocessor symbol _STLSOFT_FORCE_ANY_COMPILER so as to emulate and
+        exercise UNIXSTL, not WinSTL (or COMSTL, etc.). Has no effect when
+        not executing on Windows
 
 
     standard flags:
@@ -266,9 +293,12 @@ echo "Executing CMake for ${ProjectNameClr} (in ${CMakeDirClr})"
 if [ $BuildSharedLibs -eq 0 ]; then CMakeBuildSharedLibsFlag="OFF" ; else CMakeBuildSharedLibsFlag="ON" ; fi
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_ACE -eq 0 ]; then CMakeNoACE="OFF" ; else CMakeNoACE="ON" ; fi
+if [ $NO_cstring -eq 0 ]; then CMakeNoCstring="OFF" ; else CMakeNoCstring="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z "$STLSoftDirGiven" ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 # NOTE: the generator is the *only* thing that may differ between the MinGW
@@ -294,7 +324,10 @@ cmake \
   -DCMAKE_BUILD_TYPE=$Configuration \
   -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
   -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+  -DNO_ACE:BOOL=$CMakeNoACE \
+  -DNO_CSTRING:BOOL=$CMakeNoCstring \
   -DNO_SHWILD:BOOL=$CMakeNoShwild \
+  -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
   $CMakeSTLSoftVariable \
   "${CMakeGeneratorArgs[@]}" \
   -B "$CMakeDir" \
