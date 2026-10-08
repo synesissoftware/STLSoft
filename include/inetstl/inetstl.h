@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 17th September 2026
+ * Updated: 8th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 3
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     578
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     579
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -145,12 +145,13 @@
 # define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
 # define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
 # define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 rc 2) */
+# define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0 alpha 3 (with STLSoft 1.11.1 rc 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
 #define _INETSTL_VER_PATCH       0
-#define _INETSTL_VER_ALPHABETA   0x42
+#define _INETSTL_VER_ALPHABETA   0x43
 
 #define _INETSTL_VER \
     (0\
@@ -194,8 +195,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0182
-# error This version of the InetSTL libraries requires STLSoft version 1.11.1 beta 2, or later
+#if _STLSOFT_VER < 0x010B01C8
+# error This version of the InetSTL libraries requires STLSoft version 1.11.1 rc 8, or later
 #endif /* _STLSOFT_VER */
 
 

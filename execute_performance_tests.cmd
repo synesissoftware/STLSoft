@@ -14,6 +14,7 @@ IF DEFINED SIS_CMAKE_BUILD_DIR (
 )
 
 SET ExpandWidth=0
+SET GapGroups=0
 SET ListOnly=0
 SET RunMake=1
 
@@ -28,6 +29,19 @@ IF DEFINED CMAKE_BUILD_TYPE SET BuildConfig=%CMAKE_BUILD_TYPE%
 IF "%~1"=="" GOTO args_done
 
 IF /I "%~1"=="--help" GOTO show_help
+IF /I "%~1"=="--expand-width" (
+    SHIFT
+    IF "%~1"=="" (
+        ECHO %ScriptPath%: --expand-width requires an argument 1>&2
+        EXIT /B 1
+    )
+    SET ExpandWidth=%~1
+    GOTO next_arg
+)
+IF /I "%~1"=="--gap-groups" (
+    SET GapGroups=1
+    GOTO next_arg
+)
 IF /I "%~1"=="-l" (
     SET ListOnly=1
     GOTO next_arg
@@ -44,15 +58,6 @@ IF /I "%~1"=="--no-make" (
     SET RunMake=0
     GOTO next_arg
 )
-IF /I "%~1"=="--expand-width" (
-    SHIFT
-    IF "%~1"=="" (
-        ECHO %ScriptPath%: --expand-width requires an argument 1>&2
-        EXIT /B 1
-    )
-    SET ExpandWidth=%~1
-    GOTO next_arg
-)
 
 ECHO %ScriptPath%: unrecognised argument '%~1'; use --help for usage 1>&2
 EXIT /B 1
@@ -66,6 +71,10 @@ GOTO parse_args
 
 :: #########################################################
 :: main()
+
+IF %GapGroups% NEQ 0 (
+    SET SIS_PERFTESTS_GROUPGAPS=1
+)
 
 SET status=0
 
@@ -158,6 +167,11 @@ ECHO.
 ECHO     --expand-width ^<expand-width^>
 ECHO         subjects each performance test program's output to tab expansion
 ECHO         with the given width (Unix shell script only)
+ECHO.
+ECHO     --gap-groups
+ECHO         sets SIS_PERFTESTS_GROUPGAPS=1 so performance programs emit a
+ECHO         blank line between scenario groups on a TTY, or a visible
+ECHO         tab+hyphen rule when stdout is not a TTY (e.g. CI)
 ECHO.
 ECHO     -l
 ECHO     --list-only

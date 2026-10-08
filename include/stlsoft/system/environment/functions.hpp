@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/environment/functions.hpp
+ * File:    stlsoft/system/environment/functions.hpp
  *
- * Purpose:     Environment functions.
+ * Purpose: Environment functions.
  *
- * Created:     31st October 2019
- * Updated:     20th March 2025
+ * Created: 31st October 2019
+ * Updated: 28th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      4
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_REVISION  2
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,7 +101,7 @@ struct ximpl_stlsoft_environment_functions_hpp_
         char const* name
     )
     {
-        return stlsoft_C_environment_variable_exists_a(name);
+        return stlsoft_C_environment_variable_exists_m(name);
     }
 #if 0
 

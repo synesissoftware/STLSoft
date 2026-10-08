@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/environment/functions.h
+ * File:    stlsoft/system/environment/functions.h
  *
- * Purpose:     Environment functions.
+ * Purpose: Environment functions.
  *
- * Created:     4th March 2011
- * Updated:     11th March 2024
+ * Created: 4th March 2011
+ * Updated: 8th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        12
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       1
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    0
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,6 +69,10 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.h>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
+
 #ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
@@ -81,6 +85,10 @@
 # define STLSOFT_INCL_H_STDLIB
 # include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,21 +102,23 @@ namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * API functions
+ * API functions (C)
  */
 
-/** Indicates whether the named environment variable exists
+/** Indicates whether the named environment variable exists.
  *
- * \retval 0 The environment variable does not exist
- * \retval !0 The environment variable does exist
+ * \param name The name of the environment variable. May not be NULL;
  *
- * \pre (NULL != name)
+ * \retval 0 The environment variable does not exist;
+ * \retval !0 The environment variable does exist;
+ *
+ * \pre NULL != name;
  */
 STLSOFT_INLINE
 ss_truthy_t
-stlsoft_C_environment_variable_exists_a(
+stlsoft_C_environment_variable_exists_m(
     char const* name
-)
+) STLSOFT_NOEXCEPT
 {
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
     defined(STLSOFT_COMPILER_IS_MSVC)
@@ -119,7 +129,7 @@ stlsoft_C_environment_variable_exists_a(
 
     if (0 == e)
     {
-        if ('\0' == buff[0])
+        if (0 == n)
         {
             // variable doesn't exist
             return 0;
@@ -145,28 +155,215 @@ stlsoft_C_environment_variable_exists_a(
     return NULL != STLSOFT_NS_GLOBAL(getenv)(name);
 #endif
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** [DEPRECATED]  \see stlsoft_C_environment_variable_exists_m
+ *
+ */
+STLSOFT_DEPRECATED_("`stlsoft_C_environment_variable_exists_a()` is deprecated, and will be removed from a future release, and you should instead use `stlsoft_C_environment_variable_exists_m()`") // applied here rather than on template because above class_type precipitates
+STLSOFT_INLINE
+ss_truthy_t
+stlsoft_C_environment_variable_exists_a(
+    char const* name
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_environment_variable_exists_m(name);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/** Attempts to read a signed 64-bit integer value from the named
+ * environment variable.
+ *
+ * \param name The name of the environment variable. May not be NULL;
+ * \param result Pointer to a variable to receive the numeric result. On
+ *   failure it is set to 0;
+ *
+ * \retval 0 The variable does not exist, the value is not a complete
+ *   signed 64-bit integer, or the value is out of range. errno is EINVAL or
+ *   ERANGE;
+ * \retval !0 The value was parsed and written through \c result;
+ *
+ * \pre NULL != name;
+ * \pre NULL != result;
+ *
+ * \note Interpreted with base 0, as with strtoll(): optional leading
+ *   whitespace, an optional sign, then decimal, octal (leading 0), or
+ *   hexadecimal (leading 0x). Unlike strtoll(), which accepts a numeric
+ *   prefix followed by other characters, the entire value must be consumed.
+ *   The complete environment-variable value is read before parsing.
+ */
+STLSOFT_INLINE
+ss_truthy_t
+stlsoft_C_environment_variable_strtoll_m(
+    char const*     name
+,   ss_sint64_t*    result
+) STLSOFT_NOEXCEPT
+{
+    STLSOFT_ASSERT(NULL != name);
+    STLSOFT_ASSERT(NULL != result);
+
+#if 0
+#elif defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
+      defined(STLSOFT_COMPILER_IS_MSVC)
+
+    {
+        STLSOFT_C_AUTO_BUFFER_DECLARE(char, 21, buff);
+        size_t  n;
+        errno_t e;
+
+        STLSOFT_C_AUTO_BUFFER_INITIALISE_FROM_INTERNAL(buff);
+
+        e = STLSOFT_NS_GLOBAL(getenv_s)(
+                &n
+            ,   buff.ptr
+            ,   buff.size
+            ,   name
+            );
+
+        if (ERANGE == e)
+        {
+            e = STLSOFT_C_AUTO_BUFFER_RESIZE(buff, n);
+
+            if (0 == e)
+            {
+                e = STLSOFT_NS_GLOBAL(getenv_s)(
+                        &n
+                    ,   buff.ptr
+                    ,   buff.size
+                    ,   name
+                    );
+            }
+        }
+
+        if (0 != e)
+        {
+            STLSOFT_C_AUTO_BUFFER_FREE(buff);
+
+            errno = e;
+
+            *result = 0;
+
+            return 0;
+        }
+        else
+        {
+            char* endptr;
+
+            errno = 0;
+
+            *result = STLSOFT_NS_GLOBAL(strtoll)(buff.ptr, &endptr, 0);
+
+            if (buff.ptr == endptr ||
+                '\0' != *endptr ||
+                ERANGE == errno)
+            {
+                if (0 == errno)
+                {
+                    errno = EINVAL;
+                }
+
+                *result = 0;
+
+                STLSOFT_C_AUTO_BUFFER_FREE(buff);
+
+                return 0;
+            }
+            else
+            {
+                STLSOFT_C_AUTO_BUFFER_FREE(buff);
+
+                return 1;
+            }
+        }
+    }
+#else
+
+    {
+        char const* const value = STLSOFT_NS_GLOBAL(getenv)(name);
+
+        if (NULL == value)
+        {
+            errno = EINVAL;
+
+            *result = 0;
+
+            return 0;
+        }
+        else
+        {
+            char* endptr;
+
+            errno = 0;
+
+            *result = STLSOFT_NS_GLOBAL(strtoll)(value, &endptr, 0);
+
+            if (value == endptr ||
+                '\0' != *endptr ||
+                ERANGE == errno)
+            {
+                if (0 == errno)
+                {
+                    errno = EINVAL;
+                }
+
+                *result = 0;
+
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+    }
+#endif
+}
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * C++ API functions
+ * language
  */
 
 #ifdef __cplusplus
 
-/** \see stlsoft_C_environment_variable_exists_a
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API functions (C++)
+ */
+
+/** \see stlsoft_C_environment_variable_exists_m
  */
 inline
-ss_truthy_t
+bool
 environment_variable_exists(
     char const* name
-)
+) STLSOFT_NOEXCEPT
 {
-    return stlsoft_C_environment_variable_exists_a(name);
+    return 0 != stlsoft_C_environment_variable_exists_m(name);
 }
+
+inline
+bool
+environment_variable_strtoll(
+    char const*     name
+,   ss_sint64_t*    result
+) STLSOFT_NOEXCEPT
+{
+    return 0 != stlsoft_C_environment_variable_strtoll_m(name, result);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * language
+ */
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

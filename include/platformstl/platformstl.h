@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 17th September 2026
+ * Updated: 10th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 8
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     63
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 9
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -145,13 +145,14 @@
 # define _PLATFORMSTL_VER_1_9_2         0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.10.5) */
 # define _PLATFORMSTL_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1 alpha 8) */
 # define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
-# define _PLATFORMSTL_VER_1_10_0_B01    0x010a0081  /*!< Version 1.10.0 alpha 2 (with STLSoft 1.11.1 rc 3) */
+# define _PLATFORMSTL_VER_1_10_0_B01    0x010A0081  /*!< Version 1.10.0 beta 1 (with STLSoft 1.11.1 rc 3) */
+# define _PLATFORMSTL_VER_1_10_0_B02    0x010A0082  /*!< Version 1.10.0 beta 2 (with STLSoft 1.11.1 rc 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
 #define _PLATFORMSTL_VER_PATCH      0
-#define _PLATFORMSTL_VER_ALPHABETA  0x81
+#define _PLATFORMSTL_VER_ALPHABETA  0x82
 
 #define _PLATFORMSTL_VER \
     (0\

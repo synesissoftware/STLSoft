@@ -4,11 +4,11 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 20th March 2025
+ * Updated: 23rd September 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    5
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        28
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    6
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,12 +270,31 @@ public: // Operations
         return write_text_(ps, cch);
     }
 
-    /// Writes \c cb bytes from the memory block pointed to by \c pv to the
-    /// underlying file stream.
+    /// [DEPRECATED] Writes \c cb bytes from the memory block pointed to by
+    /// \c pv to the underlying file stream.
+    ///
+    /// \deprecated Use write_binary() instead
     ///
     /// \exception X Thrown in \c cb bytes cannot be written to the
     ///   underlying stream
+    STLSOFT_DEPRECATED_("write(void const*, size_t) is deprecated and will be removed from a future version of STLSoft; use write_binary() instead")
     class_type& write(void const* pv, size_type cb)
+    {
+        return write_binary(pv, cb);
+    }
+
+    /// Writes \c cb bytes from the memory block pointed to by \c pv to the
+    /// underlying file stream.
+    ///
+    /// \note Every byte is written, including embedded NULs. Character
+    ///   overloads of <code>write()</code> stop at the first NUL. Newline
+    ///   translation follows the stream's open mode, so open with
+    ///   <code>"wb"</code> when the stored bytes must match the memory
+    ///   block.
+    ///
+    /// \exception X Thrown in \c cb bytes cannot be written to the
+    ///   underlying stream
+    class_type& write_binary(void const* pv, size_type cb)
     {
         return write_bytes_(pv, cb);
     }

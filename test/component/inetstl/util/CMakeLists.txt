@@ -1,4 +1,4 @@
 if(UNIX)
 
-	add_subdirectory(test.component.inetstl.util.uds_helpers)
+	add_subdirectory(uds_helpers)
 endif(UNIX)

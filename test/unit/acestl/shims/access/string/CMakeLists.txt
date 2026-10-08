@@ -1,5 +1,5 @@
-add_subdirectory(test.unit.acestl.shims.access.string.string_base)
-add_subdirectory(test.unit.acestl.shims.access.string.time_value)
+add_subdirectory(string_base)
+add_subdirectory(time_value)
 
 
 # ############################## end of file ############################# #

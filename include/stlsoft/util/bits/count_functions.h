@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/bits/count_functions.h
+ * File:    stlsoft/util/bits/count_functions.h
  *
- * Purpose:     Bit count functions.
+ * Purpose: Bit count functions.
  *
- * Created:     2nd June 2010
- * Updated:     11th March 2024
+ * Created: 2nd June 2010
+ * Updated: 25th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR    3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT     19
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR      1
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR      3
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION   3
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,6 +75,13 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_bitfns
+# include <stlsoft/api/external/bitfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_bitfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_bitfns
+# include <stlsoft/api/internal/bitfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_bitfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -364,7 +371,6 @@ namespace ximpl_bit_functions
 
         return &s_table;
     }
-
 # ifdef __cplusplus
 } /* namespace ximpl_bit_functions */
 # endif /* __cplusplus */
@@ -402,6 +408,38 @@ stlsoft_C_count_bits_in_32bit_unsigned_integer_by_Kernighan_method(
     STLSOFT_COVER_MARK_LINE();
 
     return n;
+}
+
+/** Counts the number of bits in an 8-bit unsigned integer, using Brian
+ * Kernighan's method (see TCPL).
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_8bit_unsigned_integer_by_Kernighan_method(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_32bit_unsigned_integer_by_Kernighan_method(STLSOFT_STATIC_CAST(ss_uint32_t, v));
+}
+
+/** Counts the number of bits in a 16-bit unsigned integer, using Brian
+ * Kernighan's method (see TCPL).
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_16bit_unsigned_integer_by_Kernighan_method(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_32bit_unsigned_integer_by_Kernighan_method(STLSOFT_STATIC_CAST(ss_uint32_t, v));
 }
 
 /** Counts the number of bits in a 64-bit unsigned integer, using Brian
@@ -449,6 +487,38 @@ stlsoft_C_count_bits_in_32bit_unsigned_integer_by_8bit_table(
     return (*ptr)[0[py]] + (*ptr)[1[py]] + (*ptr)[2[py]] + (*ptr)[3[py]];
 }
 
+/** Counts the number of bits in an 8-bit unsigned integer, using an 8-bit
+ * lookup table.
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_8bit_unsigned_integer_by_8bit_table(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_32bit_unsigned_integer_by_8bit_table(STLSOFT_STATIC_CAST(ss_uint32_t, v));
+}
+
+/** Counts the number of bits in a 16-bit unsigned integer, using an 8-bit
+ * lookup table.
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_16bit_unsigned_integer_by_8bit_table(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_32bit_unsigned_integer_by_8bit_table(STLSOFT_STATIC_CAST(ss_uint32_t, v));
+}
+
 /** Counts the number of bits in a 64-bit unsigned integer, using an 8-bit.
  * lookup table.
  *
@@ -467,6 +537,64 @@ stlsoft_C_count_bits_in_64bit_unsigned_integer_by_8bit_table(
 
     return n_high + n_low;
 }
+#if defined(STLSOFT_API_INTERNAL_bitfns_popcount_uint16) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+/** Counts the number of bits in a 16-bit unsigned integer, using a
+ * compiler intrinsic. Not selected by count_bits().
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_16bit_unsigned_integer_by_intrinsic(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_C_CAST(unsigned, STLSOFT_API_INTERNAL_bitfns_popcount_uint16(v));
+}
+#endif /* STLSOFT_API_INTERNAL_bitfns_popcount_uint16 */
+#if defined(STLSOFT_API_INTERNAL_bitfns_popcount_uint32) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+/** Counts the number of bits in a 32-bit unsigned integer, using a
+ * compiler intrinsic. Not selected by count_bits().
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_32bit_unsigned_integer_by_intrinsic(
+    ss_uint32_t v
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_C_CAST(unsigned, STLSOFT_API_INTERNAL_bitfns_popcount_uint32(v));
+}
+#endif /* STLSOFT_API_INTERNAL_bitfns_popcount_uint32 */
+#if defined(STLSOFT_API_INTERNAL_bitfns_popcount_uint64) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+/** Counts the number of bits in a 64-bit unsigned integer, using a
+ * compiler intrinsic. One instruction for the full width, not two
+ * 32-bit calls. Not selected by count_bits().
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_count_bits_in_64bit_unsigned_integer_by_intrinsic(
+    ss_uint64_t v
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_C_CAST(unsigned, STLSOFT_API_INTERNAL_bitfns_popcount_uint64(v));
+}
+#endif /* STLSOFT_API_INTERNAL_bitfns_popcount_uint64 */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -474,6 +602,32 @@ stlsoft_C_count_bits_in_64bit_unsigned_integer_by_8bit_table(
  */
 
 #ifdef __cplusplus
+
+/**
+ *
+ * \see stlsoft_C_count_bits_in_8bit_unsigned_integer_by_Kernighan_method
+ */
+inline
+unsigned
+count_bits_by_Kernighan_method(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_8bit_unsigned_integer_by_Kernighan_method(v);
+}
+
+/**
+ *
+ * \see stlsoft_C_count_bits_in_16bit_unsigned_integer_by_Kernighan_method
+ */
+inline
+unsigned
+count_bits_by_Kernighan_method(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_16bit_unsigned_integer_by_Kernighan_method(v);
+}
 
 /**
  *
@@ -503,6 +657,32 @@ count_bits_by_Kernighan_method(
 
 /**
  *
+ * \see stlsoft_C_count_bits_in_8bit_unsigned_integer_by_8bit_table
+ */
+inline
+unsigned
+count_bits_by_8bit_table(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_8bit_unsigned_integer_by_8bit_table(v);
+}
+
+/**
+ *
+ * \see stlsoft_C_count_bits_in_16bit_unsigned_integer_by_8bit_table
+ */
+inline
+unsigned
+count_bits_by_8bit_table(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_16bit_unsigned_integer_by_8bit_table(v);
+}
+
+/**
+ *
  * \see stlsoft_C_count_bits_in_32bit_unsigned_integer_by_8bit_table
  */
 inline
@@ -526,7 +706,108 @@ count_bits_by_8bit_table(
 {
     return stlsoft_C_count_bits_in_64bit_unsigned_integer_by_8bit_table(v);
 }
+#if defined(STLSOFT_API_INTERNAL_bitfns_popcount_uint16) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
+/**
+ *
+ * \see stlsoft_C_count_bits_in_16bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+count_bits_by_intrinsic(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_16bit_unsigned_integer_by_intrinsic(v);
+}
+
+/**
+ *
+ * \see stlsoft_C_count_bits_in_16bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+count_bits_by_intrinsic(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_16bit_unsigned_integer_by_intrinsic(STLSOFT_STATIC_CAST(ss_uint16_t, v));
+}
+#endif
+#if defined(STLSOFT_API_INTERNAL_bitfns_popcount_uint32) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+/**
+ *
+ * \see stlsoft_C_count_bits_in_32bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+count_bits_by_intrinsic(
+    ss_uint32_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_32bit_unsigned_integer_by_intrinsic(v);
+}
+#endif
+#if defined(STLSOFT_API_INTERNAL_bitfns_popcount_uint64) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+/**
+ *
+ * \see stlsoft_C_count_bits_in_64bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+count_bits_by_intrinsic(
+    ss_uint64_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_count_bits_in_64bit_unsigned_integer_by_intrinsic(v);
+}
+#endif
+
+
+/** Counts the number of bits in an 8-bit unsigned integer
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+inline
+unsigned
+count_bits(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+# if 0
+# elif defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_by_Kernighan_method(v);
+# else
+    return count_bits_by_8bit_table(v);
+# endif
+}
+
+/** Counts the number of bits in a 16-bit unsigned integer
+ *
+ * \param v The number whose bits are to be counted
+ *
+ * \return The number of bits in \c v
+ */
+inline
+unsigned
+count_bits(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+# if 0
+# elif defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_by_Kernighan_method(v);
+# else
+    return count_bits_by_8bit_table(v);
+# endif
+}
 
 /** Counts the number of bits in a 32-bit unsigned integer
  *
@@ -540,8 +821,9 @@ count_bits(
     ss_uint32_t v
 ) STLSOFT_NOEXCEPT
 {
-# if defined(STLSOFT_BIT_COUNT_BY_Kernighan)
-    return count_bits_by_Kernighan(v);
+# if 0
+# elif defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_by_Kernighan_method(v);
 # else
     return count_bits_by_8bit_table(v);
 # endif
@@ -559,8 +841,9 @@ count_bits(
     ss_uint64_t v
 ) STLSOFT_NOEXCEPT
 {
-# if defined(STLSOFT_BIT_COUNT_BY_Kernighan)
-    return count_bits_by_Kernighan(v);
+# if 0
+# elif defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_by_Kernighan_method(v);
 # else
     return count_bits_by_8bit_table(v);
 # endif
@@ -612,7 +895,10 @@ count_bits(
 }
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
@@ -626,8 +912,6 @@ count_bits(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS */
 

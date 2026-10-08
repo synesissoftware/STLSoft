@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/bits/test_functions.h
+ * File:    stlsoft/util/bits/test_functions.h
  *
- * Purpose:     Bit test functions
+ * Purpose: Bit test functions
  *
- * Created:     2nd June 2010
- * Updated:     11th March 2024
+ * Created: 2nd June 2010
+ * Updated: 25th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_EDIT        12
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_REVISION    5
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,6 +75,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_bitfns
+# include <stlsoft/api/external/bitfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_bitfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,6 +177,152 @@ stlsoft_C_find_highest_bit_in_64bit_unsigned_integer(
     return stlsoft_C_find_highest_bit_in_32bit_unsigned_integer(STLSOFT_STATIC_CAST(ss_uint32_t, v));
 }
 
+#if 0
+#elif defined(STLSOFT_CF__builtin_clz_SUPPORT) || \
+      defined(STLSOFT_CF__BitScanReverse_SUPPORT)
+
+/** Find the 1-based index of the highest set bit, using a compiler
+ * intrinsic. Returns 0 when \c v is 0. Not selected by find_highest_bit().
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_find_highest_bit_in_8bit_unsigned_integer_by_intrinsic(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+# if 0
+# elif defined(STLSOFT_CF__builtin_clz_SUPPORT)
+
+    if (0u == v)
+    {
+        return 0u;
+    }
+
+    return 32u - STLSOFT_STATIC_CAST(unsigned, __builtin_clz(STLSOFT_STATIC_CAST(unsigned, v)));
+# elif defined(STLSOFT_CF__BitScanReverse_SUPPORT)
+
+    unsigned long index;
+
+    if (0 == _BitScanReverse(&index, STLSOFT_STATIC_CAST(unsigned long, v)))
+    {
+        return 0u;
+    }
+
+    return STLSOFT_STATIC_CAST(unsigned, index) + 1u;
+# else
+
+#  error Unexpected
+# endif
+}
+
+/** Find the 1-based index of the highest set bit, using a compiler
+ * intrinsic. Returns 0 when \c v is 0. Not selected by find_highest_bit().
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_find_highest_bit_in_16bit_unsigned_integer_by_intrinsic(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+# if 0
+# elif defined(STLSOFT_CF__builtin_clz_SUPPORT)
+
+    if (0u == v)
+    {
+        return 0u;
+    }
+
+    return 32u - STLSOFT_STATIC_CAST(unsigned, __builtin_clz(STLSOFT_STATIC_CAST(unsigned, v)));
+# elif defined(STLSOFT_CF__BitScanReverse_SUPPORT)
+
+    unsigned long index;
+
+    if (0 == _BitScanReverse(&index, STLSOFT_STATIC_CAST(unsigned long, v)))
+    {
+        return 0u;
+    }
+
+    return STLSOFT_STATIC_CAST(unsigned, index) + 1u;
+# else
+
+#  error Unexpected
+# endif
+}
+
+/** Find the 1-based index of the highest set bit, using a compiler
+ * intrinsic. Returns 0 when \c v is 0. Not selected by find_highest_bit().
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_find_highest_bit_in_32bit_unsigned_integer_by_intrinsic(
+    ss_uint32_t v
+) STLSOFT_NOEXCEPT
+{
+# if 0
+# elif defined(STLSOFT_CF__builtin_clz_SUPPORT)
+
+    if (0u == v)
+    {
+        return 0u;
+    }
+
+    return 32u - STLSOFT_STATIC_CAST(unsigned, __builtin_clz(v));
+# elif defined(STLSOFT_CF__BitScanReverse_SUPPORT)
+
+    unsigned long index;
+
+    if (0 == _BitScanReverse(&index, STLSOFT_STATIC_CAST(unsigned long, v)))
+    {
+        return 0u;
+    }
+
+    return STLSOFT_STATIC_CAST(unsigned, index) + 1u;
+# else
+
+#  error Unexpected
+# endif
+}
+#endif
+
+#if 0
+#elif defined(STLSOFT_CF__builtin_clzll_SUPPORT) || \
+      defined(STLSOFT_CF__BitScanReverse64_SUPPORT)
+
+/** Find the 1-based index of the highest set bit, using a compiler
+ * intrinsic. Returns 0 when \c v is 0. Not selected by find_highest_bit().
+ */
+STLSOFT_INLINE
+unsigned
+stlsoft_C_find_highest_bit_in_64bit_unsigned_integer_by_intrinsic(
+    ss_uint64_t v
+) STLSOFT_NOEXCEPT
+{
+# if 0
+# elif defined(STLSOFT_CF__builtin_clzll_SUPPORT)
+
+    if (0u == v)
+    {
+        return 0u;
+    }
+
+    return 64u - STLSOFT_STATIC_CAST(unsigned, __builtin_clzll(v));
+# elif defined(STLSOFT_CF__BitScanReverse64_SUPPORT)
+
+    unsigned long index;
+
+    if (0 == _BitScanReverse64(&index, v))
+    {
+        return 0u;
+    }
+
+    return STLSOFT_STATIC_CAST(unsigned, index) + 1u;
+# else
+
+#  error Unexpected
+# endif
+}
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++
@@ -232,10 +382,73 @@ find_highest_bit(
     return stlsoft_C_find_highest_bit_in_8bit_unsigned_integer(v);
 }
 
+#if 0
+#elif defined(STLSOFT_CF__builtin_clz_SUPPORT) || \
+      defined(STLSOFT_CF__BitScanReverse64_SUPPORT)
 
+/**
+ *
+ * \see stlsoft_C_find_highest_bit_in_64bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+find_highest_bit_by_intrinsic(
+    ss_uint64_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_find_highest_bit_in_64bit_unsigned_integer_by_intrinsic(v);
+}
+#endif
+
+#if 0
+#elif defined(STLSOFT_CF__builtin_clz_SUPPORT) || \
+      defined(STLSOFT_CF__BitScanReverse_SUPPORT)
+
+/**
+ *
+ * \see stlsoft_C_find_highest_bit_in_32bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+find_highest_bit_by_intrinsic(
+    ss_uint32_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_find_highest_bit_in_32bit_unsigned_integer_by_intrinsic(v);
+}
+
+/**
+ *
+ * \see stlsoft_C_find_highest_bit_in_16bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+find_highest_bit_by_intrinsic(
+    ss_uint16_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_find_highest_bit_in_16bit_unsigned_integer_by_intrinsic(v);
+}
+
+/**
+ *
+ * \see stlsoft_C_find_highest_bit_in_8bit_unsigned_integer_by_intrinsic
+ */
+inline
+unsigned
+find_highest_bit_by_intrinsic(
+    ss_uint8_t v
+) STLSOFT_NOEXCEPT
+{
+    return stlsoft_C_find_highest_bit_in_8bit_unsigned_integer_by_intrinsic(v);
+}
+#endif
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
@@ -249,8 +462,6 @@ find_highest_bit(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS */
 
