@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `stlsoft::environment_variable_exists()`.
  *
  * Created: 28th September 2026
- * Updated: 30th September 2026
+ * Updated: 8th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -218,21 +218,49 @@ static void TEST_environment_variable_exists_WITH_simple_string()
 }
 #ifndef _WIN32
 
-/* An empty value is a defined variable on UNIX. The Windows CRT treats an
- * empty assignment as erasure, so this case is UNIX-only.
+/* An empty value is a defined variable on UNIX: getenv() returns "".
+ * Existence is true for the C function and the C++ overloads. The Windows
+ * CRT treats an empty assignment as erasure, so this case is UNIX-only.
  */
 static void TEST_environment_variable_exists_WHEN_EMPTY()
 {
-    environment_variable_scope const empty(VAR_NAME, "");
-
-    char const* const value = ::getenv(VAR_NAME);
-
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, value));
-    TEST_MS_EQ("", value);
-
     char const* const name = VAR_NAME;
 
-    TEST_BOOLEAN_TRUE(stlsoft::environment_variable_exists(name));
+    {
+        environment_variable_scope const empty(VAR_NAME, "");
+
+        char const* const value = ::getenv(name);
+
+        XTESTS_REQUIRE(TEST_PTR_NE(NULL, value));
+        TEST_MS_EQ("", value);
+
+        TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
+        TEST_BOOLEAN_TRUE(stlsoft::environment_variable_exists(name));
+        TEST_BOOLEAN_TRUE(stlsoft::environment_variable_exists(std::string(name)));
+        TEST_BOOLEAN_TRUE(stlsoft::environment_variable_exists(stlsoft::simple_string(name)));
+        TEST_BOOLEAN_FALSE(stlsoft::stlsoft_C_environment_variable_exists_m("STLSOFT_CT_ENV_VAR_EXISTS_NO_SUCH"));
+    }
+
+    {
+        environment_variable_scope const present(VAR_NAME, "present");
+
+        TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
+
+        environment_variable_scope const emptied(VAR_NAME, "");
+
+        char const* const value = ::getenv(name);
+
+        XTESTS_REQUIRE(TEST_PTR_NE(NULL, value));
+        TEST_MS_EQ("", value);
+
+        TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
+        TEST_BOOLEAN_TRUE(stlsoft::environment_variable_exists(name));
+    }
+
+    environment_variable_scope const erased(VAR_NAME, ss_nullptr_k);
+
+    TEST_BOOLEAN_FALSE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
+    TEST_BOOLEAN_FALSE(stlsoft::environment_variable_exists(name));
 }
 #endif /* !_WIN32 */
 

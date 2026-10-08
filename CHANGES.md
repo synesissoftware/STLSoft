@@ -3,7 +3,7 @@
 
 ## 1.11.1-rc8 - 10th October 2026
 
-* add component tests for `stlsoft::environment_variable_exists()`;
+* Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
 
 
 ## 1.11.1-rc7 - 30th September 2026
