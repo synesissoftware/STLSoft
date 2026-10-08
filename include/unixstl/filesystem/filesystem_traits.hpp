@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     16
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      189
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     17
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,7 @@
 #endif /* !STLSOFT_INCL_H_FCNTL */
 #ifdef _WIN32
 # include <io.h>
-# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+# if defined(STLSOFT_COMPILER_IS_INTEL) ||\
      defined(STLSOFT_COMPILER_IS_MSVC)
 #  include <direct.h>
 # endif /* os && compiler */
@@ -177,7 +177,7 @@
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
 namespace unixstl
@@ -731,6 +731,11 @@ public:
     static DIR*                 open_dir(char_type const* dir);
     /// Read an entry from the file-system search
     static struct dirent const* read_dir(DIR* h);
+    /// Resets the file-system search to the first entry, such that the
+    ///   next call to read_dir() returns the first entry
+    ///
+    /// \pre NULL != h
+    static void                 rewind_dir(DIR* h);
     /// Closes the handle of the file-system search
     static void                 close_dir(DIR* h);
 /// @}
@@ -2183,6 +2188,12 @@ public: // file-system enumeration
     {
         return ::readdir(h);
     }
+    static void rewind_dir(DIR* h)
+    {
+        UNIXSTL_ASSERT(NULL != h);
+
+        ::rewinddir(h);
+    }
     static void close_dir(DIR* h)
     {
         ::closedir(h);
@@ -2628,7 +2639,7 @@ public: // file-system state
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode)
     {
 #if 0
-#elif defined(_WIN32) && \
+#elif defined(_WIN32) &&\
       ( 0 ||\
         defined(STLSOFT_COMPILER_IS_INTEL) ||\
         defined(STLSOFT_COMPILER_IS_MSVC) ||\
@@ -2646,7 +2657,7 @@ public: // file-system state
     static bool_type close_file(file_handle_type h)
     {
 #if 0
-#elif defined(_WIN32) && \
+#elif defined(_WIN32) &&\
       ( 0 ||\
         defined(STLSOFT_COMPILER_IS_INTEL) ||\
         defined(STLSOFT_COMPILER_IS_MSVC) ||\
@@ -3182,6 +3193,8 @@ public: // file-system enumeration
     ;
     static struct dirent const* read_dir(DIR* h)
     ;
+    static void rewind_dir(DIR* h)
+    ;
     static void close_dir(DIR* h)
     ;
 
@@ -3217,7 +3230,7 @@ public: // file-system control
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace unixstl
 # else

@@ -5,19 +5,31 @@
 
 * Added `stlsoft_C_environment_variable_strtoll_m()` and `stlsoft::environment_variable_strtoll()`, with UNIX `getenv()` / `strtoll()` and Windows `getenv_s()` / `STLSOFT_C_AUTO_BUFFER` support; added component tests;
 * Added `unixstl_C_get_current_process_id()` (**unixstl/process/functions.h**, new), `winstl_C_get_current_process_id()` (**winstl/process/functions.h**), and `platformstl_C_get_current_process_id()` (**platformstl/process/functions.h**, new), in terms of `getpid()` / `_getpid()`;
+* **unixstl::filesystem_traits** — added `rewind_dir()` (wrapping `rewinddir()`) to complement `open_dir()`, `read_dir()`, and `close_dir()`, so that a directory search may be restarted from its first entry without closing and reopening the handle;
 
 * Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
+* **unixstl::filesystem_traits** — `class_type` is now defined in terms of `char_type` (the wide-character specialisation previously named the narrow specialisation);
+* **unixstl** / **winstl** `system_traits` and `filesystem_traits` — canonicalised the conditional-compilation guards (no behavioural change);
 
+* Component tests for `unixstl::filesystem_traits` (**test/component/unixstl/filesystem/filesystem_traits/opendir**) cover `open_dir()`, `read_dir()`, `rewind_dir()` (before any read, after a partial read, after exhaustion, on an empty directory, and repeatedly), and `close_dir()`;
+* Scratch test **test/scratch/unixstl/filesystem/rewind_dir** — exercises `rewind_dir()` over a directory given on the command-line;
+* Example **examples/by_project/unixstl/filesystem/rewind_dir** — enumerates a directory in two passes (count, then collect), using `rewind_dir()` between them;
 * **test.unit.versions** — aligned with **1.11.1-rc8** (**_STLSOFT_VER_1_11_1_RC8**);
+
+* **unixstl** — **1.8.6 beta 7** (**_UNIXSTL_VER_1_8_6_B07**), with **STLSoft 1.11.1-rc8**;
+* **winstl** — **1.13.0 beta 4** (**_WINSTL_VER_1_13_0_B04**), with **STLSoft 1.11.1-rc8**;
+* **inetstl** — **1.5.0 alpha 3** (**_INETSTL_VER_1_5_0_A03**), with **STLSoft 1.11.1-rc8**;
+
+* Added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd** (with `--gap-groups`), and **run_all_automated_tests.sh** / **.cmd** (unit then component; `--unit-only` / `--component-only`);
+* Added **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** — HTML API documentation generated from the public headers into **_build/doxygen/html**;
+* **remove_cmake_artefacts.sh** — no longer removes **docs** or **Doxyfile**; iterates arrays safely;
+* **batch_compile_check**, **execute_performance_tests.sh** — quote the `$(dirname ...)` directory resolution;
+
 
 * Scripts — **build_cmake.sh**, **clean_cmake.sh**, **ctest_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, **run_all_examples.sh**, and **run_all_scratch_tests.sh** rewritten to the common Synesis helper-script layout: builds go through `cmake --build` (with `--config` selected from `SIS_CMAKE_CONFIG` for multi-config generators) rather than `make` / `mingw32-make`; coloured output (`-A` / `--always-use-colours`, `SIS_CMAKE_ALWAYS_USE_COLOURS`, `NO_COLOR`); quoted paths and arguments; `.sis/project_name.txt` used in all status messages;
 * **prepare_cmake.sh** — added `--build-shared-libs` and `-s` / `--stlsoft-root-dir`; honours `SIS_CMAKE_GENERATOR` and `SIS_CMAKE_MINGW`; every `-D` option is passed on all generator paths;
 * **run_all_unit_tests.sh** / **.cmd** — now run unit-test programs only (`--unit-only` accepted for compatibility; `--component-only` removed);
-* Added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd** (with `--gap-groups`), and **run_all_automated_tests.sh** / **.cmd** (unit then component; `--unit-only` / `--component-only`);
 * **run_all_examples.sh** — retains `--skip-interactive` (**.github/ci_skip_interactive_examples.txt**, which prevents headless CI hanging on GUI examples) and its discovery of every executable under the **examples** tree, and now exports `SIS_EXAMPLE_SMOKE=1`; **run_all_scratch_tests.sh** / **.cmd** — removed `--verbosity`;
-* **remove_cmake_artefacts.sh** — no longer removes **docs** or **Doxyfile**; iterates arrays safely;
-* Added **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** — HTML API documentation generated from the public headers into **_build/doxygen/html**;
-* **batch_compile_check**, **execute_performance_tests.sh** — quote the `$(dirname ...)` directory resolution;
 * **.gitattributes** — Linguist language-bar policy: public C headers and sources are classified as C, C++ headers and sources as C++, and `*.cmake` as CMake; helper scripts, IDE project files, **CMakeLists.txt**, and **makefile** are excluded from the advertised language mix (`-linguist-detectable`);
 * CI — **ci-cell.yml** runs component tests via **run_all_component_tests.sh**;
 * **INSTALL.md** — documented **run_all_component_tests.sh**, **run_all_automated_tests.sh**, and **generate_doxygen.sh**; corrected the unit-test discovery patterns;

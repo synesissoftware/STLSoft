@@ -149,7 +149,7 @@
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -973,7 +973,7 @@ public: // types
     typedef DWORD                                           error_type;
     typedef DWORD                                           file_attributes_type;
 private:
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
     typedef STLSOFT_NS_QUAL(auto_buffer)<char_type>         buffer_type_;
 #endif /* compiler */
@@ -2237,7 +2237,7 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
 
         size_type const len         =   class_type::str_len(path);
@@ -2595,7 +2595,7 @@ public: // types
     typedef DWORD                                           error_type;
     typedef DWORD                                           file_attributes_type;
 private:
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
     typedef STLSOFT_NS_QUAL(auto_buffer)<char_type>         buffer_type_;
 #endif /* compiler */
@@ -3597,7 +3597,7 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
 
         size_type const len         =   class_type::str_len(path);
@@ -3934,7 +3934,7 @@ private:
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace winstl
 # else
