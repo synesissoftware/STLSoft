@@ -1,6 +1,11 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc8 - 10th October 2026
+
+* Added `unixstl_C_get_current_process_id()` (**unixstl/process/functions.h**, new), `winstl_C_get_current_process_id()` (**winstl/process/functions.h**), and `platformstl_C_get_current_process_id()` (**platformstl/process/functions.h**, new), in terms of `getpid()` / `_getpid()`;
+
+
 ## 1.11.1-rc7 - 30th September 2026
 
 * **simple_string** — counted construction, `assign`, `append`, `push_back`, and concatenation keep an embedded NUL, including assignment of a single `'\0'`;

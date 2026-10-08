@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 7
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     36
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    2
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 1
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,6 +68,11 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef STLSOFT_INCL_H_PROCESS
+# define STLSOFT_INCL_H_PROCESS
+# include <process.h>
+#endif /* !STLSOFT_INCL_H_PROCESS */
 
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
 # include <stlsoft/quality/contract.h>
@@ -239,6 +244,21 @@ winstl_C_CreateProcess0A(
 )
 {
     return winstl_C_CreateProcessEA(cmdLine, NULL);
+}
+
+/**
+ * \brief Obtains the id of the calling process.
+ *
+ * \ingroup group__library__System
+ *
+ * \return The process id, as obtained from \c _getpid(), which equals
+ *   \c GetCurrentProcessId() cast to \c int.
+ */
+STLSOFT_INLINE
+int
+winstl_C_get_current_process_id(void)
+{
+    return STLSOFT_NS_GLOBAL(_getpid)();
 }
 
 
