@@ -3,6 +3,7 @@
 
 ## 1.11.1-rc8 - 10th October 2026
 
+* Added `stlsoft_C_environment_variable_strtoll_m()` and `stlsoft::environment_variable_strtoll()`, with UNIX `getenv()` / `strtoll()` and Windows `getenv_s()` / `STLSOFT_C_AUTO_BUFFER` support; added component tests;
 * Fixed `stlsoft_C_environment_variable_exists_m()` when `getenv_s()` reports an existing empty variable; added component tests for `stlsoft::environment_variable_exists()`;
 
 
