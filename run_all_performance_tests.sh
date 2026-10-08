@@ -29,10 +29,10 @@ ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 ScriptPath=$0
 
 AlwaysUseColours=${SIS_CMAKE_ALWAYS_USE_COLOURS:-${SIS_ALWAYS_USE_COLOURS:-0}}
+GapGroups=0
 ListOnly=0
 RunMake=1
 SisUseColours=0
-Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
@@ -127,6 +127,10 @@ while [[ $# -gt 0 ]]; do
 
       # AlwaysUseColours=1 - this is handled by the for loop above
       ;;
+    --gap-groups)
+
+      GapGroups=1
+      ;;
     --list-only|-l)
 
       ListOnly=1
@@ -135,20 +139,11 @@ while [[ $# -gt 0 ]]; do
 
       RunMake=0
       ;;
-    --unit-only)
-
-      # Benign: this script is already unit-only (aggregate / CI may pass it)
-      ;;
-    --verbosity)
-
-      shift
-      Verbosity=$1
-      ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) unit-test programs
+Runs all (matching) performance-test programs
 
 ${ScriptPath} [ ... flags/options ... ]
 
@@ -161,6 +156,10 @@ Flags/options:
     --always-use-colours
         forces use of colours even when stdout is not a TTY
 
+    --gap-groups
+        sets SIS_PERFTESTS_GROUPGAPS=1 so performance programs emit a blank
+        line between scenario groups
+
     -l
     --list-only
         lists the target programs but does not execute them
@@ -168,12 +167,6 @@ Flags/options:
     -M
     --no-make
         does not execute a build before running programs
-
-    --unit-only
-        accepted for compatibility; this script always runs unit tests only
-
-    --verbosity <verbosity>
-        specifies an explicit verbosity, forwarded to each program
 
 
     standard flags:
@@ -200,6 +193,11 @@ done
 # ##########################################################
 # main()
 
+if [ $GapGroups -ne 0 ]; then
+
+  export SIS_PERFTESTS_GROUPGAPS=1
+fi
+
 status=0
 
 if [ $RunMake -ne 0 ]; then
@@ -207,7 +205,7 @@ if [ $RunMake -ne 0 ]; then
   if [ $ListOnly -eq 0 ]; then
 
     echo
-    echo "Executing build of ${ProjectNameClr} (via cmake --build) and then running all unit-test programs"
+    echo "Executing build of ${ProjectNameClr} (via cmake --build) and then running all performance-test programs"
 
     mkdir -p "$CMakeDir" || exit 1
 
@@ -236,11 +234,11 @@ if [ $status -eq 0 ]; then
   if [ $ListOnly -ne 0 ]; then
 
     echo
-    echo "Listing all ${ProjectNameClr} unit-test programs"
+    echo "Listing all ${ProjectNameClr} performance-test programs"
   else
 
     echo
-    echo "Running all ${ProjectNameClr} unit-test programs"
+    echo "Running all ${ProjectNameClr} performance-test programs"
   fi
 
   NumPrograms=0
@@ -264,16 +262,10 @@ if [ $status -eq 0 ]; then
       continue
     fi
 
-    if [ $Verbosity -ge 3 ]; then
+    echo
+    echo "executing ${fClr}:"
 
-      echo
-    fi
-    if [ $Verbosity -ge 2 ]; then
-
-      echo "executing ${fClr}:"
-    fi
-
-    if "$f" --verbosity="$Verbosity"; then
+    if "$f"; then
 
       :
     else
@@ -282,11 +274,11 @@ if [ $status -eq 0 ]; then
 
       break 1
     fi
-  done < <(find "$CMakeDir" -type f \( -name 'test_unit*' -o -name 'test.unit.*' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
+  done < <(find "$CMakeDir" -type f \( -name 'test_performance*' -o -name 'test.performance.*' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
 
   if [ $NumPrograms -eq 0 ]; then
 
-    echo "${ScriptPathClr}: found no unit-test programs under '${CMakeDirClr}' (none found)"
+    echo "${ScriptPathClr}: found no performance-test programs under '${CMakeDirClr}' (none found)"
 
     exit 0
   fi

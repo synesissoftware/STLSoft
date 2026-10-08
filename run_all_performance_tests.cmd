@@ -23,7 +23,7 @@ FOR %%a IN (%*) DO (
 		)
 		ECHO ^
 
-Runs all ^(matching^) example programs ^
+Runs all ^(matching^) performance-test programs ^
 
 ^
 
@@ -37,6 +37,14 @@ Flags/options: ^
 
 ^
 
+    --gap-groups ^
+
+        sets SIS_PERFTESTS_GROUPGAPS=1 so performance programs emit a ^
+
+        blank line between scenario groups ^
+
+^
+
     standard flags: ^
 
 ^
@@ -47,6 +55,9 @@ Flags/options: ^
 
 
 		EXIT /B 0
+	) ELSE IF /I {--gap-groups}=={%%a} (
+
+		SET SIS_PERFTESTS_GROUPGAPS=1
 	) ELSE (
 
 		ECHO "%SCRIPT_DIRECTORY%: unrecognised argument '%%a'; use --help for usage" 1>&2
@@ -72,13 +83,9 @@ IF NOT DEFINED ProjectName (
     EXIT /B 1
 )
 
-REM Examples that require human input may honour SIS_EXAMPLE_SMOKE for a
-REM no-arg built-in tmpfile demo (see example.c.cstring_vector).
-SET SIS_EXAMPLE_SMOKE=1
+ECHO Running all %ProjectName% performance-test programs
 
-ECHO Running all %ProjectName% example programs
-
-FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I example.*\.exe$`) DO (
+FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I test.*performance.*\.exe$`) DO (
 
 	ECHO .
 	ECHO executing %%f

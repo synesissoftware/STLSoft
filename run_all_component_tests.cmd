@@ -23,7 +23,7 @@ FOR %%a IN (%*) DO (
 		)
 		ECHO ^
 
-Runs all ^(matching^) example programs ^
+Runs all ^(matching^) component-test programs ^
 
 ^
 
@@ -37,6 +37,12 @@ Flags/options: ^
 
 ^
 
+    --component-only ^
+
+        accepted for compatibility; this script always runs component tests only ^
+
+^
+
     standard flags: ^
 
 ^
@@ -47,6 +53,9 @@ Flags/options: ^
 
 
 		EXIT /B 0
+	) ELSE IF /I {--component-only}=={%%a} (
+
+		REM Benign: this script is already component-only
 	) ELSE (
 
 		ECHO "%SCRIPT_DIRECTORY%: unrecognised argument '%%a'; use --help for usage" 1>&2
@@ -72,13 +81,9 @@ IF NOT DEFINED ProjectName (
     EXIT /B 1
 )
 
-REM Examples that require human input may honour SIS_EXAMPLE_SMOKE for a
-REM no-arg built-in tmpfile demo (see example.c.cstring_vector).
-SET SIS_EXAMPLE_SMOKE=1
+ECHO Running all %ProjectName% component-test programs
 
-ECHO Running all %ProjectName% example programs
-
-FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I example.*\.exe$`) DO (
+FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I test.*component.*\.exe$`) DO (
 
 	ECHO .
 	ECHO executing %%f
