@@ -423,6 +423,7 @@
 # define _STLSOFT_VER_1_11_1_RC6    0x010b01c6  /*!< Version 1.11.1 rc 6 (21st September 2026) */
 # define _STLSOFT_VER_1_11_1_RC7    0x010B01C7  /*!< Version 1.11.1 rc 7 (30th September 2026) */
 # define _STLSOFT_VER_1_11_1_RC8    0x010B01C8  /*!< Version 1.11.1 rc 8 (10th October 2026) */
+# define _STLSOFT_VER_1_11_1_RC9    0x010B01C9  /*!< Version 1.11.1 rc 9 (12th October 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
