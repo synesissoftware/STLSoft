@@ -17,7 +17,7 @@
  * test component header file include(s)
  */
 
- #include <stlsoft/iterator/FILE_iterator.hpp>
+#include <stlsoft/iterator/FILE_iterator.hpp>
 
 /* /////////////////////////////////////
  * general includes

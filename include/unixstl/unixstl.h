@@ -802,9 +802,9 @@ typedef us_int32_t                                          int32_t;        /*!<
 typedef us_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
 typedef us_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef us_int64_t                                         int64_t;        /*!< 64-bit integer */
- typedef us_sint64_t                                        sint64_t;       /*!< 64-bit signed integer */
- typedef us_uint64_t                                        uint64_t;       /*!< 64-bit unsigned integer */
+typedef us_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef us_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef us_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /* typedef us_short_t                                          short_t; */        /*!< short integer */
 typedef us_int_t                                            int_t;          /*!< integer */
