@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     6
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      56
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -675,7 +675,7 @@ isatty(
  * \param s Pointer to the first character in the multibyte string;
  * \param n Number of characters in the string;
  *
- * \pre nullptr != s || 0 == n
+ * \pre 0 == n || nullptr != s
  */
 inline
 bool
@@ -696,7 +696,7 @@ write_console_string(
  * \param s Pointer to the first character in the wide string;
  * \param n Number of characters in the string;
  *
- * \pre nullptr != s || 0 == n
+ * \pre 0 == n || nullptr != s
  */
 inline
 bool
@@ -718,7 +718,7 @@ write_console_string(
  * \param s Pointer to the first character in the multibyte string;
  * \param n Number of characters in the string;
  *
- * \pre nullptr != s || 0 == n
+ * \pre 0 == n || nullptr != s
  */
 inline
 bool
@@ -740,7 +740,7 @@ write_console_line(
  * \param s Pointer to the first character in the wide string;
  * \param n Number of characters in the string;
  *
- * \pre nullptr != s || 0 == n
+ * \pre 0 == n || nullptr != s
  */
 inline
 bool
