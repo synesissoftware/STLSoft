@@ -4,11 +4,11 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 22nd August 2025
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     6
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      55
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -414,7 +414,7 @@ winstl_C_isatty_stm(
  * \param hConsole T.B.C.
  * \param slice Pointer to the multibyte slice to be written;
  *
- * \pre NULL != slice
+ * \pre nullptr != slice
  */
 STLSOFT_INLINE
 ss_truthy_t
@@ -440,7 +440,7 @@ winstl_C_write_console_string_m(
  * \param hConsole T.B.C.
  * \param slice Pointer to the wide slice to be written;
  *
- * \pre NULL != slice
+ * \pre nullptr != slice
  */
 STLSOFT_INLINE
 ss_truthy_t
@@ -467,7 +467,7 @@ winstl_C_write_console_string_w(
  * \param hConsole T.B.C.
  * \param slice Pointer to the multibyte slice to be written;
  *
- * \pre NULL != slice
+ * \pre nullptr != slice
  */
 STLSOFT_INLINE
 ss_truthy_t
@@ -516,7 +516,7 @@ winstl_C_write_console_line_m(
  * \param hConsole T.B.C.
  * \param slice Pointer to the wide slice to be written;
  *
- * \pre NULL != slice
+ * \pre nullptr != slice
  */
 STLSOFT_INLINE
 ss_truthy_t
@@ -675,7 +675,7 @@ isatty(
  * \param s Pointer to the first character in the multibyte string;
  * \param n Number of characters in the string;
  *
- * \pre NULL != s || 0 == n
+ * \pre nullptr != s || 0 == n
  */
 inline
 bool
@@ -696,7 +696,7 @@ write_console_string(
  * \param s Pointer to the first character in the wide string;
  * \param n Number of characters in the string;
  *
- * \pre NULL != s || 0 == n
+ * \pre nullptr != s || 0 == n
  */
 inline
 bool
@@ -718,7 +718,7 @@ write_console_string(
  * \param s Pointer to the first character in the multibyte string;
  * \param n Number of characters in the string;
  *
- * \pre NULL != s || 0 == n
+ * \pre nullptr != s || 0 == n
  */
 inline
 bool
@@ -740,7 +740,7 @@ write_console_line(
  * \param s Pointer to the first character in the wide string;
  * \param n Number of characters in the string;
  *
- * \pre NULL != s || 0 == n
+ * \pre nullptr != s || 0 == n
  */
 inline
 bool

@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 8
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     70
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,7 +105,7 @@ namespace winstl_project
  *
  * \note This follows the algorithm provided in MSDN Q167296
  *
- * \pre NULL != ft
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 void
@@ -128,7 +128,7 @@ winstl_C_UNIXTimeToFILETIME(
  *
  * \note This follows the algorithm provided in MSDN Q167296
  *
- * \pre NULL != ft
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 void
@@ -152,7 +152,7 @@ winstl_C_UNIXTimeToFILETIME_us(
  *
  * \note This follows the algorithm provided in MSDN Q167296
  *
- * \pre NULL != ft
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 time_t

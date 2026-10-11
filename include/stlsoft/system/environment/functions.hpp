@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_REVISION  2
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      6
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,7 +127,7 @@ struct ximpl_stlsoft_environment_functions_hpp_
  * \retval 0 The environment variable does not exist
  * \retval !0 The environment variable does exist
  *
- * \pre NULL != name
+ * \pre nullptr != name
  */
 template <ss_typename_param_k T>
 inline

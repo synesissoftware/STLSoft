@@ -4,11 +4,11 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 25th June 2002
- * Updated: 24th December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MAJOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MINOR      1
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       74
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,7 @@ namespace comstl_project
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be \c nullptr.
+ * \pre nullptr != punk
  */
 STLSOFT_INLINE
 void
@@ -179,7 +179,7 @@ namespace comstl
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be \c nullptr.
+ * \pre nullptr != punk
  */
 inline
 void

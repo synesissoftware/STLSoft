@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       15
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,8 +121,8 @@ namespace winstl_project
  *   <code>NULL</code>, and no validity checking is performed on the offset
  *   parameter values.
  *
- * \pre NULL != result
- * \pre NULL != origin
+ * \pre nullptr != result
+ * \pre nullptr != origin
  */
 STLSOFT_INLINE
 void
@@ -191,8 +191,8 @@ winstl_C_increment_FILETIME_us(
  *   \c nullptr, and no validity checking is performed on the offset
  *   parameter values.
  *
- * \pre NULL != result
- * \pre NULL != origin
+ * \pre nullptr != result
+ * \pre nullptr != origin
  */
 STLSOFT_INLINE
 void

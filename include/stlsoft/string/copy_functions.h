@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_REVISION   5
-# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       16
+# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,8 +109,8 @@ namespace stlsoft
  *
  * \note Always applies a terminating nul character if cchDest > cchSrc
  *
- * \pre 0 == cchDest || NULL != dest
- * \pre 0 == cchSrc || NULL != src
+ * \pre 0 == cchDest || nullptr != dest
+ * \pre 0 == cchSrc || nullptr != src
  */
 STLSOFT_INLINE
 ss_size_t
@@ -185,8 +185,8 @@ STLSoft_C_string_copy_w(
  *
  * \note Always applies a terminating nul character if cchDest > 0
  *
- * \pre 0 == cchDest || NULL != dest
- * \pre 0 == cchSrc || NULL != src
+ * \pre 0 == cchDest || nullptr != dest
+ * \pre 0 == cchSrc || nullptr != src
  */
 STLSOFT_INLINE
 ss_size_t
