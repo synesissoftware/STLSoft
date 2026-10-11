@@ -4,11 +4,11 @@
  * Purpose: Modification functions for Windows time structures.
  *
  * Created: 2nd February 2011
- * Updated: 24th December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       14
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,8 +121,8 @@ namespace winstl_project
  *   <code>NULL</code>, and no validity checking is performed on the offset
  *   parameter values.
  *
- * \pre (NULL != result)
- * \pre (NULL != origin)
+ * \pre NULL != result
+ * \pre NULL != origin
  */
 STLSOFT_INLINE
 void
@@ -191,8 +191,8 @@ winstl_C_increment_FILETIME_us(
  *   \c nullptr, and no validity checking is performed on the offset
  *   parameter values.
  *
- * \pre (NULL != result)
- * \pre (NULL != origin)
+ * \pre NULL != result
+ * \pre NULL != origin
  */
 STLSOFT_INLINE
 void

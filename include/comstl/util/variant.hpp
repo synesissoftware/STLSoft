@@ -4,11 +4,11 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 20th March 2025
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR       2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    15
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        180
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -422,7 +422,7 @@ public:
      * \retval <code>E_INTERFACE</code> The interface is not supported: the
      *   value of <code>*ppv</code> is undefined.
      *
-     * \pre <code>nullptr != ppv</code>
+     * \pre nullptr != ppv
      */
     HRESULT     QueryInterface(REFIID riid, void** ppv) const;
 
@@ -436,7 +436,7 @@ public:
      * \retval <code>E_INTERFACE</code> The interface is not supported: the
      *   value of <code>*ppi</code> is undefined.
      *
-     * \pre <code>nullptr != ppi</code>
+     * \pre nullptr != ppi
      */
     template <ss_typename_param_k I>
     HRESULT QueryInterfaceValue(I** ppi)

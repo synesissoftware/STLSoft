@@ -4,11 +4,11 @@
  * Purpose:     Localisation functions for Windows time structures.
  *
  * Created:     9th October 2014
- * Updated:     11th March 2024
+ * Updated:     11th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,8 +117,8 @@ namespace winstl_project
  * \retval false The function failed
  * \retval !false The function succeeded
  *
- * \pre (NULL != utcTime)
- * \pre (NULL != localTime)
+ * \pre NULL != utcTime
+ * \pre NULL != localTime
  *
  * \note The caller may pass pointers to the same structure, in which case
  *   the instance is converted in place
@@ -164,8 +164,8 @@ winstl_C_localise_UTC_FILETIME_to_local_FILETIME(
  * \retval false The function failed
  * \retval !false The function succeeded
  *
- * \pre (NULL != localTime)
- * \pre (NULL != utcTime)
+ * \pre NULL != localTime
+ * \pre NULL != utcTime
  *
  * \note The caller may pass pointers to the same structure, in which case
  *   the instance is converted in place
@@ -229,8 +229,8 @@ namespace winstl
  * \retval false The function failed
  * \retval !false The function succeeded
  *
- * \pre (NULL != utcTime)
- * \pre (NULL != localTime)
+ * \pre NULL != utcTime
+ * \pre NULL != localTime
  *
  * \note The caller may pass pointers to the same structure, in which case
  *   the instance is converted in place
@@ -275,8 +275,8 @@ localise_UTC_time_to_local_time(
  * \retval false The function failed
  * \retval !false The function succeeded
  *
- * \pre (NULL != localTime)
- * \pre (NULL != utcTime)
+ * \pre NULL != localTime
+ * \pre NULL != utcTime
  *
  * \note The caller may pass pointers to the same structure, in which case
  *   the instance is converted in place
@@ -321,7 +321,7 @@ localise_local_time_to_UTC_time(
  *
  * \return The local time
  *
- * \pre (NULL != utcTime)
+ * \pre NULL != utcTime
  *
  * \exception winstl::conversion_error Thrown if the conversion cannot be
  *   performed
@@ -365,7 +365,7 @@ localise_UTC_time_to_local_time(
  *
  * \return The local time
  *
- * \pre (NULL != utcTime)
+ * \pre NULL != utcTime
  *
  * \exception winstl::conversion_error Thrown if the conversion cannot be
  *   performed
