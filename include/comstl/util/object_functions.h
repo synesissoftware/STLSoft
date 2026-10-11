@@ -4,11 +4,11 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 2nd March 1996
- * Updated: 24th December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MAJOR    3
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     81
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,7 @@ namespace comstl_project
  * \retval any-other-code Indicates an error from the call to
  *   QueryInterface()
  *
- * \pre \c p is a \c nullptr pointer, or a valid pointer to a COM interface.
+ * \pre p is nullptr, or a valid pointer to a COM interface
  *
  * \remarks If the function success, the caller must release the reference
  *   count associated with the interface pointer in \c *identity.
@@ -149,8 +149,8 @@ comstl_C_get_object_identity(
  * \retval any-other-code Indicates an error from one of the calls to
  *   QueryInterface()
  *
- * \pre \c p1 and \c p2 are \c nullptr pointers, or are valid pointers to
- *   COM interfaces.
+ * \pre p1 is nullptr, or a valid pointer to a COM interface
+ * \pre p2 is nullptr, or a valid pointer to a COM interface
  */
 STLSOFT_INLINE
 HRESULT
@@ -210,7 +210,7 @@ comstl_C_is_same_object(
  * \retval any-other-code Indicates an error from the call to
  *   QueryInterface()
  *
- * \pre \c p is a non-\c nullptr pointer to a COM interface.
+ * \pre nullptr != p
  */
 STLSOFT_INLINE
 HRESULT
@@ -304,7 +304,7 @@ namespace comstl
  * \retval any-other-code Indicates an error from the call to
  *   QueryInterface()
  *
- * \pre \c p is a \c nullptr pointer, or a valid pointer to a COM interface.
+ * \pre p is nullptr, or a valid pointer to a COM interface
  *
  * \remarks If the function success, the caller must release the reference
  *   count associated with the interface pointer in \c *identity.
@@ -332,8 +332,8 @@ get_object_identity(
  * \retval any-other-code Indicates an error from one of the calls to
  *   QueryInterface()
  *
- * \pre \c p1 and \c p2 are \c nullptr pointers, or are valid pointers to
- *   COM interfaces.
+ * \pre p1 is nullptr, or a valid pointer to a COM interface
+ * \pre p2 is nullptr, or a valid pointer to a COM interface
  */
 inline
 HRESULT
@@ -355,7 +355,7 @@ is_same_object(
  * \retval any-other-code Indicates an error from the call to
  *   QueryInterface()
  *
- * \pre \c p is a non-\c nullptr pointer to a COM interface.
+ * \pre nullptr != p
  */
 inline
 HRESULT
