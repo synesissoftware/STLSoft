@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_information_functions.h
+ * File:    winstl/filesystem/file_information_functions.h
  *
- * Purpose:     File  functions.
+ * Purpose: File functions.
  *
- * Created:     7th November 2014
- * Updated:     12th October 2026
+ * Created: 7th November 2014
+ * Updated: 13th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        11
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -309,6 +309,9 @@ get_SECURITY_DESCRIPTOR(
 
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
+ *
+ * Older mixed-case names are retained (deprecated) until at least STLSoft
+ * 1.13.
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
