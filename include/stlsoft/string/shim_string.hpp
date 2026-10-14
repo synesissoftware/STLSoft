@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        75
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -199,7 +199,7 @@ public:
 public:
     /// Creates an empty instance
     ///
-    /// \note the 0th element is assigned the nul terminator.
+    /// \note the 0th element is assigned the NUL character.
     basic_shim_string()
         : m_len(0)
         , m_buffer(1)
@@ -422,7 +422,7 @@ public:
     }
 
     /// Changes the size of the storage to at least the given size, and
-    /// applies the nul-terminator
+    /// applies the NUL character.
     ///
     /// \note No elements in the range [0, n) are affected, which means that
     ///   the string may contain embedded nuls. It is entirely the user's
