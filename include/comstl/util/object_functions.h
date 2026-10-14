@@ -4,11 +4,11 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 2nd March 1996
- * Updated: 24th December 2024
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MAJOR    3
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     81
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -108,7 +108,7 @@ namespace comstl_project
  *
  * \pre \c p is a \c nullptr pointer, or a valid pointer to a COM interface.
  *
- * \remarks If the function success, the caller must release the reference
+ * \note If the function success, the caller must release the reference
  *   count associated with the interface pointer in \c *identity.
  *
  * \note Intended for use in C-compilation units only. For C++, use
@@ -306,7 +306,7 @@ namespace comstl
  *
  * \pre \c p is a \c nullptr pointer, or a valid pointer to a COM interface.
  *
- * \remarks If the function success, the caller must release the reference
+ * \note If the function success, the caller must release the reference
  *   count associated with the interface pointer in \c *identity.
  *
  * \note Implemented in terms of the C-compatible function

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    15
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        245
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        246
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -631,7 +631,7 @@ x86-64
  *
  * \param expr Must be non-zero, or an assertion will be fired
  *
- * \remarks By default this is defined to \ref STLSOFT_ASSERT. However, this
+ * \note By default this is defined to \ref STLSOFT_ASSERT. However, this
  *  can be overriden if a prior definition is encountered, allowing the
  *  runtime assertion of WinSTL components to use a different mechanism to
  *  those in the other \ref group__projects "projects".
@@ -653,7 +653,7 @@ x86-64
  *
  * \param expr A compile-time evaluatable condition that must be non-zero, or compilation will fail.
  *
- * \remarks This is defined to \ref STLSOFT_STATIC_ASSERT.
+ * \note This is defined to \ref STLSOFT_STATIC_ASSERT.
  */
 #define WINSTL_STATIC_ASSERT(expr)                          STLSOFT_STATIC_ASSERT(expr)
 
@@ -841,7 +841,7 @@ int main()
 }
 \endcode
  *
- * \remarks These macros are used throughout the <i>implementation</i> of the
+ * \note These macros are used throughout the <i>implementation</i> of the
  *  STLSoft libraries. However, we do not recommend their use in application
  *  code for the simple reason that they are ugly and do not represent a
  *  widely recognised idiom. Of course, if they suit your purposes, then by

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 10th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     64
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -331,7 +331,7 @@
  *
  * \param expr Must be non-zero, or an assertion will be fired
  *
- * \remarks By default this is defined to \ref STLSOFT_ASSERT. However, this
+ * \note By default this is defined to \ref STLSOFT_ASSERT. However, this
  *  can be overriden if a prior definition is encountered, allowing the
  *  runtime assertion of WinSTL components to use a different mechanism to
  *  those in the other \ref group__projects "projects".
@@ -353,7 +353,7 @@
  *
  * \param expr A compile-time evaluatable condition that must be non-zero, or compilation will fail.
  *
- * \remarks This is defined to \ref STLSOFT_STATIC_ASSERT.
+ * \note This is defined to \ref STLSOFT_STATIC_ASSERT.
  */
 #define PLATFORMSTL_STATIC_ASSERT(expr)       STLSOFT_STATIC_ASSERT(expr)
 
