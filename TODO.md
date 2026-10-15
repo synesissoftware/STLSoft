@@ -34,6 +34,13 @@
 * [ ] Remove **WTL**;
 * [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
 * [ ] bring in some essential unit-tests from interal repo;
+* [ ] Being the CONCEPTS documentation:
+  * [ ] auto-buffer;
+  * [ ] resizeable-buffer;
+  * [ ] string-access-shims;
+  * [ ] Null Object (variable);
+  * [ ] Externals (esp. not introducing sub-project's headers proper);
+  * [ ] ...
 
 
 ### 1.11.2
