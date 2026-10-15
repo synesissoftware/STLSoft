@@ -3,6 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
+| 16th October 2026   | Resizeable Buffer concept & traits `rb` hardening | **CONCEPTS.md**; `resizeable_buffer_resize` docs; example **by_concept/resizeable_buffer**; C1–C5 `rb` / `dir_end` fixes |
 | 12th October 2026   | Release of [STLSoft 1.11.1-rc9](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc9) | Version change only |
 | 10th October 2026   | Release of [STLSoft 1.11.1-rc8](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc8) | environment_variable_strtoll()`; `unixstl::filesystem_traits<>::rewind_dir()`; `class_type` and `getenv_s()` empty-variable fixes; component tests; `cmake --build` helper scripts; **run_all_component_tests.sh** / **run_all_automated_tests.sh**; **generate_doxygen.sh**; Linguist classification |
 | 30th September 2026 | Release of [STLSoft 1.11.1-rc7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc7) | counted NULs; `wchar_t` `string_begins_with`; bit intrinsics; `write_binary()`; `file_lines` mmap (~10–20× vs `fgetc`); compare and allocator units; MinGW static runtime; short test directories; nested **test/performance** |

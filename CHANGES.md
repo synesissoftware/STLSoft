@@ -1,6 +1,28 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc10 - 16th October 2026
+
+* additions:
+  * Added **CONCEPTS.md** — documents the **Resizeable Buffer** concept (requirements, models / non-models, probe-then-fill gold contract for traits `rb` overloads);
+  * Added example **examples/by_concept/resizeable_buffer** — probe-then-fill into `auto_buffer` / `vector` via `platformstl` traits `rb` overloads and `resizeable_buffer_resize`;
+* fixes:
+  * **unixstl::system_traits** — `get_home_directory(rb)` and `get_environment_variable(rb)` follow the gold pattern (early-out on probe `0`, conditional resize, `ENOMEM` on failure); environment `rb` demand includes the trailing NUL (`cchValue + 1`);
+  * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name` / `get_short_path_name` / `get_current_directory` `rb` overloads no longer resize-then-`&rb[0]` on an empty buffer when the probe returns `0`; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY`;
+  * **unixstl::filesystem_traits** — `ensure_dir_end(rb)` leaves a lone-NUL `""` unchanged (`n > 1`, matching WinSTL and the C-string overload);
+  * **winstl::filesystem_traits** — `remove_dir_end(rb)` shrinks `size()` to the post-strip length so a later `ensure_dir_end(rb)` cannot write past the NUL;
+  * **unixstl** / **winstl** `filesystem_traits` — every `resizeable_buffer_resize` failure on the `rb` / scratch paths above reports last-error (including WinSTL `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow);
+* docs:
+  * Enriched Doxygen on **stlsoft/util/resizeable_buffer_helpers.hpp** (`resizeable_buffer_resize` parameters, return values, failure policy, caller OOM duty);
+  * **FAQ.md** — Q6 on the Resizeable Buffer concept;
+  * **EXAMPLES.md** — catalogues **by_concept/resizeable_buffer**;
+* testing:
+  * Component tests for unixstl `system_traits` home / environment `rb` overloads;
+  * Component tests for unixstl / winstl filesystem path `rb` overloads;
+  * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip and failing-resize OOM reporting);
+  * Unit tests for `stlsoft::resizeable_buffer_resize`;
+
+
 ## 1.11.1-rc9 - 12th October 2026
 
 * version:
