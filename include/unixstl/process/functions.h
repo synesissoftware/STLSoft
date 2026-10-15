@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       3
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -244,7 +244,7 @@ unixstl_C_get_current_process_path_m(
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(us_char_a_t, UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_, ab);
     us_size_t   len = 0;
-    us_size_t   result;
+    us_size_t   result = 0;
 
     UNIXSTL_ASSERT(0 == cch || NULL != buff);
 
@@ -268,9 +268,7 @@ unixstl_C_get_current_process_path_m(
 
         if (0 == n)
         {
-            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-            return 0;
+            goto done;
         }
 
         if (n < ab.size)
@@ -283,9 +281,7 @@ unixstl_C_get_current_process_path_m(
         {
             errno = ENOMEM;
 
-            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-            return 0;
+            goto done;
         }
     }
 #elif defined(__APPLE__)
@@ -308,18 +304,14 @@ unixstl_C_get_current_process_path_m(
                 {
                     errno = ENOMEM;
 
-                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-                    return 0;
+                    goto done;
                 }
 
                 size = STLSOFT_STATIC_CAST(uint32_t, ab.size);
 
                 if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(ab.ptr, &size))
                 {
-                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-                    return 0;
+                    goto done;
                 }
             }
 
@@ -338,9 +330,7 @@ unixstl_C_get_current_process_path_m(
 
                             errno = ENOMEM;
 
-                            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-                            return 0;
+                            goto done;
                         }
                     }
 
@@ -361,9 +351,7 @@ unixstl_C_get_current_process_path_m(
 
         if (n < 0)
         {
-            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-            return 0;
+            goto done;
         }
 
         if (STLSOFT_STATIC_CAST(us_size_t, n) < ab.size)
@@ -377,9 +365,7 @@ unixstl_C_get_current_process_path_m(
         {
             errno = ENOMEM;
 
-            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-            return 0;
+            goto done;
         }
     }
 #elif 0 ||\
@@ -406,25 +392,19 @@ unixstl_C_get_current_process_path_m(
                 {
                     errno = ENOMEM;
 
-                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-                    return 0;
+                    goto done;
                 }
 
                 cb = ab.size;
 
                 if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, ab.ptr, &cb, NULL, 0))
                 {
-                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-                    return 0;
+                    goto done;
                 }
             }
             else
             {
-                STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-                return 0;
+                goto done;
             }
         }
 
@@ -438,16 +418,12 @@ unixstl_C_get_current_process_path_m(
 
         if (NULL == exe)
         {
-            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-            return 0;
+            goto done;
         }
 
         if (NULL == STLSOFT_NS_GLOBAL(realpath)(exe, ab.ptr))
         {
-            STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-            return 0;
+            goto done;
         }
 
         len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
@@ -456,9 +432,7 @@ unixstl_C_get_current_process_path_m(
 
     errno = ENOSYS;
 
-    STLSOFT_C_AUTO_BUFFER_FREE(ab);
-
-    return 0;
+    goto done;
 #endif
 
     if (0 == cch)
@@ -487,6 +461,8 @@ unixstl_C_get_current_process_path_m(
         buff[len] = '\0';
         result = len;
     }
+
+done:
 
     STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
