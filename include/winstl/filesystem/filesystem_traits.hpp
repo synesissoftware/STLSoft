@@ -5,11 +5,11 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 28th May 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -2015,11 +2015,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -2067,11 +2081,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_short_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_short_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_short_path_name(fileName, &rb[0], rb.size());
@@ -2151,11 +2179,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());
@@ -3374,11 +3415,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -3426,11 +3481,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_short_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_short_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_short_path_name(fileName, &rb[0], rb.size());
@@ -3511,11 +3580,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());

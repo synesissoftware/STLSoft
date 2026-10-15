@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -2123,11 +2123,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -2239,11 +2253,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());

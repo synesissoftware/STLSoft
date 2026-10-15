@@ -271,7 +271,7 @@ public:
     );
 
     /// Gets the full path name of the current user's home directory into a
-    /// resizeable buffer (probe-then-fill; see CONCEPTS.md)
+    /// resizeable buffer (probe-then-fill; see CONCEPTS.md).
     ///
     /// \param rb Reference to a resizeable buffer that will be resized as
     ///   required to hold the path and a terminating NUL character;
@@ -280,7 +280,7 @@ public:
     ///   success; 0 on failure. On query failure \c rb is left unchanged;
     ///   on resize failure <code>ENOMEM</code> is set and \c rb is left
     ///   unchanged. In neither failure case is <code>&rb[0]</code> taken
-    ///   on an empty buffer;
+    ///   on an empty buffer.
     template<
         ss_typename_param_k T_resizeableBuffer
     >
@@ -354,7 +354,7 @@ public:
     );
 
     /// Gets an environment variable into a resizeable buffer
-    /// (probe-then-fill; see CONCEPTS.md)
+    /// (probe-then-fill; see CONCEPTS.md).
     ///
     /// \param name The name of the variable to find;
     /// \param rb Reference to a resizeable buffer into which the
@@ -365,7 +365,7 @@ public:
     /// \return The length of the value (excluding the NUL character) on
     ///   success; 0 on failure (missing variable, or resize failure). On
     ///   query failure \c rb is left unchanged; on resize failure
-    ///   <code>ENOMEM</code> is set and \c rb is left unchanged;
+    ///   <code>ENOMEM</code> is set and \c rb is left unchanged.
     template<
         ss_typename_param_k T_resizeableBuffer
     >
