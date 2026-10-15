@@ -179,12 +179,14 @@ the allocated demand (typically at least length + 1).
 
 ## See also
 
+* Example:
+  [`examples/by_concept/resizeable_buffer/`](./examples/by_concept/resizeable_buffer/main.cpp);
 * Pseudo-struct documentation in
   `unixstl::filesystem_traits` / `winstl::filesystem_traits`
   (`struct resizeable_buffer` under `\name concepts`);
 * Unit tests:
   [`test/unit/stlsoft/util/resizeable_buffer_helpers/`](./test/unit/stlsoft/util/resizeable_buffer_helpers/);
-* [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md);
+* [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md), [EXAMPLES.md](./EXAMPLES.md);
 
 
 <!-- ########################### end of file ########################### -->

@@ -1,0 +1,1 @@
+define_example_program(resizeable_buffer main.cpp)
