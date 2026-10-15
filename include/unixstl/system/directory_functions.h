@@ -4,11 +4,11 @@
  * Purpose: Directory functions.
  *
  * Created: 1st October 2016
- * Updated: 26th April 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    13
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        23
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    14
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,6 +80,10 @@
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
@@ -237,14 +241,58 @@ unixstl_C_get_home_directory_a(
     }
 }
 
-#if 0 /* TODO: implement this */
+/* Policy: read HOME via getenv() (multibyte) and convert to wide with
+ * mbstowcs() using the locale multibyte encoding.
+ */
 STLSOFT_INLINE
-#endif
 us_size_t
 unixstl_C_get_home_directory_w(
     us_char_w_t buffer[]
 ,   us_size_t   cchBuffer
-);
+)
+{
+    us_char_a_t const* const home = unixstl_C_get_home_directory_invoke_getenv_a_("HOME");
+
+    if (NULL == home)
+    {
+        return 0;
+    }
+    else
+    {
+        size_t const cchHome = STLSOFT_NS_GLOBAL(mbstowcs)(NULL, home, 0);
+
+        if ((size_t)-1 == cchHome)
+        {
+            return 0;
+        }
+
+        if (0 == cchBuffer)
+        {
+            return cchHome + 1;
+        }
+
+        {
+            size_t const n = STLSOFT_NS_GLOBAL(mbstowcs)(buffer, home, cchBuffer);
+
+            if ((size_t)-1 == n)
+            {
+                return 0;
+            }
+
+            if (cchHome < cchBuffer)
+            {
+                return n;
+            }
+
+            /* Insufficient space: match narrow string_copy_with_nul —
+             * leave a NUL in the last slot and return cchBuffer - 1.
+             */
+            buffer[cchBuffer - 1] = L'\0';
+
+            return cchBuffer - 1;
+        }
+    }
+}
 
 
 /* /////////////////////////////////////////////////////////////////////////
