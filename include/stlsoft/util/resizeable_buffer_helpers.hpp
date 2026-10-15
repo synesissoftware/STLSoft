@@ -4,11 +4,11 @@
  * Purpose: Utility functions for working with resizeable-buffers.
  *
  * Created: 24th December 2020
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,6 +45,9 @@
  * \brief [C++] Utility functions for working with resizeable-buffers
  *   templates
  *   (\ref group__library__Utility "Utility" Library).
+ *
+ * \see CONCEPTS.md in the project root — *The Resizeable Buffer concept*
+ *   (probe-then-fill gold standard and overload contract).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS

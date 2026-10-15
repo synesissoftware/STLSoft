@@ -44,7 +44,7 @@ The overarching characteristic of **STLSoft** is that it is *lightweight*. Speci
 
 **NOTE**: **STLSoft** is *not* a framework. Each library component is as thin as possible for its given function. The intent is that **STLSoft** components are used as building blocks for higher-level software — applications, classes, libraries, servers. **STLSoft** has been used extensively in all these guises.
 
-Further reading: [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md), [http://www.stlsoft.org/](http://www.stlsoft.org/).
+Further reading: [CONCEPTS.md](./CONCEPTS.md), [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md), [http://www.stlsoft.org/](http://www.stlsoft.org/).
 
 
 ## Installation
