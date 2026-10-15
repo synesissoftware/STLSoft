@@ -426,7 +426,7 @@ public:
         T_resizeableBuffer const& rb
     );
 
-    /// Removes the path name separator from the end of \c dir, if present
+    /// Removes all trailing path name separators from the end of \c dir
     ///
     /// \pre nullptr != dir
     ///
@@ -437,12 +437,12 @@ public:
         char_type* dir
     );
 
-    /// Removes the path name separator from the end of \c dir, if present
+    /// Removes all trailing path name separators from the end of \c dir
     ///
     /// \param path Pointer to characters of path to be examined
     /// \param len Number of characters in \c path to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
-    ///   be decremented if a path name separator is removed
+    ///   be decremented once per path name separator removed
     ///
     /// \return \c dir
     ///
@@ -458,7 +458,7 @@ public:
     ,   size_type*  pLenToDecrease
     );
 
-    /// Removes the path name separator from the end of \c rb, if present
+    /// Removes all trailing path name separators from the end of \c rb
     ///
     /// \param rb a reference to a \c resizeable_buffer
     ///
@@ -1189,7 +1189,7 @@ public: // directory-end
             pLenToDecrease = &dummy;
         }
 
-        if (0 != len)
+        for (; 0 != len; )
         {
             char_type& last = dir[len - 1];
 
@@ -1198,6 +1198,11 @@ public: // directory-end
                 last = char_type(0);
 
                 --*pLenToDecrease;
+                --len;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -1213,21 +1218,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        if (has_dir_end(rb))
-        {
-            size_type const n = rb.size();
+        size_type const n = rb.size();
 
-            if (!resizeable_buffer_resize(rb, n - 1))
+        if (0 == n)
+        {
+            return 0;
+        }
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
             {
                 set_last_error(ENOMEM);
 
                 return 0;
             }
-
-            rb[n - 2] = char_type(0);
         }
 
-        return rb.empty() ? 0 : rb.size() - 1;
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -3006,7 +3020,7 @@ public: // directory-end
             pLenToDecrease = &dummy;
         }
 
-        if (0 != len)
+        for (; 0 != len; )
         {
             char_type& last = dir[len - 1];
 
@@ -3015,6 +3029,11 @@ public: // directory-end
                 last = char_type(0);
 
                 --*pLenToDecrease;
+                --len;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -3030,21 +3049,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        if (has_dir_end(rb))
-        {
-            size_type const n = rb.size();
+        size_type const n = rb.size();
 
-            if (!resizeable_buffer_resize(rb, n - 1))
+        if (0 == n)
+        {
+            return 0;
+        }
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
             {
                 set_last_error(ENOMEM);
 
                 return 0;
             }
-
-            rb[n - 2] = char_type(0);
         }
 
-        return rb.empty() ? 0 : rb.size() - 1;
+        return lenToDecrease;
     }
 
 public: // path classification and analysis

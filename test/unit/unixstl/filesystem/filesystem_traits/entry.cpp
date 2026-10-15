@@ -3,7 +3,7 @@
  *
  * Purpose: Unit-tests for `unixstl::filesystem_traits` resizeable-buffer
  *          `ensure_dir_end` / `remove_dir_end` (C2 empty-`""` behaviour;
- *          buffer size after remove).
+ *          buffer size after remove; G3 strip-all trailing separators).
  *
  * Created: 15th October 2026
  * Updated: 16th October 2026
@@ -51,6 +51,7 @@ namespace {
     static void TEST_ensure_dir_end_APPENDS_separator();
     static void TEST_ensure_dir_end_RESIZE_FAILURE_sets_ENOMEM();
     static void TEST_remove_dir_end_SHRINKS_buffer();
+    static void TEST_remove_dir_end_STRIPS_ALL_trailing_separators();
     static void TEST_remove_then_ensure_round_trip();
 } // anonymous namespace
 
@@ -72,6 +73,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_ensure_dir_end_APPENDS_separator);
         XTESTS_RUN_CASE(TEST_ensure_dir_end_RESIZE_FAILURE_sets_ENOMEM);
         XTESTS_RUN_CASE(TEST_remove_dir_end_SHRINKS_buffer);
+        XTESTS_RUN_CASE(TEST_remove_dir_end_STRIPS_ALL_trailing_separators);
         XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
 
         XTESTS_PRINT_RESULTS();
@@ -242,6 +244,46 @@ static void TEST_remove_dir_end_SHRINKS_buffer()
         buff.push_back('a');
         buff.push_back('b');
         buff.push_back('c');
+        buff.push_back('/');
+        buff.push_back('\0');
+
+        size_t const    r = traits_m_t::remove_dir_end(buff);
+
+        TEST_MS_EQ("abc", buff.data());
+        TEST_INT_EQ(3, r);
+        TEST_INT_EQ(4, buff.size());
+    }
+}
+
+static void TEST_remove_dir_end_STRIPS_ALL_trailing_separators()
+{
+    {
+        char        dirname[] = "abc///";
+        char*       r = traits_m_t::remove_dir_end(dirname);
+
+        TEST_MS_EQ("abc", dirname);
+        TEST_PTR_EQ(dirname + 0, r);
+    }
+
+#if __cplusplus >= 201103L
+
+    {
+        ab_m_t          buff = { 'a', 'b', 'c', '/', '/', '/', '\0' };
+        size_t const    r = traits_m_t::remove_dir_end(buff);
+
+        TEST_MS_EQ("abc", buff.data());
+        TEST_INT_EQ(3, r);
+        TEST_INT_EQ(4, buff.size());
+    }
+#endif
+
+    {
+        vec_m_t         buff;
+        buff.push_back('a');
+        buff.push_back('b');
+        buff.push_back('c');
+        buff.push_back('/');
+        buff.push_back('/');
         buff.push_back('/');
         buff.push_back('\0');
 

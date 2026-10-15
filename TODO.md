@@ -75,7 +75,8 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 
 ### 1.11.6
 
-* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md):
+  * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare (parked Resizeable Buffer **G1**);
 
 
 ### 1.11.7

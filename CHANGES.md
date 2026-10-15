@@ -11,7 +11,9 @@
   * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name` / `get_short_path_name` / `get_current_directory` `rb` overloads no longer resize-then-`&rb[0]` on an empty buffer when the probe returns `0`; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY`;
   * **unixstl::filesystem_traits** — `ensure_dir_end(rb)` leaves a lone-NUL `""` unchanged (`n > 1`, matching WinSTL and the C-string overload);
   * **winstl::filesystem_traits** — `remove_dir_end(rb)` shrinks `size()` to the post-strip length so a later `ensure_dir_end(rb)` cannot write past the NUL;
+  * **unixstl::filesystem_traits** — `remove_dir_end` (C-string and `rb`, A+W) now strips **all** trailing path separators, matching WinSTL (was strip-one);
   * **unixstl** / **winstl** `filesystem_traits` — every `resizeable_buffer_resize` failure on the `rb` / scratch paths above reports last-error (including WinSTL `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow);
+  * **unixstl::readdir_sequence** — non-exception `absolutePath` failure path no longer contains a broken `\'0'` write; soft-fails with an empty string (parallel to the throw when exceptions are enabled);
 * docs:
   * Enriched Doxygen on **stlsoft/util/resizeable_buffer_helpers.hpp** (`resizeable_buffer_resize` parameters, return values, failure policy, caller OOM duty);
   * **FAQ.md** — Q6 on the Resizeable Buffer concept;
@@ -19,7 +21,7 @@
 * testing:
   * Component tests for unixstl `system_traits` home / environment `rb` overloads;
   * Component tests for unixstl / winstl filesystem path `rb` overloads;
-  * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip and failing-resize OOM reporting);
+  * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip, failing-resize OOM reporting, and unixstl strip-all trailing separators);
   * Unit tests for `stlsoft::resizeable_buffer_resize`;
 
 
