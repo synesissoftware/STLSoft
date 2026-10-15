@@ -104,6 +104,10 @@
 # include <stlsoft/util/resizeable_buffer_helpers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
 
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS
+# include <winstl/filesystem/path_parse_functions.h>
+#endif /*! WINSTL_INCL_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS */
+
 #if STLSOFT_LEAD_VER >= 0x010a0000
 # ifndef WINSTL_INCL_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
 #  include <winstl/system/directory_functions.h>
@@ -296,7 +300,7 @@ public:
     static
     size_type
     get_current_process_path(
-        size_t              cch
+        size_type           cch
     ,   char_type           buff[/* cch */]
     ,   char_type**         ppFile
     ) STLSOFT_NOEXCEPT;
@@ -768,28 +772,29 @@ public:
     static
     size_type
     get_current_process_path(
-        size_t              cch
+        size_type           cch
     ,   char_type           buff[/* cch */]
     ,   char_type**         ppFile
     ) STLSOFT_NOEXCEPT
     {
         WINSTL_ASSERT(0 == cch || NULL != buff);
 
-        char_type*  dummy;
-
-        if (NULL == ppFile)
+        if (NULL != ppFile)
         {
-            ppFile = &dummy;
+            *ppFile = NULL;
         }
 
-        *ppFile = NULL;
+        size_type const n = class_type::GetModuleFileNameA(NULL, buff, cch);
 
+        if (n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(winstl_C_find_last_path_name_separator_len_m(buff, n));
+            }
+        }
 
-        ((void)cch);
-        ((void)buff);
-
-
-        return 0;
+        return n;
     }
 
 public:
@@ -1417,28 +1422,29 @@ public:
     static
     size_type
     get_current_process_path(
-        size_t              cch
+        size_type           cch
     ,   char_type           buff[/* cch */]
     ,   char_type**         ppFile
     ) STLSOFT_NOEXCEPT
     {
         WINSTL_ASSERT(0 == cch || NULL != buff);
 
-        char_type*  dummy;
-
-        if (NULL == ppFile)
+        if (NULL != ppFile)
         {
-            ppFile = &dummy;
+            *ppFile = NULL;
         }
 
-        *ppFile = NULL;
+        size_type const n = class_type::GetModuleFileNameW(NULL, buff, cch);
 
+        if (n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(winstl_C_find_last_path_name_separator_len_w(buff, n));
+            }
+        }
 
-        ((void)cch);
-        ((void)buff);
-
-
-        return 0;
+        return n;
     }
 
 public:

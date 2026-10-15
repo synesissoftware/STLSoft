@@ -280,7 +280,7 @@ public:
     static
     size_type
     get_current_process_path(
-        size_t              cch
+        size_type           cch
     ,   char_type           buff[/* cch */]
     ,   char_type**         ppFile
     ) STLSOFT_NOEXCEPT;
@@ -620,7 +620,7 @@ public:
     static
     size_type
     get_current_process_path(
-        size_t              cch
+        size_type           cch
     ,   char_type           buff[/* cch */]
     ,   char_type**         ppFile
     ) STLSOFT_NOEXCEPT
