@@ -729,8 +729,8 @@ static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_w()
     TEST_INT_EQ(0, cch);
     TEST_INT_EQ(ERROR_OUTOFMEMORY, ::GetLastError());
     TEST_INT_EQ(priorSize, rb.size());
-    TEST_INT_EQ(L'X', rb.storage[0]);
-    TEST_INT_EQ(L'X', rb.storage[3]);
+    TEST_BOOLEAN_TRUE(L'X' == rb.storage[0]);
+    TEST_BOOLEAN_TRUE(L'X' == rb.storage[3]);
 
     ::SetLastError(priorError);
 }
