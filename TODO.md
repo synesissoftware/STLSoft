@@ -40,6 +40,7 @@
   * [ ] string-access-shims;
   * [ ] Null Object (variable);
   * [ ] Externals (esp. not introducing sub-project's headers proper);
+  * [ ] Conformance: Structural, Semantic, Intersecting;
   * [ ] ...
 
 

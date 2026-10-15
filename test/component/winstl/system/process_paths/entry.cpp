@@ -3,7 +3,7 @@
  *
  * Purpose: Component-tests for
  *          `winstl::system_traits::get_current_process_path()` (multibyte
- *          and wide-character).
+ *          and wide-character), including resizeable-buffer overloads.
  *
  * Created: 15th October 2026
  * Updated: 15th October 2026
@@ -34,6 +34,7 @@
 
 /* Standard C++ header files */
 #include <string>
+#include <vector>
 
 /* Standard C / Windows header files */
 #include <stdlib.h>
@@ -61,6 +62,16 @@ namespace {
     static void TEST_ppFile_separator_ON_SUCCESS_w();
     static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_m();
     static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_w();
+    static void TEST_RESIZEABLE_auto_buffer_SUCCESS_m();
+    static void TEST_RESIZEABLE_auto_buffer_SUCCESS_w();
+    static void TEST_RESIZEABLE_vector_SUCCESS_m();
+    static void TEST_RESIZEABLE_vector_SUCCESS_w();
+    static void TEST_RESIZEABLE_ppFile_NULL_m();
+    static void TEST_RESIZEABLE_ppFile_NULL_w();
+    static void TEST_RESIZEABLE_ppFile_separator_m();
+    static void TEST_RESIZEABLE_ppFile_separator_w();
+    static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_m();
+    static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_w();
 } // anonymous namespace
 
 
@@ -91,6 +102,16 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_ppFile_separator_ON_SUCCESS_w);
         XTESTS_RUN_CASE(TEST_ppFile_NULL_WHEN_INSUFFICIENT_m);
         XTESTS_RUN_CASE(TEST_ppFile_NULL_WHEN_INSUFFICIENT_w);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_auto_buffer_SUCCESS_m);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_auto_buffer_SUCCESS_w);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_vector_SUCCESS_m);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_vector_SUCCESS_w);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_ppFile_NULL_m);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_ppFile_NULL_w);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_ppFile_separator_m);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_ppFile_separator_w);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_m);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_w);
 
         XTESTS_PRINT_RESULTS();
 
@@ -207,6 +228,35 @@ invalid_file_pointer()
 {
     return reinterpret_cast<C*>(static_cast<size_t>(-1));
 }
+
+/** Minimal resizeable buffer whose #resize() always fails. */
+template <typename C>
+struct fail_on_resize_buffer
+{
+    typedef C                                               value_type;
+
+    std::vector<C>                                          storage;
+
+    size_t size() const
+    {
+        return storage.size();
+    }
+
+    C& operator [](size_t i)
+    {
+        return storage[i];
+    }
+
+    C const& operator [](size_t i) const
+    {
+        return storage[i];
+    }
+
+    bool resize(size_t /* newSize */)
+    {
+        return false;
+    }
+};
 } // anonymous namespace
 
 
@@ -511,6 +561,178 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_w()
 
     TEST_INT_GE(len + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
+}
+
+static void TEST_RESIZEABLE_auto_buffer_SUCCESS_m()
+{
+    std::string const   expected = obtain_raw_current_process_path_m();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<char>  rb(0);
+    size_t const                cch = traits_m_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_INT_GE(expected.size() + 1, rb.size());
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_auto_buffer_SUCCESS_w()
+{
+    std::wstring const  expected = obtain_raw_current_process_path_w();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<wchar_t>   rb(0);
+    size_t const                    cch = traits_w_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_INT_GE(expected.size() + 1, rb.size());
+    TEST_WS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_vector_SUCCESS_m()
+{
+    std::string const   expected = obtain_raw_current_process_path_m();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    std::vector<char>   rb;
+    size_t const        cch = traits_m_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_INT_GE(expected.size() + 1, rb.size());
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_vector_SUCCESS_w()
+{
+    std::wstring const  expected = obtain_raw_current_process_path_w();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    std::vector<wchar_t>    rb;
+    size_t const            cch = traits_w_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_INT_GE(expected.size() + 1, rb.size());
+    TEST_WS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_ppFile_NULL_m()
+{
+    std::string const   expected = obtain_raw_current_process_path_m();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<char>  rb(0);
+    size_t const                cch = traits_m_t::get_current_process_path(rb, NULL);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_ppFile_NULL_w()
+{
+    std::wstring const  expected = obtain_raw_current_process_path_w();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<wchar_t>   rb(0);
+    size_t const                    cch = traits_w_t::get_current_process_path(rb, NULL);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_WS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_ppFile_separator_m()
+{
+    std::string const   expected = obtain_raw_current_process_path_m();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<char>  rb(0);
+    char*                       pFile = invalid_file_pointer<char>();
+    size_t const                cch = traits_m_t::get_current_process_path(rb, &pFile);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+
+    char* const expectedSep = find_last_path_name_separator(&rb[0]);
+
+    TEST_PTR_EQ(expectedSep, pFile);
+
+    if (NULL != pFile)
+    {
+        TEST_MS_EQ(expectedSep + 1, pFile + 1);
+    }
+}
+
+static void TEST_RESIZEABLE_ppFile_separator_w()
+{
+    std::wstring const  expected = obtain_raw_current_process_path_w();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<wchar_t>   rb(0);
+    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
+    size_t const                    cch = traits_w_t::get_current_process_path(rb, &pFile);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_WS_EQ(expected.c_str(), &rb[0]);
+
+    wchar_t* const expectedSep = find_last_path_name_separator(&rb[0]);
+
+    TEST_PTR_EQ(expectedSep, pFile);
+
+    if (NULL != pFile)
+    {
+        TEST_WS_EQ(expectedSep + 1, pFile + 1);
+    }
+}
+
+static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_m()
+{
+    fail_on_resize_buffer<char> rb;
+
+    rb.storage.assign(4, 'X');
+
+    size_t const    priorSize   =   rb.size();
+    DWORD const     priorError  =   ::GetLastError();
+
+    ::SetLastError(ERROR_SUCCESS);
+
+    size_t const    cch = traits_m_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(0, cch);
+    TEST_INT_EQ(ERROR_OUTOFMEMORY, ::GetLastError());
+    TEST_INT_EQ(priorSize, rb.size());
+    TEST_CHAR_EQ('X', rb.storage[0]);
+    TEST_CHAR_EQ('X', rb.storage[3]);
+
+    ::SetLastError(priorError);
+}
+
+static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched_w()
+{
+    fail_on_resize_buffer<wchar_t>  rb;
+
+    rb.storage.assign(4, L'X');
+
+    size_t const    priorSize   =   rb.size();
+    DWORD const     priorError  =   ::GetLastError();
+
+    ::SetLastError(ERROR_SUCCESS);
+
+    size_t const    cch = traits_w_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(0, cch);
+    TEST_INT_EQ(ERROR_OUTOFMEMORY, ::GetLastError());
+    TEST_INT_EQ(priorSize, rb.size());
+    TEST_INT_EQ(L'X', rb.storage[0]);
+    TEST_INT_EQ(L'X', rb.storage[3]);
+
+    ::SetLastError(priorError);
 }
 } // anonymous namespace
 

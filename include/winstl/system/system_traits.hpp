@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        174
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        175
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -311,6 +311,38 @@ public:
     ,   char_type           buff[/* cch */]
     ,   char_type**         ppFile
     ) STLSOFT_NOEXCEPT;
+
+    /// Attempt to obtain the current process's path into a resizeable
+    /// buffer.
+    ///
+    /// \param rb Reference to a resizeable buffer that will be resized as
+    ///   required to hold the path and a terminating NUL character;
+    /// \param ppFile Optional pointer to receive a mutating pointer into
+    ///   the final contents of \c rb. When non-<code>nullptr</code>,
+    ///   <code>*ppFile</code> is set as for the raw overload, after the
+    ///   final fill;
+    ///
+    /// \return The length of the path (excluding the NUL character) on
+    ///   success; 0 on failure;
+    /// \retval 0 The function failed (query or resize). On query failure
+    ///   \c rb is left unchanged; on resize failure
+    ///   <code>ERROR_OUTOFMEMORY</code> is set and \c rb is left unchanged.
+    ///   In neither failure case is <code>&rb[0]</code> taken on an empty
+    ///   buffer;
+    ///
+    /// \note The normative pattern is a size query via the raw overload
+    ///   with \c cch of 0, then resize, then fill — this overload performs
+    ///   that sequence (required on Windows; see the note on the raw
+    ///   overload). \c ppFile is computed only after the final fill.
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    );
 /// @}
 
 /// \name System Paths
@@ -803,6 +835,40 @@ public:
         }
 
         return n;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    )
+    {
+        size_type const cchRequired = get_current_process_path(
+                                          0
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   static_cast<char_type**>(NULL)
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
+
+        return get_current_process_path(rb.size(), &rb[0], ppFile);
     }
 
 public:
@@ -1454,6 +1520,40 @@ public:
         }
 
         return n;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    )
+    {
+        size_type const cchRequired = get_current_process_path(
+                                          0
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   static_cast<char_type**>(NULL)
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
+
+        return get_current_process_path(rb.size(), &rb[0], ppFile);
     }
 
 public:

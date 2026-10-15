@@ -2,7 +2,8 @@
  * File:    test/component/unixstl/system/process_paths/entry.cpp
  *
  * Purpose: Component-tests for
- *          `unixstl::system_traits::get_current_process_path()` (multibyte).
+ *          `unixstl::system_traits::get_current_process_path()` (multibyte),
+ *          including resizeable-buffer overloads.
  *
  * Created: 15th October 2026
  * Updated: 15th October 2026
@@ -33,8 +34,10 @@
 
 /* Standard C++ header files */
 #include <string>
+#include <vector>
 
 /* Standard C header files */
+#include <errno.h>
 #include <limits.h>
 #include <stdlib.h>
 #include <string.h>
@@ -82,6 +85,11 @@ namespace {
     static void TEST_ppFile_NULL_ON_SUCCESS();
     static void TEST_ppFile_separator_on_success();
     static void TEST_ppFile_NULL_WHEN_INSUFFICIENT();
+    static void TEST_RESIZEABLE_auto_buffer_SUCCESS();
+    static void TEST_RESIZEABLE_vector_SUCCESS();
+    static void TEST_RESIZEABLE_ppFile_NULL();
+    static void TEST_RESIZEABLE_ppFile_separator();
+    static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched();
 } // anonymous namespace
 
 
@@ -105,6 +113,11 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_ppFile_NULL_ON_SUCCESS);
         XTESTS_RUN_CASE(TEST_ppFile_separator_on_success);
         XTESTS_RUN_CASE(TEST_ppFile_NULL_WHEN_INSUFFICIENT);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_auto_buffer_SUCCESS);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_vector_SUCCESS);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_ppFile_NULL);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_ppFile_separator);
+        XTESTS_RUN_CASE(TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched);
 
         XTESTS_PRINT_RESULTS();
 
@@ -306,6 +319,34 @@ invalid_file_pointer()
 {
     return reinterpret_cast<char*>(static_cast<size_t>(-1));
 }
+
+/** Minimal resizeable buffer whose #resize() always fails. */
+struct fail_on_resize_buffer
+{
+    typedef char                                            value_type;
+
+    std::vector<char>                                       storage;
+
+    size_t size() const
+    {
+        return storage.size();
+    }
+
+    char& operator [](size_t i)
+    {
+        return storage[i];
+    }
+
+    char const& operator [](size_t i) const
+    {
+        return storage[i];
+    }
+
+    bool resize(size_t /* newSize */)
+    {
+        return false;
+    }
+};
 } // anonymous namespace
 
 
@@ -448,6 +489,92 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT()
 
     TEST_INT_EQ(len + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
+}
+
+static void TEST_RESIZEABLE_auto_buffer_SUCCESS()
+{
+    std::string const   expected = obtain_raw_current_process_path();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<char>  rb(0);
+    size_t const                cch = traits_m_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_INT_GE(expected.size() + 1, rb.size());
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_vector_SUCCESS()
+{
+    std::string const   expected = obtain_raw_current_process_path();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    std::vector<char>   rb;
+    size_t const        cch = traits_m_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_INT_GE(expected.size() + 1, rb.size());
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_ppFile_NULL()
+{
+    std::string const   expected = obtain_raw_current_process_path();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<char>  rb(0);
+    size_t const                cch = traits_m_t::get_current_process_path(rb, NULL);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+}
+
+static void TEST_RESIZEABLE_ppFile_separator()
+{
+    std::string const   expected = obtain_raw_current_process_path();
+
+    XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
+
+    stlsoft::auto_buffer<char>  rb(0);
+    char*                       pFile   =   invalid_file_pointer();
+    size_t const                cch     =   traits_m_t::get_current_process_path(rb, &pFile);
+
+    TEST_INT_EQ(expected.size(), cch);
+    TEST_MS_EQ(expected.c_str(), &rb[0]);
+
+    char* const expectedSep = find_last_path_name_separator(&rb[0]);
+
+    TEST_PTR_EQ(expectedSep, pFile);
+
+    if (NULL != pFile)
+    {
+        TEST_MS_EQ(expectedSep + 1, pFile + 1);
+    }
+}
+
+static void TEST_RESIZEABLE_resize_FAILURE_leaves_rb_untouched()
+{
+    fail_on_resize_buffer  rb;
+
+    rb.storage.assign(4, 'X');
+
+    size_t const    priorSize   =   rb.size();
+    int const       priorErrno  =   errno;
+
+    errno = 0;
+
+    size_t const    cch = traits_m_t::get_current_process_path(rb);
+
+    TEST_INT_EQ(0, cch);
+    TEST_INT_EQ(ENOMEM, errno);
+    TEST_INT_EQ(priorSize, rb.size());
+    TEST_CHAR_EQ('X', rb.storage[0]);
+    TEST_CHAR_EQ('X', rb.storage[3]);
+
+    errno = priorErrno;
 }
 } // anonymous namespace
 

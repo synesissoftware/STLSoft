@@ -5,8 +5,9 @@
 
 * additions:
   * Added `unixstl::system_traits<>::get_current_process_path()` and `winstl::system_traits<>::get_current_process_path()` (multibyte and wide), obtaining the current process image path with an optional basename path-separator out-parameter;
+  * Added `T_resizeableBuffer` overloads of `get_current_process_path()` on **unixstl** / **winstl** `system_traits` (query → `stlsoft::resizeable_buffer_resize()` → fill; `ppFile` only after the final fill; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY` and leaves the buffer unchanged);
 * testing:
-  * Component tests **test/component/unixstl/system/process_paths** (multibyte; multi-OS raw path oracle) and **test/component/winstl/system/process_paths** (multibyte and wide; `GetModuleFileName` oracle);
+  * Component tests **test/component/unixstl/system/process_paths** (multibyte; multi-OS raw path oracle; resizeable-buffer overloads for `auto_buffer` / `vector`, `ppFile`, and resize-failure) and **test/component/winstl/system/process_paths** (multibyte and wide; `GetModuleFileName` oracle; same resizeable-buffer coverage);
   * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
 * version:
   * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
