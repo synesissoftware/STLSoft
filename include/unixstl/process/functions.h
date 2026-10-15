@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       2
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -67,6 +67,10 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.h>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
 
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -96,10 +100,6 @@
 #  define STLSOFT_INCL_H_PROCESS
 #  include <process.h>
 # endif /* !STLSOFT_INCL_H_PROCESS */
-# ifndef STLSOFT_INCL_H_WINDOWS
-#  define STLSOFT_INCL_H_WINDOWS
-#  include <windows.h>
-# endif /* !STLSOFT_INCL_H_WINDOWS */
 #elif defined(__APPLE__)
 
 # ifndef STLSOFT_INCL_H_LIBPROC
@@ -151,6 +151,19 @@
 #  include <unistd.h>
 # endif /* !STLSOFT_INCL_H_UNISTD */
 #endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * constants
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# if !defined(PATH_MAX)
+#  define UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_     4096
+# else
+#  define UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_     PATH_MAX
+# endif
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,18 +242,13 @@ unixstl_C_get_current_process_path_m(
 ,   us_size_t       cch
 )
 {
-#if !defined(PATH_MAX)
-    us_char_a_t     stack[4096];
-#else
-    us_char_a_t     stack[PATH_MAX];
-#endif
-    us_char_a_t*    path = &stack[0];
-    us_char_a_t*    heap = NULL;
-    us_size_t       cap = STLSOFT_NUM_ELEMENTS(stack);
-    us_size_t       len = 0;
-    us_size_t       result;
+    STLSOFT_C_AUTO_BUFFER_DECLARE(us_char_a_t, UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_, ab);
+    us_size_t   len = 0;
+    us_size_t   result;
 
     UNIXSTL_ASSERT(0 == cch || NULL != buff);
+
+    STLSOFT_C_AUTO_BUFFER_INITIALISE_FROM_INTERNAL(ab);
 
 #if 0
 #elif defined(_WIN32)
@@ -252,158 +260,126 @@ unixstl_C_get_current_process_path_m(
     /* Windows / UNIXem: GetModuleFileNameA */
     for (;;)
     {
-        DWORD const n = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(NULL, path, STLSOFT_STATIC_CAST(DWORD, cap));
+        DWORD const n = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(
+                            NULL
+                        ,   ab.ptr
+                        ,   STLSOFT_STATIC_CAST(DWORD, ab.size)
+                        );
 
         if (0 == n)
         {
-            if (NULL != heap)
-            {
-                STLSOFT_NS_GLOBAL(free)(heap);
-            }
+            STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
             return 0;
         }
 
-        if (n < cap)
+        if (n < ab.size)
         {
             len = STLSOFT_STATIC_CAST(us_size_t, n);
             break;
         }
 
+        if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, ab.size * 2))
         {
-            us_size_t const     newCap = cap * 2;
-            us_char_a_t* const  newHeap = STLSOFT_STATIC_CAST(us_char_a_t*, STLSOFT_NS_GLOBAL(realloc)(heap, newCap * sizeof(us_char_a_t)));
+            errno = ENOMEM;
 
-            if (NULL == newHeap)
-            {
-                if (NULL != heap)
-                {
-                    STLSOFT_NS_GLOBAL(free)(heap);
-                }
+            STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
-                errno = ENOMEM;
-
-                return 0;
-            }
-
-            heap = newHeap;
-            path = heap;
-            cap = newCap;
+            return 0;
         }
     }
 #elif defined(__APPLE__)
 
     /* macOS: prefer proc_pidpath; fallback to _NSGetExecutablePath (+ realpath). */
     {
-        int const ret = STLSOFT_NS_GLOBAL(proc_pidpath)(STLSOFT_NS_GLOBAL(getpid)(), path, STLSOFT_STATIC_CAST(uint32_t, cap));
+        int const ret = STLSOFT_NS_GLOBAL(proc_pidpath)(
+                            STLSOFT_NS_GLOBAL(getpid)()
+                        ,   ab.ptr
+                        ,   STLSOFT_STATIC_CAST(uint32_t, ab.size)
+                        );
 
         if (ret <= 0)
         {
-            uint32_t size = STLSOFT_STATIC_CAST(uint32_t, cap);
+            uint32_t size = STLSOFT_STATIC_CAST(uint32_t, ab.size);
 
-            if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(path, &size))
+            if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(ab.ptr, &size))
             {
-                us_char_a_t* const newHeap = STLSOFT_STATIC_CAST(us_char_a_t*, STLSOFT_NS_GLOBAL(malloc)(size * sizeof(us_char_a_t)));
-
-                if (NULL == newHeap)
+                if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, size))
                 {
                     errno = ENOMEM;
+
+                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
                     return 0;
                 }
 
-                heap = newHeap;
-                path = heap;
-                cap = size;
+                size = STLSOFT_STATIC_CAST(uint32_t, ab.size);
 
-                if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(path, &size))
+                if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(ab.ptr, &size))
                 {
-                    STLSOFT_NS_GLOBAL(free)(heap);
+                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
                     return 0;
                 }
             }
 
             {
-                char* const resolved = STLSOFT_NS_GLOBAL(realpath)(path, NULL);
+                char* const resolved = STLSOFT_NS_GLOBAL(realpath)(ab.ptr, NULL);
 
                 if (NULL != resolved)
                 {
                     us_size_t const cchResolved = STLSOFT_NS_GLOBAL(strlen)(resolved);
 
-                    if (cchResolved + 1 > cap)
+                    if (cchResolved + 1 > ab.size)
                     {
-                        us_char_a_t* const newHeap = STLSOFT_STATIC_CAST(us_char_a_t*, STLSOFT_NS_GLOBAL(realloc)(heap, (cchResolved + 1) * sizeof(us_char_a_t)));
-
-                        if (NULL == newHeap)
+                        if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, cchResolved + 1))
                         {
                             STLSOFT_NS_GLOBAL(free)(resolved);
-                            if (NULL != heap)
-                            {
-                                STLSOFT_NS_GLOBAL(free)(heap);
-                            }
 
                             errno = ENOMEM;
 
+                            STLSOFT_C_AUTO_BUFFER_FREE(ab);
+
                             return 0;
                         }
-
-                        heap = newHeap;
-                        path = heap;
-                        cap = cchResolved + 1;
                     }
 
-                    STLSOFT_NS_GLOBAL(memcpy)(path, resolved, cchResolved + 1);
+                    STLSOFT_NS_GLOBAL(memcpy)(ab.ptr, resolved, cchResolved + 1);
                     STLSOFT_NS_GLOBAL(free)(resolved);
                 }
             }
         }
 
-        len = STLSOFT_NS_GLOBAL(strlen)(path);
+        len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
     }
 #elif defined(__linux__)
 
     /* Linux: readlink("/proc/self/exe") */
     for (;;)
     {
-        ssize_t const n = STLSOFT_NS_GLOBAL(readlink)("/proc/self/exe", path, cap);
+        ssize_t const n = STLSOFT_NS_GLOBAL(readlink)("/proc/self/exe", ab.ptr, ab.size);
 
         if (n < 0)
         {
-            if (NULL != heap)
-            {
-                STLSOFT_NS_GLOBAL(free)(heap);
-            }
+            STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
             return 0;
         }
 
-        if (STLSOFT_STATIC_CAST(us_size_t, n) < cap)
+        if (STLSOFT_STATIC_CAST(us_size_t, n) < ab.size)
         {
-            path[n] = '\0';
+            ab.ptr[n] = '\0';
             len = STLSOFT_STATIC_CAST(us_size_t, n);
             break;
         }
 
+        if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, ab.size * 2))
         {
-            us_size_t const     newCap = cap * 2;
-            us_char_a_t* const  newHeap = STLSOFT_STATIC_CAST(us_char_a_t*, STLSOFT_NS_GLOBAL(realloc)(heap, newCap * sizeof(us_char_a_t)));
+            errno = ENOMEM;
 
-            if (NULL == newHeap)
-            {
-                if (NULL != heap)
-                {
-                    STLSOFT_NS_GLOBAL(free)(heap);
-                }
+            STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
-                errno = ENOMEM;
-
-                return 0;
-            }
-
-            heap = newHeap;
-            path = heap;
-            cap = newCap;
+            return 0;
         }
     }
 #elif 0 ||\
@@ -415,44 +391,44 @@ unixstl_C_get_current_process_path_m(
     /* BSD: sysctl(KERN_PROC_PATHNAME) */
     {
         int     mib[4];
-        size_t  cb = cap;
+        size_t  cb = ab.size;
 
         mib[0] = CTL_KERN;
         mib[1] = KERN_PROC;
         mib[2] = KERN_PROC_PATHNAME;
         mib[3] = -1;
 
-        if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, path, &cb, NULL, 0))
+        if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, ab.ptr, &cb, NULL, 0))
         {
             if (ENOMEM == errno)
             {
-                us_char_a_t* const newHeap = STLSOFT_STATIC_CAST(us_char_a_t*, STLSOFT_NS_GLOBAL(malloc)(cb));
-
-                if (NULL == newHeap)
+                if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, cb))
                 {
                     errno = ENOMEM;
+
+                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
                     return 0;
                 }
 
-                heap = newHeap;
-                path = heap;
-                cap = cb;
+                cb = ab.size;
 
-                if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, path, &cb, NULL, 0))
+                if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, ab.ptr, &cb, NULL, 0))
                 {
-                    STLSOFT_NS_GLOBAL(free)(heap);
+                    STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
                     return 0;
                 }
             }
             else
             {
+                STLSOFT_C_AUTO_BUFFER_FREE(ab);
+
                 return 0;
             }
         }
 
-        len = STLSOFT_NS_GLOBAL(strlen)(path);
+        len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
     }
 #elif defined(__sun)
 
@@ -462,21 +438,25 @@ unixstl_C_get_current_process_path_m(
 
         if (NULL == exe)
         {
+            STLSOFT_C_AUTO_BUFFER_FREE(ab);
+
             return 0;
         }
 
-        if (NULL == STLSOFT_NS_GLOBAL(realpath)(exe, path))
+        if (NULL == STLSOFT_NS_GLOBAL(realpath)(exe, ab.ptr))
         {
+            STLSOFT_C_AUTO_BUFFER_FREE(ab);
+
             return 0;
         }
 
-        len = STLSOFT_NS_GLOBAL(strlen)(path);
+        len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
     }
 #else
 
-    STLSOFT_SUPPRESS_UNUSED(path);
-    STLSOFT_SUPPRESS_UNUSED(cap);
     errno = ENOSYS;
+
+    STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
     return 0;
 #endif
@@ -491,7 +471,7 @@ unixstl_C_get_current_process_path_m(
 
         if (0 != nCopy)
         {
-            STLSOFT_NS_GLOBAL(memcpy)(buff, path, nCopy * sizeof(us_char_a_t));
+            STLSOFT_NS_GLOBAL(memcpy)(buff, ab.ptr, nCopy * sizeof(us_char_a_t));
         }
 
         buff[nCopy] = '\0';
@@ -501,17 +481,14 @@ unixstl_C_get_current_process_path_m(
     {
         if (0 != len)
         {
-            STLSOFT_NS_GLOBAL(memcpy)(buff, path, len * sizeof(us_char_a_t));
+            STLSOFT_NS_GLOBAL(memcpy)(buff, ab.ptr, len * sizeof(us_char_a_t));
         }
 
         buff[len] = '\0';
         result = len;
     }
 
-    if (NULL != heap)
-    {
-        STLSOFT_NS_GLOBAL(free)(heap);
-    }
+    STLSOFT_C_AUTO_BUFFER_FREE(ab);
 
     return result;
 }
