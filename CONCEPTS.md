@@ -147,7 +147,10 @@ it provides at least:
 ### Helper: `resizeable_buffer_resize`
 
 Declared in
-[`stlsoft/util/resizeable_buffer_helpers.hpp`](./include/stlsoft/util/resizeable_buffer_helpers.hpp).
+[`stlsoft/util/resizeable_buffer_helpers.hpp`](./include/stlsoft/util/resizeable_buffer_helpers.hpp)
+(Doxygen on the file and on the function documents parameters, return
+values, failure policy, and the expectation that callers set
+`ENOMEM` / `ERROR_OUTOFMEMORY` themselves).
 
 `stlsoft::resizeable_buffer_resize(rb, newSize)` invokes `rb.resize(newSize)`
 whether that member returns `bool` or `void`, and always returns `bool`
