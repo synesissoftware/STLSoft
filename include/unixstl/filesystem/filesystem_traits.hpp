@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 16th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -1827,6 +1827,8 @@ private:
 
             if (!resizeable_buffer_resize(cwd, n2 + len + 1))
             {
+                set_last_error(ENOMEM);
+
                 return 0;
             }
 

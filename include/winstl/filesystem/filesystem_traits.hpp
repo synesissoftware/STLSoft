@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 16th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -1082,6 +1082,8 @@ public: // directory-end
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ERROR_OUTOFMEMORY);
+
                     return 0;
                 }
 
@@ -2750,6 +2752,8 @@ public: // directory-end
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ERROR_OUTOFMEMORY);
+
                     return 0;
                 }
 

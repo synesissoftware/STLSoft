@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 15th October 2026
+ * Updated: 16th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,6 +47,7 @@ namespace {
     static void TEST_starts_with_dots();
 
     static void TEST_ensure_dir_end_1(); // TODO: rename to `dirname_ensure_pns()`
+    static void TEST_ensure_dir_end_RESIZE_FAILURE_sets_ERROR_OUTOFMEMORY();
 
     static void TEST_has_dir_end_1();
 
@@ -95,6 +96,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_starts_with_dots);
 
         XTESTS_RUN_CASE(TEST_ensure_dir_end_1);
+        XTESTS_RUN_CASE(TEST_ensure_dir_end_RESIZE_FAILURE_sets_ERROR_OUTOFMEMORY);
 
         XTESTS_RUN_CASE(TEST_has_dir_end_1);
 
@@ -147,6 +149,47 @@ namespace {
     typedef stlsoft::auto_buffer<wchar_t>                   ab_w_t;
     typedef winstl::filesystem_traits<char>                 filesystem_traits_m_t;
     typedef winstl::filesystem_traits<wchar_t>              filesystem_traits_w_t;
+
+    /* Resizeable-buffer model whose resize() always fails — used to lock
+     * C5 OOM reporting without exhausting the process heap.
+     */
+    struct fail_resize_buffer
+    {
+        typedef char                                        value_type;
+        typedef size_t                                      size_type;
+
+        std::vector<char>                                   storage;
+
+        size_type
+        size() const
+        {
+            return storage.size();
+        }
+
+        bool
+        empty() const
+        {
+            return storage.empty();
+        }
+
+        char&
+        operator [](size_type i)
+        {
+            return storage[i];
+        }
+
+        char const&
+        operator [](size_type i) const
+        {
+            return storage[i];
+        }
+
+        bool
+        resize(size_type /* n */)
+        {
+            return false;
+        }
+    };
 
 
 static void TEST_basename_is_dots()
@@ -484,6 +527,24 @@ static void TEST_ensure_dir_end_1()
         }
 #endif
     }
+}
+
+static void TEST_ensure_dir_end_RESIZE_FAILURE_sets_ERROR_OUTOFMEMORY()
+{
+    fail_resize_buffer  rb;
+
+    rb.storage.push_back('a');
+    rb.storage.push_back('b');
+    rb.storage.push_back('c');
+    rb.storage.push_back('\0');
+
+    filesystem_traits_m_t::set_last_error(ERROR_SUCCESS);
+
+    ss_size_t const     n = filesystem_traits_m_t::ensure_dir_end(rb);
+
+    TEST_INT_EQ(0, n);
+    TEST_INT_EQ(4, rb.size());
+    TEST_INT_EQ(ERROR_OUTOFMEMORY, filesystem_traits_m_t::get_last_error());
 }
 
 static void TEST_has_dir_end_1()
