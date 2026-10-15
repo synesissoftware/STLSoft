@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::resizeable_buffer_resize`.
  *
  * Created: 15th October 2026
- * Updated: 15th October 2026
+ * Updated: 16th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,6 +53,8 @@ namespace {
     static void TEST_WITH_vector_GROW();
     static void TEST_WITH_vector_SHRINK();
     static void TEST_WITH_vector_TO_ZERO();
+    static void TEST_WITH_void_returning_default_arg_stub_GROW();
+    static void TEST_WITH_void_returning_default_arg_stub_SHRINK();
     static void TEST_WITH_void_returning_stub_SUCCESS();
 } // anonymous namespace
 
@@ -78,6 +80,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_WITH_vector_GROW);
         XTESTS_RUN_CASE(TEST_WITH_vector_SHRINK);
         XTESTS_RUN_CASE(TEST_WITH_vector_TO_ZERO);
+        XTESTS_RUN_CASE(TEST_WITH_void_returning_default_arg_stub_GROW);
+        XTESTS_RUN_CASE(TEST_WITH_void_returning_default_arg_stub_SHRINK);
         XTESTS_RUN_CASE(TEST_WITH_void_returning_stub_SUCCESS);
 
         XTESTS_PRINT_RESULTS();
@@ -169,6 +173,41 @@ private: // fields
     size_type m_size;
 };
 
+/** Models pre-C++11 <code>std::vector::resize</code>: a single member
+ *  with a defaulted fill argument, so <code>&T::resize</code> has a
+ *  two-parameter type while <code>rb.resize(n)</code> remains valid.
+ */
+class void_returning_default_arg_stub
+{
+public: // types
+    typedef char                                            value_type;
+    typedef size_t                                          size_type;
+
+public: // construction
+    void_returning_default_arg_stub()
+        : m_size(0)
+    {}
+
+public: // accessors
+    size_type size() const
+    {
+        return m_size;
+    }
+
+public: // operations
+    void
+    resize(
+        size_type   newSize
+    ,   value_type  /* fill */ = value_type()
+    )
+    {
+        m_size = newSize;
+    }
+
+private: // fields
+    size_type m_size;
+};
+
 
 static void TEST_WITH_auto_buffer_GROW()
 {
@@ -242,6 +281,23 @@ static void TEST_WITH_void_returning_stub_SUCCESS()
 
     TEST_BOOLEAN_TRUE(stlsoft::resizeable_buffer_resize(rb, 10));
     TEST_INT_EQ(10, rb.size());
+}
+
+static void TEST_WITH_void_returning_default_arg_stub_GROW()
+{
+    void_returning_default_arg_stub rb;
+
+    TEST_BOOLEAN_TRUE(stlsoft::resizeable_buffer_resize(rb, 32));
+    TEST_INT_EQ(32, rb.size());
+}
+
+static void TEST_WITH_void_returning_default_arg_stub_SHRINK()
+{
+    void_returning_default_arg_stub rb;
+
+    TEST_BOOLEAN_TRUE(stlsoft::resizeable_buffer_resize(rb, 8));
+    TEST_BOOLEAN_TRUE(stlsoft::resizeable_buffer_resize(rb, 3));
+    TEST_INT_EQ(3, rb.size());
 }
 
 } // anonymous namespace

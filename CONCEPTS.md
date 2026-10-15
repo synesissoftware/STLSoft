@@ -153,9 +153,10 @@ values, failure policy, and the expectation that callers set
 `ENOMEM` / `ERROR_OUTOFMEMORY` themselves).
 
 `stlsoft::resizeable_buffer_resize(rb, newSize)` invokes `rb.resize(newSize)`
-whether that member returns `bool` or `void`, and always returns `bool`
-(`true` on success). Prefer it over calling `rb.resize` directly in
-generic code.
+whether that member returns `bool` or `void`, and whether `resize` is a
+one-argument member or a two-argument member with a defaulted fill (as on
+pre-C++11 `std::vector`), and always returns `bool` (`true` on success).
+Prefer it over calling `rb.resize` directly in generic code.
 
 
 ### Contract for traits overloads that take an `rb`

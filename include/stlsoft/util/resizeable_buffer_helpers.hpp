@@ -57,7 +57,9 @@
  *
  * This header provides \c stlsoft::resizeable_buffer_resize, which adapts
  * <code>T::resize</code> whether that member returns \c bool or \c void
- * so generic code has one failure channel (\c bool).
+ * (and whether \c resize is a one-argument member or a two-argument member
+ * with a defaulted fill value, as on pre-C++11 \c std::vector) so generic
+ * code has one failure channel (\c bool).
  *
  * \see CONCEPTS.md — <em>The Resizeable Buffer concept</em>
  * \see examples/by_concept/resizeable_buffer/main.cpp
@@ -69,9 +71,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MAJOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_EDIT        8
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MINOR       1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_REVISION    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,9 +88,9 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF
-# include <stlsoft/meta/size_of.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
+# include <stlsoft/meta/yesno.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,11 +110,17 @@ namespace stlsoft
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 STLSOFT_OPEN_WORKER_NS_(ximpl_stlsoft_util_rb_helpers_)
 
-#if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1310
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+       _MSC_VER < 1310
 
- /* Have to muck around with state here to get the old girl to work */
+ /* Have to muck around with state here to get the old girl to work.
+  *
+  * VC6 cannot use the SFINAE / direct-call path below. Keep
+  * pointer-to-member overload sets, and add a two-argument void
+  * resize (pre-C++11 vector shape) without adding a two-argument
+  * bool resize (that would make auto_buffer's &resize ambiguous).
+  */
 
 template<
     ss_typename_param_k T_rb
@@ -123,6 +131,8 @@ private:
     T_rb* prb;
 
 public:
+    typedef ss_typename_type_k T_rb::value_type             value_type;
+
     ss_explicit_k
     rb_helper_traits_vc6(
         T_rb& rb
@@ -133,7 +143,7 @@ public:
     bool
     do_resize(
         size_t              newSize
-    ,   bool (T_rb::*pfn)(size_t)
+    ,   bool   (T_rb::*pfn)(size_t)
     )
     {
         return (prb->*pfn)(newSize);
@@ -142,10 +152,21 @@ public:
     bool
     do_resize(
         size_t              newSize
-    ,   void (T_rb::*pfn)(size_t)
+    ,   void   (T_rb::*pfn)(size_t)
     )
     {
         (prb->*pfn)(newSize);
+
+        return true;
+    }
+
+    bool
+    do_resize(
+        size_t              newSize
+    ,   void   (T_rb::*pfn)(size_t, value_type)
+    )
+    {
+        (prb->*pfn)(newSize, value_type());
 
         return true;
     }
@@ -162,45 +183,86 @@ traits_for(
 {
     return rb_helper_traits_vc6<T>(rb);
 }
-#else
+# else /* ? compiler */
+
+ /* Prefer a direct rb.resize(newSize) call so that:
+  * - one-argument resize(size) works;
+  * - two-argument resize(size, value = value()) works via the default
+  *   (pre-C++11 vector);
+  * - C++11 vector's two overloads are not made ambiguous by forming
+  *   &T::resize against competing member-pointer parameter types.
+  *
+  * Detect a one-argument bool / ss_bool_t-returning resize via SFINAE on
+  * the member-pointer type so auto_buffer's failure channel is preserved.
+  */
 
 template<
     ss_typename_param_k T_resizeableBuffer
-,   ss_typename_param_k T_character
 >
-struct rb_helper_traits
+struct rb_has_bool_one_arg_resize
 {
-    typedef T_character                                     char_type;
-    typedef T_resizeableBuffer                              buffer_type;
+    typedef char                                            yes_type_;
+    typedef char                                            (&no_type_)[2];
 
-    typedef bool                             (buffer_type::*pfn_b)(size_t);
-    typedef void                             (buffer_type::*pfn_v)(size_t);
+    template<
+        ss_typename_param_k U
+    ,   ss_bool_t (U::*)(ss_size_t)
+    >
+    struct ptm
+    {};
 
+    template<
+        ss_typename_param_k U
+    >
     static
-    bool
-    do_resize(
-        buffer_type&    buffer
-    ,   size_t          newSize
-    ,   pfn_b           pfn
-    )
-    {
-        return (buffer.*pfn)(newSize);
-    }
+    yes_type_
+    test(
+        ptm<U, &U::resize>*
+    );
 
+    template<
+        ss_typename_param_k U
+    >
     static
-    bool
-    do_resize(
-        buffer_type&    buffer
-    ,   size_t          newSize
-    ,   pfn_v           pfn
-    )
-    {
-        (buffer.*pfn)(newSize);
+    no_type_
+    test(
+        ...
+    );
 
-        return true;
-    }
+    enum { value = sizeof(test<T_resizeableBuffer>(0)) == sizeof(yes_type_) };
 };
-#endif
+
+template<
+    ss_typename_param_k T_resizeableBuffer
+>
+inline
+bool
+rb_invoke_resize(
+    T_resizeableBuffer& rb
+,   ss_size_t           newSize
+,   yes_type
+)
+{
+    return rb.resize(newSize);
+}
+
+template<
+    ss_typename_param_k T_resizeableBuffer
+>
+inline
+bool
+rb_invoke_resize(
+    T_resizeableBuffer& rb
+,   ss_size_t           newSize
+,   no_type
+)
+{
+    rb.resize(newSize);
+
+    return true;
+}
+# endif /* compiler */
+
 STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_util_rb_helpers_)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -218,10 +280,12 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_util_rb_helpers_)
  * overload of <code>resize</code> the model provides.
  *
  * \tparam T_resizeableBuffer A type that models <em>Resizeable Buffer</em>
- *   for its <code>value_type</code>. Must declare an unambiguous
- *   <code>resize(size_type)</code> (or <code>resize(size_t)</code>)
- *   member returning either \c bool or \c void, and a nested
- *   <code>value_type</code>.
+ *   for its <code>value_type</code>. Must provide a nested
+ *   <code>value_type</code> and a <code>resize</code> member that can be
+ *   invoked as <code>rb.resize(newSize)</code> — either a one-argument
+ *   <code>resize(size_type)</code> returning \c bool / \c ss_bool_t or
+ *   \c void, or a two-argument <code>resize(size_type, value_type)</code>
+ *   with a defaulted fill (as on pre-C++11 \c std::vector).
  *
  * \param rb Reference to the buffer instance to resize
  * \param newSize The requested number of elements after the call
@@ -235,9 +299,9 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_util_rb_helpers_)
  *   <code>resize</code> (e.g. \c stlsoft::auto_buffer), the member's
  *   return value is propagated.
  * \retval false The resize failed. Only reachable when
- *   <code>T_resizeableBuffer::resize</code> returns \c bool and that
- *   call returned \c false. On failure the buffer is left unchanged
- *   when the model obeys the strong guarantee (as
+ *   <code>T_resizeableBuffer::resize</code> returns \c bool / \c ss_bool_t
+ *   and that call returned \c false. On failure the buffer is left
+ *   unchanged when the model obeys the strong guarantee (as
  *   \c stlsoft::auto_buffer does).
  *
  * \note This function does <em>not</em> set <code>errno</code> /
@@ -279,17 +343,19 @@ resizeable_buffer_resize(
 
     return traits_for(rb).do_resize(newSize, &T_resizeableBuffer::resize);
 #else
-    typedef T_resizeableBuffer                              buffer_t;
-    typedef ss_typename_type_k buffer_t::value_type         value_t;
 
-    STLSOFT_WORKER_NS_USING_(ximpl_stlsoft_util_rb_helpers_, rb_helper_traits);
+    STLSOFT_WORKER_NS_USING_(ximpl_stlsoft_util_rb_helpers_, rb_has_bool_one_arg_resize);
+    STLSOFT_WORKER_NS_USING_(ximpl_stlsoft_util_rb_helpers_, rb_invoke_resize);
 
-    typedef rb_helper_traits<
-        buffer_t
-    ,   value_t
-    >                                                       traits_t;
+    typedef value_to_yesno_type<
+        rb_has_bool_one_arg_resize<T_resizeableBuffer>::value
+    >                                                       yesno_t;
 
-    return traits_t::do_resize(rb, newSize, &T_resizeableBuffer::resize);
+    return rb_invoke_resize(
+        rb
+    ,   newSize
+    ,   ss_typename_type_k yesno_t::type()
+    );
 #endif
 
 #ifdef STLSOFT_COMPILER_IS_MSVC
@@ -301,7 +367,9 @@ resizeable_buffer_resize(
 #endif /* compiler */
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -319,4 +387,3 @@ resizeable_buffer_resize(
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
-
