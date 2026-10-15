@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        172
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        174
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -287,14 +287,21 @@ public:
     ///
     /// \return If \c buff is sufficient for the full path and a terminating
     ///   NUL character then this returns the length of the path (excluding
-    ///   the NUL character); otherwise, as much of the result as can be
-    ///   written is done so and the full length + 1 (for the NUL character)
-    ///   is returned, in order that client code can allocate all required
-    ///   space.
+    ///   the NUL character). Otherwise, as much of the result as can be
+    ///   written is done so and a character count of <em>at least</em> the
+    ///   full length + 1 (for the NUL character) is returned, in order that
+    ///   client code can allocate all required space. The returned demand
+    ///   may exceed that minimum;
     /// \retval 0 The function failed, and more information can be obtained
     ///   from get_last_error();
     ///
-    /// \note
+    /// \note The normative client pattern is to call with \c cch of 0 to
+    ///   obtain a sufficient size, allocate, then call again.
+    ///
+    /// \note Due to idiosynchracies of the Windows API, you must use the
+    ///   the function to query the required length, or pass PATH_MAX, and
+    ///   not rely on any a priori knowledge you may have of the presumed
+    ///   process path length.
     ///
     /// \pre 0 == cch || nullptr != buff
     static
@@ -786,7 +793,8 @@ public:
 
         size_type const n = class_type::GetModuleFileNameA(NULL, buff, cch);
 
-        if (n < cch)
+        if (0 != n &&
+            n < cch)
         {
             if (NULL != ppFile)
             {
@@ -1436,7 +1444,8 @@ public:
 
         size_type const n = class_type::GetModuleFileNameW(NULL, buff, cch);
 
-        if (n < cch)
+        if (0 != n &&
+            n < cch)
         {
             if (NULL != ppFile)
             {

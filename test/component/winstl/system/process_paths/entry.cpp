@@ -49,8 +49,8 @@ namespace {
 
     static void TEST_SIZE_QUERY_m();
     static void TEST_SIZE_QUERY_w();
-    static void TEST_EXACT_FIT_m();
-    static void TEST_EXACT_FIT_w();
+    static void TEST_SIZE_THEN_SUFFICIENT_m();
+    static void TEST_SIZE_THEN_SUFFICIENT_w();
     static void TEST_EXCESS_SPACE_m();
     static void TEST_EXCESS_SPACE_w();
     static void TEST_INSUFFICIENT_SPACE_m();
@@ -79,8 +79,8 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(TEST_SIZE_QUERY_m);
         XTESTS_RUN_CASE(TEST_SIZE_QUERY_w);
-        XTESTS_RUN_CASE(TEST_EXACT_FIT_m);
-        XTESTS_RUN_CASE(TEST_EXACT_FIT_w);
+        XTESTS_RUN_CASE(TEST_SIZE_THEN_SUFFICIENT_m);
+        XTESTS_RUN_CASE(TEST_SIZE_THEN_SUFFICIENT_w);
         XTESTS_RUN_CASE(TEST_EXCESS_SPACE_m);
         XTESTS_RUN_CASE(TEST_EXCESS_SPACE_w);
         XTESTS_RUN_CASE(TEST_INSUFFICIENT_SPACE_m);
@@ -225,7 +225,8 @@ static void TEST_SIZE_QUERY_m()
     char*               pFile   =   invalid_file_pointer<char>();
     size_t const        cch     =   traits_m_t::get_current_process_path(0, NULL, &pFile);
 
-    TEST_INT_EQ(expected.size() + 1, cch);
+    /* Demand may exceed len+1 (WinSTL GetModuleFileName size protocol). */
+    TEST_INT_GE(expected.size() + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
 }
 
@@ -238,36 +239,44 @@ static void TEST_SIZE_QUERY_w()
     wchar_t*            pFile   =   invalid_file_pointer<wchar_t>();
     size_t const        cch     =   traits_w_t::get_current_process_path(0, NULL, &pFile);
 
-    TEST_INT_EQ(expected.size() + 1, cch);
+    TEST_INT_GE(expected.size() + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
 }
 
-static void TEST_EXACT_FIT_m()
+static void TEST_SIZE_THEN_SUFFICIENT_m()
 {
     std::string const   expected = obtain_raw_current_process_path_m();
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    size_t const                len     =   expected.size();
-    stlsoft::auto_buffer<char>  buff(len + 1);
-    char*                       pFile   =   invalid_file_pointer<char>();
-    size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    size_t const                len = expected.size();
+    size_t const                need = traits_m_t::get_current_process_path(0, NULL, NULL);
+
+    XTESTS_REQUIRE(TEST_INT_GE(len + 1, need));
+
+    stlsoft::auto_buffer<char>  buff(need);
+    char*                       pFile = invalid_file_pointer<char>();
+    size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(len, cch);
     TEST_MS_EQ(expected.c_str(), &buff[0]);
     TEST_CHAR_EQ('\0', buff[len]);
 }
 
-static void TEST_EXACT_FIT_w()
+static void TEST_SIZE_THEN_SUFFICIENT_w()
 {
     std::wstring const  expected = obtain_raw_current_process_path_w();
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    size_t const                    len     =   expected.size();
-    stlsoft::auto_buffer<wchar_t>   buff(len + 1);
-    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
-    size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    size_t const                    len = expected.size();
+    size_t const                    need = traits_w_t::get_current_process_path(0, NULL, NULL);
+
+    XTESTS_REQUIRE(TEST_INT_GE(len + 1, need));
+
+    stlsoft::auto_buffer<wchar_t>   buff(need);
+    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
+    size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(len, cch);
     TEST_WS_EQ(expected.c_str(), &buff[0]);
@@ -332,7 +341,7 @@ static void TEST_INSUFFICIENT_SPACE_m()
         char*                       pFile   =   invalid_file_pointer<char>();
         size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
-        TEST_INT_EQ(len + 1, cch);
+        TEST_INT_GE(len + 1, cch);
         TEST_PTR_EQ(NULL, pFile);
         TEST_CHAR_EQ('\0', buff[cchBuff - 1]);
         TEST_MS_EQ_N(expected.c_str(), &buff[0], cchBuff - 1);
@@ -343,7 +352,7 @@ static void TEST_INSUFFICIENT_SPACE_m()
         char*           pFile   =   invalid_file_pointer<char>();
         size_t const    cch     =   traits_m_t::get_current_process_path(STLSOFT_NUM_ELEMENTS(buff), buff, &pFile);
 
-        TEST_INT_EQ(len + 1, cch);
+        TEST_INT_GE(len + 1, cch);
         TEST_PTR_EQ(NULL, pFile);
         TEST_CHAR_EQ('\0', buff[0]);
     }
@@ -369,7 +378,7 @@ static void TEST_INSUFFICIENT_SPACE_w()
         wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
         size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
-        TEST_INT_EQ(len + 1, cch);
+        TEST_INT_GE(len + 1, cch);
         TEST_PTR_EQ(NULL, pFile);
         TEST_CHAR_EQ(L'\0', buff[cchBuff - 1]);
         TEST_WS_EQ_N(expected.c_str(), &buff[0], cchBuff - 1);
@@ -380,7 +389,7 @@ static void TEST_INSUFFICIENT_SPACE_w()
         wchar_t*        pFile   =   invalid_file_pointer<wchar_t>();
         size_t const    cch     =   traits_w_t::get_current_process_path(STLSOFT_NUM_ELEMENTS(buff), buff, &pFile);
 
-        TEST_INT_EQ(len + 1, cch);
+        TEST_INT_GE(len + 1, cch);
         TEST_PTR_EQ(NULL, pFile);
         TEST_CHAR_EQ(L'\0', buff[0]);
     }
@@ -392,7 +401,11 @@ static void TEST_ppFile_NULL_ON_SUCCESS_m()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    stlsoft::auto_buffer<char>  buff(expected.size() + 1);
+    size_t const                need = traits_m_t::get_current_process_path(0, NULL, NULL);
+
+    XTESTS_REQUIRE(TEST_INT_GE(expected.size() + 1, need));
+
+    stlsoft::auto_buffer<char>  buff(need);
     size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], NULL);
 
     TEST_INT_EQ(expected.size(), cch);
@@ -405,7 +418,11 @@ static void TEST_ppFile_NULL_ON_SUCCESS_w()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    stlsoft::auto_buffer<wchar_t>   buff(expected.size() + 1);
+    size_t const                    need = traits_w_t::get_current_process_path(0, NULL, NULL);
+
+    XTESTS_REQUIRE(TEST_INT_GE(expected.size() + 1, need));
+
+    stlsoft::auto_buffer<wchar_t>   buff(need);
     size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], NULL);
 
     TEST_INT_EQ(expected.size(), cch);
@@ -418,9 +435,13 @@ static void TEST_ppFile_separator_ON_SUCCESS_m()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    stlsoft::auto_buffer<char>  buff(expected.size() + 1);
-    char*                       pFile   =   invalid_file_pointer<char>();
-    size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    size_t const                need = traits_m_t::get_current_process_path(0, NULL, NULL);
+
+    XTESTS_REQUIRE(TEST_INT_GE(expected.size() + 1, need));
+
+    stlsoft::auto_buffer<char>  buff(need);
+    char*                       pFile = invalid_file_pointer<char>();
+    size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &buff[0]);
@@ -441,9 +462,13 @@ static void TEST_ppFile_separator_ON_SUCCESS_w()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    stlsoft::auto_buffer<wchar_t>   buff(expected.size() + 1);
-    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
-    size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    size_t const                    need = traits_w_t::get_current_process_path(0, NULL, NULL);
+
+    XTESTS_REQUIRE(TEST_INT_GE(expected.size() + 1, need));
+
+    stlsoft::auto_buffer<wchar_t>   buff(need);
+    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
+    size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(expected.size(), cch);
     TEST_WS_EQ(expected.c_str(), &buff[0]);
@@ -466,10 +491,10 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_m()
 
     size_t const                len = expected.size();
     stlsoft::auto_buffer<char>  buff(len);
-    char*                       pFile   =   invalid_file_pointer<char>();
-    size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    char*                       pFile = invalid_file_pointer<char>();
+    size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
-    TEST_INT_EQ(len + 1, cch);
+    TEST_INT_GE(len + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
 }
 
@@ -481,10 +506,10 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_w()
 
     size_t const                    len = expected.size();
     stlsoft::auto_buffer<wchar_t>   buff(len);
-    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
-    size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
+    size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
-    TEST_INT_EQ(len + 1, cch);
+    TEST_INT_GE(len + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
 }
 } // anonymous namespace
