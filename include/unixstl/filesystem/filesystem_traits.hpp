@@ -2048,7 +2048,8 @@ return 0;
 
         if ('\0' != fileName[len])
         {
-            buffer_type_ fileName_(1 + (len - 1));
+            // len characters of payload + trailing NUL
+            buffer_type_ fileName_(1 + len);
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -2063,9 +2064,10 @@ return 0;
             }
             else
             {
+                char_copy(&fileName_[0], fileName, len);
                 fileName_[len] = '\0';
 
-                return get_full_path_name_impl2(char_copy(&fileName_[0], fileName, len)
+                return get_full_path_name_impl2(fileName_.data()
                                             ,   len
                                             ,   buffer
                                             ,   cchBuffer);

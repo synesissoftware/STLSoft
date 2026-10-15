@@ -14,6 +14,7 @@
   * **unixstl::filesystem_traits** — `remove_dir_end` (C-string and `rb`, A+W) now strips **all** trailing path separators, matching WinSTL (was strip-one);
   * **unixstl** / **winstl** `filesystem_traits` — every `resizeable_buffer_resize` failure on the `rb` / scratch paths above reports last-error (including WinSTL `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow);
   * **unixstl::readdir_sequence** — non-exception `absolutePath` failure path no longer contains a broken `\'0'` write; soft-fails with an empty string (parallel to the throw when exceptions are enabled);
+  * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name_impl` scratch for a non-NUL-terminated counted slice is sized `1 + len` (was `1 + (len - 1)`), so writing the trailing NUL is in-bounds; WinSTL quoted-path handling takes this branch;
 * docs:
   * Enriched Doxygen on **stlsoft/util/resizeable_buffer_helpers.hpp** (`resizeable_buffer_resize` parameters, return values, failure policy, caller OOM duty);
   * **FAQ.md** — Q6 on the Resizeable Buffer concept;
