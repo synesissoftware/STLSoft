@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    filesystem_traits/entry.cpp
+ * File:    test/unit/winstl/filesystem/filesystem_traits/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
