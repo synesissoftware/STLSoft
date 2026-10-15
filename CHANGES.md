@@ -1,6 +1,18 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc9 - 16th October 2026
+
+* additions:
+  * Added `unixstl::system_traits<>::get_current_process_path()` and `winstl::system_traits<>::get_current_process_path()` (multibyte and wide), obtaining the current process image path with an optional basename path-separator out-parameter;
+* testing:
+  * Component tests **test/component/unixstl/system/process_paths** (multibyte; multi-OS raw path oracle) and **test/component/winstl/system/process_paths** (multibyte and wide; `GetModuleFileName` oracle);
+  * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
+* version:
+  * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
+  * **winstl** — **1.13.0 beta 5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
+
+
 ## 1.11.1-rc8 - 10th October 2026
 
 * additions:

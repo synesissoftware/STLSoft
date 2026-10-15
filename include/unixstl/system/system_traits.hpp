@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      141
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     3
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      142
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -248,6 +248,42 @@ public:
     ,   char_type const*    ps2
     ,   size_type           cch
     );
+/// @}
+
+/// \name Process Paths
+/// @{
+public:
+    /// Attempt to obtain the current process's path.
+    ///
+    /// \param cch The number of elements available in \c buff available for
+    ///   writing;
+    /// \param buff Pointer to the buffer into which \c cch result can be
+    ///   written. May not be \c nullptr except when \c cch is 0;
+    /// \param ppFile Optional pointer to receive a mutating pointer. When
+    ///   non-<code>nullptr</code>, <code>*ppFile</code> is always set to
+    ///   <code>nullptr</code>; then, if and only if the full path was
+    ///   written into \c buff, <code>*ppFile</code> is set to the last
+    ///   path-name separator in \c buff, if any;
+    ///
+    /// \return If \c buff is sufficient for the full path and a terminating
+    ///   NUL character then this returns the length of the path (excluding
+    ///   the NUL character); otherwise, as much of the result as can be
+    ///   written is done so and the full length + 1 (for the NUL character)
+    ///   is returned, in order that client code can allocate all required
+    ///   space.
+    /// \retval 0 The function failed, and more information can be obtained
+    ///   from get_last_error();
+    ///
+    /// \note
+    ///
+    /// \pre 0 == cch || nullptr != buff
+    static
+    size_type
+    get_current_process_path(
+        size_t              cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name System Paths
@@ -576,6 +612,34 @@ public:
                 return d;
             }
         }
+
+        return 0;
+    }
+
+public:
+    static
+    size_type
+    get_current_process_path(
+        size_t              cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT
+    {
+        UNIXSTL_ASSERT(0 == cch || NULL != buff);
+
+        char_type*  dummy;
+
+        if (NULL == ppFile)
+        {
+            ppFile = &dummy;
+        }
+
+        *ppFile = NULL;
+
+
+        ((void)cch);
+        ((void)buff);
+
 
         return 0;
     }
