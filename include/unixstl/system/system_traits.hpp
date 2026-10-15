@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      143
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -71,6 +71,12 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS
+# include <unixstl/filesystem/path_parse_functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS
+# include <unixstl/process/functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS */
 #ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
 # include <unixstl/system/directory_functions.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS */
@@ -629,21 +635,23 @@ public:
     {
         UNIXSTL_ASSERT(0 == cch || NULL != buff);
 
-        char_type*  dummy;
-
-        if (NULL == ppFile)
+        if (NULL != ppFile)
         {
-            ppFile = &dummy;
+            *ppFile = NULL;
         }
 
-        *ppFile = NULL;
+        size_type const n = unixstl_C_get_current_process_path_m(buff, cch);
 
+        if (0 != n &&
+            n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(unixstl_C_find_last_path_name_separator_len_m(buff, n));
+            }
+        }
 
-        ((void)cch);
-        ((void)buff);
-
-
-        return 0;
+        return n;
     }
 
 public:
