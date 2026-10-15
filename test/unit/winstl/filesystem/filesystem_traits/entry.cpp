@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 29th September 2026
+ * Updated: 15th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,6 +51,7 @@ namespace {
     static void TEST_has_dir_end_1();
 
     static void TEST_remove_dir_end_1();
+    static void TEST_remove_then_ensure_round_trip();
 
     static void TEST_find_last_path_name_separator();
     static void TEST_find_next_path_name_separator();
@@ -98,6 +99,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_has_dir_end_1);
 
         XTESTS_RUN_CASE(TEST_remove_dir_end_1);
+        XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
 
         XTESTS_RUN_CASE(TEST_path_is_absolute_1);
         XTESTS_RUN_CASE(TEST_path_is_absolute_2);
@@ -866,6 +868,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (auto_buffer<wchar_t>)
@@ -875,6 +878,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<char>)
@@ -884,6 +888,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<wchar_t>)
@@ -893,6 +898,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 #endif
     }
@@ -926,6 +932,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (auto_buffer<wchar_t>)
@@ -935,6 +942,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<char>)
@@ -944,6 +952,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<wchar_t>)
@@ -953,9 +962,32 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 #endif
     }
+}
+
+static void TEST_remove_then_ensure_round_trip()
+{
+    vec_m_t         buff;
+    buff.push_back('a');
+    buff.push_back('b');
+    buff.push_back('c');
+    buff.push_back('\\');
+    buff.push_back('\0');
+
+    ss_size_t const n_remove = filesystem_traits_m_t::remove_dir_end(buff);
+
+    TEST_INT_EQ(3, n_remove);
+    TEST_INT_EQ(4, buff.size());
+    TEST_MS_EQ("abc", buff.data());
+
+    ss_size_t const n_ensure = filesystem_traits_m_t::ensure_dir_end(buff);
+
+    TEST_INT_EQ(4, n_ensure);
+    TEST_INT_EQ(5, buff.size());
+    TEST_MS_EQ("abc\\", buff.data());
 }
 
 static void TEST_path_is_absolute_1()

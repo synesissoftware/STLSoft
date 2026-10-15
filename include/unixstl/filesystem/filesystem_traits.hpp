@@ -1069,10 +1069,15 @@ public: // directory-end
         {
             size_type const n = rb.size();
 
-            if (0 != n)
+            /* Require more than a lone NUL so "" stays "" (matches
+             * winstl and the C-string overload).
+             */
+            if (n > 1)
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ENOMEM);
+
                     return 0;
                 }
 
@@ -1214,6 +1219,8 @@ public: // directory-end
 
             if (!resizeable_buffer_resize(rb, n - 1))
             {
+                set_last_error(ENOMEM);
+
                 return 0;
             }
 
@@ -2877,10 +2884,15 @@ public: // directory-end
         {
             size_type const n = rb.size();
 
-            if (0 != n)
+            /* Require more than a lone NUL so "" stays "" (matches
+             * winstl and the C-string overload).
+             */
+            if (n > 1)
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ENOMEM);
+
                     return 0;
                 }
 
@@ -3022,6 +3034,8 @@ public: // directory-end
 
             if (!resizeable_buffer_resize(rb, n - 1))
             {
+                set_last_error(ENOMEM);
+
                 return 0;
             }
 

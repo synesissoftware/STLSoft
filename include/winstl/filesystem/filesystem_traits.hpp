@@ -1222,20 +1222,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        size_type len = rb.size();
+        size_type const n = rb.size();
 
-        if (0 == len)
+        if (0 == n)
         {
             return 0;
         }
-        else
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
         {
-            size_type lenToDecrease = len - 1;
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
 
-            remove_dir_end(rb.data(), len - 1, &lenToDecrease);
-
-            return lenToDecrease;
+                return 0;
+            }
         }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -2880,20 +2890,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        size_type len = rb.size();
+        size_type const n = rb.size();
 
-        if (0 == len)
+        if (0 == n)
         {
             return 0;
         }
-        else
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
         {
-            size_type lenToDecrease = len - 1;
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
 
-            remove_dir_end(rb.data(), len - 1, &lenToDecrease);
-
-            return lenToDecrease;
+                return 0;
+            }
         }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
