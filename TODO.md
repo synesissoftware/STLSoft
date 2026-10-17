@@ -17,6 +17,7 @@
   - [1.11.9](#1119)
   - [1.11.10](#11110)
   - [1.11.11](#11111)
+  - [Cross-publish to STLSoft-1.11](#cross-publish-to-stlsoft-111)
 - [1.12](#112)
 - [Requires clarification by project maintainers](#requires-clarification-by-project-maintainers)
 - [Abandoned](#abandoned)
@@ -34,6 +35,14 @@
 * [ ] Remove **WTL**;
 * [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
 * [ ] bring in some essential unit-tests from interal repo;
+* [ ] Being the CONCEPTS documentation:
+  * [ ] auto-buffer;
+  * [ ] resizeable-buffer;
+  * [ ] string-access-shims;
+  * [ ] Null Object (variable);
+  * [ ] Externals (esp. not introducing sub-project's headers proper);
+  * [ ] Conformance: Structural, Semantic, Intersecting;
+  * [ ] ...
 
 
 ### 1.11.2
@@ -96,6 +105,13 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 ### 1.11.11
 
 * [ ] Doxygen build (**Doxyfile**, **generate_doxygen.sh**) and deeper API documentation — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+
+
+### Cross-publish to STLSoft-1.11
+
+When tip **1.11** is finally complete, cross-publish into the versioned line **[synesissoftware/STLSoft-1.11](https://github.com/synesissoftware/STLSoft-1.11)** (not done for the interim VOLE / historical-consumer recognition work — that line was left unpushed on purpose).
+
+* [ ] Cross-publish the completed tip **1.11** tree into **STLSoft-1.11**, including the unknown-newer Visual C++ warn-not-error forward-warning from the **`prospective-msvc`** branch (and any related recognition / semi-freeze messaging needed for historical consumers);
 
 
 ## 1.12

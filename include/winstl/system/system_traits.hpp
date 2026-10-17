@@ -5,14 +5,14 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 27th May 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,9 +57,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        171
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        175
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -103,6 +103,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS
 # include <stlsoft/util/resizeable_buffer_helpers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
+
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS
+# include <winstl/filesystem/path_parse_functions.h>
+#endif /*! WINSTL_INCL_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS */
 
 #if STLSOFT_LEAD_VER >= 0x010a0000
 # ifndef WINSTL_INCL_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
@@ -264,6 +268,81 @@ public:
     ,   int_type    cchData
     );
 #endif /* !NONLS */
+/// @}
+
+/// \name Process Paths
+/// @{
+public:
+    /// Attempt to obtain the current process's path.
+    ///
+    /// \param cch The number of elements available in \c buff available for
+    ///   writing;
+    /// \param buff Pointer to the buffer into which \c cch result can be
+    ///   written. May not be \c nullptr except when \c cch is 0;
+    /// \param ppFile Optional pointer to receive a mutating pointer. When
+    ///   non-<code>nullptr</code>, <code>*ppFile</code> is always set to
+    ///   <code>nullptr</code>; then, if and only if the full path was
+    ///   written into \c buff, <code>*ppFile</code> is set to the last
+    ///   path-name separator in \c buff, if any;
+    ///
+    /// \return If \c buff is sufficient for the full path and a terminating
+    ///   NUL character then this returns the length of the path (excluding
+    ///   the NUL character). Otherwise, as much of the result as can be
+    ///   written is done so and a character count of <em>at least</em> the
+    ///   full length + 1 (for the NUL character) is returned, in order that
+    ///   client code can allocate all required space. The returned demand
+    ///   may exceed that minimum;
+    /// \retval 0 The function failed, and more information can be obtained
+    ///   from get_last_error();
+    ///
+    /// \note The normative client pattern is to call with \c cch of 0 to
+    ///   obtain a sufficient size, allocate, then call again.
+    ///
+    /// \note Due to idiosynchracies of the Windows API, you must use the
+    ///   the function to query the required length, or pass PATH_MAX, and
+    ///   not rely on any a priori knowledge you may have of the presumed
+    ///   process path length.
+    ///
+    /// \pre 0 == cch || nullptr != buff
+    static
+    size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT;
+
+    /// Attempt to obtain the current process's path into a resizeable
+    /// buffer.
+    ///
+    /// \param rb Reference to a resizeable buffer that will be resized as
+    ///   required to hold the path and a terminating NUL character;
+    /// \param ppFile Optional pointer to receive a mutating pointer into
+    ///   the final contents of \c rb. When non-<code>nullptr</code>,
+    ///   <code>*ppFile</code> is set as for the raw overload, after the
+    ///   final fill;
+    ///
+    /// \return The length of the path (excluding the NUL character) on
+    ///   success; 0 on failure;
+    /// \retval 0 The function failed (query or resize). On query failure
+    ///   \c rb is left unchanged; on resize failure
+    ///   <code>ERROR_OUTOFMEMORY</code> is set and \c rb is left unchanged.
+    ///   In neither failure case is <code>&rb[0]</code> taken on an empty
+    ///   buffer;
+    ///
+    /// \note The normative pattern is a size query via the raw overload
+    ///   with \c cch of 0, then resize, then fill — this overload performs
+    ///   that sequence (required on Windows; see the note on the raw
+    ///   overload). \c ppFile is computed only after the final fill.
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    );
 /// @}
 
 /// \name System Paths
@@ -727,6 +806,70 @@ public:
         return ::GetLocaleInfoA(locale, type, data, cchData);
     }
 #endif /* !NONLS */
+
+public:
+    static
+    size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT
+    {
+        WINSTL_ASSERT(0 == cch || NULL != buff);
+
+        if (NULL != ppFile)
+        {
+            *ppFile = NULL;
+        }
+
+        size_type const n = class_type::GetModuleFileNameA(NULL, buff, cch);
+
+        if (0 != n &&
+            n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(winstl_C_find_last_path_name_separator_len_m(buff, n));
+            }
+        }
+
+        return n;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    )
+    {
+        size_type const cchRequired = get_current_process_path(
+                                          0
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   static_cast<char_type**>(NULL)
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
+
+        return get_current_process_path(rb.size(), &rb[0], ppFile);
+    }
 
 public:
     static
@@ -1348,6 +1491,70 @@ public:
         return ::GetLocaleInfoW(locale, type, data, cchData);
     }
 #endif /* !NONLS */
+
+public:
+    static
+    size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT
+    {
+        WINSTL_ASSERT(0 == cch || NULL != buff);
+
+        if (NULL != ppFile)
+        {
+            *ppFile = NULL;
+        }
+
+        size_type const n = class_type::GetModuleFileNameW(NULL, buff, cch);
+
+        if (0 != n &&
+            n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(winstl_C_find_last_path_name_separator_len_w(buff, n));
+            }
+        }
+
+        return n;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    )
+    {
+        size_type const cchRequired = get_current_process_path(
+                                          0
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   static_cast<char_type**>(NULL)
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
+
+        return get_current_process_path(rb.size(), &rb[0], ppFile);
+    }
 
 public:
     static

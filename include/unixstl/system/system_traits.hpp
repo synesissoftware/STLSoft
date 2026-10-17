@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      141
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     3
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      145
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -71,6 +71,12 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS
+# include <unixstl/filesystem/path_parse_functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS
+# include <unixstl/process/functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS */
 #ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
 # include <unixstl/system/directory_functions.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS */
@@ -247,6 +253,74 @@ public:
         char_type const*    ps1
     ,   char_type const*    ps2
     ,   size_type           cch
+    );
+/// @}
+
+/// \name Process Paths
+/// @{
+public:
+    /// Attempt to obtain the current process's path.
+    ///
+    /// \param cch The number of elements available in \c buff available for
+    ///   writing;
+    /// \param buff Pointer to the buffer into which \c cch result can be
+    ///   written. May not be \c nullptr except when \c cch is 0;
+    /// \param ppFile Optional pointer to receive a mutating pointer. When
+    ///   non-<code>nullptr</code>, <code>*ppFile</code> is always set to
+    ///   <code>nullptr</code>; then, if and only if the full path was
+    ///   written into \c buff, <code>*ppFile</code> is set to the last
+    ///   path-name separator in \c buff, if any;
+    ///
+    /// \return If \c buff is sufficient for the full path and a terminating
+    ///   NUL character then this returns the length of the path (excluding
+    ///   the NUL character). Otherwise, as much of the result as can be
+    ///   written is done so and a character count of <em>at least</em> the
+    ///   full length + 1 (for the NUL character) is returned, in order that
+    ///   client code can allocate all required space. The returned demand
+    ///   may exceed that minimum;
+    /// \retval 0 The function failed, and more information can be obtained
+    ///   from get_last_error();
+    ///
+    /// \note The normative client pattern is to call with \c cch of 0 to
+    ///   obtain a sufficient size, allocate, then call again.
+    ///
+    /// \pre 0 == cch || nullptr != buff
+    static
+    size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT;
+
+    /// Attempt to obtain the current process's path into a resizeable
+    /// buffer.
+    ///
+    /// \param rb Reference to a resizeable buffer that will be resized as
+    ///   required to hold the path and a terminating NUL character;
+    /// \param ppFile Optional pointer to receive a mutating pointer into
+    ///   the final contents of \c rb. When non-<code>nullptr</code>,
+    ///   <code>*ppFile</code> is set as for the raw overload, after the
+    ///   final fill;
+    ///
+    /// \return The length of the path (excluding the NUL character) on
+    ///   success; 0 on failure;
+    /// \retval 0 The function failed (query or resize). On query failure
+    ///   \c rb is left unchanged; on resize failure
+    ///   <code>ENOMEM</code> is set and \c rb is left unchanged. In neither
+    ///   failure case is <code>&rb[0]</code> taken on an empty buffer;
+    ///
+    /// \note The normative pattern is a size query via the raw overload
+    ///   with \c cch of 0, then resize, then fill — this overload performs
+    ///   that sequence. \c ppFile is computed only after the final fill.
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
     );
 /// @}
 
@@ -578,6 +652,70 @@ public:
         }
 
         return 0;
+    }
+
+public:
+    static
+    size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT
+    {
+        UNIXSTL_ASSERT(0 == cch || NULL != buff);
+
+        if (NULL != ppFile)
+        {
+            *ppFile = NULL;
+        }
+
+        size_type const n = unixstl_C_get_current_process_path_m(buff, cch);
+
+        if (0 != n &&
+            n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(unixstl_C_find_last_path_name_separator_len_m(buff, n));
+            }
+        }
+
+        return n;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    )
+    {
+        size_type const cchRequired = get_current_process_path(
+                                          0
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   static_cast<char_type**>(NULL)
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
+
+        return get_current_process_path(rb.size(), &rb[0], ppFile);
     }
 
 public:
