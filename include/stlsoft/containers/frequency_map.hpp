@@ -5,11 +5,11 @@
  *          it contains.
  *
  * Created: 1st October 2005
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     10
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      57
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -549,8 +549,8 @@ public: // attributes
 
     /// The number of unique entries in the map
     ///
-    /// \remarks This may not be the same as the number of calls to
-    ///   <code>push()</code>
+    /// \note This may not be the same as the number of calls to
+    ///   <code>push()</code>.
     size_type size() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(is_valid());
@@ -560,8 +560,8 @@ public: // attributes
 
     /// The number of non-unique entries in the map
     ///
-    /// \remarks This may not be the same as the number of calls to
-    ///   <code>push()</code>
+    /// \note This may not be the same as the number of calls to
+    ///   <code>push()</code>.
     count_type total() const STLSOFT_NOEXCEPT
     {
         STLSOFT_ASSERT(is_valid());

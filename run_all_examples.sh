@@ -1,39 +1,120 @@
 #! /bin/bash
 
-ScriptPath=$0
-Dir=$(cd $(dirname "$ScriptPath"); pwd)
-Basename=$(basename "$ScriptPath")
+# ##########################################################
+# functions - 1
+
+sis_cmake_is_truey() {
+  case "$(printf '%s' "${1:-}" | tr '[:upper:]' '[:lower:]')" in
+
+    1|ok|on|true|yes|y)
+
+      return 0
+    ;;
+    *)
+
+      return 1
+      ;;
+  esac
+}
+
+
+# ##########################################################
+# constants and variables
+
+Basename=$(basename "$0")
+Dir=$(cd "$(dirname "$0")" && pwd)
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
-MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 ProjectNameFile="$Dir/.sis/project_name.txt"
 ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
+ScriptPath=$0
 
+AlwaysUseColours=${SIS_CMAKE_ALWAYS_USE_COLOURS:-${SIS_ALWAYS_USE_COLOURS:-0}}
 ListOnly=0
 RunMake=1
+SisUseColours=0
 SkipInteractive=0
 
 
 # ##########################################################
 # colours
+#
+# Enable when tput is available and either:
+#   - AlwaysUseColours is set (overrides NO_COLOR; may set TERM if
+#     empty/dumb), or
+#   - NO_COLOR is unset, stdout is a TTY, and TERM is not dumb (union of
+#     collect-c's "TERM set + TTY" and cstring's "TTY" — empty TERM on a
+#     TTY is OK).
 
-if command -v tput > /dev/null; then
+SisClr_Blue=
+SisClr_Bold=
+SisClr_Green=
+SisClr_None=
+SisClr_Red=
+SisClr_Yellow=
+
+for arg in "$@"; do
+
+  case $arg in
+    --always-use-colors|--always-use-colours|-A)
+
+      AlwaysUseColours=1
+      ;;
+  esac
+done
+
+if command -v tput >/dev/null 2>&1; then
+
+  if [ $AlwaysUseColours -ne 0 ]; then
+
+    if [ -z "${TERM:-}" ] || [ "$TERM" = "dumb" ]; then
+
+      TERM=xterm-256color
+    fi
+
+    SisUseColours=1
+  elif [ -z "${NO_COLOR:-}" ] && [ -t 1 ] && [ "${TERM:-}" != "dumb" ]; then
+
+    SisUseColours=1
+  fi
+fi
+
+if [ $SisUseColours -ne 0 ]; then
 
   SisClr_Blue=${FG_BLUE:-$(tput setaf 4)}
-  SisClr_Red=${FG_BLUE:-$(tput setaf 1)}
   SisClr_Bold=${FD_BOLD:-$(tput bold)}
+  SisClr_Green=${FG_GREEN:-$(tput setaf 2)}
   SisClr_None=${FD_NONE:-$(tput sgr0)}
-else
-
-  SisClr_Blue=
-  SisClr_Red=
-  SisClr_Bold=
-  SisClr_None=
+  SisClr_Red=${FG_RED:-$(tput setaf 1)}
+  SisClr_Yellow=${FG_YELLOW:-$(tput setaf 3)}
 fi
+
+CMakeDirClr="${SisClr_Blue}${SisClr_Bold}${CMakeDir}${SisClr_None}"
+ProjectNameClr="${SisClr_Blue}${SisClr_Bold}${ProjectName}${SisClr_None}"
+ScriptPathClr="${SisClr_Blue}${SisClr_Bold}${ScriptPath}${SisClr_None}"
 
 
 # ##########################################################
-# helpers
+# functions - 2
+
+sis_cmake_build() {
+
+  local config="${SIS_CMAKE_CONFIG:-Release}"
+  local args=(--build "$CMakeDir")
+  if [ -f "$CMakeDir/CMakeCache.txt" ] && grep -q '^CMAKE_CONFIGURATION_TYPES:' "$CMakeDir/CMakeCache.txt" 2>/dev/null; then
+
+    args+=(--config "$config")
+  fi
+  if [ "$#" -gt 0 ]; then
+
+    local t
+    for t in "$@"; do
+
+      args+=(--target "$t")
+    done
+  fi
+
+  cmake "${args[@]}"
+}
 
 example_stem()
 {
@@ -58,6 +139,8 @@ names_match()
   [ "$a" = "$b" ]
 }
 
+# Examples listed in .github/ci_skip_interactive_examples.txt require an
+# interactive desktop (GUI dialogs, etc.) and would hang a headless CI run.
 is_skipped_interactive_example()
 {
   local name f_norm line line_stem skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
@@ -66,7 +149,7 @@ is_skipped_interactive_example()
 
   if [ ! -f "$skip_file" ]; then
 
-    >&2 echo "$ScriptPath: --skip-interactive: skip list not found at '$skip_file'"
+    >&2 echo "${ScriptPathClr}: --skip-interactive: skip list not found at '$skip_file'"
 
     return 1
   fi
@@ -100,6 +183,10 @@ is_skipped_interactive_example()
 while [[ $# -gt 0 ]]; do
 
   case $1 in
+    --always-use-colors|--always-use-colours|-A)
+
+      # AlwaysUseColours=1 - this is handled by the for loop above
+      ;;
     --list-only|-l)
 
       ListOnly=1
@@ -118,11 +205,16 @@ while [[ $# -gt 0 ]]; do
       cat << EOF
 Runs all (matching) example programs
 
-$ScriptPath [ ... flags/options ... ]
+${ScriptPath} [ ... flags/options ... ]
 
 Flags/options:
 
     behaviour:
+
+    -A
+    --always-use-colors
+    --always-use-colours
+        forces use of colours even when stdout is not a TTY
 
     -l
     --list-only
@@ -130,7 +222,7 @@ Flags/options:
 
     -M
     --no-make
-        does not execute CMake and make before running examples
+        does not execute a build before running programs
 
     --skip-interactive
         skips examples listed in .github/ci_skip_interactive_examples.txt
@@ -149,7 +241,7 @@ EOF
       ;;
     *)
 
-      >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
+      >&2 echo "${ScriptPathClr}: unrecognised argument '${SisClr_Red}${SisClr_Bold}$1${SisClr_None}'; use --help for usage"
 
       exit 1
       ;;
@@ -168,22 +260,26 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} example programs"
+    echo
+    echo "Executing build of ${ProjectNameClr} (via cmake --build) and then running all example programs"
 
-    mkdir -p $CMakeDir || exit 1
+    mkdir -p "$CMakeDir" || exit 1
 
-    cd $CMakeDir
+    if [ ! -f "$CMakeDir/CMakeCache.txt" ]; then
 
-    $MakeCmd
+      >&2 echo "${ScriptPathClr}: '${CMakeDirClr}' is not configured; use prepare_cmake.sh first"
+
+      exit 1
+    fi
+
+    sis_cmake_build
     status=$?
-
-    cd ->/dev/null
   fi
 else
 
-  if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
+  if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ]; then
 
-    >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
+    >&2 echo "${ScriptPathClr}: cannot run in '--no-make' mode without a previous successful configure/build"
 
     exit 1
   fi
@@ -191,19 +287,25 @@ fi
 
 if [ $status -eq 0 ]; then
 
-  if [ ! -d "$CMakeDir/examples" ]; then
-
-    >&2 echo "$ScriptPath: examples build tree not found at '$CMakeDir/examples'"
-
-    exit 1
-  fi
-
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all ${ProjectName} example programs"
+    echo
+    echo "Listing all ${ProjectNameClr} example programs"
   else
 
-    echo "Running all ${ProjectName} example programs"
+    echo
+    echo "Running all ${ProjectNameClr} example programs"
+  fi
+
+  # Examples that require human input may honour SIS_EXAMPLE_SMOKE for a
+  # no-arg built-in tmpfile demo (see example.c.cstring_vector).
+  export SIS_EXAMPLE_SMOKE=1
+
+  if [ ! -d "$CMakeDir/examples" ]; then
+
+    >&2 echo "${ScriptPathClr}: examples build tree not found at '${CMakeDirClr}/examples'"
+
+    exit 1
   fi
 
   # Exclude CMake / build artefacts that can become +x after artifact restore.
@@ -227,7 +329,7 @@ if [ $status -eq 0 ]; then
 
   if [ ${#ExamplePrograms[@]} -eq 0 ]; then
 
-    >&2 echo "$ScriptPath: no matching executable example programs under '$CMakeDir/examples' (execute bits missing after artifact download?)"
+    >&2 echo "${ScriptPathClr}: no matching executable example programs under '${CMakeDirClr}/examples' (execute bits missing after artifact download?)"
 
     if [ $ListOnly -eq 0 ]; then
 
@@ -238,16 +340,17 @@ if [ $status -eq 0 ]; then
   for f in "${ExamplePrograms[@]}"
   do
 
+    fClr="${SisClr_Blue}${SisClr_Bold}${f}${SisClr_None}"
+
     if is_skipped_interactive_example "$f"; then
 
       if [ $ListOnly -ne 0 ]; then
 
-        echo "would skip $SisClr_Blue$SisClr_Bold$f$SisClr_None (interactive; --skip-interactive)"
-
+        echo "would skip ${fClr} (interactive; --skip-interactive)"
       else
 
         echo
-        echo "skipping $SisClr_Blue$SisClr_Bold$f$SisClr_None (interactive; --skip-interactive)"
+        echo "skipping ${fClr} (interactive; --skip-interactive)"
       fi
 
       continue
@@ -255,15 +358,15 @@ if [ $status -eq 0 ]; then
 
     if [ $ListOnly -ne 0 ]; then
 
-      echo "would execute $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
+      echo "would execute ${fClr}:"
 
       continue
     fi
 
     echo
-    echo "executing $SisClr_Blue$SisClr_Bold$f$SisClr_None:"
+    echo "executing ${fClr}:"
 
-    if $f; then
+    if "$f"; then
 
       :
     else

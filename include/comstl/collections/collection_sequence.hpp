@@ -4,7 +4,7 @@
  * Purpose:  STL sequence for COM collection interfaces.
  *
  * Created:  17th September 1998
- * Updated:  20th March 2025
+ * Updated:  15th October 2026
  *
  * Thanks:   To Eduardo Bezerra and Vivi Orunitia for reporting
  *           incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -12,7 +12,7 @@
  *
  * Home:     http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 19
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     126
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -185,7 +185,7 @@ typedef collection_sequence<
  * \note The iterator instances returned by begin() and end() are valid outside
  *   the lifetime of the collection instance from which they are obtained
  *
- * \remarks A detailed examination of the design and implementation of this
+ * \note A detailed examination of the design and implementation of this
  *   class template is described in Chapters 28 and 29 of
  *   <a href="http://www.extendedstl.com/"><b>Extended STL, volume 1</b></a>
  *   (published by Addison-Wesley, June 2007).
