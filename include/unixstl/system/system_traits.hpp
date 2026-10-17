@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,10 +53,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      141
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     7
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,6 +75,9 @@
 # include <unixstl/system/directory_functions.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS */
 
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS
 # include <stlsoft/string/c_string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS */
@@ -90,6 +93,7 @@
 #elif defined(_WIN32) ||\
       defined(_WIN64)
 # include <ctype.h>
+# include <wctype.h>
 #endif /* Windows */
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -124,6 +128,10 @@
 # define STLSOFT_INCL_H_STDLIB
 # include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 #ifndef STLSOFT_INCL_H_UNISTD
 # define STLSOFT_INCL_H_UNISTD
 # include <unistd.h>
@@ -760,7 +768,54 @@ public:
     path_str_compare(
         char_type const*    ps1
     ,   char_type const*    ps2
-    );
+    )
+    {
+        UNIXSTL_ASSERT(NULL != ps1);
+        UNIXSTL_ASSERT(NULL != ps2);
+
+        for (;; ++ps1, ++ps2)
+        {
+            int_type d = int_type(*ps1) - int_type(*ps2);
+#ifdef _WIN32
+
+            if (0 != d)
+            {
+                d = towupper(*ps1) - towupper(*ps2);
+            }
+
+            if (0 != d)
+            {
+                switch (*ps1)
+                {
+                case L'/':
+                case L'\\':
+
+                    switch (*ps2)
+                    {
+                    case L'/':
+                    case L'\\':
+
+                        d = 0;
+                        break;
+                    }
+                    break;
+                }
+            }
+#endif
+
+            if (0 != d)
+            {
+                return d;
+            }
+
+            if (L'\0' == *ps1)
+            {
+                break;
+            }
+        }
+
+        return 0;
+    }
 
     static
     int
@@ -768,7 +823,49 @@ public:
         char_type const*    ps1
     ,   char_type const*    ps2
     ,   size_type           cch
-    );
+    )
+    {
+        UNIXSTL_ASSERT(NULL != ps1);
+        UNIXSTL_ASSERT(NULL != ps2);
+
+        for (; 0 != cch; ++ps1, ++ps2, --cch)
+        {
+            int_type d = int_type(*ps1) - int_type(*ps2);
+#ifdef _WIN32
+
+            if (0 != d)
+            {
+                d = towupper(*ps1) - towupper(*ps2);
+            }
+
+            if (0 != d)
+            {
+                switch (*ps1)
+                {
+                case L'/':
+                case L'\\':
+
+                    switch (*ps2)
+                    {
+                    case L'/':
+                    case L'\\':
+
+                        d = 0;
+                        break;
+                    }
+                    break;
+                }
+            }
+#endif
+
+            if (0 != d)
+            {
+                return d;
+            }
+        }
+
+        return 0;
+    }
 
 public:
     static
@@ -783,13 +880,31 @@ public:
         return unixstl_C_get_home_directory_w(buffer, cchBuffer);
     }
 
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_home_directory(
+        T_resizeableBuffer& rb
+    )
+    {
+        size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
+
+        rb.resize(cchRequired);
+
+        return get_home_directory(&rb[0], rb.size());
+    }
+
 public:
-    static module_type load_library(char_type const* name);
+    /* Dynamic loading stays declare-only on W until load_library and
+     * free_library can land together with one conversion policy.
+     */
+    static module_type load_library(char_type const* name)
+    ;
 
     static bool_type free_library(module_type hModule)
-    {
-        return 0 == ::dlclose(hModule);
-    }
+    ;
 
     static
     void*
@@ -826,6 +941,10 @@ public:
     }
 
 public:
+    /* Policy: convert wide name/value via the locale multibyte encoding
+     * for getenv(). expand_environment_strings remains declared (compat)
+     * pending a finished group implementation aligned with ANSI.
+     */
     static
     size_type
     get_environment_variable(
@@ -833,7 +952,77 @@ public:
     ,   char_type           buffer[]
     ,   size_type           cchBuffer
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != name);
+
+        size_t const cchName = ::wcstombs(NULL, name, 0);
+
+        if (static_cast<size_t>(-1) == cchName)
+        {
+            return 0;
+        }
+
+        STLSOFT_NS_QUAL(auto_buffer)<char> name_m(cchName + 1);
+
+        if (name_m.empty())
+        {
+            return 0;
+        }
+
+        if (static_cast<size_t>(-1) == ::wcstombs(&name_m[0], name, name_m.size()))
+        {
+            return 0;
+        }
+
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
+        char const* const var = ::getenv(name_m.data());
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+
+        if (NULL == var)
+        {
+            return 0;
+        }
+        else
+        {
+            size_t const cchValue = ::mbstowcs(NULL, var, 0);
+
+            if (static_cast<size_t>(-1) == cchValue)
+            {
+                return 0;
+            }
+
+            if (NULL == buffer)
+            {
+                return cchValue;
+            }
+            else
+            {
+                STLSOFT_NS_QUAL(auto_buffer)<char_type> value_w(cchValue + 1);
+
+                if (value_w.empty())
+                {
+                    return 0;
+                }
+
+                if (static_cast<size_t>(-1) == ::mbstowcs(&value_w[0], var, value_w.size()))
+                {
+                    return 0;
+                }
+
+                size_type const writtenLen = (cchValue < cchBuffer) ? cchValue : cchBuffer;
+
+                char_copy(buffer, value_w.data(), writtenLen);
+                if (writtenLen < cchBuffer)
+                {
+                    buffer[writtenLen] = L'\0';
+                }
+
+                return (cchValue < cchBuffer) ? cchValue : cchBuffer;
+            }
+        }
+    }
 
     template<
         ss_typename_param_k T_resizeableBuffer
@@ -844,7 +1033,18 @@ public:
         char_type const*    name
     ,   T_resizeableBuffer& rb
     )
-    ;
+    {
+        size_type const cchRequired = get_environment_variable(name, static_cast<char_type*>(NULL), 0);
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        rb.resize(cchRequired);
+
+        return get_environment_variable(name, &rb[0], rb.size());
+    }
 
     static
     size_type
