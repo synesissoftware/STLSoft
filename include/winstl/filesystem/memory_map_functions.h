@@ -4,11 +4,11 @@
  * Purpose: Windows memory mapping functions.
  *
  * Created: 15th December 1996
- * Updated: 27th December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR      3
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   9
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       126
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -203,7 +203,7 @@ winstl_C_map_named_view_of_file_by_handle_v_(
  *   the calling thread's last-error code, even if successful (when it will
  *   set it to <code>ERROR_SUCCESS</code>).
  *
- * \pre (INVALID_HANDLE_VALUE != hFile)
+ * \pre INVALID_HANDLE_VALUE != hFile
  */
 STLSOFT_INLINE
 void*

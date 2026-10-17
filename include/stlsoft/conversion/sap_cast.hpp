@@ -5,11 +5,11 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     20th March 2025
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       61
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,7 +131,7 @@ short*        ps = stlsoft::sap_cast<short*>(pi);
  *
  * \param from The pointer to cast from.
  *
- * \remarks The cast operator was inspired by an item in the
+ * \note The cast operator was inspired by an item in the
  *   Sutter/Alexandrescu coding standards book, and its names stands for
  *   Sutter-Alexandrescu-Pointer cast. The acronym is overloaded, since one
  *   might also be said to be a sap if one made injudicious use of the cast,

@@ -4,11 +4,11 @@
  * Purpose: Allocator commmon features.
  *
  * Created: 20th August 2003
- * Updated: 28th July 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 17
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     71
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,10 +134,10 @@ namespace stlsoft
  *      winstl::processheap_allocator |
  *      winstl::shell_allocator
  *
- * \remarks This uses the SCTP/CRTP (Simulated Compile-time Polymorphism / Curiously
- * Recurring Template Pattern) technique, such that derived classes inherit from
- * specialisations of the adaptor template which specify their fully derived
- * template-id as the first parameter
+ * \note This uses the SCTP/CRTP (Simulated Compile-time Polymorphism /
+ *   Curiously Recurring Template Pattern) technique, such that derived
+ *   classes inherit from specialisations of the adaptor template which
+ *   specify their fully derived template-id as the first parameter.
  *
  * \note By default, an allocation failure results in a thrown std::bad_alloc. If
  * the compiler does not throwing std::bad_alloc by default, this behaviour can be
@@ -264,8 +264,8 @@ public:
     /// The method is functionally identical to
     ///    <code>static_cast<char*>(allocate(n, NULL))</code>
     ///
-    /// \remarks This method is only defined when the symbol
-    ///   \ref STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD is defined.
+    /// \note This method is only defined when the
+    ///   symbol \ref STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD is defined.
     char* _Charalloc(size_type n)
     {
 # ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT

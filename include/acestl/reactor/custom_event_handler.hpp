@@ -4,11 +4,11 @@
  * Purpose: Event handler class for custom event notifications.
  *
  * Created: 1st October 2004
- * Updated: 21st March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR       2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR       1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION    13
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        47
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -347,7 +347,7 @@ public:
      *
      * \return \c nullptr on failure, the event id on success
      *
-     * \remarks The custom event can be cancelled via cancel_custom_event()
+     * \note The custom event can be cancelled via cancel_custom_event().
      *
      * \note Custom events are "one-shot". When the event delay elapses and the
      * handle_custom_event() callback is called, the event has been deregistered from
@@ -365,7 +365,7 @@ public:
      *
      * \return \c nullptr on failure, the event id on success
      *
-     * \remarks The custom event can be cancelled via cancel_custom_event()
+     * \note The custom event can be cancelled via cancel_custom_event().
      *
      * \note Custom events are "one-shot". When the event delay elapses and the
      * handle_custom_event() callback is called, the event has been deregistered from

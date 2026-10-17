@@ -5,11 +5,11 @@
  *          for decimal representation.
  *
  * Created: 1st November 2011
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_REVISION 13
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_EDIT     23
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,7 +98,7 @@ namespace stlsoft
 /** Converts an integer value into a decimal string representation in the
  * given character buffer with grouping characters according to the given
  * picture, assigning the number of characters (excluding the
- * nul-terminator) written into the given size variable.
+ * NUL character) written into the given size variable.
  *
  * \tparam C1 Character type 1
  * \tparam C2 Character type 2
@@ -113,7 +113,7 @@ namespace stlsoft
  * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
  * \param value The number to be converted;
  * \param numWritten Pointer to a variable to receive the number of
- *   characters written (excluding nul-terminator)
+ *   characters written (excluding NUL character);
  *
  * \pre nullptr != buf
  * \pre cchBuf > integral_format_width_limits<I>::maxDecimalWidth
