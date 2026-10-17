@@ -4,11 +4,11 @@
  * Purpose: Efficient drop-in replacement for strftime().
  *
  * Created: 23rd December 2018
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MAJOR       1
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MINOR       3
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_REVISION    1
-# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        17
+# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1095,7 +1095,7 @@ finish_sliced_item:
  * \pre nullptr != tm
  * \pre 0 == cchDest || nullptr != dest
  *
- * \remarks The following formatting codes (supported by VC++ 6) are supported:
+ * \note The following formatting codes (supported by VC++ 6) are supported:
  * \li \c \% - a percent sign
  * \li \c a - weekday name (abbreviated)
  * \li \c A - weekday name (full)
@@ -1116,7 +1116,8 @@ finish_sliced_item:
  * \li \c y - year without century, as decimal number [0-99]
  * \li \c Y - year with century, as decimal number
  *
- * \remarks The following formatting codes (supported by VC++ 10) are supported:
+ * \note The following formatting codes (supported by VC++ 10) are
+ *   supported:
  * \li \c D - equivalent to "%m/%d/%y"
  * \li \c e - day of month as space-padded decimal number [ 1-31]
  * \li \c F - equivalent to "%Y-%m-%d"
@@ -1126,7 +1127,7 @@ finish_sliced_item:
  * \li \c T - equivalent to "%H:%M:%S"
  * \li \c u - weekday, with Monday as 1, as decimal number [1-7]
  *
- * \remarks The following formatting codes are not supported
+ * \note The following formatting codes are not supported
  * \li \c c -
  * \li \c g -
  * \li \c G -
@@ -1138,7 +1139,7 @@ finish_sliced_item:
  * \li \c z -
  * \li \c Z -
  *
- * \remarks The following supported codes are modified by the '#'
+ * \note The following supported codes are modified by the '#'
  *   character - e.g. "%#d" - to remove leading 0, if any:
  * \li \c d
  * \li \c D
@@ -1158,7 +1159,7 @@ finish_sliced_item:
  * \li \c y
  * \li \c Y
  *
- * \remarks The following supported codes are unmodified by the '#'
+ * \note The following supported codes are unmodified by the '#'
  *   character - e.g. "%#a":
  * \li \c \%
  * \li \c a

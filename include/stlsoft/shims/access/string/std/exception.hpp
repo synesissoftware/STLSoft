@@ -4,11 +4,11 @@
  * Purpose: Contains the string access shims for std::exception.
  *
  * Created: 2nd May 2003
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    15
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        61
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ struct ximpl_stlsoft_shims_access_string_std_exception_
 {
 public:
     //
-    // *numConverted excludes the nul-terminator
+    // *numConverted excludes the NUL character
     static
     int
     mbstowcs_(
@@ -146,7 +146,7 @@ public:
         {
             STLSOFT_ASSERT(0 != *numConverted);
 
-            --*numConverted; // mbstowcs_s() always adds one for nul-terminator
+            --*numConverted; // mbstowcs_s() always adds one for NUL character
         }
 
         return r;
@@ -167,7 +167,7 @@ public:
     }
 
     //
-    // *numConverted excludes the nul-terminator
+    // *numConverted excludes the NUL character
     static
     int
     mbstowcs_len(
@@ -185,7 +185,7 @@ public:
         {
             STLSOFT_ASSERT(0 != *len);
 
-            --*len; // mbstowcs_s() always adds one for nul-terminator
+            --*len; // mbstowcs_s() always adds one for NUL character
         }
 
         return r;

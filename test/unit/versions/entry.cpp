@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 10th October 2026
+ * Updated: 17th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -152,7 +152,7 @@ static void TEST__ATLSTL_VER()
 
 static void TEST__PLATFORMSTL_VER()
 {
-	TEST_INT_EQ(_PLATFORMSTL_VER_1_10_0_B02, _PLATFORMSTL_VER);
+	TEST_INT_EQ(_PLATFORMSTL_VER_1_10_0_B03, _PLATFORMSTL_VER);
 }
 
 #if 0
@@ -166,7 +166,7 @@ static void TEST__UNIXSTL_VER()
 
 static void TEST__COMSTL_VER()
 {
-	TEST_INT_EQ(_COMSTL_VER_1_10_3, _COMSTL_VER);
+	TEST_INT_EQ(_COMSTL_VER_1_10_4, _COMSTL_VER);
 }
 
 static void TEST__WINSTL_VER()
