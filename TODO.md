@@ -44,6 +44,8 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] Existing test consistency (deep analysis);
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components;
+* [ ] All precondition enforcements => \pre;
+* [ ] All \pre => precondition enforcements;
 
 
 ### 1.11.3

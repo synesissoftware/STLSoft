@@ -5,7 +5,7 @@
  *          representation.
  *
  * Created: 14th February 2024
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_EDIT     3
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -245,8 +245,7 @@ unsigned_integer_to_base36_string_3_(
 
     T_character* end = buf + (cchBuf - 1);
 
-    // Whichever we do it, we write the nul-terminator (and move down
-    // one)
+    // Whichever we do it, we write the NUL character (and move down one)
     *end-- = '\0';
 
     STLSOFT_COVER_MARK_LINE();
@@ -649,7 +648,7 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_I2S)
 
 /** Converts an integer value into a base-36 string representation in the
  * given character buffer, assigning the number of characters (excluding
- * the nul-terminator) written into the given size variable.
+ * the NUL character) written into the given size variable.
  *
  * \tparam T_integer Type of the integer to be converted
  * \tparam T_character Type of the character array into which the conversion
@@ -659,7 +658,7 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_I2S)
  * \param cchBuf Number of character available in \c buf
  * \param i The value to be converted to octal string
  * \param numWritten Pointer to a variable to receive the number of
- *   characters written (excluding nul-terminator)
+ *   characters written (excluding NUL character);
  *
  * \pre nullptr != buf
  * \pre cchBuf > integral_format_width_limits<T_integer>::maxHexatridecimalWidth
