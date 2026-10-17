@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 29th September 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      287
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      288
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1747,7 +1747,7 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 
     ss_size_t const members = (STLSOFT_RAW_OFFSETOF(string_buffer, contents) + (sizeof(char_type) - 1)) / sizeof(char_type);
 
-    capacity += 1;                                              // for NUL-terminator
+    capacity += 1;                                              // for NUL character
     capacity += members;                                        // include the internal members.
     capacity = (alloc_quantum + capacity) & ~alloc_quantum;     // round up to (alloc_quantum + 1)
 
@@ -3036,7 +3036,7 @@ inline
 ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference
 basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const STLSOFT_NOEXCEPT
 {
-    STLSOFT_MESSAGE_ASSERT("index access out of range in simple_string", index < size() + 1); // Valid to return (const) reference to NUL-terminator
+    STLSOFT_MESSAGE_ASSERT("index access out of range in simple_string", index < size() + 1); // Valid to return (const) reference to NUL character
 
     STLSOFT_ASSERT(is_valid());
 

@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 11th October 2026
+ * Updated: 15th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -332,7 +332,7 @@ public:
     /// \pre nullptr != dir
     ///
     /// \note \c dir is assumed to contain space for an additional
-    ///   character (if required) and NUL-terminator
+    ///   character (if required) and NUL character.
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static

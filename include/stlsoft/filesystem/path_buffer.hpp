@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_path_buffer template class.
  *
  * Created: 27th May 2020
- * Updated: 11th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -490,7 +490,7 @@ public: // accessors
     }
 
     /// \return The number of characters written, including the
-    ///   NUL-terminator if included
+    ///   NUL character if included.
     size_type
     copy(
         char_type   buffer[]

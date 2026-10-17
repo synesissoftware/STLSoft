@@ -4,11 +4,11 @@
  * Purpose: Enhanced ostream iterator.
  *
  * Created: 16th December 2005
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        56
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,8 +147,8 @@ std::copy(ints.begin(), ints.end(), stlsoft::ostream_iterator<int>(std::cout, "\
  * \param T The traits type. Defaults to <code>std::char_traits&lt;C></code>.
  * \param S The string type. Defaults to <code>std::basic_string&lt;C></code>.
  *
- * \remarks The class template avoids fatuous assignment syntax by using the
- *  \ref group__pattern__dereference_proxy "Dereference Proxy" pattern.
+ * \note The class template avoids fatuous assignment syntax by using
+ *   the \ref group__pattern__dereference_proxy "Dereference Proxy" pattern.
  */
 template<   ss_typename_param_k V
         ,   ss_typename_param_k C = char

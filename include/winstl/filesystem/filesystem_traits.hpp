@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 11th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -299,7 +299,7 @@ public:
     /// \pre nullptr != dir
     ///
     /// \note \c dir is assumed to contain space for an additional
-    ///   character (if required) and NUL-terminator
+    ///   character (if required) and NUL character.
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -1947,7 +1947,7 @@ public:
 
                             if (r + 2 < cchBuffer)
                             {
-                                // There's enough space for the result and the closing quote and the nul-terminator
+                                // There's enough space for the result and the closing quote and the NUL character
                                 buffer[r + 2] = '\0';
 
                                 n = r + 2;

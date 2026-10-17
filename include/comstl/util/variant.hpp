@@ -4,7 +4,7 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 11th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -127,7 +127,7 @@ namespace comstl_project
  *
  * \ingroup group__library__COM_Utility
  *
- * \remarks comstl::variant publicly derives from \c VARIANT as a measure of
+ * \note comstl::variant publicly derives from \c VARIANT as a measure of
  *   expedience, rather than as an act of design sophistication. Any manual
  *   manipulation of the instances, or their member variables, is at the
  *   user's risk. Notwithstanding, this is helped by the fact that

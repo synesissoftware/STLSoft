@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_shim_string template class.
  *
  * Created: 9th July 2004
- * Updated: 11th October 2026
+ * Updated: 15th October 2026
  *
  * Thanks:  Dimitri Kaparis, for spotting a typo in the string access shims.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        75
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -199,7 +199,7 @@ public:
 public:
     /// Creates an empty instance
     ///
-    /// \remarks the 0th element is assigned the nul terminator
+    /// \note the 0th element is assigned the NUL character.
     basic_shim_string()
         : m_len(0)
         , m_buffer(1)
@@ -214,8 +214,8 @@ public:
 
     /// Creates an instance with the given number of characters
     ///
-    /// \remarks the 0th and <code>n</code>th elements are assigned
-    ///   the nul terminator
+    /// \note the 0th and <code>n</code>th elements are assigned the
+    ///   NUL character.
     ss_explicit_k
     basic_shim_string(
         size_type n
@@ -235,7 +235,7 @@ public:
     /// Creates an instance containing the given number of characters from
     /// the given string
     ///
-    /// \remarks the <code>n</code>th element is assigned the nul terminator
+    /// \note the <code>n</code>th element is assigned the NUL character.
     basic_shim_string(
         char_type const*    s
     ,   size_type           n
@@ -421,7 +421,7 @@ public:
     }
 
     /// Changes the size of the storage to at least the given size, and
-    /// applies the nul-terminator
+    /// applies the NUL character.
     ///
     /// \note No elements in the range [0, n) are affected, which means that
     ///   the string may contain embedded nuls. It is entirely the user's

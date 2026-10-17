@@ -4,7 +4,7 @@
  * Purpose:     System information functions.
  *
  * Created:     5th November 2014
- * Updated:     11th October 2026
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -148,9 +148,9 @@ winstl_C_system_information_functions_MORE_DATA_(
  *   written
  * \param cchBuffer Number of character spaces available in \c buffer
  *
- * \return The number of characters excluding the nul-terminator written if
+ * \return The number of characters excluding the NUL character written if
  *   cchBuffer is sufficient; the number of characters including the
- *   nul-terminator if cchBuffer is insufficient.
+ *   NUL character if cchBuffer is insufficient.
  *
  * \note There is a defect in GetComputerNameA(), in that the required size
  *   is not returned when the buffer is insufficient. This is handled by
@@ -258,9 +258,9 @@ winstl_C_get_computer_name_w(
  *   written
  * \param cchBuffer Number of character spaces available in \c buffer
  *
- * \return The number of characters excluding the nul-terminator written if
+ * \return The number of characters excluding the NUL character written if
  *   cchBuffer is sufficient; the number of characters including the
- *   nul-terminator if cchBuffer is insufficient.
+ *   NUL character if cchBuffer is insufficient.
  *
  * \note GetUserNameA() has the unpleasant semantics that it returns double
  *   the required number of characters when \c buffer is insufficient. This

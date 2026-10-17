@@ -5,13 +5,13 @@
  *          types.
  *
  * Created: 1st November 1994
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  Adi Shavit, for requesting the indirect functionality
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_MINOR      7
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_REVISION   3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_EDIT       694
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_EDIT       695
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -618,7 +618,7 @@ public:
 
     /// Detaches the resource, and returns it to the caller.
     ///
-    /// \remarks Calling this method removes the resource from the managing
+    /// \note Calling this method removes the resource from the managing
     ///   instance, so it will not be automatically closed.
     resource_type detach() STLSOFT_NOEXCEPT
     {
@@ -834,7 +834,7 @@ public:
 
     /// Detaches the resource, and returns it to the caller.
     ///
-    /// \remarks Calling this method removes the resource from the managing
+    /// \note Calling this method removes the resource from the managing
     ///   instance, so it will not be automatically closed.
     resource_type detach() STLSOFT_NOEXCEPT
     {

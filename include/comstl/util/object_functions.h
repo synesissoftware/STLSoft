@@ -4,7 +4,7 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 2nd March 1996
- * Updated: 11th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -108,7 +108,7 @@ namespace comstl_project
  *
  * \pre p is nullptr, or a valid pointer to a COM interface
  *
- * \remarks If the function success, the caller must release the reference
+ * \note If the function success, the caller must release the reference
  *   count associated with the interface pointer in \c *identity.
  *
  * \note Intended for use in C-compilation units only. For C++, use
@@ -306,7 +306,7 @@ namespace comstl
  *
  * \pre p is nullptr, or a valid pointer to a COM interface
  *
- * \remarks If the function success, the caller must release the reference
+ * \note If the function success, the caller must release the reference
  *   count associated with the interface pointer in \c *identity.
  *
  * \note Implemented in terms of the C-compatible function

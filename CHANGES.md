@@ -1,7 +1,7 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc9 - 17th October 2026
+## 1.11.1-rc9 - 18th October 2026
 
 * docs:
   * Normalised Doxygen `\pre` comments to bare boolean expressions (no outer parentheses; no trailing `;` / `.`);
