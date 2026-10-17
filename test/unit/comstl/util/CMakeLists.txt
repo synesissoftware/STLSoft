@@ -1,8 +1,8 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(GUID_functions.C)
+add_subdirectory(VARIANT_functions.C)
 add_subdirectory(test.unit.comstl.util.CY_functions.C)
 add_subdirectory(test.unit.comstl.util.DECIMAL_functions.C)
-add_subdirectory(test.unit.comstl.util.GUID_functions.C)
-add_subdirectory(test.unit.comstl.util.VARIANT_functions.C)
 add_subdirectory(test.unit.comstl.util.acyclic_connector)
 add_subdirectory(test.unit.comstl.util.creation_functions)
 add_subdirectory(test.unit.comstl.util.guid)

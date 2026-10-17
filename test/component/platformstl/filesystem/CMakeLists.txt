@@ -1,11 +1,11 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(file_lines)
 add_subdirectory(handles)
 add_subdirectory(test.component.platformstl.filesystem.FILE_stream)
 add_subdirectory(test.component.platformstl.filesystem.current_directory)
 add_subdirectory(test.component.platformstl.filesystem.current_directory_scope)
 add_subdirectory(test.component.platformstl.filesystem.cwd_stack)
 add_subdirectory(test.component.platformstl.filesystem.directory_functions)
-add_subdirectory(test.component.platformstl.filesystem.file_lines)
 add_subdirectory(test.component.platformstl.filesystem.file_path_buffer)
 add_subdirectory(test.component.platformstl.filesystem.filesystem_traits)
 add_subdirectory(test.component.platformstl.filesystem.memory_mapped_file)

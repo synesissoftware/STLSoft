@@ -4,13 +4,13 @@
  * Purpose: integral_format_width_limits traits class template.
  *
  * Created: 10th July 2012
- * Updated: 28th May 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_REVISION   2
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       16
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,7 +99,7 @@ namespace stlsoft
 ///   functions such as <code>printf()</code>.
 ///
 /// \note The lengths given do <strong>not</strong> count the
-///  nul-terminator character.
+///   NUL character character.
 ///
 /// \param I The integral type for which the
 template <ss_typename_param_k I>

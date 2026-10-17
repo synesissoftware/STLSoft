@@ -1,4 +1,5 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(system_traits)
 add_subdirectory(test.unit.winstl.system.commandline_parser)
 add_subdirectory(test.unit.winstl.system.console_colour_scope)
 add_subdirectory(test.unit.winstl.system.console_ctrl_handler_scope)
@@ -12,7 +13,6 @@ add_subdirectory(test.unit.winstl.system.os_version.C)
 add_subdirectory(test.unit.winstl.system.system_info)
 add_subdirectory(test.unit.winstl.system.system_information_functions)
 add_subdirectory(test.unit.winstl.system.system_information_functions.C)
-add_subdirectory(test.unit.winstl.system.system_traits)
 add_subdirectory(test.unit.winstl.system.system_version)
 add_subdirectory(test.unit.winstl.system.temporary_file_name)
 add_subdirectory(test.unit.winstl.system.user_name)

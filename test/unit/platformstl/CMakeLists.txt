@@ -2,5 +2,6 @@
 add_subdirectory(error)
 add_subdirectory(exception)
 add_subdirectory(performance)
+add_subdirectory(process)
 add_subdirectory(synch)
 add_subdirectory(system)

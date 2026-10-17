@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  7th August 2026
+# Updated:  10th October 2026
 #
 # ######################################################################## #
 
@@ -112,7 +112,7 @@ if(MFC_FOUND)
 	# static CRT (**MSVC_USE_MT**), in which case static MFC is required.
 	#
 	# **CMAKE_MFC_FLAG** / **_AFXDLL** are applied only to MFC-consuming
-	# targets (see **test/unit/mfcstl** and **test.unit.versions**). Setting
+	# targets (see **test/unit/mfcstl** and **test/unit/versions**). Setting
 	# them project-wide would force every subsequent MSVC executable to link
 	# MFC. Without them on those targets, `find_package(MFC)` can succeed
 	# while mfcstl tests fail to link — the historical GHA failure mode.

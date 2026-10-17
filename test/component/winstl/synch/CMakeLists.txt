@@ -1,5 +1,8 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(test.component.winstl.synch.atomic_functions)
 add_subdirectory(test.component.winstl.synch.atomic_functions.C)
 add_subdirectory(test.component.winstl.synch.process_mutex)
-add_subdirectory(test.component.winstl.synch.spin_mutex)
+
+if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2011)
+
+	add_subdirectory(atomic_functions)
+	add_subdirectory(spin_mutex)
+endif()

@@ -1,5 +1,5 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(test.unit.stlsoft.iterator.FILE_iterator)
+add_subdirectory(FILE_iterator)
 add_subdirectory(test.unit.stlsoft.iterator.associative_eraser_iterator)
 add_subdirectory(test.unit.stlsoft.iterator.associative_select_iterator)
 add_subdirectory(test.unit.stlsoft.iterator.eraser_iterator)

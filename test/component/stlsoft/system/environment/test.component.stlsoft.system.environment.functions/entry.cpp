@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `stlsoft/system/environment/functions`.
  *
  * Created: 9th August 2026
- * Updated: 9th August 2026
+ * Updated: 17th October 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -65,7 +65,7 @@ namespace {
 
 static void test_environment_variable_exists()
 {
-    TEST_BOOLEAN_TRUE(0 != stlsoft::stlsoft_C_environment_variable_exists_a("PATH"));
+    TEST_BOOLEAN_TRUE(0 != stlsoft::stlsoft_C_environment_variable_exists_m("PATH"));
 }
 } // anonymous namespace
 

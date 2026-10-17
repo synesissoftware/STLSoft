@@ -47,6 +47,8 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
 * [ ] Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;
+* [ ] All precondition enforcements => \pre;
+* [ ] All \pre => precondition enforcements;
 
 
 ### 1.11.3
@@ -55,7 +57,7 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
 * [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
-* [ ] Add **test.performance.stlsoft.util.bit_functions**;
+* [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 
 

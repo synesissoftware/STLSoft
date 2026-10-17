@@ -4,13 +4,13 @@
  * Purpose: Helper functions for the Windows time types.
  *
  * Created: 2nd December 2004
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  David Wang, for spotting an error in one of the shim functions.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    18
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        78
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,7 +270,7 @@ stream_insert(S &stm, SYSTEMTIME const& t)
             // Because it's possible for external action to change the date
             // and/or time pictures between the call to calc_sizes and the
             // two preceeding calls, we guard against an unterminated
-            // C-style string by forcibly appending the nul-terminator that
+            // C-style string by forcibly appending the NUL character that
             // GetTimeFormat() will do for us normally.
             s.data()[cchTotal] = '\0';
         }
@@ -345,7 +345,7 @@ c_str_ptr_a(
         // Because it's possible for external action to change the date
         // and/or time pictures between the call to calc_sizes and the
         // two preceeding calls, we guard against an unterminated
-        // C-style string by forcibly appending the nul-terminator that
+        // C-style string by forcibly appending the NUL character that
         // GetTimeFormat() will do for us normally.
         s.data()[cchTotal] = '\0';
     }
@@ -395,7 +395,7 @@ c_str_ptr_w(
         // Because it's possible for external action to change the date
         // and/or time pictures between the call to calc_sizes and the
         // two preceeding calls, we guard against an unterminated
-        // C-style string by forcibly appending the nul-terminator that
+        // C-style string by forcibly appending the NUL character that
         // GetTimeFormat() will do for us normally.
         s.data()[cchTotal] = '\0';
     }

@@ -82,8 +82,9 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
-#if defined(WINSTL_OS_IS_WIN64) || \
-    defined(_Wp64)
+#if 0
+#elif defined(WINSTL_OS_IS_WIN64) ||\
+      defined(_Wp64)
 
 # define _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
 #endif /* _WIN64 || _M_IA64 */
@@ -150,7 +151,7 @@
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -1854,7 +1855,7 @@ private:
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace winstl
 # else

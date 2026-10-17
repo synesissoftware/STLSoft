@@ -4,11 +4,11 @@
  * Purpose:     System information functions.
  *
  * Created:     5th November 2014
- * Updated:     11th March 2024
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -148,16 +148,16 @@ winstl_C_system_information_functions_MORE_DATA_(
  *   written
  * \param cchBuffer Number of character spaces available in \c buffer
  *
- * \return The number of characters excluding the nul-terminator written if
+ * \return The number of characters excluding the NUL character written if
  *   cchBuffer is sufficient; the number of characters including the
- *   nul-terminator if cchBuffer is insufficient.
+ *   NUL character if cchBuffer is insufficient.
  *
  * \note There is a defect in GetComputerNameA(), in that the required size
  *   is not returned when the buffer is insufficient. This is handled by
  *   providing an empty buffer of maximum size and then returning the actual
  *   length (+1)
  *
- * \pre 0 == cchBuffer || NULL != buffer
+ * \pre 0 == cchBuffer || nullptr != buffer
  */
 STLSOFT_INLINE
 ws_size_t
@@ -258,15 +258,15 @@ winstl_C_get_computer_name_w(
  *   written
  * \param cchBuffer Number of character spaces available in \c buffer
  *
- * \return The number of characters excluding the nul-terminator written if
+ * \return The number of characters excluding the NUL character written if
  *   cchBuffer is sufficient; the number of characters including the
- *   nul-terminator if cchBuffer is insufficient.
+ *   NUL character if cchBuffer is insufficient.
  *
  * \note GetUserNameA() has the unpleasant semantics that it returns double
  *   the required number of characters when \c buffer is insufficient. This
  *   is corrected in this implementation
  *
- * \pre 0 == cchBuffer || NULL != buffer
+ * \pre 0 == cchBuffer || nullptr != buffer
  */
 STLSOFT_INLINE
 ws_size_t

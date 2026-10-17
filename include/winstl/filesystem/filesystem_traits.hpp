@@ -5,11 +5,11 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 28th May 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        194
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,7 +149,7 @@
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -299,7 +299,7 @@ public:
     /// \pre nullptr != dir
     ///
     /// \note \c dir is assumed to contain space for an additional
-    ///   character (if required) and NUL-terminator
+    ///   character (if required) and NUL character.
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -803,13 +803,13 @@ public:
     static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
     /// Gets the file attributes for the given path
     ///
-    /// \pre (nullptr != path);
-    /// \pre (nullptr != attr);
+    /// \pre nullptr != path
+    /// \pre nullptr != attr
     static bool_type    get_file_attributes(char_type const* path, file_attributes_type* attr);
     /// Sets the file attributes for the given path
     ///
-    /// \pre (nullptr != path);
-    /// \pre (INVALID_FILE_ATTRIBUTES != attr);
+    /// \pre nullptr != path
+    /// \pre INVALID_FILE_ATTRIBUTES != attr
     static bool_type    set_file_attributes(char_type const* path, file_attributes_type const attr);
 
     /// Returns whether the given stat info represents a file
@@ -868,7 +868,7 @@ public:
     static large_size_type  get_file_size(stat_data_type const& sd);
     /// Gets the size of the file
     ///
-    /// \pre (nullptr != psd)
+    /// \pre nullptr != psd
     static large_size_type  get_file_size(stat_data_type const* psd);
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
@@ -973,7 +973,7 @@ public: // types
     typedef DWORD                                           error_type;
     typedef DWORD                                           file_attributes_type;
 private:
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
     typedef STLSOFT_NS_QUAL(auto_buffer)<char_type>         buffer_type_;
 #endif /* compiler */
@@ -1696,9 +1696,10 @@ public:
     {
         return WINSTL_CONST_MAX_PATH;
     }
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
+      _MSC_VER < 1200
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
     static
     size_type
     get_full_path_name(
@@ -1946,7 +1947,7 @@ public:
 
                             if (r + 2 < cchBuffer)
                             {
-                                // There's enough space for the result and the closing quote and the nul-terminator
+                                // There's enough space for the result and the closing quote and the NUL character
                                 buffer[r + 2] = '\0';
 
                                 n = r + 2;
@@ -2236,7 +2237,7 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
 
         size_type const len         =   class_type::str_len(path);
@@ -2315,8 +2316,8 @@ public:
     }
 
 #if 0
-    /// \pre (nullptr != path);
-    /// \pre (INVALID_FILE_ATTRIBUTES != attr);
+    /// \pre nullptr != path
+    /// \pre INVALID_FILE_ATTRIBUTES != attr
 #endif
 
     static bool_type is_file(stat_data_type const* stat_data)
@@ -2594,7 +2595,7 @@ public: // types
     typedef DWORD                                           error_type;
     typedef DWORD                                           file_attributes_type;
 private:
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
     typedef STLSOFT_NS_QUAL(auto_buffer)<char_type>         buffer_type_;
 #endif /* compiler */
@@ -3596,7 +3597,7 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
 
         size_type const len         =   class_type::str_len(path);
@@ -3933,7 +3934,7 @@ private:
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace winstl
 # else

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/environment/functions.hpp
+ * File:    stlsoft/system/environment/functions.hpp
  *
- * Purpose:     Environment functions.
+ * Purpose: Environment functions.
  *
- * Created:     31st October 2019
- * Updated:     20th March 2025
+ * Created: 31st October 2019
+ * Updated: 11th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      4
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_REVISION  2
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_HPP_FUNCTIONS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,7 +101,7 @@ struct ximpl_stlsoft_environment_functions_hpp_
         char const* name
     )
     {
-        return stlsoft_C_environment_variable_exists_a(name);
+        return stlsoft_C_environment_variable_exists_m(name);
     }
 #if 0
 
@@ -127,7 +127,7 @@ struct ximpl_stlsoft_environment_functions_hpp_
  * \retval 0 The environment variable does not exist
  * \retval !0 The environment variable does exist
  *
- * \pre (NULL != name)
+ * \pre nullptr != name
  */
 template <ss_typename_param_k T>
 inline

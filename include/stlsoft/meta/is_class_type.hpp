@@ -4,11 +4,11 @@
  * Purpose:     is_class_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     20th March 2025
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_REVISION    7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_EDIT        22
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_CLASS_TYPE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,15 +128,15 @@ two_t is_class_type_func(...);
 /** Traits type used to determine whether the given type is
  *    of class type.
  *
- * \remarks Compatibility:
- * - Borland C/C++ 5.6 compiles but thinks everything is a class type
- * - CodePlay compiles but thinks that nothing is a class type
- * - Comeau works with most things (not references)
- * - CodeWarrior 3.0+ compiles and works from version 8 onwards
- * - Digital Mars 8.40+ compiles and works with most things (not references)
- * - GCC works with most things (not references)
- * - Intel works with most things (not references)
- * - Visual C++ compiles and works from version 7.1 onwards with most things (not references)
+ * \note Compatibility:
+ * - Borland C/C++ 5.6 compiles but thinks everything is a class type;
+ * - CodePlay compiles but thinks that nothing is a class type;
+ * - Comeau works with most things (not references);
+ * - CodeWarrior 3.0+ compiles and works from version 8 onwards;
+ * - Digital Mars 8.40+ compiles and works with most things (not references);
+ * - GCC works with most things (not references);
+ * - Intel works with most things (not references);
+ * - Visual C++ compiles and works from version 7.1 onwards with most things (not references);
  *
  * \ingroup group__library__Metaprogramming
  */

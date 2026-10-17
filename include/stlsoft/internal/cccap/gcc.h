@@ -110,6 +110,15 @@
 # define STLSOFT_INTERNAL_GCC_PATCHLEVEL_                   (0)
 #endif /* __GNUC_PATCHLEVEL__ */
 
+/** \def STLSOFT_GCC_VER A composite version object-like macro comprising
+ *  the major*10000 + minor*100 + patch, e.g. 30401 (3.4.1).
+ *
+ * \note Because several compilers (e.g. Clang) may offer GCC compatibility,
+ *  the presence of this symbol does NOT, in and of itself, mean that the
+ *  compiler is actually GCC. Rather, code must first check for definition
+ *  of STLSOFT_COMPILER_IS_GCC.
+ *
+ */
 #define STLSOFT_GCC_VER                                     \
                                                             \
     (                                                       \

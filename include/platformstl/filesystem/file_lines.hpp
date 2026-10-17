@@ -4,7 +4,7 @@
  * Purpose: Platform header for the file_lines components.
  *
  * Created: 25th October 2007
- * Updated: 20th March 2025
+ * Updated: 23rd September 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     52
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 4
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -106,6 +106,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 # include <stlsoft/string/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
+# include <stlsoft/util/minmax.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX */
 
 #ifndef STLSOFT_INCL_ALGORITHM
 # define STLSOFT_INCL_ALGORITHM
@@ -196,7 +199,6 @@ public: // construction
     /// Creates an empty instance
     basic_file_lines()
         : m_mmf()
-        , m_contents()
         , m_strings()
     {}
     /// Creates an instance from the (contents of) the given path
@@ -204,7 +206,6 @@ public: // construction
     ss_explicit_k
     basic_file_lines(S const& path)
         : m_mmf()
-        , m_contents()
         , m_strings()
     {
         create_(path);
@@ -217,7 +218,6 @@ public: // construction
     /// Move the
     basic_file_lines(class_type&& rhs) STLSOFT_NOEXCEPT
         : m_mmf(std::move(rhs.m_mmf))
-        , m_contents(std::move(rhs.m_contents))
         , m_strings(std::move(rhs.m_strings))
     {}
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
@@ -389,37 +389,26 @@ private: // implementation
         size_t                  cch     =   static_cast<size_type>(cb / sizeof(char_type));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        // check if it looks like a binary file
-        if (base + cch != std::find(base, base + cch, '\0'))
+        if (0u == cb)
         {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(invalid_file_type_exception("file is binary (or unsupported text encoding)", 0, path));
-#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
             return;
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
-        // 2. Create the contents string
+        // 2. Parse the file, and populate the strings collection
 
-        m_contents = base_string_type_(base, cch);
+        size_t const    numReserved = maximum(static_cast<size_t>(128), 1u + (cch / 10u));
 
-        STLSOFT_ASSERT(cch == m_contents.size());
-
-        // 3. Parse the file, and populate the strings collection
-
-        m_strings.reserve(1u + (cch / 10u));
+        m_strings.reserve(numReserved);
 
         // This can work with EOL of CRLF or of LF, or a combination of the
         // two.
 
-        char_type const* const  base1   =   m_contents.data();
+        char_type const* const  base1   =   base;
         char_type const*        begin   =   base1;
         char_type const* const  end     =   begin + cch;
         char_type const*        s0      =   begin;
         char_type               prev    =   '\0';
-//        bool const              hasLF   =   (base + cch != std::find(base, base + cch, '\n'));
 
-#if 1
         { for (; begin != end; ++begin)
         {
             char_type const     c   =   *begin;
@@ -427,12 +416,29 @@ private: // implementation
 
             switch (c)
             {
+            case '\0':
+
+                // reject if it looks like a binary file
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+                STLSOFT_THROW_X(invalid_file_type_exception("file is binary (or unsupported text encoding)", 0, path));
+#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+                return;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             case '\r':
                 if ('\r' == prev)
                 {
                     --eol;
 
-                    m_strings.push_back(value_string_type_(s0, eol));
+#if __cplusplus >= 201103L
+
+                    m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
+                    m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
 
                     s0 = begin;
                 }
@@ -443,7 +449,13 @@ private: // implementation
                     --eol;
                 }
 
-                m_strings.push_back(value_string_type_(s0, eol));
+#if __cplusplus >= 201103L
+
+                m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
+                m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
 
                 s0 = begin + 1;
                 break;
@@ -452,7 +464,13 @@ private: // implementation
                 {
                     --eol;
 
-                    m_strings.push_back(value_string_type_(s0, eol));
+#if __cplusplus >= 201103L
+
+                    m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
+                    m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
 
                     s0 = begin;
                 }
@@ -470,9 +488,14 @@ private: // implementation
                 --eol;
             }
 
-            m_strings.push_back(value_string_type_(s0, eol));
+#if __cplusplus >= 201103L
+
+            m_strings.emplace_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#else /* ? C++ 11+ */
+
+            m_strings.push_back(value_string_type_(s0, static_cast<size_type>(eol - s0)));
+#endif /* C++ 11+ */
         }
-#endif
 
         // Now determine whether we require the ongoing presence of the
         // underlying mapping. We can discard it if:
@@ -514,9 +537,8 @@ private: // implementation
     }
 
 private: // fields
-    HRW_Ref_type        m_mmf;
-    base_string_type_   m_contents;
-    strings_type_       m_strings;
+    HRW_Ref_type    m_mmf;
+    strings_type_   m_strings;
 };
 
 
