@@ -4,11 +4,11 @@
  * Purpose: Contains the string access shims for std::type_info.
  *
  * Created: 19th December 2011
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MINOR       3
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_REVISION    4
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        58
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -130,7 +130,7 @@ struct ximpl_stlsoft_shims_access_string_std_type_info_
 {
 public:
     //
-    // *numConverted excludes the nul-terminator
+    // *numConverted excludes the NUL character
     static
     int
     mbstowcs_(
@@ -141,7 +141,7 @@ public:
     ,   ss_size_t*          numConverted
     )
     {
-        // Always assume the nul-terminator
+        // Always assume the NUL character
         STLSOFT_ASSERT(NULL != mbs);
 
         STLSOFT_ASSERT(NULL != numConverted);
@@ -154,7 +154,7 @@ public:
         {
             STLSOFT_ASSERT(0 != *numConverted);
 
-            --*numConverted; // mbstowcs_s() always adds one for nul-terminator
+            --*numConverted; // mbstowcs_s() always adds one for NUL character
         }
 
         return r;
@@ -175,7 +175,7 @@ public:
     }
 
     //
-    // *numConverted excludes the nul-terminator
+    // *numConverted excludes the NUL character
     static
     int
     mbstowcs_len(
@@ -193,7 +193,7 @@ public:
         {
             STLSOFT_ASSERT(0 != *len);
 
-            --*len; // mbstowcs_s() always adds one for nul-terminator
+            --*len; // mbstowcs_s() always adds one for NUL character
         }
 
         return r;
