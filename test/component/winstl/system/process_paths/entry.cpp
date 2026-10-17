@@ -6,7 +6,7 @@
  *          and wide-character), including resizeable-buffer overloads.
  *
  * Created: 15th October 2026
- * Updated: 15th October 2026
+ * Updated: 18th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,6 +31,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/memory/auto_buffer.hpp>
+#include <winstl/filesystem/filesystem_traits.hpp>
 
 /* Standard C++ header files */
 #include <string>
@@ -39,7 +40,6 @@
 /* Standard C / Windows header files */
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -48,10 +48,10 @@
 
 namespace {
 
-    static void TEST_SIZE_QUERY_m();
-    static void TEST_SIZE_QUERY_w();
-    static void TEST_SIZE_THEN_SUFFICIENT_m();
-    static void TEST_SIZE_THEN_SUFFICIENT_w();
+    static void TEST_size_QUERY_m();
+    static void TEST_size_QUERY_w();
+    static void TEST_size_THEN_SUFFICIENT_m();
+    static void TEST_size_THEN_SUFFICIENT_w();
     static void TEST_EXCESS_SPACE_m();
     static void TEST_EXCESS_SPACE_w();
     static void TEST_INSUFFICIENT_SPACE_m();
@@ -88,10 +88,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.winstl.system.process_paths", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_SIZE_QUERY_m);
-        XTESTS_RUN_CASE(TEST_SIZE_QUERY_w);
-        XTESTS_RUN_CASE(TEST_SIZE_THEN_SUFFICIENT_m);
-        XTESTS_RUN_CASE(TEST_SIZE_THEN_SUFFICIENT_w);
+        XTESTS_RUN_CASE(TEST_size_QUERY_m);
+        XTESTS_RUN_CASE(TEST_size_QUERY_w);
+        XTESTS_RUN_CASE(TEST_size_THEN_SUFFICIENT_m);
+        XTESTS_RUN_CASE(TEST_size_THEN_SUFFICIENT_w);
         XTESTS_RUN_CASE(TEST_EXCESS_SPACE_m);
         XTESTS_RUN_CASE(TEST_EXCESS_SPACE_w);
         XTESTS_RUN_CASE(TEST_INSUFFICIENT_SPACE_m);
@@ -130,6 +130,10 @@ namespace {
 
 typedef winstl::system_traits<char>                         traits_m_t;
 typedef winstl::system_traits<wchar_t>                      traits_w_t;
+
+typedef winstl::filesystem_traits<char>                     fs_traits_m_t;
+typedef winstl::filesystem_traits<wchar_t>                  fs_traits_w_t;
+
 
 /** Obtains the current process image path via GetModuleFileNameA. */
 static
@@ -187,40 +191,6 @@ obtain_raw_current_process_path_w()
     }
 }
 
-static
-char*
-find_last_path_name_separator(char* s)
-{
-    char* last = NULL;
-
-    for (; '\0' != *s; ++s)
-    {
-        if ('\\' == *s || '/' == *s)
-        {
-            last = s;
-        }
-    }
-
-    return last;
-}
-
-static
-wchar_t*
-find_last_path_name_separator(wchar_t* s)
-{
-    wchar_t* last = NULL;
-
-    for (; L'\0' != *s; ++s)
-    {
-        if (L'\\' == *s || L'/' == *s)
-        {
-            last = s;
-        }
-    }
-
-    return last;
-}
-
 template <typename C>
 static
 C*
@@ -266,7 +236,7 @@ struct fail_on_resize_buffer
 
 namespace {
 
-static void TEST_SIZE_QUERY_m()
+static void TEST_size_QUERY_m()
 {
     std::string const   expected = obtain_raw_current_process_path_m();
 
@@ -280,7 +250,7 @@ static void TEST_SIZE_QUERY_m()
     TEST_PTR_EQ(NULL, pFile);
 }
 
-static void TEST_SIZE_QUERY_w()
+static void TEST_size_QUERY_w()
 {
     std::wstring const  expected = obtain_raw_current_process_path_w();
 
@@ -293,7 +263,7 @@ static void TEST_SIZE_QUERY_w()
     TEST_PTR_EQ(NULL, pFile);
 }
 
-static void TEST_SIZE_THEN_SUFFICIENT_m()
+static void TEST_size_THEN_SUFFICIENT_m()
 {
     std::string const   expected = obtain_raw_current_process_path_m();
 
@@ -313,7 +283,7 @@ static void TEST_SIZE_THEN_SUFFICIENT_m()
     TEST_CHAR_EQ('\0', buff[len]);
 }
 
-static void TEST_SIZE_THEN_SUFFICIENT_w()
+static void TEST_size_THEN_SUFFICIENT_w()
 {
     std::wstring const  expected = obtain_raw_current_process_path_w();
 
@@ -496,7 +466,7 @@ static void TEST_ppFile_separator_ON_SUCCESS_m()
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &buff[0]);
 
-    char* const expectedSep = find_last_path_name_separator(&buff[0]);
+    char* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&buff[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -523,7 +493,7 @@ static void TEST_ppFile_separator_ON_SUCCESS_w()
     TEST_INT_EQ(expected.size(), cch);
     TEST_WS_EQ(expected.c_str(), &buff[0]);
 
-    wchar_t* const expectedSep = find_last_path_name_separator(&buff[0]);
+    wchar_t* const expectedSep = fs_traits_w_t::find_last_path_name_separator(&buff[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -658,7 +628,7 @@ static void TEST_RESIZEABLE_ppFile_separator_m()
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &rb[0]);
 
-    char* const expectedSep = find_last_path_name_separator(&rb[0]);
+    char* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&rb[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -681,7 +651,7 @@ static void TEST_RESIZEABLE_ppFile_separator_w()
     TEST_INT_EQ(expected.size(), cch);
     TEST_WS_EQ(expected.c_str(), &rb[0]);
 
-    wchar_t* const expectedSep = find_last_path_name_separator(&rb[0]);
+    wchar_t* const expectedSep = fs_traits_w_t::find_last_path_name_separator(&rb[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
