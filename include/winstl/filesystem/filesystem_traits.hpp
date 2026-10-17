@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 16th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -1082,6 +1082,8 @@ public: // directory-end
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ERROR_OUTOFMEMORY);
+
                     return 0;
                 }
 
@@ -1222,20 +1224,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        size_type len = rb.size();
+        size_type const n = rb.size();
 
-        if (0 == len)
+        if (0 == n)
         {
             return 0;
         }
-        else
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
         {
-            size_type lenToDecrease = len - 1;
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
 
-            remove_dir_end(rb.data(), len - 1, &lenToDecrease);
-
-            return lenToDecrease;
+                return 0;
+            }
         }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -1834,7 +1846,8 @@ private:
 
         if ('\0' != fileName[len])
         {
-            buffer_type_    fileName_(1 + (len - 1));
+            // len characters of payload + trailing NUL
+            buffer_type_    fileName_(1 + len);
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -1849,10 +1862,11 @@ private:
             }
             else
             {
+                STLSOFT_API_EXTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len);
                 fileName_[len] = '\0';
 
                 return get_full_path_name_impl(
-                    static_cast<char_type*>(STLSOFT_API_EXTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
+                    fileName_.data()
                 ,   len
                 ,   buffer
                 ,   cchBuffer
@@ -2015,11 +2029,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -2067,11 +2095,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_short_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_short_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_short_path_name(fileName, &rb[0], rb.size());
@@ -2151,11 +2193,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());
@@ -2699,6 +2754,8 @@ public: // directory-end
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ERROR_OUTOFMEMORY);
+
                     return 0;
                 }
 
@@ -2839,20 +2896,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        size_type len = rb.size();
+        size_type const n = rb.size();
 
-        if (0 == len)
+        if (0 == n)
         {
             return 0;
         }
-        else
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
         {
-            size_type lenToDecrease = len - 1;
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
 
-            remove_dir_end(rb.data(), len - 1, &lenToDecrease);
-
-            return lenToDecrease;
+                return 0;
+            }
         }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -3374,11 +3441,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -3426,11 +3507,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_short_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_short_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_short_path_name(fileName, &rb[0], rb.size());
@@ -3511,11 +3606,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());

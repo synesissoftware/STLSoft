@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -270,9 +270,17 @@ public:
     ,   size_type   cchBuffer
     );
 
-    /// Gets the full path name of the current user's home directory
+    /// Gets the full path name of the current user's home directory into a
+    /// resizeable buffer (probe-then-fill; see CONCEPTS.md).
     ///
-    /// \param rb Reference to a resizeable buffer
+    /// \param rb Reference to a resizeable buffer that will be resized as
+    ///   required to hold the path and a terminating NUL character;
+    ///
+    /// \return The length of the path (excluding the NUL character) on
+    ///   success; 0 on failure. On query failure \c rb is left unchanged;
+    ///   on resize failure <code>ENOMEM</code> is set and \c rb is left
+    ///   unchanged. In neither failure case is <code>&rb[0]</code> taken
+    ///   on an empty buffer.
     template<
         ss_typename_param_k T_resizeableBuffer
     >
@@ -345,11 +353,19 @@ public:
     ,   size_type           cchBuffer
     );
 
-    /// Gets an environment variable into the given buffer
+    /// Gets an environment variable into a resizeable buffer
+    /// (probe-then-fill; see CONCEPTS.md).
     ///
-    /// \param name The name of the variable to find
+    /// \param name The name of the variable to find;
     /// \param rb Reference to a resizeable buffer into which the
-    ///   environment variable value is to be written
+    ///   environment variable value is to be written. Resized to the
+    ///   probed value length plus one for the terminating NUL (the raw
+    ///   null-buffer probe returns the length excluding the NUL);
+    ///
+    /// \return The length of the value (excluding the NUL character) on
+    ///   success; 0 on failure (missing variable, or resize failure). On
+    ///   query failure \c rb is left unchanged; on resize failure
+    ///   <code>ENOMEM</code> is set and \c rb is left unchanged.
     template<
         ss_typename_param_k T_resizeableBuffer
     >
@@ -602,9 +618,25 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_home_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        rb.resize(cchRequired);
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
 
         return get_home_directory(&rb[0], rb.size());
     }
@@ -705,14 +737,31 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_environment_variable(name, static_cast<char_type*>(NULL), 0);
+        /* The raw null-buffer probe returns the value length excluding the
+         * NUL; the resizeable-buffer overload needs demand including NUL.
+         */
+        size_type const cchValue = get_environment_variable(
+                                       name
+                                   ,   static_cast<char_type*>(NULL)
+                                   ,   0
+                                   );
 
-        if (0 == cchRequired)
+        if (0 == cchValue)
         {
             return 0;
         }
 
-        rb.resize(cchRequired);
+        size_type const cchRequired = cchValue + 1;
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
 
         return get_environment_variable(name, &rb[0], rb.size());
     }

@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 16th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -426,7 +426,7 @@ public:
         T_resizeableBuffer const& rb
     );
 
-    /// Removes the path name separator from the end of \c dir, if present
+    /// Removes all trailing path name separators from the end of \c dir
     ///
     /// \pre nullptr != dir
     ///
@@ -437,12 +437,12 @@ public:
         char_type* dir
     );
 
-    /// Removes the path name separator from the end of \c dir, if present
+    /// Removes all trailing path name separators from the end of \c dir
     ///
     /// \param path Pointer to characters of path to be examined
     /// \param len Number of characters in \c path to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
-    ///   be decremented if a path name separator is removed
+    ///   be decremented once per path name separator removed
     ///
     /// \return \c dir
     ///
@@ -458,7 +458,7 @@ public:
     ,   size_type*  pLenToDecrease
     );
 
-    /// Removes the path name separator from the end of \c rb, if present
+    /// Removes all trailing path name separators from the end of \c rb
     ///
     /// \param rb a reference to a \c resizeable_buffer
     ///
@@ -1069,10 +1069,15 @@ public: // directory-end
         {
             size_type const n = rb.size();
 
-            if (0 != n)
+            /* Require more than a lone NUL so "" stays "" (matches
+             * winstl and the C-string overload).
+             */
+            if (n > 1)
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ENOMEM);
+
                     return 0;
                 }
 
@@ -1184,7 +1189,7 @@ public: // directory-end
             pLenToDecrease = &dummy;
         }
 
-        if (0 != len)
+        for (; 0 != len; )
         {
             char_type& last = dir[len - 1];
 
@@ -1193,6 +1198,11 @@ public: // directory-end
                 last = char_type(0);
 
                 --*pLenToDecrease;
+                --len;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -1208,19 +1218,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        if (has_dir_end(rb))
+        size_type const n = rb.size();
+
+        if (0 == n)
         {
-            size_type const n = rb.size();
-
-            if (!resizeable_buffer_resize(rb, n - 1))
-            {
-                return 0;
-            }
-
-            rb[n - 2] = char_type(0);
+            return 0;
         }
 
-        return rb.empty() ? 0 : rb.size() - 1;
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -1820,6 +1841,8 @@ private:
 
             if (!resizeable_buffer_resize(cwd, n2 + len + 1))
             {
+                set_last_error(ENOMEM);
+
                 return 0;
             }
 
@@ -2025,7 +2048,8 @@ return 0;
 
         if ('\0' != fileName[len])
         {
-            buffer_type_ fileName_(1 + (len - 1));
+            // len characters of payload + trailing NUL
+            buffer_type_ fileName_(1 + len);
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -2040,9 +2064,10 @@ return 0;
             }
             else
             {
+                char_copy(&fileName_[0], fileName, len);
                 fileName_[len] = '\0';
 
-                return get_full_path_name_impl2(char_copy(&fileName_[0], fileName, len)
+                return get_full_path_name_impl2(fileName_.data()
                                             ,   len
                                             ,   buffer
                                             ,   cchBuffer);
@@ -2123,11 +2148,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -2239,11 +2278,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());
@@ -2850,10 +2902,15 @@ public: // directory-end
         {
             size_type const n = rb.size();
 
-            if (0 != n)
+            /* Require more than a lone NUL so "" stays "" (matches
+             * winstl and the C-string overload).
+             */
+            if (n > 1)
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ENOMEM);
+
                     return 0;
                 }
 
@@ -2965,7 +3022,7 @@ public: // directory-end
             pLenToDecrease = &dummy;
         }
 
-        if (0 != len)
+        for (; 0 != len; )
         {
             char_type& last = dir[len - 1];
 
@@ -2974,6 +3031,11 @@ public: // directory-end
                 last = char_type(0);
 
                 --*pLenToDecrease;
+                --len;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -2989,19 +3051,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        if (has_dir_end(rb))
+        size_type const n = rb.size();
+
+        if (0 == n)
         {
-            size_type const n = rb.size();
-
-            if (!resizeable_buffer_resize(rb, n - 1))
-            {
-                return 0;
-            }
-
-            rb[n - 2] = char_type(0);
+            return 0;
         }
 
-        return rb.empty() ? 0 : rb.size() - 1;
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
