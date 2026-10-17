@@ -4,7 +4,7 @@
  * Purpose: String copy functions.
  *
  * Created: 29th September 2016
- * Updated: 11th October 2026
+ * Updated: 13th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_REVISION   5
-# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       17
+# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_REVISION   7
+# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,7 +114,7 @@ namespace stlsoft
  */
 STLSOFT_INLINE
 ss_size_t
-STLSoft_C_string_copy_a(
+stlsoft_C_string_copy_a(
     ss_char_a_t             dest[]
 ,   ss_size_t               cchDest
 ,   ss_char_a_t const*      src
@@ -144,7 +144,7 @@ STLSoft_C_string_copy_a(
 
 STLSOFT_INLINE
 ss_size_t
-STLSoft_C_string_copy_w(
+stlsoft_C_string_copy_w(
     ss_char_w_t             dest[]
 ,   ss_size_t               cchDest
 ,   ss_char_w_t const*      src
@@ -190,7 +190,7 @@ STLSoft_C_string_copy_w(
  */
 STLSOFT_INLINE
 ss_size_t
-STLSoft_C_string_copy_with_nul_a(
+stlsoft_C_string_copy_with_nul_a(
     ss_char_a_t             dest[]
 ,   ss_size_t               cchDest
 ,   ss_char_a_t const*      src
@@ -230,7 +230,7 @@ STLSoft_C_string_copy_with_nul_a(
 
 STLSOFT_INLINE
 ss_size_t
-STLSoft_C_string_copy_with_nul_w(
+stlsoft_C_string_copy_with_nul_w(
     ss_char_w_t             dest[]
 ,   ss_size_t               cchDest
 ,   ss_char_w_t const*      src
@@ -289,7 +289,7 @@ string_copy(
 ,   ss_size_t               cchSrc
 )
 {
-    return STLSoft_C_string_copy_a(dest, cchDest, src, cchSrc);
+    return stlsoft_C_string_copy_a(dest, cchDest, src, cchSrc);
 }
 
 inline
@@ -301,7 +301,7 @@ string_copy(
 ,   ss_size_t               cchSrc
 )
 {
-    return STLSoft_C_string_copy_w(dest, cchDest, src, cchSrc);
+    return stlsoft_C_string_copy_w(dest, cchDest, src, cchSrc);
 }
 
 inline
@@ -312,7 +312,7 @@ string_copy(
 ,   string_slice_a_t const& src
 )
 {
-    return STLSoft_C_string_copy_a(&dest[0], cchDest, src.ptr, src.len);
+    return stlsoft_C_string_copy_a(&dest[0], cchDest, src.ptr, src.len);
 }
 
 inline
@@ -323,7 +323,7 @@ string_copy(
 ,   string_slice_w_t const& src
 )
 {
-    return STLSoft_C_string_copy_w(&dest[0], cchDest, src.ptr, src.len);
+    return stlsoft_C_string_copy_w(&dest[0], cchDest, src.ptr, src.len);
 }
 # ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
@@ -338,7 +338,7 @@ string_copy(
 ,   ss_char_a_t const     (&src)[N_src]
 )
 {
-    return STLSoft_C_string_copy_a(&dest[0], N_dest, &src[0], N_src);
+    return stlsoft_C_string_copy_a(&dest[0], N_dest, &src[0], N_src);
 }
 
 template<
@@ -352,7 +352,7 @@ string_copy(
 ,   ss_char_w_t const     (&src)[N_src]
 )
 {
-    return STLSoft_C_string_copy_w(&dest[0], N_dest, &src[0], N_src);
+    return stlsoft_C_string_copy_w(&dest[0], N_dest, &src[0], N_src);
 }
 
 template<
@@ -365,7 +365,7 @@ string_copy(
 ,   string_slice_a_t const& src
 )
 {
-    return STLSoft_C_string_copy_a(&dest[0], N_dest, src.ptr, src.len);
+    return stlsoft_C_string_copy_a(&dest[0], N_dest, src.ptr, src.len);
 }
 
 template<
@@ -378,7 +378,7 @@ string_copy(
 ,   string_slice_w_t const& src
 )
 {
-    return STLSoft_C_string_copy_w(&dest[0], N_dest, src.ptr, src.len);
+    return stlsoft_C_string_copy_w(&dest[0], N_dest, src.ptr, src.len);
 }
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
@@ -393,7 +393,7 @@ string_copy_with_nul(
 ,   ss_size_t               cchSrc
 )
 {
-    return STLSoft_C_string_copy_with_nul_a(dest, cchDest, src, cchSrc);
+    return stlsoft_C_string_copy_with_nul_a(dest, cchDest, src, cchSrc);
 }
 
 inline
@@ -405,7 +405,7 @@ string_copy_with_nul(
 ,   ss_size_t               cchSrc
 )
 {
-    return STLSoft_C_string_copy_with_nul_w(dest, cchDest, src, cchSrc);
+    return stlsoft_C_string_copy_with_nul_w(dest, cchDest, src, cchSrc);
 }
 
 inline
@@ -416,7 +416,7 @@ string_copy_with_nul(
 ,   string_slice_a_t const& src
 )
 {
-    return STLSoft_C_string_copy_with_nul_a(&dest[0], cchDest, src.ptr, src.len);
+    return stlsoft_C_string_copy_with_nul_a(&dest[0], cchDest, src.ptr, src.len);
 }
 
 inline
@@ -427,7 +427,7 @@ string_copy_with_nul(
 ,   string_slice_w_t const& src
 )
 {
-    return STLSoft_C_string_copy_with_nul_w(&dest[0], cchDest, src.ptr, src.len);
+    return stlsoft_C_string_copy_with_nul_w(&dest[0], cchDest, src.ptr, src.len);
 }
 # ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
@@ -442,7 +442,7 @@ string_copy_with_nul(
 ,   ss_char_a_t const     (&src)[N_src]
 )
 {
-    return STLSoft_C_string_copy_with_nul_a(&dest[0], N_dest, &src[0], N_src);
+    return stlsoft_C_string_copy_with_nul_a(&dest[0], N_dest, &src[0], N_src);
 }
 
 template<
@@ -456,7 +456,7 @@ string_copy_with_nul(
 ,   ss_char_w_t const     (&src)[N_src]
 )
 {
-    return STLSoft_C_string_copy_with_nul_w(&dest[0], N_dest, &src[0], N_src);
+    return stlsoft_C_string_copy_with_nul_w(&dest[0], N_dest, &src[0], N_src);
 }
 
 template<
@@ -469,7 +469,7 @@ string_copy_with_nul(
 ,   string_slice_a_t const& src
 )
 {
-    return STLSoft_C_string_copy_with_nul_a(&dest[0], N_dest, src.ptr, src.len);
+    return stlsoft_C_string_copy_with_nul_a(&dest[0], N_dest, src.ptr, src.len);
 }
 
 template<
@@ -482,10 +482,74 @@ string_copy_with_nul(
 ,   string_slice_w_t const& src
 )
 {
-    return STLSoft_C_string_copy_with_nul_w(&dest[0], N_dest, src.ptr, src.len);
+    return stlsoft_C_string_copy_with_nul_w(&dest[0], N_dest, src.ptr, src.len);
 }
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Older mixed-case names are retained (deprecated) until at least STLSoft
+ * 1.13.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(STLSoft_C_string_copy_a, stlsoft_C_string_copy_a)
+STLSOFT_INLINE
+ss_size_t
+STLSoft_C_string_copy_a(
+    ss_char_a_t             dest[]
+,   ss_size_t               cchDest
+,   ss_char_a_t const*      src
+,   ss_size_t               cchSrc
+)
+{
+    return stlsoft_C_string_copy_a(dest, cchDest, src, cchSrc);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(STLSoft_C_string_copy_w, stlsoft_C_string_copy_w)
+STLSOFT_INLINE
+ss_size_t
+STLSoft_C_string_copy_w(
+    ss_char_w_t             dest[]
+,   ss_size_t               cchDest
+,   ss_char_w_t const*      src
+,   ss_size_t               cchSrc
+)
+{
+    return stlsoft_C_string_copy_w(dest, cchDest, src, cchSrc);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(STLSoft_C_string_copy_with_nul_a, stlsoft_C_string_copy_with_nul_a)
+STLSOFT_INLINE
+ss_size_t
+STLSoft_C_string_copy_with_nul_a(
+    ss_char_a_t             dest[]
+,   ss_size_t               cchDest
+,   ss_char_a_t const*      src
+,   ss_size_t               cchSrc
+)
+{
+    return stlsoft_C_string_copy_with_nul_a(dest, cchDest, src, cchSrc);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(STLSoft_C_string_copy_with_nul_w, stlsoft_C_string_copy_with_nul_w)
+STLSOFT_INLINE
+ss_size_t
+STLSoft_C_string_copy_with_nul_w(
+    ss_char_w_t             dest[]
+,   ss_size_t               cchDest
+,   ss_char_w_t const*      src
+,   ss_size_t               cchSrc
+)
+{
+    return stlsoft_C_string_copy_with_nul_w(dest, cchDest, src, cchSrc);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
