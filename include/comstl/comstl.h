@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 17th September 2026
+ * Updated: 17th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    10
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        134
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -170,11 +170,12 @@
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
 # define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1 alpha 8) */
 # define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1 alpha 17) */
+# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1 rc 9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       10
-#define _COMSTL_VER_PATCH       3
+#define _COMSTL_VER_PATCH       4
 #define _COMSTL_VER_ALPHABETA   0xFF
 
 #define _COMSTL_VER \

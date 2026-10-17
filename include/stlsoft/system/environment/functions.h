@@ -4,7 +4,7 @@
  * Purpose: Environment functions.
  *
  * Created: 4th March 2011
- * Updated: 8th October 2026
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        18
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,7 +112,7 @@ namespace stlsoft
  * \retval 0 The environment variable does not exist;
  * \retval !0 The environment variable does exist;
  *
- * \pre NULL != name;
+ * \pre nullptr != name
  */
 STLSOFT_INLINE
 ss_truthy_t
@@ -184,8 +184,8 @@ stlsoft_C_environment_variable_exists_a(
  *   ERANGE;
  * \retval !0 The value was parsed and written through \c result;
  *
- * \pre NULL != name;
- * \pre NULL != result;
+ * \pre nullptr != name
+ * \pre nullptr != result
  *
  * \note Interpreted with base 0, as with strtoll(): optional leading
  *   whitespace, an optional sign, then decimal, octal (leading 0), or

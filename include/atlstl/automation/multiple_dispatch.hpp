@@ -5,11 +5,11 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     20th March 2025
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   5
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       30
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -214,7 +214,7 @@ protected:
      * which has thus undertaken to interpret them. This stripe is then
      * detected
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -274,7 +274,7 @@ protected:
      * from which the appropriate dispiniterface is determined. The
      * stripe is then removed, and the method invoked.
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -365,7 +365,7 @@ protected:
      * which has thus undertaken to interpret them. This stripe is then
      * detected
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -433,7 +433,7 @@ protected:
      * from which the appropriate dispiniterface is determined. The
      * stripe is then removed, and the method invoked.
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -540,7 +540,7 @@ protected:
      * which has thus undertaken to interpret them. This stripe is then
      * detected
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -616,7 +616,7 @@ protected:
      * from which the appropriate dispiniterface is determined. The
      * stripe is then removed, and the method invoked.
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *

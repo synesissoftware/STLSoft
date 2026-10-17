@@ -4,11 +4,11 @@
  * Purpose: CY helper functions.
  *
  * Created: 23rd August 2008
- * Updated: 24th December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT     18
+# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,8 +101,8 @@ namespace comstl_project
  * \param lhs Pointer to the left-hand instances to compare
  * \param rhs Pointer to the right-hand instances to compare
  *
- * \pre \c lhs must not be \c nullptr.
- * \pre \c rhs must not be \c nullptr.
+ * \pre nullptr != lhs
+ * \pre nullptr != rhs
  */
 STLSOFT_INLINE
 int
@@ -181,8 +181,8 @@ namespace comstl
  * \param lhs Pointer to the left-hand instances to compare
  * \param rhs Pointer to the right-hand instances to compare
  *
- * \pre \c lhs must not be \c nullptr.
- * \pre \c rhs must not be \c nullptr.
+ * \pre nullptr != lhs
+ * \pre nullptr != rhs
  */
 inline
 int

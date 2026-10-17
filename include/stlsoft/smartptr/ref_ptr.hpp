@@ -4,11 +4,11 @@
  * Purpose: Contains the ref_ptr template class.
  *
  * Created: 2nd November 1994
- * Updated: 21st March 2025
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION  1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      517
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      518
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -511,8 +511,7 @@ public: // accessors
 
     /// Returns the interface pointer
     ///
-    /// \pre The instance must not be empty; otherwise behaviour is
-    ///   undefined
+    /// \pre !empty()
     counted_type* operator ->()
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -522,8 +521,7 @@ public: // accessors
 
     /// Returns the interface pointer
     ///
-    /// \pre The instance must not be empty; otherwise behaviour is
-    ///   undefined
+    /// \pre !empty()
     counted_type const* operator ->() const
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -533,8 +531,7 @@ public: // accessors
 
     /// Returns a reference to the managed instance
     ///
-    /// \pre The instance must not be empty; otherwise behaviour is
-    ///   undefined
+    /// \pre !empty()
     counted_type& operator *()
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -544,8 +541,7 @@ public: // accessors
 
     /// Returns a reference to the managed instance
     ///
-    /// \pre The instance must not be empty; otherwise behaviour is
-    ///   undefined
+    /// \pre !empty()
     counted_type const& operator *() const
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);

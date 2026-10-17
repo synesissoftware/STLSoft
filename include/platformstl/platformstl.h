@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 10th October 2026
+ * Updated: 17th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     64
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -147,12 +147,13 @@
 # define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
 # define _PLATFORMSTL_VER_1_10_0_B01    0x010A0081  /*!< Version 1.10.0 beta 1 (with STLSoft 1.11.1 rc 3) */
 # define _PLATFORMSTL_VER_1_10_0_B02    0x010A0082  /*!< Version 1.10.0 beta 2 (with STLSoft 1.11.1 rc 8) */
+# define _PLATFORMSTL_VER_1_10_0_B03    0x010A0083  /*!< Version 1.10.0 beta 3 (with STLSoft 1.11.1 rc 9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
 #define _PLATFORMSTL_VER_PATCH      0
-#define _PLATFORMSTL_VER_ALPHABETA  0x82
+#define _PLATFORMSTL_VER_ALPHABETA  0x83
 
 #define _PLATFORMSTL_VER \
     (0\
@@ -331,7 +332,7 @@
  *
  * \param expr Must be non-zero, or an assertion will be fired
  *
- * \remarks By default this is defined to \ref STLSOFT_ASSERT. However, this
+ * \note By default this is defined to \ref STLSOFT_ASSERT. However, this
  *  can be overriden if a prior definition is encountered, allowing the
  *  runtime assertion of WinSTL components to use a different mechanism to
  *  those in the other \ref group__projects "projects".
@@ -353,7 +354,7 @@
  *
  * \param expr A compile-time evaluatable condition that must be non-zero, or compilation will fail.
  *
- * \remarks This is defined to \ref STLSOFT_STATIC_ASSERT.
+ * \note This is defined to \ref STLSOFT_STATIC_ASSERT.
  */
 #define PLATFORMSTL_STATIC_ASSERT(expr)       STLSOFT_STATIC_ASSERT(expr)
 
