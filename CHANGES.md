@@ -1,6 +1,21 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.1-rc9 - 18th October 2026
+
+* docs:
+  * Normalised Doxygen `\pre` comments to bare boolean expressions (no outer parentheses; no trailing `;` / `.`);
+  * Prefer `nullptr` over `NULL` / prose in `\pre` text; optional-buffer forms use zero-length check first (`0 == n || nullptr != s`);
+  * Converted expressible prose preconditions (e.g. `!empty()`, `n <= size()`, `nullptr != p`) where applicable; retained soft COM / prior-init / exception-gated contracts as prose;
+* version:
+  * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
+  * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
+  * **winstl** — **1.13.0 beta 5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
+  * **inetstl** — **1.5.0 alpha 4** (**_INETSTL_VER_1_5_0_A04**), with **STLSoft 1.11.1-rc9**;
+  * **platformstl** — **1.10.0 beta 3** (**_PLATFORMSTL_VER_1_10_0_B03**), with **STLSoft 1.11.1-rc9**;
+  * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**), with **STLSoft 1.11.1-rc9**;
+
+
 ## 1.11.1-rc8 - 10th October 2026
 
 * additions:

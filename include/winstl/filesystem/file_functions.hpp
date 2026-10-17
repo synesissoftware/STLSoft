@@ -4,11 +4,11 @@
  * Purpose: Helper functions for file handling
  *
  * Created: 1st January 2005
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   19
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       75
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,9 +153,9 @@ std::string       contents;
 winstl::uint64_t  numBytes = winstl::load_text_file("mytextfile.ext", contents);
 \endcode
  *
- * \remarks The character type of the text file is assumed (and controlled)
- *   to be that of the \c contents parameter. For example, if \c contents is
- *   of type \c std::wstring then the file will be processed as if it
+ * \note The character type of the text file is assumed (and controlled) to
+ *   be that of the \c contents parameter. For example, if \c contents is of
+ *   type \c std::wstring then the file will be processed as if it
  *   contains \c wchar_t.
  *
  * \note When used with a compiler that does not support partial template
@@ -425,13 +425,12 @@ winstl::readlines("mytextfile.ext", lines);
 \endcode
  *
  *
- * \remarks The container type's <code>value_type</code> must provide
- *   a two-parameter constructor whose parameters types are
- *   <code>char_type const*</code> (where <code>char_type</code> is the
- *   <code>value_type</code> of the string type <code>S</code>) and
- *   <code>size_t</code>, indicating the pointer to the beginning and the
- *   length of the C-style string that represents the line read from the
- *   file denoted by <code>fileName</code>.
+ * \note The container type's <code>value_type</code> must provide a
+ *   two-parameter constructor whose parameters types are
+ *   <code>char_type const*</code> (where \c char_type is the \c value_type
+ *   of the string type \c S) and \c size_t, indicating the pointer to the
+ *   beginning and the length of the C-style string that represents the line
+ *   read from the file denoted by \c fileName.
  *
  * \note When used with a compiler that does not support partial template
  *   specialisation, the use of string types for which explicit

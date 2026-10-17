@@ -4,7 +4,7 @@
  * Purpose: Unix Domain Sockets helper functions
  *
  * Created: 21st February 2025
- * Updated: 29th May 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MAJOR       1
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MINOR       0
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    2
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        4
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,7 +159,7 @@ inetstl_c_sockaddr_un_init_from_path(
          * - on macOS, `sockaddr_un` has field `sun_len`, which is not
          *   present on Linux;
          * - the field `sun_path` has a fixed size (of 104, or 108, or ...),
-         *   and there are some differences in whether a NUL-terminator is
+         *   and there are some differences in whether a NUL character is
          *   required, hence if the path length is exactly the same as the
          *   available fixed space then there is an issue;
          *
