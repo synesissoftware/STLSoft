@@ -4,11 +4,11 @@
  * Purpose: Definition of stlsoft::read_line() function template.
  *
  * Created: 2nd January 2007
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_MAJOR    3
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_MINOR    0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_REVISION 3
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_EDIT     30
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -440,7 +440,7 @@ namespace read_line_impl {
  * \retval true The parsing is not complete
  * \retval false The parsing is complete
  *
- * \remarks The function can recognise any or all of the following as
+ * \note The function can recognise any or all of the following as
  *   line-termination sequences: carriage-return (<code>'\\r'</code>),
  *   line-feed (<code>'\\n'</code>), or carriage-return+line-feed
  *   (<code>"\\r\\n"</code>).
