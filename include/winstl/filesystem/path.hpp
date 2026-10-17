@@ -4,14 +4,14 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
  *          doesn't work for wide-string builds).
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1993-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     329
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     330
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -238,7 +238,7 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs a path from a string object.
     ///
-    /// \remarks The string object may be any type for which the
+    /// \note The string object may be any type for which the
     ///  <b>c_str_len</b> and <b>c_str_data</b>
     ///  \ref group__concept__Shim__string_access "String Access Shims" are
     ///  defined. The following example shows the use of a window handle
@@ -362,9 +362,9 @@ public:
     class_type& push_ext(char_type const* rhs, bool_type bAddPathNameSeparator = false);
     /// Ensures that the path has a trailing path name separator
     ///
-    /// \remarks If the path currently contains path name separators, and
-    ///   they are all forward slashes '/', then a forward slash will be
-    ///   used; otherwise a backslash '\\' will be used.
+    /// \note If the path currently contains path name separators, and they
+    ///   are all forward slashes '/', then a forward slash will be used;
+    //    otherwise a backslash '\\' will be used.
     class_type& push_sep();
     /// Pops the last path element from the path
     ///
@@ -464,7 +464,7 @@ public:
     size_type           length() const STLSOFT_NOEXCEPT;
     /// Returns the length of the converted path
     ///
-    /// \remarks Equivalent to length()
+    /// \note Equivalent to length().
     size_type           size() const STLSOFT_NOEXCEPT;
     /// The maximum possible length of a path
     static size_type    max_size() STLSOFT_NOEXCEPT;
@@ -521,7 +521,7 @@ public:
     /// Evaluates whether the two instances hold strings that refer
     ///  to the same file-system entity.
     ///
-    /// \remarks See \link winstl::basic_path::equivalent(C const* ) equivalent()\endlink for an example.
+    /// \note See \link winstl::basic_path::equivalent(C const* ) equivalent()\endlink for an example.
     ///
     /// \note The string comparison is case-insensitive.
     bool_type equivalent(class_type const& rhs) const STLSOFT_NOEXCEPT;
