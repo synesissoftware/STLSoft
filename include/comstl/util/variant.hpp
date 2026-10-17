@@ -422,7 +422,7 @@ public:
      * \retval <code>E_INTERFACE</code> The interface is not supported: the
      *   value of <code>*ppv</code> is undefined.
      *
-     * \pre <code>nullptr != ppv</code>
+     * \pre nullptr != ppv
      */
     HRESULT     QueryInterface(REFIID riid, void** ppv) const;
 
@@ -436,7 +436,7 @@ public:
      * \retval <code>E_INTERFACE</code> The interface is not supported: the
      *   value of <code>*ppi</code> is undefined.
      *
-     * \pre <code>nullptr != ppi</code>
+     * \pre nullptr != ppi
      */
     template <ss_typename_param_k I>
     HRESULT QueryInterfaceValue(I** ppi)

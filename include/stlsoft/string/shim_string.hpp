@@ -379,8 +379,7 @@ public:
 
     /// Truncates the string to the given length
     ///
-    /// \pre The length specified must be less than or equal to the current
-    ///   length
+    /// \pre n <= size()
     void truncate(size_type n)
     {
         STLSOFT_COVER_MARK_LINE();

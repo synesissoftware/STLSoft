@@ -157,7 +157,7 @@ winstl_C_system_information_functions_MORE_DATA_(
  *   providing an empty buffer of maximum size and then returning the actual
  *   length (+1)
  *
- * \pre 0 == cchBuffer || NULL != buffer
+ * \pre 0 == cchBuffer || nullptr != buffer
  */
 STLSOFT_INLINE
 ws_size_t
@@ -266,7 +266,7 @@ winstl_C_get_computer_name_w(
  *   the required number of characters when \c buffer is insufficient. This
  *   is corrected in this implementation
  *
- * \pre 0 == cchBuffer || NULL != buffer
+ * \pre 0 == cchBuffer || nullptr != buffer
  */
 STLSOFT_INLINE
 ws_size_t

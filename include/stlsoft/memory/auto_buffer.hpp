@@ -1422,7 +1422,7 @@ public: // accessors
 
     /// Returns a reference to the last element in the buffer
     ///
-    /// \pre The buffer instance must not be empty
+    /// \pre !empty()
     ss_constexpr_2014_k
     reference front()
     {
@@ -1434,7 +1434,7 @@ public: // accessors
     }
     /// Returns a reference to the last element in the buffer
     ///
-    /// \pre The buffer instance must not be empty
+    /// \pre !empty()
     ss_constexpr_2014_k
     reference back()
     {
@@ -1447,7 +1447,7 @@ public: // accessors
     /// Returns a non-mutating (const) reference to the last element
     ///   in the buffer
     ///
-    /// \pre The buffer instance must not be empty
+    /// \pre !empty()
     ss_constexpr_2014_k
     const_reference front() const
     {
@@ -1460,7 +1460,7 @@ public: // accessors
     /// Returns a non-mutating (const) reference to the last element
     ///   in the buffer
     ///
-    /// \pre The buffer instance must not be empty
+    /// \pre !empty()
     ss_constexpr_2014_k
     const_reference back() const
     {

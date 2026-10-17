@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 15th October 2026
+ * Updated: 17th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -147,12 +147,13 @@
 # define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
 # define _PLATFORMSTL_VER_1_10_0_B01    0x010A0081  /*!< Version 1.10.0 beta 1 (with STLSoft 1.11.1 rc 3) */
 # define _PLATFORMSTL_VER_1_10_0_B02    0x010A0082  /*!< Version 1.10.0 beta 2 (with STLSoft 1.11.1 rc 8) */
+# define _PLATFORMSTL_VER_1_10_0_B03    0x010A0083  /*!< Version 1.10.0 beta 3 (with STLSoft 1.11.1 rc 9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
 #define _PLATFORMSTL_VER_PATCH      0
-#define _PLATFORMSTL_VER_ALPHABETA  0x82
+#define _PLATFORMSTL_VER_ALPHABETA  0x83
 
 #define _PLATFORMSTL_VER \
     (0\

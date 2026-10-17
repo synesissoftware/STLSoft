@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 15th October 2026
+ * Updated: 17th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -185,12 +185,13 @@
 # define _WINSTL_VER_1_13_0_B02 0x010d0082  /*!< Version 1.13.0 beta 2 (with STLSoft 1.11.1 rc 4) */
 # define _WINSTL_VER_1_13_0_B03 0x010d0083  /*!< Version 1.13.0 beta 3 (with STLSoft 1.11.1 rc 7) */
 # define _WINSTL_VER_1_13_0_B04 0x010d0084  /*!< Version 1.13.0 beta 4 (with STLSoft 1.11.1 rc 8) */
+# define _WINSTL_VER_1_13_0_B05 0x010d0085  /*!< Version 1.13.0 beta 5 (with STLSoft 1.11.1 rc 9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       13
 #define _WINSTL_VER_PATCH       0
-#define _WINSTL_VER_ALPHABETA   0x84
+#define _WINSTL_VER_ALPHABETA   0x85
 
 #define _WINSTL_VER \
     (0\
@@ -291,8 +292,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C8
-# error This version of the WinSTL libraries requires STLSoft version 1.11.1 rc 8, or later
+#if _STLSOFT_VER < 0x010B01C9
+# error This version of the WinSTL libraries requires STLSoft version 1.11.1 rc 9, or later
 #endif /* _STLSOFT_VER */
 
 

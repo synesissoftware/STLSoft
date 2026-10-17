@@ -289,7 +289,7 @@ public:
 public: // operations
     ///
     ///
-    /// \pre (0 == n || nullptr != s)
+    /// \pre 0 == n || nullptr != s
     class_type&
     assign(
         char_type const*    s

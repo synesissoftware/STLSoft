@@ -61,7 +61,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     17
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      191
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      192
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -734,7 +734,7 @@ public:
     /// Resets the file-system search to the first entry, such that the
     ///   next call to read_dir() returns the first entry
     ///
-    /// \pre NULL != h
+    /// \pre nullptr != h
     static void                 rewind_dir(DIR* h);
     /// Closes the handle of the file-system search
     static void                 close_dir(DIR* h);
@@ -868,7 +868,7 @@ public:
     static large_size_type  get_file_size(stat_data_type const& sd);
     /// Gets the size of the file
     ///
-    /// \pre (nullptr != psd)
+    /// \pre nullptr != psd
     static large_size_type  get_file_size(stat_data_type const* psd);
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
