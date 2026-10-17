@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     24th December 2006
- * Updated:     20th March 2025
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       2
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    4
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        22
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,7 @@ namespace winstl_project
  *
  * \retval The synchronisation handle associated with the event
  *
- * \remarks We cannot simply define the shim overload in terms of
+ * \note We cannot simply define the shim overload in terms of
  *    <code>CSyncObject</code> for two reasons. First, the template
  *    mechanism requires a precise type for the shim, not an
  *    inheritance-related group of types. Second, the class
@@ -147,7 +147,7 @@ get_synch_handle(
  *
  * \retval The synchronisation handle associated with the mutex
  *
- * \remarks We cannot simply define the shim overload in terms of
+ * \note We cannot simply define the shim overload in terms of
  *    <code>CSyncObject</code> for two reasons. First, the template
  *    mechanism requires a precise type for the shim, not an
  *    inheritance-related group of types. Second, the class
@@ -174,7 +174,7 @@ get_synch_handle(
  *
  * \retval The synchronisation handle associated with the semaphore
  *
- * \remarks We cannot simply define the shim overload in terms of
+ * \note We cannot simply define the shim overload in terms of
  *    <code>CSyncObject</code> for two reasons. First, the template
  *    mechanism requires a precise type for the shim, not an
  *    inheritance-related group of types. Second, the class
