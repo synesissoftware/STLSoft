@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.exception.status_code_provider entry.cpp)

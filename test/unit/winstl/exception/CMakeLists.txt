@@ -1,0 +1,11 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(policy)
+add_subdirectory(test.unit.winstl.exception.access_exception)
+add_subdirectory(test.unit.winstl.exception.entry_not_found_exception)
+add_subdirectory(test.unit.winstl.exception.file_not_found_exception)
+add_subdirectory(test.unit.winstl.exception.invalid_entry_type_exception)
+add_subdirectory(test.unit.winstl.exception.invalid_file_type_exception)
+add_subdirectory(test.unit.winstl.exception.resource_exception)
+add_subdirectory(test.unit.winstl.exception.security_exception)
+add_subdirectory(test.unit.winstl.exception.throw_policies)
+add_subdirectory(test.unit.winstl.exception.winstl_exception)

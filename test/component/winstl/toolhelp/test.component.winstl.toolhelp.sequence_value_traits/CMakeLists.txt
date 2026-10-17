@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.toolhelp.sequence_value_traits entry.cpp)

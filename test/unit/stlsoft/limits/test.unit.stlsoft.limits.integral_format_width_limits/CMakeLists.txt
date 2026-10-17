@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.limits.integral_format_width_limits entry.cpp)

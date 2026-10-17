@@ -86,7 +86,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-static char const   TEST_FILE_NAME[]    =   "test.component.winstl.filesystem.C.memory_map_functions.DATAFILE";
+static char const   TEST_FILE_NAME[]    =   "test.component.winstl.filesystem.memory_map_functions.C.DATAFILE";
 #ifdef __cplusplus
 static size_t const TEST_BUFFER_SIZE    =   0x1000;
 static size_t const TEST_NUM_BUFFERS    =   0x100;

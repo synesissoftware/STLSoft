@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.functional.indirect_function_pointer_adaptors entry.cpp)

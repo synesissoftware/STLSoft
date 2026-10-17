@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.mfcstl.util.memory_exception_translation_policies entry.cpp)

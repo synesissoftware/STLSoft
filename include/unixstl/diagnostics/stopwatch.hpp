@@ -4,11 +4,11 @@
  * Purpose: stopwatch class.
  *
  * Created: 16th January 2002
- * Updated: 28th April 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    5
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     84
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -150,8 +150,8 @@ public: // operations
     void    stop();
     /// Ends the current measurement period and start the next
     ///
-    /// \remarks This is equivalent to an atomic invocation of stop() and
-    ///  start()
+    /// \note This is equivalent to an atomic invocation of stop() and
+    ///   start().
     void    restart();
 
 

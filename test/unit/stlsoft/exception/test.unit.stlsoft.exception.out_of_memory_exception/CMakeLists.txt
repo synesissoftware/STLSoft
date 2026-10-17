@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.exception.out_of_memory_exception entry.cpp)

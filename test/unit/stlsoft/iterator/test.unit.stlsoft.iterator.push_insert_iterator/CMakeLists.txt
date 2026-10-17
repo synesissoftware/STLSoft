@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterator.push_insert_iterator entry.cpp)

@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.toolhelp.process_sequence entry.cpp)

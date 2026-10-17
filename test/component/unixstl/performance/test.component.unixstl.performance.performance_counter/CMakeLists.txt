@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.unixstl.performance.performance_counter entry.cpp)

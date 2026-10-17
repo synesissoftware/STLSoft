@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.platformstl.exception.entry_not_found_exception entry.cpp)

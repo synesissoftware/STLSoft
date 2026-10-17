@@ -5,14 +5,14 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    16
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        169
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        170
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1547,7 +1547,7 @@ basic_reg_key<C, T, A>::set_value_(
     );
 #endif
 
-    // Create a buffer of sufficient size: total length + a nul-terminator for each value + a double nul-terminator
+    // Create a buffer of sufficient size: total length + a NUL character for each value + a double NUL character
     STLSOFT_NS_QUAL(auto_buffer)<char_type> buff(totalLen + numValues * 1 + 2);
 
     if (buff.empty())

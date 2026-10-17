@@ -4,14 +4,14 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which doesn't
  *          work for wide-string builds).
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1993-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       282
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       283
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -417,7 +417,7 @@ public:
     size_type           length() const STLSOFT_NOEXCEPT;
     /// Returns the length of the converted path
     ///
-    /// \remarks Equivalent to length()
+    /// \note Equivalent to length().
     size_type           size() const STLSOFT_NOEXCEPT;
     /// The maximum possible length of a path
     static size_type    max_size() STLSOFT_NOEXCEPT;
@@ -465,7 +465,7 @@ public:
     /// Evaluates whether the two instances hold strings that refer
     ///  to the same file-system entity.
     ///
-    /// \remarks See \link winstl::basic_path::equivalent(C const* ) equivalent()\endlink for an example.
+    /// \note See \link winstl::basic_path::equivalent(C const* ) equivalent()\endlink for an example.
     ///
     /// \note The string comparison is case-insensitive.
     bool_type equivalent(class_type const& rhs) const STLSOFT_NOEXCEPT;

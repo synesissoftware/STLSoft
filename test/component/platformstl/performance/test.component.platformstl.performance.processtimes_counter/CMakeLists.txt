@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.platformstl.performance.processtimes_counter entry.cpp)

@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterators.unary_function_output_iterator_adaptor entry.cpp)

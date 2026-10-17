@@ -107,7 +107,7 @@ namespace ximpl_bit_functions
 
     static
     stlsoft_C_count_functions_table_ptr_type
-    stlsoft_C_count_functions_get_8bit_table()
+    stlsoft_C_count_functions_get_8bit_table(void)
     {
         static const ss_uint8_t s_table[256] =
         {

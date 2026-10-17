@@ -4,11 +4,11 @@
  * Purpose: Registry functions.
  *
  * Created: 20th November 1995
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1995-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      65
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -158,7 +158,7 @@ reg_get_string_value(
  * \retval "any other value" The function failed, and the error code
  *   indicates why
  *
- * \remarks If the function fails, the value of <code>value</code> is
+ * \note If the function fails, the value of <code>value</code> is
  *   unchanged.
  */
 template <ss_typename_param_k C>

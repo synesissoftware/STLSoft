@@ -1,4 +1,13 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(auto)
+add_subdirectory(collections)
+add_subdirectory(conversion)
+add_subdirectory(error)
+add_subdirectory(exception)
+add_subdirectory(functional)
 add_subdirectory(memory)
+add_subdirectory(security)
+add_subdirectory(shims)
+add_subdirectory(smartptr)
 add_subdirectory(string)
 add_subdirectory(util)

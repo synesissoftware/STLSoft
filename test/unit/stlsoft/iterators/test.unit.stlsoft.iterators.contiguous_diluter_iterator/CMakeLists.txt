@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterators.contiguous_diluter_iterator entry.cpp)

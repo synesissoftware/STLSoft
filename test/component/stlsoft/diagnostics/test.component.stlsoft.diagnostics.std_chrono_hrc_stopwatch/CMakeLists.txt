@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.stlsoft.diagnostics.std_chrono_hrc_stopwatch entry.cpp)

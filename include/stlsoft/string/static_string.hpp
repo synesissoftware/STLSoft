@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 31st July 2026
+ * Updated: 15th October 2026
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      233
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      234
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -2434,7 +2434,7 @@ inline
 ss_typename_type_ret_k basic_static_string<C, V_internalSize, T>::const_reference
 basic_static_string<C, V_internalSize, T>::operator [](ss_typename_type_k basic_static_string<C, V_internalSize, T>::size_type index) const STLSOFT_NOEXCEPT
 {
-    STLSOFT_MESSAGE_ASSERT("index access out of range in static_string", index < size() + 1); // Valid to return (const) reference to nul-terminator
+    STLSOFT_MESSAGE_ASSERT("index access out of range in static_string", index < size() + 1); // Valid to return (const) reference to NUL character
 
     STLSOFT_ASSERT(is_valid());
 

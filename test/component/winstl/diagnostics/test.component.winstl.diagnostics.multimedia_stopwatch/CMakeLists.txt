@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.diagnostics.multimedia_stopwatch entry.cpp)

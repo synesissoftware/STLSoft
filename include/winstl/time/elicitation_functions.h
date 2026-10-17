@@ -4,11 +4,11 @@
  * Purpose:     Elicitation functions for Windows time structures.
  *
  * Created:     26th May 2014
- * Updated:     11th March 2024
+ * Updated:     11th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        12
+# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,7 +101,7 @@ namespace winstl_project
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != st)
+ * \pre nullptr != st
  */
 STLSOFT_INLINE
 void
@@ -118,7 +118,7 @@ winstl_C_get_UTC_time_as_SYSTEMTIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 void
@@ -135,7 +135,7 @@ winstl_C_get_UTC_time_as_FILETIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != st)
+ * \pre nullptr != st
  */
 STLSOFT_INLINE
 void
@@ -152,7 +152,7 @@ winstl_C_get_local_time_as_SYSTEMTIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 BOOL
@@ -190,7 +190,7 @@ namespace winstl
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != st)
+ * \pre nullptr != st
  */
 inline
 void
@@ -205,7 +205,7 @@ get_UTC_time_as_SYSTEMTIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 inline
 void
@@ -220,7 +220,7 @@ get_UTC_time_as_FILETIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != st)
+ * \pre nullptr != st
  */
 inline
 void
@@ -235,7 +235,7 @@ get_local_time_as_SYSTEMTIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 inline
 void
@@ -252,7 +252,7 @@ get_local_time_as_FILETIME(
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != st)
+ * \pre nullptr != st
  */
 inline
 SYSTEMTIME
@@ -269,7 +269,7 @@ get_UTC_time_as_SYSTEMTIME()
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 inline
 FILETIME
@@ -286,7 +286,7 @@ get_UTC_time_as_FILETIME()
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != st)
+ * \pre nullptr != st
  */
 inline
 SYSTEMTIME
@@ -303,7 +303,7 @@ get_local_time_as_SYSTEMTIME()
  *
  * \ingroup group__library__Time
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 inline
 FILETIME

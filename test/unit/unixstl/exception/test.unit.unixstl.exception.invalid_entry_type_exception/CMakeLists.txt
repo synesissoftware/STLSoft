@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.unixstl.exception.invalid_entry_type_exception entry.cpp)

@@ -98,7 +98,7 @@ static void TEST_calls_possible()
     stlsoft::c_str_ptr_null_a(tv);
     stlsoft::c_str_ptr_null(tv);
 
-    XTESTS_TEST_PASSED();
+    TEST_PASSED();
 }
 
 static void TEST_c_str_len()

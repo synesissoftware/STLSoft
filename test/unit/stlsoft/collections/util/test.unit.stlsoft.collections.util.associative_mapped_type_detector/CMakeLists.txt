@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.collections.util.associative_mapped_type_detector entry.cpp)

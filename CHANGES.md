@@ -1,6 +1,37 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.2-alpha1 - 4th October 2026
+
+* **Test coverage expansion (1.11.2 increment)** — comprehensive unit- and component-test suites across all sub-projects; **~640 new** test programs (from **86** to **~708** buildable on Unix/macOS);
+* **ACESTL** — full unit + component coverage (`shims`, `memory/message_block_functions`, `collections/message_queue_sequence`, `network/socket_functions`, `reactor/custom_event_handler`, …); gated on **`HAS_ACE`**;
+* **ATLSTL** — **11** unit tests; **`DEFERRED.md`** documents skipped GUI/`module_scope` components;
+* **MFCSTL** — **21** new unit tests (collections, shims, string, util);
+* **COMSTL** — **27** unit + **1** component (`rot_functions`); **`SKIPPED.md`** for SAPI/typelib/cross-apartment cases;
+* **INETSTL** — exception, filesystem traits/functionals, network session/connection (WinInet sequences intentionally excluded);
+* **UnixSTL** — **56** tests (full public API);
+* **PlatformSTL** — **53** tests (full public API);
+* **WinSTL** — **~200** tests (unit + component; GUI/interactive scopes excluded);
+* **STLSoft** — **~300** unit + **~13** component tests for substantive components (`meta/`, `obsolete/`, `internal/` excluded);
+* Test infrastructure scripts under **`test/scripts/`** (`scaffold_missing_tests.py`, `generate_*_tests.py`, `fix_failed_tests.py`, …);
+* **`test.unit.versions`** — aligned with **1.11.1-rc6** (**`_STLSOFT_VER_1_11_1_RC6`**);
+
+
+## 1.11.1-rc9 - 18th October 2026
+
+* docs:
+  * Normalised Doxygen `\pre` comments to bare boolean expressions (no outer parentheses; no trailing `;` / `.`);
+  * Prefer `nullptr` over `NULL` / prose in `\pre` text; optional-buffer forms use zero-length check first (`0 == n || nullptr != s`);
+  * Converted expressible prose preconditions (e.g. `!empty()`, `n <= size()`, `nullptr != p`) where applicable; retained soft COM / prior-init / exception-gated contracts as prose;
+* version:
+  * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
+  * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
+  * **winstl** — **1.13.0 beta 5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
+  * **inetstl** — **1.5.0 alpha 4** (**_INETSTL_VER_1_5_0_A04**), with **STLSoft 1.11.1-rc9**;
+  * **platformstl** — **1.10.0 beta 3** (**_PLATFORMSTL_VER_1_10_0_B03**), with **STLSoft 1.11.1-rc9**;
+  * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**), with **STLSoft 1.11.1-rc9**;
+
+
 ## 1.11.1-rc8 - 10th October 2026
 
 * additions:
