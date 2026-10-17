@@ -4,11 +4,11 @@
  * Purpose: Shell memory functions.
  *
  * Created: 2nd March 1996
- * Updated: 26th December 2024
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MAJOR       6
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        70
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,7 +113,7 @@ namespace winstl_project
  * \return Pointer to the allocated memory block, or \c nullptr if the
  *   request failed.
  *
- * \remarks On failure, the function will set the thread error information,
+ * \note On failure, the function will set the thread error information,
  *   which may be retrieved by the Win32 API function
  *   <code>::GetLastError()</code>
  *
@@ -158,7 +158,7 @@ winstl__SHMemAlloc(ws_size_t cb)
  *
  * \param pv Pointer to the memory block to be deallocated
  *
- * \remarks On failure, the function will set the thread error information,
+ * \note On failure, the function will set the thread error information,
  *   which may be retrieved by the Win32 API function
  *   <code>::GetLastError()</code>
  *
@@ -224,7 +224,7 @@ DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
  * \return Pointer to the allocated memory block, or \c nullptr if the
  *   request failed or cb is 0 and pv is not \c nullptr.
  *
- * \remarks On failure, the function will set the thread error information,
+ * \note On failure, the function will set the thread error information,
  *   which may be retrieved by the Win32 API function
  *   <code>::GetLastError()</code>
  *

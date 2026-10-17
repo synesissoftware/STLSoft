@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        194
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -299,7 +299,7 @@ public:
     /// \pre nullptr != dir
     ///
     /// \note \c dir is assumed to contain space for an additional
-    ///   character (if required) and NUL-terminator
+    ///   character (if required) and NUL character.
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -803,13 +803,13 @@ public:
     static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
     /// Gets the file attributes for the given path
     ///
-    /// \pre (nullptr != path);
-    /// \pre (nullptr != attr);
+    /// \pre nullptr != path
+    /// \pre nullptr != attr
     static bool_type    get_file_attributes(char_type const* path, file_attributes_type* attr);
     /// Sets the file attributes for the given path
     ///
-    /// \pre (nullptr != path);
-    /// \pre (INVALID_FILE_ATTRIBUTES != attr);
+    /// \pre nullptr != path
+    /// \pre INVALID_FILE_ATTRIBUTES != attr
     static bool_type    set_file_attributes(char_type const* path, file_attributes_type const attr);
 
     /// Returns whether the given stat info represents a file
@@ -868,7 +868,7 @@ public:
     static large_size_type  get_file_size(stat_data_type const& sd);
     /// Gets the size of the file
     ///
-    /// \pre (nullptr != psd)
+    /// \pre nullptr != psd
     static large_size_type  get_file_size(stat_data_type const* psd);
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
@@ -1961,7 +1961,7 @@ public:
 
                             if (r + 2 < cchBuffer)
                             {
-                                // There's enough space for the result and the closing quote and the nul-terminator
+                                // There's enough space for the result and the closing quote and the NUL character
                                 buffer[r + 2] = '\0';
 
                                 n = r + 2;
@@ -2371,8 +2371,8 @@ public:
     }
 
 #if 0
-    /// \pre (nullptr != path);
-    /// \pre (INVALID_FILE_ATTRIBUTES != attr);
+    /// \pre nullptr != path
+    /// \pre INVALID_FILE_ATTRIBUTES != attr
 #endif
 
     static bool_type is_file(stat_data_type const* stat_data)

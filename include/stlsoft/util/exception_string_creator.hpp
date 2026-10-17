@@ -4,11 +4,11 @@
  * Purpose: Contains the exception_string_creator class.
  *
  * Created: 25th May 2010
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     32
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -211,8 +211,8 @@ public:
     ///
     /// \param n The length to which the string's contents will be truncated
     ///
-    /// \remarks This method is a no-op if the length specified is greater
-    ///  than the current length
+    /// \note This method is a no-op if the length specified is greater than
+    ///   the current length.
     class_type& truncate(size_type n)
     {
         if (n < m_message.size())
@@ -477,7 +477,7 @@ private:
 
         if (0 == err)
         {
-            // wcstombs_s() always included nul-terminator in count
+            // wcstombs_s() always included NUL character in count
             --numConverted;
         }
         else

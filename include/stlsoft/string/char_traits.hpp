@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 29th September 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        102
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -266,7 +266,7 @@ public:
     }
 
     /// Compares up to \c cch characters of \c s1 with \c, stopping at the
-    /// first difference or until the NUL-terminator is reached
+    /// first difference or until the NUL character is reached.
     ///
     /// \param s1 The first string to compare
     /// \param s2 The second string to compare
