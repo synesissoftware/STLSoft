@@ -128,11 +128,10 @@ int main(int argc, char* argv[])
 
 namespace {
 
-typedef winstl::system_traits<char>                         traits_m_t;
-typedef winstl::system_traits<wchar_t>                      traits_w_t;
-
 typedef winstl::filesystem_traits<char>                     fs_traits_m_t;
 typedef winstl::filesystem_traits<wchar_t>                  fs_traits_w_t;
+typedef winstl::system_traits<char>                         traits_m_t;
+typedef winstl::system_traits<wchar_t>                      traits_w_t;
 
 
 /** Obtains the current process image path via GetModuleFileNameA. */
@@ -269,14 +268,14 @@ static void TEST_size_THEN_SUFFICIENT_m()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    size_t const                len = expected.size();
-    size_t const                need = traits_m_t::get_current_process_path(0, NULL, NULL);
+    size_t const                len     =   expected.size();
+    size_t const                need    =   traits_m_t::get_current_process_path(0, NULL, NULL);
 
     XTESTS_REQUIRE(TEST_INT_GE(len + 1, need));
 
     stlsoft::auto_buffer<char>  buff(need);
-    char*                       pFile = invalid_file_pointer<char>();
-    size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    char*                       pFile   =   invalid_file_pointer<char>();
+    size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(len, cch);
     TEST_MS_EQ(expected.c_str(), &buff[0]);
@@ -289,14 +288,14 @@ static void TEST_size_THEN_SUFFICIENT_w()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
-    size_t const                    len = expected.size();
-    size_t const                    need = traits_w_t::get_current_process_path(0, NULL, NULL);
+    size_t const                    len     =   expected.size();
+    size_t const                    need    =   traits_w_t::get_current_process_path(0, NULL, NULL);
 
     XTESTS_REQUIRE(TEST_INT_GE(len + 1, need));
 
     stlsoft::auto_buffer<wchar_t>   buff(need);
-    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
-    size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
+    size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(len, cch);
     TEST_WS_EQ(expected.c_str(), &buff[0]);
@@ -460,13 +459,13 @@ static void TEST_ppFile_separator_ON_SUCCESS_m()
     XTESTS_REQUIRE(TEST_INT_GE(expected.size() + 1, need));
 
     stlsoft::auto_buffer<char>  buff(need);
-    char*                       pFile = invalid_file_pointer<char>();
-    size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    char*                       pFile   =   invalid_file_pointer<char>();
+    size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &buff[0]);
 
-    char* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&buff[0]);
+    char const* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&buff[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -487,13 +486,13 @@ static void TEST_ppFile_separator_ON_SUCCESS_w()
     XTESTS_REQUIRE(TEST_INT_GE(expected.size() + 1, need));
 
     stlsoft::auto_buffer<wchar_t>   buff(need);
-    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
-    size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
+    size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(expected.size(), cch);
     TEST_WS_EQ(expected.c_str(), &buff[0]);
 
-    wchar_t* const expectedSep = fs_traits_w_t::find_last_path_name_separator(&buff[0]);
+    wchar_t const* const expectedSep = fs_traits_w_t::find_last_path_name_separator(&buff[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -511,8 +510,8 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_m()
 
     size_t const                len = expected.size();
     stlsoft::auto_buffer<char>  buff(len);
-    char*                       pFile = invalid_file_pointer<char>();
-    size_t const                cch = traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    char*                       pFile   =   invalid_file_pointer<char>();
+    size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_GE(len + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
@@ -526,8 +525,8 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_w()
 
     size_t const                    len = expected.size();
     stlsoft::auto_buffer<wchar_t>   buff(len);
-    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
-    size_t const                    cch = traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
+    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
+    size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_GE(len + 1, cch);
     TEST_PTR_EQ(NULL, pFile);
@@ -622,13 +621,13 @@ static void TEST_RESIZEABLE_ppFile_separator_m()
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
     stlsoft::auto_buffer<char>  rb(0);
-    char*                       pFile = invalid_file_pointer<char>();
-    size_t const                cch = traits_m_t::get_current_process_path(rb, &pFile);
+    char*                       pFile   =   invalid_file_pointer<char>();
+    size_t const                cch     =   traits_m_t::get_current_process_path(rb, &pFile);
 
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &rb[0]);
 
-    char* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&rb[0]);
+    char const* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&rb[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -645,13 +644,13 @@ static void TEST_RESIZEABLE_ppFile_separator_w()
     XTESTS_REQUIRE(TEST_BOOLEAN_TRUE(!expected.empty()));
 
     stlsoft::auto_buffer<wchar_t>   rb(0);
-    wchar_t*                        pFile = invalid_file_pointer<wchar_t>();
-    size_t const                    cch = traits_w_t::get_current_process_path(rb, &pFile);
+    wchar_t*                        pFile   =   invalid_file_pointer<wchar_t>();
+    size_t const                    cch     =   traits_w_t::get_current_process_path(rb, &pFile);
 
     TEST_INT_EQ(expected.size(), cch);
     TEST_WS_EQ(expected.c_str(), &rb[0]);
 
-    wchar_t* const expectedSep = fs_traits_w_t::find_last_path_name_separator(&rb[0]);
+    wchar_t const* const expectedSep = fs_traits_w_t::find_last_path_name_separator(&rb[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 

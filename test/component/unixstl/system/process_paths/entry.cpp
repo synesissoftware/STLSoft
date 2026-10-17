@@ -6,7 +6,7 @@
  *          including resizeable-buffer overloads.
  *
  * Created: 15th October 2026
- * Updated: 15th October 2026
+ * Updated: 18th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,6 +31,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/memory/auto_buffer.hpp>
+#include <unixstl/filesystem/filesystem_traits.hpp>
 
 /* Standard C++ header files */
 #include <string>
@@ -134,6 +135,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
+typedef unixstl::filesystem_traits<char>                    fs_traits_m_t;
 typedef unixstl::system_traits<char>                        traits_m_t;
 
 /** Retrieves the full path of the current executable from the ambient OS
@@ -292,29 +294,6 @@ obtain_raw_current_process_path()
 
 static
 char*
-find_last_path_name_separator(char* s)
-{
-    char* last = NULL;
-
-    for (; '\0' != *s; ++s)
-    {
-#if defined(_WIN32)
-
-        if ('\\' == *s || '/' == *s)
-#else
-
-        if ('/' == *s)
-#endif
-        {
-            last = s;
-        }
-    }
-
-    return last;
-}
-
-static
-char*
 invalid_file_pointer()
 {
     return reinterpret_cast<char*>(static_cast<size_t>(-1));
@@ -466,7 +445,7 @@ static void TEST_ppFile_separator_on_success()
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &buff[0]);
 
-    char* const expectedSep = find_last_path_name_separator(&buff[0]);
+    char const* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&buff[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
@@ -545,7 +524,7 @@ static void TEST_RESIZEABLE_ppFile_separator()
     TEST_INT_EQ(expected.size(), cch);
     TEST_MS_EQ(expected.c_str(), &rb[0]);
 
-    char* const expectedSep = find_last_path_name_separator(&rb[0]);
+    char const* const expectedSep = fs_traits_m_t::find_last_path_name_separator(&rb[0]);
 
     TEST_PTR_EQ(expectedSep, pFile);
 
