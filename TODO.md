@@ -18,6 +18,7 @@
   - [1.11.10](#11110)
   - [1.11.11](#11111)
   - [1.11.12](#11112)
+  - [Cross-publish to STLSoft-1.11](#cross-publish-to-stlsoft-111)
 - [1.12](#112)
 - [Requires clarification by project maintainers](#requires-clarification-by-project-maintainers)
 - [Abandoned](#abandoned)
@@ -32,6 +33,17 @@
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
+* [ ] Remove **WTL**;
+* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
+* [ ] bring in some essential unit-tests from interal repo;
+* [ ] Being the CONCEPTS documentation:
+  * [ ] auto-buffer;
+  * [ ] resizeable-buffer;
+  * [ ] string-access-shims;
+  * [ ] Null Object (variable);
+  * [ ] Externals (esp. not introducing sub-project's headers proper);
+  * [ ] Conformance: Structural, Semantic, Intersecting;
+  * [ ] ...
 
 
 ### 1.11.2
@@ -117,6 +129,13 @@ Normalise C API (and related C-facing) identifier prefixes. **House rule**
 * [x] ~~~Rename path-classify impl macros `WINSTL_C_PATH_CLASSIFY_IMPL_*` / `UNIXSTL_C_PATH_CLASSIFY_IMPL_*` to lowercase~~~ - ❌ (ALL_UPPERCASE macros are house style; no rename);
 * [x] ~~~Decide policy for `STLSOFT_C_AUTO_BUFFER_*` / `STLSOFT_C_CAST`~~~ - ❌ (ALL_UPPERCASE is the house form; keep);
 * [ ] **1.13+**: consider removing deprecated mixed-case C API wrappers / enumerator aliases (`STLSoft_C_*`, `WinSTL_C_*`, `UNIXSTL_C_PathType_*`, and any later-deprecated forms) — not before;
+
+
+### Cross-publish to STLSoft-1.11
+
+When tip **1.11** is finally complete, cross-publish into the versioned line **[synesissoftware/STLSoft-1.11](https://github.com/synesissoftware/STLSoft-1.11)** (not done for the interim VOLE / historical-consumer recognition work — that line was left unpushed on purpose).
+
+* [ ] Cross-publish the completed tip **1.11** tree into **STLSoft-1.11**, including the unknown-newer Visual C++ warn-not-error forward-warning from the **`prospective-msvc`** branch (and any related recognition / semi-freeze messaging needed for historical consumers);
 
 
 ## 1.12

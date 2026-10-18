@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 8th October 2026
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR      1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       1
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      1
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,17 +68,78 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.h>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
+
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_LIMITS
+# define STLSOFT_INCL_H_LIMITS
+# include <limits.h>
+#endif /* !STLSOFT_INCL_H_LIMITS */
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>
+#endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+
 #if 0
-#elif defined(_WIN32) &&\
-      ( 0 ||\
-        defined(STLSOFT_COMPILER_IS_MSVC) ||\
-        defined(STLSOFT_COMPILER_IS_INTEL) ||\
-        0)
+#elif defined(_WIN32)
+
+# ifndef WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary
+#  include <winstl/api/external/DynamicLinkLibrary.h>
+# endif /* !WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary */
 
 # ifndef STLSOFT_INCL_H_PROCESS
 #  define STLSOFT_INCL_H_PROCESS
 #  include <process.h>
 # endif /* !STLSOFT_INCL_H_PROCESS */
+#elif defined(__APPLE__)
+
+# ifndef STLSOFT_INCL_H_LIBPROC
+#  define STLSOFT_INCL_H_LIBPROC
+#  include <libproc.h>
+# endif /* !STLSOFT_INCL_H_LIBPROC */
+# ifndef STLSOFT_INCL_MACH_O_H_DYLD
+#  define STLSOFT_INCL_MACH_O_H_DYLD
+#  include <mach-o/dyld.h>
+# endif /* !STLSOFT_INCL_MACH_O_H_DYLD */
+# ifndef STLSOFT_INCL_H_UNISTD
+#  define STLSOFT_INCL_H_UNISTD
+#  include <unistd.h>
+# endif /* !STLSOFT_INCL_H_UNISTD */
+#elif defined(__linux__)
+
+# ifndef STLSOFT_INCL_H_UNISTD
+#  define STLSOFT_INCL_H_UNISTD
+#  include <unistd.h>
+# endif /* !STLSOFT_INCL_H_UNISTD */
+#elif 0 ||\
+      defined(__FreeBSD__) ||\
+      defined(__NetBSD__) ||\
+      defined(__OpenBSD__) ||\
+      0
+
+# ifndef STLSOFT_INCL_SYS_H_SYSCTL
+#  define STLSOFT_INCL_SYS_H_SYSCTL
+#  include <sys/sysctl.h>
+# endif /* !STLSOFT_INCL_SYS_H_SYSCTL */
+# ifndef STLSOFT_INCL_SYS_H_TYPES
+#  define STLSOFT_INCL_SYS_H_TYPES
+#  include <sys/types.h>
+# endif /* !STLSOFT_INCL_SYS_H_TYPES */
+#elif defined(__sun)
+
+# ifndef STLSOFT_INCL_H_UNISTD
+#  define STLSOFT_INCL_H_UNISTD
+#  include <unistd.h>
+# endif /* !STLSOFT_INCL_H_UNISTD */
 #else
 
 # ifndef STLSOFT_INCL_SYS_H_TYPES
@@ -90,6 +151,19 @@
 #  include <unistd.h>
 # endif /* !STLSOFT_INCL_H_UNISTD */
 #endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * constants
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# if !defined(PATH_MAX)
+#  define UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_     4096
+# else
+#  define UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_     PATH_MAX
+# endif
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,11 +202,7 @@ int
 unixstl_C_get_current_process_id(void)
 {
 #if 0
-#elif defined(_WIN32) && \
-      ( 0 ||\
-        defined(STLSOFT_COMPILER_IS_MSVC) ||\
-        defined(STLSOFT_COMPILER_IS_INTEL) ||\
-        0)
+#elif defined(_WIN32)
 
     return STLSOFT_NS_GLOBAL(_getpid)();
 #else
@@ -141,6 +211,262 @@ unixstl_C_get_current_process_id(void)
 
     return STLSOFT_STATIC_CAST(int, STLSOFT_NS_GLOBAL(getpid)());
 #endif
+}
+
+/** \brief Obtains the fully qualified path of the current process image
+ * (multibyte).
+ *
+ * \ingroup group__library__System
+ *
+ * \param buff Destination buffer. May be \c NULL if and only if \c cch is
+ *   0;
+ * \param cch Number of characters available in \c buff, including space for
+ *   a terminating NUL;
+ *
+ * \return If \c buff is sufficient for the full path and a terminating NUL
+ *   character then this returns the length of the path (excluding the NUL
+ *   character). Otherwise, as much of the result as can be written is done
+ *   so and a character count of <em>at least</em> the full length + 1 (for
+ *   the NUL character) is returned. The returned demand may exceed that
+ *   minimum. Returns 0 on failure;
+ *
+ * \pre 0 == cch || NULL != buff
+ *
+ * \note The normative client pattern is to call with \c cch of 0 to obtain
+ *   a sufficient size, allocate, then call again.
+ */
+STLSOFT_INLINE
+us_size_t
+unixstl_C_get_current_process_path_m(
+    us_char_a_t*    buff
+,   us_size_t       cch
+)
+{
+    STLSOFT_C_AUTO_BUFFER_DECLARE(us_char_a_t, UNIXSTL_C_GET_CURRENT_PROCESS_PATH_INTERNAL_SIZE_, ab);
+    us_size_t   len = 0;
+    us_size_t   result = 0;
+
+    UNIXSTL_ASSERT(0 == cch || NULL != buff);
+
+    STLSOFT_C_AUTO_BUFFER_INITIALISE_FROM_INTERNAL(ab);
+
+#if 0
+#elif defined(_WIN32)
+
+    /* NOTE: this only for UNIXem-ulation, so we don't care about its
+     * performance
+     */
+
+    /* Windows / UNIXem: GetModuleFileNameA */
+    for (;;)
+    {
+        DWORD const n = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(
+                            NULL
+                        ,   ab.ptr
+                        ,   STLSOFT_STATIC_CAST(DWORD, ab.size)
+                        );
+
+        if (0 == n)
+        {
+            goto done;
+        }
+
+        if (n < ab.size)
+        {
+            len = STLSOFT_STATIC_CAST(us_size_t, n);
+            break;
+        }
+
+        if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, ab.size * 2))
+        {
+            errno = ENOMEM;
+
+            goto done;
+        }
+    }
+#elif defined(__APPLE__)
+
+    /* macOS: prefer proc_pidpath; fallback to _NSGetExecutablePath (+ realpath). */
+    {
+        int const ret = STLSOFT_NS_GLOBAL(proc_pidpath)(
+                            STLSOFT_NS_GLOBAL(getpid)()
+                        ,   ab.ptr
+                        ,   STLSOFT_STATIC_CAST(uint32_t, ab.size)
+                        );
+
+        if (ret <= 0)
+        {
+            uint32_t size = STLSOFT_STATIC_CAST(uint32_t, ab.size);
+
+            if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(ab.ptr, &size))
+            {
+                if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, size))
+                {
+                    errno = ENOMEM;
+
+                    goto done;
+                }
+
+                size = STLSOFT_STATIC_CAST(uint32_t, ab.size);
+
+                if (0 != STLSOFT_NS_GLOBAL(_NSGetExecutablePath)(ab.ptr, &size))
+                {
+                    goto done;
+                }
+            }
+
+            {
+                char* const resolved = STLSOFT_NS_GLOBAL(realpath)(ab.ptr, NULL);
+
+                if (NULL != resolved)
+                {
+                    us_size_t const cchResolved = STLSOFT_NS_GLOBAL(strlen)(resolved);
+
+                    if (cchResolved + 1 > ab.size)
+                    {
+                        if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, cchResolved + 1))
+                        {
+                            STLSOFT_NS_GLOBAL(free)(resolved);
+
+                            errno = ENOMEM;
+
+                            goto done;
+                        }
+                    }
+
+                    STLSOFT_NS_GLOBAL(memcpy)(ab.ptr, resolved, cchResolved + 1);
+                    STLSOFT_NS_GLOBAL(free)(resolved);
+                }
+            }
+        }
+
+        len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
+    }
+#elif defined(__linux__)
+
+    /* Linux: readlink("/proc/self/exe") */
+    for (;;)
+    {
+        ssize_t const n = STLSOFT_NS_GLOBAL(readlink)("/proc/self/exe", ab.ptr, ab.size);
+
+        if (n < 0)
+        {
+            goto done;
+        }
+
+        if (STLSOFT_STATIC_CAST(us_size_t, n) < ab.size)
+        {
+            ab.ptr[n] = '\0';
+            len = STLSOFT_STATIC_CAST(us_size_t, n);
+            break;
+        }
+
+        if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, ab.size * 2))
+        {
+            errno = ENOMEM;
+
+            goto done;
+        }
+    }
+#elif 0 ||\
+      defined(__FreeBSD__) ||\
+      defined(__NetBSD__) ||\
+      defined(__OpenBSD__) ||\
+      0
+
+    /* BSD: sysctl(KERN_PROC_PATHNAME) */
+    {
+        int     mib[4];
+        size_t  cb = ab.size;
+
+        mib[0] = CTL_KERN;
+        mib[1] = KERN_PROC;
+        mib[2] = KERN_PROC_PATHNAME;
+        mib[3] = -1;
+
+        if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, ab.ptr, &cb, NULL, 0))
+        {
+            if (ENOMEM == errno)
+            {
+                if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(ab, cb))
+                {
+                    errno = ENOMEM;
+
+                    goto done;
+                }
+
+                cb = ab.size;
+
+                if (0 != STLSOFT_NS_GLOBAL(sysctl)(mib, 4, ab.ptr, &cb, NULL, 0))
+                {
+                    goto done;
+                }
+            }
+            else
+            {
+                goto done;
+            }
+        }
+
+        len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
+    }
+#elif defined(__sun)
+
+    /* Solaris: getexecname() + realpath() */
+    {
+        char const* const exe = STLSOFT_NS_GLOBAL(getexecname)();
+
+        if (NULL == exe)
+        {
+            goto done;
+        }
+
+        if (NULL == STLSOFT_NS_GLOBAL(realpath)(exe, ab.ptr))
+        {
+            goto done;
+        }
+
+        len = STLSOFT_NS_GLOBAL(strlen)(ab.ptr);
+    }
+#else
+
+    errno = ENOSYS;
+
+    goto done;
+#endif
+
+    if (0 == cch)
+    {
+        result = len + 1;
+    }
+    else if (cch <= len)
+    {
+        us_size_t const nCopy = cch - 1;
+
+        if (0 != nCopy)
+        {
+            STLSOFT_NS_GLOBAL(memcpy)(buff, ab.ptr, nCopy * sizeof(us_char_a_t));
+        }
+
+        buff[nCopy] = '\0';
+        result = len + 1;
+    }
+    else
+    {
+        if (0 != len)
+        {
+            STLSOFT_NS_GLOBAL(memcpy)(buff, ab.ptr, len * sizeof(us_char_a_t));
+        }
+
+        buff[len] = '\0';
+        result = len;
+    }
+
+done:
+
+    STLSOFT_C_AUTO_BUFFER_FREE(ab);
+
+    return result;
 }
 
 
