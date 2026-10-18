@@ -8,6 +8,18 @@ T.B.C.
 
 ## 1.11.1-rc9 - 18th October 2026
 
+* additions:
+  * **unixstl::filesystem_traits<wchar_t>** — implemented `find_last_path_name_separator()` / `find_next_path_name_separator()` and `is_path_rooted()` / `is_path_absolute()` / `is_path_UNC()` (NUL-terminated and counted), including Windows drive-letter and UNC classification;
+  * **unixstl::filesystem_traits<wchar_t>** — path-resolve, current-directory, and directory-enumeration members remain declared, pending one conversion policy for that group;
+  * **unixstl_C_get_home_directory_w()** (**unixstl/system/directory_functions.h**) — reads `HOME` via `getenv()` and converts with `mbstowcs()` (locale multibyte encoding); a short buffer keeps a NUL in the last slot and returns `cchBuffer - 1`, matching the narrow copy;
+  * **unixstl::system_traits<wchar_t>** — implemented `path_str_compare()` and `path_str_n_compare()` (on Windows, case-folded with `towupper()` and treating `/` and `\` as equivalent);
+  * **unixstl::system_traits<wchar_t>** — implemented `get_environment_variable()` (raw and resizeable-buffer) by converting the name with `wcstombs()`, reading it with `getenv()`, and converting the value with `mbstowcs()`; implemented the resizeable-buffer overload of `get_home_directory()`;
+  * **unixstl::system_traits<wchar_t>** — `load_library()` and `free_library()` stay declared together pending one conversion policy (`free_library()` no longer calls `dlclose()` alone); `expand_environment_strings()` remains declared;
+* testing:
+  * Unit tests **test.unit.unixstl.filesystem.filesystem_traits** cover wide separator finding and path classification, and agreement with the narrow specialisation;
+  * Unit tests **test.unit.unixstl.system.system_traits** cover wide `path_str_compare()` and `path_str_n_compare()`;
+  * Component tests **test.component.unixstl.system.system_traits** cover wide `get_home_directory()` and `get_environment_variable()` (probe, fixed buffer, and `std::vector` resizeable overload) via `platformstl::environment_variable_scope`;
+  * Resizeable-buffer cases shared with the resizeable-buffer line (`ensure_dir_end()` / `remove_dir_end()`, and the narrow resizeable `get_home_directory()` / `get_environment_variable()` overloads) remain empty pending that merge;
 * docs:
   * Normalised Doxygen `\pre` comments to bare boolean expressions (no outer parentheses; no trailing `;` / `.`);
   * Prefer `nullptr` over `NULL` / prose in `\pre` text; optional-buffer forms use zero-length check first (`0 == n || nullptr != s`);
