@@ -106,7 +106,7 @@ Normalise C API (and related C-facing) identifier prefixes to the house form **`
 * [ ] Establish and document the rule: new C functions / C-facing enums use lowercase `<subproject>_C_`; do not introduce `WinSTL_C_`, `STLSoft_C_`, or similar mixed forms;
 * [x] ~~~Rename `STLSoft_C_string_copy*` / `STLSoft_C_string_copy_with_nul*` → `stlsoft_C_*` in **include/stlsoft/string/copy_functions.h** and all call sites (deprecated wrappers retained until at least **1.13**)~~~ - ✅;
 * [x] ~~~Rename `WinSTL_C_FileInformation_*` → `winstl_C_*` in **include/winstl/filesystem/file_information_functions.h** and call sites (deprecated wrappers retained until at least **1.13**)~~~ - ✅;
-* [ ] Rename path-classify `PathType` enumerators: `WinSTL_C_PathType_*` → `winstl_C_PathType_*`, and `UNIXSTL_C_PathType_*` → `unixstl_C_PathType_*` (retain deprecated older forms until at least **1.13**);
+* [x] ~~~Rename path-classify `PathType` enumerators: `WinSTL_C_PathType_*` → `winstl_C_PathType_*`, and `UNIXSTL_C_PathType_*` → `unixstl_C_PathType_*` (legacy names retained as documentation-hidden macros until at least **1.13**)~~~ - ✅;
 * [ ] Rename path-classify impl macros `WINSTL_C_PATH_CLASSIFY_IMPL_*` / `UNIXSTL_C_PATH_CLASSIFY_IMPL_*` → lowercase `<sub>_C_*` forms (retain deprecated older forms until at least **1.13** where applicable);
 * [ ] Decide policy for remaining UPPER macro tokens such as `STLSOFT_C_AUTO_BUFFER_*` and `STLSOFT_C_CAST` (keep UPPER as macro convention, or migrate to `stlsoft_C_*`); then apply consistently;
 * [ ] **1.13+**: consider removing deprecated mixed-case C API wrappers (`STLSoft_C_*`, `WinSTL_C_*`, and any later-deprecated forms) — not before;
