@@ -4,11 +4,11 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 21st December 2020
- * Updated: 20th October 2024
+ * Updated: 18th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -163,7 +163,7 @@ unixstl_C_path_classify_root_X_(
     {
         /* "/" */
 
-        return UNIXSTL_C_PathType_SlashRooted;
+        return unixstl_C_PathType_SlashRooted;
     }
 
     if ('~' == s0[0])
@@ -175,7 +175,7 @@ unixstl_C_path_classify_root_X_(
                 *ppS1       =   s0 + 1;
                 *pCch1      =   cch0 - 1;
 
-                return UNIXSTL_C_PathType_HomeRooted;
+                return unixstl_C_PathType_HomeRooted;
             }
             else
             switch (s0[1])
@@ -185,12 +185,12 @@ unixstl_C_path_classify_root_X_(
                 *ppS1       =   s0 + 1;
                 *pCch1      =   cch0 - 1;
 
-                return UNIXSTL_C_PathType_HomeRooted;
+                return unixstl_C_PathType_HomeRooted;
             }
         }
     }
 
-    return UNIXSTL_C_PathType_Relative;
+    return unixstl_C_PathType_Relative;
 }
 
 STLSOFT_INLINE
@@ -236,7 +236,7 @@ unixstl_C_path_classify_impl_X_(
 
     if (0 == cch0)
     {
-        return UNIXSTL_C_PathType_Empty;
+        return unixstl_C_PathType_Empty;
     }
 
     rcRoot = unixstl_C_path_classify_root_X_(
@@ -251,9 +251,9 @@ unixstl_C_path_classify_impl_X_(
 
     switch (rcRoot)
     {
-    case    UNIXSTL_C_PathType_Relative:
-    case    UNIXSTL_C_PathType_SlashRooted:
-    case    UNIXSTL_C_PathType_HomeRooted:
+    case    unixstl_C_PathType_Relative:
+    case    unixstl_C_PathType_SlashRooted:
+    case    unixstl_C_PathType_HomeRooted:
 
         break;
     default:
@@ -270,7 +270,7 @@ unixstl_C_path_classify_impl_X_(
             results->firstInvalid.len   =   1;
             results->firstInvalid.ptr   =   invalidChar;
 
-            return UNIXSTL_C_PathType_InvalidChars;
+            return unixstl_C_PathType_InvalidChars;
         }
 
         if (ss_nullptr_k != (invalidChar = UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_(s1, cch1, ':')))
@@ -278,7 +278,7 @@ unixstl_C_path_classify_impl_X_(
             results->firstInvalid.len   =   1;
             results->firstInvalid.ptr   =   invalidChar;
 
-            return UNIXSTL_C_PathType_InvalidChars;
+            return unixstl_C_PathType_InvalidChars;
         }
     }
 
@@ -336,7 +336,7 @@ unixstl_C_path_classify_impl_X_(
                         results->firstInvalid.len    =   1;
                         results->firstInvalid.ptr    =   p0;
 
-                        return UNIXSTL_C_PathType_InvalidSlashRuns;
+                        return unixstl_C_PathType_InvalidSlashRuns;
                     }
                 }
 

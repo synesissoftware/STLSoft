@@ -4,7 +4,7 @@
  * Purpose: Directory functions.
  *
  * Created: 1st October 2016
- * Updated: 15th October 2026
+ * Updated: 18th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        24
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -176,18 +176,18 @@ unixstl_C_get_home_directory_invoke_getenv_a_(
                     us_size_t   s   =   buff.size;
                     us_size_t   n;
 
-                    n = STLSoft_C_string_copy_a(p, s, s_szHomeUnique, cchHomeUnique);
+                    n = stlsoft_C_string_copy_a(p, s, s_szHomeUnique, cchHomeUnique);
                     p += n;
                     s -= n;
 
                     *p++ = '=';
                     --s;
 
-                    n = STLSoft_C_string_copy_a(p, s, homeDrive, cchHomeDrive);
+                    n = stlsoft_C_string_copy_a(p, s, homeDrive, cchHomeDrive);
                     p += n;
                     s -= n;
 
-                    n = STLSoft_C_string_copy_a(p, s, homePath, cchHomePath);
+                    n = stlsoft_C_string_copy_a(p, s, homePath, cchHomePath);
                     p += n;
                     s -= n;
 
@@ -237,7 +237,7 @@ unixstl_C_get_home_directory_a(
             return cchHome + 1;
         }
 
-        return STLSoft_C_string_copy_with_nul_a(buffer, cchBuffer, home, cchHome);
+        return stlsoft_C_string_copy_with_nul_a(buffer, cchBuffer, home, cchHome);
     }
 }
 

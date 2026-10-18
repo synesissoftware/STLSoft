@@ -4,11 +4,11 @@
  * Purpose: Path classification functions
  *
  * Created: 21st December 2020
- * Updated: 20th October 2024
+ * Updated: 18th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      9
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -88,27 +88,28 @@
 
 enum unixstl_C_path_classification_t
 {
-        UNIXSTL_C_PathType_MIN_VALUE            =   -10000
+        unixstl_C_PathType_MIN_VALUE            =   -10000
 
-    ,   UNIXSTL_C_PathType_InvalidSlashRuns     =   -3
-    ,   UNIXSTL_C_PathType_InvalidChars         =   -2
-    ,   UNIXSTL_C_PathType_Invalid              =   -1
-    ,   UNIXSTL_C_PathType_Unknown              =   0
-    ,   UNIXSTL_C_PathType_Empty
-    ,   UNIXSTL_C_PathType_Relative
-    ,   UNIXSTL_C_PathType_SlashRooted
-    ,   UNIXSTL_C_PathType_reserved_1
-    ,   UNIXSTL_C_PathType_reserved_2
-    ,   UNIXSTL_C_PathType_reserved_3
-    ,   UNIXSTL_C_PathType_reserved_4
-    ,   UNIXSTL_C_PathType_HomeRooted
+    ,   unixstl_C_PathType_InvalidSlashRuns     =   -3
+    ,   unixstl_C_PathType_InvalidChars         =   -2
+    ,   unixstl_C_PathType_Invalid              =   -1
+    ,   unixstl_C_PathType_Unknown              =   0
+    ,   unixstl_C_PathType_Empty
+    ,   unixstl_C_PathType_Relative
+    ,   unixstl_C_PathType_SlashRooted
+    ,   unixstl_C_PathType_reserved_1
+    ,   unixstl_C_PathType_reserved_2
+    ,   unixstl_C_PathType_reserved_3
+    ,   unixstl_C_PathType_reserved_4
+    ,   unixstl_C_PathType_HomeRooted
 
     /* no enumerator to be placed AFTER this one */
-    ,   UNIXSTL_C_PathType_MAX_VALUE
+    ,   unixstl_C_PathType_MAX_VALUE
 };
 #ifndef __cplusplus
 typedef enum unixstl_C_path_classification_t                unixstl_C_path_classification_t;
 #endif /* !__cplusplus */
+
 
 struct unixstl_C_path_classification_results_m_t
 {
@@ -208,8 +209,8 @@ unixstl_C_path_is_rooted(
 {
     switch (pc)
     {
-    case UNIXSTL_C_PathType_SlashRooted:
-    case UNIXSTL_C_PathType_HomeRooted:
+    case unixstl_C_PathType_SlashRooted:
+    case unixstl_C_PathType_HomeRooted:
 
         return 1;
     default:
@@ -317,6 +318,33 @@ path_is_rooted(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Older UPPER-case enumerator names are retained (as macros) until at
+ * least STLSoft 1.13.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# define UNIXSTL_C_PathType_Empty                           unixstl_C_PathType_Empty
+# define UNIXSTL_C_PathType_HomeRooted                      unixstl_C_PathType_HomeRooted
+# define UNIXSTL_C_PathType_Invalid                         unixstl_C_PathType_Invalid
+# define UNIXSTL_C_PathType_InvalidChars                    unixstl_C_PathType_InvalidChars
+# define UNIXSTL_C_PathType_InvalidSlashRuns                unixstl_C_PathType_InvalidSlashRuns
+# define UNIXSTL_C_PathType_MAX_VALUE                       unixstl_C_PathType_MAX_VALUE
+# define UNIXSTL_C_PathType_MIN_VALUE                       unixstl_C_PathType_MIN_VALUE
+# define UNIXSTL_C_PathType_Relative                        unixstl_C_PathType_Relative
+# define UNIXSTL_C_PathType_SlashRooted                     unixstl_C_PathType_SlashRooted
+# define UNIXSTL_C_PathType_Unknown                         unixstl_C_PathType_Unknown
+# define UNIXSTL_C_PathType_reserved_1                      unixstl_C_PathType_reserved_1
+# define UNIXSTL_C_PathType_reserved_2                      unixstl_C_PathType_reserved_2
+# define UNIXSTL_C_PathType_reserved_3                      unixstl_C_PathType_reserved_3
+# define UNIXSTL_C_PathType_reserved_4                      unixstl_C_PathType_reserved_4
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
