@@ -18,6 +18,7 @@
   - [1.11.10](#11110)
   - [1.11.11](#11111)
   - [1.11.12](#11112)
+  - [Cross-publish to STLSoft-1.11](#cross-publish-to-stlsoft-111)
 - [1.12](#112)
 - [Requires clarification by project maintainers](#requires-clarification-by-project-maintainers)
 - [Abandoned](#abandoned)
@@ -32,6 +33,17 @@
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
+* [ ] Remove **WTL**;
+* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
+* [ ] bring in some essential unit-tests from interal repo;
+* [ ] Being the CONCEPTS documentation:
+  * [ ] auto-buffer;
+  * [ ] resizeable-buffer;
+  * [ ] string-access-shims;
+  * [ ] Null Object (variable);
+  * [ ] Externals (esp. not introducing sub-project's headers proper);
+  * [ ] Conformance: Structural, Semantic, Intersecting;
+  * [ ] ...
 
 
 ### 1.11.2
@@ -101,15 +113,29 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 
 ### 1.11.12
 
-Normalise C API (and related C-facing) identifier prefixes to the house form **`<subproject>_C_`** (all-lowercase project key). Survey of **include/** own-prefixes: lowercase already dominates (`comstl`, `mfcstl`, `platformstl`, and the bulk of `stlsoft` / `unixstl` / `winstl`); mixed (`STLSoft_C_`, `WinSTL_C_`) and UPPER (`STLSOFT_C_`, `UNIXSTL_C_`, `WINSTL_C_`) are local exceptions only. No `PlatformSTL_C_` / `UnixSTL_C_` / `ComSTL_C_` forms exist.
+Normalise C API (and related C-facing) identifier prefixes. **House rule**
+(documented in **c-cpp-standards** → *STLSoft C API identifier prefixes*):
 
-* [ ] Establish and document the rule: new C functions / C-facing enums use lowercase `<subproject>_C_`; do not introduce `WinSTL_C_`, `STLSoft_C_`, or similar mixed forms;
+* **Functions**, **types**, and **enumerators** — lowercase `<subproject>_C_`;
+* **Macros** — ALL_UPPERCASE (including the project key);
+* Do not introduce mixed forms such as `WinSTL_C_` / `STLSoft_C_`;
+* When renaming, retain older public names (deprecated wrappers or
+  documentation-hidden `#define` aliases) until at least **STLSoft 1.13**.
+
+* [x] ~~~Establish and document the rule (see **c-cpp-standards**)~~~ - ✅;
 * [x] ~~~Rename `STLSoft_C_string_copy*` / `STLSoft_C_string_copy_with_nul*` → `stlsoft_C_*` in **include/stlsoft/string/copy_functions.h** and all call sites (deprecated wrappers retained until at least **1.13**)~~~ - ✅;
 * [x] ~~~Rename `WinSTL_C_FileInformation_*` → `winstl_C_*` in **include/winstl/filesystem/file_information_functions.h** and call sites (deprecated wrappers retained until at least **1.13**)~~~ - ✅;
 * [x] ~~~Rename path-classify `PathType` enumerators: `WinSTL_C_PathType_*` → `winstl_C_PathType_*`, and `UNIXSTL_C_PathType_*` → `unixstl_C_PathType_*` (legacy names retained as documentation-hidden macros until at least **1.13**)~~~ - ✅;
-* [ ] Rename path-classify impl macros `WINSTL_C_PATH_CLASSIFY_IMPL_*` / `UNIXSTL_C_PATH_CLASSIFY_IMPL_*` → lowercase `<sub>_C_*` forms (retain deprecated older forms until at least **1.13** where applicable);
-* [ ] Decide policy for remaining UPPER macro tokens such as `STLSOFT_C_AUTO_BUFFER_*` and `STLSOFT_C_CAST` (keep UPPER as macro convention, or migrate to `stlsoft_C_*`); then apply consistently;
-* [ ] **1.13+**: consider removing deprecated mixed-case C API wrappers (`STLSoft_C_*`, `WinSTL_C_*`, and any later-deprecated forms) — not before;
+* [x] ~~~Rename path-classify impl macros `WINSTL_C_PATH_CLASSIFY_IMPL_*` / `UNIXSTL_C_PATH_CLASSIFY_IMPL_*` to lowercase~~~ - ❌ (ALL_UPPERCASE macros are house style; no rename);
+* [x] ~~~Decide policy for `STLSOFT_C_AUTO_BUFFER_*` / `STLSOFT_C_CAST`~~~ - ❌ (ALL_UPPERCASE is the house form; keep);
+* [ ] **1.13+**: consider removing deprecated mixed-case C API wrappers / enumerator aliases (`STLSoft_C_*`, `WinSTL_C_*`, `UNIXSTL_C_PathType_*`, and any later-deprecated forms) — not before;
+
+
+### Cross-publish to STLSoft-1.11
+
+When tip **1.11** is finally complete, cross-publish into the versioned line **[synesissoftware/STLSoft-1.11](https://github.com/synesissoftware/STLSoft-1.11)** (not done for the interim VOLE / historical-consumer recognition work — that line was left unpushed on purpose).
+
+* [ ] Cross-publish the completed tip **1.11** tree into **STLSoft-1.11**, including the unknown-newer Visual C++ warn-not-error forward-warning from the **`prospective-msvc`** branch (and any related recognition / semi-freeze messaging needed for historical consumers);
 
 
 ## 1.12
@@ -142,10 +168,10 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 
 ## Abandoned
 
-* [-] ~~~custom radix in integer_to_string - abandoned for performance reasons, and obviated by new conversion functions (oct, dec, hex) in 1.10~~~ - ❌;
-* [-] ~~~SourceSafe-era “do not branch the whole monorepo” note~~~ - ❌ (obsolete under Git; superseded by assessing the separate 1.12 internal repository for inclusion);
-* [-] ~~~Manual C/C++ dialect compatibility matrix in **TODO.md**~~~ - ❌ (CI is the record of actively exercised builds; automated/semi-automated reporting deferred to **1.12**);
-* [-] ~~~Migrate/deprecate **include/stlsoft/std/**`*` in parallel with `*printf.h`~~~ - ❌ (cut);
+* [x] ~~~custom radix in integer_to_string - abandoned for performance reasons, and obviated by new conversion functions (oct, dec, hex) in 1.10~~~ - ❌;
+* [x] ~~~SourceSafe-era “do not branch the whole monorepo” note~~~ - ❌ (obsolete under Git; superseded by assessing the separate 1.12 internal repository for inclusion);
+* [x] ~~~Manual C/C++ dialect compatibility matrix in **TODO.md**~~~ - ❌ (CI is the record of actively exercised builds; automated/semi-automated reporting deferred to **1.12**);
+* [x] ~~~Migrate/deprecate **include/stlsoft/std/**`*` in parallel with `*printf.h`~~~ - ❌ (cut);
 
 
 <!-- ########################### end of file ########################### -->
