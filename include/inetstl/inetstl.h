@@ -196,8 +196,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the InetSTL libraries requires STLSoft version 1.11.1 rc 9, or later
+#if _STLSOFT_VER < 0x010b0241
+# error This version of the InetSTL libraries requires STLSoft version 1.11.2 alpha 1, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -255,7 +255,7 @@
 
 #elif defined(STLSOFT_COMPILER_IS_INTEL)
  /* ******************************* Intel ******************************* */
- # if (__INTEL_COMPILER < 700)
+# if (__INTEL_COMPILER < 700)
 #  error Versions of Intel C++ prior to 7.0 are not supported by the InetSTL libraries
 # endif /* __INTEL_COMPILER */
 

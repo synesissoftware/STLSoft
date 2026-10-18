@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    16
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        247
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    17
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        248
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -292,8 +292,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the WinSTL libraries requires STLSoft version 1.11.1 rc 9, or later
+#if _STLSOFT_VER < 0x010b0241
+# error This version of the WinSTL libraries requires STLSoft version 1.11.2 alpha 1, or later
 #endif /* _STLSOFT_VER */
 
 

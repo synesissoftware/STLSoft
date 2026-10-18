@@ -424,12 +424,13 @@
 # define _STLSOFT_VER_1_11_1_RC7    0x010B01C7  /*!< Version 1.11.1 rc 7 (30th September 2026) */
 # define _STLSOFT_VER_1_11_1_RC8    0x010B01C8  /*!< Version 1.11.1 rc 8 (10th October 2026) */
 # define _STLSOFT_VER_1_11_1_RC9    0x010B01C9  /*!< Version 1.11.1 rc 9 (18th October 2026) */
+# define _STLSOFT_VER_1_11_2_A01    0x010b0241  /*!< Version 1.11.2 alpha 1 (25th October 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
-#define _STLSOFT_VER_PATCH          1
-#define _STLSOFT_VER_ALPHABETA      0xC9
+#define _STLSOFT_VER_PATCH          2
+#define _STLSOFT_VER_ALPHABETA      0x41
 
 #define _STLSOFT_VER \
     (0\
@@ -2358,10 +2359,10 @@ typedef STLSOFT_UI64_T_BASE_TYPE                            STLSOFT_UI64_T_BASE_
 
 /* ptr-bit */
 #ifdef STLSOFT_SPTR_T_BASE_TYPE
- typedef STLSOFT_SPTR_T_BASE_TYPE                           STLSOFT_SPTR_T_BASE_TYPE_;
+typedef STLSOFT_SPTR_T_BASE_TYPE                            STLSOFT_SPTR_T_BASE_TYPE_;
 #endif
 #ifdef STLSOFT_UPTR_T_BASE_TYPE
- typedef STLSOFT_UPTR_T_BASE_TYPE                           STLSOFT_UPTR_T_BASE_TYPE_;
+typedef STLSOFT_UPTR_T_BASE_TYPE                            STLSOFT_UPTR_T_BASE_TYPE_;
 #endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
