@@ -32,9 +32,6 @@
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
-* [ ] Remove **WTL**;
-* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
-* [ ] bring in some essential unit-tests from interal repo;
 
 
 ### 1.11.2
@@ -46,6 +43,9 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] Coverage of currently untested components;
 * [ ] All precondition enforcements => \pre;
 * [ ] All \pre => precondition enforcements;
+* [ ] Remove **WTL**;
+* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
+* [ ] bring in some essential unit-tests from interal repo;
 
 
 ### 1.11.3
@@ -81,7 +81,7 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 
 ### 1.11.8
 
-* [ ] Move **include/stlsoft/util/string/**`*printf.h` into **api/internal** and deprecate the old headers;
+* [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
 
 
 ### 1.11.9
