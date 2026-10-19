@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_information_functions.h
+ * File:    winstl/filesystem/file_information_functions.h
  *
- * Purpose:     File  functions.
+ * Purpose: File functions.
  *
- * Created:     7th November 2014
- * Updated:     11th March 2024
+ * Created: 7th November 2014
+ * Updated: 13th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        10
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,7 +105,7 @@ namespace winstl_project
 
 STLSOFT_INLINE
 SECURITY_DESCRIPTOR*
-WinSTL_C_FileInformation_alloc_(
+winstl_C_FileInformation_alloc_(
     ws_size_t   cb
 )
 {
@@ -114,7 +114,7 @@ WinSTL_C_FileInformation_alloc_(
 
 STLSOFT_INLINE
 void
-WinSTL_C_FileInformation_free_(
+winstl_C_FileInformation_free_(
     void*       pv
 )
 {
@@ -130,16 +130,16 @@ WinSTL_C_FileInformation_free_(
 
 STLSOFT_INLINE
 void
-WinSTL_C_FileInformation_free_SECURITY_DESCRIPTOR(
+winstl_C_FileInformation_free_SECURITY_DESCRIPTOR(
     SECURITY_DESCRIPTOR*    psd
 )
 {
-    WinSTL_C_FileInformation_free_(psd);
+    winstl_C_FileInformation_free_(psd);
 }
 
 STLSOFT_INLINE
 BOOL
-WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a(
+winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_a(
     ws_char_a_t const*      path
 ,   SECURITY_INFORMATION    si
 ,   SECURITY_DESCRIPTOR**   ppsd
@@ -172,7 +172,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a(
                 return FALSE;
         }
 
-        *ppsd = WinSTL_C_FileInformation_alloc_(dwSize);
+        *ppsd = winstl_C_FileInformation_alloc_(dwSize);
 
         if (NULL == *ppsd)
         {
@@ -186,7 +186,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a(
             return TRUE;
         }
 
-        WinSTL_C_FileInformation_free_(*ppsd);
+        winstl_C_FileInformation_free_(*ppsd);
 
         *pcbsd = 0;
     }
@@ -196,7 +196,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a(
 
 STLSOFT_INLINE
 BOOL
-WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
+winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
     ws_char_w_t const*      path
 ,   SECURITY_INFORMATION    si
 ,   SECURITY_DESCRIPTOR**   ppsd
@@ -229,7 +229,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
                 return FALSE;
         }
 
-        *ppsd = WinSTL_C_FileInformation_alloc_(dwSize);
+        *ppsd = winstl_C_FileInformation_alloc_(dwSize);
 
         if (NULL == *ppsd)
         {
@@ -243,7 +243,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
             return TRUE;
         }
 
-        WinSTL_C_FileInformation_free_(*ppsd);
+        winstl_C_FileInformation_free_(*ppsd);
 
         *pcbsd = 0;
     }
@@ -276,7 +276,7 @@ free_SECURITY_DESCRIPTOR(
     SECURITY_DESCRIPTOR*    psd
 )
 {
-    WinSTL_C_FileInformation_free_SECURITY_DESCRIPTOR(psd);
+    winstl_C_FileInformation_free_SECURITY_DESCRIPTOR(psd);
 }
 
 inline
@@ -288,7 +288,7 @@ get_SECURITY_DESCRIPTOR(
 ,   ws_size_t*              pcbsd   =   NULL
 )
 {
-    return WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a(path, si, ppsd, pcbsd);
+    return winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_a(path, si, ppsd, pcbsd);
 }
 
 inline
@@ -300,11 +300,79 @@ get_SECURITY_DESCRIPTOR(
 ,   ws_size_t*              pcbsd   =   NULL
 )
 {
-    return WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(path, si, ppsd, pcbsd);
+    return winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_w(path, si, ppsd, pcbsd);
 }
 
 } /* namespace file_information */
 #endif /* !WINSTL_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Older mixed-case names are retained (deprecated) until at least STLSoft
+ * 1.13.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(WinSTL_C_FileInformation_alloc_, winstl_C_FileInformation_alloc_)
+STLSOFT_INLINE
+SECURITY_DESCRIPTOR*
+WinSTL_C_FileInformation_alloc_(
+    ws_size_t   cb
+)
+{
+    return winstl_C_FileInformation_alloc_(cb);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(WinSTL_C_FileInformation_free_, winstl_C_FileInformation_free_)
+STLSOFT_INLINE
+void
+WinSTL_C_FileInformation_free_(
+    void*       pv
+)
+{
+    winstl_C_FileInformation_free_(pv);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(WinSTL_C_FileInformation_free_SECURITY_DESCRIPTOR, winstl_C_FileInformation_free_SECURITY_DESCRIPTOR)
+STLSOFT_INLINE
+void
+WinSTL_C_FileInformation_free_SECURITY_DESCRIPTOR(
+    SECURITY_DESCRIPTOR*    psd
+)
+{
+    winstl_C_FileInformation_free_SECURITY_DESCRIPTOR(psd);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a, winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_a)
+STLSOFT_INLINE
+BOOL
+WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_a(
+    ws_char_a_t const*      path
+,   SECURITY_INFORMATION    si
+,   SECURITY_DESCRIPTOR**   ppsd
+,   ws_size_t*              pcbsd
+)
+{
+    return winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_a(path, si, ppsd, pcbsd);
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w, winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_w)
+STLSOFT_INLINE
+BOOL
+WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
+    ws_char_w_t const*      path
+,   SECURITY_INFORMATION    si
+,   SECURITY_DESCRIPTOR**   ppsd
+,   ws_size_t*              pcbsd
+)
+{
+    return winstl_C_FileInformation_get_SECURITY_DESCRIPTOR_w(path, si, ppsd, pcbsd);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

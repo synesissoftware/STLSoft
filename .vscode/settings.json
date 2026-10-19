@@ -59,6 +59,9 @@
 	"C_Cpp.clang_format_style": "file",
 	"C_Cpp.default.cStandard": "c17",
 	"C_Cpp.default.cppStandard": "c++17",
+	"C_Cpp.default.defines": [
+		// "STLSOFT_DOCUMENTATION_SKIP_SECTION",
+	],
 	"C_Cpp.enhancedColorization": "enabled",
 	"C_Cpp.errorSquiggles": "enabled",
 	"C_Cpp.formatting": "clangFormat",

@@ -3,10 +3,11 @@
  *
  * Purpose: Unit-tests for `unixstl::filesystem_traits` resizeable-buffer
  *          `ensure_dir_end` / `remove_dir_end` (C2 empty-`""` behaviour;
- *          buffer size after remove; G3 strip-all trailing separators).
+ *          buffer size after remove; G3 strip-all trailing separators);
+ *          and wide path classification / separator finders.
  *
  * Created: 15th October 2026
- * Updated: 16th October 2026
+ * Updated: 19th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,6 +40,8 @@
 /* Standard C header files */
 #include <errno.h>
 #include <stdlib.h>
+#include <string.h>
+#include <wchar.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -53,6 +56,10 @@ namespace {
     static void TEST_remove_dir_end_SHRINKS_buffer();
     static void TEST_remove_dir_end_STRIPS_ALL_trailing_separators();
     static void TEST_remove_then_ensure_round_trip();
+
+    static void TEST_find_path_name_separators_w();
+    static void TEST_path_classification_w();
+    static void TEST_path_classification_m_matches_w();
 } // anonymous namespace
 
 
@@ -76,6 +83,10 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_remove_dir_end_STRIPS_ALL_trailing_separators);
         XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
 
+        XTESTS_RUN_CASE(TEST_find_path_name_separators_w);
+        XTESTS_RUN_CASE(TEST_path_classification_w);
+        XTESTS_RUN_CASE(TEST_path_classification_m_matches_w);
+
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -92,6 +103,7 @@ int main(int argc, char* argv[])
 namespace {
 
     typedef unixstl::filesystem_traits<char>                traits_m_t;
+    typedef unixstl::filesystem_traits<wchar_t>             traits_w_t;
     typedef stlsoft::auto_buffer<char>                      ab_m_t;
     typedef std::vector<char>                               vec_m_t;
 
@@ -317,6 +329,93 @@ static void TEST_remove_then_ensure_round_trip()
     TEST_MS_EQ("abc/", buff.data());
 }
 
+static void TEST_find_path_name_separators_w()
+{
+    {
+        wchar_t const* const path = L"/usr/local/bin";
+        wchar_t const* const last = traits_w_t::find_last_path_name_separator(path);
+        wchar_t const* const next = traits_w_t::find_next_path_name_separator(path);
+
+        TEST_PTR_NE(NULL, last);
+        TEST_PTR_NE(NULL, next);
+        TEST_PTR_EQ(path + 0, next);
+        TEST_PTR_EQ(path + 10, last);
+        TEST_PTR_EQ(last, traits_w_t::find_last_path_name_separator(path, ::wcslen(path)));
+        TEST_PTR_EQ(next, traits_w_t::find_next_path_name_separator(path, ::wcslen(path)));
+    }
+
+    {
+        wchar_t const* const path = L"relative";
+
+        TEST_PTR_EQ(NULL, traits_w_t::find_last_path_name_separator(path));
+        TEST_PTR_EQ(NULL, traits_w_t::find_next_path_name_separator(path));
+        TEST_PTR_EQ(NULL, traits_w_t::find_last_path_name_separator(path, 0));
+        TEST_PTR_EQ(NULL, traits_w_t::find_next_path_name_separator(path, 0));
+    }
+}
+
+static void TEST_path_classification_w()
+{
+    TEST_BOOLEAN_TRUE(traits_w_t::is_path_rooted(L"/"));
+    TEST_BOOLEAN_TRUE(traits_w_t::is_path_rooted(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_rooted(L"tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_rooted(L"", 0));
+
+    TEST_BOOLEAN_TRUE(traits_w_t::is_path_absolute(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"", 0));
+
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"\\\\server\\share"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp", 4));
+}
+
+static void TEST_path_classification_m_matches_w()
+{
+    char const* const paths_m[] =
+    {
+        "/",
+        "/tmp",
+        "tmp",
+        "a/b",
+        "",
+    };
+    wchar_t const* const paths_w[] =
+    {
+        L"/",
+        L"/tmp",
+        L"tmp",
+        L"a/b",
+        L"",
+    };
+
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(paths_m); ++i)
+    {
+        size_t const len_m = ::strlen(paths_m[i]);
+        size_t const len_w = ::wcslen(paths_w[i]);
+
+        TEST_BOOLEAN_EQ(
+            traits_m_t::is_path_rooted(paths_m[i])
+        ,   traits_w_t::is_path_rooted(paths_w[i])
+        );
+        TEST_BOOLEAN_EQ(
+            traits_m_t::is_path_rooted(paths_m[i], len_m)
+        ,   traits_w_t::is_path_rooted(paths_w[i], len_w)
+        );
+        TEST_BOOLEAN_EQ(
+            traits_m_t::is_path_absolute(paths_m[i])
+        ,   traits_w_t::is_path_absolute(paths_w[i])
+        );
+        TEST_BOOLEAN_EQ(
+            traits_m_t::is_path_absolute(paths_m[i], len_m)
+        ,   traits_w_t::is_path_absolute(paths_w[i], len_w)
+        );
+        TEST_BOOLEAN_EQ(
+            traits_m_t::is_path_UNC(paths_m[i])
+        ,   traits_w_t::is_path_UNC(paths_w[i])
+        );
+    }}
+}
 } // anonymous namespace
 
 

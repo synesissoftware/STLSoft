@@ -58,10 +58,10 @@
 #define UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     17
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      192
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      193
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,6 +109,7 @@
 
 #ifdef _WIN32
 # include <ctype.h>
+# include <wctype.h>
 #endif /* _WIN32 */
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -3083,7 +3084,21 @@ public: // path classification and analysis
     find_last_path_name_separator(
         char_type const* path
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        char_type const* last = NULL;
+
+        for (; L'\0' != *path; ++path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                last = path;
+            }
+        }
+
+        return last;
+    }
 
     static
     char_type const*
@@ -3091,14 +3106,43 @@ public: // path classification and analysis
         char_type const*                    path
     ,   size_t                              len
     )
-    ;
+    {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
+        if (0 == len)
+        {
+            return NULL;
+        }
+
+        for (path += (len - 1); 0 != len; --len, --path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                return path;
+            }
+        }
+
+        return NULL;
+    }
 
     static
     char_type const*
     find_next_path_name_separator(
         char_type const*                    path
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        for (; L'\0' != *path; ++path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                return path;
+            }
+        }
+
+        return NULL;
+    }
 
     static
     char_type const*
@@ -3106,7 +3150,19 @@ public: // path classification and analysis
         char_type const*                    path
     ,   size_t                              len
     )
-    ;
+    {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
+        for (; 0 != len; --len, ++path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                return path;
+            }
+        }
+
+        return NULL;
+    }
 
     static bool_type is_dots(char_type const* dir)
     {
@@ -3134,31 +3190,153 @@ public: // path classification and analysis
     }
 
     static bool_type is_path_rooted(char_type const* path)
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        if (L'\\' == path[0] &&
+            L'\\' == path[1])
+        {
+            return true;
+        }
+
+        if (0 != ::iswalpha(path[0]) &&
+            L':' == path[1])
+        {
+            path += 2;
+        }
+#endif /* _WIN32 */
+
+        return is_path_name_separator(*path);
+    }
 
     static bool_type is_path_rooted(
         char_type const*    path
     ,   size_t              len
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        if (len >= 2)
+        {
+            if (L'\\' == path[0] &&
+                L'\\' == path[1])
+            {
+                return true;
+            }
+        }
+
+        if (len >= 2)
+        {
+            if (0 != ::iswalpha(path[0]) &&
+                L':' == path[1])
+            {
+                path += 2;
+                len -= 2;
+            }
+        }
+#endif /* _WIN32 */
+
+        return 0 != len && is_path_name_separator(*path);
+    }
 
     static bool_type is_path_absolute(char_type const* path)
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        if (is_path_UNC(path))
+        {
+            return true;
+        }
+        if (0 != ::iswalpha(path[0]) &&
+            L':' == path[1] &&
+            is_path_name_separator(path[2]))
+        {
+            return true;
+        }
+
+        return false;
+#else /* ? _WIN32 */
+
+        return is_path_rooted(path);
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_absolute(
         char_type const*    path
     ,   size_t              len
     )
-    ;
+    {
+        if (0 == len)
+        {
+            return false;
+        }
+#ifdef _WIN32
+
+        if (is_path_UNC(path, len))
+        {
+            return true;
+        }
+        if (len >= 3)
+        {
+            if (0 != ::iswalpha(path[0]) &&
+                L':' == path[1] &&
+                is_path_name_separator(path[2]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+#else /* ? _WIN32 */
+
+        return is_path_rooted(path, len);
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_UNC(char_type const* path)
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        size_type const len = str_len(path);
+
+        return is_path_UNC(path, len);
+#else /* ? _WIN32 */
+
+        STLSOFT_SUPPRESS_UNUSED(path);
+
+        return false;
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_UNC(
         char_type const*    path
     ,   size_t              len
     )
-    ;
+    {
+#ifdef _WIN32
+
+        switch (len)
+        {
+        case    0:
+        case    1:
+
+            return false;
+        default:
+
+            return L'\\' == path[0] && L'\\' == path[1];
+        }
+#else /* ? _WIN32 */
+
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(len);
+
+        return false;
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_name_separator(char_type ch)
     {
@@ -3193,6 +3371,10 @@ public: // path classification and analysis
         return filesystem_traits_::path_max();
     }
 
+    /* The following path-resolve, cwd, and dir-enumeration members remain
+     * declared (for API / metaprogramming compatibility) pending a finished
+     * conversion-policy implementation for the whole group.
+     */
     static
     size_type
     get_full_path_name(
