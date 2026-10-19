@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 28th November 2020
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        15
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -477,7 +477,7 @@ path_classify(
 ,   T_results*              results
 )
 {
-    WINSTL_ASSERT(0 != path.size() || ss_nullptr_k != path.data());
+    WINSTL_ASSERT(0 == path.size() || ss_nullptr_k != path.data());
 
     return winstl_C_path_classify(path.data(), path.size(), parseFlags, results);
 }
@@ -493,7 +493,7 @@ path_classify_root(
 ,   T_results*              results
 )
 {
-    WINSTL_ASSERT(0 != path.size() || ss_nullptr_k != path.data());
+    WINSTL_ASSERT(0 == path.size() || ss_nullptr_k != path.data());
 
     return winstl_C_path_classify_root(path.data(), path.size(), parseFlags, results);
 }
