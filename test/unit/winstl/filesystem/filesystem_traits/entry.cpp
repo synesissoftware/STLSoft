@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 16th October 2026
+ * Updated: 19th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -270,21 +270,42 @@ static void TEST_ensure_dir_end_1()
 {
     // empty string
     {
+        /* C-string empty: exercise the sized overload with an explicit
+         * capacity. Calling the one-arg form on a tiny stack array such as
+         * `char dirname[] = "\0"` makes GCC -Warray-bounds / -Wstringop-
+         * overflow treat the capacity-0 append path as writing past the
+         * object under -Werror, even when an empty early-out is present.
+         */
+
         // passing character array (char)
         {
-            char        dirname[] = "\0";
-            char*       r = filesystem_traits_m_t::ensure_dir_end(dirname);
+            char        dirname[8] = { 0 };
+            ss_size_t   n = 0;
+            char*       r = filesystem_traits_m_t::ensure_dir_end(
+                                dirname
+                            ,   0
+                            ,   STLSOFT_NUM_ELEMENTS(dirname)
+                            ,   &n
+                            );
 
             TEST_MS_EQ("", dirname);
+            TEST_INT_EQ(0, n);
             TEST_PTR_EQ(dirname + 0, r);
         }
 
         // passing character array (wchar_t)
         {
-            wchar_t     dirname[] = L"\0";
-            wchar_t*    r = filesystem_traits_w_t::ensure_dir_end(dirname);
+            wchar_t     dirname[8] = { 0 };
+            ss_size_t   n = 0;
+            wchar_t*    r = filesystem_traits_w_t::ensure_dir_end(
+                                dirname
+                            ,   0
+                            ,   STLSOFT_NUM_ELEMENTS(dirname)
+                            ,   &n
+                            );
 
             TEST_WS_EQ(L"", dirname);
+            TEST_INT_EQ(0, n);
             TEST_PTR_EQ(dirname + 0, r);
         }
 

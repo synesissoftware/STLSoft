@@ -151,11 +151,24 @@ namespace {
 
 static void TEST_ensure_dir_end_EMPTY_stays_empty()
 {
+    /* C-string empty: exercise the sized overload with an explicit
+     * capacity. Calling the one-arg form on a tiny stack array such as
+     * `char dirname[] = "\0"` makes GCC -Warray-bounds / -Wstringop-
+     * overflow treat the capacity-0 append path as writing past the
+     * object under -Werror, even when an empty early-out is present.
+     */
     {
-        char        dirname[] = "\0";
-        char*       r = traits_m_t::ensure_dir_end(dirname);
+        char        dirname[8] = { 0 };
+        size_t      n = 0;
+        char*       r = traits_m_t::ensure_dir_end(
+                            dirname
+                        ,   0
+                        ,   STLSOFT_NUM_ELEMENTS(dirname)
+                        ,   &n
+                        );
 
         TEST_MS_EQ("", dirname);
+        TEST_INT_EQ(0, n);
         TEST_PTR_EQ(dirname + 0, r);
     }
 
