@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 17th October 2026
+ * Updated: 22nd October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     580
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     581
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -147,12 +147,13 @@
 # define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 rc 2) */
 # define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0 alpha 3 (with STLSoft 1.11.1 rc 8) */
 # define _INETSTL_VER_1_5_0_A04  0x01050044  /*!< Version 1.5.0 alpha 4 (with STLSoft 1.11.1 rc 9) */
+# define _INETSTL_VER_1_5_0      0x010500FF  /*!< Version 1.5.0 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
 #define _INETSTL_VER_PATCH       0
-#define _INETSTL_VER_ALPHABETA   0x44
+#define _INETSTL_VER_ALPHABETA   0xFF
 
 #define _INETSTL_VER \
     (0\
