@@ -12,6 +12,7 @@ it will be used to create one.
 - [Q3: "How do I use STLSoft?"](#q3-how-do-i-use-stlsoft)
 - [Q4: "Does STLSoft have unit-tests?"](#q4-does-stlsoft-have-unit-tests)
 - [Q5: "Is STLSoft still relevant given the widespread support for 'Modern C++'?"](#q5-is-stlsoft-still-relevant-given-the-widespread-support-for-modern-c)
+- [Q6: "What is a Resizeable Buffer?"](#q6-what-is-a-resizeable-buffer)
 
 
 # FAQs: <!-- omit in toc -->
@@ -63,6 +64,24 @@ This is a good question. The Synesis open-source libraries — including
 [**recls**](https://github.com/synesissoftware/recls),
 [**shwild**](https://github.com/synesissoftware/shwild),
 and more — continue to be maintained in light of contemporary C++ practice, while still supporting a wide range of compilers and platforms. That work informs the future of **STLSoft**, which may mean further investment in the existing 1.x stream or, eventually, a 2.x stream less burdened by historical compiler-feature detection.
+
+
+## Q6: "What is a Resizeable Buffer?"
+
+A **Resizeable Buffer** is a contiguous, growable character sequence (for
+example `stlsoft::auto_buffer` or `std::vector`) that UnixSTL / WinSTL
+`system_traits` and `filesystem_traits` overloads accept as a generic
+`rb` instead of a raw pointer and length. Those overloads follow a
+**probe-then-fill** contract: query demand with a null buffer and zero
+capacity, resize only when needed (via
+`stlsoft::resizeable_buffer_resize`), set `ENOMEM` /
+`ERROR_OUTOFMEMORY` on resize failure, and never take `&rb[0]` on an
+empty buffer.
+
+See [**CONCEPTS.md**](./CONCEPTS.md), the helper
+[`stlsoft/util/resizeable_buffer_helpers.hpp`](./include/stlsoft/util/resizeable_buffer_helpers.hpp),
+and the example
+[`examples/by_concept/resizeable_buffer/`](./examples/by_concept/resizeable_buffer/main.cpp).
 
 
 <!-- ########################### end of file ########################### -->

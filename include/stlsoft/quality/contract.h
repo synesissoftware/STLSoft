@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/quality/contract.h
+ * File:    stlsoft/quality/contract.h
  *
- * Purpose:     Defines the contract enforcement constructs used in the
- *              STLSoft libraries.
+ * Purpose: Defines the contract enforcement constructs used in the STLSoft
+ *          libraries.
  *
- * Created:     13th October 2008
- * Updated:     11th March 2024
+ * Created: 13th October 2008
+ * Updated: 19th October 2026
  *
- * Home:        http://www.stlsoft.org/
+ * Home:    http://www.stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -43,7 +43,8 @@
 
 /** \file stlsoft/quality/contract.h
  *
- * \brief [C, C++] Defines the contract enforcement constructs used in the
+ * \brief [C, C++; OBSOLETE] Defines the contract enforcement constructs
+ *   used in the
  *   \ref group__library__ContractEnforcement "Contract Enforcement"
  *   library.
  */
@@ -178,8 +179,6 @@
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT */
 
