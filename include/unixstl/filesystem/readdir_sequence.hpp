@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 29th May 2025
+ * Updated: 16th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       178
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       179
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -631,14 +631,9 @@ readdir_sequence::prepare_directory_(
             STLSOFT_THROW_X(readdir_sequence_exception("failed to obtain full path of search directory", e, directory));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
-            // "+nul"
-            if (!path.resize(1 + n))
-            {
-                return string_type();
-            }
-
-            traits_type::char_copy(&path[0], directory, n);
-            path[n] = \'0';
+            // Soft-fail parallel to the throw above (and to the
+            // allocation-failure return earlier in this function)
+            return string_type();
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }

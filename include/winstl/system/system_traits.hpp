@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 19th October 2026
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
@@ -399,6 +399,21 @@ public:
         HMODULE     hModule
     ,   char_type   buffer[]
     ,   size_type   cchBuffer
+    );
+
+    /// Gets the full path name of the directory of the given module
+    ///
+    /// \param hModule The module handle. If \c nullptr then obtains the
+    ///  directory path of the executing module
+    /// \param rb Reference to a resizeable buffer
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_module_directory(
+        HMODULE             hModule
+    ,   T_resizeableBuffer& rb
     );
 
     /// Gets the full path name of the system directory
@@ -952,6 +967,40 @@ public:
         }
 
         return cch;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_module_directory(
+        HMODULE             hModule
+    ,   T_resizeableBuffer& rb
+    )
+    {
+        size_type const cchRequired = get_module_directory(
+                                          hModule
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
+
+        return get_module_directory(hModule, &rb[0], rb.size());
     }
 
     static
@@ -1637,6 +1686,40 @@ public:
         }
 
         return cch;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_module_directory(
+        HMODULE             hModule
+    ,   T_resizeableBuffer& rb
+    )
+    {
+        size_type const cchRequired = get_module_directory(
+                                          hModule
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
+
+        return get_module_directory(hModule, &rb[0], rb.size());
     }
 
     static
