@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 21
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     610
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     611
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -137,8 +137,8 @@
  * changes.
  */
 
-/** \def _STLSOFT_VER_ALPHABETA
- * The alpha/beta number of STLSoft, in the range 1-0xFE for prerelease
+/** \def _STLSOFT_VER_RELSTATUS
+ * The release-status number of STLSoft, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -429,17 +429,18 @@
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_PATCH          1
-#define _STLSOFT_VER_ALPHABETA      0xC9
+#define _STLSOFT_VER_RELSTATUS      0xC9
 
 #define _STLSOFT_VER \
     (0\
         |   (   _STLSOFT_VER_MAJOR      << 24   )\
         |   (   _STLSOFT_VER_MINOR      << 16   )\
         |   (   _STLSOFT_VER_PATCH      <<  8   )\
-        |   (   _STLSOFT_VER_ALPHABETA  <<  0   )\
+        |   (   _STLSOFT_VER_RELSTATUS  <<  0   )\
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _STLSOFT_VER_ALPHABETA                             _STLSOFT_VER_RELSTATUS
 # define _STLSOFT_VER_REVISION                              _STLSOFT_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

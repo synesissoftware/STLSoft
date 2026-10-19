@@ -4,7 +4,7 @@
  * Purpose: Root header for the STLSoft implementation of RangeLib.
  *
  * Created: 12th October 2004
- * Updated: 17th September 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    4
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     42
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp
@@ -114,8 +114,8 @@
  * \ingroup group__library__Range
  */
 
-/** \def _RANGELIB_VER_ALPHABETA
- * The alpha/beta number of RangeLib, in the range 1-0xFE for prerelease
+/** \def _RANGELIB_VER_RELSTATUS
+ * The release-status number of RangeLib, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  *
  * \ingroup group__library__Range
@@ -141,17 +141,18 @@
 #define _RANGELIB_VER_MAJOR     1
 #define _RANGELIB_VER_MINOR     1
 #define _RANGELIB_VER_PATCH     4
-#define _RANGELIB_VER_ALPHABETA 0xFF
+#define _RANGELIB_VER_RELSTATUS 0xFF
 
 #define _RANGELIB_VER \
     (0\
         |   (   _RANGELIB_VER_MAJOR       << 24   ) \
         |   (   _RANGELIB_VER_MINOR       << 16   ) \
         |   (   _RANGELIB_VER_PATCH       <<  8   ) \
-        |   (   _RANGELIB_VER_ALPHABETA   <<  0   ) \
+        |   (   _RANGELIB_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _RANGELIB_VER_ALPHABETA                            _RANGELIB_VER_RELSTATUS
 # define _RANGELIB_VER_REVISION                             _RANGELIB_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

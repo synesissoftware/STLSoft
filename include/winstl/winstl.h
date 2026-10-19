@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 17th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    16
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        247
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        248
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -111,8 +111,8 @@
  * The patch version number of the \ref group__project__winstl project "WinSTL" project
  */
 
-/** \def _WINSTL_VER_ALPHABETA
- * The alpha/beta number of the \ref group__project__winstl project "WinSTL" project, in the range 1-0xFE for prerelease versions, and 0xFF for a released version
+/** \def _WINSTL_VER_RELSTATUS
+ * The release-status number of the \ref group__project__winstl project "WinSTL" project, in the range 1-0xFE for prerelease versions, and 0xFF for a released version
  */
 
 /** \def _WINSTL_VER
@@ -191,17 +191,18 @@
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       13
 #define _WINSTL_VER_PATCH       0
-#define _WINSTL_VER_ALPHABETA   0x85
+#define _WINSTL_VER_RELSTATUS   0x85
 
 #define _WINSTL_VER \
     (0\
         |   (   _WINSTL_VER_MAJOR       << 24   ) \
         |   (   _WINSTL_VER_MINOR       << 16   ) \
         |   (   _WINSTL_VER_PATCH       <<  8   ) \
-        |   (   _WINSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _WINSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _WINSTL_VER_ALPHABETA                              _WINSTL_VER_RELSTATUS
 # define _WINSTL_VER_REVISION                               _WINSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
