@@ -47,7 +47,7 @@ This is the working ledger of the components of **STLSoft** 1.11.1: every substa
 | All header stems under **include/** | 951 |
 | Support stems (excluded) | 210 |
 | B1 new in 1.11.x (non-support) | 22 |
-| B2 new in 1.10.x (non-support) | 180 |
+| B2 new in 1.10.x (non-support) | 179 |
 | Legacy (≤1.9.118) non-support | 485 |
 | of which C (≥3 STLSoft includers) | 95 |
 | of which D (used by other SIS projects) | 117 (of which 6 weak: tests/examples only) |
