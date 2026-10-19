@@ -49,6 +49,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -59,15 +60,14 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install test dependencies (STLSoft bootstrap + xTests)
+      - name: Bootstrap STLSoft into the dependencies prefix
         shell: bash
         run: |
           set -euxo pipefail
 
           DEPS="${RUNNER_TEMP}/sis-deps"
+          echo "SIS_DEPS=$DEPS" >> "$GITHUB_ENV"
           STLSRC="${{ github.workspace }}"
-          XTSRC="${RUNNER_TEMP}/xtests-src"
-          XTBUILD="${RUNNER_TEMP}/xtests-build"
           STLINSTALL="${RUNNER_TEMP}/stlsoft-install-build"
 
           mkdir -p "$DEPS"
@@ -105,46 +105,17 @@ jobs:
             cmake --install "$STLINSTALL"
           fi
 
-          git clone --depth 1 https://github.com/synesissoftware/xTests "$XTSRC"
-
-          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake -S "$XTSRC" -B "$XTBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF \
-              -DNO_SHWILD=TRUE \
-              -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --config "${{ inputs.build-type }}" --parallel
-            cmake --install "$XTBUILD" --config "${{ inputs.build-type }}"
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$XTSRC" -B "$XTBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF \
-              -DNO_SHWILD=TRUE \
-              -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --parallel 2
-            cmake --install "$XTBUILD"
-          else
-            cmake -S "$XTSRC" -B "$XTBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF \
-              -DNO_SHWILD=TRUE \
-              -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --parallel
-            cmake --install "$XTBUILD"
-          fi
+      # xTests is built against the STLSoft just installed from this tree;
+      # STLSoft itself is therefore not in the list.
+      - name: Install Synesis dependencies
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ inputs.build-type }}
+          c-compiler: ${{ inputs.c-compiler == 'mingw' && 'gcc' || inputs.c-compiler }}
+          cpp-compiler: ${{ inputs.c-compiler == 'mingw' && 'g++' || inputs.cpp-compiler }}
+          dependencies: xTests
+          install-prefix: ${{ env.SIS_DEPS }}
+          toolchain: ${{ inputs.c-compiler == 'mingw' && 'mingw' || '' }}
 
       - name: Configure
         shell: bash
@@ -172,7 +143,7 @@ jobs:
             cmake -B build -S . \
               $ATL_FLAG \
               $MFC_FLAG \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
@@ -183,7 +154,7 @@ jobs:
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_C_COMPILER=gcc \
               -DCMAKE_CXX_COMPILER=g++ \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
@@ -193,7 +164,7 @@ jobs:
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
@@ -304,6 +275,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -345,7 +317,8 @@ jobs:
             ! -name '*.pdb' \
             -exec chmod +x {} +
 
-      - name: Run examples
+      - name: Run examples (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -353,6 +326,17 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M --skip-interactive
+
+      - name: Run examples (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_examples.cmd --skip-interactive
+          if errorlevel 1 exit /b 1
 
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})
@@ -367,6 +351,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -408,7 +393,8 @@ jobs:
             ! -name '*.pdb' \
             -exec chmod +x {} +
 
-      - name: Run unit tests
+      - name: Run unit tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -416,6 +402,17 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+
+      - name: Run unit tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_unit_tests.cmd --unit-only
+          if errorlevel 1 exit /b 1
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
@@ -430,6 +427,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -471,7 +469,8 @@ jobs:
             ! -name '*.pdb' \
             -exec chmod +x {} +
 
-      - name: Run component tests
+      - name: Run component tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -479,6 +478,17 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
+
+      - name: Run component tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_component_tests.cmd
+          if errorlevel 1 exit /b 1
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
@@ -494,6 +504,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -535,7 +546,8 @@ jobs:
             ! -name '*.pdb' \
             -exec chmod +x {} +
 
-      - name: Run scratch tests
+      - name: Run scratch tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -543,6 +555,17 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
+
+      - name: Run scratch tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_scratch_tests.cmd
+          if errorlevel 1 exit /b 1
 
   test-performance:
     name: Performance tests (${{ inputs.cell-id }})
@@ -558,6 +581,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -599,7 +623,8 @@ jobs:
             ! -name '*.pdb' \
             -exec chmod +x {} +
 
-      - name: Run performance tests
+      - name: Run performance tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -609,3 +634,14 @@ jobs:
           # --gap-groups sets SIS_PERFTESTS_GROUPGAPS=1 for blank lines
           # between pattern / scenario groups in performance output.
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M --gap-groups
+
+      - name: Run performance tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_performance_tests.cmd --gap-groups
+          if errorlevel 1 exit /b 1

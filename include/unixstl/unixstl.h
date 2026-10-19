@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 17th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 6
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     134
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -112,8 +112,8 @@
  * The patch version number of UNIXSTL
  */
 
-/** \def _UNIXSTL_VER_ALPHABETA
- * The alpha/beta number of UNIXSTL, in the range 1-0xFE for prerelease
+/** \def _UNIXSTL_VER_RELSTATUS
+ * The release-status number of UNIXSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -170,17 +170,18 @@
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
 #define _UNIXSTL_VER_PATCH      6
-#define _UNIXSTL_VER_ALPHABETA  0x88
+#define _UNIXSTL_VER_RELSTATUS  0x88
 
 #define _UNIXSTL_VER \
     (0\
         |   (   _UNIXSTL_VER_MAJOR       << 24   ) \
         |   (   _UNIXSTL_VER_MINOR       << 16   ) \
         |   (   _UNIXSTL_VER_PATCH       <<  8   ) \
-        |   (   _UNIXSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _UNIXSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _UNIXSTL_VER_ALPHABETA                             _UNIXSTL_VER_RELSTATUS
 # define _UNIXSTL_VER_REVISION                              _UNIXSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 12th May 2003
- * Updated: 17th September 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    4
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     63
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -111,8 +111,8 @@
  * The patch version number of WTLSTL
  */
 
-/** \def _WTLSTL_VER_ALPHABETA
- * The alpha/beta number of WTLSTL, in the range 1-0xFE for prerelease
+/** \def _WTLSTL_VER_RELSTATUS
+ * The release-status number of WTLSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -132,17 +132,18 @@
 #define _WTLSTL_VER_MAJOR       1
 #define _WTLSTL_VER_MINOR       2
 #define _WTLSTL_VER_PATCH       5
-#define _WTLSTL_VER_ALPHABETA   0xFF
+#define _WTLSTL_VER_RELSTATUS   0xFF
 
 #define _WTLSTL_VER \
     (0\
         |   (   _WTLSTL_VER_MAJOR       << 24   ) \
         |   (   _WTLSTL_VER_MINOR       << 16   ) \
         |   (   _WTLSTL_VER_PATCH       <<  8   ) \
-        |   (   _WTLSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _WTLSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _WTLSTL_VER_ALPHABETA                              _WTLSTL_VER_RELSTATUS
 # define _WTLSTL_VER_REVISION                               _WTLSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 17th September 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      126
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -111,8 +111,8 @@
  * The patch version number of ATLSTL
  */
 
-/** \def _ATLSTL_VER_ALPHABETA
- * The alpha/beta number of ATLSTL, in the range 1-0xFE for prerelease
+/** \def _ATLSTL_VER_RELSTATUS
+ * The release-status number of ATLSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -151,17 +151,18 @@
 #define _ATLSTL_VER_MAJOR       1
 #define _ATLSTL_VER_MINOR       7
 #define _ATLSTL_VER_PATCH       1
-#define _ATLSTL_VER_ALPHABETA   0xFF
+#define _ATLSTL_VER_RELSTATUS   0xFF
 
 #define _ATLSTL_VER \
     (0\
         |   (   _ATLSTL_VER_MAJOR       << 24   ) \
         |   (   _ATLSTL_VER_MINOR       << 16   ) \
         |   (   _ATLSTL_VER_PATCH       <<  8   ) \
-        |   (   _ATLSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _ATLSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _ATLSTL_VER_ALPHABETA                              _ATLSTL_VER_RELSTATUS
 # define _ATLSTL_VER_REVISION                               _ATLSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
