@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::system_traits`.
  *
  * Created: 22nd May 2025
- * Updated: 29th September 2026
+ * Updated: 19th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -842,6 +842,28 @@ static void TEST_get_module_directory()
             TEST_CHAR_EQ(L'~', buff[n]);
             TEST_CHAR_EQ(L'~', buff[STLSOFT_NUM_ELEMENTS(buff) - 1]);
         }
+
+        // passing resizeable buffer (auto_buffer<char>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1);
+            ss_size_t const n = system_traits_m_t::get_module_directory(hmInvalid, buff);
+
+            TEST_INT_EQ(ERROR_MOD_NOT_FOUND, ::GetLastError());
+            TEST_INT_EQ(0, n);
+        }
+
+        // passing resizeable buffer (vector<wchar_t>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_w_t         buff(0);
+            ss_size_t const n = system_traits_w_t::get_module_directory(hmInvalid, buff);
+
+            TEST_INT_EQ(ERROR_MOD_NOT_FOUND, ::GetLastError());
+            TEST_INT_EQ(0, n);
+        }
     }
 
     HMODULE                         hmKernel    =   ::LoadLibraryA("kernel32");
@@ -872,6 +894,34 @@ static void TEST_get_module_directory()
             TEST_INT_GE(4, n);
             TEST_CHAR_EQ(L'\0', buff[0]);
         }
+
+        // passing resizeable buffer (auto_buffer<char>) — grows then fills
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1);
+            ss_size_t const n = system_traits_m_t::get_module_directory(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(13, n);
+            TEST_INT_GT(buff.size(), n);
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (vector<wchar_t>) — grows then fills
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_w_t         buff(0);
+            ss_size_t const n = system_traits_w_t::get_module_directory(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(13, n);
+            TEST_INT_GT(buff.size(), n);
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
     }
 
     // sufficient memory
@@ -900,6 +950,34 @@ static void TEST_get_module_directory()
             TEST_INT_GE(13, n);
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (auto_buffer<wchar_t>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(1001);
+            ss_size_t const n = system_traits_w_t::get_module_directory(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(13, n);
+            TEST_INT_GT(buff.size(), n);
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (vector<char>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_m_t         buff(1001, '\0');
+            ss_size_t const n = system_traits_m_t::get_module_directory(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(13, n);
+            TEST_INT_GT(buff.size(), n);
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
         }
     }
 }

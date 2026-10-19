@@ -1,11 +1,12 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.1-rc10 - 16th October 2026
+## 1.11.1-rc10 - 20th October 2026
 
 * additions:
   * Added **CONCEPTS.md** — documents the **Resizeable Buffer** concept (requirements, models / non-models, probe-then-fill gold contract for traits `rb` overloads);
   * Added example **examples/by_concept/resizeable_buffer** — probe-then-fill into `auto_buffer` / `vector` via `platformstl` traits `rb` overloads and `resizeable_buffer_resize`;
+  * **winstl::system_traits** — added `get_module_directory(hModule, rb)` (A+W), gold probe-then-fill companion to the raw overload and to `get_module_filename(rb)`;
 * fixes:
   * **unixstl::system_traits** — `get_home_directory(rb)` and `get_environment_variable(rb)` follow the gold pattern (early-out on probe `0`, conditional resize, `ENOMEM` on failure); environment `rb` demand includes the trailing NUL (`cchValue + 1`);
   * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name` / `get_short_path_name` / `get_current_directory` `rb` overloads no longer resize-then-`&rb[0]` on an empty buffer when the probe returns `0`; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY`;
@@ -25,6 +26,7 @@
   * Component tests for unixstl / winstl filesystem path `rb` overloads;
   * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip, failing-resize OOM reporting, and unixstl strip-all trailing separators);
   * Unit tests for `stlsoft::resizeable_buffer_resize` (including a stub with defaulted fill-argument `resize`, G5);
+  * Unit tests for **winstl** `get_module_directory(rb)` (`auto_buffer` / `vector`, invalid handle, grow-from-empty, pre-sized buffer);
 
 
 ## 1.11.1-rc9 - 18th October 2026
