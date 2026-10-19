@@ -93,6 +93,20 @@ unixstl_C_path_classify_alwaysInvalidChars_X_()
 {
     typedef UNIXSTL_C_PATH_CLASSIFY_IMPL_char_t_             char_t;
 
+#ifdef _WIN32 /* Windows / UNIXem: Windows filename restrictions */
+    /*
+     * < (less than)
+     * > (greater than)
+     * | (vertical bar or pipe)
+     * ? (question mark)
+     * * (asterisk)
+     * " (double quote)
+     * NUL
+     *
+     * Also rejected separately (see classify_impl): :
+     *
+     * Not rejected here: / (separator); \ (also a separator under UNIXem)
+     */
     static char_t s_invalidCards[] =
     {
         '<'
@@ -104,23 +118,26 @@ unixstl_C_path_classify_alwaysInvalidChars_X_()
     ,   '\0'
     };
 
-    UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_  r = { STLSOFT_NUM_ELEMENTS(s_invalidCards), s_invalidCards };
+    UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_  r =
+    {
+        STLSOFT_NUM_ELEMENTS(s_invalidCards)
+    ,   s_invalidCards
+    };
+#else /* ? _WIN32 */
+    /* Native UNIX: only NUL is forbidden in a path component; '/' is the
+     * separator. Characters such as < > | ? * " : are legal in names.
+     */
+    static char_t s_invalidCards[] =
+    {
+        '\0'
+    };
 
-#if 0
-/*
-    < (less than)
-    > (greater than)
-    | (vertical bar or pipe)
-    ? (question mark)
-    * (asterisk)
-    " (double quote)
-    NUL
-
-    : (colon)
-    / (forward slash)
-    \ (backslash)
-*/
-#endif
+    UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_  r =
+    {
+        0
+    ,   s_invalidCards
+    };
+#endif /* _WIN32 */
 
     return r;
 }
@@ -207,7 +224,6 @@ unixstl_C_path_classify_impl_X_(
     char_t const*                               s1;
     size_t                                      cch1;
     size_t                                      cchPrefix;
-    char_t const*                               invalidChar;
     unixstl_C_path_classification_t             rcRoot;
 #if 0
 #elif defined(STLSOFT_CF_gcc_pragma_diagnostic_pop)
@@ -261,8 +277,10 @@ unixstl_C_path_classify_impl_X_(
         return rcRoot;
     }
 
+#ifdef _WIN32 /* Windows / UNIXem: apply Windows invalid-character rules */
     if (0 == (UNIXSTL_PATH_CLASSIFY_F_IGNOREINVALIDCHARS & parseFlags))
     {
+        char_t const* invalidChar;
         UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ const alwaysInvalidChars = unixstl_C_path_classify_alwaysInvalidChars_X_();
 
         if (ss_nullptr_k != (invalidChar = UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_(s1, cch1, alwaysInvalidChars.ptr, alwaysInvalidChars.len)))
@@ -281,6 +299,7 @@ unixstl_C_path_classify_impl_X_(
             return unixstl_C_PathType_InvalidChars;
         }
     }
+#endif /* _WIN32 */
 
     {
         char_t const* const last    =   s1 + cch1;
