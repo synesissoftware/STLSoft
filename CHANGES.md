@@ -3,17 +3,33 @@
 
 ## 1.11.1-rc9 - 18th October 2026
 
+* additions:
+  * Added `unixstl::system_traits<>::get_current_process_path()` and `winstl::system_traits<>::get_current_process_path()` (multibyte and wide), obtaining the current process image path with an optional basename path-separator out-parameter;
+  * Added `T_resizeableBuffer` overloads of `get_current_process_path()` on **unixstl** / **winstl** `system_traits` (query → `stlsoft::resizeable_buffer_resize()` → fill; `ppFile` only after the final fill; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY` and leaves the buffer unchanged);
+  * **unixstl::filesystem_traits<wchar_t>** — implemented `find_last_path_name_separator()` / `find_next_path_name_separator()` and `is_path_rooted()` / `is_path_absolute()` / `is_path_UNC()` (NUL-terminated and counted), including Windows drive-letter and UNC classification;
+  * **unixstl::filesystem_traits<wchar_t>** — path-resolve, current-directory, and directory-enumeration members remain declared, pending one conversion policy for that group;
+  * **unixstl_C_get_home_directory_w()** (**unixstl/system/directory_functions.h**) — reads `HOME` via `getenv()` and converts with `mbstowcs()` (locale multibyte encoding); a short buffer keeps a NUL in the last slot and returns `cchBuffer - 1`, matching the narrow copy;
+  * **unixstl::system_traits<wchar_t>** — implemented `path_str_compare()` and `path_str_n_compare()` (on Windows, case-folded with `towupper()` and treating `/` and `\` as equivalent);
+  * **unixstl::system_traits<wchar_t>** — implemented `get_environment_variable()` (raw and resizeable-buffer) by converting the name with `wcstombs()`, reading it with `getenv()`, and converting the value with `mbstowcs()`; implemented the resizeable-buffer overload of `get_home_directory()`;
+  * **unixstl::system_traits<wchar_t>** — `load_library()` and `free_library()` stay declared together pending one conversion policy (`free_library()` no longer calls `dlclose()` alone); `expand_environment_strings()` remains declared;
+* testing:
+  * Component tests **test/component/unixstl/system/process_paths** (multibyte; multi-OS raw path oracle; resizeable-buffer overloads for `auto_buffer` / `vector`, `ppFile`, and resize-failure) and **test/component/winstl/system/process_paths** (multibyte and wide; `GetModuleFileName` oracle; same resizeable-buffer coverage);
+  * Unit tests **test.unit.unixstl.filesystem.filesystem_traits** cover wide separator finding and path classification, and agreement with the narrow specialisation;
+  * Unit tests **test.unit.unixstl.system.system_traits** cover wide `path_str_compare()` and `path_str_n_compare()`;
+  * Component tests **test.component.unixstl.system.system_traits** cover wide `get_home_directory()` and `get_environment_variable()` (probe, fixed buffer, and `std::vector` resizeable overload) via `platformstl::environment_variable_scope`;
+  * Resizeable-buffer cases shared with the resizeable-buffer line (`ensure_dir_end()` / `remove_dir_end()`, and the narrow resizeable `get_home_directory()` / `get_environment_variable()` overloads) remain empty pending that merge;
+  * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
 * docs:
   * Normalised Doxygen `\pre` comments to bare boolean expressions (no outer parentheses; no trailing `;` / `.`);
   * Prefer `nullptr` over `NULL` / prose in `\pre` text; optional-buffer forms use zero-length check first (`0 == n || nullptr != s`);
   * Converted expressible prose preconditions (e.g. `!empty()`, `n <= size()`, `nullptr != p`) where applicable; retained soft COM / prior-init / exception-gated contracts as prose;
 * version:
   * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
-  * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
-  * **winstl** — **1.13.0 beta 5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
+  * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**), with **STLSoft 1.11.1-rc9**;
   * **inetstl** — **1.5.0 alpha 4** (**_INETSTL_VER_1_5_0_A04**), with **STLSoft 1.11.1-rc9**;
   * **platformstl** — **1.10.0 beta 3** (**_PLATFORMSTL_VER_1_10_0_B03**), with **STLSoft 1.11.1-rc9**;
-  * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**), with **STLSoft 1.11.1-rc9**;
+  * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
+  * **winstl** — **1.13.0 beta 5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
 
 
 ## 1.11.1-rc8 - 10th October 2026
