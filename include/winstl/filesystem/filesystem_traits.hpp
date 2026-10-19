@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 16th October 2026
+ * Updated: 19th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        195
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    12
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1010,6 +1010,15 @@ public: // directory-end
         WINSTL_ASSERT(NULL != dir);
 
         size_type const len = str_len(dir);
+
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
 
         return ensure_dir_end(dir, len, 0, NULL);
     }
@@ -2682,6 +2691,15 @@ public: // directory-end
         WINSTL_ASSERT(NULL != dir);
 
         size_type const len = str_len(dir);
+
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
 
         return ensure_dir_end(dir, len, 0, NULL);
     }

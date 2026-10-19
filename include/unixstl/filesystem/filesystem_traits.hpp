@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 16th October 2026
+ * Updated: 19th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      193
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      194
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1002,6 +1002,15 @@ public: // directory-end
         UNIXSTL_ASSERT(NULL != dir);
 
         size_type const len = str_len(dir);
+
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
 
         return ensure_dir_end(dir, len, 0, NULL);
     }
@@ -2835,6 +2844,15 @@ public: // directory-end
         UNIXSTL_ASSERT(NULL != dir);
 
         size_type const len = str_len(dir);
+
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
 
         return ensure_dir_end(dir, len, 0, NULL);
     }

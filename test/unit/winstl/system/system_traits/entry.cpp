@@ -904,7 +904,7 @@ static void TEST_get_module_directory()
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
             TEST_INT_GE(13, n);
-            TEST_INT_GT(buff.size(), n);
+            TEST_INT_GT(n, buff.size());
             TEST_CHAR_EQ('\0', buff[n]);
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
@@ -918,7 +918,7 @@ static void TEST_get_module_directory()
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
             TEST_INT_GE(13, n);
-            TEST_INT_GT(buff.size(), n);
+            TEST_INT_GT(n, buff.size());
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
@@ -961,7 +961,7 @@ static void TEST_get_module_directory()
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
             TEST_INT_GE(13, n);
-            TEST_INT_GT(buff.size(), n);
+            TEST_INT_GT(n, buff.size());
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
@@ -975,7 +975,7 @@ static void TEST_get_module_directory()
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
             TEST_INT_GE(13, n);
-            TEST_INT_GT(buff.size(), n);
+            TEST_INT_GT(n, buff.size());
             TEST_CHAR_EQ('\0', buff[n]);
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
