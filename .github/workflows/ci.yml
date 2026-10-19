@@ -62,6 +62,7 @@ jobs:
       with-ace: false
       with-atl: false
       with-mfc: false
+      with-unixem: false
     secrets: inherit
 
   cell-ace:
@@ -84,6 +85,7 @@ jobs:
       with-ace: true
       with-atl: false
       with-mfc: false
+      with-unixem: false
     secrets: inherit
 
   cell-atl:
@@ -106,6 +108,7 @@ jobs:
       with-ace: false
       with-atl: true
       with-mfc: false
+      with-unixem: false
     secrets: inherit
 
   cell-mfc:
@@ -128,6 +131,32 @@ jobs:
       with-ace: false
       with-atl: false
       with-mfc: true
+      with-unixem: false
+    secrets: inherit
+
+  # Visual C++ with UNIXem: synthesises UNIX so UNIXSTL examples/tests run
+  # on Windows (covers _WIN32 / UNIXem paths in path-classify and peers).
+  cell-unixem:
+    name: CI UNIXem (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: windows-cl-unixem
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      with-ace: false
+      with-atl: false
+      with-mfc: false
+      with-unixem: true
     secrets: inherit
 
   install-smoke:

@@ -31,6 +31,10 @@ on:
         required: false
         type: boolean
         default: false
+      with-unixem:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -117,6 +121,25 @@ jobs:
           install-prefix: ${{ env.SIS_DEPS }}
           toolchain: ${{ inputs.c-compiler == 'mingw' && 'mingw' || '' }}
 
+      # UNIXem synthesises a UNIX host on Windows so UNIXSTL examples/tests
+      # build under MSVC. Restrict to **cl** (same policy as **recls**).
+      - name: Refuse UNIXem on non-cl
+        if: inputs.with-unixem && inputs.c-compiler != 'cl'
+        shell: bash
+        run: |
+          echo "The UNIXem CI cell builds with Visual C++ only."
+          exit 1
+
+      - name: Install UNIXem
+        if: inputs.with-unixem
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ inputs.build-type }}
+          c-compiler: cl
+          cpp-compiler: cl
+          dependencies: UNIXem
+          install-prefix: ${{ env.SIS_DEPS }}
+
       - name: Configure
         shell: bash
         run: |
@@ -139,6 +162,10 @@ jobs:
           else
             MFC_FLAG=""
           fi
+          UNIXEM_FLAG=()
+          if [ "${{ inputs.with-unixem }}" = "true" ]; then
+            UNIXEM_FLAG=(-DUSE_UNIXEM:BOOL=ON)
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
               $ATL_FLAG \
@@ -147,7 +174,8 @@ jobs:
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
-              $ACE_FLAG
+              $ACE_FLAG \
+              "${UNIXEM_FLAG[@]}"
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -158,7 +186,8 @@ jobs:
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
-              $ACE_FLAG
+              $ACE_FLAG \
+              "${UNIXEM_FLAG[@]}"
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -168,7 +197,8 @@ jobs:
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
-              $ACE_FLAG
+              $ACE_FLAG \
+              "${UNIXEM_FLAG[@]}"
           fi
 
       - name: Verify ACE discovered
@@ -221,6 +251,20 @@ jobs:
           echo "MFC_HAVE_MFC=${MFC_HAVE}"
           echo "MFC_FOUND=${MFC_FOUND}"
           grep -E '^CMAKE_MFC_FLAG:' build/CMakeCache.txt || true
+
+      - name: Verify UNIXem discovered
+        if: inputs.with-unixem
+        shell: bash
+        run: |
+          set -euo pipefail
+          USE_UNIXEM="$(grep -E '^USE_UNIXEM:(BOOL|INTERNAL|STRING)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          if [ "${USE_UNIXEM}" != "ON" ] && [ "${USE_UNIXEM}" != "TRUE" ] && [ "${USE_UNIXEM}" != "1" ]; then
+            echo "with-unixem requested but USE_UNIXEM was not ON:" >&2
+            grep -iE '^(USE_UNIXEM|UNIXem_|unixem_)' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "USE_UNIXEM=${USE_UNIXEM}"
+          grep -iE '^(UNIXem_DIR|unixem_DIR):' build/CMakeCache.txt || true
 
       - name: Verify ACE discovered
         if: inputs.with-ace
