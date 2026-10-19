@@ -34,9 +34,9 @@
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
 * [x] ~~~bring in some essential unit-tests from interal repo~~~ - ✅;
-* [ ] Being the CONCEPTS documentation:
+* [ ] Bring in the CONCEPTS documentation:
   * [ ] auto-buffer;
-  * [ ] resizeable-buffer;
+  * [x] ~~~resizeable-buffer~~~ - ✅;
   * [ ] string-access-shims;
   * [ ] Null Object (variable);
   * [ ] Externals (esp. not introducing sub-project's headers proper);
@@ -46,7 +46,7 @@
 
 ### 1.11.2
 
-Dedicated increment: **test analysis and coverage only** — no other product changes in this release.
+Dedicated increment: **test analysis and coverage** (primary), plus **Resizeable Buffer** follow-ups deferred from the **1.11.1** lock.
 
 * [ ] Existing test consistency (deep analysis);
 * [ ] Complete coverage of currently tested components (improvement / completion);
@@ -56,6 +56,14 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 * [ ] Remove **WTL**;
 * [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
 * [ ] bring in some essential unit-tests from interal repo;
+* [ ] Resizeable Buffer — follow-ups deferred from the **1.11.1** concept/implementation lock (do **not** reopen C1–C5, D1–D4, G2, G3, G5–G7 without cause; gold contract is **CONCEPTS.md** — *The Resizeable Buffer concept* and *Contract for traits overloads that take an `rb`*; helper **stlsoft/util/resizeable_buffer_helpers.hpp**; exemplar `rb` overloads include `get_current_process_path(rb)` and winstl `get_module_directory(rb)`):
+  * [ ] **G1** — unixstl `system_traits::expand_environment_strings` is **declare-only** (ANSI + wide; both the C-string `(src, buffer, cch)` and `rb` overloads have no definitions in **include/unixstl/system/system_traits.hpp**); WinSTL already implements both (incl. an `rb` overload); callers such as **include/platformstl/filesystem/cwd_stack.hpp** invoke it and will fail to link on UNIX if used — **either** implement (gold probe-then-fill; env/expansion demand must account for trailing NUL; resize failure → `ENOMEM`; unit/component tests) **or** undeclare/remove the stubs and fix/guard callers; same gap is noted under **1.11.6**;
+  * [ ] **G4** — settle **caller empty-`rb` policy**: whether traits `rb` overloads require / document that callers always pass an empty buffer (`0 == rb.size()`) versus allowing a pre-sized/`capacity`-bearing `rb` (today gold probes with a null buffer + zero capacity and only resizes when `rb.size() < cchRequired`; some older `rb` overloads still probe via `0 == rb.size() ? NULL : &rb[0]`) — record the decision in **CONCEPTS.md** and align overload docs/impls/tests to it;
+  * [ ] **C6** — Resizeable Buffer is **structurally typed** only: look-alike types can compile without honouring trailing-NUL / `size()`-includes-NUL invariants; **path_buffer** / **file_path_buffer** remain documented non-models in **CONCEPTS.md** — decide whether to add debug asserts (e.g. trailing NUL when `!empty()`), concept-check helpers, and/or harden docs/tests so misuse is caught;
+  * [ ] **C7** — gold probe-then-fill has **no retry** if the required size changes between the null probe and the fill (TOCTOU on env/cwd/path); rare in practice — either document as accepted limitation in **CONCEPTS.md** or add a bounded grow-and-retry loop with tests;
+  * [ ] **P1** — several winstl `system_traits` `rb` overloads (e.g. `get_module_filename`, `get_home_directory`, `expand_environment_strings`) always perform a **second** fill API call even when the first call already succeeded with `rb.size() >= cchRequired`; prefer returning the first-call result when the buffer was already large enough (no behaviour change on the normative path) — measure/guard with existing unit coverage;
+  * [ ] **P2** — unixstl `filesystem_traits` `rb` path helpers (notably relative `get_full_path_name(rb)`) **query twice** and/or allocate heavy scratch (`path_max()`-sized `auto_buffer`, large stack cwd) — reduce duplicate work (compute once into scratch then copy, or reuse probe data) without changing the public contract; add/extend component tests under **test/component/unixstl/filesystem/filesystem_traits/**;
+  * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
 
 
 ### 1.11.3
@@ -80,7 +88,8 @@ Dedicated increment: **test analysis and coverage only** — no other product ch
 
 ### 1.11.6
 
-* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md):
+  * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare; full pickup brief under **1.11.2** Resizeable Buffer **G1**;
 
 
 ### 1.11.7

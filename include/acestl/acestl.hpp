@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 17th September 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      57
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -122,8 +122,8 @@
  * Dependent code should be recompiled in order to pick up the changes.
  */
 
-/** \def _ACESTL_VER_ALPHABETA
- * The alpha/beta number of ACESTL, in the range 1-0xFE for prerelease
+/** \def _ACESTL_VER_RELSTATUS
+ * The release-status number of ACESTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -150,17 +150,18 @@
 #define _ACESTL_VER_MAJOR      1
 #define _ACESTL_VER_MINOR      2
 #define _ACESTL_VER_PATCH      1
-#define _ACESTL_VER_ALPHABETA  0xFF
+#define _ACESTL_VER_RELSTATUS  0xFF
 
 #define _ACESTL_VER \
     (0\
         |   (   _ACESTL_VER_MAJOR       << 24   ) \
         |   (   _ACESTL_VER_MINOR       << 16   ) \
         |   (   _ACESTL_VER_PATCH       <<  8   ) \
-        |   (   _ACESTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _ACESTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _ACESTL_VER_ALPHABETA                              _ACESTL_VER_RELSTATUS
 # define _ACESTL_VER_REVISION                               _ACESTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
