@@ -4,7 +4,7 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 28th November 2020
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -380,7 +380,7 @@ winstl_C_path_classify_root_X_(
 #endif
                         else
                         {
-                            if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_(s0[2]))
+                            if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(s0[2]))
                             {
                                 /* potentially a UNC server with 1-character name */
 
@@ -439,7 +439,7 @@ maybe_regular_UNC:
 try_detect_drive:
     if (cch0 > 1)
     {
-        if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_(s0[0]) &&
+        if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(s0[0]) &&
             ':' == s0[1])
         {
             if (2 == cch0)

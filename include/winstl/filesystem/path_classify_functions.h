@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        16
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    7
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,11 +80,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE
 # include <stlsoft/string/string_slice.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE */
-
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>
-#endif /* !STLSOFT_INCL_H_CTYPE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -175,11 +170,17 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+ /* character width independent */
+# define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(c) \
+                                                            (((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
+
+
+ /* character width dependent */
+
 # define WINSTL_C_PATH_CLASSIFY_IMPL_char_t_                char
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ \
                                                             stlsoft_C_string_slice_m_t
 # define winstl_C_path_classification_results_X_t_          winstl_C_path_classification_results_m_t
-# define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_   STLSOFT_NS_GLOBAL(isalpha)
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_   stlsoft_C_strnchr
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_ stlsoft_C_strnpbrkn
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_  stlsoft_C_strnstrn
@@ -193,7 +194,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_
 # undef winstl_C_path_classification_results_X_t_
-# undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_
@@ -207,7 +207,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ \
                                                             stlsoft_C_string_slice_w_t
 # define winstl_C_path_classification_results_X_t_          winstl_C_path_classification_results_w_t
-# define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_   STLSOFT_NS_GLOBAL(iswalpha)
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_   stlsoft_C_wcsnchr
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_ stlsoft_C_wcsnpbrkn
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_  stlsoft_C_wcsnstrn
@@ -221,7 +220,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_
 # undef winstl_C_path_classification_results_X_t_
-# undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_
@@ -230,6 +228,10 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef winstl_C_path_classify_root_X_
 # undef winstl_C_path_classify_impl_X_
 # undef winstl_C_path_classify_root_impl_X_
+
+
+ /* character width independent */
+# undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
