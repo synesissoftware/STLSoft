@@ -27,6 +27,10 @@
   * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip, failing-resize OOM reporting, and unixstl strip-all trailing separators);
   * Unit tests for `stlsoft::resizeable_buffer_resize` (including a stub with defaulted fill-argument `resize`, G5);
   * Unit tests for **winstl** `get_module_directory(rb)` (`auto_buffer` / `vector`, invalid handle, grow-from-empty, pre-sized buffer);
+  * Added scratch program **test.scratch.versions.format** (**test/scratch/versions/versions.format**), reporting library versions via `std::format`; built only for toolchains known to provide `std::format` (MSVC 19.29+, GCC 13+, Clang 17+, AppleClang 16+, with C++20 or later), and degrades to a stub when `__cpp_lib_format` is absent;
+  * **test.unit.versions** — aligned with **1.11.1-rc10** (**_STLSOFT_VER_1_11_1_RC10**);
+* version:
+  * **STLSoft** — **1.11.1-rc10** (**_STLSOFT_VER_1_11_1_RC10**);
 
 
 ## 1.11.1-rc9 - 18th October 2026
