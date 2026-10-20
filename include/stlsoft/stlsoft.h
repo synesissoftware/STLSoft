@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 22nd October 2026
+ * Updated: 21st October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -425,7 +425,7 @@
 # define _STLSOFT_VER_1_11_1_RC8    0x010B01C8  /*!< Version 1.11.1 rc 8 (10th October 2026) */
 # define _STLSOFT_VER_1_11_1_RC9    0x010B01C9  /*!< Version 1.11.1 rc 9 (18th October 2026) */
 # define _STLSOFT_VER_1_11_1_RC10   0x010B01CA  /*!< Version 1.11.1 rc 10 (20th October 2026) */
-# define _STLSOFT_VER_1_11_1        0x010B01FF  /*!< Version 1.11.1 (22nd October 2026) */
+# define _STLSOFT_VER_1_11_1        0x010B01FF  /*!< Version 1.11.1 (21st October 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
