@@ -37,7 +37,7 @@
 /* Standard C header files */
 #include <stdlib.h>
 
-/* Suppress C4996 / -Wdeprecated for intentional is_path_* (coarse) coverage. */
+/* Coarse is_path_* coverage is intentional. */
 #include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
 
 
