@@ -271,22 +271,30 @@ static void TEST_matrix_WINDOWS_DRIVE()
 
 static void TEST_matrix_WINDOWS_UNC()
 {
-    /* W-unc-share-sep / W-unc-child: complete with directory or trailing sep. */
+    /* W-unc-share: complete root, no trailing separator (R7 / R1). */
+    CLASSIFY_EXPECT_KIND_("\\\\svr\\share", 0, winstl_C_PathType_UncRooted, 1, 1);
+
+    /* W-unc-share-sep / W-unc-child: trailing sep or further path. */
     CLASSIFY_EXPECT_KIND_("\\\\svr\\share\\", 0, winstl_C_PathType_UncRooted, 1, 1);
     CLASSIFY_EXPECT_KIND_("\\\\svr\\share\\a", 0, winstl_C_PathType_UncRooted, 1, 1);
 
-    /* W-unc-host: incomplete. */
+    /* W-unc-host: incomplete (no share). */
     CLASSIFY_EXPECT_KIND_("\\\\svr", 0, winstl_C_PathType_UncIncomplete, 0, 0);
+
+    /* Empty share after host separator. */
+    CLASSIFY_EXPECT_KIND_("\\\\svr\\", 0, winstl_C_PathType_UncIncomplete, 0, 0);
+
+    /* Empty host (extra slash after UNC prefix). */
+    CLASSIFY_EXPECT_KIND_("\\\\\\share", 0, winstl_C_PathType_UncIncomplete, 0, 0);
+
+    /* Invalid character in UNC host. */
+    CLASSIFY_EXPECT_KIND_("\\\\sv|r\\share", 0, winstl_C_PathType_InvalidChars, 0, 0);
+
+    /* Invalid character in UNC share. */
+    CLASSIFY_EXPECT_KIND_("\\\\svr\\sha?re", 0, winstl_C_PathType_InvalidChars, 0, 0);
 
     /* W-unc-only: too short for UNC parse → Invalid. */
     CLASSIFY_EXPECT_KIND_("\\\\", 0, winstl_C_PathType_Invalid, 0, 0);
-
-    /*
-     * W-unc-share (matrix target UncRooted / absolute — R1). Current
-     * classify requires a post-share separator (debt until plan #7–#8).
-     * Pin observed behaviour so R4 stays green and the debt stays visible.
-     */
-    CLASSIFY_EXPECT_KIND_("\\\\svr\\share", 0, winstl_C_PathType_UncIncomplete, 0, 0);
 }
 
 static void TEST_matrix_WINDOWS_SLASH_ROOTED()
