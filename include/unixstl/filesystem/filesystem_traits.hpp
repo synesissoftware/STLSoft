@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 19th October 2026
+ * Updated: 20th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      194
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -494,11 +494,19 @@ public:
     ,   path_classification_results_type*   results
     );
 
+    /// Whether a classification result is rooted. Distinct from the string
+    /// predicate \c is_path_rooted.
     static
+    bool
     path_is_rooted(
         path_classification_t               pc
     );
 
+    /// Whether a classification result is absolute. Currently aliases
+    /// \c path_is_rooted (native Unix absolute ≡ rooted). Distinct from
+    /// the string predicate \c is_path_absolute, which under
+    /// <code>_WIN32</code> uses Windows-shaped coarse rules (UNC prefix or
+    /// drive+separator; not merely slash-rooted).
     static
     bool
     path_is_absolute(
@@ -567,7 +575,9 @@ public:
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
-    /// root character sequence(s).
+    /// root character sequence(s). On native Unix, absolute ≡ rooted. On
+    /// Win-hosted builds (<code>_WIN32</code>), leading separator or
+    /// absolute (see \c is_path_absolute).
     static bool_type    is_path_rooted(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_rooted(
@@ -575,7 +585,14 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is an absolute path
+    /// Returns \c true if path is an absolute path (string predicate)
+    ///
+    /// Native Unix: same as \c is_path_rooted (leading <code>/</code>).
+    /// Win-hosted (<code>_WIN32</code>): same coarse rules as WinSTL —
+    /// UNC prefix <code>\\\\</code> or <code>X:</code> + separator; not
+    /// merely slash-rooted. Incomplete UNC prefixes may report absolute
+    /// here while \c path_classify reports \c UncIncomplete; prefer
+    /// \c path_classify when completeness matters.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
@@ -587,7 +604,11 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is a UNC path
+    /// Returns \c true if path is a UNC path (string predicate)
+    ///
+    /// Native Unix: always false. Win-hosted (<code>_WIN32</code>): true
+    /// when the path begins with <code>\\\\</code> (length ≥ 2) — a prefix
+    /// heuristic only; use \c path_classify for host/share completeness.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).

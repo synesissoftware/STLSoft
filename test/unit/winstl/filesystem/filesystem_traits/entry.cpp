@@ -1,10 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/unit/winstl/filesystem/filesystem_traits/entry.cpp
  *
- * Purpose: Unit-tests for `winstl::filesystem_traits`.
+ * Purpose: Unit-tests for `winstl::filesystem_traits` (incl. R9 traits vs
+ *          classify UNC coarseness).
  *
  * Created: 31st December 2008
- * Updated: 19th October 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -64,6 +65,7 @@ namespace {
     static void TEST_path_is_absolute_2();
     static void TEST_path_is_UNC_1();
     static void TEST_path_is_UNC_2();
+    static void TEST_traits_vs_classify_UNC_coarseness();
 
     static void TEST_is_path_name_separator();
     static void TEST_is_root_designator();
@@ -114,6 +116,7 @@ int main(int argc, char *argv[])
 
         XTESTS_RUN_CASE(TEST_path_is_UNC_1);
         XTESTS_RUN_CASE(TEST_path_is_UNC_2);
+        XTESTS_RUN_CASE(TEST_traits_vs_classify_UNC_coarseness);
 
         XTESTS_RUN_CASE(TEST_is_path_name_separator);
         XTESTS_RUN_CASE(TEST_is_root_designator);
@@ -1709,6 +1712,60 @@ static void TEST_path_is_UNC_2()
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::is_path_UNC("\\\\svr\\share\\./a", 1));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_UNC("\\\\svr\\share\\./a", 2));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_UNC("\\\\svr\\share\\./a", 3));
+    }
+}
+
+/* R9: string predicates stay coarse; classify lattice is authoritative for
+ * incompleteness. Complete UNC roots agree on both surfaces.
+ */
+static void TEST_traits_vs_classify_UNC_coarseness()
+{
+    filesystem_traits_m_t::path_classification_results_type results;
+
+    /* Incomplete host-only: traits UNC+absolute; classify UncIncomplete. */
+    {
+        char const* const path = "\\\\svr";
+
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_UNC(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute(path));
+
+        filesystem_traits_m_t::path_classification_type const pc =
+            filesystem_traits_m_t::path_classify(path, 5u, 0, &results);
+
+        TEST_INT_EQ(int(winstl_C_PathType_UncIncomplete), int(pc));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute(pc));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted(pc));
+    }
+
+    /* Complete root without trailing sep: both surfaces absolute. */
+    {
+        char const* const path = "\\\\svr\\share";
+
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_UNC(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute(path));
+
+        filesystem_traits_m_t::path_classification_type const pc =
+            filesystem_traits_m_t::path_classify(path, 11u, 0, &results);
+
+        TEST_INT_EQ(int(winstl_C_PathType_UncRooted), int(pc));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute(pc));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted(pc));
+    }
+
+    /* Slash-rooted: neither surface absolute. */
+    {
+        char const* const path = "\\foo";
+
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::is_path_UNC(path));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted(path));
+
+        filesystem_traits_m_t::path_classification_type const pc =
+            filesystem_traits_m_t::path_classify(path, 4u, 0, &results);
+
+        TEST_INT_EQ(int(winstl_C_PathType_SlashRooted), int(pc));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute(pc));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted(pc));
     }
 }
 

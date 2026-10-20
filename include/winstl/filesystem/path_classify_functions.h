@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        19
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    10
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -351,6 +351,16 @@ winstl_C_path_is_rooted(
     }
 }
 
+/** Absolute in the classification lattice: drive-rooted, UNC-rooted, or
+ * home-rooted — not merely slash-rooted, and not \c UncIncomplete.
+ *
+ * Distinct from the coarse string predicates
+ * \c filesystem_traits<>::is_path_absolute / \c is_path_UNC, which treat
+ * any <code>\\\\</code> prefix as UNC/absolute without validating
+ * host/share. Prefer this predicate (after \c path_classify) when
+ * incompleteness matters; complete <code>\\\\host\\share</code> forms
+ * agree on both surfaces.
+ */
 STLSOFT_INLINE
 STLSOFT_NS_QUAL(ss_truthy_t)
 winstl_C_path_is_absolute(
