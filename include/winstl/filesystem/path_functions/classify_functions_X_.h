@@ -2,7 +2,7 @@
  * File:    winstl/filesystem/path_functions/classify_functions_X_.h
  *
  * Purpose: Path classification functions char-X implementation
- *          (incl. R11 long-path "\\?\" / "\\?\UNC\" namespaces).
+ *          (R11 long-path "\\?\" / "\\?\UNC\"; R12 device "\\.\").
  *
  * Created: 28th November 2020
  * Updated: 20th October 2026
@@ -377,11 +377,11 @@ winstl_C_path_classify_root_X_(
                     if ('\\' == s0[3])
                     {
                         /*
-                         * R11 — long-path namespaces (order matters):
-                         * 1. "\\?\UNC\" → extended UNC (only UNC form after \\?\);
-                         * 2. "\\?\" → strip prefix and try drive only (never
-                         *    invent UncRooted from "\\?\foo\bar");
-                         * 3. else → regular UNC / invalid.
+                         * Long-path / device namespaces (order matters):
+                         * 1. "\\?\UNC\" → extended UNC (R11);
+                         * 2. "\\?\" → strip; drive only, else Invalid (R11);
+                         * 3. "\\.\" → device namespace, unsupported → Invalid (R12);
+                         * 4. else → regular UNC / invalid.
                          */
                         if (0 != winstl_C_path_classify_is_long_UNC_prefix_X_(s0, cch0))
                         {
@@ -409,17 +409,15 @@ winstl_C_path_classify_root_X_(
 
                             goto try_detect_drive;
                         }
-#if 0 /* currently not supporting device-prefixed paths */
                         else
-                        if (s0 == WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_(s0, cch0, "\\\\.\\", 4))
+                        if ('.' == s0[2])
                         {
+                            /* R12: "\\.\" device / pipe namespace — not classified. */
+                            results->firstInvalid.len   =   1;
+                            results->firstInvalid.ptr   =   s0 + 2;
 
-                            if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 4, cch0 - 4, &server, &share, &dir0))
-                            {
-                                return winstl_C_PathType_Invalid;
-                            }
+                            return winstl_C_PathType_Invalid;
                         }
-#endif
                         else
                         {
                             if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(s0[2]))

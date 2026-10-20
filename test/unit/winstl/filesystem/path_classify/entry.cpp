@@ -3,7 +3,7 @@
  *
  * Purpose: Unit-tests for `winstl_C_path_classify` (Remediation-4 matrix
  *          rows: portable core, dots/parts, flags, Windows host-only;
- *          R10 ASCII drive letters; R11 long-path namespaces).
+ *          R10 ASCII drive letters; R11 long-path; R12 device namespaces).
  *
  * Created: 20th October 2026
  * Updated: 20th October 2026
@@ -327,6 +327,13 @@ static void TEST_matrix_WINDOWS_LONG_PATH()
     /* Unknown \\?\ namespace must not become UncRooted (R11). */
     CLASSIFY_EXPECT_KIND_("\\\\?\\foo\\bar", 0, winstl_C_PathType_Invalid, 0, 0);
     CLASSIFY_EXPECT_KIND_("\\\\?\\Volume{00000000-0000-0000-0000-000000000000}\\", 0, winstl_C_PathType_Invalid, 0, 0);
+
+    /* L-device: \\.\ device / pipe namespace — unsupported → Invalid (R12). */
+    CLASSIFY_EXPECT_KIND_("\\\\.\\", 0, winstl_C_PathType_Invalid, 0, 0);
+    CLASSIFY_EXPECT_KIND_("\\\\.\\A:", 0, winstl_C_PathType_Invalid, 0, 0);
+    CLASSIFY_EXPECT_KIND_("\\\\.\\PhysicalDrive0", 0, winstl_C_PathType_Invalid, 0, 0);
+    CLASSIFY_EXPECT_KIND_("\\\\.\\pipe\\name", 0, winstl_C_PathType_Invalid, 0, 0);
+    CLASSIFY_EXPECT_KIND_W_(L"\\\\.\\PhysicalDrive0", 0, winstl_C_PathType_Invalid, 0, 0);
 }
 
 static void TEST_matrix_WINDOWS_SLASH_ROOTED()
