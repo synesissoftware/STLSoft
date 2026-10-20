@@ -170,7 +170,7 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
- /* character width independent */
+ /* Drive letters: ASCII A–Z / a–z only (R10; not locale isalpha). */
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(c) \
                                                             (((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
 

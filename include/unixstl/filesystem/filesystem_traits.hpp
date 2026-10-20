@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      195
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1426,7 +1426,7 @@ public: // path classification and analysis
         }
 
         // If it's really on Windows, then we need to skip the drive, if present
-        if (isalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             ':' == path[1])
         {
             path += 2;
@@ -1463,7 +1463,7 @@ public: // path classification and analysis
         if (len >= 2)
         {
             // If it's really on Windows, then we need to skip the drive, if present
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1])
             {
                 path += 2;
@@ -1492,7 +1492,7 @@ public: // path classification and analysis
             return true;
         }
         // ... it's got drive + root slash, or
-        if (isalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             ':' == path[1] &&
             is_path_name_separator(path[2]))
         {
@@ -1527,7 +1527,7 @@ public: // path classification and analysis
         if (len >= 3)
         {
             // ... it's got drive + root slash, or
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -1587,6 +1587,16 @@ public: // path classification and analysis
 private:
 #ifdef _WIN32
 
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale isalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+    }
+
     static
     bool_type
     is_root_drive_(
@@ -1596,8 +1606,8 @@ private:
     {
         if (3 == len)
         {
-            if (iswalpha(path[0]) &&
-                L':' == path[1] &&
+            if (is_drive_letter_(path[0]) &&
+                ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
                 return true;
@@ -1800,7 +1810,7 @@ public:
 #ifdef _WIN32
 
         // If it's really on Windows, then we need to check for drive designator
-        if (iswalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             ':' == path[1] &&
             is_path_name_separator(path[2]))
         {
@@ -3117,6 +3127,19 @@ public: // directory-end
         return lenToDecrease;
     }
 
+private:
+#ifdef _WIN32
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale iswalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
+    }
+#endif /* _WIN32 */
+
 public: // path classification and analysis
     static
     char_type const*
@@ -3239,7 +3262,7 @@ public: // path classification and analysis
             return true;
         }
 
-        if (0 != ::iswalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             L':' == path[1])
         {
             path += 2;
@@ -3268,7 +3291,7 @@ public: // path classification and analysis
 
         if (len >= 2)
         {
-            if (0 != ::iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1])
             {
                 path += 2;
@@ -3289,7 +3312,7 @@ public: // path classification and analysis
         {
             return true;
         }
-        if (0 != ::iswalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             L':' == path[1] &&
             is_path_name_separator(path[2]))
         {
@@ -3320,7 +3343,7 @@ public: // path classification and analysis
         }
         if (len >= 3)
         {
-            if (0 != ::iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1] &&
                 is_path_name_separator(path[2]))
             {

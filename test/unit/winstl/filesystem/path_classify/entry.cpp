@@ -2,7 +2,8 @@
  * File:    test/unit/winstl/filesystem/path_classify/entry.cpp
  *
  * Purpose: Unit-tests for `winstl_C_path_classify` (Remediation-4 matrix
- *          rows: portable core, dots/parts, flags, Windows host-only).
+ *          rows: portable core, dots/parts, flags, Windows host-only;
+ *          R10 ASCII-only drive letters).
  *
  * Created: 20th October 2026
  * Updated: 20th October 2026
@@ -267,6 +268,11 @@ static void TEST_matrix_WINDOWS_DRIVE()
     CLASSIFY_EXPECT_KIND_("C:\\", 0, winstl_C_PathType_DriveLetterRooted, 1, 1);
     CLASSIFY_EXPECT_KIND_("C:\\a\\b", 0, winstl_C_PathType_DriveLetterRooted, 1, 1);
     CLASSIFY_EXPECT_KIND_("C:/a/./b", 0, winstl_C_PathType_DriveLetterRooted, 1, 1);
+    CLASSIFY_EXPECT_KIND_("z:\\", 0, winstl_C_PathType_DriveLetterRooted, 1, 1);
+
+    /* R10: non-ASCII “letter” is not a drive (ASCII A–Z/a–z only). */
+    CLASSIFY_EXPECT_KIND_("\xC0:\\a", 0, winstl_C_PathType_InvalidChars, 0, 0);
+    CLASSIFY_EXPECT_KIND_W_(L"\u00C0:\\a", 0, winstl_C_PathType_InvalidChars, 0, 0);
 }
 
 static void TEST_matrix_WINDOWS_UNC()

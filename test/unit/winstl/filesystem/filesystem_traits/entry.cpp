@@ -1098,6 +1098,10 @@ static void TEST_path_is_absolute_1()
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("H:\\"));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("H:\\a"));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("H:\\./a"));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("z:\\"));
+
+        /* R10: non-ASCII lead byte is not a drive letter. */
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\xC0:\\a"));
 
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share"));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a"));
@@ -1125,6 +1129,10 @@ static void TEST_path_is_absolute_1()
         TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"H:\\"));
         TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"H:\\a"));
         TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"H:\\./a"));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"z:\\"));
+
+        /* R10: non-ASCII letter is not a drive letter. */
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\u00C0:\\a"));
 
         TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share"));
         TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a"));
