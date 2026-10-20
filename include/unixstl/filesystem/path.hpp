@@ -1893,7 +1893,7 @@ basic_path<C, T, A>::canonicalise(
     {
 #ifdef _WIN32
 
-        if (traits_type::is_path_UNC(this->c_str()))
+        if (traits_type::path_is_UNC(this->c_str()))
         {
             UNIXSTL_ASSERT('\\' == m_buffer[0]);
             UNIXSTL_ASSERT('\\' == m_buffer[1]);

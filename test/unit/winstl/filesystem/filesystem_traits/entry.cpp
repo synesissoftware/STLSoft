@@ -37,6 +37,9 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+/* Suppress C4996 / -Wdeprecated for intentional is_path_* (coarse) coverage. */
+#include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -2023,6 +2026,9 @@ static void TEST_str_fs_compare()
     }
 }
 } /* anonymous namespace */
+
+
+#include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
