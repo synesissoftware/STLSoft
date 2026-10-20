@@ -370,26 +370,28 @@ static void TEST_find_path_name_separators_w()
 
 static void TEST_path_classification_w()
 {
-    TEST_BOOLEAN_TRUE(traits_w_t::is_path_rooted(L"/"));
-    TEST_BOOLEAN_TRUE(traits_w_t::is_path_rooted(L"/tmp"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_rooted(L"tmp"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_rooted(L"", 0));
+    TEST_BOOLEAN_TRUE(traits_w_t::path_is_rooted(L"/"));
+    TEST_BOOLEAN_TRUE(traits_w_t::path_is_rooted(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_rooted(L"tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_rooted(L"", 0));
 
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"tmp"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"", 0));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_absolute(L"tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_absolute(L"", 0));
 
 #ifdef _WIN32
+
     /* Win-hosted UNIXSTL: slash-rooted is not absolute; "\\" is UNC. */
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"/tmp"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp"));
-    TEST_BOOLEAN_TRUE(traits_w_t::is_path_UNC(L"\\\\server\\share"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp", 4));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_absolute(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_UNC(L"/tmp"));
+    TEST_BOOLEAN_TRUE(traits_w_t::path_is_UNC(L"\\\\server\\share"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_UNC(L"/tmp", 4));
 #else /* ? _WIN32 */
+
     /* Native Unix: absolute ≡ rooted; UNC always false. */
-    TEST_BOOLEAN_TRUE(traits_w_t::is_path_absolute(L"/tmp"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"\\\\server\\share"));
-    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp", 4));
+    TEST_BOOLEAN_TRUE(traits_w_t::path_is_absolute(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_UNC(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_UNC(L"\\\\server\\share"));
+    TEST_BOOLEAN_FALSE(traits_w_t::path_is_UNC(L"/tmp", 4));
 #endif /* _WIN32 */
 }
 
@@ -418,24 +420,24 @@ static void TEST_path_classification_m_matches_w()
         size_t const len_w = ::wcslen(paths_w[i]);
 
         TEST_BOOLEAN_EQ(
-            traits_m_t::is_path_rooted(paths_m[i])
-        ,   traits_w_t::is_path_rooted(paths_w[i])
+            traits_m_t::path_is_rooted(paths_m[i])
+        ,   traits_w_t::path_is_rooted(paths_w[i])
         );
         TEST_BOOLEAN_EQ(
-            traits_m_t::is_path_rooted(paths_m[i], len_m)
-        ,   traits_w_t::is_path_rooted(paths_w[i], len_w)
+            traits_m_t::path_is_rooted(paths_m[i], len_m)
+        ,   traits_w_t::path_is_rooted(paths_w[i], len_w)
         );
         TEST_BOOLEAN_EQ(
-            traits_m_t::is_path_absolute(paths_m[i])
-        ,   traits_w_t::is_path_absolute(paths_w[i])
+            traits_m_t::path_is_absolute(paths_m[i])
+        ,   traits_w_t::path_is_absolute(paths_w[i])
         );
         TEST_BOOLEAN_EQ(
-            traits_m_t::is_path_absolute(paths_m[i], len_m)
-        ,   traits_w_t::is_path_absolute(paths_w[i], len_w)
+            traits_m_t::path_is_absolute(paths_m[i], len_m)
+        ,   traits_w_t::path_is_absolute(paths_w[i], len_w)
         );
         TEST_BOOLEAN_EQ(
-            traits_m_t::is_path_UNC(paths_m[i])
-        ,   traits_w_t::is_path_UNC(paths_w[i])
+            traits_m_t::path_is_UNC(paths_m[i])
+        ,   traits_w_t::path_is_UNC(paths_w[i])
         );
     }}
 }

@@ -589,13 +589,9 @@ public:
     /// Returns \c true if the path begins with a dots directory
     static bool_type    starts_with_dots(char_type const* dir);
 
-    /// Returns \c true if path is rooted
+    /// [DEPRECATED] Coarse rooted string predicate (legacy orthography).
     ///
-    /// \note Only enough characters of the path pointed to by \c path as are
-    /// necessary to detect the presence or absence of the operating system's
-    /// root character sequence(s). On native Unix, absolute ≡ rooted. On
-    /// Win-hosted builds (<code>_WIN32</code>), leading separator or
-    /// absolute (see \c is_path_absolute).
+    /// \deprecated Use \c path_is_rooted for complete (lattice) semantics.
     static bool_type    is_path_rooted(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_rooted(
@@ -603,18 +599,20 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is an absolute path (string predicate)
+    /// Complete string predicate: rooted in the UNIXSTL classify lattice.
+    static bool_type    path_is_rooted(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    path_is_rooted(
+        char_type const*    path
+    ,   size_t              len
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    /// [DEPRECATED] Coarse absolute string predicate.
     ///
-    /// Native Unix: same as \c is_path_rooted (leading <code>/</code>).
-    /// Win-hosted (<code>_WIN32</code>): same coarse rules as WinSTL —
-    /// UNC prefix <code>\\\\</code> or <code>X:</code> + separator; not
-    /// merely slash-rooted. Incomplete UNC prefixes may report absolute
-    /// here while \c path_classify reports \c UncIncomplete; prefer
-    /// \c path_classify when completeness matters.
+    /// Native Unix: leading <code>/</code>. Win-hosted: UNC prefix or
+    /// <code>X:</code> + separator (may over-accept incomplete UNC).
     ///
-    /// \note Only enough characters of the path pointed to by \c path as are
-    /// necessary to detect the presence or absence of the operating system's
-    /// absolute path character sequence(s).
+    /// \deprecated Use \c path_is_absolute for complete (lattice) semantics.
     static bool_type    is_path_absolute(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_absolute(
@@ -622,17 +620,32 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is a UNC path (string predicate)
+    /// Complete string predicate: absolute ≡ rooted on the UNIXSTL lattice
+    /// (native Unix: leading <code>/</code>; Win-hosted: classify when
+    /// <code>\\\\</code>-prefixed).
+    static bool_type    path_is_absolute(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    path_is_absolute(
+        char_type const*    path
+    ,   size_t              len
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    /// [DEPRECATED] Coarse UNC string predicate (always false on native
+    /// Unix; <code>\\\\</code> prefix under <code>_WIN32</code>).
     ///
-    /// Native Unix: always false. Win-hosted (<code>_WIN32</code>): true
-    /// when the path begins with <code>\\\\</code> (length ≥ 2) — a prefix
-    /// heuristic only; use \c path_classify for host/share completeness.
-    ///
-    /// \note Only enough characters of the path pointed to by \c path as are
-    /// necessary to detect the presence or absence of the UNC character sequence(s).
+    /// \deprecated Use \c path_is_UNC (always false — no UNC kinds in
+    /// UNIXSTL).
     static bool_type    is_path_UNC(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_UNC(
+        char_type const*    path
+    ,   size_t              len
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    /// Complete string predicate: always false (UNIXSTL has no UNC kinds).
+    static bool_type    path_is_UNC(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    path_is_UNC(
         char_type const*    path
     ,   size_t              len
     );
@@ -1441,102 +1454,135 @@ public: // path classification and analysis
         return false;
     }
 
+    /* Deprecated coarse string predicates. */
+
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
 
-        // It might be a UNC path. This is handled by the second test below, but
-        // this is a bit clearer, and since this is a debug kind of thing, we're
-        // not worried about the cost
-        if ('\\' == path[0] &&
-            '\\' == path[1])
-        {
-            return true;
-        }
-
-        // If it's really on Windows, then we need to skip the drive, if present
-        if (is_drive_letter_(path[0]) &&
-            ':' == path[1])
-        {
-            path += 2;
-        }
-
-        // If it's really on Windows, then we need to account for the fact that
-        // the slash might be backwards, but that's taken care of for us by
-        // is_path_name_separator()
-#endif /* _WIN32 */
-
-        return is_path_name_separator(*path);
+        return is_path_rooted_coarse_(path, str_len(path));
     }
 
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(
         char_type const*    path
     ,   size_t              len
     )
     {
-        UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
-
-        if (len >= 2)
-        {
-            // It might be a UNC path. This is handled by the second test below, but
-            // this is a bit clearer, and since this is a debug kind of thing, we're
-            // not worried about the cost
-            if ('\\' == path[0] &&
-                '\\' == path[1])
-            {
-                return true;
-            }
-        }
-
-        if (len >= 2)
-        {
-            // If it's really on Windows, then we need to skip the drive, if present
-            if (is_drive_letter_(path[0]) &&
-                ':' == path[1])
-            {
-                path += 2;
-                len -= 2;
-            }
-        }
-
-        // If it's really on Windows, then we need to account for the fact that
-        // the slash might be backwards, but that's taken care of for us by
-        // is_path_name_separator()
-#endif /* _WIN32 */
-
-        return 0 != len && is_path_name_separator(*path);
+        return is_path_rooted_coarse_(path, len);
     }
 
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
     static bool_type is_path_absolute(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
 
-        // If it's really on Windows, then it can only be absolute if ...
-        //
-        // ... it's a UNC path, or ...
-        if (is_path_UNC(path))
-        {
-            return true;
-        }
-        // ... it's got drive + root slash, or
-        if (is_drive_letter_(path[0]) &&
-            ':' == path[1] &&
-            is_path_name_separator(path[2]))
-        {
-            return true;
-        }
+        return is_path_absolute_coarse_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return is_path_absolute_coarse_(path, len);
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC (always false on UNIXSTL)")
+    static bool_type is_path_UNC(char_type const* path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return is_path_UNC_coarse_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC (always false on UNIXSTL)")
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return is_path_UNC_coarse_(path, len);
+    }
+
+    /* Complete string predicates. */
+
+    static bool_type path_is_rooted(char_type const* path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return path_is_rooted(path, str_len(path));
+    }
+
+    static bool_type path_is_rooted(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        /* UNIXSTL lattice (flags 0): SlashRooted ⇔ leading path-name
+         * separator. No classify call required.
+         */
+        return 0 != len && is_path_name_separator(path[0]);
+    }
+
+    static bool_type path_is_absolute(char_type const* path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return path_is_absolute(path, str_len(path));
+    }
+
+    static bool_type path_is_absolute(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return path_is_rooted(path, len);
+    }
+
+    static bool_type path_is_UNC(char_type const* path)
+    {
+        STLSOFT_SUPPRESS_UNUSED(path);
 
         return false;
+    }
+
+    static bool_type path_is_UNC(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(len);
+
+        return false;
+    }
+
+private:
+    static
+    bool_type
+    is_path_UNC_coarse_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+#ifdef _WIN32
+
+        return len >= 2 && '\\' == path[0] && '\\' == path[1];
 #else /* ? _WIN32 */
 
-        return is_path_rooted(path);
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(len);
+
+        return false;
 #endif /* _WIN32 */
     }
 
-    static bool_type is_path_absolute(
+    static
+    bool_type
+    is_path_absolute_coarse_(
         char_type const*    path
     ,   size_t              len
     )
@@ -1547,74 +1593,53 @@ public: // path classification and analysis
         }
 #ifdef _WIN32
 
-        // If it's really on Windows, then it can only be absolute if ...
-        //
-        // ... it's a UNC path, or ...
-        if (is_path_UNC(path, len))
+        if (is_path_UNC_coarse_(path, len))
         {
             return true;
         }
-        if (len >= 3)
+
+        if (len >= 3 &&
+            is_drive_letter_(path[0]) &&
+            ':' == path[1] &&
+            is_path_name_separator(path[2]))
         {
-            // ... it's got drive + root slash, or
-            if (is_drive_letter_(path[0]) &&
-                ':' == path[1] &&
-                is_path_name_separator(path[2]))
-            {
-                return true;
-            }
+            return true;
         }
 
         return false;
 #else /* ? _WIN32 */
 
-        return is_path_rooted(path, len);
+        return is_path_rooted_coarse_(path, len);
 #endif /* _WIN32 */
     }
 
-    static bool_type is_path_UNC(char_type const* path)
-    {
-        UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
-
-        size_type const len = str_len(path);
-
-        return is_path_UNC(path, len);
-#else /* ? _WIN32 */
-
-        STLSOFT_SUPPRESS_UNUSED(path);
-
-        return false;
-#endif /* _WIN32 */
-    }
-
-    static bool_type is_path_UNC(
+    static
+    bool_type
+    is_path_rooted_coarse_(
         char_type const*    path
     ,   size_t              len
     )
     {
+        UNIXSTL_ASSERT(NULL != path);
 #ifdef _WIN32
 
-        switch (len)
+        if (len >= 2 &&
+            '\\' == path[0] &&
+            '\\' == path[1])
         {
-        case    0:
-        case    1:
-
-            return false;
-        default:
-
-            return '\\' == path[0] && '\\' == path[1];
+            return true;
         }
-#else /* ? _WIN32 */
-
-        STLSOFT_SUPPRESS_UNUSED(path);
-        STLSOFT_SUPPRESS_UNUSED(len);
-
-        return false;
+        if (len >= 2 &&
+            is_drive_letter_(path[0]) &&
+            ':' == path[1])
+        {
+            path += 2;
+            len -= 2;
+        }
 #endif /* _WIN32 */
-    }
 
-private:
+        return 0 != len && is_path_name_separator(path[0]);
+    }
 #ifdef _WIN32
 
     /* Windows drive letters are ASCII A–Z / a–z only (not locale isalpha). */
@@ -1836,7 +1861,6 @@ public:
         {
             return 0;
         }
-
 #ifdef _WIN32
 
         // If it's really on Windows, then we need to check for drive designator
@@ -1899,11 +1923,10 @@ private:
         {
             return 0;
         }
-
 #ifdef _WIN32
 
-        if (!is_path_absolute(fileName) &&
-            is_path_rooted(fileName))
+        if (!is_path_absolute_coarse_(fileName, len) &&
+            is_path_rooted_coarse_(fileName, len))
         {
             buffer_type_    cwd(1);
             size_type const n1  =   get_current_directory(cwd);
@@ -1926,13 +1949,12 @@ private:
 
         // The next thing to so is determine whether the path is absolute, in
         // which case we'll just copy it into the buffer
-
 #ifdef _WIN32
 
-        if (is_path_absolute(fileName))
+        if (is_path_absolute_coarse_(fileName, len))
 #else /* ? _WIN32 */
 
-        if (is_path_rooted(fileName))
+        if (is_path_rooted_coarse_(fileName, len))
 #endif /* _WIN32 */
         {
             // Given path is absolute, so simply copy into buffer
@@ -2684,7 +2706,6 @@ public: // file-system state
     static bool_type create_directory(char_type const* dir)
     {
         mode_type mode = 0;
-
 #ifdef _WIN32
 
         mode    =   S_IREAD | S_IWRITE | S_IEXEC;
@@ -3159,6 +3180,7 @@ public: // directory-end
 
 private:
 #ifdef _WIN32
+
     /* Windows drive letters are ASCII A–Z / a–z only (not locale iswalpha). */
     static
     bool_type
@@ -3281,82 +3303,132 @@ public: // path classification and analysis
         return false;
     }
 
+    /* Deprecated coarse string predicates. */
+
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
 
-        if (L'\\' == path[0] &&
-            L'\\' == path[1])
-        {
-            return true;
-        }
-
-        if (is_drive_letter_(path[0]) &&
-            L':' == path[1])
-        {
-            path += 2;
-        }
-#endif /* _WIN32 */
-
-        return is_path_name_separator(*path);
+        return is_path_rooted_coarse_(path, str_len(path));
     }
 
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(
         char_type const*    path
     ,   size_t              len
     )
     {
-        UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
-
-        if (len >= 2)
-        {
-            if (L'\\' == path[0] &&
-                L'\\' == path[1])
-            {
-                return true;
-            }
-        }
-
-        if (len >= 2)
-        {
-            if (is_drive_letter_(path[0]) &&
-                L':' == path[1])
-            {
-                path += 2;
-                len -= 2;
-            }
-        }
-#endif /* _WIN32 */
-
-        return 0 != len && is_path_name_separator(*path);
+        return is_path_rooted_coarse_(path, len);
     }
 
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
     static bool_type is_path_absolute(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
 
-        if (is_path_UNC(path))
-        {
-            return true;
-        }
-        if (is_drive_letter_(path[0]) &&
-            L':' == path[1] &&
-            is_path_name_separator(path[2]))
-        {
-            return true;
-        }
+        return is_path_absolute_coarse_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return is_path_absolute_coarse_(path, len);
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC (always false on UNIXSTL)")
+    static bool_type is_path_UNC(char_type const* path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return is_path_UNC_coarse_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC (always false on UNIXSTL)")
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return is_path_UNC_coarse_(path, len);
+    }
+
+    /* Complete string predicates. */
+
+    static bool_type path_is_rooted(char_type const* path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return path_is_rooted(path, str_len(path));
+    }
+
+    static bool_type path_is_rooted(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return 0 != len && is_path_name_separator(path[0]);
+    }
+
+    static bool_type path_is_absolute(char_type const* path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return path_is_absolute(path, str_len(path));
+    }
+
+    static bool_type path_is_absolute(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return path_is_rooted(path, len);
+    }
+
+    static bool_type path_is_UNC(char_type const* path)
+    {
+        STLSOFT_SUPPRESS_UNUSED(path);
 
         return false;
+    }
+
+    static bool_type path_is_UNC(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(len);
+
+        return false;
+    }
+
+private:
+    static
+    bool_type
+    is_path_UNC_coarse_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+#ifdef _WIN32
+
+        return len >= 2 && L'\\' == path[0] && L'\\' == path[1];
 #else /* ? _WIN32 */
 
-        return is_path_rooted(path);
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(len);
+
+        return false;
 #endif /* _WIN32 */
     }
 
-    static bool_type is_path_absolute(
+    static
+    bool_type
+    is_path_absolute_coarse_(
         char_type const*    path
     ,   size_t              len
     )
@@ -3367,69 +3439,55 @@ public: // path classification and analysis
         }
 #ifdef _WIN32
 
-        if (is_path_UNC(path, len))
+        if (is_path_UNC_coarse_(path, len))
         {
             return true;
         }
-        if (len >= 3)
+
+        if (len >= 3 &&
+            is_drive_letter_(path[0]) &&
+            L':' == path[1] &&
+            is_path_name_separator(path[2]))
         {
-            if (is_drive_letter_(path[0]) &&
-                L':' == path[1] &&
-                is_path_name_separator(path[2]))
-            {
-                return true;
-            }
+            return true;
         }
 
         return false;
 #else /* ? _WIN32 */
 
-        return is_path_rooted(path, len);
+        return is_path_rooted_coarse_(path, len);
 #endif /* _WIN32 */
     }
 
-    static bool_type is_path_UNC(char_type const* path)
-    {
-        UNIXSTL_ASSERT(NULL != path);
-#ifdef _WIN32
-
-        size_type const len = str_len(path);
-
-        return is_path_UNC(path, len);
-#else /* ? _WIN32 */
-
-        STLSOFT_SUPPRESS_UNUSED(path);
-
-        return false;
-#endif /* _WIN32 */
-    }
-
-    static bool_type is_path_UNC(
+    static
+    bool_type
+    is_path_rooted_coarse_(
         char_type const*    path
     ,   size_t              len
     )
     {
+        UNIXSTL_ASSERT(NULL != path);
 #ifdef _WIN32
 
-        switch (len)
+        if (len >= 2 &&
+            L'\\' == path[0] &&
+            L'\\' == path[1])
         {
-        case    0:
-        case    1:
-
-            return false;
-        default:
-
-            return L'\\' == path[0] && L'\\' == path[1];
+            return true;
         }
-#else /* ? _WIN32 */
-
-        STLSOFT_SUPPRESS_UNUSED(path);
-        STLSOFT_SUPPRESS_UNUSED(len);
-
-        return false;
+        if (len >= 2 &&
+            is_drive_letter_(path[0]) &&
+            L':' == path[1])
+        {
+            path += 2;
+            len -= 2;
+        }
 #endif /* _WIN32 */
+
+        return 0 != len && is_path_name_separator(path[0]);
     }
 
+public:
     static bool_type is_path_name_separator(char_type ch)
     {
 #ifdef _WIN32

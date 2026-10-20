@@ -1190,18 +1190,25 @@ static void TEST_path_is_absolute_2()
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("H:\\a", 3));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("H:\\./a"));
 
+        /* Truncated UNC prefixes: complete path_is_* false; coarse is_* true. */
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share", 0));
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share", 1));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share", 2));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share", 3));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share", 2));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share", 3));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute("\\\\svr\\share", 2));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute("\\\\svr\\share", 3));
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a", 0));
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a", 1));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a", 2));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a", 3));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a", 2));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\a", 3));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute("\\\\svr\\share\\a", 2));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute("\\\\svr\\share\\a", 3));
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\./a", 0));
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\./a", 1));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\./a", 2));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\./a", 3));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\./a", 2));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute("\\\\svr\\share\\./a", 3));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute("\\\\svr\\share\\./a", 2));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute("\\\\svr\\share\\./a", 3));
     }
 
     {
@@ -1254,16 +1261,22 @@ static void TEST_path_is_absolute_2()
 
         TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share", 0));
         TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share", 1));
-        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share", 2));
-        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share", 3));
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share", 2));
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share", 3));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::is_path_absolute(L"\\\\svr\\share", 2));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::is_path_absolute(L"\\\\svr\\share", 3));
         TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a", 0));
         TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a", 1));
-        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a", 2));
-        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a", 3));
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a", 2));
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\a", 3));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::is_path_absolute(L"\\\\svr\\share\\a", 2));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::is_path_absolute(L"\\\\svr\\share\\a", 3));
         TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\./a", 0));
         TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\./a", 1));
-        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\./a", 2));
-        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\./a", 3));
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\./a", 2));
+        TEST_BOOLEAN_FALSE(filesystem_traits_w_t::path_is_absolute(L"\\\\svr\\share\\./a", 3));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::is_path_absolute(L"\\\\svr\\share\\./a", 2));
+        TEST_BOOLEAN_TRUE(filesystem_traits_w_t::is_path_absolute(L"\\\\svr\\share\\./a", 3));
     }
 }
 
@@ -1615,17 +1628,23 @@ static void TEST_path_is_rooted_2()
     TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("H:\\./a"));
 
     TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 0));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 1));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 2));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 3));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 1)); /* single sep */
+    TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 2)); /* incomplete */
+    TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share", 3));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted("\\\\svr\\share", 2));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted("\\\\svr\\share", 3));
     TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\a", 0));
     TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\a", 1));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\a", 2));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\a", 3));
+    TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\a", 2));
+    TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\a", 3));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted("\\\\svr\\share\\a", 2));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted("\\\\svr\\share\\a", 3));
     TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\./a", 0));
     TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\./a", 1));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\./a", 2));
-    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\./a", 3));
+    TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\./a", 2));
+    TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted("\\\\svr\\share\\./a", 3));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted("\\\\svr\\share\\./a", 2));
+    TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted("\\\\svr\\share\\./a", 3));
 }
 
 static void TEST_path_is_UNC_1()
@@ -1723,19 +1742,21 @@ static void TEST_path_is_UNC_2()
     }
 }
 
-/* R9: string predicates stay coarse; classify lattice is authoritative for
- * incompleteness. Complete UNC roots agree on both surfaces.
- */
+/* R9 revised: is_path_* = coarse (deprecated); path_is_* = complete lattice. */
 static void TEST_traits_vs_classify_UNC_coarseness()
 {
     filesystem_traits_m_t::path_classification_results_type results;
 
-    /* Incomplete host-only: traits UNC+absolute; classify UncIncomplete. */
+    /* Incomplete host-only: coarse is_* true; complete path_is_* false. */
     {
         char const* const path = "\\\\svr";
 
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_UNC(path));
-        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted(path));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_UNC(path));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute(path));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted(path));
 
         filesystem_traits_m_t::path_classification_type const pc =
             filesystem_traits_m_t::path_classify(path, 5u, 0, &results);
@@ -1745,11 +1766,13 @@ static void TEST_traits_vs_classify_UNC_coarseness()
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_rooted(pc));
     }
 
-    /* Complete root without trailing sep: both surfaces absolute. */
+    /* Complete root: coarse and complete agree. */
     {
         char const* const path = "\\\\svr\\share";
 
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_UNC(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_UNC(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_absolute(path));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_absolute(path));
 
         filesystem_traits_m_t::path_classification_type const pc =
@@ -1760,12 +1783,15 @@ static void TEST_traits_vs_classify_UNC_coarseness()
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted(pc));
     }
 
-    /* Slash-rooted: neither surface absolute. */
+    /* Slash-rooted: not absolute; rooted on both string families. */
     {
         char const* const path = "\\foo";
 
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::is_path_UNC(path));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_UNC(path));
+        TEST_BOOLEAN_FALSE(filesystem_traits_m_t::is_path_absolute(path));
         TEST_BOOLEAN_FALSE(filesystem_traits_m_t::path_is_absolute(path));
+        TEST_BOOLEAN_TRUE(filesystem_traits_m_t::is_path_rooted(path));
         TEST_BOOLEAN_TRUE(filesystem_traits_m_t::path_is_rooted(path));
 
         filesystem_traits_m_t::path_classification_type const pc =
