@@ -2,6 +2,7 @@
  * File:    winstl/filesystem/path_functions/classify_functions_X_.h
  *
  * Purpose: Path classification functions char-X implementation
+ *          (incl. R11 long-path "\\?\" / "\\?\UNC\" namespaces).
  *
  * Created: 28th November 2020
  * Updated: 20th October 2026
@@ -220,6 +221,56 @@ winstl_C_path_classify_find_UNC_server_and_share_X_(
     return 0;
 }
 
+/*
+ * R11: detect "\\?\UNC\" (or "\\?\unc\", etc.). The "UNC" token is matched
+ * ASCII-case-insensitively; the surrounding backslashes and '?' are exact.
+ *
+ * \retval 0 Not a long-path UNC prefix
+ * \retval 1 Prefix present (caller may parse host/share from s + 8)
+ */
+STLSOFT_INLINE
+int
+winstl_C_path_classify_is_long_UNC_prefix_X_(
+    WINSTL_C_PATH_CLASSIFY_IMPL_char_t_ const*  s
+,   size_t                                      cch
+)
+{
+    typedef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_             char_t;
+
+    char_t  u;
+    char_t  n;
+    char_t  c;
+
+    if (cch < 8 ||
+        '\\' != s[0] ||
+        '\\' != s[1] ||
+        '?' != s[2] ||
+        '\\' != s[3] ||
+        '\\' != s[7])
+    {
+        return 0;
+    }
+
+    u = s[4];
+    n = s[5];
+    c = s[6];
+
+    if (u >= 'a' && u <= 'z')
+    {
+        u = (char_t)('A' + (u - 'a'));
+    }
+    if (n >= 'a' && n <= 'z')
+    {
+        n = (char_t)('A' + (n - 'a'));
+    }
+    if (c >= 'a' && c <= 'z')
+    {
+        c = (char_t)('A' + (c - 'a'));
+    }
+
+    return ('U' == u && 'N' == n && 'C' == c) ? 1 : 0;
+}
+
 STLSOFT_INLINE
 winstl_C_path_classification_t
 winstl_C_path_classify_root_X_(
@@ -325,29 +376,14 @@ winstl_C_path_classify_root_X_(
 
                     if ('\\' == s0[3])
                     {
-                        static char_t const s_long_prefix[] =
-                        {
-                            '\\',
-                            '\\',
-                            '?',
-                            '\\',
-                            '\0'
-                        };
-
-                        static char_t const s_long_prefix_UNC[] =
-                        {
-                            '\\',
-                            '\\',
-                            '?',
-                            '\\',
-                            'U',
-                            'N',
-                            'C',
-                            '\\',
-                            '\0'
-                        };
-
-                        if (s0 == WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_(s0, cch0, s_long_prefix_UNC, 8))
+                        /*
+                         * R11 — long-path namespaces (order matters):
+                         * 1. "\\?\UNC\" → extended UNC (only UNC form after \\?\);
+                         * 2. "\\?\" → strip prefix and try drive only (never
+                         *    invent UncRooted from "\\?\foo\bar");
+                         * 3. else → regular UNC / invalid.
+                         */
+                        if (0 != winstl_C_path_classify_is_long_UNC_prefix_X_(s0, cch0))
                         {
                             *pIsLongPathPrefixed = 1;
 
@@ -361,23 +397,17 @@ winstl_C_path_classify_root_X_(
                             }
                         }
                         else
-                        if (s0 == WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_(s0, cch0, s_long_prefix, 4))
+                        if ('?' == s0[2])
                         {
+                            /* "\\?\" but not "\\?\UNC\" — drive or unsupported. */
                             *pIsLongPathPrefixed = 1;
 
-                            if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 4, cch0 - 4, &server, &share, &dir0))
-                            {
-                                s0      +=  4;
-                                cch0    -=  4;
+                            s0      +=  4;
+                            cch0    -=  4;
 
-                                *pCchPrefix = 4;
+                            *pCchPrefix = 4;
 
-                                goto try_detect_drive;
-                            }
-                            else
-                            {
-                                *pCchPrefix = 4;
-                            }
+                            goto try_detect_drive;
                         }
 #if 0 /* currently not supporting device-prefixed paths */
                         else
@@ -503,11 +533,22 @@ drive_letter_relative:
             }
         }
         else
+        if (0 != *pIsLongPathPrefixed)
+        {
+            /* "\\?\…" that is not "\\?\UNC\…" and not "\\?\X:…" */
+            return winstl_C_PathType_Invalid;
+        }
+        else
         if (0 != *pCchPrefix)
         {
             *ppS1   =   s0;
             *pCch1  =   cch0;
         }
+    }
+    else
+    if (0 != *pIsLongPathPrefixed)
+    {
+        return winstl_C_PathType_Invalid;
     }
 
     return winstl_C_PathType_Relative;

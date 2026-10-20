@@ -3,7 +3,7 @@
  *
  * Purpose: Unit-tests for `winstl_C_path_classify` (Remediation-4 matrix
  *          rows: portable core, dots/parts, flags, Windows host-only;
- *          R10 ASCII-only drive letters).
+ *          R10 ASCII drive letters; R11 long-path namespaces).
  *
  * Created: 20th October 2026
  * Updated: 20th October 2026
@@ -50,6 +50,7 @@ namespace {
     static void TEST_matrix_PORTABLE_CORE_wchar();
     static void TEST_matrix_WINDOWS_DRIVE();
     static void TEST_matrix_WINDOWS_UNC();
+    static void TEST_matrix_WINDOWS_LONG_PATH();
     static void TEST_matrix_WINDOWS_SLASH_ROOTED();
     static void TEST_numDotsDirectoryParts_EMPTY_AND_ENTRY_ONLY();
     static void TEST_numDotsDirectoryParts_DOT_AND_DOTDOT_AS_ENTRY();
@@ -80,6 +81,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_CORE_wchar);
         XTESTS_RUN_CASE(TEST_matrix_WINDOWS_DRIVE);
         XTESTS_RUN_CASE(TEST_matrix_WINDOWS_UNC);
+        XTESTS_RUN_CASE(TEST_matrix_WINDOWS_LONG_PATH);
         XTESTS_RUN_CASE(TEST_matrix_WINDOWS_SLASH_ROOTED);
         XTESTS_RUN_CASE(TEST_numDotsDirectoryParts_EMPTY_AND_ENTRY_ONLY);
         XTESTS_RUN_CASE(TEST_numDotsDirectoryParts_DOT_AND_DOTDOT_AS_ENTRY);
@@ -302,6 +304,29 @@ static void TEST_matrix_WINDOWS_UNC()
 
     /* W-unc-only: too short for UNC parse → Invalid. */
     CLASSIFY_EXPECT_KIND_("\\\\", 0, winstl_C_PathType_Invalid, 0, 0);
+}
+
+static void TEST_matrix_WINDOWS_LONG_PATH()
+{
+    /* L-q-drive: extended drive via \\?\ (R11). */
+    CLASSIFY_EXPECT_KIND_("\\\\?\\C:\\a", 0, winstl_C_PathType_DriveLetterRooted, 1, 1);
+    CLASSIFY_EXPECT_KIND_W_(L"\\\\?\\C:\\a", 0, winstl_C_PathType_DriveLetterRooted, 1, 1);
+
+    /* L-q-unc: extended UNC; no trailing sep required (R11 / R8). */
+    CLASSIFY_EXPECT_KIND_("\\\\?\\UNC\\h\\s", 0, winstl_C_PathType_UncRooted, 1, 1);
+    CLASSIFY_EXPECT_KIND_("\\\\?\\UNC\\h\\s\\", 0, winstl_C_PathType_UncRooted, 1, 1);
+    CLASSIFY_EXPECT_KIND_("\\\\?\\UNC\\h\\s\\a", 0, winstl_C_PathType_UncRooted, 1, 1);
+
+    /* "UNC" token is ASCII-case-insensitive (R11 policy). */
+    CLASSIFY_EXPECT_KIND_("\\\\?\\unc\\h\\s", 0, winstl_C_PathType_UncRooted, 1, 1);
+    CLASSIFY_EXPECT_KIND_("\\\\?\\Unc\\h\\s", 0, winstl_C_PathType_UncRooted, 1, 1);
+
+    /* Incomplete extended UNC. */
+    CLASSIFY_EXPECT_KIND_("\\\\?\\UNC\\h", 0, winstl_C_PathType_UncIncomplete, 0, 0);
+
+    /* Unknown \\?\ namespace must not become UncRooted (R11). */
+    CLASSIFY_EXPECT_KIND_("\\\\?\\foo\\bar", 0, winstl_C_PathType_Invalid, 0, 0);
+    CLASSIFY_EXPECT_KIND_("\\\\?\\Volume{00000000-0000-0000-0000-000000000000}\\", 0, winstl_C_PathType_Invalid, 0, 0);
 }
 
 static void TEST_matrix_WINDOWS_SLASH_ROOTED()
