@@ -2,7 +2,7 @@
  * File:    test/unit/unixstl/filesystem/path_classify/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl_C_path_classify` (Remediation-4 matrix
- *          rows: portable core, dots/parts, flags).
+ *          rows: portable core, dots/parts, flags; R13 root / absolute).
  *
  * Created: 20th October 2026
  * Updated: 20th October 2026
@@ -46,6 +46,7 @@ namespace {
     static void TEST_matrix_PORTABLE_HOME();
     static void TEST_matrix_PORTABLE_FLAGS();
     static void TEST_matrix_BACKSLASH_ORTHOGRAPHY();
+    static void TEST_path_classify_root_AND_ABSOLUTE();
     static void TEST_numDotsDirectoryParts_EMPTY_AND_ENTRY_ONLY();
     static void TEST_numDotsDirectoryParts_DOT_AND_DOTDOT_AS_ENTRY();
     static void TEST_numDotsDirectoryParts_DOT_AND_DOTDOT_AS_DIRECTORY();
@@ -72,6 +73,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_HOME);
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_FLAGS);
         XTESTS_RUN_CASE(TEST_matrix_BACKSLASH_ORTHOGRAPHY);
+        XTESTS_RUN_CASE(TEST_path_classify_root_AND_ABSOLUTE);
         XTESTS_RUN_CASE(TEST_numDotsDirectoryParts_EMPTY_AND_ENTRY_ONLY);
         XTESTS_RUN_CASE(TEST_numDotsDirectoryParts_DOT_AND_DOTDOT_AS_ENTRY);
         XTESTS_RUN_CASE(TEST_numDotsDirectoryParts_DOT_AND_DOTDOT_AS_DIRECTORY);
@@ -116,7 +118,40 @@ int main(int argc, char* argv[])
             (expect_rooted) ? 1 : 0                                             \
         ,   int(unixstl_C_path_is_rooted(pc_))                                  \
         );                                                                      \
+        TEST_INT_EQ(                                                            \
+            (expect_rooted) ? 1 : 0                                             \
+        ,   int(unixstl_C_path_is_absolute(pc_))                                \
+        );                                                                      \
         STLSOFT_SUPPRESS_UNUSED(results_);                                      \
+    } while (0)
+
+#define CLASSIFY_EXPECT_ROOT_(                                                  \
+    path                                                                        \
+,   flags                                                                       \
+,   expected_kind                                                               \
+,   expect_rooted                                                               \
+,   expected_root_len                                                           \
+)                                                                               \
+                                                                                \
+    do                                                                          \
+    {                                                                           \
+        stlsoft_C_string_slice_m_t              root_;                          \
+        char const* const                       path_   =   (path);             \
+        size_t const                            cch_    =                       \
+            (ss_nullptr_k == path_) ? 0u : strlen(path_);                       \
+        unixstl_C_path_classification_t const   pc_     =                       \
+            unixstl_C_path_classify_root(path_, cch_, (flags), &root_);         \
+                                                                                \
+        TEST_INT_EQ(int(expected_kind), int(pc_));                              \
+        TEST_INT_EQ(                                                            \
+            (expect_rooted) ? 1 : 0                                             \
+        ,   int(unixstl_C_path_is_rooted(pc_))                                  \
+        );                                                                      \
+        TEST_INT_EQ(                                                            \
+            (expect_rooted) ? 1 : 0                                             \
+        ,   int(unixstl_C_path_is_absolute(pc_))                                \
+        );                                                                      \
+        TEST_INT_EQ((expected_root_len), int(root_.len));                       \
     } while (0)
 
 #define CLASSIFY_EXPECT_DOTS_(path, expected_dots, expected_parts)              \
@@ -214,6 +249,37 @@ static void TEST_matrix_BACKSLASH_ORTHOGRAPHY()
 #else /* ? _WIN32 */
     /* Native Unix: '\\' is an ordinary character → relative. */
     CLASSIFY_EXPECT_KIND_("\\a\\b", 0, unixstl_C_PathType_Relative, 0);
+#endif /* _WIN32 */
+}
+
+/* R13 — public path_classify_root; absolute(pc) ≡ rooted(pc). */
+
+static void TEST_path_classify_root_AND_ABSOLUTE()
+{
+    CLASSIFY_EXPECT_ROOT_("", 0, unixstl_C_PathType_Empty, 0, 0);
+    CLASSIFY_EXPECT_ROOT_("file.txt", 0, unixstl_C_PathType_Relative, 0, 0);
+    CLASSIFY_EXPECT_ROOT_("/", 0, unixstl_C_PathType_SlashRooted, 1, 0);
+    CLASSIFY_EXPECT_ROOT_("/a/b", 0, unixstl_C_PathType_SlashRooted, 1, 0);
+    CLASSIFY_EXPECT_ROOT_("~", 0, unixstl_C_PathType_Relative, 0, 0);
+    CLASSIFY_EXPECT_ROOT_(
+        "~"
+    ,   UNIXSTL_PATH_CLASSIFY_F_RECOGNISETILDEHOME
+    ,   unixstl_C_PathType_HomeRooted
+    ,   1
+    ,   1
+    );
+    CLASSIFY_EXPECT_ROOT_(
+        "~/a"
+    ,   UNIXSTL_PATH_CLASSIFY_F_RECOGNISETILDEHOME
+    ,   unixstl_C_PathType_HomeRooted
+    ,   1
+    ,   1
+    );
+
+#ifdef _WIN32
+    CLASSIFY_EXPECT_ROOT_("\\a\\b", 0, unixstl_C_PathType_SlashRooted, 1, 0);
+#else /* ? _WIN32 */
+    CLASSIFY_EXPECT_ROOT_("\\a\\b", 0, unixstl_C_PathType_Relative, 0, 0);
 #endif /* _WIN32 */
 }
 

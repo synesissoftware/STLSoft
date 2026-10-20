@@ -494,6 +494,23 @@ public:
     ,   path_classification_results_type*   results
     );
 
+    /// Classifies only the root of a path (R13; PlatformSTL façade parity).
+    ///
+    /// \param path
+    /// \param len
+    /// \param parseFlags
+    /// \param root Receives the root slice when rooted / home-rooted
+    ///
+    /// \pre 0 == len || nullptr != path
+    static
+    path_classification_t
+    path_classify_root(
+        char_type const*                        path
+    ,   size_t                                  len
+    ,   int                                     parseFlags
+    ,   path_classification_string_slice_type*  root
+    );
+
     /// Whether a classification result is rooted. Distinct from the string
     /// predicate \c is_path_rooted.
     static
@@ -502,11 +519,12 @@ public:
         path_classification_t               pc
     );
 
-    /// Whether a classification result is absolute. Currently aliases
-    /// \c path_is_rooted (native Unix absolute ≡ rooted). Distinct from
-    /// the string predicate \c is_path_absolute, which under
-    /// <code>_WIN32</code> uses Windows-shaped coarse rules (UNC prefix or
-    /// drive+separator; not merely slash-rooted).
+    /// Whether a classification result is absolute. Aliases
+    /// \c path_is_rooted via \c unixstl_C_path_is_absolute (native Unix
+    /// absolute ≡ rooted). Distinct from the string predicate
+    /// \c is_path_absolute, which under <code>_WIN32</code> uses
+    /// Windows-shaped coarse rules (UNC prefix or drive+separator; not
+    /// merely slash-rooted).
     static
     bool
     path_is_absolute(
@@ -1289,6 +1307,18 @@ public: // path classification and analysis
     }
 
     static
+    path_classification_t
+    path_classify_root(
+        char_type const*                        path
+    ,   size_t                                  len
+    ,   int                                     parseFlags
+    ,   path_classification_string_slice_type*  root
+    )
+    {
+        return unixstl_C_path_classify_root(path, len, parseFlags, root);
+    }
+
+    static
     bool
     path_is_rooted(
         path_classification_t               pc
@@ -1303,7 +1333,7 @@ public: // path classification and analysis
         path_classification_t               pc
     )
     {
-        return path_is_rooted(pc);
+        return 0 != unixstl_C_path_is_absolute(pc);
     }
 
 

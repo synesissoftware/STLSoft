@@ -82,6 +82,10 @@
 # error unixstl_C_path_classify_impl_X_ must be defined
 #endif
 
+#ifndef unixstl_C_path_classify_root_impl_X_
+# error unixstl_C_path_classify_root_impl_X_ must be defined
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -176,9 +180,13 @@ unixstl_C_path_classify_root_X_(
 
     *pCchPrefix     =   0;
 
-    if ('/' == s0[0])
+    if ('/' == s0[0]
+#ifdef _WIN32 /* Windows / UNIXem: '\\' is also a root separator */
+    ||  '\\' == s0[0]
+#endif /* _WIN32 */
+        )
     {
-        /* "/" */
+        /* "/" (or "\\" under UNIXem) */
 
         return unixstl_C_PathType_SlashRooted;
     }
@@ -198,6 +206,9 @@ unixstl_C_path_classify_root_X_(
             switch (s0[1])
             {
             case '/':
+#ifdef _WIN32 /* Windows / UNIXem: '\\' after '~' */
+            case '\\':
+#endif /* _WIN32 */
 
                 *ppS1       =   s0 + 1;
                 *pCch1      =   cch0 - 1;
@@ -517,6 +528,76 @@ unixstl_C_path_classify_impl_X_(
     {
         results->directory.len  -=  results->root.len;
         results->directory.ptr  +=  results->root.len;
+    }
+
+    return rcRoot;
+}
+
+STLSOFT_INLINE
+unixstl_C_path_classification_t
+unixstl_C_path_classify_root_impl_X_(
+    UNIXSTL_C_PATH_CLASSIFY_IMPL_char_t_ const*                 s0
+,   size_t                                                      cch0
+,   int                                                         parseFlags
+,   UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_*   root
+)
+{
+    UNIXSTL_C_PATH_CLASSIFY_IMPL_char_t_ const* s1;
+    size_t                                      cch1;
+    size_t                                      cchPrefix;
+    unixstl_C_path_classification_t             rcRoot;
+#if 0
+#elif defined(STLSOFT_CF_gcc_pragma_diagnostic_pop)
+
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wmissing-braces"
+# pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#endif
+    unixstl_C_path_classification_results_X_t_  results = { 0 };
+#if 0
+#elif defined(STLSOFT_CF_gcc_pragma_diagnostic_pop)
+
+# pragma GCC diagnostic pop
+#endif
+
+    UNIXSTL_ASSERT(0 == cch0 || ss_nullptr_k != s0);
+
+    UNIXSTL_MESSAGE_ASSERT("unrecognised parsing flags", 0 == (~UNIXSTL_PATH_CLASSIFY_F_MASK_ & parseFlags));
+
+    UNIXSTL_ASSERT(ss_nullptr_k != root);
+
+    root->len   =   0;
+    root->ptr   =   NULL;
+
+    if (0 == cch0)
+    {
+        return unixstl_C_PathType_Empty;
+    }
+
+    rcRoot = unixstl_C_path_classify_root_X_(
+        s0, cch0
+    ,   parseFlags
+    ,   &results
+    ,   &s1, &cch1
+    ,   &cchPrefix
+    );
+
+    UNIXSTL_ASSERT(cch1 <= cch0);
+
+    STLSOFT_SUPPRESS_UNUSED(cchPrefix);
+
+    root->len   =   cch0 - cch1;
+
+    switch (rcRoot)
+    {
+    case    unixstl_C_PathType_SlashRooted:
+    case    unixstl_C_PathType_HomeRooted:
+
+        root->ptr   =   s0;
+        break;
+    default:
+
+        break;
     }
 
     return rcRoot;
