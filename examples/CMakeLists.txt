@@ -24,6 +24,22 @@ if(_BUILD_AS_WIN32)
 	add_definitions(-DNOMINMAX)
 endif(_BUILD_AS_WIN32)
 
+if(WIN32 AND USE_UNIXEM)
+	# UNIXem only: synthesised UNIX on Windows skips _BUILD_AS_WIN32, so
+	# NOMINMAX must be applied here without altering the native WinSTL
+	# path above. MSVC: _CRT_SECURE_NO_WARNINGS covers mbstowcs/getenv;
+	# it also flips stlsoft api/external/string.h onto POSIX stricmp
+	# names, so _CRT_NONSTDC_NO_WARNINGS is required alongside it.
+
+	add_definitions(-DNOMINMAX)
+
+	if(MSVC)
+
+		add_definitions(-D_CRT_NONSTDC_NO_WARNINGS)
+		add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+	endif()
+endif()
+
 
 if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 

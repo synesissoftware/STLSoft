@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     7
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      146
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      147
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1142,7 +1142,11 @@ public:
     {
         UNIXSTL_ASSERT(NULL != name);
 
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
         size_t const cchName = ::wcstombs(NULL, name, 0);
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
         if (static_cast<size_t>(-1) == cchName)
         {
@@ -1156,7 +1160,13 @@ public:
             return 0;
         }
 
-        if (static_cast<size_t>(-1) == ::wcstombs(&name_m[0], name, name_m.size()))
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
+        size_t const cchNameConverted = ::wcstombs(&name_m[0], name, name_m.size());
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+
+        if (static_cast<size_t>(-1) == cchNameConverted)
         {
             return 0;
         }
@@ -1173,7 +1183,11 @@ public:
         }
         else
         {
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
             size_t const cchValue = ::mbstowcs(NULL, var, 0);
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
             if (static_cast<size_t>(-1) == cchValue)
             {
@@ -1193,7 +1207,13 @@ public:
                     return 0;
                 }
 
-                if (static_cast<size_t>(-1) == ::mbstowcs(&value_w[0], var, value_w.size()))
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
+                size_t const cchValueConverted = ::mbstowcs(&value_w[0], var, value_w.size());
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+
+                if (static_cast<size_t>(-1) == cchValueConverted)
                 {
                     return 0;
                 }

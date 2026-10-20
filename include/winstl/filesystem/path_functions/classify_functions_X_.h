@@ -2,9 +2,10 @@
  * File:    winstl/filesystem/path_functions/classify_functions_X_.h
  *
  * Purpose: Path classification functions char-X implementation
+ *          (R11 long-path "\\?\" / "\\?\UNC\"; R12 device "\\.\").
  *
  * Created: 28th November 2020
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -114,10 +115,16 @@ winstl_C_path_classify_alwaysInvalidChars_X_()
 }
 
 /*
+ * Parse a UNC path body (characters after the leading "\\\\", or after
+ * "\\\\?\\UNC\\").
  *
- * \param s Points to the first character of the potential server-name
+ * \param s Points to the first character of the potential server name
  *
- * \retval 0 found
+ * \retval 0 Host and share are both nonempty. *ppServer / *ppShare point at
+ *   the first character of each. *ppDir0 points at the separator before any
+ *   further path (trailing sep or directory), or is null when the input ends
+ *   exactly at the share (complete root with no trailing separator).
+ * \retval 1 Incomplete or malformed (empty host/share, bare ":", etc.)
  */
 STLSOFT_INLINE
 int
@@ -131,25 +138,8 @@ winstl_C_path_classify_find_UNC_server_and_share_X_(
 {
     typedef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_             char_t;
 
-    /* This whole function could do with a spruce ... */
-
-    char_t const** pptrs_[] =
-    {
-        ppServer,
-        ppShare,
-        ppDir0,
-        ss_nullptr_k
-    };
-    char_t const*** pptrs = &pptrs_[0];
-    //int             last  = -1;
-    int             last;
-
-#ifdef STLSOFT_MINGW
-
-    last = -1;
-
-    STLSOFT_SUPPRESS_UNUSED(last);
-#endif
+    char_t const*   p;
+    size_t          rem;
 
     WINSTL_ASSERT(ss_nullptr_k != ppServer);
     WINSTL_ASSERT(ss_nullptr_k != ppShare);
@@ -159,53 +149,126 @@ winstl_C_path_classify_find_UNC_server_and_share_X_(
     *ppShare    =   ss_nullptr_k;
     *ppDir0     =   ss_nullptr_k;
 
-    if (0 != cch)
+    if (0 == cch ||
+        '\\' == *s ||
+        '/' == *s)
     {
-        if ('\\' == *s)
-        {
-            return 1;
-        }
-
-        WINSTL_ASSERT(ss_nullptr_k != *pptrs);
-
-        **pptrs++ = s;
+        /* Empty server (e.g. "\\\\" body or "\\\\\\share"). */
+        return 1;
     }
 
-    for (last = -1; 0 != cch; ++s, --cch)
+    *ppServer = s;
+    p         = s;
+    rem       = cch;
+
+    /* Server name: ended only by '\\' (not '/'); ':' is not a UNC host char. */
+    for (; 0 != rem; ++p, --rem)
     {
-        char_t const ch = *s;
+        char_t const ch = *p;
 
         if (':' == ch)
         {
-            /* This to detect paths such as "\\?\C:\abc" */
             return 1;
         }
         else
         if ('\\' == ch)
         {
-match_slash:
-            WINSTL_ASSERT(ss_nullptr_k != *pptrs);
-
-            **pptrs++ = s;
-
-            if (ss_nullptr_k == *pptrs)
-            {
-                (*ppShare)++;
-
-                return 0;
-            }
+            break;
         }
-        else
-        if ('/' == ch &&
-            ss_nullptr_k != *ppShare)
-        {
-            goto match_slash;
-        }
-
-        last = ch;
     }
 
-    return 1;
+    if (0 == rem ||
+        p == *ppServer)
+    {
+        /* No share separator, or empty server. */
+        return 1;
+    }
+
+    /* p at '\\' after server; advance into share. */
+    ++p;
+    --rem;
+
+    if (0 == rem ||
+        '\\' == *p ||
+        '/' == *p)
+    {
+        /* Empty share (e.g. "\\\\svr\\" or "\\\\svr\\"). */
+        return 1;
+    }
+
+    *ppShare = p;
+
+    /* Share name: '\\' or '/' begins the directory / trailing-sep. */
+    for (; 0 != rem; ++p, --rem)
+    {
+        char_t const ch = *p;
+
+        if (':' == ch)
+        {
+            return 1;
+        }
+        else
+        if ('\\' == ch ||
+            '/' == ch)
+        {
+            *ppDir0 = p;
+
+            return 0;
+        }
+    }
+
+    /* Input ends at share — complete UNC root without trailing separator. */
+    return 0;
+}
+
+/*
+ * R11: detect "\\?\UNC\" (or "\\?\unc\", etc.). The "UNC" token is matched
+ * ASCII-case-insensitively; the surrounding backslashes and '?' are exact.
+ *
+ * \retval 0 Not a long-path UNC prefix
+ * \retval 1 Prefix present (caller may parse host/share from s + 8)
+ */
+STLSOFT_INLINE
+int
+winstl_C_path_classify_is_long_UNC_prefix_X_(
+    WINSTL_C_PATH_CLASSIFY_IMPL_char_t_ const*  s
+,   size_t                                      cch
+)
+{
+    typedef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_             char_t;
+
+    char_t  u;
+    char_t  n;
+    char_t  c;
+
+    if (cch < 8 ||
+        '\\' != s[0] ||
+        '\\' != s[1] ||
+        '?' != s[2] ||
+        '\\' != s[3] ||
+        '\\' != s[7])
+    {
+        return 0;
+    }
+
+    u = s[4];
+    n = s[5];
+    c = s[6];
+
+    if (u >= 'a' && u <= 'z')
+    {
+        u = (char_t)('A' + (u - 'a'));
+    }
+    if (n >= 'a' && n <= 'z')
+    {
+        n = (char_t)('A' + (n - 'a'));
+    }
+    if (c >= 'a' && c <= 'z')
+    {
+        c = (char_t)('A' + (c - 'a'));
+    }
+
+    return ('U' == u && 'N' == n && 'C' == c) ? 1 : 0;
 }
 
 STLSOFT_INLINE
@@ -313,29 +376,14 @@ winstl_C_path_classify_root_X_(
 
                     if ('\\' == s0[3])
                     {
-                        static char_t const s_long_prefix[] =
-                        {
-                            '\\',
-                            '\\',
-                            '?',
-                            '\\',
-                            '\0'
-                        };
-
-                        static char_t const s_long_prefix_UNC[] =
-                        {
-                            '\\',
-                            '\\',
-                            '?',
-                            '\\',
-                            'U',
-                            'N',
-                            'C',
-                            '\\',
-                            '\0'
-                        };
-
-                        if (s0 == WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_(s0, cch0, s_long_prefix_UNC, 8))
+                        /*
+                         * Long-path / device namespaces (order matters):
+                         * 1. "\\?\UNC\" → extended UNC (R11);
+                         * 2. "\\?\" → strip; drive only, else Invalid (R11);
+                         * 3. "\\.\" → device namespace, unsupported → Invalid (R12);
+                         * 4. else → regular UNC / invalid.
+                         */
+                        if (0 != winstl_C_path_classify_is_long_UNC_prefix_X_(s0, cch0))
                         {
                             *pIsLongPathPrefixed = 1;
 
@@ -349,38 +397,30 @@ winstl_C_path_classify_root_X_(
                             }
                         }
                         else
-                        if (s0 == WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_(s0, cch0, s_long_prefix, 4))
+                        if ('?' == s0[2])
                         {
+                            /* "\\?\" but not "\\?\UNC\" — drive or unsupported. */
                             *pIsLongPathPrefixed = 1;
 
-                            if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 4, cch0 - 4, &server, &share, &dir0))
-                            {
-                                s0      +=  4;
-                                cch0    -=  4;
+                            s0      +=  4;
+                            cch0    -=  4;
 
-                                *pCchPrefix = 4;
+                            *pCchPrefix = 4;
 
-                                goto try_detect_drive;
-                            }
-                            else
-                            {
-                                *pCchPrefix = 4;
-                            }
+                            goto try_detect_drive;
                         }
-#if 0 /* currently not supporting device-prefixed paths */
                         else
-                        if (s0 == WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_(s0, cch0, "\\\\.\\", 4))
+                        if ('.' == s0[2])
                         {
+                            /* R12: "\\.\" device / pipe namespace — not classified. */
+                            results->firstInvalid.len   =   1;
+                            results->firstInvalid.ptr   =   s0 + 2;
 
-                            if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 4, cch0 - 4, &server, &share, &dir0))
-                            {
-                                return winstl_C_PathType_Invalid;
-                            }
+                            return winstl_C_PathType_Invalid;
                         }
-#endif
                         else
                         {
-                            if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_(s0[2]))
+                            if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(s0[2]))
                             {
                                 /* potentially a UNC server with 1-character name */
 
@@ -411,17 +451,41 @@ maybe_regular_UNC:
                     if (ss_nullptr_k != server &&
                         ss_nullptr_k != share)
                     {
+                        /* Invalid characters in the UNC root (host + share). */
+                        if (0 == (WINSTL_PATH_CLASSIFY_F_IGNOREINVALIDCHARS & parseFlags))
+                        {
+                            char_t const* const rootEnd =
+                                (ss_nullptr_k != dir0)
+                                    ?   dir0
+                                    :   (s0 + cch0);
+                            size_t const        rootCch =
+                                (size_t)(rootEnd - server);
+                            WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ const alwaysInvalidChars =
+                                winstl_C_path_classify_alwaysInvalidChars_X_();
+                            char_t const*       invalidChar;
+
+                            if (ss_nullptr_k != (invalidChar = WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_(server, rootCch, alwaysInvalidChars.ptr, alwaysInvalidChars.len)))
+                            {
+                                results->firstInvalid.len   =   1;
+                                results->firstInvalid.ptr   =   invalidChar;
+
+                                return winstl_C_PathType_InvalidChars;
+                            }
+                        }
+
                         if (ss_nullptr_k != dir0)
                         {
                             *ppS1   =   dir0;
                             *pCch1  =   cch0 - (dir0 - s0);
-
-                            return winstl_C_PathType_UncRooted;
                         }
                         else
                         {
-                            return winstl_C_PathType_UncIncomplete;
+                            /* "\\host\share" with no trailing separator. */
+                            *ppS1   =   s0 + cch0;
+                            *pCch1  =   0;
                         }
+
+                        return winstl_C_PathType_UncRooted;
                     }
                 }
                 else
@@ -439,7 +503,7 @@ maybe_regular_UNC:
 try_detect_drive:
     if (cch0 > 1)
     {
-        if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_(s0[0]) &&
+        if (WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(s0[0]) &&
             ':' == s0[1])
         {
             if (2 == cch0)
@@ -467,11 +531,22 @@ drive_letter_relative:
             }
         }
         else
+        if (0 != *pIsLongPathPrefixed)
+        {
+            /* "\\?\…" that is not "\\?\UNC\…" and not "\\?\X:…" */
+            return winstl_C_PathType_Invalid;
+        }
+        else
         if (0 != *pCchPrefix)
         {
             *ppS1   =   s0;
             *pCch1  =   cch0;
         }
+    }
+    else
+    if (0 != *pIsLongPathPrefixed)
+    {
+        return winstl_C_PathType_Invalid;
     }
 
     return winstl_C_PathType_Relative;
@@ -595,13 +670,20 @@ winstl_C_path_classify_impl_X_(
         int const           checkRuns   =   0 == (WINSTL_PATH_CLASSIFY_F_IGNORESLASHRUNS & parseFlags);
         int                 runLength   =   0;
 
-        size_t              numParts    =   0;
+        size_t              numParts        =   0;
+        size_t              numDotsParts    =   0;
+        char_t const*       partStart       =   s1;
 
         for (i = 0, p0 = s1; i != cch1; ++i, ++p0)
         {
             switch (*p0)
             {
             case '.':
+
+                if (0 != runLength)
+                {
+                    partStart = p0;
+                }
 
                 lastDot = p0;
 
@@ -628,6 +710,24 @@ winstl_C_path_classify_impl_X_(
 
                 if (0 == runLength)
                 {
+                    /* Completed a directory part (entry is not counted).
+                     * Count only exact "." / ".." components.
+                     */
+                    size_t const partLen = (size_t)(p0 - partStart);
+
+                    if (1 == partLen &&
+                        '.' == partStart[0])
+                    {
+                        ++numDotsParts;
+                    }
+                    else
+                    if (2 == partLen &&
+                        '.' == partStart[0] &&
+                        '.' == partStart[1])
+                    {
+                        ++numDotsParts;
+                    }
+
                     ++numParts;
                 }
                 else
@@ -644,6 +744,11 @@ winstl_C_path_classify_impl_X_(
                 ++runLength;
                 break;
             default:
+
+                if (0 != runLength)
+                {
+                    partStart = p0;
+                }
 
                 runLength = 0;
                 break;
@@ -736,7 +841,8 @@ winstl_C_path_classify_impl_X_(
             }
         }
 
-        results->numDirectoryParts  =   numParts;
+        results->numDirectoryParts      =   numParts;
+        results->numDotsDirectoryParts  =   numDotsParts;
     }
 
     results->prefix.len =   cchPrefix;

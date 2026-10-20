@@ -33,9 +33,7 @@
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
-* [ ] Remove **WTL**;
-* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
-* [ ] bring in some essential unit-tests from interal repo;
+* [x] ~~~bring in some essential unit-tests from interal repo~~~ - ✅;
 * [ ] Bring in the CONCEPTS documentation:
   * [ ] auto-buffer;
   * [x] ~~~resizeable-buffer~~~ - ✅;

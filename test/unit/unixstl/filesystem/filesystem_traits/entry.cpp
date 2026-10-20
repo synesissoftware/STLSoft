@@ -4,10 +4,11 @@
  * Purpose: Unit-tests for `unixstl::filesystem_traits` resizeable-buffer
  *          `ensure_dir_end` / `remove_dir_end` (C2 empty-`""` behaviour;
  *          buffer size after remove; G3 strip-all trailing separators);
- *          and wide path classification / separator finders.
+ *          and wide path classification / separator finders (Win-hosted
+ *          absolute/UNC expects follow `_WIN32` traits rules).
  *
  * Created: 15th October 2026
- * Updated: 19th October 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -374,13 +375,22 @@ static void TEST_path_classification_w()
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_rooted(L"tmp"));
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_rooted(L"", 0));
 
-    TEST_BOOLEAN_TRUE(traits_w_t::is_path_absolute(L"/tmp"));
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"tmp"));
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"", 0));
 
+#ifdef _WIN32
+    /* Win-hosted UNIXSTL: slash-rooted is not absolute; "\\" is UNC. */
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_absolute(L"/tmp"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp"));
+    TEST_BOOLEAN_TRUE(traits_w_t::is_path_UNC(L"\\\\server\\share"));
+    TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp", 4));
+#else /* ? _WIN32 */
+    /* Native Unix: absolute ≡ rooted; UNC always false. */
+    TEST_BOOLEAN_TRUE(traits_w_t::is_path_absolute(L"/tmp"));
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp"));
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"\\\\server\\share"));
     TEST_BOOLEAN_FALSE(traits_w_t::is_path_UNC(L"/tmp", 4));
+#endif /* _WIN32 */
 }
 
 static void TEST_path_classification_m_matches_w()
