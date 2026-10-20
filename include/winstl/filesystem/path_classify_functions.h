@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    7
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        17
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    8
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,7 @@ struct winstl_C_path_classification_results_m_t
     stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
     stlsoft_C_string_slice_m_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
-    size_t                          numDotsDirectoryParts;
+    size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
     stlsoft_C_string_slice_m_t      entry;
     stlsoft_C_string_slice_m_t      stem;
     stlsoft_C_string_slice_m_t      extension;
@@ -139,7 +139,7 @@ struct winstl_C_path_classification_results_w_t
     stlsoft_C_string_slice_w_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
     stlsoft_C_string_slice_w_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
-    size_t                          numDotsDirectoryParts;
+    size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
     stlsoft_C_string_slice_w_t      entry;
     stlsoft_C_string_slice_w_t      stem;
     stlsoft_C_string_slice_w_t      extension;

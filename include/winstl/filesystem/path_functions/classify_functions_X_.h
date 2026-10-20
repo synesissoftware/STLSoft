@@ -595,13 +595,20 @@ winstl_C_path_classify_impl_X_(
         int const           checkRuns   =   0 == (WINSTL_PATH_CLASSIFY_F_IGNORESLASHRUNS & parseFlags);
         int                 runLength   =   0;
 
-        size_t              numParts    =   0;
+        size_t              numParts        =   0;
+        size_t              numDotsParts    =   0;
+        char_t const*       partStart       =   s1;
 
         for (i = 0, p0 = s1; i != cch1; ++i, ++p0)
         {
             switch (*p0)
             {
             case '.':
+
+                if (0 != runLength)
+                {
+                    partStart = p0;
+                }
 
                 lastDot = p0;
 
@@ -628,6 +635,24 @@ winstl_C_path_classify_impl_X_(
 
                 if (0 == runLength)
                 {
+                    /* Completed a directory part (entry is not counted).
+                     * Count only exact "." / ".." components.
+                     */
+                    size_t const partLen = (size_t)(p0 - partStart);
+
+                    if (1 == partLen &&
+                        '.' == partStart[0])
+                    {
+                        ++numDotsParts;
+                    }
+                    else
+                    if (2 == partLen &&
+                        '.' == partStart[0] &&
+                        '.' == partStart[1])
+                    {
+                        ++numDotsParts;
+                    }
+
                     ++numParts;
                 }
                 else
@@ -644,6 +669,11 @@ winstl_C_path_classify_impl_X_(
                 ++runLength;
                 break;
             default:
+
+                if (0 != runLength)
+                {
+                    partStart = p0;
+                }
 
                 runLength = 0;
                 break;
@@ -736,7 +766,8 @@ winstl_C_path_classify_impl_X_(
             }
         }
 
-        results->numDirectoryParts  =   numParts;
+        results->numDirectoryParts      =   numParts;
+        results->numDotsDirectoryParts  =   numDotsParts;
     }
 
     results->prefix.len =   cchPrefix;
