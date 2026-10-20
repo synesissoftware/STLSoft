@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -165,12 +165,13 @@
 # define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.8 beta 6 (with STLSoft 1.11.1 rc 3) */
 # define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.8 beta 7 (with STLSoft 1.11.1 rc 8) */
 # define _UNIXSTL_VER_1_8_6_B08 0x01080688  /*!< Version 1.8.8 beta 8 (with STLSoft 1.11.1 rc 9) */
+# define _UNIXSTL_VER_1_8_6     0x010806FF  /*!< Version 1.8.6 (with STLSoft 1.11.2) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
 #define _UNIXSTL_VER_PATCH      6
-#define _UNIXSTL_VER_RELSTATUS  0x88
+#define _UNIXSTL_VER_RELSTATUS  0xFF
 
 #define _UNIXSTL_VER \
     (0\

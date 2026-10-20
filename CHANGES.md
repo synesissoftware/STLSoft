@@ -1,6 +1,25 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.2 - 26th October 2026
+
+* additions:
+  * **platformstl** — `platformstl/filesystem/path_classify_functions.h`: intersecting path-classify façade (portable kinds / flags / predicates; host-only inputs → `platformstl_C_PathType_Invalid`);
+  * **unixstl** — `path_classify_root` and `path_is_absolute` / related helpers aligned with the complete lattice; UNIXem `\` as slash-rooted where applicable;
+  * **unixstl** / **winstl** `filesystem_traits` — dual predicates: deprecated coarse `is_path_*` (historical orthography) and lattice-complete `path_is_*`;
+* docs:
+  * **CONCEPTS.md** — Path classification (dual model; PlatformSTL intersecting rules; pointers to headers and unit suites);
+  * Doxygen `\file` briefs on **platformstl** / **unixstl** / **winstl** `path_classify_functions.h` point at that CONCEPTS section;
+* testing:
+  * Unit suites `test.unit.unixstl.filesystem.path_classify`, `test.unit.winstl.filesystem.path_classify`, `test.unit.platformstl.filesystem.path_classify`;
+  * **test.unit.versions** — aligned with **1.11.2** (**_STLSOFT_VER_1_11_2**);
+* version:
+  * **STLSoft** — **1.11.2** (**_STLSOFT_VER_1_11_2**);
+  * **platformstl** — **1.10.0** (**_PLATFORMSTL_VER_1_10_0**), with **STLSoft 1.11.2**;
+  * **unixstl** — **1.8.6** (**_UNIXSTL_VER_1_8_6**), with **STLSoft 1.11.2**;
+  * **winstl** — **1.13.0** (**_WINSTL_VER_1_13_0**), with **STLSoft 1.11.2**;
+
+
 ## 1.11.1-rc10 - 20th October 2026
 
 * additions:
