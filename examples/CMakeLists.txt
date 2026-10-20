@@ -24,6 +24,20 @@ if(_BUILD_AS_WIN32)
 	add_definitions(-DNOMINMAX)
 endif(_BUILD_AS_WIN32)
 
+if(WIN32 AND USE_UNIXEM)
+	# UNIXem only: synthesised UNIX on Windows skips _BUILD_AS_WIN32, so
+	# NOMINMAX (and MSVC CRT-secure deprecations for
+	# mbstowcs/wcstombs/getenv) must be applied here without altering the
+	# native WinSTL path above.
+
+	add_definitions(-DNOMINMAX)
+
+	if(MSVC)
+
+		add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+	endif()
+endif()
+
 
 if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
