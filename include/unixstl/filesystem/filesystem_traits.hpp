@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      196
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      198
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1843,71 +1843,6 @@ public:
     }
 
 private:
-#if _STLSOFT_VER >= 0x010b01ff
-
-# error Sort get_root_len_() properly
-#endif
-
-    // TODO: promote this to public
-public:
-    static
-    size_type
-    get_root_len_(
-        char_type const*    path
-    ,   size_type           len
-    )
-    {
-        if (0 == len)
-        {
-            return 0;
-        }
-#ifdef _WIN32
-
-        // If it's really on Windows, then we need to check for drive designator
-        if (is_drive_letter_(path[0]) &&
-            ':' == path[1] &&
-            is_path_name_separator(path[2]))
-        {
-            return 3;
-        }
-
-        // If it's really on Windows, then we need to skip the drive, if present
-        if ('\\' == path[0] &&
-            '\\' == path[1])
-        {
-            char_type const* slash2 = find_next_path_name_separator(path + 2);
-
-            if (NULL == slash2)
-            {
-# if 0
-                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INVALID_ARGUMENT);
-# endif /* 0 */
-
-                return 0;
-            }
-            else
-            {
-                return 1 + (slash2 - path);
-            }
-        }
-#endif /* _WIN32 */
-
-        return is_path_name_separator(path[0]) ? 1 : 0;
-    }
-
-    static
-    size_type
-    get_root_len_(
-        char_type const*    path
-    )
-    {
-        UNIXSTL_ASSERT(NULL != path);
-
-        size_type const len = str_len(path);
-
-        return get_root_len_(path, len);
-    }
-private:
 
     static
     size_type
@@ -2016,9 +1951,28 @@ private:
                         else
                         if (2 == len)
                         {
-                            // '..'
+                            // '..' — root span: O(1) slash-root on native
+                            // Unix; path_classify_root under _WIN32 / UNIXem
+                            // (R24; no get_root_len_)
+#ifdef _WIN32
 
-                            size_t const rootLen = get_root_len_(directory.data(), lenDir);
+                            path_classification_string_slice_type   rootSlice;
+                            path_classify_root(
+                                directory.data()
+                            ,   lenDir
+                            ,   0
+                            ,   &rootSlice
+                            );
+                            size_t const rootLen = rootSlice.len;
+#else /* ? _WIN32 */
+
+                            size_t const rootLen =
+                                (0 != lenDir &&
+                                    is_path_name_separator(directory.data()[0]))
+                                    ?   1u
+                                    :   0u
+                                    ;
+#endif /* _WIN32 */
 
                             // Remove trailing slash, if any
                             if (lenDir > rootLen &&
@@ -2030,7 +1984,11 @@ private:
 
                             if (lenDir > rootLen)
                             {
-                                char_type* const lastSlash = const_cast<char_type*>(find_last_path_name_separator(directory.data() + rootLen));
+                                char_type* const lastSlash = const_cast<char_type*>(
+                                    find_last_path_name_separator(
+                                        directory.data() + rootLen
+                                    ,   lenDir - rootLen
+                                    ));
 
                                 if (NULL != lastSlash)
                                 {

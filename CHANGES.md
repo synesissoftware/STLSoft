@@ -7,8 +7,10 @@
   * **platformstl** — `platformstl/filesystem/path_classify_functions.h`: intersecting path-classify façade (portable kinds / flags / predicates; host-only inputs → `platformstl_C_PathType_Invalid`);
   * **unixstl** — `path_classify_root` and `path_is_absolute` / related helpers aligned with the complete lattice; UNIXem `\` as slash-rooted where applicable;
   * **unixstl** / **winstl** `filesystem_traits` — dual predicates: deprecated coarse `is_path_*` (historical orthography) and lattice-complete `path_is_*`;
+* fixes:
+  * **unixstl** — removed defective `filesystem_traits::get_root_len_` (and its **1.11.2** `#error` tripwire); under `_WIN32`/UNIXem, `basic_path::pop` mirrors WinSTL via `path_classify` and `get_full_path_name` `..` uses `path_classify_root` → `root.len`; on native Unix both keep the cheap slash-root (0/1) path (R24);
 * docs:
-  * **CONCEPTS.md** — Path classification (dual model; PlatformSTL intersecting rules; pointers to headers and unit suites);
+  * **CONCEPTS.md** — Path classification (dual model; PlatformSTL intersecting rules; root length via classify, not a private helper);
   * Doxygen `\file` briefs on **platformstl** / **unixstl** / **winstl** `path_classify_functions.h` point at that CONCEPTS section;
 * testing:
   * Unit suites `test.unit.unixstl.filesystem.path_classify`, `test.unit.winstl.filesystem.path_classify`, `test.unit.platformstl.filesystem.path_classify`;

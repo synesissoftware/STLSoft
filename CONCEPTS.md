@@ -231,6 +231,18 @@ Unit tests lock portable rows and host-only → `Invalid` in
 `test.unit.platformstl.filesystem.path_classify`.
 
 
+### Root length without `get_root_len_`
+
+Do **not** reintroduce a private root-length helper. Prefer:
+
+* **Native Unix (`!_WIN32`):** O(1) slash-root span
+  (`is_path_name_separator(path[0]) ? 1 : 0`) for `pop` / `..` —
+  classify is unnecessary for that lattice;
+* **`_WIN32` / UNIXem:** full `path_classify` for `basic_path::pop`
+  (WinSTL-shaped), and `path_classify_root` → `root.len` when only the
+  root span is required (e.g. `get_full_path_name` resolving `..`);
+
+
 ### Where to look
 
 * Headers:

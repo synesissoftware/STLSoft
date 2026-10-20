@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   9
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       284
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       286
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1546,7 +1546,81 @@ basic_path<C, T, A>::pop(
     bool_type bRemoveTrailingPathNameSeparator /* = true */
 ) STLSOFT_NOEXCEPT
 {
-    size_type const rootLen = traits_type::get_root_len_(data_(), size_());
+#ifdef _WIN32
+
+    // UNIXem / Windows-shaped paths: classify (WinSTL pop), not a cheap
+    // slash-root length — drive / UNC roots need the lattice.
+    typedef ss_typename_type_k traits_type::path_classification_type            classification_t_;
+    typedef ss_typename_type_k traits_type::path_classification_results_type    results_t_;
+
+    results_t_              results;
+    int const               parseFlags  =   0
+                                        ;
+    classification_t_ const pcls        =   traits_type::path_classify(data_(), size_(), parseFlags, &results);
+    bool const              is_rooted   =   traits_type::path_is_rooted(pcls);
+
+    if (0 != results.entry.len)
+    {
+        m_buffer.resize(m_buffer.size() - results.entry.len);
+
+        if (bRemoveTrailingPathNameSeparator)
+        {
+            if (results.numDirectoryParts > (is_rooted ? 1u : 0u))
+            {
+                UNIXSTL_MESSAGE_ASSERT("must have directory", 0 != results.directory.len);
+                UNIXSTL_MESSAGE_ASSERT("directory must end with slash", traits_type::is_path_name_separator(results.directory.ptr[results.directory.len - 1]));
+                UNIXSTL_MESSAGE_ASSERT("directory must end with slash", traits_type::is_path_name_separator(m_buffer.data()[m_buffer.size() - 1]));
+
+                m_buffer.pop_last();
+            }
+        }
+    }
+    else
+    {
+        if (is_rooted)
+        {
+            UNIXSTL_ASSERT(0 != results.numDirectoryParts);
+
+            if (1 == results.numDirectoryParts)
+            {
+                return *this;
+            }
+        }
+        else
+        {
+            if (0 == results.numDirectoryParts)
+            {
+                return *this;
+            }
+        }
+
+        UNIXSTL_MESSAGE_ASSERT("must have directory", 0 != results.directory.len);
+        UNIXSTL_MESSAGE_ASSERT("directory must end with slash", traits_type::is_path_name_separator(results.directory.ptr[results.directory.len - 1]));
+
+        --results.directory.len;
+
+        char_type* const    slash   =   const_cast<char_type*>(last_slash_(results.directory.ptr, results.directory.len));
+        size_t const        cchLess =    slash - results.directory.ptr;
+
+        class_type newPath(results.location.ptr, results.location.len - cchLess);
+
+        if (bRemoveTrailingPathNameSeparator)
+        {
+            newPath.pop_sep();
+        }
+
+        swap(newPath);
+    }
+
+#else /* ? _WIN32 */
+
+    // Native Unix: O(1) slash-root span + last-separator trim (former
+    // get_root_len_ normative path; no classify cost).
+    size_type const rootLen =
+        (0 != size_() && traits_type::is_path_name_separator(data_()[0]))
+            ?   1u
+            :   0u
+            ;
 
     if (rootLen < size_())
     {
@@ -1582,6 +1656,8 @@ basic_path<C, T, A>::pop(
             m_buffer.resize(size_type(lslash - data_()));
         }
     }
+
+#endif /* _WIN32 */
 
     return *this;
 }
