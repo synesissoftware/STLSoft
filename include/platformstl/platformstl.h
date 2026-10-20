@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 10
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     66
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -112,8 +112,8 @@
  * The patch version number of PlatformSTL
  */
 
-/** \def _PLATFORMSTL_VER_ALPHABETA
- * The alpha/beta number of PlatformSTL, in the range 1-0xFE for prerelease
+/** \def _PLATFORMSTL_VER_RELSTATUS
+ * The release-status number of PlatformSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -154,17 +154,18 @@
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
 #define _PLATFORMSTL_VER_PATCH      0
-#define _PLATFORMSTL_VER_ALPHABETA  0xFF
+#define _PLATFORMSTL_VER_RELSTATUS  0xFF
 
 #define _PLATFORMSTL_VER \
     (0\
         |   (   _PLATFORMSTL_VER_MAJOR       << 24   ) \
         |   (   _PLATFORMSTL_VER_MINOR       << 16   ) \
         |   (   _PLATFORMSTL_VER_PATCH       <<  8   ) \
-        |   (   _PLATFORMSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _PLATFORMSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _PLATFORMSTL_VER_ALPHABETA                         _PLATFORMSTL_VER_RELSTATUS
 # define _PLATFORMSTL_VER_REVISION                          _PLATFORMSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 17th September 2026
+ * Updated: 20th October 2026
  *
  * Thanks:  To Cláudio Albuquerque for suggesting the inclusion of atlstr.h.
  *
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  6
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      111
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -113,8 +113,8 @@
  * The patch version number of MFCSTL
  */
 
-/** \def _MFCSTL_VER_ALPHABETA
- * The alpha/beta number of MFCSTL, in the range 1-0xFE for prerelease
+/** \def _MFCSTL_VER_RELSTATUS
+ * The release-status number of MFCSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -148,17 +148,18 @@
 #define _MFCSTL_VER_MAJOR       1
 #define _MFCSTL_VER_MINOR       6
 #define _MFCSTL_VER_PATCH       1
-#define _MFCSTL_VER_ALPHABETA   0xFF
+#define _MFCSTL_VER_RELSTATUS   0xFF
 
 #define _MFCSTL_VER \
     (0\
         |   (   _MFCSTL_VER_MAJOR       << 24   ) \
         |   (   _MFCSTL_VER_MINOR       << 16   ) \
         |   (   _MFCSTL_VER_PATCH       <<  8   ) \
-        |   (   _MFCSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _MFCSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _MFCSTL_VER_ALPHABETA                              _MFCSTL_VER_RELSTATUS
 # define _MFCSTL_VER_REVISION                               _MFCSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

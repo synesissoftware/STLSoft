@@ -3,11 +3,39 @@
 
 ## 1.11.1 - 22nd October 2026
 
+1.11.1 final release
 
 
 ## 1.11.1-rc10 - 20th October 2026
 
-
+* additions:
+  * Added **CONCEPTS.md** — documents the **Resizeable Buffer** concept (requirements, models / non-models, probe-then-fill gold contract for traits `rb` overloads);
+  * Added example **examples/by_concept/resizeable_buffer** — probe-then-fill into `auto_buffer` / `vector` via `platformstl` traits `rb` overloads and `resizeable_buffer_resize`;
+  * **winstl::system_traits** — added `get_module_directory(hModule, rb)` (A+W), gold probe-then-fill companion to the raw overload and to `get_module_filename(rb)`;
+* fixes:
+  * **unixstl::system_traits** — `get_home_directory(rb)` and `get_environment_variable(rb)` follow the gold pattern (early-out on probe `0`, conditional resize, `ENOMEM` on failure); environment `rb` demand includes the trailing NUL (`cchValue + 1`);
+  * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name` / `get_short_path_name` / `get_current_directory` `rb` overloads no longer resize-then-`&rb[0]` on an empty buffer when the probe returns `0`; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY`;
+  * **unixstl::filesystem_traits** — `ensure_dir_end(rb)` leaves a lone-NUL `""` unchanged (`n > 1`, matching WinSTL and the C-string overload);
+  * **winstl::filesystem_traits** — `remove_dir_end(rb)` shrinks `size()` to the post-strip length so a later `ensure_dir_end(rb)` cannot write past the NUL;
+  * **unixstl::filesystem_traits** — `remove_dir_end` (C-string and `rb`, A+W) now strips **all** trailing path separators, matching WinSTL (was strip-one);
+  * **unixstl** / **winstl** `filesystem_traits` — every `resizeable_buffer_resize` failure on the `rb` / scratch paths above reports last-error (including WinSTL `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow);
+  * **unixstl::readdir_sequence** — non-exception `absolutePath` failure path no longer contains a broken `\'0'` write; soft-fails with an empty string (parallel to the throw when exceptions are enabled);
+  * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name_impl` scratch for a non-NUL-terminated counted slice is sized `1 + len` (was `1 + (len - 1)`), so writing the trailing NUL is in-bounds; WinSTL quoted-path handling takes this branch;
+  * **stlsoft::resizeable_buffer_resize** — invoke `rb.resize(newSize)` directly (with SFINAE detection of one-argument `bool` / `ss_bool_t` `resize`) so pre-C++11-style `resize(size, value = value())` models work; VC6 path adds a two-argument `void` member-pointer overload;
+* docs:
+  * Enriched Doxygen on **stlsoft/util/resizeable_buffer_helpers.hpp** (`resizeable_buffer_resize` parameters, return values, failure policy, caller OOM duty);
+  * **FAQ.md** — Q6 on the Resizeable Buffer concept;
+  * **EXAMPLES.md** — catalogues **by_concept/resizeable_buffer**;
+* testing:
+  * Component tests for unixstl `system_traits` home / environment `rb` overloads;
+  * Component tests for unixstl / winstl filesystem path `rb` overloads;
+  * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip, failing-resize OOM reporting, and unixstl strip-all trailing separators);
+  * Unit tests for `stlsoft::resizeable_buffer_resize` (including a stub with defaulted fill-argument `resize`, G5);
+  * Unit tests for **winstl** `get_module_directory(rb)` (`auto_buffer` / `vector`, invalid handle, grow-from-empty, pre-sized buffer);
+  * Added scratch program **test.scratch.versions.format** (**test/scratch/versions/versions.format**), reporting library versions via `std::format`; built only for toolchains known to provide `std::format` (MSVC 19.29+, GCC 13+, Clang 17+, AppleClang 16+, with C++20 or later), and degrades to a stub when `__cpp_lib_format` is absent;
+  * **test.unit.versions** — aligned with **1.11.1-rc10** (**_STLSOFT_VER_1_11_1_RC10**);
+* version:
+  * **STLSoft** — **1.11.1-rc10** (**_STLSOFT_VER_1_11_1_RC10**);
 
 
 ## 1.11.1-rc9 - 18th October 2026

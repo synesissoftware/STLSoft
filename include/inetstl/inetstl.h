@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     581
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     582
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -111,8 +111,8 @@
  * The patch version number of InetSTL
  */
 
-/** \def _INETSTL_VER_ALPHABETA
- * The alpha/beta number of InetSTL, in the range 1-0xFE for prerelease
+/** \def _INETSTL_VER_RELSTATUS
+ * The release-status number of InetSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -153,17 +153,18 @@
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
 #define _INETSTL_VER_PATCH       0
-#define _INETSTL_VER_ALPHABETA   0xFF
+#define _INETSTL_VER_RELSTATUS   0xFF
 
 #define _INETSTL_VER \
     (0\
         |   (   _INETSTL_VER_MAJOR       << 24   ) \
         |   (   _INETSTL_VER_MINOR       << 16   ) \
         |   (   _INETSTL_VER_PATCH       <<  8   ) \
-        |   (   _INETSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _INETSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _INETSTL_VER_ALPHABETA                             _INETSTL_VER_RELSTATUS
 # define _INETSTL_VER_REVISION                              _INETSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 17th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    10
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        135
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -125,9 +125,9 @@
  * The patch version number of COMSTL
  */
 
-/** \def _COMSTL_VER_ALPHABETA
+/** \def _COMSTL_VER_RELSTATUS
  *
- * The alpha/beta number of COMSTL, in the range 1-0xFE for prerelease
+ * The release-status number of COMSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -176,17 +176,18 @@
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       10
 #define _COMSTL_VER_PATCH       4
-#define _COMSTL_VER_ALPHABETA   0xFF
+#define _COMSTL_VER_RELSTATUS   0xFF
 
 #define _COMSTL_VER \
     (0\
         |   (   _COMSTL_VER_MAJOR       << 24   ) \
         |   (   _COMSTL_VER_MINOR       << 16   ) \
         |   (   _COMSTL_VER_PATCH       <<  8   ) \
-        |   (   _COMSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _COMSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _COMSTL_VER_ALPHABETA                              _COMSTL_VER_RELSTATUS
 # define _COMSTL_VER_REVISION                               _COMSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
