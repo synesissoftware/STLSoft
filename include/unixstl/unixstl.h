@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 6
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     135
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -156,16 +156,16 @@
 # define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
 # define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1 alpha 8) */
 # define _UNIXSTL_VER_1_8_5     0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.11.1 alpha 12) */
-# define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.8 alpha 1 (with STLSoft 1.11.1 alpha 17) */
-# define _UNIXSTL_VER_1_8_6_B01 0x01080681  /*!< Version 1.8.8 beta 1 (with STLSoft 1.11.1 beta 2) */
-# define _UNIXSTL_VER_1_8_6_B02 0x01080682  /*!< Version 1.8.8 beta 2 (with STLSoft 1.11.1 beta 3) */
-# define _UNIXSTL_VER_1_8_6_B03 0x01080683  /*!< Version 1.8.8 beta 3 (with STLSoft 1.11.1 beta 7) */
-# define _UNIXSTL_VER_1_8_6_B04 0x01080684  /*!< Version 1.8.8 beta 4 (with STLSoft 1.11.1 beta 8) */
-# define _UNIXSTL_VER_1_8_6_B05 0x01080685  /*!< Version 1.8.8 beta 5 (with STLSoft 1.11.1 rc 2) */
-# define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.8 beta 6 (with STLSoft 1.11.1 rc 3) */
-# define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.8 beta 7 (with STLSoft 1.11.1 rc 8) */
-# define _UNIXSTL_VER_1_8_6_B08 0x01080688  /*!< Version 1.8.8 beta 8 (with STLSoft 1.11.1 rc 9) */
-# define _UNIXSTL_VER_1_8_6     0x010806FF  /*!< Version 1.8.8 (with STLSoft 1.11.1) */
+# define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.6 alpha 1 (with STLSoft 1.11.1 alpha 17) */
+# define _UNIXSTL_VER_1_8_6_B01 0x01080681  /*!< Version 1.8.6 beta 1 (with STLSoft 1.11.1 beta 2) */
+# define _UNIXSTL_VER_1_8_6_B02 0x01080682  /*!< Version 1.8.6 beta 2 (with STLSoft 1.11.1 beta 3) */
+# define _UNIXSTL_VER_1_8_6_B03 0x01080683  /*!< Version 1.8.6 beta 3 (with STLSoft 1.11.1 beta 7) */
+# define _UNIXSTL_VER_1_8_6_B04 0x01080684  /*!< Version 1.8.6 beta 4 (with STLSoft 1.11.1 beta 8) */
+# define _UNIXSTL_VER_1_8_6_B05 0x01080685  /*!< Version 1.8.6 beta 5 (with STLSoft 1.11.1 rc 2) */
+# define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.6 beta 6 (with STLSoft 1.11.1 rc 3) */
+# define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.6 beta 7 (with STLSoft 1.11.1 rc 8) */
+# define _UNIXSTL_VER_1_8_6_B08 0x01080688  /*!< Version 1.8.6 beta 8 (with STLSoft 1.11.1 rc 9) */
+# define _UNIXSTL_VER_1_8_6     0x010806FF  /*!< Version 1.8.6 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
