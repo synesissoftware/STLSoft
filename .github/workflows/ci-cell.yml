@@ -162,9 +162,10 @@ jobs:
           else
             MFC_FLAG=""
           fi
-          UNIXEM_FLAG=()
+          # String (not array): empty "${arr[@]}" trips `set -u` on macOS bash.
+          UNIXEM_FLAG=""
           if [ "${{ inputs.with-unixem }}" = "true" ]; then
-            UNIXEM_FLAG=(-DUSE_UNIXEM:BOOL=ON)
+            UNIXEM_FLAG="-DUSE_UNIXEM:BOOL=ON"
           fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
@@ -175,7 +176,7 @@ jobs:
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
               $ACE_FLAG \
-              "${UNIXEM_FLAG[@]}"
+              $UNIXEM_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -187,7 +188,7 @@ jobs:
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
               $ACE_FLAG \
-              "${UNIXEM_FLAG[@]}"
+              $UNIXEM_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -198,7 +199,7 @@ jobs:
               -DBUILD_TESTING=ON \
               -DNO_SHWILD=TRUE \
               $ACE_FLAG \
-              "${UNIXEM_FLAG[@]}"
+              $UNIXEM_FLAG
           fi
 
       - name: Verify ACE discovered
