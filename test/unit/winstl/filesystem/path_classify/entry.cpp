@@ -271,8 +271,9 @@ static void TEST_matrix_WINDOWS_DRIVE()
 
 static void TEST_matrix_WINDOWS_UNC()
 {
-    /* W-unc-share: complete root, no trailing separator (R7 / R1). */
+    /* W-unc-share: complete root, no trailing separator (R8 / R1). */
     CLASSIFY_EXPECT_KIND_("\\\\svr\\share", 0, winstl_C_PathType_UncRooted, 1, 1);
+    CLASSIFY_EXPECT_KIND_W_(L"\\\\svr\\share", 0, winstl_C_PathType_UncRooted, 1, 1);
 
     /* W-unc-share-sep / W-unc-child: trailing sep or further path. */
     CLASSIFY_EXPECT_KIND_("\\\\svr\\share\\", 0, winstl_C_PathType_UncRooted, 1, 1);
