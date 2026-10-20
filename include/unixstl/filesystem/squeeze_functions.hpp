@@ -4,11 +4,11 @@
  * Purpose: Path squeeze functions
  *
  * Created: 13th June 2006
- * Updated: 15th April 2025
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -167,7 +167,7 @@ path_squeeze_impl(
     defined(_WIN64)
                 if (p.is_absolute())
                 {
-                    if (traits_t::is_path_UNC(path_ptr))
+                    if (traits_t::path_is_UNC(path_ptr))
                     {
                         // 1. UNC
 

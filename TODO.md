@@ -48,6 +48,7 @@
 
 Dedicated increment: **test analysis and coverage** (primary), plus **Resizeable Buffer** follow-ups deferred from the **1.11.1** lock.
 
+* [x] ~~~**get_root_len_** (**unixstl::filesystem_traits\<char\>**) — ~~fix / promote~~ **obviated (R24)**: removed helper and `#error` tripwire; under `_WIN32`/`UNIXem` `pop` / `..` use classify; native Unix keeps cheap slash-root 0/1~~~ - ✅;
 * [ ] Existing test consistency (deep analysis);
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components;

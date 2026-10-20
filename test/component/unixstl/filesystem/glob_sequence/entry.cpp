@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -233,7 +233,7 @@ static void test_dotdot()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -246,7 +246,7 @@ static void test_dotdot_and_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -259,7 +259,7 @@ static void test_dot_and_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
         TEST_MS_EQ(".", *b);
     }}
 
@@ -273,7 +273,7 @@ static void test_dot_and_absolutePath_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
         TEST_MS_EQ(".", *b);
     }}
 
@@ -287,7 +287,7 @@ static void test_dotdot_and_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -300,7 +300,7 @@ static void test_dotdot_and_absolutePath_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -313,7 +313,7 @@ static void test_dotslashstardotstar_and_files()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -326,7 +326,7 @@ static void test_dotslashstardotstar_and_directories()
     { for (glob_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -339,7 +339,7 @@ static void test_dotslashstardotstar_and_files_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -352,7 +352,7 @@ static void test_dotslashstardotstar_and_directories_absolutePath()
     { for (glob_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -365,7 +365,7 @@ static void test_dotdotslashstardotstar_and_files_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -378,7 +378,7 @@ static void test_dotdotslashstardotstar_and_directories_absolutePath()
     { for (glob_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -391,7 +391,7 @@ static void test_dotstar()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
 
         TEST_MS_NE(".", *b);
         TEST_MS_NE("..", *b);
@@ -407,7 +407,7 @@ static void test_dotstar_and_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -421,7 +421,7 @@ static void test_dotstar_and_matchPeriod()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
 
         TEST_MS_NE(".", *b);
         TEST_MS_NE("..", *b);
@@ -439,7 +439,7 @@ static void test_dotstar_and_includeDots_matchPeriod()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -473,7 +473,7 @@ static void test_dot_and_dot_and_includeDots()
 #endif
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -486,7 +486,7 @@ static void test_dot_and_dotdot()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -499,7 +499,7 @@ static void test_dot_and_dotdot_and_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -512,7 +512,7 @@ static void test_dot_and_dot_and_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -525,7 +525,7 @@ static void test_dot_and_dot_and_absolutePath_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -538,7 +538,7 @@ static void test_dot_and_dotdot_and_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -551,7 +551,7 @@ static void test_dot_and_dotdot_and_absolutePath_includeDots()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -564,7 +564,7 @@ static void test_dot_and_stardotstar_and_files()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -577,7 +577,7 @@ static void test_dot_and_stardotstar_and_directories()
     { for (glob_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(!traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -590,7 +590,7 @@ static void test_dot_and_stardotstar_and_files_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -603,7 +603,7 @@ static void test_dot_and_stardotstar_and_directories_absolutePath()
     { for (glob_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -616,7 +616,7 @@ static void test_dotdot_and_stardotstar_and_files_absolutePath()
     { for (glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();
@@ -629,7 +629,7 @@ static void test_dotdot_and_stardotstar_and_directories_absolutePath()
     { for (glob_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
     {
         TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-        TEST_BOOLEAN_TRUE(traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));
+        TEST_BOOLEAN_TRUE(traits_m_t::path_is_absolute(stlsoft::c_str_ptr(*b)));
     }}
 
     TEST_PASSED();

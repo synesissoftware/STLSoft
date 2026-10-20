@@ -4,11 +4,11 @@
  * Purpose: Pushes warning suppression for "".
  *
  * Created: 6th October 2016
- * Updated: 9th October 2024
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -32,6 +32,7 @@
 
 # pragma GCC diagnostic push
 # pragma GCC diagnostic ignored "-Wdeprecated"
+# pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif defined(STLSOFT_CF_msvc_pragma_warning_pop)
 
 # pragma warning(push)
