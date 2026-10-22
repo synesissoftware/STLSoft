@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_to_integer`.
  *
  * Created: 18th November 2008
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -148,13 +148,13 @@ static void test_specialisations_1()
     {
         char const* endptr;
         stlsoft::string_to_integer( "0", &endptr);
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+        REQUIRE(TEST_PTR_NOT_NULL(endptr));
         TEST_MS_EQ("0", endptr - 1);
     }
     {
         wchar_t const* endptr;
         stlsoft::string_to_integer(L"0", &endptr);
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+        REQUIRE(TEST_PTR_NOT_NULL(endptr));
         TEST_WS_EQ(L"0", endptr - 1);
     }
 
@@ -162,13 +162,13 @@ static void test_specialisations_1()
     {
         char const* endptr;
         stlsoft::string_to_integer( "0", 1u, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+        REQUIRE(TEST_PTR_NOT_NULL(endptr));
         TEST_MS_EQ("0", endptr - 1);
     }
     {
         wchar_t const* endptr;
         stlsoft::string_to_integer(L"0", 1u, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+        REQUIRE(TEST_PTR_NOT_NULL(endptr));
         TEST_WS_EQ(L"0", endptr - 1);
     }
 
@@ -176,13 +176,13 @@ static void test_specialisations_1()
     {
         char const* endptr;
         stlsoft::string_to_integer( "0", 1, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+        REQUIRE(TEST_PTR_NOT_NULL(endptr));
         TEST_MS_EQ("0", endptr - 1);
     }
     {
         wchar_t const* endptr;
         stlsoft::string_to_integer(L"0", 1, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+        REQUIRE(TEST_PTR_NOT_NULL(endptr));
         TEST_WS_EQ(L"0", endptr - 1);
     }
 
@@ -190,12 +190,12 @@ static void test_specialisations_1()
     {
         char const* endptr;
         stlsoft::string_to_integer( "0", 0, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_EQ(NULL, endptr));
+        REQUIRE(TEST_PTR_NULL(endptr));
     }
     {
         wchar_t const* endptr;
         stlsoft::string_to_integer(L"0", 0, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_EQ(NULL, endptr));
+        REQUIRE(TEST_PTR_NULL(endptr));
     }
 
 
@@ -510,39 +510,39 @@ static void test_len_truncated()
     TEST_INT_EQ(7, stlsoft::string_to_integer("7abc", 2, &endptr));
     TEST_MS_EQ("abc", endptr);
     TEST_INT_EQ(10, stlsoft::string_to_integer("10abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(11, stlsoft::string_to_integer("11abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(12, stlsoft::string_to_integer("123456abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(65, stlsoft::string_to_integer("654321abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
 
     TEST_INT_EQ(+1, stlsoft::string_to_integer("+1abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(+7, stlsoft::string_to_integer("+7abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(+1, stlsoft::string_to_integer("+10abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(+1, stlsoft::string_to_integer("+11abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(+1, stlsoft::string_to_integer("+123456abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(+6, stlsoft::string_to_integer("+654321abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
 
     TEST_INT_EQ(-1, stlsoft::string_to_integer("-1abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(-7, stlsoft::string_to_integer("-7abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(-1, stlsoft::string_to_integer("-10abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(-1, stlsoft::string_to_integer("-11abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(-1, stlsoft::string_to_integer("-123456abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_INT_EQ(-6, stlsoft::string_to_integer("-654321abc", 2, &endptr));
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
 }
 
 static void test_increasing_length()
@@ -611,7 +611,7 @@ static void test_endptr()
     {
         char const* endptr;
         stlsoft::string_to_integer("0", 0, &endptr);
-        XTESTS_REQUIRE(TEST_PTR_EQ(NULL, endptr));
+        REQUIRE(TEST_PTR_NULL(endptr));
     }
 }
 

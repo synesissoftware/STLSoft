@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for comstl BSTR comparison.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -105,7 +105,7 @@ static void TEST_comstl_C_BSTR_compare_EMPTY()
     BSTR const empty = comstl::comstl_C_BSTR_create_w(L"");
     BSTR const a = comstl::comstl_C_BSTR_create_w(L"a");
 
-    TEST_PTR_NE(NULL, empty);
+    TEST_PTR_NOT_NULL(empty);
     TEST_INT_EQ(0u, SysStringLen(empty));
 
     TEST_INT_EQ(0, comstl::BSTR_compare(empty, empty));
