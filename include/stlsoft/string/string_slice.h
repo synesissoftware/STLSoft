@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MAJOR    1
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MINOR    6
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_EDIT     32
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MINOR    7
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,6 +154,39 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct stlsoft_C_string_slice_w_t                   stlsoft_C_string_slice_w_t;
 #endif /* !__cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API helper functions
+ */
+
+STLSOFT_INLINE
+stlsoft_C_string_slice_m_t
+STLSoft_C_string_make_slice_m(
+    char const* ptr
+,   size_t      len
+)
+{
+    stlsoft_C_string_slice_m_t r = { len, ptr };
+
+    STLSOFT_ASSERT(0u == len || NULL != ptr);
+
+    return r;
+}
+
+STLSOFT_INLINE
+stlsoft_C_string_slice_w_t
+STLSoft_C_string_make_slice_w(
+    wchar_t const*  ptr
+,   size_t          len
+)
+{
+    stlsoft_C_string_slice_w_t r = { len, ptr };
+
+    STLSOFT_ASSERT(0u == len || NULL != ptr);
+
+    return r;
+}
 
 
 /* /////////////////////////////////////////////////////////////////////////
