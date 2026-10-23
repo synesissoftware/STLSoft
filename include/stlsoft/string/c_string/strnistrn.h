@@ -144,7 +144,7 @@ stlsoft_C_strnistrn(
     {
         return s1;
     }
-
+    else
     {
         unsigned char const ch0 =   (unsigned char)s2[0];
         int const           fc0 =   stlsoft_C_strnistrn_fold_char_(ch0);
@@ -176,9 +176,9 @@ stlsoft_C_strnistrn(
                 }
             }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 /** Finds a specific-length (slice of a) string within a specific-length
@@ -204,7 +204,7 @@ stlsoft_C_wcsnistrn(
     {
         return s1;
     }
-
+    else
     {
         wchar_t const   ch0 =   s2[0];
         int const       fc0 =   stlsoft_C_wcsnistrn_fold_(ch0);
@@ -233,9 +233,9 @@ stlsoft_C_wcsnistrn(
                 }
             }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 
