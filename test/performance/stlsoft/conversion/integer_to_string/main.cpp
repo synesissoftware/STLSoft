@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::integer_to_string<>`.
  *
  * Created: 29th October 2016
- * Updated: 30th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -412,6 +412,14 @@ int main(int argc, char* argv[])
 
     size_t total = 0;
 
+    /* One warmup pass plus one measured pass of 1,000,000 values. The
+     * previous 4 x 100 x 1,000,000 schedule repeated that set and took
+     * about ten minutes.
+     */
+    Warmups const       warmups(2);
+    Loops const         loops(1);
+    Iterations const    iterations(1000000);
+
     perf_maybe_emit_groupgaps_banner(stdout);
 
     /* Gap between API / base-family sections. */
@@ -419,10 +427,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "std::to_string() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_xtos<unsigned short>(warmups, loops, iterations, stopwatch, 0);
         total += execute_xtos<  signed short>(warmups, loops, iterations, stopwatch, 0);
 
@@ -441,10 +445,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "std::to_string() - base max() - N\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_xtos<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_xtos<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
@@ -466,10 +466,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "snprintf() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_printf<unsigned short>(warmups, loops, iterations, stopwatch, 0);
         total += execute_printf<  signed short>(warmups, loops, iterations, stopwatch, 0);
 
@@ -488,10 +484,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "snprintf() - base max() - N\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_printf<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_printf<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
@@ -513,10 +505,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_decimal_string() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_dec<unsigned char>(warmups, loops, iterations, stopwatch, 0);
         total += execute_dec<  signed char>(warmups, loops, iterations, stopwatch, 0);
 
@@ -538,10 +526,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_decimal_string() - base max() - N\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_dec<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_dec<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
@@ -563,10 +547,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_octal_string() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_oct<unsigned char>(warmups, loops, iterations, stopwatch, 0);
         total += execute_oct<  signed char>(warmups, loops, iterations, stopwatch, 0);
 
@@ -589,10 +569,6 @@ int main(int argc, char* argv[])
 
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_oct<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_oct<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
@@ -613,10 +589,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_hexadecimal_string() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_hex<unsigned char>(warmups, loops, iterations, stopwatch, 0);
         total += execute_hex<  signed char>(warmups, loops, iterations, stopwatch, 0);
 
@@ -638,10 +610,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_hexadecimal_string() - base max() - N\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_hex<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_hex<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
@@ -663,10 +631,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_base32_string() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_b32<unsigned char>(warmups, loops, iterations, stopwatch, 0);
         total += execute_b32<  signed char>(warmups, loops, iterations, stopwatch, 0);
 
@@ -688,10 +652,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_base32_string() - base max() - N\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_b32<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_b32<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
@@ -713,10 +673,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_base36_string() - base 0\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
         total += execute_b36<unsigned char>(warmups, loops, iterations, stopwatch, 0);
         total += execute_b36<  signed char>(warmups, loops, iterations, stopwatch, 0);
 
@@ -738,10 +694,6 @@ int main(int argc, char* argv[])
     fprintf(stdout, "integer_to_base36_string() - base max() - N\n");
 
     {
-        Warmups     warmups(4);
-        Loops       loops(100);
-        Iterations  iterations(1000000);
-
 #define N           (500000)
         total += execute_b36<unsigned int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::max() - N);
         total += execute_b36<  signed int>(warmups, loops, iterations, stopwatch, std::numeric_limits<unsigned int>::min() - N);
