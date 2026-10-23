@@ -108,7 +108,7 @@ stlsoft_C_strnstrn(
     }
 
     {
-        unsigned char const n0 = (unsigned char)s2[0];
+        unsigned char const ch0 = (unsigned char)s2[0];
 
         /* First byte via memchr. The remaining n2-1 bytes via memcmp. */
         while (n1 >= n2)
@@ -116,7 +116,7 @@ stlsoft_C_strnstrn(
             size_t const    span = n1 - n2 + 1;
             char const*     hit;
 
-            hit = STLSOFT_C_CAST(char const*, STLSOFT_NS_GLOBAL(memchr)(s1, n0, span));
+            hit = STLSOFT_C_CAST(char const*, STLSOFT_NS_GLOBAL(memchr)(s1, ch0, span));
 
             if (ss_nullptr_k == hit)
             {
@@ -166,7 +166,7 @@ stlsoft_C_wcsnstrn(
     }
 
     {
-        wchar_t const n0 = s2[0];
+        wchar_t const ch0 = s2[0];
 
         /* First unit via wmemchr. The remaining n2-1 units via wmemcmp. */
         while (n1 >= n2)
@@ -174,7 +174,7 @@ stlsoft_C_wcsnstrn(
             size_t const        span = n1 - n2 + 1;
             wchar_t const*      hit;
 
-            hit = STLSOFT_NS_GLOBAL(wmemchr)(s1, n0, span);
+            hit = STLSOFT_NS_GLOBAL(wmemchr)(s1, ch0, span);
 
             if (ss_nullptr_k == hit)
             {
