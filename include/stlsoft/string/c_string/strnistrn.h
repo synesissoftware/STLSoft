@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnistrn.h
+ * File:    stlsoft/string/c_string/strnistrn.h
  *
- * Purpose:     Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
+ * Purpose: Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
  *
- * Created:     1st October 2020
- * Updated:     23rd October 2026
+ * Created: 1st October 2020
+ * Updated: 23rd October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.

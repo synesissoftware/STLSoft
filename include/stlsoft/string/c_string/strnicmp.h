@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnicmp.h
+ * File:    stlsoft/string/c_string/strnicmp.h
  *
- * Purpose:     Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
+ * Purpose: Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
- * Created:     25th November 2020
- * Updated:     23rd October 2026
+ * Created: 25th November 2020
+ * Updated: 23rd October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
