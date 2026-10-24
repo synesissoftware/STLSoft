@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 15th October 2026
+ * Updated: 23rd October 2026
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       9
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        234
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -574,6 +574,14 @@ private: // implementation
         return allocate_(cItems, NULL);
     }
 
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ >= 12
+    /* Keep operator delete out of the inlined destructor. GCC 12+
+     * otherwise reports -Wfree-nonheap-object against the internal
+     * buffer.
+     */
+    STLSOFT_NOINLINE
+#endif /* GCC 12+ */
     void deallocate_(pointer p, size_type cItems)
     {
         STLSOFT_ASSERT(NULL != p);
@@ -1051,7 +1059,24 @@ public: // construction
             STLSOFT_ASSERT(0 != m_cExternal);
             STLSOFT_ASSERT(&m_internal[0] != m_buffer);
 
+            /* GCC 12+ cannot see that this pointer is the external
+             * array, and -Wfree-nonheap-object then reports a delete
+             * of the internal buffer.
+             */
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ >= 12
+
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wfree-nonheap-object"
+#endif /* GCC 12+ */
+
             deallocate_(m_buffer, m_cItems);
+
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ >= 12
+
+# pragma GCC diagnostic pop
+#endif /* GCC 12+ */
         }
     }
 private:
