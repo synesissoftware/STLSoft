@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   3
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,30 +106,32 @@ stlsoft_C_strnistrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2 ||
-            STLSOFT_NS_GLOBAL(toupper)(*s1) == STLSOFT_NS_GLOBAL(toupper)(*s2))
+        for (; n1 >= n2; --n1, ++s1)
         {
-            size_t i;
-
-            for (i = 1; i != n2; ++i)
+            if (*s1 == *s2 ||
+                STLSOFT_NS_GLOBAL(toupper)(*s1) == STLSOFT_NS_GLOBAL(toupper)(*s2))
             {
-                if (STLSOFT_NS_GLOBAL(toupper)(s1[i]) != STLSOFT_NS_GLOBAL(toupper)(s2[i]))
+                size_t i;
+
+                for (i = 1; i != n2; ++i)
                 {
-                    break;
+                    if (STLSOFT_NS_GLOBAL(toupper)(s1[i]) != STLSOFT_NS_GLOBAL(toupper)(s2[i]))
+                    {
+                        break;
+                    }
+                }
+
+                if (i == n2)
+                {
+                    return s1;
                 }
             }
-
-            if (i == n2)
-            {
-                return s1;
-            }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 /** Finds a specific-length (slice of a) string within a specific-length
@@ -155,30 +157,32 @@ stlsoft_C_wcsnistrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2 ||
-            STLSOFT_NS_GLOBAL(towupper)(*s1) == STLSOFT_NS_GLOBAL(towupper)(*s2))
+        for (; n1 >= n2; --n1, ++s1)
         {
-            size_t i;
-
-            for (i = 1; i != n2; ++i)
+            if (*s1 == *s2 ||
+                STLSOFT_NS_GLOBAL(towupper)(*s1) == STLSOFT_NS_GLOBAL(towupper)(*s2))
             {
-                if (STLSOFT_NS_GLOBAL(towupper)(s1[i]) != STLSOFT_NS_GLOBAL(towupper)(s2[i]))
+                size_t i;
+
+                for (i = 1; i != n2; ++i)
                 {
-                    break;
+                    if (STLSOFT_NS_GLOBAL(towupper)(s1[i]) != STLSOFT_NS_GLOBAL(towupper)(s2[i]))
+                    {
+                        break;
+                    }
+                }
+
+                if (i == n2)
+                {
+                    return s1;
                 }
             }
-
-            if (i == n2)
-            {
-                return s1;
-            }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 
