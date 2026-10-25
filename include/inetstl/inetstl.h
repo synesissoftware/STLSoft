@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 21st October 2026
+ * Updated: 25th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     582
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     584
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -138,15 +138,15 @@
 # define _INETSTL_VER_1_3_6      0x010306ff  /*!< Version 1.3.6 (with STLSoft 1.9.113) */
 # define _INETSTL_VER_1_3_7      0x010307ff  /*!< Version 1.3.7 (with STLSoft 1.9.119) */
 # define _INETSTL_VER_1_3_8      0x010308ff  /*!< Version 1.3.8 (with STLSoft 1.9.121) */
-# define _INETSTL_VER_1_4_1_B01  0x01040181  /*!< Version 1.4.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1 beta 2 (with STLSoft 1.10.1 beta 10) */
-# define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1 beta 3 (with STLSoft 1.10.1 beta 26) */
+# define _INETSTL_VER_1_4_1_B01  0x01040181  /*!< Version 1.4.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1-beta2 (with STLSoft 1.10.1-beta10) */
+# define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
-# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
-# define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
-# define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 rc 2) */
-# define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0 alpha 3 (with STLSoft 1.11.1 rc 8) */
-# define _INETSTL_VER_1_5_0_A04  0x01050044  /*!< Version 1.5.0 alpha 4 (with STLSoft 1.11.1 rc 9) */
+# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1-alpha8) */
+# define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0-alpha1 (with STLSoft 1.11.1-beta2) */
+# define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0-alpha2 (with STLSoft 1.11.1-rc2) */
+# define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0-alpha3 (with STLSoft 1.11.1-rc8) */
+# define _INETSTL_VER_1_5_0_A04  0x01050044  /*!< Version 1.5.0-alpha4 (with STLSoft 1.11.1-rc9) */
 # define _INETSTL_VER_1_5_0      0x010500FF  /*!< Version 1.5.0 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -199,7 +199,7 @@
  */
 
 #if _STLSOFT_VER < 0x010B01C9
-# error This version of the InetSTL libraries requires STLSoft version 1.11.1 rc 9, or later
+# error This version of the InetSTL libraries requires STLSoft version 1.11.1-rc9, or later
 #endif /* _STLSOFT_VER */
 
 

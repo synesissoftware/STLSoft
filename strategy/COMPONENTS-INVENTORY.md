@@ -674,18 +674,18 @@ Bullets matching performance / optimisation / enhancement keywords, for the oper
 * **1.10.7 - 30th January 2024**: enhanced stream insertion operators, when used with types descended from `std::basic_ios<>`, to observe width and alignment for `stlsoft::basic_shim_string<>`, `stlsoft::basic_simple_string<>`, `stlsoft::basic_static_string`, `stlsoft::basic_string_view`, `stlsoft::stlsoft_C_string_slice_m_t`/`stlsoft::stlsoft_C_string_slice_w_t`;
 * **1.10.6 - 28th January 2024**: simplification and improvement of CMake handling;
 * **1.10.2 - 3rd January 2024**: MinGW 64-bit compatibility improvements;
-* **1.10.1 beta 26 - 4th January 2021**: (UNIXSTL and WinSTL) basic_path<> added move semantics and get_location() method and made swap() method public, as well as numerous defect fixes and consistency improvements implemented in terms of new Path Classification API;
-* **1.10.1 beta 26 - 4th January 2021**: many improvements to GCC compatibility;
-* **1.10.1 beta 22 - 29th November 2020**: stlsoft::split() functions enhanced to: return vector of arbitrary length; allow heterogeneous types for the split elements;
-* **1.10.1 beta 18 - 31st October 2019**: added stlsoft/system/environment/functions.hpp to enhances stlsoft::environment_variable_exists() with string access shims to support arbitrary string type;
-* **1.10.1 beta 17 - 24th October 2019**: improved documentation;
-* **1.10.1 beta 15 - 13th September 2019**: various portability improvements to newer compilers;
-* **1.10.1 beta 5 - 15th May 2017**: enhanced STLSOFT_SUPPRESS_UNUSED() to work with rvalues;
-* **1.10.1 beta 2 - 28th January 2017**: a large number of changes to improve compatibility with UNIX, Clang, GCC, and MinGW;
-* **1.10.1 beta 1 - 14th January 2017**: new high-performance conversion functions (based around the extant technology in stlsoft::integer_to_string()): integer_to_decimal_string(), integer_to_hexadecimal_string(), integer_to_octal_string(), integer_to_lc_string(), integer_to_zero_padded_decimal_string();
-* **1.10.1 beta 1 - 14th January 2017**: substantially improved atomic function support;
-* **1.10.1 beta 1 - 14th January 2017**: substantially improved spin_mutex class templates and policies;
-* **1.10.1 beta 1 - 14th January 2017**: ... and many many other improvements and additions ..;
+* **1.10.1-beta26 - 4th January 2021**: (UNIXSTL and WinSTL) basic_path<> added move semantics and get_location() method and made swap() method public, as well as numerous defect fixes and consistency improvements implemented in terms of new Path Classification API;
+* **1.10.1-beta26 - 4th January 2021**: many improvements to GCC compatibility;
+* **1.10.1-beta22 - 29th November 2020**: stlsoft::split() functions enhanced to: return vector of arbitrary length; allow heterogeneous types for the split elements;
+* **1.10.1-beta18 - 31st October 2019**: added stlsoft/system/environment/functions.hpp to enhances stlsoft::environment_variable_exists() with string access shims to support arbitrary string type;
+* **1.10.1-beta17 - 24th October 2019**: improved documentation;
+* **1.10.1-beta15 - 13th September 2019**: various portability improvements to newer compilers;
+* **1.10.1-beta5 - 15th May 2017**: enhanced STLSOFT_SUPPRESS_UNUSED() to work with rvalues;
+* **1.10.1-beta2 - 28th January 2017**: a large number of changes to improve compatibility with UNIX, Clang, GCC, and MinGW;
+* **1.10.1-beta1 - 14th January 2017**: new high-performance conversion functions (based around the extant technology in stlsoft::integer_to_string()): integer_to_decimal_string(), integer_to_hexadecimal_string(), integer_to_octal_string(), integer_to_lc_string(), integer_to_zero_padded_decimal_string();
+* **1.10.1-beta1 - 14th January 2017**: substantially improved atomic function support;
+* **1.10.1-beta1 - 14th January 2017**: substantially improved spin_mutex class templates and policies;
+* **1.10.1-beta1 - 14th January 2017**: ... and many many other improvements and additions ..;
 
 
 ## Full inventory
