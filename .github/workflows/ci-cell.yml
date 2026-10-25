@@ -31,6 +31,13 @@ on:
         required: false
         type: boolean
         default: false
+      # When false, skip examples and the shared test suites. The feature
+      # job then runs only the ACE, ATL, and MFC programs plus the version
+      # reporters. Lean cells leave the default.
+      execute-full-suite:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
@@ -264,6 +271,7 @@ jobs:
 
   run-examples:
     name: Examples (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     runs-on: ${{ inputs.os }}
 
@@ -340,6 +348,7 @@ jobs:
 
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     runs-on: ${{ inputs.os }}
 
@@ -416,6 +425,7 @@ jobs:
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     runs-on: ${{ inputs.os }}
 
@@ -492,6 +502,7 @@ jobs:
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     continue-on-error: true
     runs-on: ${{ inputs.os }}
@@ -569,6 +580,7 @@ jobs:
 
   test-performance:
     name: Performance tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     continue-on-error: true
     runs-on: ${{ inputs.os }}
@@ -645,3 +657,260 @@ jobs:
           if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
           call run_all_performance_tests.cmd --gap-groups
           if errorlevel 1 exit /b 1
+
+  # Programs that exist only when ACE, ATL, or MFC is enabled, plus the
+  # version reporters those defines change. Examples, component tests,
+  # scratch tests, and performance tests stay on the lean cell.
+  test-feature:
+    name: Feature tests (${{ inputs.cell-id }})
+    if: ${{ inputs.execute-full-suite == false }}
+    needs: build
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
+      - name: Setup MSYS2 MinGW
+        id: msys2
+        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-toolchain
+
+      - name: Download build tree
+        uses: actions/download-artifact@v4
+        with:
+          name: sis-build-${{ inputs.cell-id }}
+          path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              -name 'test.unit.versions*' \
+              -o -name 'test.unit.acestl.*' \
+              -o -name 'test.unit.mfcstl.*' \
+              -o -name 'test.scratch.versions.stdio*' \
+              -o -name 'test.scratch.versions.iostreams*' \
+              -o -name 'test.scratch.versions.format*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.cmake' \
+            ! -name '*.d' \
+            ! -name '*.filters' \
+            ! -name '*.ilk' \
+            ! -name '*.lib' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            ! -name '*.sln' \
+            ! -name '*.vcxproj' \
+            -exec chmod +x {} +
+
+      - name: Run feature unit tests (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        env:
+          WITH_ACE: ${{ inputs.with-ace }}
+          WITH_MFC: ${{ inputs.with-mfc }}
+        run: |
+          set -euo pipefail
+          ROOT="${GITHUB_WORKSPACE}/build"
+
+          run_matching() {
+            local pattern="$1"
+            local required="$2"
+            local mode="$3"
+            local n=0
+            local f
+            while IFS= read -r -d '' f; do
+              echo "executing ${f}"
+              if [ "$mode" = "unit" ]; then
+                "$f" --verbosity=3
+              else
+                "$f"
+              fi
+              n=$((n + 1))
+            done < <(find "$ROOT" -type f -name "$pattern" \
+                ! -path '*/CMakeFiles/*' \
+                ! -name '*.a' \
+                ! -name '*.cmake' \
+                ! -name '*.d' \
+                ! -name '*.filters' \
+                ! -name '*.ilk' \
+                ! -name '*.lib' \
+                ! -name '*.o' \
+                ! -name '*.obj' \
+                ! -name '*.pdb' \
+                ! -name '*.sln' \
+                ! -name '*.vcxproj' \
+                \( -perm -100 -o -name '*.exe' \) \
+                -print0 | sort -z)
+            if [ "$required" = "yes" ] && [ "$n" -eq 0 ]; then
+              echo "required program not found: ${pattern}" >&2
+              exit 1
+            fi
+            if [ "$n" -eq 0 ]; then
+              echo "optional program not present: ${pattern}"
+            else
+              echo "ran ${n} program(s) matching ${pattern}"
+            fi
+          }
+
+          run_matching 'test.unit.versions*' yes unit
+          if [ "${WITH_ACE}" = "true" ]; then
+            run_matching 'test.unit.acestl.*' yes unit
+          fi
+          if [ "${WITH_MFC}" = "true" ]; then
+            run_matching 'test.unit.mfcstl.*' yes unit
+          fi
+
+      - name: Run feature unit tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+          WITH_ACE: ${{ inputs.with-ace }}
+          WITH_MFC: ${{ inputs.with-mfc }}
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          set "ROOT=%SIS_CMAKE_BUILD_DIR%"
+          call :run_matching test.unit.versions.exe yes unit
+          if errorlevel 1 exit /b 1
+          if /I "%WITH_ACE%"=="true" (
+            call :run_matching test.unit.acestl.*.exe yes unit
+            if errorlevel 1 exit /b 1
+          )
+          if /I "%WITH_MFC%"=="true" (
+            call :run_matching test.unit.mfcstl.*.exe yes unit
+            if errorlevel 1 exit /b 1
+          )
+          exit /b 0
+
+          :run_matching
+          set "PAT=%~1"
+          set "REQUIRED=%~2"
+          set "MODE=%~3"
+          set "N=0"
+          for /r "%ROOT%" %%F in (%PAT%) do (
+            echo %%F | findstr /i /c:"CMakeFiles" >nul
+            if errorlevel 1 (
+              echo executing %%F
+              if /I "%MODE%"=="unit" (
+                "%%F" --verbosity=3
+              ) else (
+                "%%F"
+              )
+              if errorlevel 1 exit /b 1
+              set /a N+=1
+            )
+          )
+          if "%N%"=="0" (
+            if /I "%REQUIRED%"=="yes" (
+              echo required program not found: %PAT%
+              exit /b 1
+            )
+            echo optional program not present: %PAT%
+          ) else (
+            echo ran %N% program(s) matching %PAT%
+          )
+          exit /b 0
+
+      - name: Run feature version reporters (Bash)
+        if: runner.os != 'Windows'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="${GITHUB_WORKSPACE}/build"
+
+          run_matching() {
+            local pattern="$1"
+            local required="$2"
+            local n=0
+            local f
+            while IFS= read -r -d '' f; do
+              echo "executing ${f}"
+              "$f"
+              n=$((n + 1))
+            done < <(find "$ROOT" -type f -name "$pattern" \
+                ! -path '*/CMakeFiles/*' \
+                ! -name '*.a' \
+                ! -name '*.cmake' \
+                ! -name '*.d' \
+                ! -name '*.filters' \
+                ! -name '*.ilk' \
+                ! -name '*.lib' \
+                ! -name '*.o' \
+                ! -name '*.obj' \
+                ! -name '*.pdb' \
+                ! -name '*.sln' \
+                ! -name '*.vcxproj' \
+                \( -perm -100 -o -name '*.exe' \) \
+                -print0 | sort -z)
+            if [ "$required" = "yes" ] && [ "$n" -eq 0 ]; then
+              echo "required program not found: ${pattern}" >&2
+              exit 1
+            fi
+            if [ "$n" -eq 0 ]; then
+              echo "optional program not present: ${pattern}"
+            else
+              echo "ran ${n} program(s) matching ${pattern}"
+            fi
+          }
+
+          run_matching 'test.scratch.versions.stdio*' yes
+          run_matching 'test.scratch.versions.iostreams*' yes
+          run_matching 'test.scratch.versions.format*' no
+
+      - name: Run feature version reporters (native cmd)
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          set "ROOT=%SIS_CMAKE_BUILD_DIR%"
+          call :run_matching test.scratch.versions.stdio.exe yes
+          if errorlevel 1 exit /b 1
+          call :run_matching test.scratch.versions.iostreams.exe yes
+          if errorlevel 1 exit /b 1
+          call :run_matching test.scratch.versions.format.exe no
+          if errorlevel 1 exit /b 1
+          exit /b 0
+
+          :run_matching
+          set "PAT=%~1"
+          set "REQUIRED=%~2"
+          set "N=0"
+          for /r "%ROOT%" %%F in (%PAT%) do (
+            echo %%F | findstr /i /c:"CMakeFiles" >nul
+            if errorlevel 1 (
+              echo executing %%F
+              "%%F"
+              if errorlevel 1 exit /b 1
+              set /a N+=1
+            )
+          )
+          if "%N%"=="0" (
+            if /I "%REQUIRED%"=="yes" (
+              echo required program not found: %PAT%
+              exit /b 1
+            )
+            echo optional program not present: %PAT%
+          ) else (
+            echo ran %N% program(s) matching %PAT%
+          )
+          exit /b 0
