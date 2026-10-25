@@ -3,7 +3,8 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
-| 25th October 2026   | 1.11.2-alpha1 | xTests' null-ptr macros; |
+| 27th October 2026   | Release of [STLSoft 1.11.3](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.3) | |
+| 25th October 2026   | Release of [STLSoft 1.11.2](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.2) | `auto_buffer` GCC 12+ `-Wfree-nonheap-object` on the external-buffer `delete`; xTests' null-ptr macros; |
 | 21st October 2026   | Release of [STLSoft 1.11.1](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1) | **1.11.1-alpha1** through **1.11.1-rc10**: process and path APIs; Resizeable Buffer concept; `module` renamed `dl_module`; CI and docs |
 | 20th October 2026   | Release of [STLSoft 1.11.1-rc10](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc10) | Resizeable Buffer concept & traits `rb` hardening; **CONCEPTS.md**; `get_module_directory(rb)`; `resizeable_buffer_resize` docs; example **by_concept/resizeable_buffer**; C1–C5 `rb` / `dir_end` fixes; unixstl strip-all `remove_dir_end`; `readdir_sequence` no-exception soft-fail; full-path OOB size fix; `resizeable_buffer_resize` default-arg `resize` (G5); scratch **test.scratch.versions.format** (`std::format`) |
 | 18th October 2026   | Release of [STLSoft 1.11.1-rc9](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc9) | `get_current_process_path()` (+ resizeable-buffer overloads) on **unixstl** / **winstl** `system_traits` with component tests; zero-first optional buffers; **unixstl** `wchar_t` path classification and separators; `path_str_*`; wide `get_home_directory()` and `get_environment_variable()`; `\pre` normalised to bare exprs with `nullptr`; subproject version bumps |

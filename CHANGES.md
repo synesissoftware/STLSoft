@@ -1,8 +1,14 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.2-alpha1 - 25th October 2026
+## 1.11.3 - 27th October 2026
 
+
+
+## 1.11.2 - 25th October 2026
+
+* fixes:
+  * **stlsoft/memory/auto_buffer.hpp** — on GCC 12+, marked `deallocate_()` `STLSOFT_NOINLINE` and suppressed `-Wfree-nonheap-object` around the external-buffer `delete`, which GCC misattributes to the internal buffer;
 * testing:
   * applies xTests' null-ptr macros;
 
