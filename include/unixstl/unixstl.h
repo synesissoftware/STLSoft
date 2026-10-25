@@ -234,8 +234,8 @@
 
 #elif defined(STLSOFT_COMPILER_IS_GCC)
  /* ******************************** GCC ******************************** */
-# if __GNUC__ < 2 || \
-     (  __GNUC__ == 2 && \
+# if __GNUC__ < 2 ||\
+     (  __GNUC__ == 2 &&\
         __GNUC_MINOR__ < 95)
 #  error Versions of GNU C/C++ prior to 2.95 are not supported by the UNIXSTL libraries
 # endif /* __GNUC__ */
@@ -421,19 +421,19 @@ x86-64
 
 
 #if 0 ||\
-    defined(__FreeBSD__) || \
-    defined(__NetBSD__) || \
-    defined(__OpenBSD__) || \
-    defined(__bsdi__) || \
+    defined(__FreeBSD__) ||\
+    defined(__NetBSD__) ||\
+    defined(__OpenBSD__) ||\
+    defined(__bsdi__) ||\
     defined(_SYSTYPE_BSD) ||\
     0
 # define UNIXSTL_OSFAMILY_IS_BSD
 #endif /* bsd */
 
 #if 0 ||\
-    defined(__sysv__) || \
-    defined(__SVR4) || \
-    defined(__svr4__) || \
+    defined(__sysv__) ||\
+    defined(__SVR4) ||\
+    defined(__svr4__) ||\
     defined(_SYSTYPE_SVR4) ||\
     0
 # define UNIXSTL_OSFAMILY_IS_SVR4
@@ -535,7 +535,7 @@ x86-64
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
-#if defined(UNIXSTL_OS_IS_MACOSX) && \
+#if defined(UNIXSTL_OS_IS_MACOSX) &&\
     defined(__assert)
 # define UNIXSTL_ASSERT(expr)                               ((void)((expr) ? 0 : (__assert(#expr, __FILE__, __LINE__), 0)))
 #else /* ? UNIXSTL_OS_IS_MACOSX */
@@ -667,7 +667,7 @@ x86-64
  */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
 /** The \c unixstl namespace contains all components
@@ -875,7 +875,7 @@ typedef us_streamoff_t                                      streamoff_t;    /*!<
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef UNIXSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace unixstl */
 # else

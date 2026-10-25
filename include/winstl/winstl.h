@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    17
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        250
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        251
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -233,7 +233,7 @@
 #endif /* STLSOFT_TRACE_INCLUDE */
 
 #if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+#elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
       _MSC_VER == 1100
 # include <wtypes.h>    /* This is here to fix a thoroughly inexplicable VC 5 bug */
 #endif /* compiler */
@@ -270,7 +270,7 @@
 #endif /* !STLSOFT_INCL_H_WINDOWS */
 
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
-#if defined(STLSOFT_COMPILER_IS_INTEL) && \
+#if defined(STLSOFT_COMPILER_IS_INTEL) &&\
     defined(__cplusplus)
 # ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST
 #  include <stlsoft/conversion/union_cast.hpp>
@@ -427,7 +427,7 @@ x86-64
  *  avoid C-style cast warnings.
  */
 # undef     MAKEINTRESOURCEA
-# if defined(_WIN64) || \
+# if defined(_WIN64) ||\
      defined(_Wp64)
 #  define   MAKEINTRESOURCEA(i)                             reinterpret_cast<LPSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
 # else /* ? width */
@@ -439,7 +439,7 @@ x86-64
  *  avoid C-style cast warnings.
  */
 # undef     MAKEINTRESOURCEW
-# if defined(_WIN64) || \
+# if defined(_WIN64) ||\
      defined(_Wp64)
 #  define   MAKEINTRESOURCEW(i)                             reinterpret_cast<LPWSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
 # else /* ? width */
@@ -451,7 +451,7 @@ x86-64
  *  avoid C-style cast warnings.
  */
 # undef     MAKEINTRESOURCE
-# if defined(_WIN64) || \
+# if defined(_WIN64) ||\
      defined(_Wp64)
 #  define   MAKEINTRESOURCE(i)                              reinterpret_cast<LPTSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
 # else /* ? width */
@@ -511,7 +511,7 @@ x86-64
  */
 
 /* Must be Win32 api. */
-#if !defined(WIN32) && \
+#if !defined(WIN32) &&\
     !defined(_WIN32)
 # error The WinSTL libraries is currently only compatible with the Win32 API
 #endif /* !WIN32 && !_WIN32 */
@@ -769,7 +769,7 @@ x86-64
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 /** The \c winstl namespace contains all components
@@ -1073,8 +1073,8 @@ typedef ws_uptrint_t                                        uptrint_t;
 
 # define WINSTL_CONST_MAX_PATH                              _MAX_PATH
 #elif 0 ||\
-      defined(__CYGWIN__) || \
-      defined(STLSOFT_MINGW) || \
+      defined(__CYGWIN__) ||\
+      defined(STLSOFT_MINGW) ||\
       0
 
 # define WINSTL_CONST_MAX_PATH                              (260)
@@ -1316,7 +1316,7 @@ winstl_C_is_memory_status_code(
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace winstl */
 # else

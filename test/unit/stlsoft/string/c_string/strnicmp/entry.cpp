@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnicmp/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string.strnicmp/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string::strnicmp() and wcsnicmp().
  *
