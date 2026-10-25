@@ -167,7 +167,8 @@ static void TEST_stlsoft_C_strnchr_CONTINUES_PAST_NUL(void)
 
 static void TEST_stlsoft_C_strnchr_HIGH_BIT(void)
 {
-    char const s[] = { (char)0xE9, 'b', 'c' };
+    unsigned char const s_u[] = { 0xE9, 'b', 'c' };
+    char const* const   s = (char const*)s_u;
 
     TEST_PTR_EQ(s, stlsoft_C_strnchr(s, 3, s[0]));
     TEST_PTR_EQ(s + 1, stlsoft_C_strnchr(s, 3, 'b'));

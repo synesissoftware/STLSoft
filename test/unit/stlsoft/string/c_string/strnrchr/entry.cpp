@@ -186,7 +186,8 @@ static void TEST_c_string_strnrchr_CONTINUES_PAST_NUL()
 
 static void TEST_c_string_strnrchr_HIGH_BIT()
 {
-    char const s[] = { 'a', (char)0xE9, 'b' };
+    unsigned char const s_u[] = { 'a', 0xE9, 'b' };
+    char const* const   s = reinterpret_cast<char const*>(s_u);
 
     TEST_PTR_EQ(s + 1, stlsoft::c_string::strnrchr(s, 3, s[1]));
     TEST_PTR_EQ(s, stlsoft::c_string::strnrchr(s, 1, 'a'));

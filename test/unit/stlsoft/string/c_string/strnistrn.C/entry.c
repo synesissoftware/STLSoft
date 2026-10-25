@@ -225,9 +225,12 @@ static void TEST_stlsoft_C_strnistrn_SINGLE_BYTE(void)
 
 static void TEST_stlsoft_C_strnistrn_HIGH_BIT(void)
 {
-    char const hay[] = { (char)0xE9, 'A', 'b' };
-    char const needle[] = { (char)0xE9, 'a', 'B' };
-    char const other[] = { (char)0xE2, 'a' };
+    unsigned char const hay_u[] = { 0xE9, 'A', 'b' };
+    unsigned char const needle_u[] = { 0xE9, 'a', 'B' };
+    unsigned char const other_u[] = { 0xE2, 'a' };
+    char const* const   hay = (char const*)hay_u;
+    char const* const   needle = (char const*)needle_u;
+    char const* const   other = (char const*)other_u;
 
     TEST_PTR_EQ(hay, stlsoft_C_strnistrn(hay, 3, needle, 3));
     TEST_PTR_NULL(stlsoft_C_strnistrn(hay, 2, other, 2));
