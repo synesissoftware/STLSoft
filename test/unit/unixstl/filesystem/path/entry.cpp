@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *
  * Created: 16th February 2024
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -219,10 +219,10 @@ static void test_construct_filename()
     TEST(p1.end() == p1.begin());
     TEST(p1.rend() == p1.rbegin());
 #endif
-    TEST_PTR_NE(ss_nullptr_k, p1.c_str());
+    TEST_PTR_NOT_NULL(p1.c_str());
     TEST('\0' != *p1.c_str());
     TEST(0 == ::strcmp("file.ext", p1.c_str()));
-    TEST_PTR_NE(ss_nullptr_k, p1.data());
+    TEST_PTR_NOT_NULL(p1.data());
     TEST('\0' != *p1.data());
 
     buffer[0] = '~';
@@ -232,8 +232,8 @@ static void test_construct_filename()
 
     TEST_MS_EQ("file.ext", stlsoft::sas_to_string(p1));
     TEST_MS_EQ("file.ext", stlsoft::sas_to_string_m(p1));
-    TEST_PTR_NE(ss_nullptr_k, stlsoft::c_str_ptr_null(buffer));
-    TEST_PTR_NE(ss_nullptr_k, stlsoft::c_str_ptr_null_a(buffer));
+    TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_null(buffer));
+    TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_null_a(buffer));
 
     TEST(0 == p1.get_location().len);
     TEST("file.ext" == p1.get_file());
@@ -332,10 +332,10 @@ static void test_construct_relative_directory_and_file()
     TEST(p1.end() == p1.begin());
     TEST(p1.rend() == p1.rbegin());
 #endif
-    TEST_PTR_NE(ss_nullptr_k, p1.c_str());
+    TEST_PTR_NOT_NULL(p1.c_str());
     TEST('\0' != *p1.c_str());
     TEST(0 == ::strcmp("dir-1/file.ext", p1.c_str()));
-    TEST_PTR_NE(ss_nullptr_k, p1.data());
+    TEST_PTR_NOT_NULL(p1.data());
     TEST('\0' != *p1.data());
 
     buffer[0] = '~';
@@ -347,8 +347,8 @@ static void test_construct_relative_directory_and_file()
     TEST(14 == stlsoft::c_str_len_a(p1));
     TEST(0 == ::strcmp("dir-1/file.ext", stlsoft::c_str_ptr(buffer)));
     TEST(0 == ::strcmp("dir-1/file.ext", stlsoft::c_str_ptr_a(buffer)));
-    TEST_PTR_NE(ss_nullptr_k, stlsoft::c_str_ptr_null(buffer));
-    TEST_PTR_NE(ss_nullptr_k, stlsoft::c_str_ptr_null_a(buffer));
+    TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_null(buffer));
+    TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_null_a(buffer));
 
     TEST("dir-1/" == p1.get_location());
     TEST("file.ext" == p1.get_file());

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::new_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -102,7 +102,7 @@ static void exercise_allocate(allocator_t::size_type n)
     allocator_t             ator;
     allocator_t::pointer    p = ator.allocate(n);
 
-    TEST_PTR_NE(NULL, p);
+    TEST_PTR_NOT_NULL(p);
 
     for (allocator_t::size_type i = 0; i != n; ++i)
     {
@@ -129,7 +129,7 @@ static void test_alloc_0()
 
     allocator_t::pointer p = a1.allocate(0);
 
-    TEST_PTR_NE(NULL, p);
+    TEST_PTR_NOT_NULL(p);
 
     a1.deallocate(p);
 }

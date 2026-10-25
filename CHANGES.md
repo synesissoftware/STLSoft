@@ -5,6 +5,8 @@
 
 * fixes:
   * **stlsoft/memory/auto_buffer.hpp** — on GCC 12+, marked `deallocate_()` `STLSOFT_NOINLINE` and suppressed `-Wfree-nonheap-object` around the external-buffer `delete`, which GCC misattributes to the internal buffer;
+* testing:
+  * applies xTests' null-ptr macros;
 * documentation and boilerplate:
   * standardised use of alpha/beta/rc nomenclature throughout the repo;
 

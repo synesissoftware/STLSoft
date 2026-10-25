@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `stlsoft::environment_variable_exists()`.
  *
  * Created: 28th September 2026
- * Updated: 8th October 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -231,7 +231,7 @@ static void TEST_environment_variable_exists_WHEN_EMPTY()
 
         char const* const value = ::getenv(name);
 
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, value));
+        REQUIRE(TEST_PTR_NOT_NULL(value));
         TEST_MS_EQ("", value);
 
         TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
@@ -250,7 +250,7 @@ static void TEST_environment_variable_exists_WHEN_EMPTY()
 
         char const* const value = ::getenv(name);
 
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, value));
+        REQUIRE(TEST_PTR_NOT_NULL(value));
         TEST_MS_EQ("", value);
 
         TEST_BOOLEAN_TRUE(stlsoft::stlsoft_C_environment_variable_exists_m(name));
