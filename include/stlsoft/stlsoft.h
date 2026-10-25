@@ -46,7 +46,7 @@
 #define STLSOFT_INCL_STLSOFT_H_STLSOFT
 #define STLSOFT_INCL_H_STLSOFT  /*!< Definition of previous include-guard symbol for stlsoft/stlsoft.h, for backwards compatibility. */
 
-#if defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
+#if defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION) &&\
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define STLSOFT_DOCUMENTATION_SKIP_SECTION
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION? */
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 24
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     614
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     615
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -479,7 +479,7 @@
 # define STLSOFT_STRINGIZE_DIRECT_a(x)                      #x
 # define STLSOFT_STRINGIZE_INDIRECT_a(x)                    STLSOFT_STRINGIZE_DIRECT_a(x)
 
-# if defined(__BORLANDC__) || \
+# if defined(__BORLANDC__) ||\
      defined(__SUNPRO_C)
 #  define STLSOFT_STRINGIZE_DIRECT_w(x)                     L"" ## STLSOFT_STRINGIZE_INDIRECT_a(x)
 # else /* ? compiler */
@@ -595,7 +595,7 @@
 /* Strict compability fix
  */
 
-#if defined(_STLSOFT_STRICT) && \
+#if defined(_STLSOFT_STRICT) &&\
     !defined(STLSOFT_STRICT)
 # define STLSOFT_STRICT
 #endif /* _STLSOFT_STRICT && !STLSOFT_STRICT */
@@ -605,7 +605,7 @@
  */
 
 #ifdef _MSC_VER
-# if 0 || \
+# if 0 ||\
      defined(__BORLANDC__) ||      /* Borland */ \
      defined(__clang__) ||         /* Clang */ \
      defined(__COMO__) ||          /* Comeau */ \
@@ -619,8 +619,8 @@
      defined(__WATCOMC__) ||       /* Watcom */ \
      0
   /* Handle Microsoft Visual C++ support. */
-#  if defined(_STLSOFT_NO_MSC_VER_SUPPORT) || \
-     (   defined(STLSOFT_STRICT) && \
+#  if defined(_STLSOFT_NO_MSC_VER_SUPPORT) ||\
+     (   defined(STLSOFT_STRICT) &&\
          !defined(_STLSOFT_MSC_VER_SUPPORT))
 #   undef _MSC_VER
 #  endif /* _STLSOFT_NO_MSC_VER_SUPPORT || (STLSOFT_STRICT && _STLSOFT_MSC_VER_SUPPORT) */
@@ -715,9 +715,9 @@
  /* ******************************** GCC ******************************** */
 # define STLSOFT_COMPILER_IS_GCC
 # define STLSOFT_COMPILER_LABEL_STRING                      "GNU C/C++"
-# if 0 || \
-     __GNUC__ < 2 || \
-     __GNUC__ > 9 && \
+# if 0 ||\
+     __GNUC__ < 2 ||\
+     __GNUC__ > 9 &&\
      0
 #  error GNU C/C++ compilers whose major version is not in the range 2-9 are not currently supported by the STLSoft libraries
 # elif __GNUC__ == 2
@@ -786,7 +786,7 @@
 #  error Only Metrowerks C++ Compiler 2.4 (CodeWarrior 7), 3.0 (CodeWarrior 8) and 3.2 (CodeWarrior 9) currently supported by the STLSoft libraries
 # endif /* __MWERKS__ */
 
-#elif defined(__SUNPRO_C) || \
+#elif defined(__SUNPRO_C) ||\
       defined(__SUNPRO_CC)
  /* ******************************* Sun Pro ***************************** */
  /* Sanity check on language/compiler */
@@ -903,7 +903,7 @@
 
 #else /* ? compiler */
  /* ********************** No recognised compiler *********************** */
-# if defined(_STLSOFT_FORCE_UNKNOWN_COMPILER) || \
+# if defined(_STLSOFT_FORCE_UNKNOWN_COMPILER) ||\
      defined(_STLSOFT_FORCE_ANY_COMPILER)
 #  define STLSOFT_COMPILER_LABEL_STRING                     "Unknown (forced) compiler"
 #  define STLSOFT_COMPILER_VERSION_STRING                   "Unknown (forced) compiler"
@@ -954,9 +954,9 @@
  * conditionals in the other libraries' source code.
  */
 
-#if 0 || \
-    defined(_STLSOFT_INCLUDE_UNDEFS) || \
-    (  defined(STLSOFT_STRICT) && \
+#if 0 ||\
+    defined(_STLSOFT_INCLUDE_UNDEFS) ||\
+    (  defined(STLSOFT_STRICT) &&\
        !defined(STLSOFT_NO_UNDEFS))
 # include <stlsoft/internal/_undefs.h>
 #endif /* _STLSOFT_INCLUDE_UNDEFS) || (STLSOFT_STRICT) && !STLSOFT_NO_UNDEFS) */
@@ -1021,7 +1021,7 @@
  */
 
 /* backwards-compatibility : STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT => STLSOFT_PPF_pragma_message_SUPPORT */
-#if defined(STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT) && \
+#if defined(STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT) &&\
     !defined(STLSOFT_PPF_pragma_message_SUPPORT)
 # define STLSOFT_PPF_pragma_message_SUPPORT
 #endif
@@ -1031,21 +1031,21 @@
 
   /* backwards-compatibility : _STLSOFT_COMPILE_VERBOSE => STLSOFT_COMPILE_VERBOSE */
 
-#if defined(_STLSOFT_COMPILE_VERBOSE) && \
+#if defined(_STLSOFT_COMPILE_VERBOSE) &&\
     !defined(STLSOFT_COMPILE_VERBOSE)
 # define STLSOFT_COMPILE_VERBOSE
 #endif
 
   /* feature-constraint : !STLSOFT_PPF_pragma_message_SUPPORT => !STLSOFT_COMPILE_VERBOSE */
 
-#if defined(STLSOFT_COMPILE_VERBOSE) && \
+#if defined(STLSOFT_COMPILE_VERBOSE) &&\
     !defined(STLSOFT_PPF_pragma_message_SUPPORT)
 # undef STLSOFT_COMPILE_VERBOSE
 #endif /* !STLSOFT_PPF_pragma_message_SUPPORT && STLSOFT_COMPILE_VERBOSE */
 
   /* feature-flag : STLSOFT_NO_COMPILE_VERBOSE => !STLSOFT_COMPILE_VERBOSE */
 
-#if defined(STLSOFT_NO_COMPILE_VERBOSE) && \
+#if defined(STLSOFT_NO_COMPILE_VERBOSE) &&\
     defined(STLSOFT_COMPILE_VERBOSE)
 # undef STLSOFT_COMPILE_VERBOSE
 #endif /* STLSOFT_NO_COMPILE_VERBOSE && STLSOFT_COMPILE_VERBOSE */
@@ -1086,13 +1086,13 @@
  */
 
 #ifndef STLSOFT_DEBUG
-# if !defined(NDEBUG) && \
+# if !defined(NDEBUG) &&\
      defined(_DEBUG)
 #  define STLSOFT_DEBUG
 # endif
 #endif /* !STLSOFT_DEBUG */
 
-#if defined(STLSOFT_NO_DEBUG) && \
+#if defined(STLSOFT_NO_DEBUG) &&\
     defined(STLSOFT_DEBUG)
 # undef STLSOFT_DEBUG
 #endif
@@ -1132,7 +1132,7 @@
 
    /* C23 (or later) */
 #  define STLSOFT_FALLTHROUGH()                             [[fallthrough]]
-# elif 0 || \
+# elif 0 ||\
        defined(STLSOFT_COMPILER_IS_CLANG) ||\
        defined(STLSOFT_COMPILER_IS_GCC) ||\
        0
@@ -1249,15 +1249,15 @@
  */
 
 /* Template support */
-#if defined(__cplusplus) && \
+#if defined(__cplusplus) &&\
     !defined(STLSOFT_CF_TEMPLATE_SUPPORT)
 # error Template support not detected. STLSoft libraries are template-based and require this support.
 #endif /* STLSOFT_CF_TEMPLATE_SUPPORT */
 
 
 /* Native 64-bit integer support */
-#if !defined(STLSOFT_CF_64BIT_INT_SUPPORT) && \
-    (   defined(STLSOFT_CF_64BIT_INT_IS___int64) || \
+#if !defined(STLSOFT_CF_64BIT_INT_SUPPORT) &&\
+    (   defined(STLSOFT_CF_64BIT_INT_IS___int64) ||\
         defined(STLSOFT_CF_64BIT_INT_IS_long_long))
 # error Definition for 64-bit support is not correct. STLSOFT_CF_64BIT_INT_SUPPORT must be defined for 64-bit support
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT && (STLSOFT_CF_64BIT_INT_IS___int64 || STLSOFT_CF_64BIT_INT_IS_long_long) */
@@ -1287,7 +1287,7 @@
 
  /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-# if defined(__STLSOFT_CF_EXCEPTION_SUPPORT) && \
+# if defined(__STLSOFT_CF_EXCEPTION_SUPPORT) &&\
      !defined(STLSOFT_CF_EXCEPTION_SUPPORT)
 #  error Configuration error: deprecated symbol __STLSOFT_CF_EXCEPTION_SUPPORT is defined when STLSOFT_CF_EXCEPTION_SUPPORT is not!
 # else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
@@ -1298,7 +1298,7 @@
 
  /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-# if defined(__STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) && \
+# if defined(__STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) &&\
      !defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT)
 #  error Configuration error: deprecated symbol __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT is defined when STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT is not!
 # else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
@@ -1366,37 +1366,37 @@
 # define _STLSOFT_FORCE_KEYWORD_TYPENAME
 #endif /* _STLSOFT_FORCE_ALL_KEYWORDS */
 
-#if !defined(STLSOFT_CF_explicit_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_explicit_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_EXPLICIT)
 # define STLSOFT_CF_explicit_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_explicit_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_EXPLICIT */
 
-#if !defined(STLSOFT_CF_mutable_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_mutable_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_MUTABLE)
 # define STLSOFT_CF_mutable_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_mutable_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_MUTABLE */
 
-#if !defined(STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
 # define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
 # define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
 # define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
 # define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) &&\
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
 # define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
@@ -1566,7 +1566,7 @@
  *
  */
 
-#if !defined(STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT) && \
+#if !defined(STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT) &&\
     defined(STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT)
 
 # error Cannot rely on use of boolean as pointer to member for operator !
@@ -1586,15 +1586,15 @@
  * respect to other previously released projects
  */
 
-#if (   defined(_ATLSTL_VER) && \
-        _ATLSTL_VER <= 0x01070181) || \
-    (   defined(_COMSTL_VER) && \
-        _COMSTL_VER <= 0x010a0181) || \
-    (   defined(_MFCSTL_VER) && \
-        _MFCSTL_VER <= 0x01060181) || \
-    (   defined(_UNIXSTL_VER) && \
-        _UNIXSTL_VER <= 0x01080181) || \
-    (   defined(_WINSTL_VER) && \
+#if (   defined(_ATLSTL_VER) &&\
+        _ATLSTL_VER <= 0x01070181) ||\
+    (   defined(_COMSTL_VER) &&\
+        _COMSTL_VER <= 0x010a0181) ||\
+    (   defined(_MFCSTL_VER) &&\
+        _MFCSTL_VER <= 0x01060181) ||\
+    (   defined(_UNIXSTL_VER) &&\
+        _UNIXSTL_VER <= 0x01080181) ||\
+    (   defined(_WINSTL_VER) &&\
         _WINSTL_VER <= 0x010c0181)
 
 # ifdef STLSOFT_STRICT
@@ -1619,20 +1619,20 @@
 #ifndef STLSOFT_OBSOLETE
 
 # if 0
-# elif defined(__cplusplus) && \
+# elif defined(__cplusplus) &&\
        __cplusplus >= 201402L
 
 #  define STLSOFT_DEPRECATED_(msg)                          [[deprecated(msg)]]
-# elif 0 || \
-       defined(STLSOFT_COMPILER_IS_GCC) || \
-       defined(STLSOFT_COMPILER_IS_CLANG) || \
+# elif 0 ||\
+       defined(STLSOFT_COMPILER_IS_GCC) ||\
+       defined(STLSOFT_COMPILER_IS_CLANG) ||\
        0
 
 #  define STLSOFT_DEPRECATED_(msg)                          __attribute__((deprecated))
-# elif defined(_MSC_VER) && \
-     (   _MSC_VER >= 1500 || \
-         (   _MSC_VER >= 1400 && \
-             defined(_MSC_FULL_VER) && \
+# elif defined(_MSC_VER) &&\
+     (   _MSC_VER >= 1500 ||\
+         (   _MSC_VER >= 1400 &&\
+             defined(_MSC_FULL_VER) &&\
              _MSC_FULL_VER >= 140050320))
 
 #  define STLSOFT_DEPRECATED_(msg)                          __declspec(deprecated(msg))
@@ -1681,7 +1681,7 @@
  * @{
  */
 
-#if defined(_STLSOFT_NO_ASSERT) && \
+#if defined(_STLSOFT_NO_ASSERT) &&\
     defined(STLSOFT_CF_ASSERT_SUPPORT)
 # undef STLSOFT_CF_ASSERT_SUPPORT
 #endif /* _STLSOFT_NO_ASSERT && STLSOFT_CF_ASSERT_SUPPORT */
@@ -1727,11 +1727,11 @@
 #   include __STLSOFT_CF_ASSERT_INCLUDE_NAME
 #  endif /* !__STLSOFT_CF_ASSERT_INCLUDE_NAME */
 # endif /* __STLSOFT_CF_USE_cassert */
-# if !defined(STLSOFT_ASSERT) && \
+# if !defined(STLSOFT_ASSERT) &&\
      defined(stlsoft_assert)
 
 #  define STLSOFT_ASSERT                                    stlsoft_assert
-# elif defined(STLSOFT_ASSERT) && \
+# elif defined(STLSOFT_ASSERT) &&\
        defined(stlsoft_assert)
 
 #  error Your compiler discrimination file cannot define both STLSOFT_ASSERT and stlsoft_assert. The former is the new version, and replaces the latter
@@ -1781,11 +1781,11 @@
 # elif defined(STLSOFT_COMPILER_IS_WATCOM)
 
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT(expr)
-# elif 0 || \
-       defined(STLSOFT_COMPILER_IS_COMO) || \
-       defined(STLSOFT_COMPILER_IS_CLANG) || \
-       defined(STLSOFT_COMPILER_IS_GCC) || \
-       defined(STLSOFT_COMPILER_IS_MWERKS) || \
+# elif 0 ||\
+       defined(STLSOFT_COMPILER_IS_COMO) ||\
+       defined(STLSOFT_COMPILER_IS_CLANG) ||\
+       defined(STLSOFT_COMPILER_IS_GCC) ||\
+       defined(STLSOFT_COMPILER_IS_MWERKS) ||\
        0
 
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT((msg && (expr)))
@@ -1829,16 +1829,16 @@
 #elif defined(STLSOFT_CF_STATIC_ASSERT_SUPPORT)
 
 # if 0
-# elif 0 || \
-       (    defined(STLSOFT_COMPILER_IS_GCC) && \
-            STLSOFT_GCC_VER >= 40800) || \
+# elif 0 ||\
+       (    defined(STLSOFT_COMPILER_IS_GCC) &&\
+            STLSOFT_GCC_VER >= 40800) ||\
        0
 
 #  define STLSOFT_STATIC_ASSERT(expr)                       do { typedef int ai[(expr) ? 1 : -1] __attribute__((unused)); } while (0)
-# elif 0 || \
-     defined(STLSOFT_COMPILER_IS_CLANG) || \
-     defined(STLSOFT_COMPILER_IS_GCC) || \
-     defined(STLSOFT_COMPILER_IS_INTEL) || \
+# elif 0 ||\
+     defined(STLSOFT_COMPILER_IS_CLANG) ||\
+     defined(STLSOFT_COMPILER_IS_GCC) ||\
+     defined(STLSOFT_COMPILER_IS_INTEL) ||\
      0
 
 #  define STLSOFT_STATIC_ASSERT(expr)                       do { typedef int ai[(expr) ? 1 : -1]; } while (0)
@@ -1983,7 +1983,7 @@
  */
 
 #if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+#elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
       STLSOFT_MSVC_VER >= 140050320
 
 # define STLSOFT_DECLARE_DEPRECATION()                                      \
@@ -2134,7 +2134,7 @@ namespace stlsoft
  * using namespaces or, if not, does nothing
  */
 
-#if !defined(STLSOFT_NO_NAMESPACE) || \
+#if !defined(STLSOFT_NO_NAMESPACE) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define STLSOFT_NS_QUAL(x)                                 ::stlsoft::x
 # define STLSOFT_NS_USING(x)                                using ::stlsoft::x;
@@ -2160,7 +2160,7 @@ namespace stlsoft
  * <b>std</b> namespace or, if not, does nothing
  */
 
-#if defined(STLSOFT_CF_std_NAMESPACE) || \
+#if defined(STLSOFT_CF_std_NAMESPACE) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define STLSOFT_NS_QUAL_STD(x)      ::std::x
 # define STLSOFT_NS_QUAL_STD_(x)     std::x
@@ -2181,7 +2181,7 @@ namespace stlsoft
  * resolves to X
  */
 
-#if defined(__cplusplus) || \
+#if defined(__cplusplus) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define STLSOFT_NS_GLOBAL(symbol)                          ::symbol
 #else /* ? __cplusplus */
@@ -2195,7 +2195,7 @@ namespace stlsoft
 /* This stuff allows worker namespaces to be declared and used regardless of
  * whether namespaces are supported and allowed
  */
-#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
+#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) &&\
     !defined(STLSOFT_NO_NAMESPACES)
 
 # define STLSOFT_OPEN_WORKER_NS_(ns)                        namespace ns {
@@ -2216,9 +2216,9 @@ namespace stlsoft
  */
 
 #if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER >= 1310 && \
-      !defined(_WIN64) && \
+#elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
+      _MSC_VER >= 1310 &&\
+      !defined(_WIN64) &&\
       defined(_Wp64)
 
 # define STLSOFT_WARN_64                                    __w64
@@ -2241,7 +2241,7 @@ namespace stlsoft
 
  /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 
-# if defined(__STLSOFT_CF_NATIVE_BOOL_SUPPORT) && \
+# if defined(__STLSOFT_CF_NATIVE_BOOL_SUPPORT) &&\
      !defined(STLSOFT_CF_BUILTIN_bool_SUPPORT)
 
 #  error Configuration error: deprecated symbol __STLSOFT_CF_NATIVE_BOOL_SUPPORT is defined when STLSOFT_CF_BUILTIN_bool_SUPPORT is not!
@@ -2253,7 +2253,7 @@ namespace stlsoft
 
  /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
-# if defined(__STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT) && \
+# if defined(__STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT) &&\
      !defined(STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT)
 #  error Configuration error: deprecated symbol __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT is defined when STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT is not!
 # else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
@@ -2264,7 +2264,7 @@ namespace stlsoft
 
  /* STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT */
 
-# if defined(__STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT) && \
+# if defined(__STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT) &&\
      !defined(STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
 #  error Configuration error: deprecated symbol __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT is defined when STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT is not!
 # else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
@@ -2275,8 +2275,8 @@ namespace stlsoft
 
  /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
-# if (  defined(STLSOFT_CF_INT_DISTINCT_TYPE) || \
-        defined(__STLSOFT_CF_INT_DISTINCT_TYPE)) && \
+# if (  defined(STLSOFT_CF_INT_DISTINCT_TYPE) ||\
+        defined(__STLSOFT_CF_INT_DISTINCT_TYPE)) &&\
      !defined(STLSOFT_CF_INT_DISTINCT_INT_TYPE)
 #  error Configuration error: one or both of the deprecated symbols STLSOFT_CF_INT_DISTINCT_TYPE or __STLSOFT_CF_INT_DISTINCT_TYPE is defined when STLSOFT_CF_INT_DISTINCT_INT_TYPE is not!
 # else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
@@ -2288,8 +2288,8 @@ namespace stlsoft
 
  /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-# if (  defined(STLSOFT_CF_LONG_DISTINCT_TYPE) || \
-        defined(__STLSOFT_CF_LONG_DISTINCT_TYPE)) && \
+# if (  defined(STLSOFT_CF_LONG_DISTINCT_TYPE) ||\
+        defined(__STLSOFT_CF_LONG_DISTINCT_TYPE)) &&\
      !defined(STLSOFT_CF_LONG_DISTINCT_INT_TYPE)
 #  error Configuration error: one or both of the deprecated symbols STLSOFT_CF_LONG_DISTINCT_TYPE or __STLSOFT_CF_LONG_DISTINCT_TYPE is defined when STLSOFT_CF_LONG_DISTINCT_INT_TYPE is not!
 # else /* ? STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
@@ -2602,8 +2602,8 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>explicit</b> on translators that support the keyword, for
  * C++11 or later, otherwise to nothing.
  */
-#if (   defined(__cplusplus) && \
-        __cplusplus >= 201103L) || \
+#if (   defined(__cplusplus) &&\
+        __cplusplus >= 201103L) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_constexpr_2011_k                                constexpr
 #else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
@@ -2615,8 +2615,8 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>explicit</b> on translators that support the keyword, for
  * C++14 or later, otherwise to nothing.
  */
-#if (   defined(__cplusplus) && \
-        __cplusplus >= 201402L) || \
+#if (   defined(__cplusplus) &&\
+        __cplusplus >= 201402L) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_constexpr_2014_k                                constexpr
 #else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
@@ -2628,8 +2628,8 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>explicit</b> on translators that support the keyword, for
  * C++17 or later, otherwise to nothing.
  */
-#if (   defined(__cplusplus) && \
-        __cplusplus >= 201703L) || \
+#if (   defined(__cplusplus) &&\
+        __cplusplus >= 201703L) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_constexpr_2017_k                                constexpr
 #else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
@@ -2641,8 +2641,8 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>explicit</b> on translators that support the keyword, for
  * C++20 or later, otherwise to nothing.
  */
-#if (   defined(__cplusplus) && \
-        __cplusplus >= 202002L) || \
+#if (   defined(__cplusplus) &&\
+        __cplusplus >= 202002L) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_constexpr_2020_k                                constexpr
 #else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
@@ -2654,8 +2654,8 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>explicit</b> on translators that support the keyword, for
  * C++23 or later, otherwise to nothing.
  */
-#if (   defined(__cplusplus) && \
-        __cplusplus >= 202302L) || \
+#if (   defined(__cplusplus) &&\
+        __cplusplus >= 202302L) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_constexpr_2023_k                                constexpr
 #else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
@@ -2667,7 +2667,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>explicit</b> on translators that support the keyword,
  * otherwise to nothing.
  */
-#if defined(STLSOFT_CF_explicit_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_explicit_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_explicit_k                                      explicit
 #else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
@@ -2679,7 +2679,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>final</b> on translators that support the keyword,
  * otherwise to nothing.
  */
-#if defined(STLSOFT_CF_final_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_final_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_final_k                                         final
 #else /* ? STLSOFT_CF_final_KEYWORD_SUPPORT */
@@ -2691,7 +2691,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>mutable</b> on translators that support the keyword,
  * otherwise to nothing.
  */
-#if defined(STLSOFT_CF_mutable_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_mutable_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_mutable_k                                       mutable
 #else /* ? STLSOFT_CF_mutable_KEYWORD_SUPPORT */
@@ -2703,7 +2703,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>noexcept</b> on translators that support the keyword,
  * otherwise to nothing.
  */
-#if defined(STLSOFT_CF_noexcept_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_noexcept_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_noexcept_k                                      noexcept
 #else /* ? STLSOFT_CF_noexcept_KEYWORD_SUPPORT */
@@ -2715,7 +2715,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>nullptr</b> on translators that support the keyword,
  * otherwise to <b>NULL</b>.
  */
-#if defined(STLSOFT_CF_nullptr_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_nullptr_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_nullptr_k                                       nullptr
 #else /* ? STLSOFT_CF_nullptr_KEYWORD_SUPPORT */
@@ -2727,7 +2727,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>override</b> on translators that support the keyword,
  * otherwise to nothing.
  */
-#if defined(STLSOFT_CF_override_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_override_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_override_k                                      override
 #else /* ? STLSOFT_CF_override_KEYWORD_SUPPORT */
@@ -2741,7 +2741,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  *
  * Used for template parameter declarations
  */
-#if defined(STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_param_k                                typename
 #else /* ? STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT */
@@ -2755,7 +2755,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  *
  * Used for type disambiguation inside template bodies
  */
-#if defined(STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_k                                 typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT */
@@ -2770,7 +2770,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  *
  * Used for type disambiguation in default template arguments
  */
-#if defined(STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_def_k                             typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
@@ -2786,7 +2786,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Used for type disambiguation inside initialiser lists in class template
  * constructors
  */
-#if defined(STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_mil_k                             typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
@@ -2801,7 +2801,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  *
  * Used for type disambiguation the return types in templates
  */
-#if defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_ret_k                             typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT */
@@ -2813,7 +2813,7 @@ typedef ss_streamoff_t                                      streamoff_t;    /*!<
  * Evaluates to <b>template</b> on translators that support its use for type
  * qualification
  */
-#if defined(STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT) || \
+#if defined(STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT) ||\
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_template_qual_k                                 template
 #else /* ? STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT */
@@ -2880,13 +2880,13 @@ template <ss_typename_param_k X>
 # if 0
 # elif __cplusplus >= 201703L
 [[noreturn]]
-# elif 0 || \
-       defined(STLSOFT_COMPILER_IS_CLANG) || \
-       defined(STLSOFT_COMPILER_IS_GCC) || \
+# elif 0 ||\
+       defined(STLSOFT_COMPILER_IS_CLANG) ||\
+       defined(STLSOFT_COMPILER_IS_GCC) ||\
        0
 __attribute__((noreturn))
-# elif 0 || \
-       defined(STLSOFT_COMPILER_IS_MSVC) || \
+# elif 0 ||\
+       defined(STLSOFT_COMPILER_IS_MSVC) ||\
        0
 __declspec(noreturn)
 # endif
@@ -2896,7 +2896,7 @@ stlsoft_CXX_throw(
     X const& x
 )
 {
-#  if   defined(STLSOFT_COMPILER_IS_MSVC) && \
+#  if   defined(STLSOFT_COMPILER_IS_MSVC) &&\
         _MSC_VER < 1200
     X const* px =   &x;
 
@@ -2991,7 +2991,7 @@ stlsoft_CXX_throw(
 # elif defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS)
 
 #  define stlsoft_throw_0()
-# elif defined(STLSOFT_CF_noexcept_KEYWORD_SUPPORT) || \
+# elif defined(STLSOFT_CF_noexcept_KEYWORD_SUPPORT) ||\
        defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 #  define stlsoft_throw_0()                                 ss_noexcept_k
@@ -3004,9 +3004,9 @@ stlsoft_CXX_throw(
 # endif
 
 
-# if !defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS) && \
-     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
-     defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) && \
+# if !defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS) &&\
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) &&\
+     defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) &&\
      defined(STLSOFT_USE_EXCEPTION_SPECIFICATIONS)
 
 #  define stlsoft_throw_1(x1)                               throw (x1)
@@ -3251,7 +3251,7 @@ size_t            s_vi  = STLSOFT_NUM_ELEMENTS(vi);   // Error
 
 # define STLSOFT_NUM_ELEMENTS_(ar)                          (sizeof(ar) / sizeof(0[(ar)]))
 
-# if defined(__cplusplus) && \
+# if defined(__cplusplus) &&\
      defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 
 #  if 0/* defined(STLSOFT_COMPILER_IS_GCC) */
@@ -3383,12 +3383,12 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
 #  undef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
 # endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 
-# if 1 && \
-     !defined(STLSOFT_COMPILER_IS_CLANG) && \
-     !defined(STLSOFT_COMPILER_IS_COMO) && \
-     !defined(STLSOFT_COMPILER_IS_GCC) && \
-     !defined(STLSOFT_COMPILER_IS_INTEL) && \
-     !defined(STLSOFT_COMPILER_IS_WATCOM) && \
+# if 1 &&\
+     !defined(STLSOFT_COMPILER_IS_CLANG) &&\
+     !defined(STLSOFT_COMPILER_IS_COMO) &&\
+     !defined(STLSOFT_COMPILER_IS_GCC) &&\
+     !defined(STLSOFT_COMPILER_IS_INTEL) &&\
+     !defined(STLSOFT_COMPILER_IS_WATCOM) &&\
      1
 
 #  define STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
@@ -3434,7 +3434,7 @@ stlsoft_destroy_instance_fn(
  *
  * Destroys the given instance \c P of the given type (\c T1 and \c T2)
  */
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      defined(STLSOFT_COMPILER_IS_DMC)
 
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               do { (P)->~T1(); } while (0)
@@ -3510,31 +3510,31 @@ private:
  * However, it gives the expected behaviour for all compilers currently
  * supported by STLSoft
  */
-#if 0 || \
-    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
-    defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    defined(STLSOFT_COMPILER_IS_CLANG) || \
-    defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_DMC) || \
-    (   defined(STLSOFT_COMPILER_IS_GCC) && \
-        __GNUC__ < 3) || \
-    defined(STLSOFT_COMPILER_IS_INTEL) || \
-    defined(STLSOFT_COMPILER_IS_MSVC) || \
-    defined(STLSOFT_COMPILER_IS_VECTORC) || \
-    defined(STLSOFT_COMPILER_IS_SUNPRO) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM) || \
+#if 0 ||\
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
+    defined(STLSOFT_COMPILER_IS_BORLAND) ||\
+    defined(STLSOFT_COMPILER_IS_CLANG) ||\
+    defined(STLSOFT_COMPILER_IS_COMO) ||\
+    defined(STLSOFT_COMPILER_IS_DMC) ||\
+    (   defined(STLSOFT_COMPILER_IS_GCC) &&\
+        __GNUC__ < 3) ||\
+    defined(STLSOFT_COMPILER_IS_INTEL) ||\
+    defined(STLSOFT_COMPILER_IS_MSVC) ||\
+    defined(STLSOFT_COMPILER_IS_VECTORC) ||\
+    defined(STLSOFT_COMPILER_IS_SUNPRO) ||\
+    defined(STLSOFT_COMPILER_IS_WATCOM) ||\
     0
 
 # define    STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T)     friend T
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)
 
 # define    STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T)     friend class T
-#elif defined(STLSOFT_COMPILER_IS_GCC) && \
+#elif defined(STLSOFT_COMPILER_IS_GCC) &&\
       __GNUC__ >= 3
 
-# if __GNUC__ >= 4 || \
-     (  __GNUC__ == 3 && \
-        __GNUC_MINOR__ >= 3 && \
+# if __GNUC__ >= 4 ||\
+     (  __GNUC__ == 3 &&\
+        __GNUC_MINOR__ >= 3 &&\
         !defined(__APPLE__))
 
   /* This version of the technique for GCC 3.3+ was suggested by Lars Rune
@@ -3600,19 +3600,19 @@ STLSOFT_CLOSE_WORKER_NS_(template_ex)
  *
  * Used to suppress unused variable warnings
  */
-#if defined(__cplusplus) && \
+#if defined(__cplusplus) &&\
     (   0 ||\
         defined(STLSOFT_COMPILER_IS_COMO) ||\
         (   1 &&\
             defined(STLSOFT_COMPILER_IS_GCC) &&\
             __GNUC__ >= 3 &&\
             !defined(_WIN32) &&\
-            1) || \
-        defined(STLSOFT_COMPILER_IS_INTEL) || \
+            1) ||\
+        defined(STLSOFT_COMPILER_IS_INTEL) ||\
         (   1 &&\
-            defined(STLSOFT_COMPILER_IS_MSVC) && \
+            defined(STLSOFT_COMPILER_IS_MSVC) &&\
             _MSC_VER >= 1600 &&\
-            1)|| \
+            1)||\
         defined(STLSOFT_COMPILER_IS_WATCOM) ||\
         0)
 template <ss_typename_param_k T>
@@ -3682,7 +3682,7 @@ inline void stlsoft_suppress_unused_func(size_t )
  * Used to define an unused parameter for C compilation and/or documentation
  * processing, but not for C++ compilation
  */
-#if defined(__cplusplus) && \
+#if defined(__cplusplus) &&\
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 # define STLSOFT_UNNAMED_PARAM(p)
@@ -3697,7 +3697,7 @@ inline void stlsoft_suppress_unused_func(size_t )
  * Used to suppress unused parameter warnings (in C compilation) for
  * parameters defined by STLSOFT_UNNAMED_PARAM()
  */
-#if defined(__cplusplus) && \
+#if defined(__cplusplus) &&\
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 # define STLSOFT_SUPPRESS_UNNAMED_PARAM(p)
@@ -3853,7 +3853,7 @@ inline void stlsoft_suppress_unused_func(size_t )
 # endif
 
 STLSOFT_INLINE
-# if defined(STLSOFT_CF_constexpr_KEYWORD_SUPPORT) && \
+# if defined(STLSOFT_CF_constexpr_KEYWORD_SUPPORT) &&\
      !defined(STLSOFT_COMPILER_IS_MSVC)
 constexpr
 # endif
@@ -3868,7 +3868,7 @@ stlsoft_C_always_false_(void) STLSOFT_NOEXCEPT
 }
 
 STLSOFT_INLINE
-# if defined(STLSOFT_CF_constexpr_KEYWORD_SUPPORT) && \
+# if defined(STLSOFT_CF_constexpr_KEYWORD_SUPPORT) &&\
      !defined(STLSOFT_COMPILER_IS_MSVC)
 constexpr
 # endif
@@ -4139,7 +4139,7 @@ address(
 
 # ifdef STLSOFT_NO_NAMESPACE
 
-#  if defined(STLSOFT_COMPILER_IS_BORLAND) && \
+#  if defined(STLSOFT_COMPILER_IS_BORLAND) &&\
       __BORLANDC__ < 0x0550
 
 #   include <new.h>
@@ -4150,10 +4150,10 @@ address(
 # else /* ? STLSOFT_NO_NAMESPACE */
 
 #  if 0 ||\
-      ( defined(STLSOFT_COMPILER_IS_DMC) && \
-        __DMC__ < 0x0833) || \
-      ( defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1300) || \
+      ( defined(STLSOFT_COMPILER_IS_DMC) &&\
+        __DMC__ < 0x0833) ||\
+      ( defined(STLSOFT_COMPILER_IS_MSVC) &&\
+        _MSC_VER < 1300) ||\
       0
 
 inline

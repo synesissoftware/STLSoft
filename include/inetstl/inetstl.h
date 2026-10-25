@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     584
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     585
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -345,8 +345,8 @@ x86-64
 
 #if 0
 #elif 0 ||\
-      defined(__alpha__) || \
-      defined(__alpha) || \
+      defined(__alpha__) ||\
+      defined(__alpha) ||\
       defined(_M_ALPHA) ||\
       0
 
@@ -361,16 +361,16 @@ x86-64
 # define INETSTL_ARCH_IS_ARM64
 # define INETSTL_ARCH_LABEL_STRING                          "ARM64"
 #elif 0 ||\
-      defined(__hppa__) || \
+      defined(__hppa__) ||\
       defined(__hppa) ||\
       0
 
 # define INETSTL_ARCH_IS_HPPA
 # define INETSTL_ARCH_LABEL_STRING                          "HP/PA"
 #elif 0 ||\
-      defined(__ia64__) || \
-      defined(__ia64) || \
-      defined(_IA64_) || \
+      defined(__ia64__) ||\
+      defined(__ia64) ||\
+      defined(_IA64_) ||\
       defined(_M_IA64) ||\
       0
 
@@ -378,17 +378,17 @@ x86-64
 # define INETSTL_ARCH_IS_IA64
 # define INETSTL_ARCH_LABEL_STRING                          "IA-64"
 #elif 0 ||\
-      defined(__POWERPC__) || \
-      defined(__ppc__) || \
-      defined(__ppc) || \
+      defined(__POWERPC__) ||\
+      defined(__ppc__) ||\
+      defined(__ppc) ||\
       defined(_M_PPC) ||\
-      defined(_POWER) || \
+      defined(_POWER) ||\
       0
 
 # define INETSTL_ARCH_IS_POWERPC
 # define INETSTL_ARCH_LABEL_STRING                          "PowerPC"
 #elif 0 ||\
-      defined(__sparc__) || \
+      defined(__sparc__) ||\
       defined(__sparc) ||\
       0
 
@@ -396,24 +396,24 @@ x86-64
 # define INETSTL_ARCH_IS_SPARC
 # define INETSTL_ARCH_LABEL_STRING                          "Sparc"
 #elif 0 ||\
-      defined(__amd64__) || \
-      defined(__amd64) || \
+      defined(__amd64__) ||\
+      defined(__amd64) ||\
       defined(__x86_64__) ||\
       defined(__x86_64) ||\
-      defined(_AMD64_) || \
-      defined(_M_AMD64) || \
-      defined(_M_X64) || \
+      defined(_AMD64_) ||\
+      defined(_M_AMD64) ||\
+      defined(_M_X64) ||\
       0
 
 # define INETSTL_ARCH_IS_INTEL
 # define INETSTL_ARCH_IS_X64
 # define INETSTL_ARCH_LABEL_STRING                          "x86-64"
 #elif 0 ||\
-      defined(__i386__) || \
-      defined(__i386) || \
-      defined(__X86__) || \
+      defined(__i386__) ||\
+      defined(__i386) ||\
+      defined(__X86__) ||\
       defined(_M_IX86) ||\
-      defined(_X86_) || \
+      defined(_X86_) ||\
       0
 
 # define INETSTL_ARCH_IS_INTEL
@@ -431,31 +431,31 @@ x86-64
  */
 
 #if 0
-#elif 0 || \
-      defined(unix) || \
-      defined(UNIX) || \
-      defined(__unix__) || \
-      defined(__unix) || \
-      defined(__MACH__) || \
+#elif 0 ||\
+      defined(unix) ||\
+      defined(UNIX) ||\
+      defined(__unix__) ||\
+      defined(__unix) ||\
+      defined(__MACH__) ||\
       0
 # define INETSTL_OS_IS_UNIX
-#elif 0 || \
-      defined(WIN64) || \
-      defined(_WIN64) || \
-      defined(__WIN64__) || \
+#elif 0 ||\
+      defined(WIN64) ||\
+      defined(_WIN64) ||\
+      defined(__WIN64__) ||\
       0
 # define INETSTL_OS_IS_WIN64
-#elif 0 || \
-      defined(WIN32) || \
-      defined(_WIN32) || \
-      defined(__WIN32__) || \
+#elif 0 ||\
+      defined(WIN32) ||\
+      defined(_WIN32) ||\
+      defined(__WIN32__) ||\
       0
 # define INETSTL_OS_IS_WIN32
 #else /* ? operating system */
 # error Operating system not discriminated. Only UNIX, Win32 and Win64 are currently recognised by PlatformSTL
 #endif /* operating system */
 
-#if defined(INETSTL_OS_IS_WIN32) || \
+#if defined(INETSTL_OS_IS_WIN32) ||\
     defined(INETSTL_OS_IS_WIN64)
 # define INETSTL_OS_IS_WINDOWS
 #endif /* INETSTL_OS_IS_WIN32 || INETSTL_OS_IS_WIN64 */
@@ -478,19 +478,19 @@ x86-64
 
 
 #if 0 ||\
-    defined(__FreeBSD__) || \
-    defined(__NetBSD__) || \
-    defined(__OpenBSD__) || \
-    defined(__bsdi__) || \
+    defined(__FreeBSD__) ||\
+    defined(__NetBSD__) ||\
+    defined(__OpenBSD__) ||\
+    defined(__bsdi__) ||\
     defined(_SYSTYPE_BSD) ||\
     0
 # define INETSTL_OSFAMILY_IS_BSD
 #endif /* bsd */
 
 #if 0 ||\
-    defined(__sysv__) || \
-    defined(__SVR4) || \
-    defined(__svr4__) || \
+    defined(__sysv__) ||\
+    defined(__SVR4) ||\
+    defined(__svr4__) ||\
     defined(_SYSTYPE_SVR4) ||\
     0
 # define INETSTL_OSFAMILY_IS_SVR4
@@ -741,7 +741,7 @@ x86-64
  */
 
 #ifndef INETSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::inetstl */
 /** The \c inetstl namespace contains all components
@@ -891,10 +891,10 @@ typedef is_streamoff_t                                      streamoff_t;    /*!<
  */
 
 #if 0
-#elif 0 || \
-      defined(_WIN32) || \
-      defined(WIN32) || \
-      defined(WIN64) || \
+#elif 0 ||\
+      defined(_WIN32) ||\
+      defined(WIN32) ||\
+      defined(WIN64) ||\
       0
 
 /** \def INETSTL_CONST_MAX_PATH
@@ -982,7 +982,7 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
  */
 
 #ifndef INETSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace inetstl */
 # else

@@ -476,7 +476,7 @@ namespace platformstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
+#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) &&\
     defined(__cplusplus)
 
 # if defined(PLATFORMSTL_OS_IS_UNIX)

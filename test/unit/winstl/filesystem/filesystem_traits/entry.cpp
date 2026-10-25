@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 20th October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1931,7 +1931,7 @@ static void TEST_str_fs_compare()
         }
     }
 }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -9,10 +9,14 @@
 
 * fixes:
   * **stlsoft/memory/auto_buffer.hpp** — on GCC 12+, marked `deallocate_()` `STLSOFT_NOINLINE` and suppressed `-Wfree-nonheap-object` around the external-buffer `delete`, which GCC misattributes to the internal buffer;
+  * **stlsoft/string/c_string/strnistrn.h** — `stlsoft_C_strnistrn()` and `stlsoft_C_wcsnistrn()` compared only the first character of each string in the match loop (`*s1` / `*s2` rather than `s1[i]` / `s2[i]`), so a match could be reported for a non-matching needle; the wide form also now uses `towupper()`;
 * testing:
   * applies xTests' null-ptr macros;
+  * new unit tests (C and C++) for `stlsoft_C_strnchr()`, `stlsoft_C_strnrchr()`, `stlsoft_C_strnstrn()`, `stlsoft_C_strnistrn()`, and `stlsoft_C_strnpbrkn()`, and expanded `strnicmp` tests, now under **test/unit/stlsoft/string/c_string/**;
+  * requires **xTests** 0.28 or later;
 * documentation and boilerplate:
   * standardised use of alpha/beta/rc nomenclature throughout the repo;
+  * GitHub Actions **ACE**, **ATL**, and **MFC** cells still build the whole tree and execute only the programs those libraries add (`test.unit.acestl.*`, `test.unit.mfcstl.*`, `test.unit.versions`, and the scratch version reporters **test.scratch.versions.stdio**, **test.scratch.versions.iostreams**, and **test.scratch.versions.format** when `std::format` is available); examples, component tests, the rest of the scratch suite, and performance tests stay on the lean cell of the same compiler and OS;
 
 
 ## 1.11.1 - 21st October 2026
