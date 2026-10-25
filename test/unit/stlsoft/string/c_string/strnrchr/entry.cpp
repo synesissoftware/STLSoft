@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnrchr() and wcsnrchr().
  *
  * Created: 23rd October 2026
- * Updated: 23rd October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,8 +55,7 @@ namespace
     static void TEST_c_string_wcsnrchr_HIGH_BIT();
 
     static wchar_t const* wcsnrchr_both_(wchar_t const* s, size_t n, int ch);
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -269,8 +268,7 @@ static void TEST_c_string_wcsnrchr_HIGH_BIT()
     TEST_PTR_EQ(s, wcsnrchr_both_(s, 1, L'a'));
     TEST_PTR_NULL(wcsnrchr_both_(s, 3, L'x'));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

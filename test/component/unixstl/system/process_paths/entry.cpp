@@ -6,7 +6,7 @@
  *          including resizeable-buffer overloads.
  *
  * Created: 15th October 2026
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -345,7 +345,7 @@ static void TEST_SIZE_QUERY()
     size_t const        cch     =   traits_m_t::get_current_process_path(0, NULL, &pFile);
 
     TEST_INT_EQ(expected.size() + 1, cch);
-    TEST_PTR_EQ(NULL, pFile);
+    TEST_PTR_NULL(pFile);
 }
 
 static void TEST_EXACT_FIT()
@@ -402,7 +402,7 @@ static void TEST_INSUFFICIENT_SPACE()
         size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
         TEST_INT_EQ(len + 1, cch);
-        TEST_PTR_EQ(NULL, pFile);
+        TEST_PTR_NULL(pFile);
         TEST_CHAR_EQ('\0', buff[cchBuff - 1]);
         TEST_MS_EQ_N(expected.c_str(), &buff[0], cchBuff - 1);
     }
@@ -414,7 +414,7 @@ static void TEST_INSUFFICIENT_SPACE()
         size_t const    cch     =   traits_m_t::get_current_process_path(STLSOFT_NUM_ELEMENTS(buff), buff, &pFile);
 
         TEST_INT_EQ(len + 1, cch);
-        TEST_PTR_EQ(NULL, pFile);
+        TEST_PTR_NULL(pFile);
         TEST_CHAR_EQ('\0', buff[0]);
     }
 }
@@ -467,7 +467,7 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT()
     size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_EQ(len + 1, cch);
-    TEST_PTR_EQ(NULL, pFile);
+    TEST_PTR_NULL(pFile);
 }
 
 static void TEST_RESIZEABLE_auto_buffer_SUCCESS()

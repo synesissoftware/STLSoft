@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `ACE_String_Base`.
  *
  * Created: 7th August 2026
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,8 +110,8 @@ static void TEST_empty_string()
     TEST_INT_EQ(0u, stlsoft::c_str_len_a(s));
     TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-    TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_a(s));
-    TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
+    TEST_PTR_NULL(stlsoft::c_str_ptr_null_a(s));
+    TEST_PTR_NULL(stlsoft::c_str_ptr_null(s));
 
     TEST_MS_EQ("", stlsoft::c_str_ptr_a(s));
     TEST_MS_EQ("", stlsoft::c_str_ptr(s));
@@ -131,7 +131,7 @@ static void TEST_non_empty_string()
     TEST_MS_EQ(expected, stlsoft::c_str_data_a(s));
     TEST_MS_EQ(expected, stlsoft::c_str_data(s));
 
-    TEST_PTR_NE(NULL, stlsoft::c_str_ptr_null_a(s));
+    TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_null_a(s));
     TEST_MS_EQ(expected, stlsoft::c_str_ptr_null_a(s));
 }
 

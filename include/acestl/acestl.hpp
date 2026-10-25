@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 20th October 2026
+ * Updated: 25th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      58
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -142,9 +142,9 @@
 # define _ACESTL_VER_1_0_4     0x00010004  /*!< Version 1.0.4 */
 # define _ACESTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 (STLSoft 1.9.1) */
 # define _ACESTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 (STLSoft 1.9.25) */
-# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1 beta 1 (STLSoft 1.10.1 b1) */
-# define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1 beta 2 (STLSoft 1.10.1 beta 26) */
-# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1 alpha 8) */
+# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1-beta1 (STLSoft 1.10.1 b1) */
+# define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1-beta2 (STLSoft 1.10.1-beta26) */
+# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1-alpha8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
@@ -199,7 +199,7 @@
  */
 
 #if _STLSOFT_VER < 0x010a019a
-# error This version of the ACESTL libraries requires STLSoft version 1.10.1 beta 26, or later
+# error This version of the ACESTL libraries requires STLSoft version 1.10.1-beta26, or later
 #endif /* _STLSOFT_VER */
 
 

@@ -6,7 +6,7 @@
  *          and wide-character), including resizeable-buffer overloads.
  *
  * Created: 15th October 2026
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -246,7 +246,7 @@ static void TEST_size_QUERY_m()
 
     /* Demand may exceed len+1 (WinSTL GetModuleFileName size protocol). */
     TEST_INT_GE(expected.size() + 1, cch);
-    TEST_PTR_EQ(NULL, pFile);
+    TEST_PTR_NULL(pFile);
 }
 
 static void TEST_size_QUERY_w()
@@ -259,7 +259,7 @@ static void TEST_size_QUERY_w()
     size_t const        cch     =   traits_w_t::get_current_process_path(0, NULL, &pFile);
 
     TEST_INT_GE(expected.size() + 1, cch);
-    TEST_PTR_EQ(NULL, pFile);
+    TEST_PTR_NULL(pFile);
 }
 
 static void TEST_size_THEN_SUFFICIENT_m()
@@ -361,7 +361,7 @@ static void TEST_INSUFFICIENT_SPACE_m()
         size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
         TEST_INT_GE(len + 1, cch);
-        TEST_PTR_EQ(NULL, pFile);
+        TEST_PTR_NULL(pFile);
         TEST_CHAR_EQ('\0', buff[cchBuff - 1]);
         TEST_MS_EQ_N(expected.c_str(), &buff[0], cchBuff - 1);
     }
@@ -372,7 +372,7 @@ static void TEST_INSUFFICIENT_SPACE_m()
         size_t const    cch     =   traits_m_t::get_current_process_path(STLSOFT_NUM_ELEMENTS(buff), buff, &pFile);
 
         TEST_INT_GE(len + 1, cch);
-        TEST_PTR_EQ(NULL, pFile);
+        TEST_PTR_NULL(pFile);
         TEST_CHAR_EQ('\0', buff[0]);
     }
 }
@@ -398,7 +398,7 @@ static void TEST_INSUFFICIENT_SPACE_w()
         size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
         TEST_INT_GE(len + 1, cch);
-        TEST_PTR_EQ(NULL, pFile);
+        TEST_PTR_NULL(pFile);
         TEST_CHAR_EQ(L'\0', buff[cchBuff - 1]);
         TEST_WS_EQ_N(expected.c_str(), &buff[0], cchBuff - 1);
     }
@@ -409,7 +409,7 @@ static void TEST_INSUFFICIENT_SPACE_w()
         size_t const    cch     =   traits_w_t::get_current_process_path(STLSOFT_NUM_ELEMENTS(buff), buff, &pFile);
 
         TEST_INT_GE(len + 1, cch);
-        TEST_PTR_EQ(NULL, pFile);
+        TEST_PTR_NULL(pFile);
         TEST_CHAR_EQ(L'\0', buff[0]);
     }
 }
@@ -514,7 +514,7 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_m()
     size_t const                cch     =   traits_m_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_GE(len + 1, cch);
-    TEST_PTR_EQ(NULL, pFile);
+    TEST_PTR_NULL(pFile);
 }
 
 static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_w()
@@ -529,7 +529,7 @@ static void TEST_ppFile_NULL_WHEN_INSUFFICIENT_w()
     size_t const                    cch     =   traits_w_t::get_current_process_path(buff.size(), &buff[0], &pFile);
 
     TEST_INT_GE(len + 1, cch);
-    TEST_PTR_EQ(NULL, pFile);
+    TEST_PTR_NULL(pFile);
 }
 
 static void TEST_RESIZEABLE_auto_buffer_SUCCESS_m()

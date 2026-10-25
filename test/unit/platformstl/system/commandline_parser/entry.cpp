@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::commandline_parser` / `winstl::commandline_parser`.
  *
  * Created: 29th December 2024
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -126,7 +126,7 @@ static void TEST_EMPTY_STRING()
     TEST_INT_EQ(0u, clp.size());
     TEST_INT_EQ(0, std::distance(clp.begin(), clp.end()));
 
-    TEST_PTR_EQ(NULL, clp[0]);
+    TEST_PTR_NULL(clp[0]);
 }
 
 static void TEST_WHITESPACE_ONLY_STRING()
@@ -136,7 +136,7 @@ static void TEST_WHITESPACE_ONLY_STRING()
     TEST_INT_EQ(0u, clp.size());
     TEST_INT_EQ(0, std::distance(clp.begin(), clp.end()));
 
-    TEST_PTR_EQ(NULL, clp[0]);
+    TEST_PTR_NULL(clp[0]);
 }
 
 static void TEST_ONE_VALUE()
@@ -147,7 +147,7 @@ static void TEST_ONE_VALUE()
     TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
     TEST_MS_EQ("abc", clp[0]);
-    TEST_PTR_EQ(NULL, clp[1]);
+    TEST_PTR_NULL(clp[1]);
 }
 
 static void TEST_TWO_VALUES()
@@ -159,7 +159,7 @@ static void TEST_TWO_VALUES()
 
     TEST_MS_EQ("abc", clp[0]);
     TEST_MS_EQ("def", clp[1]);
-    TEST_PTR_EQ(NULL, clp[2]);
+    TEST_PTR_NULL(clp[2]);
 }
 
 static void TEST_ONE_FLAG()
@@ -170,7 +170,7 @@ static void TEST_ONE_FLAG()
     TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
     TEST_MS_EQ("--flag1", clp[0]);
-    TEST_PTR_EQ(NULL, clp[1]);
+    TEST_PTR_NULL(clp[1]);
 }
 
 static void TEST_TWO_FLAGS()
@@ -182,7 +182,7 @@ static void TEST_TWO_FLAGS()
 
     TEST_MS_EQ("--flag1", clp[0]);
     TEST_MS_EQ("-f2", clp[1]);
-    TEST_PTR_EQ(NULL, clp[2]);
+    TEST_PTR_NULL(clp[2]);
 }
 
 static void TEST_ONE_OPTION()
@@ -193,7 +193,7 @@ static void TEST_ONE_OPTION()
     TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
     TEST_MS_EQ("--option1=abc", clp[0]);
-    TEST_PTR_EQ(NULL, clp[1]);
+    TEST_PTR_NULL(clp[1]);
 }
 
 static void TEST_DOC_EXAMPLE()
@@ -206,7 +206,7 @@ static void TEST_DOC_EXAMPLE()
     TEST_MS_EQ("abc", clp[0]);
     TEST_MS_EQ("d e f", clp[1]);
     TEST_MS_EQ("ghi", clp[2]);
-    TEST_PTR_EQ(NULL, clp[3]);
+    TEST_PTR_NULL(clp[3]);
 }
 
 static void TEST_ONE_OPTION_WITH_SPACES_1()
@@ -217,7 +217,7 @@ static void TEST_ONE_OPTION_WITH_SPACES_1()
     TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
     TEST_MS_EQ("--option1=a b c", clp[0]);
-    TEST_PTR_EQ(NULL, clp[1]);
+    TEST_PTR_NULL(clp[1]);
 }
 
 static void TEST_ONE_OPTION_WITH_SPACES_2()
@@ -228,7 +228,7 @@ static void TEST_ONE_OPTION_WITH_SPACES_2()
     TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
     TEST_MS_EQ("--option1=a b c", clp[0]);
-    TEST_PTR_EQ(NULL, clp[1]);
+    TEST_PTR_NULL(clp[1]);
 }
 
 static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
@@ -239,7 +239,7 @@ static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
     TEST_INT_EQ(1, std::distance(clp.begin(), clp.end()));
 
     TEST_MS_EQ("--option1=a b c", clp[0]);
-    TEST_PTR_EQ(NULL, clp[1]);
+    TEST_PTR_NULL(clp[1]);
 }
 } // anonymous namespace
 

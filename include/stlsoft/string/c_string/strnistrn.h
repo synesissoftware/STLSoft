@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
  *
  * Created: 1st October 2020
- * Updated: 23rd October 2026
+ * Updated: 25th October 2026
  *
  * Home:    http://stlsoft.org/
  *

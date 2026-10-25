@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 21st October 2026
+ * Updated: 25th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 10
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     67
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -138,17 +138,17 @@
 # define _PLATFORMSTL_VER_1_8_2         0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.90) */
 # define _PLATFORMSTL_VER_1_8_3         0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.110) */
 # define _PLATFORMSTL_VER_1_8_4         0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.9.119) */
-# define _PLATFORMSTL_VER_1_9_1_B01     0x01090181  /*!< Version 1.9.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _PLATFORMSTL_VER_1_9_1_B02     0x01090182  /*!< Version 1.9.1 beta 2 (with STLSoft 1.10.1 beta 16) */
-# define _PLATFORMSTL_VER_1_9_1_B03     0x01090183  /*!< Version 1.9.1 beta 3 (with STLSoft 1.10.1 beta 23) */
-# define _PLATFORMSTL_VER_1_9_1_B04     0x01090184  /*!< Version 1.9.1 beta 4 (with STLSoft 1.10.1 beta 26) */
+# define _PLATFORMSTL_VER_1_9_1_B01     0x01090181  /*!< Version 1.9.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _PLATFORMSTL_VER_1_9_1_B02     0x01090182  /*!< Version 1.9.1-beta2 (with STLSoft 1.10.1-beta16) */
+# define _PLATFORMSTL_VER_1_9_1_B03     0x01090183  /*!< Version 1.9.1-beta3 (with STLSoft 1.10.1-beta23) */
+# define _PLATFORMSTL_VER_1_9_1_B04     0x01090184  /*!< Version 1.9.1-beta4 (with STLSoft 1.10.1-beta26) */
 # define _PLATFORMSTL_VER_1_9_2         0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.10.5) */
-# define _PLATFORMSTL_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1 alpha 8) */
-# define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
-# define _PLATFORMSTL_VER_1_10_0_B01    0x010A0081  /*!< Version 1.10.0 beta 1 (with STLSoft 1.11.1 rc 3) */
-# define _PLATFORMSTL_VER_1_10_0_B02    0x010A0082  /*!< Version 1.10.0 beta 2 (with STLSoft 1.11.1 rc 8) */
-# define _PLATFORMSTL_VER_1_10_0_B03    0x010A0083  /*!< Version 1.10.0 beta 3 (with STLSoft 1.11.1 rc 9) */
-# define _PLATFORMSTL_VER_1_10_0        0x010A00FF  /*!< Version 1.10.0 beta 3 (with STLSoft 1.11.1) */
+# define _PLATFORMSTL_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1-alpha8) */
+# define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0-alpha1 (with STLSoft 1.11.1-alpha15) */
+# define _PLATFORMSTL_VER_1_10_0_B01    0x010A0081  /*!< Version 1.10.0-beta1 (with STLSoft 1.11.1-rc3) */
+# define _PLATFORMSTL_VER_1_10_0_B02    0x010A0082  /*!< Version 1.10.0-beta2 (with STLSoft 1.11.1-rc8) */
+# define _PLATFORMSTL_VER_1_10_0_B03    0x010A0083  /*!< Version 1.10.0-beta3 (with STLSoft 1.11.1-rc9) */
+# define _PLATFORMSTL_VER_1_10_0        0x010A00FF  /*!< Version 1.10.0-beta3 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
@@ -187,7 +187,7 @@
  */
 
 #if _STLSOFT_VER < 0x010a019a
-# error This version of the PlatformSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+# error This version of the PlatformSTL libraries requires STLSoft version 1.10.1-beta26, or later
 #endif /* _STLSOFT_VER */
 
 

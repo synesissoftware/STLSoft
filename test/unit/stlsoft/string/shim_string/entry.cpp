@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -191,7 +191,7 @@ static void test_construction()
     TEST_INT_EQ(0u, str0.size());
     TEST_INT_EQ(0u, static_cast<size_t>(str0));
     TEST_INT_NE(0u, str0.internal_size());
-    TEST_PTR_NE(NULL, str0);
+    TEST_PTR_NOT_NULL(str0);
     TEST_MS_EQ("", str0);
     TEST_MS_EQ("", str0.data());
 
@@ -201,7 +201,7 @@ static void test_construction()
     TEST_INT_EQ(0u, str1.size());
     TEST_INT_EQ(0u, static_cast<size_t>(str1));
     TEST_INT_NE(0u, str1.internal_size());
-    TEST_PTR_NE(NULL, str1);
+    TEST_PTR_NOT_NULL(str1);
     TEST_MS_EQ("", str1);
     TEST_MS_EQ("", str1.data());
 
@@ -211,7 +211,7 @@ static void test_construction()
     TEST_INT_EQ(0u, str2.size());
     TEST_INT_EQ(0u, static_cast<size_t>(str2));
     TEST_INT_NE(0u, str2.internal_size());
-    TEST_PTR_NE(NULL, str2);
+    TEST_PTR_NOT_NULL(str2);
     TEST_MS_EQ("", str2);
     TEST_MS_EQ("", str2.data());
 
@@ -221,7 +221,7 @@ static void test_construction()
     TEST_INT_EQ(0u, str3.size());
     TEST_INT_EQ(0u, static_cast<size_t>(str3));
     TEST_INT_NE(0u, str3.internal_size());
-    TEST_PTR_NE(NULL, str3);
+    TEST_PTR_NOT_NULL(str3);
     TEST_MS_EQ("", str3);
     TEST_MS_EQ("", str3.data());
 
@@ -231,7 +231,7 @@ static void test_construction()
     TEST_INT_EQ(0u, str4.size());
     TEST_INT_EQ(0u, static_cast<size_t>(str4));
     TEST_INT_NE(0u, str4.internal_size());
-    TEST_PTR_NE(NULL, str4);
+    TEST_PTR_NOT_NULL(str4);
     TEST_MS_EQ("", str4);
     TEST_MS_EQ("", str4.data());
 
@@ -241,7 +241,7 @@ static void test_construction()
     TEST_INT_EQ(0u, str5.size());
     TEST_INT_EQ(0u, static_cast<size_t>(str5));
     TEST_INT_NE(0u, str5.internal_size());
-    TEST_PTR_NE(NULL, str5);
+    TEST_PTR_NOT_NULL(str5);
     TEST_MS_EQ("", str5);
     TEST_MS_EQ("", str5.data());
 }
@@ -265,7 +265,7 @@ static void test_constructor_length()
     TEST_BOOLEAN_FALSE(str.empty());
     TEST_INT_EQ(5u, str.size());
     TEST_INT_EQ(5u, static_cast<size_t>(str));
-    TEST_PTR_NE(NULL, str);
+    TEST_PTR_NOT_NULL(str);
     TEST_MS_EQ("", str);
     TEST_MS_EQ("", str.data());
 }
@@ -277,7 +277,7 @@ static void test_constructor_c_string()
     TEST_BOOLEAN_FALSE(str.empty());
     TEST_INT_EQ(1u, str.size());
     TEST_INT_EQ(1u, static_cast<size_t>(str));
-    TEST_PTR_NE(NULL, str);
+    TEST_PTR_NOT_NULL(str);
     TEST_MS_EQ("a", str);
     TEST_MS_EQ("a", str.data());
 }
@@ -289,7 +289,7 @@ static void test_constructor_range_string()
     TEST_BOOLEAN_FALSE(str.empty());
     TEST_INT_EQ(3u, str.size());
     TEST_INT_EQ(3u, static_cast<size_t>(str));
-    TEST_PTR_NE(NULL, str);
+    TEST_PTR_NOT_NULL(str);
     TEST_MS_EQ("abc", str);
     TEST_MS_EQ("abc", str.data());
 }
@@ -303,7 +303,7 @@ static void test_write()
     TEST_BOOLEAN_FALSE(str.empty());
     TEST_INT_EQ(3u, str.size());
     TEST_INT_EQ(3u, static_cast<size_t>(str));
-    TEST_PTR_NE(NULL, str);
+    TEST_PTR_NOT_NULL(str);
     TEST_MS_EQ("abc", str);
     TEST_MS_EQ("abc", str.data());
 }
@@ -431,7 +431,7 @@ static void test_null_string()
         TEST_INT_EQ(0u, s.size());
         TEST_INT_EQ(0u, static_cast<size_t>(s));
         TEST_INT_EQ(0u, s.size());
-        TEST_PTR_EQ(NULL, s);
+        TEST_PTR_NULL(s);
         TEST_INT_EQ(0u, static_cast<size_t>(s));
     }
 }

@@ -7,7 +7,7 @@
  *          and wide path classification / separator finders.
  *
  * Created: 15th October 2026
- * Updated: 19th October 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -349,8 +349,8 @@ static void TEST_find_path_name_separators_w()
         wchar_t const* const last = traits_w_t::find_last_path_name_separator(path);
         wchar_t const* const next = traits_w_t::find_next_path_name_separator(path);
 
-        TEST_PTR_NE(NULL, last);
-        TEST_PTR_NE(NULL, next);
+        TEST_PTR_NOT_NULL(last);
+        TEST_PTR_NOT_NULL(next);
         TEST_PTR_EQ(path + 0, next);
         TEST_PTR_EQ(path + 10, last);
         TEST_PTR_EQ(last, traits_w_t::find_last_path_name_separator(path, ::wcslen(path)));
@@ -360,10 +360,10 @@ static void TEST_find_path_name_separators_w()
     {
         wchar_t const* const path = L"relative";
 
-        TEST_PTR_EQ(NULL, traits_w_t::find_last_path_name_separator(path));
-        TEST_PTR_EQ(NULL, traits_w_t::find_next_path_name_separator(path));
-        TEST_PTR_EQ(NULL, traits_w_t::find_last_path_name_separator(path, 0));
-        TEST_PTR_EQ(NULL, traits_w_t::find_next_path_name_separator(path, 0));
+        TEST_PTR_NULL(traits_w_t::find_last_path_name_separator(path));
+        TEST_PTR_NULL(traits_w_t::find_next_path_name_separator(path));
+        TEST_PTR_NULL(traits_w_t::find_last_path_name_separator(path, 0));
+        TEST_PTR_NULL(traits_w_t::find_next_path_name_separator(path, 0));
     }
 }
 

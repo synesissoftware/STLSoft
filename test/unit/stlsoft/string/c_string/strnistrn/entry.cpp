@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnistrn() and wcsnistrn().
  *
  * Created: 23rd October 2026
- * Updated: 23rd October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -65,8 +65,7 @@ namespace
     static void TEST_c_string_wcsnistrn_HIGH_BIT();
 
     static wchar_t const* wcsnistrn_both_(wchar_t const* s1, size_t n1, wchar_t const* s2, size_t n2);
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -369,8 +368,7 @@ static void TEST_c_string_wcsnistrn_HIGH_BIT()
     TEST_PTR_EQ(hay, wcsnistrn_both_(hay, 3, needle, 3));
     TEST_PTR_NULL(wcsnistrn_both_(hay, 2, other, 2));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

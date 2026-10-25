@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnicmp() and wcsnicmp().
  *
  * Created: 29th September 2026
- * Updated: 23rd October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,8 +61,7 @@ namespace
     static void TEST_c_string_wcsnicmp_HIGH_BIT();
 
     static int wcsnicmp_both_(wchar_t const* s1, wchar_t const* s2, size_t n);
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -333,8 +332,7 @@ static void TEST_c_string_wcsnicmp_HIGH_BIT()
     TEST_INT_LT(0, wcsnicmp_both_(lo, hi, 1));
     TEST_INT_GT(0, wcsnicmp_both_(hi, lo, 1));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -188,20 +188,20 @@
 # define _STLSOFT_VER_1_8_7         0x00010807  /*!< Version 1.8.7 */
 # define _STLSOFT_VER_1_8_8         0x00010808  /*!< Version 1.8.8 */
 # define _STLSOFT_VER_1_8_9         0x00010809  /*!< Version 1.8.9 */
-# define _STLSOFT_VER_1_9_1_B13     0x0109010d  /*!< Version 1.9.1 beta 13 (10th Jul 2006) */
-# define _STLSOFT_VER_1_9_1_B20     0x01090114  /*!< Version 1.9.1 beta 20 (28th Aug 2006) */
-# define _STLSOFT_VER_1_9_1_B22     0x01090116  /*!< Version 1.9.1 beta 22 (13th Sep 2006) */
-# define _STLSOFT_VER_1_9_1_B28     0x0109011c  /*!< Version 1.9.1 beta 28 (29th Oct 2006) */
-# define _STLSOFT_VER_1_9_1_B29     0x0109011d  /*!< Version 1.9.1 beta 29 (27th Nov 2006) */
-# define _STLSOFT_VER_1_9_1_B33     0x01090121  /*!< Version 1.9.1 beta 33 (13th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B34     0x01090122  /*!< Version 1.9.1 beta 34 (24th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B37     0x01090125  /*!< Version 1.9.1 beta 37 (30th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B40     0x01090128  /*!< Version 1.9.1 beta 40 (6th Jan 2007) */
-# define _STLSOFT_VER_1_9_1_B41     0x01090129  /*!< Version 1.9.1 beta 41 (14th Jan 2007) */
-# define _STLSOFT_VER_1_9_1_B42     0x0109012a  /*!< Version 1.9.1 beta 42 (15th Jan 2007) */
-# define _STLSOFT_VER_1_9_1_B45     0x0109012d  /*!< Version 1.9.1 beta 45 (1st Mar 2007) */
-# define _STLSOFT_VER_1_9_1_B47     0x0109012f  /*!< Version 1.9.1 beta 47 (6th Apr 2007) */
-# define _STLSOFT_VER_1_9_1_B48     0x01090130  /*!< Version 1.9.1 beta 48 (12th Apr 2007) */
+# define _STLSOFT_VER_1_9_1_B13     0x0109010d  /*!< Version 1.9.1-beta13 (10th Jul 2006) */
+# define _STLSOFT_VER_1_9_1_B20     0x01090114  /*!< Version 1.9.1-beta20 (28th Aug 2006) */
+# define _STLSOFT_VER_1_9_1_B22     0x01090116  /*!< Version 1.9.1-beta22 (13th Sep 2006) */
+# define _STLSOFT_VER_1_9_1_B28     0x0109011c  /*!< Version 1.9.1-beta28 (29th Oct 2006) */
+# define _STLSOFT_VER_1_9_1_B29     0x0109011d  /*!< Version 1.9.1-beta29 (27th Nov 2006) */
+# define _STLSOFT_VER_1_9_1_B33     0x01090121  /*!< Version 1.9.1-beta33 (13th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B34     0x01090122  /*!< Version 1.9.1-beta34 (24th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B37     0x01090125  /*!< Version 1.9.1-beta37 (30th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B40     0x01090128  /*!< Version 1.9.1-beta40 (6th Jan 2007) */
+# define _STLSOFT_VER_1_9_1_B41     0x01090129  /*!< Version 1.9.1-beta41 (14th Jan 2007) */
+# define _STLSOFT_VER_1_9_1_B42     0x0109012a  /*!< Version 1.9.1-beta42 (15th Jan 2007) */
+# define _STLSOFT_VER_1_9_1_B45     0x0109012d  /*!< Version 1.9.1-beta45 (1st Mar 2007) */
+# define _STLSOFT_VER_1_9_1_B47     0x0109012f  /*!< Version 1.9.1-beta47 (6th Apr 2007) */
+# define _STLSOFT_VER_1_9_1_B48     0x01090130  /*!< Version 1.9.1-beta48 (12th Apr 2007) */
 # define _STLSOFT_VER_1_9_1         0x010901ff  /*!< Version 1.9.1 (30th Apr 2007) */
 # define _STLSOFT_VER_1_9_2         0x010902ff  /*!< Version 1.9.2 (2nd Jun 2007) */
 # define _STLSOFT_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (29th Jul 2007) */
@@ -331,41 +331,41 @@
 # define _STLSOFT_VER_1_9_130       0x010982ff  /*!< Version 1.9.130 (1st October 2016) */
 # define _STLSOFT_VER_1_9_131       0x010983ff  /*!< Version 1.9.131 (1st October 2016) */
 
-# define _STLSOFT_VER_1_10_1_B01    0x010a0181  /*!< Version 1.10.1 beta 1 (13th January 2017) */
-# define _STLSOFT_VER_1_10_1_B02    0x010a0182  /*!< Version 1.10.1 beta 2 (28th January 2017) */
-# define _STLSOFT_VER_1_10_1_B03    0x010a0183  /*!< Version 1.10.1 beta 3 (15th February 2017) */
-# define _STLSOFT_VER_1_10_1_B04    0x010a0184  /*!< Version 1.10.1 beta 4 (23rd March 2017) */
-# define _STLSOFT_VER_1_10_1_B05    0x010a0185  /*!< Version 1.10.1 beta 5 (15th May 2017) */
-# define _STLSOFT_VER_1_10_1_B06    0x010a0186  /*!< Version 1.10.1 beta 6 (8th June 2018) */
-# define _STLSOFT_VER_1_10_1_B07    0x010a0187  /*!< Version 1.10.1 beta 7 (9th June 2018) */
-# define _STLSOFT_VER_1_10_1_B08    0x010a0188  /*!< Version 1.10.1 beta 8 (11th June 2018) */
-# define _STLSOFT_VER_1_10_1_B09    0x010a0189  /*!< Version 1.10.1 beta 9 (11th June 2018) */
-# define _STLSOFT_VER_1_10_1_B10    0x010a018a  /*!< Version 1.10.1 beta 10 (20th December 2018) */
-# define _STLSOFT_VER_1_10_1_B11    0x010a018b  /*!< Version 1.10.1 beta 11 (22nd December 2018) */
-# define _STLSOFT_VER_1_10_1_B12    0x010a018c  /*!< Version 1.10.1 beta 12 (26th December 2018) */
-# define _STLSOFT_VER_1_10_1_B13    0x010a018d  /*!< Version 1.10.1 beta 13 (3rd February 2019) */
-# define _STLSOFT_VER_1_10_1_B14    0x010a018e  /*!< Version 1.10.1 beta 14 (4th August 2019) */
-# define _STLSOFT_VER_1_10_1_B15    0x010a018f  /*!< Version 1.10.1 beta 15 (13th September 2019) */
-# define _STLSOFT_VER_1_10_1_B16    0x010a0190  /*!< Version 1.10.1 beta 16 (13th October 2019) */
-# define _STLSOFT_VER_1_10_1_B17    0x010a0191  /*!< Version 1.10.1 beta 17 (24th October 2019) */
-# define _STLSOFT_VER_1_10_1_B18    0x010a0192  /*!< Version 1.10.1 beta 18 (31st October 2019) */
-# define _STLSOFT_VER_1_10_1_B19    0x010a0193  /*!< Version 1.10.1 beta 19 (4th July 2020) */
-# define _STLSOFT_VER_1_10_1_B20    0x010a0194  /*!< Version 1.10.1 beta 20 (5th July 2020) */
-# define _STLSOFT_VER_1_10_1_B21    0x010a0195  /*!< Version 1.10.1 beta 21 (27th July 2020) */
-# define _STLSOFT_VER_1_10_1_B22    0x010a0196  /*!< Version 1.10.1 beta 22 (29th November 2020) */
-# define _STLSOFT_VER_1_10_1_B23    0x010a0197  /*!< Version 1.10.1 beta 23 (13th December 2020) */
-# define _STLSOFT_VER_1_10_1_B24    0x010a0198  /*!< Version 1.10.1 beta 24 (13th December 2020) */
-# define _STLSOFT_VER_1_10_1_B25    0x010a0199  /*!< Version 1.10.1 beta 25 (14th December 2020) */
-# define _STLSOFT_VER_1_10_1_B26    0x010a019a  /*!< Version 1.10.1 beta 26 (18th December 2020) */
-# define _STLSOFT_VER_1_10_1_B27    0x010a019b  /*!< Version 1.10.1 beta 27 (11th January 2021) */
-# define _STLSOFT_VER_1_10_1_B28    0x010a019c  /*!< Version 1.10.1 beta 28 (18th January 2021) */
-# define _STLSOFT_VER_1_10_1_B29    0x010a019d  /*!< Version 1.10.1 beta 29 (26th January 2021) */
-# define _STLSOFT_VER_1_10_1_B30    0x010a019e  /*!< Version 1.10.1 beta 30 (29th March 2021) */
-# define _STLSOFT_VER_1_10_1_B31    0x010a019f  /*!< Version 1.10.1 beta 31 (2nd April 2021) */
-# define _STLSOFT_VER_1_10_1_B32    0x010a01a0  /*!< Version 1.10.1 beta 32 (26th April 2021) */
-# define _STLSOFT_VER_1_10_1_B33    0x010a01a1  /*!< Version 1.10.1 beta 33 (26th April 2021) */
-# define _STLSOFT_VER_1_10_1_B34    0x010a01a2  /*!< Version 1.10.1 beta 34 (26th April 2021) */
-# define _STLSOFT_VER_1_10_1_B35    0x010a01a3  /*!< Version 1.10.1 beta 35 (1st December 2023) */
+# define _STLSOFT_VER_1_10_1_B01    0x010a0181  /*!< Version 1.10.1-beta1 (13th January 2017) */
+# define _STLSOFT_VER_1_10_1_B02    0x010a0182  /*!< Version 1.10.1-beta2 (28th January 2017) */
+# define _STLSOFT_VER_1_10_1_B03    0x010a0183  /*!< Version 1.10.1-beta3 (15th February 2017) */
+# define _STLSOFT_VER_1_10_1_B04    0x010a0184  /*!< Version 1.10.1-beta4 (23rd March 2017) */
+# define _STLSOFT_VER_1_10_1_B05    0x010a0185  /*!< Version 1.10.1-beta5 (15th May 2017) */
+# define _STLSOFT_VER_1_10_1_B06    0x010a0186  /*!< Version 1.10.1-beta6 (8th June 2018) */
+# define _STLSOFT_VER_1_10_1_B07    0x010a0187  /*!< Version 1.10.1-beta7 (9th June 2018) */
+# define _STLSOFT_VER_1_10_1_B08    0x010a0188  /*!< Version 1.10.1-beta8 (11th June 2018) */
+# define _STLSOFT_VER_1_10_1_B09    0x010a0189  /*!< Version 1.10.1-beta9 (11th June 2018) */
+# define _STLSOFT_VER_1_10_1_B10    0x010a018a  /*!< Version 1.10.1-beta10 (20th December 2018) */
+# define _STLSOFT_VER_1_10_1_B11    0x010a018b  /*!< Version 1.10.1-beta11 (22nd December 2018) */
+# define _STLSOFT_VER_1_10_1_B12    0x010a018c  /*!< Version 1.10.1-beta12 (26th December 2018) */
+# define _STLSOFT_VER_1_10_1_B13    0x010a018d  /*!< Version 1.10.1-beta13 (3rd February 2019) */
+# define _STLSOFT_VER_1_10_1_B14    0x010a018e  /*!< Version 1.10.1-beta14 (4th August 2019) */
+# define _STLSOFT_VER_1_10_1_B15    0x010a018f  /*!< Version 1.10.1-beta15 (13th September 2019) */
+# define _STLSOFT_VER_1_10_1_B16    0x010a0190  /*!< Version 1.10.1-beta16 (13th October 2019) */
+# define _STLSOFT_VER_1_10_1_B17    0x010a0191  /*!< Version 1.10.1-beta17 (24th October 2019) */
+# define _STLSOFT_VER_1_10_1_B18    0x010a0192  /*!< Version 1.10.1-beta18 (31st October 2019) */
+# define _STLSOFT_VER_1_10_1_B19    0x010a0193  /*!< Version 1.10.1-beta19 (4th July 2020) */
+# define _STLSOFT_VER_1_10_1_B20    0x010a0194  /*!< Version 1.10.1-beta20 (5th July 2020) */
+# define _STLSOFT_VER_1_10_1_B21    0x010a0195  /*!< Version 1.10.1-beta21 (27th July 2020) */
+# define _STLSOFT_VER_1_10_1_B22    0x010a0196  /*!< Version 1.10.1-beta22 (29th November 2020) */
+# define _STLSOFT_VER_1_10_1_B23    0x010a0197  /*!< Version 1.10.1-beta23 (13th December 2020) */
+# define _STLSOFT_VER_1_10_1_B24    0x010a0198  /*!< Version 1.10.1-beta24 (13th December 2020) */
+# define _STLSOFT_VER_1_10_1_B25    0x010a0199  /*!< Version 1.10.1-beta25 (14th December 2020) */
+# define _STLSOFT_VER_1_10_1_B26    0x010a019a  /*!< Version 1.10.1-beta26 (18th December 2020) */
+# define _STLSOFT_VER_1_10_1_B27    0x010a019b  /*!< Version 1.10.1-beta27 (11th January 2021) */
+# define _STLSOFT_VER_1_10_1_B28    0x010a019c  /*!< Version 1.10.1-beta28 (18th January 2021) */
+# define _STLSOFT_VER_1_10_1_B29    0x010a019d  /*!< Version 1.10.1-beta29 (26th January 2021) */
+# define _STLSOFT_VER_1_10_1_B30    0x010a019e  /*!< Version 1.10.1-beta30 (29th March 2021) */
+# define _STLSOFT_VER_1_10_1_B31    0x010a019f  /*!< Version 1.10.1-beta31 (2nd April 2021) */
+# define _STLSOFT_VER_1_10_1_B32    0x010a01a0  /*!< Version 1.10.1-beta32 (26th April 2021) */
+# define _STLSOFT_VER_1_10_1_B33    0x010a01a1  /*!< Version 1.10.1-beta33 (26th April 2021) */
+# define _STLSOFT_VER_1_10_1_B34    0x010a01a2  /*!< Version 1.10.1-beta34 (26th April 2021) */
+# define _STLSOFT_VER_1_10_1_B35    0x010a01a3  /*!< Version 1.10.1-beta35 (1st December 2023) */
 # define _STLSOFT_VER_1_10_1        0x010a01ff  /*!< Version 1.10.1 (13th December 2023) */
 # define _STLSOFT_VER_1_10_2        0x010a02ff  /*!< Version 1.10.2 (3rd January 2024) */
 # define _STLSOFT_VER_1_10_3        0x010a03ff  /*!< Version 1.10.3 (12th January 2024) */
@@ -378,53 +378,53 @@
 # define _STLSOFT_VER_1_10_10       0x010a0aff  /*!< Version 1.10.10 (16th February 2024) */
 # define _STLSOFT_VER_1_10_11       0x010a0bff  /*!< Version 1.10.11 (16th February 2024) */
 
-# define _STLSOFT_VER_1_11_1_A01    0x010b0141  /*!< Version 1.11.1 alpha 1 (20th February 2024) */
-# define _STLSOFT_VER_1_11_1_A02    0x010b0142  /*!< Version 1.11.1 alpha 2 (1st March 2024) */
-# define _STLSOFT_VER_1_11_1_A03    0x010b0143  /*!< Version 1.11.1 alpha 3 (16th March 2024) */
-# define _STLSOFT_VER_1_11_1_A04    0x010b0144  /*!< Version 1.11.1 alpha 4 (18th March 2024) */
-# define _STLSOFT_VER_1_11_1_A05    0x010b0145  /*!< Version 1.11.1 alpha 5 (29th March 2024) */
-# define _STLSOFT_VER_1_11_1_A06    0x010b0146  /*!< Version 1.11.1 alpha 6 (29th March 2024) */
-# define _STLSOFT_VER_1_11_1_A07    0x010b0147  /*!< Version 1.11.1 alpha 7 (5th May 2024) */
-# define _STLSOFT_VER_1_11_1_A08    0x010b0148  /*!< Version 1.11.1 alpha 8 (9th July 2024) */
-# define _STLSOFT_VER_1_11_1_A09    0x010b0149  /*!< Version 1.11.1 alpha 9 (9th July 2024) */
-# define _STLSOFT_VER_1_11_1_A10    0x010b014a  /*!< Version 1.11.1 alpha 10 (14th July 2024) */
-# define _STLSOFT_VER_1_11_1_A11    0x010b014b  /*!< Version 1.11.1 alpha 11 (16th July 2024) */
-# define _STLSOFT_VER_1_11_1_A12    0x010b014c  /*!< Version 1.11.1 alpha 12 (3rd August 2024) */
-# define _STLSOFT_VER_1_11_1_A13    0x010b014d  /*!< Version 1.11.1 alpha 13 (4th August 2024) */
-# define _STLSOFT_VER_1_11_1_A14    0x010b014e  /*!< Version 1.11.1 alpha 14 (21st August 2024) */
-# define _STLSOFT_VER_1_11_1_A15    0x010b014e  /*!< Version 1.11.1 alpha 15 (2nd September 2024) */
-# define _STLSOFT_VER_1_11_1_A16    0x010b0150  /*!< Version 1.11.1 alpha 16 (1st October 2024) */
-# define _STLSOFT_VER_1_11_1_A17    0x010b0151  /*!< Version 1.11.1 alpha 17 (10th October 2024) */
-# define _STLSOFT_VER_1_11_1_A18    0x010b0152  /*!< Version 1.11.1 alpha 18 (15th October 2024) */
-# define _STLSOFT_VER_1_11_1_A19    0x010b0153  /*!< Version 1.11.1 alpha 19 (23rd October 2024) */
-# define _STLSOFT_VER_1_11_1_A20    0x010b0154  /*!< Version 1.11.1 alpha 20 (23rd October 2024) */
-# define _STLSOFT_VER_1_11_1_A21    0x010b0155  /*!< Version 1.11.1 alpha 21 (25th October 2024) */
-# define _STLSOFT_VER_1_11_1_A22    0x010b0156  /*!< Version 1.11.1 alpha 22 (26th October 2024) */
-# define _STLSOFT_VER_1_11_1_A23    0x010b0157  /*!< Version 1.11.1 alpha 23 (26th October 2024) */
-# define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 24 (4th November 2024) */
-# define _STLSOFT_VER_1_11_1_A25    0x010b0159  /*!< Version 1.11.1 alpha 25 (18th November 2024) */
-# define _STLSOFT_VER_1_11_1_A26    0x010b015a  /*!< Version 1.11.1 alpha 26 (23rd November 2024) */
-# define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1 alpha 27 (19th December 2024) */
-# define _STLSOFT_VER_1_11_1_A28    0x010b015c  /*!< Version 1.11.1 alpha 28 (28th December 2024) */
-# define _STLSOFT_VER_1_11_1_B1     0x010b0181  /*!< Version 1.11.1 beta 1 (31st December 2024) */
-# define _STLSOFT_VER_1_11_1_B2     0x010b0182  /*!< Version 1.11.1 beta 2 (21st February 2025) */
-# define _STLSOFT_VER_1_11_1_B3     0x010b0183  /*!< Version 1.11.1 beta 3 (15th April 2025) */
-# define _STLSOFT_VER_1_11_1_B4     0x010b0184  /*!< Version 1.11.1 beta 4 (22nd April 2025) */
-# define _STLSOFT_VER_1_11_1_B5     0x010b0185  /*!< Version 1.11.1 beta 5 (26th April 2025) */
-# define _STLSOFT_VER_1_11_1_B6     0x010b0186  /*!< Version 1.11.1 beta 6 (28th April 2025) */
-# define _STLSOFT_VER_1_11_1_B7     0x010b0187  /*!< Version 1.11.1 beta 7 (30th April 2025) */
-# define _STLSOFT_VER_1_11_1_B8     0x010b0188  /*!< Version 1.11.1 beta 8 (3rd May 2025) */
-# define _STLSOFT_VER_1_11_1_B9     0x010b0189  /*!< Version 1.11.1 beta 9 (5th May 2025) */
-# define _STLSOFT_VER_1_11_1_RC1    0x010b01c1  /*!< Version 1.11.1 rc 1 (6th May 2025) */
-# define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 2 (31st May 2025) */
-# define _STLSOFT_VER_1_11_1_RC3    0x010b01c3  /*!< Version 1.11.1 rc 3 (23rd August 2025) */
-# define _STLSOFT_VER_1_11_1_RC4    0x010b01c4  /*!< Version 1.11.1 rc 4 (1st July 2026) */
-# define _STLSOFT_VER_1_11_1_RC5    0x010b01c5  /*!< Version 1.11.1 rc 5 (4th August 2026) */
-# define _STLSOFT_VER_1_11_1_RC6    0x010b01c6  /*!< Version 1.11.1 rc 6 (21st September 2026) */
-# define _STLSOFT_VER_1_11_1_RC7    0x010B01C7  /*!< Version 1.11.1 rc 7 (30th September 2026) */
-# define _STLSOFT_VER_1_11_1_RC8    0x010B01C8  /*!< Version 1.11.1 rc 8 (10th October 2026) */
-# define _STLSOFT_VER_1_11_1_RC9    0x010B01C9  /*!< Version 1.11.1 rc 9 (18th October 2026) */
-# define _STLSOFT_VER_1_11_1_RC10   0x010B01CA  /*!< Version 1.11.1 rc 10 (20th October 2026) */
+# define _STLSOFT_VER_1_11_1_A01    0x010b0141  /*!< Version 1.11.1-alpha1 (20th February 2024) */
+# define _STLSOFT_VER_1_11_1_A02    0x010b0142  /*!< Version 1.11.1-alpha2 (1st March 2024) */
+# define _STLSOFT_VER_1_11_1_A03    0x010b0143  /*!< Version 1.11.1-alpha3 (16th March 2024) */
+# define _STLSOFT_VER_1_11_1_A04    0x010b0144  /*!< Version 1.11.1-alpha4 (18th March 2024) */
+# define _STLSOFT_VER_1_11_1_A05    0x010b0145  /*!< Version 1.11.1-alpha5 (29th March 2024) */
+# define _STLSOFT_VER_1_11_1_A06    0x010b0146  /*!< Version 1.11.1-alpha6 (29th March 2024) */
+# define _STLSOFT_VER_1_11_1_A07    0x010b0147  /*!< Version 1.11.1-alpha7 (5th May 2024) */
+# define _STLSOFT_VER_1_11_1_A08    0x010b0148  /*!< Version 1.11.1-alpha8 (9th July 2024) */
+# define _STLSOFT_VER_1_11_1_A09    0x010b0149  /*!< Version 1.11.1-alpha9 (9th July 2024) */
+# define _STLSOFT_VER_1_11_1_A10    0x010b014a  /*!< Version 1.11.1-alpha10 (14th July 2024) */
+# define _STLSOFT_VER_1_11_1_A11    0x010b014b  /*!< Version 1.11.1-alpha11 (16th July 2024) */
+# define _STLSOFT_VER_1_11_1_A12    0x010b014c  /*!< Version 1.11.1-alpha12 (3rd August 2024) */
+# define _STLSOFT_VER_1_11_1_A13    0x010b014d  /*!< Version 1.11.1-alpha13 (4th August 2024) */
+# define _STLSOFT_VER_1_11_1_A14    0x010b014e  /*!< Version 1.11.1-alpha14 (21st August 2024) */
+# define _STLSOFT_VER_1_11_1_A15    0x010b014e  /*!< Version 1.11.1-alpha15 (2nd September 2024) */
+# define _STLSOFT_VER_1_11_1_A16    0x010b0150  /*!< Version 1.11.1-alpha16 (1st October 2024) */
+# define _STLSOFT_VER_1_11_1_A17    0x010b0151  /*!< Version 1.11.1-alpha17 (10th October 2024) */
+# define _STLSOFT_VER_1_11_1_A18    0x010b0152  /*!< Version 1.11.1-alpha18 (15th October 2024) */
+# define _STLSOFT_VER_1_11_1_A19    0x010b0153  /*!< Version 1.11.1-alpha19 (23rd October 2024) */
+# define _STLSOFT_VER_1_11_1_A20    0x010b0154  /*!< Version 1.11.1-alpha20 (23rd October 2024) */
+# define _STLSOFT_VER_1_11_1_A21    0x010b0155  /*!< Version 1.11.1-alpha21 (25th October 2024) */
+# define _STLSOFT_VER_1_11_1_A22    0x010b0156  /*!< Version 1.11.1-alpha22 (26th October 2024) */
+# define _STLSOFT_VER_1_11_1_A23    0x010b0157  /*!< Version 1.11.1-alpha23 (26th October 2024) */
+# define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1-alpha24 (4th November 2024) */
+# define _STLSOFT_VER_1_11_1_A25    0x010b0159  /*!< Version 1.11.1-alpha25 (18th November 2024) */
+# define _STLSOFT_VER_1_11_1_A26    0x010b015a  /*!< Version 1.11.1-alpha26 (23rd November 2024) */
+# define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1-alpha27 (19th December 2024) */
+# define _STLSOFT_VER_1_11_1_A28    0x010b015c  /*!< Version 1.11.1-alpha28 (28th December 2024) */
+# define _STLSOFT_VER_1_11_1_B1     0x010b0181  /*!< Version 1.11.1-beta1 (31st December 2024) */
+# define _STLSOFT_VER_1_11_1_B2     0x010b0182  /*!< Version 1.11.1-beta2 (21st February 2025) */
+# define _STLSOFT_VER_1_11_1_B3     0x010b0183  /*!< Version 1.11.1-beta3 (15th April 2025) */
+# define _STLSOFT_VER_1_11_1_B4     0x010b0184  /*!< Version 1.11.1-beta4 (22nd April 2025) */
+# define _STLSOFT_VER_1_11_1_B5     0x010b0185  /*!< Version 1.11.1-beta5 (26th April 2025) */
+# define _STLSOFT_VER_1_11_1_B6     0x010b0186  /*!< Version 1.11.1-beta6 (28th April 2025) */
+# define _STLSOFT_VER_1_11_1_B7     0x010b0187  /*!< Version 1.11.1-beta7 (30th April 2025) */
+# define _STLSOFT_VER_1_11_1_B8     0x010b0188  /*!< Version 1.11.1-beta8 (3rd May 2025) */
+# define _STLSOFT_VER_1_11_1_B9     0x010b0189  /*!< Version 1.11.1-beta9 (5th May 2025) */
+# define _STLSOFT_VER_1_11_1_RC1    0x010b01c1  /*!< Version 1.11.1-rc1 (6th May 2025) */
+# define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1-rc2 (31st May 2025) */
+# define _STLSOFT_VER_1_11_1_RC3    0x010b01c3  /*!< Version 1.11.1-rc3 (23rd August 2025) */
+# define _STLSOFT_VER_1_11_1_RC4    0x010b01c4  /*!< Version 1.11.1-rc4 (1st July 2026) */
+# define _STLSOFT_VER_1_11_1_RC5    0x010b01c5  /*!< Version 1.11.1-rc5 (4th August 2026) */
+# define _STLSOFT_VER_1_11_1_RC6    0x010b01c6  /*!< Version 1.11.1-rc6 (21st September 2026) */
+# define _STLSOFT_VER_1_11_1_RC7    0x010B01C7  /*!< Version 1.11.1-rc7 (30th September 2026) */
+# define _STLSOFT_VER_1_11_1_RC8    0x010B01C8  /*!< Version 1.11.1-rc8 (10th October 2026) */
+# define _STLSOFT_VER_1_11_1_RC9    0x010B01C9  /*!< Version 1.11.1-rc9 (18th October 2026) */
+# define _STLSOFT_VER_1_11_1_RC10   0x010B01CA  /*!< Version 1.11.1-rc10 (20th October 2026) */
 # define _STLSOFT_VER_1_11_1        0x010B01FF  /*!< Version 1.11.1 (21st October 2026) */
 # define _STLSOFT_VER_1_11_2        0x010B02FF  /*!< Version 1.11.2 (25th October 2026) */
 # define _STLSOFT_VER_1_11_3        0x010B03FF  /*!< Version 1.11.3 (27th October 2026) */
