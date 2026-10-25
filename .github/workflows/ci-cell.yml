@@ -802,7 +802,9 @@ jobs:
           set "REQUIRED=%~2"
           set "MODE=%~3"
           set "N=0"
-          for /r "%ROOT%" %%F in (%PAT%) do (
+          rem for /r without a wildcard names the file in every directory.
+          rem dir /s lists only files that exist (multi-config Release\).
+          for /f "delims=" %%F in ('dir /a:-d /b /s "%ROOT%\%PAT%" 2^>nul') do (
             echo %%F | findstr /i /c:"CMakeFiles" >nul
             if errorlevel 1 (
               echo executing %%F
@@ -895,7 +897,9 @@ jobs:
           set "PAT=%~1"
           set "REQUIRED=%~2"
           set "N=0"
-          for /r "%ROOT%" %%F in (%PAT%) do (
+          rem for /r without a wildcard names the file in every directory.
+          rem dir /s lists only files that exist (multi-config Release\).
+          for /f "delims=" %%F in ('dir /a:-d /b /s "%ROOT%\%PAT%" 2^>nul') do (
             echo %%F | findstr /i /c:"CMakeFiles" >nul
             if errorlevel 1 (
               echo executing %%F
