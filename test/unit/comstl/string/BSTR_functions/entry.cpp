@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for comstl BSTR comparison.
  *
  * Created: 29th September 2026
- * Updated: 20th October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,8 +39,7 @@ namespace
     static void TEST_BSTR_compare_MATCHES_comstl_C_BSTR_compare();
     static void TEST_bstr_equal();
     static void TEST_comstl__bstr_compare_MATCHES_comstl_C_BSTR_compare();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -232,8 +231,7 @@ static void TEST_comstl__bstr_compare_MATCHES_comstl_C_BSTR_compare()
     comstl::comstl_C_BSTR_destroy(abc);
     comstl::comstl_C_BSTR_destroy(def);
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

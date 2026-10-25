@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 15th October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -330,7 +330,7 @@ static void TEST_get_short_path_name_RESIZEABLE_vector()
         TEST_MS_EQ(&expected[0], &rb[0]);
     }
 }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

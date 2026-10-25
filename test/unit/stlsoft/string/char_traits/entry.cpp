@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::char_traits and char_traits_safe.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,8 +45,7 @@ namespace
     static void TEST_compare_HIGH_BIT_UNSIGNED_ORDER();
     static void TEST_char_traits_safe_compare();
     static void TEST_char_traits_safe_compare_NULL();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -280,8 +279,7 @@ static void TEST_char_traits_safe_compare_NULL()
     TEST_INT_EQ(-1, w_safe_t::compare_max(NULL, L"a", 1));
     TEST_INT_EQ(1, w_safe_t::compare_max(L"a", NULL, 1));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

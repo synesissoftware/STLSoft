@@ -51,7 +51,7 @@ print_version(
         )
         ;
 }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 int main(int /* argc */, char* /* argv */[])
