@@ -1,6 +1,88 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.2 - 25th October 2026
+
+* **stlsoft/memory/auto_buffer.hpp** — on GCC 12+, marked `deallocate_()` `STLSOFT_NOINLINE` and suppressed `-Wfree-nonheap-object` around the external-buffer `delete`, which GCC misattributes to the internal buffer;
+
+
+## 1.11.1 - 21st October 2026
+
+* Consolidates **1.11.1-alpha1** through **1.11.1-rc10** (20th February 2024 – 20th October 2026);
+* additions:
+  * **Resizeable Buffer** concept (**CONCEPTS.md**): requirements, models, and the probe-then-fill contract for traits `rb` overloads; `stlsoft::resizeable_buffer_resize` (SFINAE for one-argument `resize`, including a pre-C++11 defaulted fill argument); example **examples/by_concept/resizeable_buffer**; **FAQ.md** Q6;
+  * **unixstl** / **winstl** `system_traits` — `get_current_process_path()` (multibyte and wide, optional basename separator out-parameter) and resizeable-buffer overloads; **winstl** `get_module_directory(hModule, rb)`;
+  * **unixstl::system_traits<wchar_t>** — `path_str_compare()` / `path_str_n_compare()`, `get_environment_variable()` (raw and `rb`), and `get_home_directory(rb)`; **unixstl_C_get_home_directory_w()** reads `HOME` and converts with `mbstowcs()`;
+  * **unixstl::filesystem_traits<wchar_t>** — separator finding and path classification (`is_path_rooted()` / `is_path_absolute()` / `is_path_UNC()`, including Windows drive-letter and UNC forms); path-resolve, current-directory, and directory-enumeration members, together with `load_library()` / `free_library()` / `expand_environment_strings()`, remain declared pending one conversion policy;
+  * `platformstl::get_home_directory()` and related functions; on Windows the lookup tries `"USERPROFILE"`, then `"HOMEDRIVE"` and `"HOMEPATH"`;
+  * `stlsoft_C_environment_variable_strtoll_m()` / `stlsoft::environment_variable_strtoll()`; renamed `stlsoft_C_environment_variable_exists_a()` to `stlsoft_C_environment_variable_exists_m()` (the `_a` form remains a deprecated forwarder); `platformstl::environment_variable_scope`;
+  * `unixstl_C_get_current_process_id()`, `winstl_C_get_current_process_id()`, and `platformstl_C_get_current_process_id()`;
+  * **unixstl::filesystem_traits** — `rewind_dir()` (wrapping `rewinddir()`);
+  * `platformstl::pid_sequence` / `unixstl::pid_sequence`; `winstl::codepage_sequence`; `winstl_C_printf_debug_string()`; Window write-to-console functions;
+  * `platformstl::FILE_stream::write_binary()` (writes every byte, including embedded NULs); `write(void const*, size_t)` deprecated in its favour;
+  * `platformstl::basic_file_lines<>` — move semantics, and parsing directly from the memory-mapped view (the full-file heap copy is gone; an embedded NUL is rejected in the parse loop); on the new harness (1000×64 LF), view-based forms are about **10–20×** faster than `fgetc` accumulation and typically comparable to or slightly ahead of `std::getline`;
+  * `stlsoft::member_selector_view<>` (alpha, for span-compatibility in **recls**);
+  * `stlsoft::doomgram` and `stlsoft::gram_scope`; **stlsoft/diagnostics/gram_utils.hpp** (`stlsoft::gram_to_strip()`);
+  * `stlsoft::count_decimal_digits()` (formerly `count_digits()`) and `stlsoft::count_hexadecimal_digits()`; unselected-by-default `count_bits_by_intrinsic()` and `find_highest_bit_by_intrinsic()`, with detection in **stlsoft/api/external/bitfns.h** and **stlsoft/api/internal/bitfns.h** (GCC/Clang builtins preferred over MSVC when both are visible); measurements and the default choice recorded in **strategy/BIT_FUNCTIONS.md** (table for `count_bits()`; scan for `find_highest_bit()`);
+  * **unixstl/time/comparison_functions.h** (`unixstl_C_compare_timevals()` / `unixstl::compare()`); `winstl_C_difference_in_microseconds_QPC()` and `winstl_C_absolute_difference_in_microseconds_QPC()`; `winstl::micro_sleep()` uses an active wait for short delays (`0 < delay_us <= 250000`);
+  * Stopwatch `pause()` / `unpause()` on `stlsoft::std_chrono_hrc_stopwatch`, **unixstl**, and **winstl**; **unixstl** stopwatch `get_kernel_nanoseconds()` / `get_user_nanoseconds()` / `get_nanoseconds()`; added `stlsoft::std_chrono_hrc_stopwatch`;
+  * `stlsoft::integral_traits<>` (**stlsoft/traits/integral_traits.hpp**), including specialisations for integer `true_typedef<>`; `stlsoft::unicode_point_map`;
+  * `stlsoft::integer_to_base32_string<>()` and `stlsoft::integer_to_base36_string<>()`; `stlsoft::write_string<>()`; true-typedef stream insertion (`operator <<()`);
+  * String API — `basic_simple_string` and `basic_static_string` gained `starts_with()` / `ends_with()` and `contains()`; `basic_simple_string` gained `equal()`; `basic_static_string` gained `substr()`, `front()`, and `back()`, and throws when an operation would exceed internal storage;
+  * `stlsoft::auto_buffer<>` — `cbegin()` / `cend()` / `crbegin()` / `crend()`; `resize()` keeps the external allocation so a shrink followed by a regrow can reuse it; memory-function abstraction, with performance improvements across components that use it; `STLSOFT_IS_CONSTANT_EVALUATED()` applied here in particular;
+  * `unixstl::glob_sequence` and `unixstl::readdir_sequence` can search for sockets and for devices, and can skip hidden directories and files; `readdir_sequence` no longer uses `basic_static_string`; the Windows `platformstl::readdir_sequence` is now `winstl::readdir_sequence`;
+  * `frequency_map` enhancements, including a default specialisation on `frequency_map_traits_unordered` when compiling as C++11 or later;
+  * **inetstl/util/uds_helpers.h** — Unix Domain Socket helper functions;
+  * `platformstl::isatty()`, `unixstl::isatty()`, and `winstl::isatty()`, with the corresponding `*_C_isatty_fd()` / `*_C_isatty_stm()` functions;
+  * Macros `STLSOFT_FALLTHROUGH()` and `STLSOFT_IS_CONSTANT_EVALUATED()`; `printf()` format attributes applied throughout; Clang cccap `STLSOFT_CLANG_VER`, and the shared `STLSOFT_GCC_VER` documented;
+  * **ACESTL** — `invoke_ACE_OS_snprintf` implemented in terms of `stlsoft_C_snprintf()`;
+  * Command-line handling components — minor improvements, including missing member types on `stlsoft::cmdargs`;
+* breaking changes:
+  * Renamed the UNIXSTL and WinSTL `module` class to `dl_module`, for prospective compatibility with the C++20 keyword `module`;
+* fixes:
+  * **unixstl** / **winstl** filesystem and system `rb` overloads follow the gold probe-then-fill pattern: early-out when the probe returns `0` (no resize-then-`&rb[0]` on an empty buffer); resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY` and is reported for every `resizeable_buffer_resize` failure on those paths, including **winstl** `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow; environment `rb` demand includes the trailing NUL (`cchValue + 1`);
+  * **unixstl::filesystem_traits** — `ensure_dir_end(rb)` leaves a lone-NUL `""` unchanged (`n > 1`, matching WinSTL); `remove_dir_end` (C-string and `rb`, A and W) strips all trailing path separators, matching WinSTL; **winstl** `remove_dir_end(rb)` shrinks `size()` to the post-strip length so a later `ensure_dir_end(rb)` cannot write past the NUL;
+  * **unixstl** / **winstl** `get_full_path_name_impl` sizes the scratch for a non-NUL-terminated counted slice as `1 + len` (WinSTL quoted-path handling takes this branch);
+  * **unixstl::readdir_sequence** — the non-exception `absolutePath` failure path soft-fails with an empty string (parallel to the throw when exceptions are enabled);
+  * **unixstl::filesystem_traits** — `class_type` is defined in terms of `char_type` (the wide specialisation previously named the narrow specialisation);
+  * `stlsoft::basic_simple_string<>` — `resize()` no longer over-reads when expanding a non-empty string; `assign()` defect fixed; counted construction, `assign`, `append`, `push_back`, and concatenation keep an embedded NUL, including assignment of a single `'\0'`;
+  * `stlsoft::basic_string_view` comparison defect fixed; `string_begins_with` compares a `wchar_t` prefix with `char_traits<C>::compare_max`; `char_traits_safe` treats a count of 0 as equal, and orders a null pointer before a live pointer when the count is non-zero;
+  * `stlsoft::string_to_integer_range<>()` calls the renamed `try_string_to_integer_4slre_` helper, with further string-to-integer compatibility corrections; `string_insert()` works with stream types that do and do not provide `sentry`;
+  * `stlsoft::unused_return_value_monitor<>` copy constructor clears `m_bUsed` on the source object; added `stlsoft::sinteger64` copy constructor;
+  * `stlsoft_C_environment_variable_exists_m()` treats an existing empty variable as present when `getenv_s()` reports one;
+  * `count_bits()` fixed when `STLSOFT_BIT_COUNT_BY_Kernighan` is defined;
+  * `unixstl::path_squeeze<>()` / `winstl::path_squeeze<>()` defects; compile defect in `winstl::basic_path<>`; defect in `winstl::basic_reg_key<>`; `winstl::codepage_sequence::data()` returns `m_cpids.data()`; `winstl_C_printf_debug_string()` compares the buffer length as a signed `int`; **winstl::netapi_allocator** passes a `DWORD` byte count to `NetApiBufferAllocate`;
+  * `STLSOFT_MESSAGE_ASSERT()` definition fixed for Clang; default definition of `STLSOFT_FALLTHROUGH()` fixed; minor defects in language-version detection corrected;
+  * Allocators reject element counts above `max_size()` before `n * sizeof(T)`; `pid_sequence` avoids a `size() - 1` underflow when eliding PIDs;
+  * **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS; **stlsoft/std/cstring.hpp** suppresses CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
+  * **execute_performance_tests.sh** preserves the child exit code across optional `expand` piping;
+  * `dl_call<>()` fixes and enhancements (UNIXSTL and WinSTL); minor fix to `basic_static_string`; minor fix to **example.platformstl.filesystem.readdir_sequence**; further defect fixes in the new `auto_buffer` behaviour; warning suppressions (including `basic_simple_string` and `winstl::readonly_memory_mapped_file`);
+* compatibility:
+  * Language coverage across C90, C99, C11, C17, and C23, and across C++98, C++11, C++14, C++17, C++20, and C++23, including `constexpr` application and C90 corrections; GCC 11 (`__builtin_is_constant_evaluated` when the dialect is not C++20) and GCC 14;
+  * Visual C++, from a partial restoration of v10 through current toolsets (`_MSC_VER` 1941–1944 and 18.x in **stlsoft.h**), including MSVC `/MT` and pre-VS-2022; Clang cccap uses `long long` for 64-bit sized types so they stay distinct from `long` on Linux LP64;
+  * MinGW and MinGW-w64, including omitted byte-comparers in **winstl/util/struct_comparers.hpp** (`NETWORK_APP_INSTANCE_EA`, `POWER_LIMIT_VALUE`, `SHUFFLE_FILE_DATA`) and compatibility in **winstl/internal/windows_version_.h** and **winstl/system/console_functions.h**; Windows ARM64; Windows 10/11 operating-system detection; **UNIXem**;
+  * **InetSTL** on macOS and Linux (including **test.component.inetstl.util.uds_helpers**); architecture discrimination in **InetSTL**, **UNIXSTL**, and **WinSTL** canonicalised; substantial refactoring of `winstl::filesystem_traits<>`;
+  * On Windows GNU (**MinGW**), CMake static-links **libgcc** and **libstdc++** into test and example programs so the images load when the runner **PATH** does not match the build toolchain;
+* testing:
+  * Unit tests extended for string comparison (`strnicmp`, `c_string_traits`, `char_traits` / `char_traits_safe`, `strcmp` / `strncmp`, BSTR, `string_begins_with`, and compare edges on `simple_string`, `static_string`, `string_view`, and `string_slice`), bit functions (including intrinsic helpers), the nine allocator suites (round-trip sizes, `max_size()`, and `std::list` / `std::vector` use; `null_allocator` throws `out_of_memory_exception`), integral traits and limits, doomgram and gram scope, decimal and hexadecimal digit counting, **unixstl** path and wide filesystem-traits classification, wide `path_str_compare`, `resizeable_buffer_resize`, and `ensure_dir_end` / `remove_dir_end`;
+  * Component tests added or extended for environment-variable existence and `strtoll`, home directory and environment `rb` overloads, process paths (**unixstl** and **winstl**), filesystem path `rb` overloads, `open_dir()` / `read_dir()` / `rewind_dir()` / `close_dir()`, **winstl** `get_module_directory(rb)`, `platformstl::file_lines` (LF, CR, and CRLF, including an empty line, and rejection of an embedded NUL), **winstl** directory functions, and **ACESTL** `ACE_String_Base` / `ACE_Time_Value` string-access shims;
+  * Performance suites for bit functions, `file_lines` (against `fgetc` and `std::getline`), digit counting, doomgram, gram utils, and `frequency_map`; scratch programs include `rewind_dir`, `micro_sleep`, and **test.scratch.versions.format** (library versions via `std::format`, built only for toolchains that provide it — MSVC 19.29+, GCC 13+, Clang 17+, AppleClang 16+, C++20 or later — and a stub when `__cpp_lib_format` is absent);
+  * Example **examples/by_project/unixstl/filesystem/rewind_dir**; previously unreleased example and test programs brought into the repository, including C-API suites; every unit and component assertion uses the **xTests** Terse API; empty placeholder cases removed; C-language test and example programs use the **subject.C** form;
+  * Leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (executable names stay `test.<kind>.*`); performance programs nested by sub-project and area;
+* documentation and boilerplate:
+  * Documentation set modernised — **README.md** (components, CI badge on **ci.yml**), **FAQ.md**, **INSTALL.md**, **EXAMPLES.md**, **KNOWN_ISSUES.md**, **TODO.md** (1.11 / 1.12 roadmap), **HOW_YOU_CAN_HELP.md**, and **AUTHORS.md**; **CHANGES.txt** converted to **CHANGES.md** and **HISTORY.md** removed once subsumed; Doxygen generation via **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** (HTML under **_build/doxygen/html**); resizeable-buffer helper comments enriched; `\pre` comments normalised to bare boolean expressions, preferring `nullptr`;
+  * Repository drop-ins aligned with **misc-dev-scripts** **0.6.0** (editor settings, Git attributes, **.sis/project_name.txt**, and a sorted union **.gitignore**); **.gitattributes** Linguist policy classifies public C headers and sources as C, C++ as C++, and `*.cmake` as CMake, and excludes helper scripts, IDE files, **CMakeLists.txt**, and **makefile** from the language bar; repeated per-release boilerplate, include-order canonicalisation, and layout tidying across the alpha/beta/rc line, including the boilerplate-only **1.10.12** release, are absorbed here;
+  * CMake minimum **3.20**, with **BUILD_TESTING**, tree headers preferred over an installed **STLSoft** (`NO_SYSTEM_FROM_IMPORTED`), **CMP0177** on CMake 3.31 or later, and optional **shwild** / **ACE** / **ATL** / **MFC** discovery (`--no-shwild` / `CMAKE_NO_SHWILD`, `--no-ace`, **cmake/FindACE.cmake**, **cmake/FindATL.cmake**, `stlsoft_prepare_mfc_target`); depends on **xTests** 0.24+;
+  * Helper scripts rewritten to the common Synesis layout (`cmake --build`, coloured output, **.sis/project_name.txt** in status messages): **prepare_cmake.sh** (including `--build-shared-libs`, `--stlsoft-root-dir`, `SIS_CMAKE_GENERATOR`, and `SIS_CMAKE_MINGW`, with every `-D` passed on all generator paths), **build_cmake.sh**, **clean_cmake.sh**, **ctest_cmake.sh**, **remove_cmake_artefacts.sh** (no longer removes **docs** or **Doxyfile**), **run_all_unit_tests.sh** / **.cmd** (unit programs only; honours `XTESTS_VERBOSITY` and `TEST_VERBOSITY`), **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd** (`--gap-groups`), **run_all_automated_tests.sh** / **.cmd**, **run_all_examples.sh** (`--skip-interactive` via **.github/ci_skip_interactive_examples.txt**, and `SIS_EXAMPLE_SMOKE=1`), **run_all_scratch_tests.sh** / **.cmd**, and **execute_performance_tests.sh**; **dev/bin/batch_compile_check** accepts `--counts`;
+  * GitHub Actions **ci.yml** and **ci-cell.yml** on macOS, Linux, and Windows (**clang**, **gcc**, **MinGW**, **Visual C++**), with install-smoke, concurrency cancel-in-progress, component tests, a performance job (`SIS_PERFTESTS_GROUPGAPS=1`), and dedicated **ACE**, **ATL**, and **MFC** cells (the default MSVC cell does not require MFC); after an artifact download, non-Windows cells restore execute bits on test and example binaries and do not treat CMake artefacts as programs; a cell fails when it discovers zero unit tests;
+* version:
+  * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**);
+  * **inetstl** — **1.5.0** (**_INETSTL_VER_1_5_0**);
+  * **platformstl** — **1.10.0** (**_PLATFORMSTL_VER_1_10_0**);
+  * **unixstl** — **1.8.6** (**_UNIXSTL_VER_1_8_6**);
+  * **winstl** — **1.13.0** (**_WINSTL_VER_1_13_0**);
+
+
 ## 1.11.1-rc10 - 20th October 2026
 
 * additions:

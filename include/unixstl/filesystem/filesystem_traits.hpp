@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th October 2026
+ * Updated: 25th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -1818,7 +1818,7 @@ public:
     }
 
 private:
-#if _STLSOFT_VER >= 0x010b01ff
+#if _STLSOFT_VER >= 0x010b0280
 
 # error Sort get_root_len_() properly
 #endif
@@ -1836,7 +1836,6 @@ public:
         {
             return 0;
         }
-
 #ifdef _WIN32
 
         // If it's really on Windows, then we need to check for drive designator
