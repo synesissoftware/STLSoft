@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp().
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 23rd October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,17 +34,27 @@ static void TEST_stlsoft_C_strnicmp_EQUAL(void);
 static void TEST_stlsoft_C_strnicmp_LESS(void);
 static void TEST_stlsoft_C_strnicmp_GREATER(void);
 static void TEST_stlsoft_C_strnicmp_n_0(void);
+static void TEST_stlsoft_C_strnicmp_n_1(void);
 static void TEST_stlsoft_C_strnicmp_STOPS_AT_NUL(void);
+static void TEST_stlsoft_C_strnicmp_NUL_AT_START(void);
 static void TEST_stlsoft_C_strnicmp_IGNORES_BYTE_PAST_n(void);
+static void TEST_stlsoft_C_strnicmp_DIFFER_AT_LAST(void);
 static void TEST_stlsoft_C_strnicmp_ASCII_CASE_FOLD(void);
+static void TEST_stlsoft_C_strnicmp_CASE_THEN_DIFFER(void);
+static void TEST_stlsoft_C_strnicmp_NON_LETTER(void);
 static void TEST_stlsoft_C_strnicmp_HIGH_BIT(void);
 static void TEST_stlsoft_C_wcsnicmp_EQUAL(void);
 static void TEST_stlsoft_C_wcsnicmp_LESS(void);
 static void TEST_stlsoft_C_wcsnicmp_GREATER(void);
 static void TEST_stlsoft_C_wcsnicmp_n_0(void);
+static void TEST_stlsoft_C_wcsnicmp_n_1(void);
 static void TEST_stlsoft_C_wcsnicmp_STOPS_AT_NUL(void);
+static void TEST_stlsoft_C_wcsnicmp_NUL_AT_START(void);
 static void TEST_stlsoft_C_wcsnicmp_IGNORES_BYTE_PAST_n(void);
+static void TEST_stlsoft_C_wcsnicmp_DIFFER_AT_LAST(void);
 static void TEST_stlsoft_C_wcsnicmp_ASCII_CASE_FOLD(void);
+static void TEST_stlsoft_C_wcsnicmp_CASE_THEN_DIFFER(void);
+static void TEST_stlsoft_C_wcsnicmp_NON_LETTER(void);
 static void TEST_stlsoft_C_wcsnicmp_HIGH_BIT(void);
 
 
@@ -65,17 +75,27 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_LESS);
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_GREATER);
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_n_0);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_n_1);
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_STOPS_AT_NUL);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_NUL_AT_START);
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_IGNORES_BYTE_PAST_n);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_DIFFER_AT_LAST);
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_ASCII_CASE_FOLD);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_CASE_THEN_DIFFER);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_NON_LETTER);
         XTESTS_RUN_CASE(TEST_stlsoft_C_strnicmp_HIGH_BIT);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_EQUAL);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_LESS);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_GREATER);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_n_0);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_n_1);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_STOPS_AT_NUL);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_NUL_AT_START);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_IGNORES_BYTE_PAST_n);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_DIFFER_AT_LAST);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_ASCII_CASE_FOLD);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_CASE_THEN_DIFFER);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_NON_LETTER);
         XTESTS_RUN_CASE(TEST_stlsoft_C_wcsnicmp_HIGH_BIT);
 
         XTESTS_PRINT_RESULTS();
@@ -116,6 +136,13 @@ static void TEST_stlsoft_C_strnicmp_n_0(void)
     TEST_INT_EQ(0, stlsoft_C_strnicmp("", "abc", 0));
 }
 
+static void TEST_stlsoft_C_strnicmp_n_1(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_strnicmp("aX", "Ay", 1));
+    TEST_INT_LT(0, stlsoft_C_strnicmp("A", "b", 1));
+    TEST_INT_GT(0, stlsoft_C_strnicmp("b", "A", 1));
+}
+
 static void TEST_stlsoft_C_strnicmp_STOPS_AT_NUL(void)
 {
     char const s1[] = { 'a', '\0', 'x' };
@@ -124,10 +151,27 @@ static void TEST_stlsoft_C_strnicmp_STOPS_AT_NUL(void)
     TEST_INT_EQ(0, stlsoft_C_strnicmp(s1, s2, 3));
 }
 
+static void TEST_stlsoft_C_strnicmp_NUL_AT_START(void)
+{
+    char const both[] = { '\0', 'x' };
+    char const only[] = { '\0', 'y' };
+
+    TEST_INT_EQ(0, stlsoft_C_strnicmp(both, only, 2));
+    TEST_INT_LT(0, stlsoft_C_strnicmp(both, "a", 1));
+    TEST_INT_GT(0, stlsoft_C_strnicmp("a", only, 1));
+}
+
 static void TEST_stlsoft_C_strnicmp_IGNORES_BYTE_PAST_n(void)
 {
     TEST_INT_EQ(0, stlsoft_C_strnicmp("abX", "abY", 2));
     TEST_INT_LT(0, stlsoft_C_strnicmp("abX", "abY", 3));
+}
+
+static void TEST_stlsoft_C_strnicmp_DIFFER_AT_LAST(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_strnicmp("abcd", "abce", 3));
+    TEST_INT_LT(0, stlsoft_C_strnicmp("abcd", "abce", 4));
+    TEST_INT_GT(0, stlsoft_C_strnicmp("abce", "abcd", 4));
 }
 
 static void TEST_stlsoft_C_strnicmp_ASCII_CASE_FOLD(void)
@@ -136,6 +180,20 @@ static void TEST_stlsoft_C_strnicmp_ASCII_CASE_FOLD(void)
     TEST_INT_EQ(0, stlsoft_C_strnicmp("AbC", "aBc", 10));
     TEST_INT_LT(0, stlsoft_C_strnicmp("abC", "aBd", 3));
     TEST_INT_GT(0, stlsoft_C_strnicmp("B", "a", 1));
+}
+
+static void TEST_stlsoft_C_strnicmp_CASE_THEN_DIFFER(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_strnicmp("abcX", "ABCx", 4));
+    TEST_INT_LT(0, stlsoft_C_strnicmp("abcX", "ABCY", 4));
+    TEST_INT_GT(0, stlsoft_C_strnicmp("ABCY", "abcX", 4));
+}
+
+static void TEST_stlsoft_C_strnicmp_NON_LETTER(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_strnicmp("a1!", "A1!", 3));
+    TEST_INT_LT(0, stlsoft_C_strnicmp("a1!", "A1?", 3));
+    TEST_INT_GT(0, stlsoft_C_strnicmp("A1?", "a1!", 3));
 }
 
 static void TEST_stlsoft_C_strnicmp_HIGH_BIT(void)
@@ -182,6 +240,13 @@ static void TEST_stlsoft_C_wcsnicmp_n_0(void)
     TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"", L"abc", 0));
 }
 
+static void TEST_stlsoft_C_wcsnicmp_n_1(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"aX", L"Ay", 1));
+    TEST_INT_LT(0, stlsoft_C_wcsnicmp(L"A", L"b", 1));
+    TEST_INT_GT(0, stlsoft_C_wcsnicmp(L"b", L"A", 1));
+}
+
 static void TEST_stlsoft_C_wcsnicmp_STOPS_AT_NUL(void)
 {
     wchar_t const s1[] = { L'a', L'\0', L'x' };
@@ -190,10 +255,27 @@ static void TEST_stlsoft_C_wcsnicmp_STOPS_AT_NUL(void)
     TEST_INT_EQ(0, stlsoft_C_wcsnicmp(s1, s2, 3));
 }
 
+static void TEST_stlsoft_C_wcsnicmp_NUL_AT_START(void)
+{
+    wchar_t const both[] = { L'\0', L'x' };
+    wchar_t const only[] = { L'\0', L'y' };
+
+    TEST_INT_EQ(0, stlsoft_C_wcsnicmp(both, only, 2));
+    TEST_INT_LT(0, stlsoft_C_wcsnicmp(both, L"a", 1));
+    TEST_INT_GT(0, stlsoft_C_wcsnicmp(L"a", only, 1));
+}
+
 static void TEST_stlsoft_C_wcsnicmp_IGNORES_BYTE_PAST_n(void)
 {
     TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"abX", L"abY", 2));
     TEST_INT_LT(0, stlsoft_C_wcsnicmp(L"abX", L"abY", 3));
+}
+
+static void TEST_stlsoft_C_wcsnicmp_DIFFER_AT_LAST(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"abcd", L"abce", 3));
+    TEST_INT_LT(0, stlsoft_C_wcsnicmp(L"abcd", L"abce", 4));
+    TEST_INT_GT(0, stlsoft_C_wcsnicmp(L"abce", L"abcd", 4));
 }
 
 static void TEST_stlsoft_C_wcsnicmp_ASCII_CASE_FOLD(void)
@@ -202,6 +284,20 @@ static void TEST_stlsoft_C_wcsnicmp_ASCII_CASE_FOLD(void)
     TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"AbC", L"aBc", 10));
     TEST_INT_LT(0, stlsoft_C_wcsnicmp(L"abC", L"aBd", 3));
     TEST_INT_GT(0, stlsoft_C_wcsnicmp(L"B", L"a", 1));
+}
+
+static void TEST_stlsoft_C_wcsnicmp_CASE_THEN_DIFFER(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"abcX", L"ABCx", 4));
+    TEST_INT_LT(0, stlsoft_C_wcsnicmp(L"abcX", L"ABCY", 4));
+    TEST_INT_GT(0, stlsoft_C_wcsnicmp(L"ABCY", L"abcX", 4));
+}
+
+static void TEST_stlsoft_C_wcsnicmp_NON_LETTER(void)
+{
+    TEST_INT_EQ(0, stlsoft_C_wcsnicmp(L"a1!", L"A1!", 3));
+    TEST_INT_LT(0, stlsoft_C_wcsnicmp(L"a1!", L"A1?", 3));
+    TEST_INT_GT(0, stlsoft_C_wcsnicmp(L"A1?", L"a1!", 3));
 }
 
 static void TEST_stlsoft_C_wcsnicmp_HIGH_BIT(void)
