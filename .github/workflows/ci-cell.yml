@@ -824,7 +824,7 @@ jobs:
             )
             echo optional program not present: %PAT%
           ) else (
-            echo ran %N% program(s) matching %PAT%
+            echo ran %N% for %PAT%
           )
           exit /b 0
 
@@ -915,6 +915,6 @@ jobs:
             )
             echo optional program not present: %PAT%
           ) else (
-            echo ran %N% program(s) matching %PAT%
+            echo ran %N% for %PAT%
           )
           exit /b 0
