@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnstrn() and wcsnstrn().
  *
  * Created: 23rd October 2026
- * Updated: 23rd October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,8 +63,7 @@ namespace
     static void TEST_c_string_wcsnstrn_FULL_SPAN();
 
     static wchar_t const* wcsnstrn_both_(wchar_t const* s1, size_t n1, wchar_t const* s2, size_t n2);
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -352,8 +351,7 @@ static void TEST_c_string_wcsnstrn_FULL_SPAN()
     TEST_PTR_EQ(s, wcsnstrn_both_(s, 4, L"abcd", 4));
     TEST_PTR_NULL(wcsnstrn_both_(s, 4, L"abce", 4));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

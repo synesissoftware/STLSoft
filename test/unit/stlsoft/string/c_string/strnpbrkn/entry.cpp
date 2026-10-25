@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnpbrkn() and wcsnpbrkn().
  *
  * Created: 23rd October 2026
- * Updated: 23rd October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,8 +63,7 @@ namespace
     static void TEST_c_string_wcsnpbrkn_SET_LONGER_THAN_STRING();
 
     static wchar_t const* wcsnpbrkn_both_(wchar_t const* str, size_t cchStr, wchar_t const* charSet, size_t cchCharSet);
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -340,8 +339,7 @@ static void TEST_c_string_wcsnpbrkn_SET_LONGER_THAN_STRING()
     TEST_PTR_EQ(s, wcsnpbrkn_both_(s, 1, L"xyzb", 4));
     TEST_PTR_NULL(wcsnpbrkn_both_(s, 1, L"xyza", 4));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
