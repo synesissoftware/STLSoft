@@ -9,6 +9,7 @@
   * applies xTests' null-ptr macros;
 * documentation and boilerplate:
   * standardised use of alpha/beta/rc nomenclature throughout the repo;
+  * GitHub Actions **ACE**, **ATL**, and **MFC** cells still build the whole tree and execute only the programs those libraries add (`test.unit.acestl.*`, `test.unit.mfcstl.*`, `test.unit.versions`, and the scratch version reporters **test.scratch.versions.stdio**, **test.scratch.versions.iostreams**, and **test.scratch.versions.format** when `std::format` is available); examples, component tests, the rest of the scratch suite, and performance tests stay on the lean cell of the same compiler and OS;
 
 
 ## 1.11.1 - 21st October 2026
