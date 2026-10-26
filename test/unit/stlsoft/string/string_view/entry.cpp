@@ -74,6 +74,7 @@ namespace {
     static void TEST_ctor_range_3();
     static void TEST_swap_METHOD();
     static void TEST_swap_BY_ADL();
+    static void TEST_swap_stlsoft();
     static void TEST_swap_2();
     static void TEST_swap_3();
     static void TEST_clear();
@@ -137,6 +138,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_ctor_range_3);
         XTESTS_RUN_CASE(TEST_swap_METHOD);
         XTESTS_RUN_CASE(TEST_swap_BY_ADL);
+        XTESTS_RUN_CASE(TEST_swap_stlsoft);
         XTESTS_RUN_CASE(TEST_swap_2);
         XTESTS_RUN_CASE(TEST_swap_3);
         XTESTS_RUN_CASE(TEST_clear);
@@ -418,6 +420,39 @@ static void TEST_swap_BY_ADL()
         TEST_BOOLEAN_TRUE(s2.empty());
 
         swap(s1, s2);
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_FALSE(s2.empty());
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ_N("abc", s2, s2.size());
+    }
+}
+
+static void TEST_swap_stlsoft()
+{
+    {
+        string_v_t  s1;
+        string_v_t  s2;
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+
+        stlsoft::swap(s2, s1);
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+    }
+
+    {
+        string_v_t  s1("abc");
+        string_v_t  s2;
+
+        TEST_BOOLEAN_FALSE(s1.empty());
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ_N("abc", s1, s1.size());
+        TEST_BOOLEAN_TRUE(s2.empty());
+
+        stlsoft::swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_FALSE(s2.empty());

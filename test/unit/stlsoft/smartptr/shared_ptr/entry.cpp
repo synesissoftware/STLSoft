@@ -52,6 +52,7 @@ namespace {
 #endif
     static void TEST_swap_METHOD();
     static void TEST_swap_BY_ADL();
+    static void TEST_swap_stlsoft();
     static void TEST_std_swap();
 } // anonymous namespace
 
@@ -81,6 +82,7 @@ int main(int argc, char* argv[])
 #endif
         XTESTS_RUN_CASE(TEST_swap_METHOD);
         XTESTS_RUN_CASE(TEST_swap_BY_ADL);
+        XTESTS_RUN_CASE(TEST_swap_stlsoft);
         XTESTS_RUN_CASE(TEST_std_swap);
 
         XTESTS_PRINT_RESULTS();
@@ -561,6 +563,94 @@ static void TEST_swap_BY_ADL()
                 stlsoft::shared_ptr<CountHolder> ptr2;
 
                 swap(ptr2, ptr);
+
+                TEST_INT_EQ(0, ptr.count());
+                TEST_INT_EQ(0, ptr.use_count());
+                TEST_PTR_NULL(ptr.get());
+
+                TEST_INT_EQ(1, ptr2.count());
+                TEST_INT_EQ(1, ptr2.use_count());
+                TEST_PTR_NOT_NULL(ptr2.get());
+
+                TEST_INT_EQ(124, ptr2->i());
+            }
+
+            TEST_INT_EQ(0, ptr.count());
+            TEST_INT_EQ(0, ptr.use_count());
+            TEST_PTR_NULL(ptr.get());
+        }
+
+        TEST_INT_EQ(123, i);
+    }
+}
+
+static void TEST_swap_stlsoft()
+{
+    {
+        stlsoft::shared_ptr<int> ptr(new int(123));
+
+        TEST_INT_EQ(1, ptr.count());
+        TEST_INT_EQ(1, ptr.use_count());
+        TEST_PTR_NOT_NULL(ptr.get());
+
+        TEST_INT_EQ(123, *ptr);
+
+        stlsoft::shared_ptr<int> ptr2;
+
+        stlsoft::swap(ptr2, ptr);
+
+        TEST_INT_EQ(0, ptr.count());
+        TEST_INT_EQ(0, ptr.use_count());
+        TEST_PTR_NULL(ptr.get());
+
+        TEST_INT_EQ(1, ptr2.count());
+        TEST_INT_EQ(1, ptr2.use_count());
+        TEST_PTR_NOT_NULL(ptr2.get());
+
+        TEST_INT_EQ(123, *ptr2);
+    }
+
+    {
+        stlsoft::shared_ptr<std::string> ptr(new std::string("123"));
+
+        TEST_INT_EQ(1, ptr.count());
+        TEST_INT_EQ(1, ptr.use_count());
+        TEST_PTR_NOT_NULL(ptr.get());
+
+        TEST_MS_EQ("123", *ptr);
+
+        stlsoft::shared_ptr<std::string> ptr2;
+
+        stlsoft::swap(ptr2, ptr);
+
+        TEST_INT_EQ(0, ptr.count());
+        TEST_INT_EQ(0, ptr.use_count());
+        TEST_PTR_NULL(ptr.get());
+
+        TEST_INT_EQ(1, ptr2.count());
+        TEST_INT_EQ(1, ptr2.use_count());
+        TEST_PTR_NOT_NULL(ptr2.get());
+
+        TEST_MS_EQ("123", *ptr2);
+        TEST_INT_EQ(3u, ptr2->size());
+    }
+
+    {
+        int i = 123;
+
+        {
+            stlsoft::shared_ptr<CountHolder> ptr(new CountHolder(i));
+
+            TEST_INT_EQ(1, ptr.count());
+            TEST_INT_EQ(1, ptr.use_count());
+            TEST_PTR_NOT_NULL(ptr.get());
+
+            TEST_INT_EQ(124, ptr->i());
+
+            {
+                stlsoft::shared_ptr<CountHolder> ptr2;
+
+                stlsoft::swap(ptr2, ptr);
 
                 TEST_INT_EQ(0, ptr.count());
                 TEST_INT_EQ(0, ptr.use_count());

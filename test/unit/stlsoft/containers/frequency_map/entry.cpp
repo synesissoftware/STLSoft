@@ -71,6 +71,7 @@ namespace {
     static void TEST_push();
     static void TEST_swap_METHOD();
     static void TEST_swap_BY_ADL();
+    static void TEST_swap_stlsoft();
     static void TEST_swap_std();
     static void TEST_iteration_order_1();
 } // anonymous namespace
@@ -107,6 +108,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_push);
         XTESTS_RUN_CASE(TEST_swap_METHOD);
         XTESTS_RUN_CASE(TEST_swap_BY_ADL);
+        XTESTS_RUN_CASE(TEST_swap_stlsoft);
         XTESTS_RUN_CASE(TEST_swap_std);
         XTESTS_RUN_CASE(TEST_iteration_order_1);
 
@@ -1746,6 +1748,109 @@ static void TEST_swap_BY_ADL()
         TEST_INT_EQ(1u, fm2[2]);
 
         swap(fm2, fm1);
+
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(2u, fm1.size());
+        TEST_INT_EQ(4u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
+
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(7u, fm2.count(-2));
+
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(7u, fm2[-2]);
+    }
+}
+
+static void TEST_swap_stlsoft()
+{
+    {
+        fm_ordered_int_t    fm1;
+        fm_ordered_int_t    fm2;
+
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
+
+        stlsoft::swap(fm1, fm2);
+
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
+
+        stlsoft::swap(fm2, fm1);
+
+        TEST_BOOLEAN_TRUE(fm1.empty());
+        TEST_BOOLEAN_TRUE(fm2.empty());
+        TEST_INT_EQ(0u, fm1.size());
+        TEST_INT_EQ(0u, fm1.total());
+        TEST_INT_EQ(0u, fm2.size());
+        TEST_INT_EQ(0u, fm2.total());
+    }
+
+    {
+        fm_ordered_int_t    fm1;
+        fm_ordered_int_t    fm2;
+
+        fm1.push_n(1, 3);
+        fm1.push(2);
+        fm2.push_n(-2, 7);
+
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(2u, fm1.size());
+        TEST_INT_EQ(4u, fm1.total());
+        TEST_INT_EQ(1u, fm2.size());
+        TEST_INT_EQ(7u, fm2.total());
+
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(3u, fm1.count(1));
+        TEST_INT_EQ(1u, fm1.count(2));
+        TEST_INT_EQ(7u, fm2.count(-2));
+
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(3u, fm1[1]);
+        TEST_INT_EQ(1u, fm1[2]);
+        TEST_INT_EQ(7u, fm2[-2]);
+
+        stlsoft::swap(fm1, fm2);
+
+        TEST_BOOLEAN_FALSE(fm1.empty());
+        TEST_BOOLEAN_FALSE(fm2.empty());
+        TEST_INT_EQ(1u, fm1.size());
+        TEST_INT_EQ(7u, fm1.total());
+        TEST_INT_EQ(2u, fm2.size());
+        TEST_INT_EQ(4u, fm2.total());
+
+        TEST_INT_EQ(0u, fm1.count(0));
+        TEST_INT_EQ(0u, fm2.count(100));
+        TEST_INT_EQ(7u, fm1.count(-2));
+        TEST_INT_EQ(3u, fm2.count(1));
+        TEST_INT_EQ(1u, fm2.count(2));
+
+        TEST_INT_EQ(0u, fm1[0]);
+        TEST_INT_EQ(0u, fm2[100]);
+        TEST_INT_EQ(7u, fm1[-2]);
+        TEST_INT_EQ(3u, fm2[1]);
+        TEST_INT_EQ(1u, fm2[2]);
+
+        stlsoft::swap(fm2, fm1);
 
         TEST_BOOLEAN_FALSE(fm1.empty());
         TEST_BOOLEAN_FALSE(fm2.empty());

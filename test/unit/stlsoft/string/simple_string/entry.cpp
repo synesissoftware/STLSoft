@@ -104,6 +104,7 @@ namespace {
     static void TEST_reserve();
     static void TEST_swap_METHOD();
     static void TEST_swap_BY_ADL();
+    static void TEST_swap_stlsoft();
     static void TEST_swap_2();
     static void TEST_swap_3();
     static void TEST_resize();
@@ -279,6 +280,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_reserve);
         XTESTS_RUN_CASE(TEST_swap_METHOD);
         XTESTS_RUN_CASE(TEST_swap_BY_ADL);
+        XTESTS_RUN_CASE(TEST_swap_stlsoft);
         XTESTS_RUN_CASE(TEST_swap_2);
         XTESTS_RUN_CASE(TEST_swap_3);
         XTESTS_RUN_CASE(TEST_resize);
@@ -1098,6 +1100,41 @@ static void TEST_swap_METHOD()
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
 
+        s1.swap(s2);
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+    }
+
+    {
+        string_t    s1("abc");
+        string_t    s2;
+
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
+
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
+
+        s1.swap(s2);
+
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
+
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
+    }
+}
+
+static void TEST_swap_BY_ADL()
+{
+    {
+        string_t    s1;
+        string_t    s2;
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+
         swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
@@ -1124,7 +1161,7 @@ static void TEST_swap_METHOD()
     }
 }
 
-static void TEST_swap_BY_ADL()
+static void TEST_swap_stlsoft()
 {
     {
         string_t    s1;
@@ -1133,7 +1170,7 @@ static void TEST_swap_BY_ADL()
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
 
-        s1.swap(s2);
+        stlsoft::swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
@@ -1149,7 +1186,7 @@ static void TEST_swap_BY_ADL()
         TEST_INT_EQ(0u, s2.size());
         TEST_MS_EQ("", s2);
 
-        s1.swap(s2);
+        stlsoft::swap(s2, s1);
 
         TEST_INT_EQ(0u, s1.size());
         TEST_MS_EQ("", s1);
