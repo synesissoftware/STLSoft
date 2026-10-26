@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -138,34 +138,34 @@
 # define _UNIXSTL_VER_1_6_4     0x00010604  /*!< Version 1.6.4 (with STLSoft 1.9.17) */
 # define _UNIXSTL_VER_1_6_5     0x00010605  /*!< Version 1.6.5 (with STLSoft 1.9.25) */
 # define _UNIXSTL_VER_1_6_6     0x00010606  /*!< Version 1.6.6 (with STLSoft 1.9.29) */
-# define _UNIXSTL_VER_1_6_7     0x010607ff  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
-# define _UNIXSTL_VER_1_6_8     0x010608ff  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
-# define _UNIXSTL_VER_1_7_1     0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.9.33) */
-# define _UNIXSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.37) */
-# define _UNIXSTL_VER_1_7_3     0x010703ff  /*!< Version 1.7.3 (with STLSoft 1.9.92) */
-# define _UNIXSTL_VER_1_7_4     0x010704ff  /*!< Version 1.7.4 (with STLSoft 1.9.108) */
-# define _UNIXSTL_VER_1_7_5     0x010705ff  /*!< Version 1.7.5 (with STLSoft 1.9.113) */
-# define _UNIXSTL_VER_1_7_6     0x010706ff  /*!< Version 1.7.6 (with STLSoft 1.9.119) */
+# define _UNIXSTL_VER_1_6_7     0x010607FF  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
+# define _UNIXSTL_VER_1_6_8     0x010608FF  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
+# define _UNIXSTL_VER_1_7_1     0x010701FF  /*!< Version 1.7.1 (with STLSoft 1.9.33) */
+# define _UNIXSTL_VER_1_7_2     0x010702FF  /*!< Version 1.7.2 (with STLSoft 1.9.37) */
+# define _UNIXSTL_VER_1_7_3     0x010703FF  /*!< Version 1.7.3 (with STLSoft 1.9.92) */
+# define _UNIXSTL_VER_1_7_4     0x010704FF  /*!< Version 1.7.4 (with STLSoft 1.9.108) */
+# define _UNIXSTL_VER_1_7_5     0x010705FF  /*!< Version 1.7.5 (with STLSoft 1.9.113) */
+# define _UNIXSTL_VER_1_7_6     0x010706FF  /*!< Version 1.7.6 (with STLSoft 1.9.119) */
 # define _UNIXSTL_VER_1_8_1_B01 0x01080181  /*!< Version 1.8.1-beta1 (with STLSoft 1.10.1-beta1) */
 # define _UNIXSTL_VER_1_8_1_B02 0x01080182  /*!< Version 1.8.1-beta2 (with STLSoft 1.10.1-beta23) */
 # define _UNIXSTL_VER_1_8_1_B03 0x01080183  /*!< Version 1.8.1-beta3 (with STLSoft 1.10.1-beta25) */
 # define _UNIXSTL_VER_1_8_1_B04 0x01080184  /*!< Version 1.8.1-beta4 (with STLSoft 1.10.1-beta26) */
-# define _UNIXSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.10.3) */
-# define _UNIXSTL_VER_1_8_2     0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.10.4) */
-# define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
-# define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
-# define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1-alpha8) */
-# define _UNIXSTL_VER_1_8_5     0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.11.1-alpha12) */
-# define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.8-alpha1 (with STLSoft 1.11.1-alpha17) */
-# define _UNIXSTL_VER_1_8_6_B01 0x01080681  /*!< Version 1.8.8-beta1 (with STLSoft 1.11.1-beta2) */
-# define _UNIXSTL_VER_1_8_6_B02 0x01080682  /*!< Version 1.8.8-beta2 (with STLSoft 1.11.1-beta3) */
-# define _UNIXSTL_VER_1_8_6_B03 0x01080683  /*!< Version 1.8.8-beta3 (with STLSoft 1.11.1-beta7) */
-# define _UNIXSTL_VER_1_8_6_B04 0x01080684  /*!< Version 1.8.8-beta4 (with STLSoft 1.11.1-beta8) */
-# define _UNIXSTL_VER_1_8_6_B05 0x01080685  /*!< Version 1.8.8-beta5 (with STLSoft 1.11.1-rc2) */
-# define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.8-beta6 (with STLSoft 1.11.1-rc3) */
-# define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.8-beta7 (with STLSoft 1.11.1-rc8) */
-# define _UNIXSTL_VER_1_8_6_B08 0x01080688  /*!< Version 1.8.8-beta8 (with STLSoft 1.11.1-rc9) */
-# define _UNIXSTL_VER_1_8_6     0x010806FF  /*!< Version 1.8.8 (with STLSoft 1.11.1) */
+# define _UNIXSTL_VER_1_8_1     0x010801FF  /*!< Version 1.8.1 (with STLSoft 1.10.3) */
+# define _UNIXSTL_VER_1_8_2     0x010802FF  /*!< Version 1.8.2 (with STLSoft 1.10.4) */
+# define _UNIXSTL_VER_1_8_3     0x010803FF  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
+# define _UNIXSTL_VER_1_8_3     0x010803FF  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
+# define _UNIXSTL_VER_1_8_4     0x010804FF  /*!< Version 1.8.4 (with STLSoft 1.11.1-alpha8) */
+# define _UNIXSTL_VER_1_8_5     0x010805FF  /*!< Version 1.8.5 (with STLSoft 1.11.1-alpha12) */
+# define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.6-alpha1 (with STLSoft 1.11.1-alpha17) */
+# define _UNIXSTL_VER_1_8_6_B01 0x01080681  /*!< Version 1.8.6-beta1 (with STLSoft 1.11.1-beta2) */
+# define _UNIXSTL_VER_1_8_6_B02 0x01080682  /*!< Version 1.8.6-beta2 (with STLSoft 1.11.1-beta3) */
+# define _UNIXSTL_VER_1_8_6_B03 0x01080683  /*!< Version 1.8.6-beta3 (with STLSoft 1.11.1-beta7) */
+# define _UNIXSTL_VER_1_8_6_B04 0x01080684  /*!< Version 1.8.6-beta4 (with STLSoft 1.11.1-beta8) */
+# define _UNIXSTL_VER_1_8_6_B05 0x01080685  /*!< Version 1.8.6-beta5 (with STLSoft 1.11.1-rc2) */
+# define _UNIXSTL_VER_1_8_6_B06 0x01080686  /*!< Version 1.8.6-beta6 (with STLSoft 1.11.1-rc3) */
+# define _UNIXSTL_VER_1_8_6_B07 0x01080687  /*!< Version 1.8.6-beta7 (with STLSoft 1.11.1-rc8) */
+# define _UNIXSTL_VER_1_8_6_B08 0x01080688  /*!< Version 1.8.6-beta8 (with STLSoft 1.11.1-rc9) */
+# define _UNIXSTL_VER_1_8_6     0x010806FF  /*!< Version 1.8.6 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
@@ -203,8 +203,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1-rc9, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the UNIXSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -805,9 +805,9 @@ typedef us_int32_t                                          int32_t;        /*!<
 typedef us_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
 typedef us_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef us_int64_t                                         int64_t;        /*!< 64-bit integer */
- typedef us_sint64_t                                        sint64_t;       /*!< 64-bit signed integer */
- typedef us_uint64_t                                        uint64_t;       /*!< 64-bit unsigned integer */
+typedef us_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef us_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef us_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /* typedef us_short_t                                          short_t; */        /*!< short integer */
 typedef us_int_t                                            int_t;          /*!< integer */

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnstrn.h
+ * File:    stlsoft/string/c_string/strnstrn.h
  *
- * Purpose:     Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
+ * Purpose: Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
  *
- * Created:     1st October 2020
- * Updated:     11th March 2024
+ * Created: 1st October 2020
+ * Updated: 26th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,29 +97,31 @@ stlsoft_C_strnstrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2)
+        for (; n1 >= n2; --n1, ++s1)
         {
-            size_t i;
-
-            for (i = 1; i != n2; ++i)
+            if (*s1 == *s2)
             {
-                if (s1[i] != s2[i])
+                size_t i;
+
+                for (i = 1; i != n2; ++i)
                 {
-                    break;
+                    if (s1[i] != s2[i])
+                    {
+                        break;
+                    }
+                }
+
+                if (i == n2)
+                {
+                    return s1;
                 }
             }
-
-            if (i == n2)
-            {
-                return s1;
-            }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 /** Finds a specific-length (slice of a) string within a specific-length
@@ -145,29 +147,31 @@ stlsoft_C_wcsnstrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2)
+        for (; n1 >= n2; --n1, ++s1)
         {
-            size_t i;
-
-            for (i = 1; i != n2; ++i)
+            if (*s1 == *s2)
             {
-                if (s1[i] != s2[i])
+                size_t i;
+
+                for (i = 1; i != n2; ++i)
                 {
-                    break;
+                    if (s1[i] != s2[i])
+                    {
+                        break;
+                    }
+                }
+
+                if (i == n2)
+                {
+                    return s1;
                 }
             }
-
-            if (i == n2)
-            {
-                return s1;
-            }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 

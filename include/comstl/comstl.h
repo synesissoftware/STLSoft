@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -168,9 +168,9 @@
 # define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1-beta2 (with STLSoft 1.10.1-beta17) */
 # define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
-# define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1-alpha8) */
-# define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1-alpha17) */
-# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1-rc9) */
+# define _COMSTL_VER_1_10_2     0X010A02FF  /*!< Version 1.10.2 (with STLSoft 1.11.1-alpha8) */
+# define _COMSTL_VER_1_10_3     0X010A03FF  /*!< Version 1.10.3 (with STLSoft 1.11.1-alpha17) */
+# define _COMSTL_VER_1_10_4     0X010A04FF  /*!< Version 1.10.4 (with STLSoft 1.11.1-rc9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
@@ -227,8 +227,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0151
-# error This version of the COMSTL libraries requires STLSoft version 1.11.1-alpha17, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the COMSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 

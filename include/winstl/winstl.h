@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -145,48 +145,48 @@
 # define _WINSTL_VER_1_9_1      0x00010901  /*!< Version 1.9.1 (with STLSoft 1.9.1) */
 # define _WINSTL_VER_1_9_2      0x00010902  /*!< Version 1.9.2 (with STLSoft 1.9.7) */
 # define _WINSTL_VER_1_9_3      0x00010903  /*!< Version 1.9.3 (with STLSoft 1.9.25) */
-# define _WINSTL_VER_1_9_4      0x010904ff  /*!< Version 1.9.4 (with STLSoft 1.9.30) */
-# define _WINSTL_VER_1_9_5      0x010905ff  /*!< Version 1.9.5 (with STLSoft 1.9.31) */
-# define _WINSTL_VER_1_9_6      0x010906ff  /*!< Version 1.9.6 (with STLSoft 1.9.32) */
-# define _WINSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.9.37) */
-# define _WINSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.9.42) */
-# define _WINSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.9.82) */
-# define _WINSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.9.84) */
-# define _WINSTL_VER_1_10_5     0x010a05ff  /*!< Version 1.10.5 (with STLSoft 1.9.88) */
-# define _WINSTL_VER_1_10_6     0x010a06ff  /*!< Version 1.10.6 (with STLSoft 1.9.90) */
-# define _WINSTL_VER_1_10_7     0x010a07ff  /*!< Version 1.10.7 (with STLSoft 1.9.91) */
-# define _WINSTL_VER_1_11_1     0x010b01ff  /*!< Version 1.11.1 (with STLSoft 1.9.93) */
-# define _WINSTL_VER_1_11_2     0x010b02ff  /*!< Version 1.11.2 (with STLSoft 1.9.100) */
-# define _WINSTL_VER_1_11_3     0x010b03ff  /*!< Version 1.11.3 (with STLSoft 1.9.101) */
-# define _WINSTL_VER_1_11_4     0x010b04ff  /*!< Version 1.11.4 (with STLSoft 1.9.105) */
-# define _WINSTL_VER_1_11_5     0x010b05ff  /*!< Version 1.11.5 (with STLSoft 1.9.107) */
-# define _WINSTL_VER_1_11_6     0x010b06ff  /*!< Version 1.11.6 (with STLSoft 1.9.108) */
-# define _WINSTL_VER_1_11_7     0x010b07ff  /*!< Version 1.11.7 (with STLSoft 1.9.109) */
-# define _WINSTL_VER_1_11_8     0x010b08ff  /*!< Version 1.11.8 (with STLSoft 1.9.113) */
-# define _WINSTL_VER_1_11_9     0x010b09ff  /*!< Version 1.11.9 (with STLSoft 1.9.119) */
-# define _WINSTL_VER_1_11_10    0x010b0aff  /*!< Version 1.11.10 (with STLSoft 1.9.120) */
-# define _WINSTL_VER_1_11_11    0x010b0bff  /*!< Version 1.11.11 (with STLSoft 1.9.121) */
-# define _WINSTL_VER_1_11_12    0x010b0cff  /*!< Version 1.11.11 (with STLSoft 1.9.126) */
-# define _WINSTL_VER_1_12_1_B01 0x010c0181  /*!< Version 1.12.1-beta1 (with STLSoft 1.10.1-beta1) */
-# define _WINSTL_VER_1_12_1_B02 0x010c0182  /*!< Version 1.12.1-beta2 (with STLSoft 1.10.1-beta10) */
-# define _WINSTL_VER_1_12_1_B03 0x010c0183  /*!< Version 1.12.1-beta3 (with STLSoft 1.10.1-beta14) */
-# define _WINSTL_VER_1_12_1_B04 0x010c0184  /*!< Version 1.12.1-beta4 (with STLSoft 1.10.1-beta14) */
-# define _WINSTL_VER_1_12_1_B05 0x010c0185  /*!< Version 1.12.1-beta5 (with STLSoft 1.10.1-beta26) */
-# define _WINSTL_VER_1_12_1     0x010c01ff  /*!< Version 1.12.1 (with STLSoft 1.10.3) */
-# define _WINSTL_VER_1_12_2     0x010c02ff  /*!< Version 1.12.2 (with STLSoft 1.11.1-alpha7) */
-# define _WINSTL_VER_1_12_3     0x010c03ff  /*!< Version 1.12.3 (with STLSoft 1.11.1-alpha8) */
-# define _WINSTL_VER_1_13_0_A01 0x010d0041  /*!< Version 1.13.0-alpha1 (with STLSoft 1.11.1-alpha15) */
-# define _WINSTL_VER_1_13_0_A02 0x010d0042  /*!< Version 1.13.0-alpha2 (with STLSoft 1.11.1-alpha17) */
-# define _WINSTL_VER_1_13_0_A03 0x010d0043  /*!< Version 1.13.0-alpha3 (with STLSoft 1.11.1-alpha18) */
-# define _WINSTL_VER_1_13_0_A04 0x010d0044  /*!< Version 1.13.0-alpha4 (with STLSoft 1.11.1-alpha28) */
-# define _WINSTL_VER_1_13_0_A05 0x010d0045  /*!< Version 1.13.0-alpha5 (with STLSoft 1.11.1-beta3) */
-# define _WINSTL_VER_1_13_0_A06 0x010d0046  /*!< Version 1.13.0-alpha6 (with STLSoft 1.11.1-rc2) */
-# define _WINSTL_VER_1_13_0_B01 0x010d0081  /*!< Version 1.13.0-beta1 (with STLSoft 1.11.1-rc3) */
-# define _WINSTL_VER_1_13_0_B02 0x010d0082  /*!< Version 1.13.0-beta2 (with STLSoft 1.11.1-rc4) */
-# define _WINSTL_VER_1_13_0_B03 0x010d0083  /*!< Version 1.13.0-beta3 (with STLSoft 1.11.1-rc7) */
-# define _WINSTL_VER_1_13_0_B04 0x010d0084  /*!< Version 1.13.0-beta4 (with STLSoft 1.11.1-rc8) */
-# define _WINSTL_VER_1_13_0_B05 0x010d0085  /*!< Version 1.13.0-beta5 (with STLSoft 1.11.1-rc9) */
-# define _WINSTL_VER_1_13_0     0x010d00FF  /*!< Version 1.13.0 (with STLSoft 1.11.1) */
+# define _WINSTL_VER_1_9_4      0x010904FF  /*!< Version 1.9.4 (with STLSoft 1.9.30) */
+# define _WINSTL_VER_1_9_5      0x010905FF  /*!< Version 1.9.5 (with STLSoft 1.9.31) */
+# define _WINSTL_VER_1_9_6      0x010906FF  /*!< Version 1.9.6 (with STLSoft 1.9.32) */
+# define _WINSTL_VER_1_10_1     0x010A01FF  /*!< Version 1.10.1 (with STLSoft 1.9.37) */
+# define _WINSTL_VER_1_10_2     0x010A02FF  /*!< Version 1.10.2 (with STLSoft 1.9.42) */
+# define _WINSTL_VER_1_10_3     0x010A03FF  /*!< Version 1.10.3 (with STLSoft 1.9.82) */
+# define _WINSTL_VER_1_10_4     0x010A04FF  /*!< Version 1.10.4 (with STLSoft 1.9.84) */
+# define _WINSTL_VER_1_10_5     0x010A05FF  /*!< Version 1.10.5 (with STLSoft 1.9.88) */
+# define _WINSTL_VER_1_10_6     0x010A06FF  /*!< Version 1.10.6 (with STLSoft 1.9.90) */
+# define _WINSTL_VER_1_10_7     0x010A07FF  /*!< Version 1.10.7 (with STLSoft 1.9.91) */
+# define _WINSTL_VER_1_11_1     0x010B01FF  /*!< Version 1.11.1 (with STLSoft 1.9.93) */
+# define _WINSTL_VER_1_11_2     0x010B02FF  /*!< Version 1.11.2 (with STLSoft 1.9.100) */
+# define _WINSTL_VER_1_11_3     0x010B03FF  /*!< Version 1.11.3 (with STLSoft 1.9.101) */
+# define _WINSTL_VER_1_11_4     0x010B04FF  /*!< Version 1.11.4 (with STLSoft 1.9.105) */
+# define _WINSTL_VER_1_11_5     0x010B05FF  /*!< Version 1.11.5 (with STLSoft 1.9.107) */
+# define _WINSTL_VER_1_11_6     0x010B06FF  /*!< Version 1.11.6 (with STLSoft 1.9.108) */
+# define _WINSTL_VER_1_11_7     0x010B07FF  /*!< Version 1.11.7 (with STLSoft 1.9.109) */
+# define _WINSTL_VER_1_11_8     0x010B08FF  /*!< Version 1.11.8 (with STLSoft 1.9.113) */
+# define _WINSTL_VER_1_11_9     0x010B09FF  /*!< Version 1.11.9 (with STLSoft 1.9.119) */
+# define _WINSTL_VER_1_11_10    0x010B0AFF  /*!< Version 1.11.10 (with STLSoft 1.9.120) */
+# define _WINSTL_VER_1_11_11    0x010B0BFF  /*!< Version 1.11.11 (with STLSoft 1.9.121) */
+# define _WINSTL_VER_1_11_12    0x010B0CFF  /*!< Version 1.11.11 (with STLSoft 1.9.126) */
+# define _WINSTL_VER_1_12_1_B01 0x010C0181  /*!< Version 1.12.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _WINSTL_VER_1_12_1_B02 0x010C0182  /*!< Version 1.12.1-beta2 (with STLSoft 1.10.1-beta10) */
+# define _WINSTL_VER_1_12_1_B03 0x010C0183  /*!< Version 1.12.1-beta3 (with STLSoft 1.10.1-beta14) */
+# define _WINSTL_VER_1_12_1_B04 0x010C0184  /*!< Version 1.12.1-beta4 (with STLSoft 1.10.1-beta14) */
+# define _WINSTL_VER_1_12_1_B05 0x010C0185  /*!< Version 1.12.1-beta5 (with STLSoft 1.10.1-beta26) */
+# define _WINSTL_VER_1_12_1     0x010C01FF  /*!< Version 1.12.1 (with STLSoft 1.10.3) */
+# define _WINSTL_VER_1_12_2     0x010C02FF  /*!< Version 1.12.2 (with STLSoft 1.11.1-alpha7) */
+# define _WINSTL_VER_1_12_3     0x010C03FF  /*!< Version 1.12.3 (with STLSoft 1.11.1-alpha8) */
+# define _WINSTL_VER_1_13_0_A01 0x010D0041  /*!< Version 1.13.0-alpha1 (with STLSoft 1.11.1-alpha15) */
+# define _WINSTL_VER_1_13_0_A02 0x010D0042  /*!< Version 1.13.0-alpha2 (with STLSoft 1.11.1-alpha17) */
+# define _WINSTL_VER_1_13_0_A03 0x010D0043  /*!< Version 1.13.0-alpha3 (with STLSoft 1.11.1-alpha18) */
+# define _WINSTL_VER_1_13_0_A04 0x010D0044  /*!< Version 1.13.0-alpha4 (with STLSoft 1.11.1-alpha28) */
+# define _WINSTL_VER_1_13_0_A05 0x010D0045  /*!< Version 1.13.0-alpha5 (with STLSoft 1.11.1-beta3) */
+# define _WINSTL_VER_1_13_0_A06 0x010D0046  /*!< Version 1.13.0-alpha6 (with STLSoft 1.11.1-rc2) */
+# define _WINSTL_VER_1_13_0_B01 0x010D0081  /*!< Version 1.13.0-beta1 (with STLSoft 1.11.1-rc3) */
+# define _WINSTL_VER_1_13_0_B02 0x010D0082  /*!< Version 1.13.0-beta2 (with STLSoft 1.11.1-rc4) */
+# define _WINSTL_VER_1_13_0_B03 0x010D0083  /*!< Version 1.13.0-beta3 (with STLSoft 1.11.1-rc7) */
+# define _WINSTL_VER_1_13_0_B04 0x010D0084  /*!< Version 1.13.0-beta4 (with STLSoft 1.11.1-rc8) */
+# define _WINSTL_VER_1_13_0_B05 0x010D0085  /*!< Version 1.13.0-beta5 (with STLSoft 1.11.1-rc9) */
+# define _WINSTL_VER_1_13_0     0x010D00FF  /*!< Version 1.13.0 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
@@ -294,8 +294,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the WinSTL libraries requires STLSoft version 1.11.1-rc9, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the WinSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 

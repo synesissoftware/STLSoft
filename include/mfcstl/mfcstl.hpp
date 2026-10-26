@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Thanks:  To Cláudio Albuquerque for suggesting the inclusion of atlstr.h.
  *
@@ -199,9 +199,10 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the MFCSTL libraries requires STLSoft version 1.10.1-beta26, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the MFCSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility

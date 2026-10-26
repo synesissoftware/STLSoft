@@ -72,7 +72,7 @@ namespace {
  * types
  */
 
- namespace {
+namespace {
 
     typedef std::basic_string<char>                         string_a_t;
     typedef std::basic_string<wchar_t>                      string_w_t;

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -198,8 +198,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the InetSTL libraries requires STLSoft version 1.11.1-rc9, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the InetSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -257,7 +257,7 @@
 
 #elif defined(STLSOFT_COMPILER_IS_INTEL)
  /* ******************************* Intel ******************************* */
- # if (__INTEL_COMPILER < 700)
+# if (__INTEL_COMPILER < 700)
 #  error Versions of Intel C++ prior to 7.0 are not supported by the InetSTL libraries
 # endif /* __INTEL_COMPILER */
 
