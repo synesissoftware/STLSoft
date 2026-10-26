@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -65,52 +65,52 @@
 
 namespace {
 
-    static void test_types_exist();
-    static void test_type_sizes();
-    static void test_ctor_default();
-    static void test_ctor_copy();
-    static void test_ctor_range_1();
-    static void test_ctor_range_2();
-    static void test_ctor_range_3();
-    static void test_swap_1();
-    static void test_swap_2();
-    static void test_swap_3();
-    static void test_clear();
-    static void test_get_allocator();
-    static void test_front();
-    static void test_back();
+    static void TEST_types_exist();
+    static void TEST_type_sizes();
+    static void TEST_ctor_default();
+    static void TEST_ctor_copy();
+    static void TEST_ctor_range_1();
+    static void TEST_ctor_range_2();
+    static void TEST_ctor_range_3();
+    static void TEST_swap_1();
+    static void TEST_swap_2();
+    static void TEST_swap_3();
+    static void TEST_clear();
+    static void TEST_get_allocator();
+    static void TEST_front();
+    static void TEST_back();
 #ifdef HAS_c_str_
-    static void test_refresh();
+    static void TEST_refresh();
 #endif /* HAS_c_str_ */
-    static void test_reverse_iterators();
-    static void test_copy();
+    static void TEST_reverse_iterators();
+    static void TEST_copy();
 #ifdef HAS_substr_
 
-    static void test_substr();
-    static void test_substr_2();
-    static void test_substr_throw();
-    static void test_substr_throw_2();
+    static void TEST_substr();
+    static void TEST_substr_2();
+    static void TEST_substr_throw();
+    static void TEST_substr_throw_2();
 #endif /* HAS_substr_ */
-    static void test_compare_1();
-    static void test_compare_2();
-    static void test_compare_3();
-    static void test_compare_4();
+    static void TEST_compare_1();
+    static void TEST_compare_2();
+    static void TEST_compare_3();
+    static void TEST_compare_4();
     static void TEST_compare_EMPTY();
     static void TEST_compare_EMBEDDED_NUL();
     static void TEST_compare_WCHAR();
     static void TEST_compare_char_traits_safe();
-    static void test_at_1();
-    static void test_at_2();
-    static void test_at_3();
-    static void test_at_4();
-    static void test_index_1();
-    static void test_index_2();
-    static void test_string_access_shims();
-    static void test_insertion_1();
-    static void test_insertion_2();
-    static void test_insertion_3();
-    static void test_insertion_4();
-    static void test_string_traits();
+    static void TEST_at_1();
+    static void TEST_at_2();
+    static void TEST_at_3();
+    static void TEST_at_4();
+    static void TEST_index_1();
+    static void TEST_index_2();
+    static void TEST_string_access_shims();
+    static void TEST_insertion_1();
+    static void TEST_insertion_2();
+    static void TEST_insertion_3();
+    static void TEST_insertion_4();
+    static void TEST_string_traits();
 } // anonymous namespace
 
 
@@ -127,52 +127,52 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.string_view", verbosity))
     {
-        XTESTS_RUN_CASE(test_types_exist);
-        XTESTS_RUN_CASE(test_type_sizes);
-        XTESTS_RUN_CASE(test_ctor_default);
-        XTESTS_RUN_CASE(test_ctor_copy);
-        XTESTS_RUN_CASE(test_ctor_range_1);
-        XTESTS_RUN_CASE(test_ctor_range_2);
-        XTESTS_RUN_CASE(test_ctor_range_3);
-        XTESTS_RUN_CASE(test_swap_1);
-        XTESTS_RUN_CASE(test_swap_2);
-        XTESTS_RUN_CASE(test_swap_3);
-        XTESTS_RUN_CASE(test_clear);
-        XTESTS_RUN_CASE(test_get_allocator);
-        XTESTS_RUN_CASE(test_front);
-        XTESTS_RUN_CASE(test_back);
+        XTESTS_RUN_CASE(TEST_types_exist);
+        XTESTS_RUN_CASE(TEST_type_sizes);
+        XTESTS_RUN_CASE(TEST_ctor_default);
+        XTESTS_RUN_CASE(TEST_ctor_copy);
+        XTESTS_RUN_CASE(TEST_ctor_range_1);
+        XTESTS_RUN_CASE(TEST_ctor_range_2);
+        XTESTS_RUN_CASE(TEST_ctor_range_3);
+        XTESTS_RUN_CASE(TEST_swap_1);
+        XTESTS_RUN_CASE(TEST_swap_2);
+        XTESTS_RUN_CASE(TEST_swap_3);
+        XTESTS_RUN_CASE(TEST_clear);
+        XTESTS_RUN_CASE(TEST_get_allocator);
+        XTESTS_RUN_CASE(TEST_front);
+        XTESTS_RUN_CASE(TEST_back);
 #ifdef HAS_c_str_
-        XTESTS_RUN_CASE(test_refresh);
+        XTESTS_RUN_CASE(TEST_refresh);
 #endif /* HAS_c_str_ */
-        XTESTS_RUN_CASE(test_reverse_iterators);
-        XTESTS_RUN_CASE(test_copy);
+        XTESTS_RUN_CASE(TEST_reverse_iterators);
+        XTESTS_RUN_CASE(TEST_copy);
 #ifdef HAS_substr_
 
-        XTESTS_RUN_CASE(test_substr);
-        XTESTS_RUN_CASE(test_substr_2);
-        XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw, std::out_of_range);
-        XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw_2, std::out_of_range);
+        XTESTS_RUN_CASE(TEST_substr);
+        XTESTS_RUN_CASE(TEST_substr_2);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_substr_throw, std::out_of_range);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_substr_throw_2, std::out_of_range);
 #endif /* HAS_substr_ */
-        XTESTS_RUN_CASE(test_compare_1);
-        XTESTS_RUN_CASE(test_compare_2);
-        XTESTS_RUN_CASE(test_compare_3);
-        XTESTS_RUN_CASE(test_compare_4);
+        XTESTS_RUN_CASE(TEST_compare_1);
+        XTESTS_RUN_CASE(TEST_compare_2);
+        XTESTS_RUN_CASE(TEST_compare_3);
+        XTESTS_RUN_CASE(TEST_compare_4);
         XTESTS_RUN_CASE(TEST_compare_EMPTY);
         XTESTS_RUN_CASE(TEST_compare_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_compare_WCHAR);
         XTESTS_RUN_CASE(TEST_compare_char_traits_safe);
-        XTESTS_RUN_CASE(test_at_1);
-        XTESTS_RUN_CASE(test_at_2);
-        XTESTS_RUN_CASE_THAT_THROWS(test_at_3, std::out_of_range);
-        XTESTS_RUN_CASE_THAT_THROWS(test_at_4, std::out_of_range);
-        XTESTS_RUN_CASE(test_index_1);
-        XTESTS_RUN_CASE(test_index_2);
-        XTESTS_RUN_CASE(test_string_access_shims);
-        XTESTS_RUN_CASE(test_insertion_1);
-        XTESTS_RUN_CASE(test_insertion_2);
-        XTESTS_RUN_CASE(test_insertion_3);
-        XTESTS_RUN_CASE(test_insertion_4);
-        XTESTS_RUN_CASE(test_string_traits);
+        XTESTS_RUN_CASE(TEST_at_1);
+        XTESTS_RUN_CASE(TEST_at_2);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_at_3, std::out_of_range);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_at_4, std::out_of_range);
+        XTESTS_RUN_CASE(TEST_index_1);
+        XTESTS_RUN_CASE(TEST_index_2);
+        XTESTS_RUN_CASE(TEST_string_access_shims);
+        XTESTS_RUN_CASE(TEST_insertion_1);
+        XTESTS_RUN_CASE(TEST_insertion_2);
+        XTESTS_RUN_CASE(TEST_insertion_3);
+        XTESTS_RUN_CASE(TEST_insertion_4);
+        XTESTS_RUN_CASE(TEST_string_traits);
 
         XTESTS_PRINT_RESULTS();
 
@@ -228,7 +228,7 @@ namespace {
 #endif
 
 
-static void test_types_exist()
+static void TEST_types_exist()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::basic_string_view<char>));
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::basic_string_view<wchar_t>));
@@ -246,7 +246,7 @@ static void test_types_exist()
     >                                       string_v_null_t;
 
 
-static void test_type_sizes()
+static void TEST_type_sizes()
 {
 #ifdef HAS_c_str_
 
@@ -259,7 +259,7 @@ static void test_type_sizes()
 #endif /* HAS_c_str_ */
 }
 
-static void test_ctor_default()
+static void TEST_ctor_default()
 {
     {
         string_v_t  s;
@@ -280,7 +280,7 @@ static void test_ctor_default()
     }
 }
 
-static void test_ctor_copy()
+static void TEST_ctor_copy()
 {
     {
         string_v_t  s1;
@@ -315,7 +315,7 @@ static void test_ctor_copy()
     }
 }
 
-static void test_ctor_range_1()
+static void TEST_ctor_range_1()
 {
     static const char   alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
@@ -335,7 +335,7 @@ static void test_ctor_range_1()
     TEST_PTR_EQ(alphabet, s4.base());
 }
 
-static void test_ctor_range_2()
+static void TEST_ctor_range_2()
 {
     static const char   alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
@@ -346,7 +346,7 @@ static void test_ctor_range_2()
     TEST_MS_EQ_N(alphabet, s2, s2.size());
 }
 
-static void test_ctor_range_3()
+static void TEST_ctor_range_3()
 {
     static const char   alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
@@ -358,7 +358,7 @@ static void test_ctor_range_3()
     TEST_MS_EQ_N("nopqrstuvwxyz", s3, s3.size());
 }
 
-static void test_swap_1()
+static void TEST_swap_1()
 {
     {
         string_v_t  s1;
@@ -391,7 +391,7 @@ static void test_swap_1()
     }
 }
 
-static void test_swap_2()
+static void TEST_swap_2()
 {
     {
         string_v_t  s1;
@@ -424,7 +424,7 @@ static void test_swap_2()
     }
 }
 
-static void test_swap_3()
+static void TEST_swap_3()
 {
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1310
@@ -462,7 +462,7 @@ static void test_swap_3()
     }
 }
 
-static void test_clear()
+static void TEST_clear()
 {
     {
         string_v_t  s;
@@ -481,14 +481,14 @@ static void test_clear()
     }
 }
 
-static void test_get_allocator()
+static void TEST_get_allocator()
 {
     string_v_t s;
 
     TEST(s.get_allocator() == string_v_t::allocator_type());
 }
 
-static void test_front()
+static void TEST_front()
 {
     {
         string_v_t s1("abc");
@@ -499,7 +499,7 @@ static void test_front()
     }
 }
 
-static void test_back()
+static void TEST_back()
 {
     {
         string_v_t s1("abc");
@@ -512,7 +512,7 @@ static void test_back()
 
 #ifdef HAS_c_str_
 
-static void test_refresh()
+static void TEST_refresh()
 {
     {
         string_v_t          s1("abcdefghijklmnopqrstuvwxyz");
@@ -534,7 +534,7 @@ static void test_refresh()
 }
 #endif /* HAS_c_str_ */
 
-static void test_reverse_iterators()
+static void TEST_reverse_iterators()
 {
     {
         string_v_t s("abcd");
@@ -561,7 +561,7 @@ static void test_reverse_iterators()
     }
 }
 
-static void test_copy()
+static void TEST_copy()
 {
     {
         string_v_t  s;
@@ -599,7 +599,7 @@ static void test_copy()
 
 #ifdef HAS_substr_
 
-static void test_substr()
+static void TEST_substr()
 {
     string_v_t const    s1("abcdefghi");
     string_v_t          s2 = s1.substr(0);
@@ -613,7 +613,7 @@ static void test_substr()
     TEST_MS_EQ_N(s1, s5, s5.size());
 }
 
-static void test_substr_2()
+static void TEST_substr_2()
 {
     string_v_t const    s1("abcdefghi");
     string_v_t          s2 = s1.substr(1);
@@ -627,7 +627,7 @@ static void test_substr_2()
     TEST_MS_EQ_N("hi", s5, s5.size());
 }
 
-static void test_substr_throw()
+static void TEST_substr_throw()
 {
     string_v_t const    s1("abcdefghi");
     string_v_t          s2 = s1.substr(s1.size() + 1);
@@ -635,7 +635,7 @@ static void test_substr_throw()
     TEST_FAIL("should not get here");
 }
 
-static void test_substr_throw_2()
+static void TEST_substr_throw_2()
 {
     string_v_t const    s1("abcdefghi");
     string_v_t          s2 = s1.substr(s1.size() + 1, 1);
@@ -644,7 +644,7 @@ static void test_substr_throw_2()
 }
 #endif /* HAS_substr_ */
 
-static void test_compare_1()
+static void TEST_compare_1()
 {
     string_v_t  s1("abc");
     string_v_t  s2("def");
@@ -684,7 +684,7 @@ static void test_compare_1()
 #endif /* HAS_c_str_ */
 }
 
-static void test_compare_2()
+static void TEST_compare_2()
 {
     string_v_t  s1("abc");
     string_v_t  s2("def");
@@ -711,7 +711,7 @@ static void test_compare_2()
     TEST_INT_EQ(0, s1.compare(2u, 333u, s3));
 }
 
-static void test_compare_3()
+static void TEST_compare_3()
 {
     string_v_t  s1("def");
 
@@ -777,7 +777,7 @@ static void test_compare_3()
     TEST_INT_EQ(0, s1.compare(3u, 3u, "fed", 3u, 3u));
 }
 
-static void test_compare_4()
+static void TEST_compare_4()
 {
     {
         string_v_t  s1("mno");
@@ -875,7 +875,7 @@ static void TEST_compare_char_traits_safe()
 }
 
 
-static void test_at_1()
+static void TEST_at_1()
 {
     string_v_t  s("abc");
 
@@ -884,7 +884,7 @@ static void test_at_1()
     TEST_CHAR_EQ('c', s.at(2u));
 }
 
-static void test_at_2()
+static void TEST_at_2()
 {
     string_v_t const    s("abc");
 
@@ -893,14 +893,14 @@ static void test_at_2()
     TEST_CHAR_EQ('c', s.at(2u));
 }
 
-static void test_at_3()
+static void TEST_at_3()
 {
     string_v_t  s;
 
     s.at(0u);
 }
 
-static void test_at_4()
+static void TEST_at_4()
 {
     string_v_t const    s("abc");
 
@@ -908,7 +908,7 @@ static void test_at_4()
 }
 
 
-static void test_index_1()
+static void TEST_index_1()
 {
     string_v_t  s("abc");
 
@@ -917,7 +917,7 @@ static void test_index_1()
     TEST_CHAR_EQ('c', s[2u]);
 }
 
-static void test_index_2()
+static void TEST_index_2()
 {
     string_v_t const    s("abc");
 
@@ -928,7 +928,7 @@ static void test_index_2()
 }
 
 
-static void test_string_access_shims()
+static void TEST_string_access_shims()
 {
     {
         string_v_t  s;
@@ -984,7 +984,7 @@ static void test_string_access_shims()
 
 }
 
-static void test_insertion_1()
+static void TEST_insertion_1()
 {
     string_v_t  s1;
     string_v_t  s2("abc");
@@ -1017,7 +1017,7 @@ static void test_insertion_1()
     }
 }
 
-static void test_insertion_2()
+static void TEST_insertion_2()
 {
     string_v_t  s2("abc");
     string_v_t  s3("def");
@@ -1037,7 +1037,7 @@ static void test_insertion_2()
     }
 }
 
-static void test_insertion_3()
+static void TEST_insertion_3()
 {
     string_v_t  s1;
     string_v_t  s2("abc");
@@ -1061,7 +1061,7 @@ static void test_insertion_3()
 }
 
 
-static void test_insertion_4()
+static void TEST_insertion_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
 #if defined(_MSC_VER) &&\
@@ -1131,7 +1131,7 @@ static void test_insertion_4()
 #endif
 }
 
-static void test_string_traits()
+static void TEST_string_traits()
 {
     {
         string_v_t  s = stlsoft::string_traits<string_v_t>::empty_string();

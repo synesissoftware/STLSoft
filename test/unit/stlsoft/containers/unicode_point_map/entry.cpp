@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 29th September 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,25 +53,25 @@
 
 namespace {
 
-    static void test_ctor_default_1();
-    static void test_ctor_default_2();
+    static void TEST_ctor_default_1();
+    static void TEST_ctor_default_2();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_initializer_list_1();
-    static void test_ctor_initializer_list_2();
+    static void TEST_ctor_initializer_list_1();
+    static void TEST_ctor_initializer_list_2();
 #endif
-    static void test_push_1();
-    static void test_push_2();
-    static void test_push_n_1();
-    static void test_push_n_2();
-    static void test_clear();
-//     static void test_merge();
-//     static void test_op_addassign();
-//     static void test_op_add();
-    static void test_swap();
-    static void test_swap_std();
-    static void test_iteration_1();
-//     static void test_iteration_order_1();
+    static void TEST_push_1();
+    static void TEST_push_2();
+    static void TEST_push_n_1();
+    static void TEST_push_n_2();
+    static void TEST_clear();
+//     static void TEST_merge();
+//     static void TEST_op_addassign();
+//     static void TEST_op_add();
+    static void TEST_swap();
+    static void TEST_swap_std();
+    static void TEST_iteration_1();
+//     static void TEST_iteration_order_1();
 } // anonymous namespace
 
 
@@ -88,21 +88,21 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.containers.unicode_point_map", verbosity))
     {
-        XTESTS_RUN_CASE(test_ctor_default_1);
-        XTESTS_RUN_CASE(test_ctor_default_2);
+        XTESTS_RUN_CASE(TEST_ctor_default_1);
+        XTESTS_RUN_CASE(TEST_ctor_default_2);
 #if __cplusplus >= 201103L
 
-        XTESTS_RUN_CASE(test_ctor_initializer_list_1);
-        XTESTS_RUN_CASE(test_ctor_initializer_list_2);
+        XTESTS_RUN_CASE(TEST_ctor_initializer_list_1);
+        XTESTS_RUN_CASE(TEST_ctor_initializer_list_2);
 #endif
-        XTESTS_RUN_CASE(test_push_1);
-        XTESTS_RUN_CASE(test_push_2);
-        XTESTS_RUN_CASE(test_push_n_1);
-        XTESTS_RUN_CASE(test_push_n_2);
-        XTESTS_RUN_CASE(test_clear);
-        XTESTS_RUN_CASE(test_swap);
-        XTESTS_RUN_CASE(test_swap_std);
-        XTESTS_RUN_CASE(test_iteration_1);
+        XTESTS_RUN_CASE(TEST_push_1);
+        XTESTS_RUN_CASE(TEST_push_2);
+        XTESTS_RUN_CASE(TEST_push_n_1);
+        XTESTS_RUN_CASE(TEST_push_n_2);
+        XTESTS_RUN_CASE(TEST_clear);
+        XTESTS_RUN_CASE(TEST_swap);
+        XTESTS_RUN_CASE(TEST_swap_std);
+        XTESTS_RUN_CASE(TEST_iteration_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -127,7 +127,7 @@ namespace {
     using stlsoft::unicode_point_map;
 
 
-static void test_ctor_default_1()
+static void TEST_ctor_default_1()
 {
     unicode_point_map const upm;
 
@@ -145,7 +145,7 @@ static void test_ctor_default_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_ctor_default_2()
+static void TEST_ctor_default_2()
 {
     unicode_point_map const upm(0x64); // 'd'
 
@@ -165,7 +165,7 @@ static void test_ctor_default_2()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_initializer_list_1()
+static void TEST_ctor_initializer_list_1()
 {
     unicode_point_map upm = { 'a', 'b', 'c', 'd', 'd', 'd', 'a' };
 
@@ -179,7 +179,7 @@ static void test_ctor_initializer_list_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_ctor_initializer_list_2()
+static void TEST_ctor_initializer_list_2()
 {
     unicode_point_map upm(0x64, { 'a', 'b', 'c', 'd', 'd', 'd', 'a' });
 
@@ -194,7 +194,7 @@ static void test_ctor_initializer_list_2()
 }
 #endif
 
-static void test_push_1()
+static void TEST_push_1()
 {
     unicode_point_map upm;
 
@@ -220,7 +220,7 @@ static void test_push_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_push_2()
+static void TEST_push_2()
 {
     unicode_point_map upm(0x64); // 'd'
 
@@ -246,7 +246,7 @@ static void test_push_2()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_push_n_1()
+static void TEST_push_n_1()
 {
     unicode_point_map upm;
 
@@ -272,7 +272,7 @@ static void test_push_n_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_push_n_2()
+static void TEST_push_n_2()
 {
     unicode_point_map upm(0x64); // 'd'
 
@@ -298,7 +298,7 @@ static void test_push_n_2()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_clear()
+static void TEST_clear()
 {
     unicode_point_map upm;
 
@@ -334,7 +334,7 @@ static void test_clear()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_swap()
+static void TEST_swap()
 {
     {
         unicode_point_map upm1;
@@ -646,7 +646,7 @@ static void test_swap()
     }
 }
 
-static void test_swap_std()
+static void TEST_swap_std()
 {
     {
         unicode_point_map upm1;
@@ -958,7 +958,7 @@ static void test_swap_std()
     }
 }
 
-static void test_iteration_1()
+static void TEST_iteration_1()
 {
     {
         unicode_point_map const upm;
