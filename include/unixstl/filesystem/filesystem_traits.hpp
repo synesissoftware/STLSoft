@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 26th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -58,10 +58,10 @@
 #define UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     17
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      192
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      197
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,6 +109,7 @@
 
 #ifdef _WIN32
 # include <ctype.h>
+# include <wctype.h>
 #endif /* _WIN32 */
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -426,7 +427,7 @@ public:
         T_resizeableBuffer const& rb
     );
 
-    /// Removes the path name separator from the end of \c dir, if present
+    /// Removes all trailing path name separators from the end of \c dir
     ///
     /// \pre nullptr != dir
     ///
@@ -437,12 +438,12 @@ public:
         char_type* dir
     );
 
-    /// Removes the path name separator from the end of \c dir, if present
+    /// Removes all trailing path name separators from the end of \c dir
     ///
     /// \param path Pointer to characters of path to be examined
     /// \param len Number of characters in \c path to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
-    ///   be decremented if a path name separator is removed
+    ///   be decremented once per path name separator removed
     ///
     /// \return \c dir
     ///
@@ -458,7 +459,7 @@ public:
     ,   size_type*  pLenToDecrease
     );
 
-    /// Removes the path name separator from the end of \c rb, if present
+    /// Removes all trailing path name separators from the end of \c rb
     ///
     /// \param rb a reference to a \c resizeable_buffer
     ///
@@ -1002,6 +1003,15 @@ public: // directory-end
 
         size_type const len = str_len(dir);
 
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
+
         return ensure_dir_end(dir, len, 0, NULL);
     }
 
@@ -1069,10 +1079,15 @@ public: // directory-end
         {
             size_type const n = rb.size();
 
-            if (0 != n)
+            /* Require more than a lone NUL so "" stays "" (matches
+             * winstl and the C-string overload).
+             */
+            if (n > 1)
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ENOMEM);
+
                     return 0;
                 }
 
@@ -1184,7 +1199,7 @@ public: // directory-end
             pLenToDecrease = &dummy;
         }
 
-        if (0 != len)
+        for (; 0 != len; )
         {
             char_type& last = dir[len - 1];
 
@@ -1193,6 +1208,11 @@ public: // directory-end
                 last = char_type(0);
 
                 --*pLenToDecrease;
+                --len;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -1208,19 +1228,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        if (has_dir_end(rb))
+        size_type const n = rb.size();
+
+        if (0 == n)
         {
-            size_type const n = rb.size();
-
-            if (!resizeable_buffer_resize(rb, n - 1))
-            {
-                return 0;
-            }
-
-            rb[n - 2] = char_type(0);
+            return 0;
         }
 
-        return rb.empty() ? 0 : rb.size() - 1;
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -1726,7 +1757,7 @@ public:
     }
 
 private:
-#if _STLSOFT_VER >= 0x010b03ff
+#if _STLSOFT_VER >= 0x010C0081
 
 # error Sort get_root_len_() properly
 #endif
@@ -1744,7 +1775,6 @@ public:
         {
             return 0;
         }
-
 #ifdef _WIN32
 
         // If it's really on Windows, then we need to check for drive designator
@@ -1820,6 +1850,8 @@ private:
 
             if (!resizeable_buffer_resize(cwd, n2 + len + 1))
             {
+                set_last_error(ENOMEM);
+
                 return 0;
             }
 
@@ -2025,7 +2057,8 @@ return 0;
 
         if ('\0' != fileName[len])
         {
-            buffer_type_ fileName_(1 + (len - 1));
+            // len characters of payload + trailing NUL
+            buffer_type_ fileName_(1 + len);
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -2040,9 +2073,10 @@ return 0;
             }
             else
             {
+                char_copy(&fileName_[0], fileName, len);
                 fileName_[len] = '\0';
 
-                return get_full_path_name_impl2(char_copy(&fileName_[0], fileName, len)
+                return get_full_path_name_impl2(fileName_.data()
                                             ,   len
                                             ,   buffer
                                             ,   cchBuffer);
@@ -2123,11 +2157,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -2239,11 +2287,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());
@@ -2783,6 +2844,15 @@ public: // directory-end
 
         size_type const len = str_len(dir);
 
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
+
         return ensure_dir_end(dir, len, 0, NULL);
     }
 
@@ -2850,10 +2920,15 @@ public: // directory-end
         {
             size_type const n = rb.size();
 
-            if (0 != n)
+            /* Require more than a lone NUL so "" stays "" (matches
+             * winstl and the C-string overload).
+             */
+            if (n > 1)
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ENOMEM);
+
                     return 0;
                 }
 
@@ -2965,7 +3040,7 @@ public: // directory-end
             pLenToDecrease = &dummy;
         }
 
-        if (0 != len)
+        for (; 0 != len; )
         {
             char_type& last = dir[len - 1];
 
@@ -2974,6 +3049,11 @@ public: // directory-end
                 last = char_type(0);
 
                 --*pLenToDecrease;
+                --len;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -2989,19 +3069,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        if (has_dir_end(rb))
+        size_type const n = rb.size();
+
+        if (0 == n)
         {
-            size_type const n = rb.size();
-
-            if (!resizeable_buffer_resize(rb, n - 1))
-            {
-                return 0;
-            }
-
-            rb[n - 2] = char_type(0);
+            return 0;
         }
 
-        return rb.empty() ? 0 : rb.size() - 1;
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -3010,7 +3101,21 @@ public: // path classification and analysis
     find_last_path_name_separator(
         char_type const* path
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        char_type const* last = NULL;
+
+        for (; L'\0' != *path; ++path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                last = path;
+            }
+        }
+
+        return last;
+    }
 
     static
     char_type const*
@@ -3018,14 +3123,43 @@ public: // path classification and analysis
         char_type const*                    path
     ,   size_t                              len
     )
-    ;
+    {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
+        if (0 == len)
+        {
+            return NULL;
+        }
+
+        for (path += (len - 1); 0 != len; --len, --path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                return path;
+            }
+        }
+
+        return NULL;
+    }
 
     static
     char_type const*
     find_next_path_name_separator(
         char_type const*                    path
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        for (; L'\0' != *path; ++path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                return path;
+            }
+        }
+
+        return NULL;
+    }
 
     static
     char_type const*
@@ -3033,7 +3167,19 @@ public: // path classification and analysis
         char_type const*                    path
     ,   size_t                              len
     )
-    ;
+    {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
+        for (; 0 != len; --len, ++path)
+        {
+            if (is_path_name_separator(*path))
+            {
+                return path;
+            }
+        }
+
+        return NULL;
+    }
 
     static bool_type is_dots(char_type const* dir)
     {
@@ -3061,31 +3207,153 @@ public: // path classification and analysis
     }
 
     static bool_type is_path_rooted(char_type const* path)
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        if (L'\\' == path[0] &&
+            L'\\' == path[1])
+        {
+            return true;
+        }
+
+        if (0 != ::iswalpha(path[0]) &&
+            L':' == path[1])
+        {
+            path += 2;
+        }
+#endif /* _WIN32 */
+
+        return is_path_name_separator(*path);
+    }
 
     static bool_type is_path_rooted(
         char_type const*    path
     ,   size_t              len
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        if (len >= 2)
+        {
+            if (L'\\' == path[0] &&
+                L'\\' == path[1])
+            {
+                return true;
+            }
+        }
+
+        if (len >= 2)
+        {
+            if (0 != ::iswalpha(path[0]) &&
+                L':' == path[1])
+            {
+                path += 2;
+                len -= 2;
+            }
+        }
+#endif /* _WIN32 */
+
+        return 0 != len && is_path_name_separator(*path);
+    }
 
     static bool_type is_path_absolute(char_type const* path)
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        if (is_path_UNC(path))
+        {
+            return true;
+        }
+        if (0 != ::iswalpha(path[0]) &&
+            L':' == path[1] &&
+            is_path_name_separator(path[2]))
+        {
+            return true;
+        }
+
+        return false;
+#else /* ? _WIN32 */
+
+        return is_path_rooted(path);
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_absolute(
         char_type const*    path
     ,   size_t              len
     )
-    ;
+    {
+        if (0 == len)
+        {
+            return false;
+        }
+#ifdef _WIN32
+
+        if (is_path_UNC(path, len))
+        {
+            return true;
+        }
+        if (len >= 3)
+        {
+            if (0 != ::iswalpha(path[0]) &&
+                L':' == path[1] &&
+                is_path_name_separator(path[2]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+#else /* ? _WIN32 */
+
+        return is_path_rooted(path, len);
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_UNC(char_type const* path)
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != path);
+#ifdef _WIN32
+
+        size_type const len = str_len(path);
+
+        return is_path_UNC(path, len);
+#else /* ? _WIN32 */
+
+        STLSOFT_SUPPRESS_UNUSED(path);
+
+        return false;
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_UNC(
         char_type const*    path
     ,   size_t              len
     )
-    ;
+    {
+#ifdef _WIN32
+
+        switch (len)
+        {
+        case    0:
+        case    1:
+
+            return false;
+        default:
+
+            return L'\\' == path[0] && L'\\' == path[1];
+        }
+#else /* ? _WIN32 */
+
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(len);
+
+        return false;
+#endif /* _WIN32 */
+    }
 
     static bool_type is_path_name_separator(char_type ch)
     {
@@ -3120,6 +3388,10 @@ public: // path classification and analysis
         return filesystem_traits_::path_max();
     }
 
+    /* The following path-resolve, cwd, and dir-enumeration members remain
+     * declared (for API / metaprogramming compatibility) pending a finished
+     * conversion-policy implementation for the whole group.
+     */
     static
     size_type
     get_full_path_name(

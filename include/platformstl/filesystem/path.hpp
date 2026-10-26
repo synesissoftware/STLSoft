@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/path.hpp
+ * File:    platformstl/filesystem/path.hpp
  *
- * Purpose:     Platform header for the path components.
+ * Purpose: Platform header for the path components.
  *
- * Created:     20th March 2005
- * Updated:     21st March 2025
+ * Created: 20th March 2005
+ * Updated: 23rd October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   6
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       45
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,19 +120,29 @@ namespace platformstl_project
      * platforms it resolves to the winstl::basic_path class. It
      * is not defined for other platforms.
      */
-    template<   ss_typename_param_k C
-            ,   ss_typename_param_k T = filesystem_traits<C>
-            ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft::allocator_selector<C>::allocator_type
-            >
+    template<
+        ss_typename_param_k C
+    ,   ss_typename_param_k T = filesystem_traits<C>
+    ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft::allocator_selector<C>::allocator_type
+    >
     class basic_path
     {};
 
     /// Specialisation of the basic_path template for the ANSI character type \c char
-    typedef basic_path<char, filesystem_traits<char> >          path_a;
+    typedef basic_path<
+        char
+    ,   filesystem_traits<char>
+    >                                                           path_a;
     /// Specialisation of the basic_path template for the Unicode character type \c wchar_t
-    typedef basic_path<wchar_t, filesystem_traits<wchar_t> >    path_w;
+    typedef basic_path<
+        wchar_t
+    ,   filesystem_traits<wchar_t>
+    >                                                           path_w;
     /// Specialisation of the basic_path template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
-    typedef basic_path<tchar, filesystem_traits<tchar> >        path;
+    typedef basic_path<
+        tchar
+    ,   filesystem_traits<tchar>
+    >                                                           path;
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -150,26 +160,29 @@ namespace platformstl_project
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1310
 
-    template<   ss_typename_param_k C
+    template<
+        ss_typename_param_k C
 #  ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-            ,   ss_typename_param_k T = UNIXSTL_NS_QUAL(filesystem_traits)<C>
-            ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft::allocator_selector<C>::allocator_type
+    ,   ss_typename_param_k T = UNIXSTL_NS_QUAL(filesystem_traits)<C>
+    ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft::allocator_selector<C>::allocator_type
 #  else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-            ,   ss_typename_param_k T /* = filesystem_traits<C> */
-            ,   ss_typename_param_k A /* = processheap_allocator<C> */
+    ,   ss_typename_param_k T /* = filesystem_traits<C> */
+    ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #  endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-            >
+    >
     class basic_path
         : public UNIXSTL_NS_QUAL(basic_path__)<C, T, A>
     {
     private:
-        typedef UNIXSTL_NS_QUAL(basic_path__)<C, T, A>                  parent_class_type;
-        typedef basic_path<C, T, A>                                     class_type;
+        typedef UNIXSTL_NS_QUAL(basic_path__)<C, T, A>          parent_class_type;
+        typedef basic_path<C, T, A>                             class_type;
     public:
-        typedef ss_typename_type_k parent_class_type::char_type         char_type;
-        typedef ss_typename_type_k parent_class_type::traits_type       traits_type;
-        typedef ss_typename_type_k parent_class_type::allocator_type    allocator_type;
-        typedef ss_typename_type_k parent_class_type::size_type         size_type;
+        typedef ss_typename_type_k parent_class_type::char_type char_type;
+        typedef ss_typename_type_k parent_class_type::traits_type
+                                                                traits_type;
+        typedef ss_typename_type_k parent_class_type::allocator_type
+                                                                allocator_type;
+        typedef ss_typename_type_k parent_class_type::size_type size_type;
 
     public:
         basic_path()
@@ -224,9 +237,18 @@ namespace platformstl_project
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
-    typedef basic_path<ss_char_a_t, UNIXSTL_NS_QUAL(filesystem_traits)<ss_char_a_t> >   path_a;
-    typedef basic_path<ss_char_w_t, UNIXSTL_NS_QUAL(filesystem_traits)<ss_char_w_t> >   path_w;
-    typedef basic_path<ss_char_a_t, UNIXSTL_NS_QUAL(filesystem_traits)<ss_char_a_t> >   path;
+    typedef basic_path<
+        ss_char_a_t
+    ,   UNIXSTL_NS_QUAL(filesystem_traits)<ss_char_a_t>
+    >                                                           path_a;
+    typedef basic_path<
+        ss_char_w_t
+    ,   UNIXSTL_NS_QUAL(filesystem_traits)<ss_char_w_t>
+    >                                                           path_w;
+    typedef basic_path<
+        ss_char_a_t
+    ,   UNIXSTL_NS_QUAL(filesystem_traits)<ss_char_a_t>
+    >                                                           path;
 
 # else /* ? compiler */
 
@@ -257,26 +279,29 @@ namespace platformstl_project
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1310
 
-    template<   ss_typename_param_k C
+    template<
+        ss_typename_param_k C
 #  ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-            ,   ss_typename_param_k T = WINSTL_NS_QUAL(filesystem_traits)<C>
-            ,   ss_typename_param_k A = WINSTL_NS_QUAL(processheap_allocator)<C>
+    ,   ss_typename_param_k T = WINSTL_NS_QUAL(filesystem_traits)<C>
+    ,   ss_typename_param_k A = WINSTL_NS_QUAL(processheap_allocator)<C>
 #  else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-            ,   ss_typename_param_k T /* = filesystem_traits<C> */
-            ,   ss_typename_param_k A /* = processheap_allocator<C> */
+    ,   ss_typename_param_k T /* = filesystem_traits<C> */
+    ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #  endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-            >
+    >
     class basic_path
         : public WINSTL_NS_QUAL(basic_path__)<C, T, A>
     {
     private:
-        typedef WINSTL_NS_QUAL(basic_path__)<C, T, A>                   parent_class_type;
-        typedef basic_path<C, T, A>                                     class_type;
+        typedef WINSTL_NS_QUAL(basic_path__)<C, T, A>           parent_class_type;
+        typedef basic_path<C, T, A>                             class_type;
     public:
-        typedef ss_typename_type_k parent_class_type::char_type         char_type;
-        typedef ss_typename_type_k parent_class_type::traits_type       traits_type;
-        typedef ss_typename_type_k parent_class_type::allocator_type    allocator_type;
-        typedef ss_typename_type_k parent_class_type::size_type         size_type;
+        typedef ss_typename_type_k parent_class_type::char_type char_type;
+        typedef ss_typename_type_k parent_class_type::traits_type
+                                                                traits_type;
+        typedef ss_typename_type_k parent_class_type::allocator_type
+                                                                allocator_type;
+        typedef ss_typename_type_k parent_class_type::size_type size_type;
 
     public:
         basic_path()
@@ -331,9 +356,18 @@ namespace platformstl_project
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
-    typedef basic_path<ss_char_a_t,  WINSTL_NS_QUAL(filesystem_traits)<ss_char_a_t> >   path_a;
-    typedef basic_path<ss_char_w_t,  WINSTL_NS_QUAL(filesystem_traits)<ss_char_w_t> >   path_w;
-    typedef basic_path<TCHAR,        WINSTL_NS_QUAL(filesystem_traits)<TCHAR      > >   path;
+    typedef basic_path<
+        ss_char_a_t
+    ,   WINSTL_NS_QUAL(filesystem_traits)<ss_char_a_t>
+    >                                                           path_a;
+    typedef basic_path<
+        ss_char_w_t
+    ,   WINSTL_NS_QUAL(filesystem_traits)<ss_char_w_t>
+    >                                                           path_w;
+    typedef basic_path<
+        TCHAR
+    ,   WINSTL_NS_QUAL(filesystem_traits)<TCHAR>
+    >                                                           path;
 
 # else /* ? compiler */
 

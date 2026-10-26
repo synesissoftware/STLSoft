@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string_traits compare functions.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,8 +40,7 @@ namespace
     static void TEST_str_n_compare_IGNORES_BYTE_PAST_n();
     static void TEST_str_compare_no_case_ASCII();
     static void TEST_str_n_compare_no_case_ASCII();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,8 +165,7 @@ static void TEST_str_n_compare_no_case_ASCII()
     TEST_INT_LT(0, w_traits_t::str_n_compare_no_case(L"abC", L"aBd", 3));
     TEST_INT_EQ(0, w_traits_t::str_n_compare_no_case(w1, w2, 3));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

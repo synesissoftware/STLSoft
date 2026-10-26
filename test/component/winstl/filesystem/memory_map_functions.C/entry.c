@@ -4,7 +4,7 @@
  * Purpose: Scratch test for memory-map functions.
  *
  * Created: 26th August 2010
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -161,7 +161,7 @@ static void test_1_0()
     ws_uintptr_t    viewSize    =   0;
     void*           view = winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, 0, 0, &viewSize);
 
-    TEST_PTR_NE(NULL, view);
+    TEST_PTR_NOT_NULL(view);
 
     if (NULL != view)
     {
@@ -195,7 +195,7 @@ static void test_1_1()
 
     STLSOFT_SUPPRESS_UNUSED(err);
 
-    TEST_PTR_NE(NULL, view);
+    TEST_PTR_NOT_NULL(view);
     TEST_INT_EQ(requestSize, viewSize);
 
     if (NULL != view)
@@ -232,7 +232,7 @@ static void test_1_2()
 
         STLSOFT_SUPPRESS_UNUSED(err);
 
-        TEST_PTR_NE(NULL, view);
+        TEST_PTR_NOT_NULL(view);
         if (0 == requestSize)
         {
             TEST_INT_EQ(TEST_FILE_SIZE - offset, viewSize);

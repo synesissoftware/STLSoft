@@ -17,6 +17,8 @@
   - [1.11.9](#1119)
   - [1.11.10](#11110)
   - [1.11.11](#11111)
+  - [1.11.12](#11112)
+  - [Cross-publish to STLSoft-1.11](#cross-publish-to-stlsoft-111)
 - [1.12](#112)
 - [Requires clarification by project maintainers](#requires-clarification-by-project-maintainers)
 - [Abandoned](#abandoned)
@@ -31,27 +33,27 @@
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
-* [x] ~~~bring in some essential unit-tests from internal repo~~~ - ✅;
+* [ ] Remove **WTL**;
+* [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
+* [ ] bring in some essential unit-tests from interal repo;
+* [ ] Bring in the CONCEPTS documentation:
+  * [ ] auto-buffer;
+  * [x] ~~~resizeable-buffer~~~ - ✅;
+  * [ ] string-access-shims;
+  * [ ] Null Object (variable);
+  * [ ] Externals (esp. not introducing sub-project's headers proper);
+  * [ ] Conformance: Structural, Semantic, Intersecting;
+  * [ ] ...
 
 
 ### 1.11.2
 
-Dedicated increment: **test analysis and coverage only** — no other product changes in this release.
+Dedicated increment: **test analysis and coverage** (primary), plus **Resizeable Buffer** follow-ups deferred from the **1.11.1** lock.
 
 * [ ] Existing test consistency (deep analysis);
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components;
-* [ ] Remove **WTL**;
-* [ ] bring in some essential unit-tests from internal repo;
 * [ ] Resolve finally the structure and semantics of the top-level execution scripts (**run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts) on all platforms — discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring;
-
-Must resolve before finalising the **1.11.2** release:
-
-* [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
-* [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
-* [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
-* [ ] All precondition enforcements => \pre;
-* [ ] All \pre => precondition enforcements;
 
 
 ### 1.11.3
@@ -62,6 +64,24 @@ Must resolve before finalising the **1.11.2** release:
 * [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
 * [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
+
+Must resolve before finalising the **1.11.3** release:
+
+* [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
+* [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
+* [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
+* [ ] All precondition enforcements => \pre;
+* [ ] All \pre => precondition enforcements;
+* [ ] Remove **WTL**;
+* [ ] bring in some essential unit-tests from internal repo;
+* [ ] Resizeable Buffer — follow-ups deferred from the **1.11.1** concept/implementation lock (do **not** reopen C1–C5, D1–D4, G2, G3, G5–G7 without cause; gold contract is **CONCEPTS.md** — *The Resizeable Buffer concept* and *Contract for traits overloads that take an `rb`*; helper **stlsoft/util/resizeable_buffer_helpers.hpp**; exemplar `rb` overloads include `get_current_process_path(rb)` and winstl `get_module_directory(rb)`):
+  * [ ] **G1** — unixstl `system_traits::expand_environment_strings` is **declare-only** (ANSI + wide; both the C-string `(src, buffer, cch)` and `rb` overloads have no definitions in **include/unixstl/system/system_traits.hpp**); WinSTL already implements both (incl. an `rb` overload); callers such as **include/platformstl/filesystem/cwd_stack.hpp** invoke it and will fail to link on UNIX if used — **either** implement (gold probe-then-fill; env/expansion demand must account for trailing NUL; resize failure → `ENOMEM`; unit/component tests) **or** undeclare/remove the stubs and fix/guard callers; same gap is noted under **1.11.6**;
+  * [ ] **G4** — settle **caller empty-`rb` policy**: whether traits `rb` overloads require / document that callers always pass an empty buffer (`0 == rb.size()`) versus allowing a pre-sized/`capacity`-bearing `rb` (today gold probes with a null buffer + zero capacity and only resizes when `rb.size() < cchRequired`; some older `rb` overloads still probe via `0 == rb.size() ? NULL : &rb[0]`) — record the decision in **CONCEPTS.md** and align overload docs/impls/tests to it;
+  * [ ] **C6** — Resizeable Buffer is **structurally typed** only: look-alike types can compile without honouring trailing-NUL / `size()`-includes-NUL invariants; **path_buffer** / **file_path_buffer** remain documented non-models in **CONCEPTS.md** — decide whether to add debug asserts (e.g. trailing NUL when `!empty()`), concept-check helpers, and/or harden docs/tests so misuse is caught;
+  * [ ] **C7** — gold probe-then-fill has **no retry** if the required size changes between the null probe and the fill (TOCTOU on env/cwd/path); rare in practice — either document as accepted limitation in **CONCEPTS.md** or add a bounded grow-and-retry loop with tests;
+  * [ ] **P1** — several winstl `system_traits` `rb` overloads (e.g. `get_module_filename`, `get_home_directory`, `expand_environment_strings`) always perform a **second** fill API call even when the first call already succeeded with `rb.size() >= cchRequired`; prefer returning the first-call result when the buffer was already large enough (no behaviour change on the normative path) — measure/guard with existing unit coverage;
+  * [ ] **P2** — unixstl `filesystem_traits` `rb` path helpers (notably relative `get_full_path_name(rb)`) **query twice** and/or allocate heavy scratch (`path_max()`-sized `auto_buffer`, large stack cwd) — reduce duplicate work (compute once into scratch then copy, or reuse probe data) without changing the public contract; add/extend component tests under **test/component/unixstl/filesystem/filesystem_traits/**;
+  * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
 
 
 ### 1.11.4
@@ -76,7 +96,8 @@ Must resolve before finalising the **1.11.2** release:
 
 ### 1.11.6
 
-* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+* [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md):
+  * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare; full pickup brief under **1.11.2** Resizeable Buffer **G1**;
 
 
 ### 1.11.7
@@ -87,7 +108,7 @@ Must resolve before finalising the **1.11.2** release:
 
 ### 1.11.8
 
-* [ ] Move **include/stlsoft/util/string/**`*printf.h` into **api/internal** and deprecate the old headers;
+* [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
 
 
 ### 1.11.9
@@ -103,6 +124,33 @@ Must resolve before finalising the **1.11.2** release:
 ### 1.11.11
 
 * [ ] Doxygen build (**Doxyfile**, **generate_doxygen.sh**) and deeper API documentation — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
+
+
+### 1.11.12
+
+Normalise C API (and related C-facing) identifier prefixes. **House rule**
+(documented in **c-cpp-standards** → *STLSoft C API identifier prefixes*):
+
+* **Functions**, **types**, and **enumerators** — lowercase `<subproject>_C_`;
+* **Macros** — ALL_UPPERCASE (including the project key);
+* Do not introduce mixed forms such as `WinSTL_C_` / `STLSoft_C_`;
+* When renaming, retain older public names (deprecated wrappers or
+  documentation-hidden `#define` aliases) until at least **STLSoft 1.13**.
+
+* [x] ~~~Establish and document the rule (see **c-cpp-standards**)~~~ - ✅;
+* [x] ~~~Rename `STLSoft_C_string_copy*` / `STLSoft_C_string_copy_with_nul*` → `stlsoft_C_*` in **include/stlsoft/string/copy_functions.h** and all call sites (deprecated wrappers retained until at least **1.13**)~~~ - ✅;
+* [x] ~~~Rename `WinSTL_C_FileInformation_*` → `winstl_C_*` in **include/winstl/filesystem/file_information_functions.h** and call sites (deprecated wrappers retained until at least **1.13**)~~~ - ✅;
+* [x] ~~~Rename path-classify `PathType` enumerators: `WinSTL_C_PathType_*` → `winstl_C_PathType_*`, and `UNIXSTL_C_PathType_*` → `unixstl_C_PathType_*` (legacy names retained as documentation-hidden macros until at least **1.13**)~~~ - ✅;
+* [x] ~~~Rename path-classify impl macros `WINSTL_C_PATH_CLASSIFY_IMPL_*` / `UNIXSTL_C_PATH_CLASSIFY_IMPL_*` to lowercase~~~ - ❌ (ALL_UPPERCASE macros are house style; no rename);
+* [x] ~~~Decide policy for `STLSOFT_C_AUTO_BUFFER_*` / `STLSOFT_C_CAST`~~~ - ❌ (ALL_UPPERCASE is the house form; keep);
+* [ ] **1.13+**: consider removing deprecated mixed-case C API wrappers / enumerator aliases (`STLSoft_C_*`, `WinSTL_C_*`, `UNIXSTL_C_PathType_*`, and any later-deprecated forms) — not before;
+
+
+### Cross-publish to STLSoft-1.11
+
+When tip **1.11** is finally complete, cross-publish into the versioned line **[synesissoftware/STLSoft-1.11](https://github.com/synesissoftware/STLSoft-1.11)** (not done for the interim VOLE / historical-consumer recognition work — that line was left unpushed on purpose).
+
+* [ ] Cross-publish the completed tip **1.11** tree into **STLSoft-1.11**, including the unknown-newer Visual C++ warn-not-error forward-warning from the **`prospective-msvc`** branch (and any related recognition / semi-freeze messaging needed for historical consumers);
 
 
 ## 1.12
@@ -135,10 +183,10 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 
 ## Abandoned
 
-* [-] ~~~custom radix in integer_to_string - abandoned for performance reasons, and obviated by new conversion functions (oct, dec, hex) in 1.10~~~ - ❌;
-* [-] ~~~SourceSafe-era “do not branch the whole monorepo” note~~~ - ❌ (obsolete under Git; superseded by assessing the separate 1.12 internal repository for inclusion);
-* [-] ~~~Manual C/C++ dialect compatibility matrix in **TODO.md**~~~ - ❌ (CI is the record of actively exercised builds; automated/semi-automated reporting deferred to **1.12**);
-* [-] ~~~Migrate/deprecate **include/stlsoft/std/**`*` in parallel with `*printf.h`~~~ - ❌ (cut);
+* [x] ~~~custom radix in integer_to_string - abandoned for performance reasons, and obviated by new conversion functions (oct, dec, hex) in 1.10~~~ - ❌;
+* [x] ~~~SourceSafe-era “do not branch the whole monorepo” note~~~ - ❌ (obsolete under Git; superseded by assessing the separate 1.12 internal repository for inclusion);
+* [x] ~~~Manual C/C++ dialect compatibility matrix in **TODO.md**~~~ - ❌ (CI is the record of actively exercised builds; automated/semi-automated reporting deferred to **1.12**);
+* [x] ~~~Migrate/deprecate **include/stlsoft/std/**`*` in parallel with `*printf.h`~~~ - ❌ (cut);
 
 
 <!-- ########################### end of file ########################### -->

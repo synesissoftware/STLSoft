@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 17th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     580
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     585
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -111,8 +111,8 @@
  * The patch version number of InetSTL
  */
 
-/** \def _INETSTL_VER_ALPHABETA
- * The alpha/beta number of InetSTL, in the range 1-0xFE for prerelease
+/** \def _INETSTL_VER_RELSTATUS
+ * The release-status number of InetSTL, in the range 1-0xFE for prerelease
  * versions, and 0xFF for a released version
  */
 
@@ -138,31 +138,33 @@
 # define _INETSTL_VER_1_3_6      0x010306ff  /*!< Version 1.3.6 (with STLSoft 1.9.113) */
 # define _INETSTL_VER_1_3_7      0x010307ff  /*!< Version 1.3.7 (with STLSoft 1.9.119) */
 # define _INETSTL_VER_1_3_8      0x010308ff  /*!< Version 1.3.8 (with STLSoft 1.9.121) */
-# define _INETSTL_VER_1_4_1_B01  0x01040181  /*!< Version 1.4.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1 beta 2 (with STLSoft 1.10.1 beta 10) */
-# define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1 beta 3 (with STLSoft 1.10.1 beta 26) */
+# define _INETSTL_VER_1_4_1_B01  0x01040181  /*!< Version 1.4.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1-beta2 (with STLSoft 1.10.1-beta10) */
+# define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
-# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
-# define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
-# define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 rc 2) */
-# define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0 alpha 3 (with STLSoft 1.11.1 rc 8) */
-# define _INETSTL_VER_1_5_0_A04  0x01050044  /*!< Version 1.5.0 alpha 4 (with STLSoft 1.11.1 rc 9) */
+# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1-alpha8) */
+# define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0-alpha1 (with STLSoft 1.11.1-beta2) */
+# define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0-alpha2 (with STLSoft 1.11.1-rc2) */
+# define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0-alpha3 (with STLSoft 1.11.1-rc8) */
+# define _INETSTL_VER_1_5_0_A04  0x01050044  /*!< Version 1.5.0-alpha4 (with STLSoft 1.11.1-rc9) */
+# define _INETSTL_VER_1_5_0      0x010500FF  /*!< Version 1.5.0 (with STLSoft 1.11.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
 #define _INETSTL_VER_PATCH       0
-#define _INETSTL_VER_ALPHABETA   0x44
+#define _INETSTL_VER_RELSTATUS   0xFF
 
 #define _INETSTL_VER \
     (0\
         |   (   _INETSTL_VER_MAJOR       << 24   ) \
         |   (   _INETSTL_VER_MINOR       << 16   ) \
         |   (   _INETSTL_VER_PATCH       <<  8   ) \
-        |   (   _INETSTL_VER_ALPHABETA   <<  0   ) \
+        |   (   _INETSTL_VER_RELSTATUS   <<  0   ) \
     )
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _INETSTL_VER_ALPHABETA                             _INETSTL_VER_RELSTATUS
 # define _INETSTL_VER_REVISION                              _INETSTL_VER_PATCH
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -196,8 +198,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B0241
-# error This version of the InetSTL libraries requires STLSoft version 1.11.2-alpha1, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the InetSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -343,8 +345,8 @@ x86-64
 
 #if 0
 #elif 0 ||\
-      defined(__alpha__) || \
-      defined(__alpha) || \
+      defined(__alpha__) ||\
+      defined(__alpha) ||\
       defined(_M_ALPHA) ||\
       0
 
@@ -359,16 +361,16 @@ x86-64
 # define INETSTL_ARCH_IS_ARM64
 # define INETSTL_ARCH_LABEL_STRING                          "ARM64"
 #elif 0 ||\
-      defined(__hppa__) || \
+      defined(__hppa__) ||\
       defined(__hppa) ||\
       0
 
 # define INETSTL_ARCH_IS_HPPA
 # define INETSTL_ARCH_LABEL_STRING                          "HP/PA"
 #elif 0 ||\
-      defined(__ia64__) || \
-      defined(__ia64) || \
-      defined(_IA64_) || \
+      defined(__ia64__) ||\
+      defined(__ia64) ||\
+      defined(_IA64_) ||\
       defined(_M_IA64) ||\
       0
 
@@ -376,17 +378,17 @@ x86-64
 # define INETSTL_ARCH_IS_IA64
 # define INETSTL_ARCH_LABEL_STRING                          "IA-64"
 #elif 0 ||\
-      defined(__POWERPC__) || \
-      defined(__ppc__) || \
-      defined(__ppc) || \
+      defined(__POWERPC__) ||\
+      defined(__ppc__) ||\
+      defined(__ppc) ||\
       defined(_M_PPC) ||\
-      defined(_POWER) || \
+      defined(_POWER) ||\
       0
 
 # define INETSTL_ARCH_IS_POWERPC
 # define INETSTL_ARCH_LABEL_STRING                          "PowerPC"
 #elif 0 ||\
-      defined(__sparc__) || \
+      defined(__sparc__) ||\
       defined(__sparc) ||\
       0
 
@@ -394,24 +396,24 @@ x86-64
 # define INETSTL_ARCH_IS_SPARC
 # define INETSTL_ARCH_LABEL_STRING                          "Sparc"
 #elif 0 ||\
-      defined(__amd64__) || \
-      defined(__amd64) || \
+      defined(__amd64__) ||\
+      defined(__amd64) ||\
       defined(__x86_64__) ||\
       defined(__x86_64) ||\
-      defined(_AMD64_) || \
-      defined(_M_AMD64) || \
-      defined(_M_X64) || \
+      defined(_AMD64_) ||\
+      defined(_M_AMD64) ||\
+      defined(_M_X64) ||\
       0
 
 # define INETSTL_ARCH_IS_INTEL
 # define INETSTL_ARCH_IS_X64
 # define INETSTL_ARCH_LABEL_STRING                          "x86-64"
 #elif 0 ||\
-      defined(__i386__) || \
-      defined(__i386) || \
-      defined(__X86__) || \
+      defined(__i386__) ||\
+      defined(__i386) ||\
+      defined(__X86__) ||\
       defined(_M_IX86) ||\
-      defined(_X86_) || \
+      defined(_X86_) ||\
       0
 
 # define INETSTL_ARCH_IS_INTEL
@@ -429,31 +431,31 @@ x86-64
  */
 
 #if 0
-#elif 0 || \
-      defined(unix) || \
-      defined(UNIX) || \
-      defined(__unix__) || \
-      defined(__unix) || \
-      defined(__MACH__) || \
+#elif 0 ||\
+      defined(unix) ||\
+      defined(UNIX) ||\
+      defined(__unix__) ||\
+      defined(__unix) ||\
+      defined(__MACH__) ||\
       0
 # define INETSTL_OS_IS_UNIX
-#elif 0 || \
-      defined(WIN64) || \
-      defined(_WIN64) || \
-      defined(__WIN64__) || \
+#elif 0 ||\
+      defined(WIN64) ||\
+      defined(_WIN64) ||\
+      defined(__WIN64__) ||\
       0
 # define INETSTL_OS_IS_WIN64
-#elif 0 || \
-      defined(WIN32) || \
-      defined(_WIN32) || \
-      defined(__WIN32__) || \
+#elif 0 ||\
+      defined(WIN32) ||\
+      defined(_WIN32) ||\
+      defined(__WIN32__) ||\
       0
 # define INETSTL_OS_IS_WIN32
 #else /* ? operating system */
 # error Operating system not discriminated. Only UNIX, Win32 and Win64 are currently recognised by PlatformSTL
 #endif /* operating system */
 
-#if defined(INETSTL_OS_IS_WIN32) || \
+#if defined(INETSTL_OS_IS_WIN32) ||\
     defined(INETSTL_OS_IS_WIN64)
 # define INETSTL_OS_IS_WINDOWS
 #endif /* INETSTL_OS_IS_WIN32 || INETSTL_OS_IS_WIN64 */
@@ -476,19 +478,19 @@ x86-64
 
 
 #if 0 ||\
-    defined(__FreeBSD__) || \
-    defined(__NetBSD__) || \
-    defined(__OpenBSD__) || \
-    defined(__bsdi__) || \
+    defined(__FreeBSD__) ||\
+    defined(__NetBSD__) ||\
+    defined(__OpenBSD__) ||\
+    defined(__bsdi__) ||\
     defined(_SYSTYPE_BSD) ||\
     0
 # define INETSTL_OSFAMILY_IS_BSD
 #endif /* bsd */
 
 #if 0 ||\
-    defined(__sysv__) || \
-    defined(__SVR4) || \
-    defined(__svr4__) || \
+    defined(__sysv__) ||\
+    defined(__SVR4) ||\
+    defined(__svr4__) ||\
     defined(_SYSTYPE_SVR4) ||\
     0
 # define INETSTL_OSFAMILY_IS_SVR4
@@ -739,7 +741,7 @@ x86-64
  */
 
 #ifndef INETSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::inetstl */
 /** The \c inetstl namespace contains all components
@@ -889,10 +891,10 @@ typedef is_streamoff_t                                      streamoff_t;    /*!<
  */
 
 #if 0
-#elif 0 || \
-      defined(_WIN32) || \
-      defined(WIN32) || \
-      defined(WIN64) || \
+#elif 0 ||\
+      defined(_WIN32) ||\
+      defined(WIN32) ||\
+      defined(WIN64) ||\
       0
 
 /** \def INETSTL_CONST_MAX_PATH
@@ -980,7 +982,7 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
  */
 
 #ifndef INETSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace inetstl */
 # else

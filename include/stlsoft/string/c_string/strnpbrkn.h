@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnpbrkn.h
+ * File:    stlsoft/string/c_string/strnpbrkn.h
  *
- * Purpose:     Definition of stlsoft_C_strnpbrkn() and stlsoft_C_wcsnpbrkn()
+ * Purpose: Definition of stlsoft_C_strnpbrkn() and stlsoft_C_wcsnpbrkn()
  *
- * Created:     11th December 2020
- * Updated:     11th March 2024
+ * Created: 11th December 2020
+ * Updated: 26th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_EDIT       4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

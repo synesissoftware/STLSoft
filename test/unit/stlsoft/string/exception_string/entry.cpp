@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 29th September 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,28 +50,28 @@ size_t const NUM_ITERATIONS =   1000000u;
 
 namespace {
 
-    static void test_default_instance();
-    static void test_ctor_1();
-    static void test_ctor_2();
-    static void test_ctor_3();
+    static void TEST_default_instance();
+    static void TEST_ctor_1();
+    static void TEST_ctor_2();
+    static void TEST_ctor_3();
 
-    static void test_default_ctor_and_length();
-    static void test_default_ctor_and_size();
-    static void test_c_string_ctor_1();
-    static void test_c_string_ctor_2();
-    static void test_copy_ctor_1();
-    static void test_copy_ctor_2();
-    static void test_slice_ctor_1();
-    static void test_slice_ctor_2();
+    static void TEST_default_ctor_and_length();
+    static void TEST_default_ctor_and_size();
+    static void TEST_c_string_ctor_1();
+    static void TEST_c_string_ctor_2();
+    static void TEST_copy_ctor_1();
+    static void TEST_copy_ctor_2();
+    static void TEST_slice_ctor_1();
+    static void TEST_slice_ctor_2();
 
-    static void test_string_concatenation_1();
-    static void test_string_concatenation_2();
-#if _STLSOFT_VER >= 0x010c0000
+    static void TEST_string_concatenation_1();
+    static void TEST_string_concatenation_2();
+#if _STLSOFT_VER >= 0x010D0000
 
-    static void test_swap_1();
-    static void test_swap_2();
-    static void test_swap_3();
-    static void test_ctor_16();
+    static void TEST_swap_1();
+    static void TEST_swap_2();
+    static void TEST_swap_3();
+    static void TEST_ctor_16();
 #endif
 } // anonymous namespace
 
@@ -89,28 +89,28 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.exception_string", verbosity))
     {
-        XTESTS_RUN_CASE(test_default_instance);
-        XTESTS_RUN_CASE(test_ctor_1);
-        XTESTS_RUN_CASE(test_ctor_2);
-        XTESTS_RUN_CASE(test_ctor_3);
+        XTESTS_RUN_CASE(TEST_default_instance);
+        XTESTS_RUN_CASE(TEST_ctor_1);
+        XTESTS_RUN_CASE(TEST_ctor_2);
+        XTESTS_RUN_CASE(TEST_ctor_3);
 
-        XTESTS_RUN_CASE(test_default_ctor_and_length);
-        XTESTS_RUN_CASE(test_default_ctor_and_size);
-        XTESTS_RUN_CASE(test_c_string_ctor_1);
-        XTESTS_RUN_CASE(test_c_string_ctor_2);
-        XTESTS_RUN_CASE(test_copy_ctor_1);
-        XTESTS_RUN_CASE(test_copy_ctor_2);
-        XTESTS_RUN_CASE(test_slice_ctor_1);
-        XTESTS_RUN_CASE(test_slice_ctor_2);
+        XTESTS_RUN_CASE(TEST_default_ctor_and_length);
+        XTESTS_RUN_CASE(TEST_default_ctor_and_size);
+        XTESTS_RUN_CASE(TEST_c_string_ctor_1);
+        XTESTS_RUN_CASE(TEST_c_string_ctor_2);
+        XTESTS_RUN_CASE(TEST_copy_ctor_1);
+        XTESTS_RUN_CASE(TEST_copy_ctor_2);
+        XTESTS_RUN_CASE(TEST_slice_ctor_1);
+        XTESTS_RUN_CASE(TEST_slice_ctor_2);
 
-        XTESTS_RUN_CASE(test_string_concatenation_1);
-        XTESTS_RUN_CASE(test_string_concatenation_2);
-#if _STLSOFT_VER >= 0x010c0000
+        XTESTS_RUN_CASE(TEST_string_concatenation_1);
+        XTESTS_RUN_CASE(TEST_string_concatenation_2);
+#if _STLSOFT_VER >= 0x010D0000
 
-        XTESTS_RUN_CASE(test_swap_1);
-        XTESTS_RUN_CASE(test_swap_2);
-        XTESTS_RUN_CASE(test_swap_3);
-        XTESTS_RUN_CASE(test_ctor_16);
+        XTESTS_RUN_CASE(TEST_swap_1);
+        XTESTS_RUN_CASE(TEST_swap_2);
+        XTESTS_RUN_CASE(TEST_swap_3);
+        XTESTS_RUN_CASE(TEST_ctor_16);
 #endif
 
         XTESTS_PRINT_RESULTS();
@@ -135,7 +135,7 @@ namespace {
     using stlsoft::exception_string;
 
 
-static void test_default_instance()
+static void TEST_default_instance()
 {
     exception_string xs;
 
@@ -143,7 +143,7 @@ static void test_default_instance()
     TEST_INT_EQ(0u, xs.size());
 }
 
-static void test_ctor_1()
+static void TEST_ctor_1()
 {
     exception_string    xs("abc");
 
@@ -152,7 +152,7 @@ static void test_ctor_1()
     TEST_MS_EQ("abc", xs);
 }
 
-static void test_ctor_2()
+static void TEST_ctor_2()
 {
     exception_string    xs("abcdefghijklmno", 13u);
 
@@ -161,7 +161,7 @@ static void test_ctor_2()
     TEST_MS_EQ("abcdefghijklm", xs);
 }
 
-static void test_ctor_3()
+static void TEST_ctor_3()
 {
     exception_string    xs("abcdefghijklmno", 3u);
 
@@ -170,7 +170,7 @@ static void test_ctor_3()
     TEST_MS_EQ("abc", xs);
 }
 
-static void test_default_ctor_and_length()
+static void TEST_default_ctor_and_length()
 {
     stlsoft::exception_string xs;
 
@@ -178,7 +178,7 @@ static void test_default_ctor_and_length()
     TEST_INT_EQ(0u, xs.length());
 }
 
-static void test_default_ctor_and_size()
+static void TEST_default_ctor_and_size()
 {
     stlsoft::exception_string xs;
 
@@ -186,7 +186,7 @@ static void test_default_ctor_and_size()
     TEST_INT_EQ(0u, xs.size());
 }
 
-static void test_c_string_ctor_1()
+static void TEST_c_string_ctor_1()
 {
     stlsoft::exception_string xs("a");
 
@@ -195,7 +195,7 @@ static void test_c_string_ctor_1()
     TEST_MS_EQ("a", xs);
 }
 
-static void test_c_string_ctor_2()
+static void TEST_c_string_ctor_2()
 {
     { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
@@ -209,7 +209,7 @@ static void test_c_string_ctor_2()
     }}
 }
 
-static void test_copy_ctor_1()
+static void TEST_copy_ctor_1()
 {
     stlsoft::exception_string xs1("a");
 
@@ -225,7 +225,7 @@ static void test_copy_ctor_1()
     TEST_MS_EQ(xs1, xs2);
 }
 
-static void test_copy_ctor_2()
+static void TEST_copy_ctor_2()
 {
     { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
@@ -245,7 +245,7 @@ static void test_copy_ctor_2()
     }}
 }
 
-static void test_slice_ctor_1()
+static void TEST_slice_ctor_1()
 {
     stlsoft::exception_string xs("a", 1u);
 
@@ -254,7 +254,7 @@ static void test_slice_ctor_1()
     TEST_MS_EQ("a", xs);
 }
 
-static void test_slice_ctor_2()
+static void TEST_slice_ctor_2()
 {
     stlsoft::exception_string xs("ab", 1u);
 
@@ -263,7 +263,7 @@ static void test_slice_ctor_2()
     TEST_MS_EQ("a", xs);
 }
 
-static void test_string_concatenation_1()
+static void TEST_string_concatenation_1()
 {
     stlsoft::exception_string xs1("a");
 
@@ -296,7 +296,7 @@ static void test_string_concatenation_1()
     TEST_MS_EQ("ba", xs5);
 }
 
-static void test_string_concatenation_2()
+static void TEST_string_concatenation_2()
 {
     { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
@@ -334,9 +334,9 @@ static void test_string_concatenation_2()
     }}
 }
 
-#if _STLSOFT_VER >= 0x010c0000
+#if _STLSOFT_VER >= 0x010D0000
 
-static void test_swap_1()
+static void TEST_swap_1()
 {
     { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
@@ -364,7 +364,7 @@ static void test_swap_1()
     }}
 }
 
-static void test_swap_2()
+static void TEST_swap_2()
 {
         std::string s1("abc");
         std::string s2(2000, '~');
@@ -391,7 +391,7 @@ static void test_swap_2()
         TEST_MS_EQ(s1, xs2);
 }
 
-static void test_swap_3()
+static void TEST_swap_3()
 {
         std::string s1("abc");
         std::string s2(2000, '~');
@@ -418,7 +418,7 @@ static void test_swap_3()
         TEST_MS_EQ(s1, xs2);
 }
 
-static void test_ctor_16()
+static void TEST_ctor_16()
 {
 # if 0
     stlsoft::exception_string xs("a");

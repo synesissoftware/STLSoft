@@ -4,7 +4,7 @@
  * Purpose: Scratch test for BSTR functions.
  *
  * Created: 31st May 2010
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -104,7 +104,7 @@ static void test_comstl_C_BSTR_create_w_1()
     {
         BSTR s = comstl_C_BSTR_create_w(NULL);
 
-        TEST_PTR_EQ(NULL, s);
+        TEST_PTR_NULL(s);
         TEST_INT_EQ(0u, SysStringLen(s));
         TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
     }
@@ -112,7 +112,7 @@ static void test_comstl_C_BSTR_create_w_1()
     {
         BSTR s = comstl_C_BSTR_create_w(L"");
 
-        TEST_PTR_NE(NULL, s);
+        TEST_PTR_NOT_NULL(s);
         TEST_INT_EQ(0u, SysStringLen(s));
         TEST_INT_EQ(SysStringLen(s), comstl_C_BSTR_len(s));
 
@@ -148,13 +148,13 @@ static void test_comstl_C_BSTR_create_a_1()
     {
         BSTR s = comstl_C_BSTR_create_a(NULL);
 
-        TEST_PTR_EQ(NULL, s);
+        TEST_PTR_NULL(s);
     }
 
     {
         BSTR s = comstl_C_BSTR_create_a("");
 
-        TEST_PTR_NE(NULL, s);
+        TEST_PTR_NOT_NULL(s);
         TEST_INT_EQ(0u, SysStringLen(s));
 
         comstl_C_BSTR_destroy(s);
@@ -242,7 +242,7 @@ static void TEST_comstl_C_BSTR_compare_EMPTY()
     BSTR const empty = comstl_C_BSTR_create_w(L"");
     BSTR const a = comstl_C_BSTR_create_w(L"a");
 
-    TEST_PTR_NE(NULL, empty);
+    TEST_PTR_NOT_NULL(empty);
     TEST_INT_EQ(0u, SysStringLen(empty));
 
     TEST_INT_EQ(0, comstl_C_BSTR_compare(empty, empty));

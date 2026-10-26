@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_initialisers`.
  *
  * Created: 9th October 2024
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -218,9 +218,9 @@ static void test_STARTUPINFOW()
     winstl::init_struct(si);
 
     TEST_INT_EQ(sizeof(si), si.cb);
-    TEST_PTR_EQ(NULL, si.lpReserved);
-    TEST_PTR_EQ(NULL, si.lpDesktop);
-    TEST_PTR_EQ(NULL, si.lpTitle);
+    TEST_PTR_NULL(si.lpReserved);
+    TEST_PTR_NULL(si.lpDesktop);
+    TEST_PTR_NULL(si.lpTitle);
     TEST_INT_EQ(0u, si.dwX);
     TEST_INT_EQ(0u, si.dwY);
     TEST_INT_EQ(0u, si.dwXSize);
@@ -231,10 +231,10 @@ static void test_STARTUPINFOW()
     TEST_INT_EQ(0u, si.dwFlags);
     TEST_INT_EQ(0u, si.wShowWindow);
     TEST_INT_EQ(0u, si.cbReserved2);
-    TEST_PTR_EQ(NULL, si.lpReserved2);
-    TEST_PTR_EQ(NULL, si.hStdInput);
-    TEST_PTR_EQ(NULL, si.hStdOutput);
-    TEST_PTR_EQ(NULL, si.hStdError);
+    TEST_PTR_NULL(si.lpReserved2);
+    TEST_PTR_NULL(si.hStdInput);
+    TEST_PTR_NULL(si.hStdOutput);
+    TEST_PTR_NULL(si.hStdError);
 }
 
 
@@ -351,7 +351,7 @@ static void test_SECURITY_ATTRIBUTES()
     winstl::init_struct(sa);
 
     TEST_INT_EQ(sizeof(sa), sa.nLength);
-    TEST_PTR_EQ(NULL, sa.lpSecurityDescriptor);
+    TEST_PTR_NULL(sa.lpSecurityDescriptor);
     TEST_BOOLEAN_FALSE(sa.bInheritHandle);
 }
 
@@ -369,7 +369,7 @@ static void test_DRAGINFOA()
     POINT pt;
 #endif
     TEST_BOOLEAN_FALSE(da.fNC);
-    TEST_PTR_EQ(NULL, da.lpFileList);
+    TEST_PTR_NULL(da.lpFileList);
     TEST_INT_EQ(0u, da.grfKeyState);
 }
 

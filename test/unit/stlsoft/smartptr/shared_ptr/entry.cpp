@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -141,7 +141,7 @@ static void test_ctor_default()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
     }
 
     {
@@ -149,7 +149,7 @@ static void test_ctor_default()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
     }
 
     {
@@ -157,7 +157,7 @@ static void test_ctor_default()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
     }
 }
 
@@ -168,7 +168,7 @@ static void test_ctor_nullptr()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
     }
 
     {
@@ -176,7 +176,7 @@ static void test_ctor_nullptr()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
     }
 
     {
@@ -184,7 +184,7 @@ static void test_ctor_nullptr()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
     }
 }
 
@@ -195,7 +195,7 @@ static void test_ctor_conversion()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_INT_EQ(123, *ptr);
     }
@@ -205,7 +205,7 @@ static void test_ctor_conversion()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_MS_EQ("123", *ptr);
         TEST_INT_EQ(3u, ptr->size());
@@ -219,7 +219,7 @@ static void test_ctor_conversion()
 
             TEST_INT_EQ(1, ptr.count());
             TEST_INT_EQ(1, ptr.use_count());
-            TEST_PTR_NE(NULL, ptr.get());
+            TEST_PTR_NOT_NULL(ptr.get());
 
             TEST_INT_EQ(124, ptr->i());
         }
@@ -235,7 +235,7 @@ static void test_ctor_copy()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_INT_EQ(123, *ptr);
 
@@ -243,13 +243,13 @@ static void test_ctor_copy()
 
         TEST_INT_EQ(2, ptr.count());
         TEST_INT_EQ(2, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_INT_EQ(123, *ptr);
 
         TEST_INT_EQ(2, ptr2.count());
         TEST_INT_EQ(2, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_INT_EQ(123, *ptr2);
     }
@@ -259,7 +259,7 @@ static void test_ctor_copy()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_MS_EQ("123", *ptr);
 
@@ -267,14 +267,14 @@ static void test_ctor_copy()
 
         TEST_INT_EQ(2, ptr.count());
         TEST_INT_EQ(2, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_MS_EQ("123", *ptr);
         TEST_INT_EQ(3u, ptr->size());
 
         TEST_INT_EQ(2, ptr2.count());
         TEST_INT_EQ(2, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_MS_EQ("123", *ptr2);
         TEST_INT_EQ(3u, ptr2->size());
@@ -288,7 +288,7 @@ static void test_ctor_copy()
 
             TEST_INT_EQ(1, ptr.count());
             TEST_INT_EQ(1, ptr.use_count());
-            TEST_PTR_NE(NULL, ptr.get());
+            TEST_PTR_NOT_NULL(ptr.get());
 
             TEST_INT_EQ(124, ptr->i());
 
@@ -297,20 +297,20 @@ static void test_ctor_copy()
 
                 TEST_INT_EQ(2, ptr.count());
                 TEST_INT_EQ(2, ptr.use_count());
-                TEST_PTR_NE(NULL, ptr.get());
+                TEST_PTR_NOT_NULL(ptr.get());
 
                 TEST_INT_EQ(124, ptr->i());
 
                 TEST_INT_EQ(2, ptr2.count());
                 TEST_INT_EQ(2, ptr2.use_count());
-                TEST_PTR_NE(NULL, ptr2.get());
+                TEST_PTR_NOT_NULL(ptr2.get());
 
                 TEST_INT_EQ(124, ptr2->i());
             }
 
             TEST_INT_EQ(1, ptr.count());
             TEST_INT_EQ(1, ptr.use_count());
-            TEST_PTR_NE(NULL, ptr.get());
+            TEST_PTR_NOT_NULL(ptr.get());
 
             TEST_INT_EQ(124, ptr->i());
         }
@@ -328,7 +328,7 @@ static void test_ctor_move()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_INT_EQ(123, *ptr);
 
@@ -336,11 +336,11 @@ static void test_ctor_move()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
 
         TEST_INT_EQ(1, ptr2.count());
         TEST_INT_EQ(1, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_INT_EQ(123, *ptr2);
     }
@@ -350,7 +350,7 @@ static void test_ctor_move()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_MS_EQ("123", *ptr);
 
@@ -358,11 +358,11 @@ static void test_ctor_move()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
 
         TEST_INT_EQ(1, ptr2.count());
         TEST_INT_EQ(1, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_MS_EQ("123", *ptr2);
         TEST_INT_EQ(3u, ptr2->size());
@@ -376,7 +376,7 @@ static void test_ctor_move()
 
             TEST_INT_EQ(1, ptr.count());
             TEST_INT_EQ(1, ptr.use_count());
-            TEST_PTR_NE(NULL, ptr.get());
+            TEST_PTR_NOT_NULL(ptr.get());
 
             TEST_INT_EQ(124, ptr->i());
 
@@ -385,18 +385,18 @@ static void test_ctor_move()
 
                 TEST_INT_EQ(0, ptr.count());
                 TEST_INT_EQ(0, ptr.use_count());
-                TEST_PTR_EQ(NULL, ptr.get());
+                TEST_PTR_NULL(ptr.get());
 
                 TEST_INT_EQ(1, ptr2.count());
                 TEST_INT_EQ(1, ptr2.use_count());
-                TEST_PTR_NE(NULL, ptr2.get());
+                TEST_PTR_NOT_NULL(ptr2.get());
 
                 TEST_INT_EQ(124, ptr2->i());
             }
 
             TEST_INT_EQ(0, ptr.count());
             TEST_INT_EQ(0, ptr.use_count());
-            TEST_PTR_EQ(NULL, ptr.get());
+            TEST_PTR_NULL(ptr.get());
         }
 
         TEST_INT_EQ(123, i);
@@ -411,7 +411,7 @@ static void test_swap()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_INT_EQ(123, *ptr);
 
@@ -421,11 +421,11 @@ static void test_swap()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
 
         TEST_INT_EQ(1, ptr2.count());
         TEST_INT_EQ(1, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_INT_EQ(123, *ptr2);
     }
@@ -435,7 +435,7 @@ static void test_swap()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_MS_EQ("123", *ptr);
 
@@ -445,11 +445,11 @@ static void test_swap()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
 
         TEST_INT_EQ(1, ptr2.count());
         TEST_INT_EQ(1, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_MS_EQ("123", *ptr2);
         TEST_INT_EQ(3u, ptr2->size());
@@ -463,7 +463,7 @@ static void test_swap()
 
             TEST_INT_EQ(1, ptr.count());
             TEST_INT_EQ(1, ptr.use_count());
-            TEST_PTR_NE(NULL, ptr.get());
+            TEST_PTR_NOT_NULL(ptr.get());
 
             TEST_INT_EQ(124, ptr->i());
 
@@ -474,18 +474,18 @@ static void test_swap()
 
                 TEST_INT_EQ(0, ptr.count());
                 TEST_INT_EQ(0, ptr.use_count());
-                TEST_PTR_EQ(NULL, ptr.get());
+                TEST_PTR_NULL(ptr.get());
 
                 TEST_INT_EQ(1, ptr2.count());
                 TEST_INT_EQ(1, ptr2.use_count());
-                TEST_PTR_NE(NULL, ptr2.get());
+                TEST_PTR_NOT_NULL(ptr2.get());
 
                 TEST_INT_EQ(124, ptr2->i());
             }
 
             TEST_INT_EQ(0, ptr.count());
             TEST_INT_EQ(0, ptr.use_count());
-            TEST_PTR_EQ(NULL, ptr.get());
+            TEST_PTR_NULL(ptr.get());
         }
 
         TEST_INT_EQ(123, i);
@@ -499,7 +499,7 @@ static void test_std_swap()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_INT_EQ(123, *ptr);
 
@@ -509,11 +509,11 @@ static void test_std_swap()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
 
         TEST_INT_EQ(1, ptr2.count());
         TEST_INT_EQ(1, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_INT_EQ(123, *ptr2);
     }
@@ -523,7 +523,7 @@ static void test_std_swap()
 
         TEST_INT_EQ(1, ptr.count());
         TEST_INT_EQ(1, ptr.use_count());
-        TEST_PTR_NE(NULL, ptr.get());
+        TEST_PTR_NOT_NULL(ptr.get());
 
         TEST_MS_EQ("123", *ptr);
 
@@ -533,11 +533,11 @@ static void test_std_swap()
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
-        TEST_PTR_EQ(NULL, ptr.get());
+        TEST_PTR_NULL(ptr.get());
 
         TEST_INT_EQ(1, ptr2.count());
         TEST_INT_EQ(1, ptr2.use_count());
-        TEST_PTR_NE(NULL, ptr2.get());
+        TEST_PTR_NOT_NULL(ptr2.get());
 
         TEST_MS_EQ("123", *ptr2);
         TEST_INT_EQ(3u, ptr2->size());

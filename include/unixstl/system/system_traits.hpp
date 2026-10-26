@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 8th October 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,10 +53,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      141
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     7
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      146
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -71,10 +71,19 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS
+# include <unixstl/filesystem/path_parse_functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS
+# include <unixstl/process/functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS */
 #ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
 # include <unixstl/system/directory_functions.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS */
 
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS
 # include <stlsoft/string/c_string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS */
@@ -90,6 +99,7 @@
 #elif defined(_WIN32) ||\
       defined(_WIN64)
 # include <ctype.h>
+# include <wctype.h>
 #endif /* Windows */
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -124,6 +134,10 @@
 # define STLSOFT_INCL_H_STDLIB
 # include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 #ifndef STLSOFT_INCL_H_UNISTD
 # define STLSOFT_INCL_H_UNISTD
 # include <unistd.h>
@@ -250,6 +264,74 @@ public:
     );
 /// @}
 
+/// \name Process Paths
+/// @{
+public:
+    /// Attempt to obtain the current process's path.
+    ///
+    /// \param cch The number of elements available in \c buff available for
+    ///   writing;
+    /// \param buff Pointer to the buffer into which \c cch result can be
+    ///   written. May not be \c nullptr except when \c cch is 0;
+    /// \param ppFile Optional pointer to receive a mutating pointer. When
+    ///   non-<code>nullptr</code>, <code>*ppFile</code> is always set to
+    ///   <code>nullptr</code>; then, if and only if the full path was
+    ///   written into \c buff, <code>*ppFile</code> is set to the last
+    ///   path-name separator in \c buff, if any;
+    ///
+    /// \return If \c buff is sufficient for the full path and a terminating
+    ///   NUL character then this returns the length of the path (excluding
+    ///   the NUL character). Otherwise, as much of the result as can be
+    ///   written is done so and a character count of <em>at least</em> the
+    ///   full length + 1 (for the NUL character) is returned, in order that
+    ///   client code can allocate all required space. The returned demand
+    ///   may exceed that minimum;
+    /// \retval 0 The function failed, and more information can be obtained
+    ///   from get_last_error();
+    ///
+    /// \note The normative client pattern is to call with \c cch of 0 to
+    ///   obtain a sufficient size, allocate, then call again.
+    ///
+    /// \pre 0 == cch || nullptr != buff
+    static
+    size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT;
+
+    /// Attempt to obtain the current process's path into a resizeable
+    /// buffer.
+    ///
+    /// \param rb Reference to a resizeable buffer that will be resized as
+    ///   required to hold the path and a terminating NUL character;
+    /// \param ppFile Optional pointer to receive a mutating pointer into
+    ///   the final contents of \c rb. When non-<code>nullptr</code>,
+    ///   <code>*ppFile</code> is set as for the raw overload, after the
+    ///   final fill;
+    ///
+    /// \return The length of the path (excluding the NUL character) on
+    ///   success; 0 on failure;
+    /// \retval 0 The function failed (query or resize). On query failure
+    ///   \c rb is left unchanged; on resize failure
+    ///   <code>ENOMEM</code> is set and \c rb is left unchanged. In neither
+    ///   failure case is <code>&rb[0]</code> taken on an empty buffer;
+    ///
+    /// \note The normative pattern is a size query via the raw overload
+    ///   with \c cch of 0, then resize, then fill — this overload performs
+    ///   that sequence. \c ppFile is computed only after the final fill.
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    );
+/// @}
+
 /// \name System Paths
 /// @{
 public:
@@ -270,9 +352,17 @@ public:
     ,   size_type   cchBuffer
     );
 
-    /// Gets the full path name of the current user's home directory
+    /// Gets the full path name of the current user's home directory into a
+    /// resizeable buffer (probe-then-fill; see CONCEPTS.md).
     ///
-    /// \param rb Reference to a resizeable buffer
+    /// \param rb Reference to a resizeable buffer that will be resized as
+    ///   required to hold the path and a terminating NUL character;
+    ///
+    /// \return The length of the path (excluding the NUL character) on
+    ///   success; 0 on failure. On query failure \c rb is left unchanged;
+    ///   on resize failure <code>ENOMEM</code> is set and \c rb is left
+    ///   unchanged. In neither failure case is <code>&rb[0]</code> taken
+    ///   on an empty buffer.
     template<
         ss_typename_param_k T_resizeableBuffer
     >
@@ -345,11 +435,19 @@ public:
     ,   size_type           cchBuffer
     );
 
-    /// Gets an environment variable into the given buffer
+    /// Gets an environment variable into a resizeable buffer
+    /// (probe-then-fill; see CONCEPTS.md).
     ///
-    /// \param name The name of the variable to find
+    /// \param name The name of the variable to find;
     /// \param rb Reference to a resizeable buffer into which the
-    ///   environment variable value is to be written
+    ///   environment variable value is to be written. Resized to the
+    ///   probed value length plus one for the terminating NUL (the raw
+    ///   null-buffer probe returns the length excluding the NUL);
+    ///
+    /// \return The length of the value (excluding the NUL character) on
+    ///   success; 0 on failure (missing variable, or resize failure). On
+    ///   query failure \c rb is left unchanged; on resize failure
+    ///   <code>ENOMEM</code> is set and \c rb is left unchanged.
     template<
         ss_typename_param_k T_resizeableBuffer
     >
@@ -583,6 +681,70 @@ public:
 public:
     static
     size_type
+    get_current_process_path(
+        size_type           cch
+    ,   char_type           buff[/* cch */]
+    ,   char_type**         ppFile
+    ) STLSOFT_NOEXCEPT
+    {
+        UNIXSTL_ASSERT(0 == cch || NULL != buff);
+
+        if (NULL != ppFile)
+        {
+            *ppFile = NULL;
+        }
+
+        size_type const n = unixstl_C_get_current_process_path_m(buff, cch);
+
+        if (0 != n &&
+            n < cch)
+        {
+            if (NULL != ppFile)
+            {
+                *ppFile = const_cast<char_type*>(unixstl_C_find_last_path_name_separator_len_m(buff, n));
+            }
+        }
+
+        return n;
+    }
+
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_current_process_path(
+        T_resizeableBuffer& rb
+    ,   char_type**         ppFile = NULL
+    )
+    {
+        size_type const cchRequired = get_current_process_path(
+                                          0
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   static_cast<char_type**>(NULL)
+                                      );
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
+
+        return get_current_process_path(rb.size(), &rb[0], ppFile);
+    }
+
+public:
+    static
+    size_type
     get_home_directory(
         char_type   buffer[]
     ,   size_type   cchBuffer
@@ -602,9 +764,25 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_home_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        rb.resize(cchRequired);
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
 
         return get_home_directory(&rb[0], rb.size());
     }
@@ -705,14 +883,31 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_environment_variable(name, static_cast<char_type*>(NULL), 0);
+        /* The raw null-buffer probe returns the value length excluding the
+         * NUL; the resizeable-buffer overload needs demand including NUL.
+         */
+        size_type const cchValue = get_environment_variable(
+                                       name
+                                   ,   static_cast<char_type*>(NULL)
+                                   ,   0
+                                   );
 
-        if (0 == cchRequired)
+        if (0 == cchValue)
         {
             return 0;
         }
 
-        rb.resize(cchRequired);
+        size_type const cchRequired = cchValue + 1;
+
+        if (rb.size() < cchRequired)
+        {
+            if (!STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
+            {
+                set_last_error(ENOMEM);
+
+                return 0;
+            }
+        }
 
         return get_environment_variable(name, &rb[0], rb.size());
     }
@@ -760,7 +955,54 @@ public:
     path_str_compare(
         char_type const*    ps1
     ,   char_type const*    ps2
-    );
+    )
+    {
+        UNIXSTL_ASSERT(NULL != ps1);
+        UNIXSTL_ASSERT(NULL != ps2);
+
+        for (;; ++ps1, ++ps2)
+        {
+            int_type d = int_type(*ps1) - int_type(*ps2);
+#ifdef _WIN32
+
+            if (0 != d)
+            {
+                d = towupper(*ps1) - towupper(*ps2);
+            }
+
+            if (0 != d)
+            {
+                switch (*ps1)
+                {
+                case L'/':
+                case L'\\':
+
+                    switch (*ps2)
+                    {
+                    case L'/':
+                    case L'\\':
+
+                        d = 0;
+                        break;
+                    }
+                    break;
+                }
+            }
+#endif
+
+            if (0 != d)
+            {
+                return d;
+            }
+
+            if (L'\0' == *ps1)
+            {
+                break;
+            }
+        }
+
+        return 0;
+    }
 
     static
     int
@@ -768,7 +1010,49 @@ public:
         char_type const*    ps1
     ,   char_type const*    ps2
     ,   size_type           cch
-    );
+    )
+    {
+        UNIXSTL_ASSERT(NULL != ps1);
+        UNIXSTL_ASSERT(NULL != ps2);
+
+        for (; 0 != cch; ++ps1, ++ps2, --cch)
+        {
+            int_type d = int_type(*ps1) - int_type(*ps2);
+#ifdef _WIN32
+
+            if (0 != d)
+            {
+                d = towupper(*ps1) - towupper(*ps2);
+            }
+
+            if (0 != d)
+            {
+                switch (*ps1)
+                {
+                case L'/':
+                case L'\\':
+
+                    switch (*ps2)
+                    {
+                    case L'/':
+                    case L'\\':
+
+                        d = 0;
+                        break;
+                    }
+                    break;
+                }
+            }
+#endif
+
+            if (0 != d)
+            {
+                return d;
+            }
+        }
+
+        return 0;
+    }
 
 public:
     static
@@ -783,13 +1067,31 @@ public:
         return unixstl_C_get_home_directory_w(buffer, cchBuffer);
     }
 
+    template<
+        ss_typename_param_k T_resizeableBuffer
+    >
+    static
+    size_type
+    get_home_directory(
+        T_resizeableBuffer& rb
+    )
+    {
+        size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
+
+        rb.resize(cchRequired);
+
+        return get_home_directory(&rb[0], rb.size());
+    }
+
 public:
-    static module_type load_library(char_type const* name);
+    /* Dynamic loading stays declare-only on W until load_library and
+     * free_library can land together with one conversion policy.
+     */
+    static module_type load_library(char_type const* name)
+    ;
 
     static bool_type free_library(module_type hModule)
-    {
-        return 0 == ::dlclose(hModule);
-    }
+    ;
 
     static
     void*
@@ -826,6 +1128,10 @@ public:
     }
 
 public:
+    /* Policy: convert wide name/value via the locale multibyte encoding
+     * for getenv(). expand_environment_strings remains declared (compat)
+     * pending a finished group implementation aligned with ANSI.
+     */
     static
     size_type
     get_environment_variable(
@@ -833,7 +1139,77 @@ public:
     ,   char_type           buffer[]
     ,   size_type           cchBuffer
     )
-    ;
+    {
+        UNIXSTL_ASSERT(NULL != name);
+
+        size_t const cchName = ::wcstombs(NULL, name, 0);
+
+        if (static_cast<size_t>(-1) == cchName)
+        {
+            return 0;
+        }
+
+        STLSOFT_NS_QUAL(auto_buffer)<char> name_m(cchName + 1);
+
+        if (name_m.empty())
+        {
+            return 0;
+        }
+
+        if (static_cast<size_t>(-1) == ::wcstombs(&name_m[0], name, name_m.size()))
+        {
+            return 0;
+        }
+
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
+        char const* const var = ::getenv(name_m.data());
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+
+        if (NULL == var)
+        {
+            return 0;
+        }
+        else
+        {
+            size_t const cchValue = ::mbstowcs(NULL, var, 0);
+
+            if (static_cast<size_t>(-1) == cchValue)
+            {
+                return 0;
+            }
+
+            if (NULL == buffer)
+            {
+                return cchValue;
+            }
+            else
+            {
+                STLSOFT_NS_QUAL(auto_buffer)<char_type> value_w(cchValue + 1);
+
+                if (value_w.empty())
+                {
+                    return 0;
+                }
+
+                if (static_cast<size_t>(-1) == ::mbstowcs(&value_w[0], var, value_w.size()))
+                {
+                    return 0;
+                }
+
+                size_type const writtenLen = (cchValue < cchBuffer) ? cchValue : cchBuffer;
+
+                char_copy(buffer, value_w.data(), writtenLen);
+                if (writtenLen < cchBuffer)
+                {
+                    buffer[writtenLen] = L'\0';
+                }
+
+                return (cchValue < cchBuffer) ? cchValue : cchBuffer;
+            }
+        }
+    }
 
     template<
         ss_typename_param_k T_resizeableBuffer
@@ -844,7 +1220,18 @@ public:
         char_type const*    name
     ,   T_resizeableBuffer& rb
     )
-    ;
+    {
+        size_type const cchRequired = get_environment_variable(name, static_cast<char_type*>(NULL), 0);
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
+        rb.resize(cchRequired);
+
+        return get_environment_variable(name, &rb[0], rb.size());
+    }
 
     static
     size_type
