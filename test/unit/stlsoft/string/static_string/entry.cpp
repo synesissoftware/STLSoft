@@ -1404,6 +1404,8 @@ static void TEST_swap_2()
 
 static void TEST_swap_3()
 {
+    using std::swap;
+
     typedef string_10_t string_t;
 
     {
@@ -1413,7 +1415,7 @@ static void TEST_swap_3()
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
 
-        std::swap(s1, s2);
+        swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
@@ -1429,7 +1431,7 @@ static void TEST_swap_3()
         TEST_INT_EQ(0u, s2.size());
         TEST_MS_EQ("", s2);
 
-        std::swap(s1, s2);
+        swap(s1, s2);
 
         TEST_INT_EQ(0u, s1.size());
         TEST_MS_EQ("", s1);

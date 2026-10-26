@@ -4,11 +4,11 @@
  * Purpose: Contains the shared_ptr template class.
  *
  * Created: 17th June 2002
- * Updated: 20th March 2025
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR      3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR      6
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR      7
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT       66
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -697,16 +697,11 @@ operator <<(
 } // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
- * illegally insert into the std namespace.
- */
 #if defined(STLSOFT_CF_std_NAMESPACE)
-# if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
-         defined(_MSC_VER))) && \
-     _MSC_VER < 1310
-
 namespace std
 {
+# ifdef STLSOFT_ALLOW_std_swap_SPECIALISATIONS
+
     template<
         ss_typename_param_k T
     >
@@ -719,8 +714,8 @@ namespace std
     {
         lhs.swap(rhs);
     }
+# endif
 } // namespace std
-# endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 

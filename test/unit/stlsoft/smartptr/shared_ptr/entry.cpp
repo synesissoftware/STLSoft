@@ -674,6 +674,8 @@ static void TEST_swap_stlsoft()
 
 static void TEST_std_swap()
 {
+    using std::swap;
+
     {
         stlsoft::shared_ptr<int> ptr(new int(123));
 
@@ -685,7 +687,7 @@ static void TEST_std_swap()
 
         stlsoft::shared_ptr<int> ptr2;
 
-        std::swap(ptr, ptr2);
+        swap(ptr, ptr2);
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());
@@ -709,7 +711,7 @@ static void TEST_std_swap()
 
         stlsoft::shared_ptr<std::string> ptr2;
 
-        std::swap(ptr, ptr2);
+        swap(ptr, ptr2);
 
         TEST_INT_EQ(0, ptr.count());
         TEST_INT_EQ(0, ptr.use_count());

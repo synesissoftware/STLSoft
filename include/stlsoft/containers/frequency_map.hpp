@@ -5,7 +5,7 @@
  *          it contains.
  *
  * Created: 1st October 2005
- * Updated: 15th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     10
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     11
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      58
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -709,8 +709,8 @@ inline void swap(
 namespace std
 {
 
-# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-       _MSC_VER >= 1310
+# ifdef STLSOFT_ALLOW_std_swap_SPECIALISATIONS
+
     template<
         ss_typename_param_k T_value
     ,   ss_typename_param_k T_traits
@@ -723,7 +723,6 @@ namespace std
         lhs.swap(rhs);
     }
 # endif
-
 } // namespace std
 #endif /* STLSOFT_CF_std_NAMESPACE */
 

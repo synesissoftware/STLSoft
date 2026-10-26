@@ -1875,6 +1875,8 @@ static void TEST_swap_stlsoft()
 
 static void TEST_swap_std()
 {
+    using std::swap;
+
     {
         {
             fm_ordered_int_t    fm1;
@@ -1887,7 +1889,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(0u, fm2.size());
             TEST_INT_EQ(0u, fm2.total());
 
-            std::swap(fm1, fm2);
+            swap(fm1, fm2);
 
             TEST_BOOLEAN_TRUE(fm1.empty());
             TEST_BOOLEAN_TRUE(fm2.empty());
@@ -1896,7 +1898,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(0u, fm2.size());
             TEST_INT_EQ(0u, fm2.total());
 
-            std::swap(fm2, fm1);
+            swap(fm2, fm1);
 
             TEST_BOOLEAN_TRUE(fm1.empty());
             TEST_BOOLEAN_TRUE(fm2.empty());
@@ -1933,7 +1935,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(1u, fm1[2]);
             TEST_INT_EQ(7u, fm2[-2]);
 
-            std::swap(fm1, fm2);
+            swap(fm1, fm2);
 
             TEST_BOOLEAN_FALSE(fm1.empty());
             TEST_BOOLEAN_FALSE(fm2.empty());
@@ -1954,7 +1956,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(3u, fm2[1]);
             TEST_INT_EQ(1u, fm2[2]);
 
-            std::swap(fm2, fm1);
+            swap(fm2, fm1);
 
             TEST_BOOLEAN_FALSE(fm1.empty());
             TEST_BOOLEAN_FALSE(fm2.empty());
@@ -1990,7 +1992,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(0u, fm2.size());
             TEST_INT_EQ(0u, fm2.total());
 
-            std::swap(fm1, fm2);
+            swap(fm1, fm2);
 
             TEST_BOOLEAN_TRUE(fm1.empty());
             TEST_BOOLEAN_TRUE(fm2.empty());
@@ -1999,7 +2001,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(0u, fm2.size());
             TEST_INT_EQ(0u, fm2.total());
 
-            std::swap(fm2, fm1);
+            swap(fm2, fm1);
 
             TEST_BOOLEAN_TRUE(fm1.empty());
             TEST_BOOLEAN_TRUE(fm2.empty());
@@ -2036,7 +2038,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(1u, fm1[2]);
             TEST_INT_EQ(7u, fm2[-2]);
 
-            std::swap(fm1, fm2);
+            swap(fm1, fm2);
 
             TEST_BOOLEAN_FALSE(fm1.empty());
             TEST_BOOLEAN_FALSE(fm2.empty());
@@ -2057,7 +2059,7 @@ static void TEST_swap_std()
             TEST_INT_EQ(3u, fm2[1]);
             TEST_INT_EQ(1u, fm2[2]);
 
-            std::swap(fm2, fm1);
+            swap(fm2, fm1);
 
             TEST_BOOLEAN_FALSE(fm1.empty());
             TEST_BOOLEAN_FALSE(fm2.empty());

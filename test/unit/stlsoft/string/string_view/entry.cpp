@@ -463,6 +463,8 @@ static void TEST_swap_stlsoft()
 
 static void TEST_swap_2()
 {
+    using std::swap;
+
     {
         string_v_t  s1;
         string_v_t  s2;
@@ -470,7 +472,7 @@ static void TEST_swap_2()
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
 
-        std::swap(s1, s2);
+        swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
@@ -485,7 +487,7 @@ static void TEST_swap_2()
         TEST_MS_EQ_N("abc", s1, s1.size());
         TEST_BOOLEAN_TRUE(s2.empty());
 
-        std::swap(s1, s2);
+        swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_FALSE(s2.empty());

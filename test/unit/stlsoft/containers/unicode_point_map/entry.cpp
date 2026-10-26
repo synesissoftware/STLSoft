@@ -1276,6 +1276,8 @@ static void TEST_swap_stlsoft()
 
 static void TEST_swap_std()
 {
+    using std::swap;
+
     {
         unicode_point_map upm1;
         unicode_point_map upm2;
@@ -1288,7 +1290,7 @@ static void TEST_swap_std()
         TEST_INT_EQ(0u, upm2.size());
         TEST_INT_EQ(0, upm2.total());
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_TRUE(upm1.empty());
         TEST_INT_EQ(0u, upm1.size());
@@ -1344,7 +1346,7 @@ static void TEST_swap_std()
         TEST_INT_EQ(1, upm2['2']);
         TEST_INT_EQ(10, upm2['3']);
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_FALSE(upm1.empty());
         TEST_INT_EQ(4u, upm1.size());
@@ -1391,7 +1393,7 @@ static void TEST_swap_std()
         TEST_INT_EQ(0u, upm2.size());
         TEST_INT_EQ(0, upm2.total());
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_TRUE(upm1.empty());
         TEST_INT_EQ(0u, upm1.size());
@@ -1447,7 +1449,7 @@ static void TEST_swap_std()
         TEST_INT_EQ(1, upm2['2']);
         TEST_INT_EQ(10, upm2['3']);
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_FALSE(upm1.empty());
         TEST_INT_EQ(4u, upm1.size());
@@ -1494,7 +1496,7 @@ static void TEST_swap_std()
         TEST_INT_EQ(0u, upm2.size());
         TEST_INT_EQ(0, upm2.total());
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_TRUE(upm1.empty());
         TEST_INT_EQ(0u, upm1.size());
@@ -1550,7 +1552,7 @@ static void TEST_swap_std()
         TEST_INT_EQ(1, upm2['2']);
         TEST_INT_EQ(10, upm2['3']);
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_FALSE(upm1.empty());
         TEST_INT_EQ(4u, upm1.size());
