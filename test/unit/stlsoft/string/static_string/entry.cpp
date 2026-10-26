@@ -108,7 +108,8 @@ namespace {
 
     static void TEST_reserve();
     static void TEST_reserve_too_large();
-    static void TEST_swap_1();
+    static void TEST_swap_METHOD();
+    static void TEST_swap_BY_ADL();
     static void TEST_swap_2();
     static void TEST_swap_3();
     static void TEST_resize();
@@ -244,7 +245,8 @@ int main(int argc, char* argv[])
 
         XTESTS_RUN_CASE(TEST_reserve);
         XTESTS_RUN_CASE_THAT_THROWS(TEST_reserve_too_large, std::length_error);
-        XTESTS_RUN_CASE(TEST_swap_1);
+        XTESTS_RUN_CASE(TEST_swap_METHOD);
+        XTESTS_RUN_CASE(TEST_swap_BY_ADL);
         XTESTS_RUN_CASE(TEST_swap_2);
         XTESTS_RUN_CASE(TEST_swap_3);
         XTESTS_RUN_CASE(TEST_resize);
@@ -1250,7 +1252,7 @@ static void TEST_reserve_too_large()
     s.reserve(11);
 }
 
-static void TEST_swap_1()
+static void TEST_swap_METHOD()
 {
     typedef string_10_t string_t;
 
@@ -1278,6 +1280,43 @@ static void TEST_swap_1()
         TEST_MS_EQ("", s2);
 
         s1.swap(s2);
+
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
+
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
+    }
+}
+
+static void TEST_swap_BY_ADL()
+{
+    typedef string_10_t string_t;
+
+    {
+        string_t s1;
+        string_t s2;
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+
+        swap(s2, s1);
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+    }
+
+    {
+        string_t    s1("abc");
+        string_t    s2;
+
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
+
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
+
+        swap(s1, s2);
 
         TEST_INT_EQ(0u, s1.size());
         TEST_MS_EQ("", s1);
