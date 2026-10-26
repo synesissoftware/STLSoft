@@ -2,7 +2,7 @@
 
 PROJECT_NAME           = "STLSoft"
 PROJECT_BRIEF          = "Robust, lightweight, cross-platform, template software"
-PROJECT_NUMBER         = 1.11.2-alpha1
+PROJECT_NUMBER         = 1.11.2
 
 # Overridden at generation time by generate_doxygen.sh (respects
 # SIS_CMAKE_BUILD_DIR).

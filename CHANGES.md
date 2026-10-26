@@ -1,9 +1,124 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.2-alpha1 - 25th October 2026
+## 1.11.2 - 25th October 2026
 
-T.B.C.
+* fixes:
+  * **stlsoft/memory/auto_buffer.hpp** — on GCC 12+, marked `deallocate_()` `STLSOFT_NOINLINE` and suppressed `-Wfree-nonheap-object` around the external-buffer `delete`, which GCC misattributes to the internal buffer;
+* testing:
+  * applies xTests' null-ptr macros;
+* documentation and boilerplate:
+  * standardised use of alpha/beta/rc nomenclature throughout the repo;
+  * GitHub Actions **ACE**, **ATL**, and **MFC** cells still build the whole tree and execute only the programs those libraries add (`test.unit.acestl.*`, `test.unit.mfcstl.*`, `test.unit.versions`, and the scratch version reporters **test.scratch.versions.stdio**, **test.scratch.versions.iostreams**, and **test.scratch.versions.format** when `std::format` is available); examples, component tests, the rest of the scratch suite, and performance tests stay on the lean cell of the same compiler and OS;
+
+
+## 1.11.1 - 21st October 2026
+
+* Consolidates **1.11.1-alpha1** through **1.11.1-rc10** (20th February 2024 – 20th October 2026);
+* additions:
+  * **Resizeable Buffer** concept (**CONCEPTS.md**): requirements, models, and the probe-then-fill contract for traits `rb` overloads; `stlsoft::resizeable_buffer_resize` (SFINAE for one-argument `resize`, including a pre-C++11 defaulted fill argument); example **examples/by_concept/resizeable_buffer**; **FAQ.md** Q6;
+  * **unixstl** / **winstl** `system_traits` — `get_current_process_path()` (multibyte and wide, optional basename separator out-parameter) and resizeable-buffer overloads; **winstl** `get_module_directory(hModule, rb)`;
+  * **unixstl::system_traits<wchar_t>** — `path_str_compare()` / `path_str_n_compare()`, `get_environment_variable()` (raw and `rb`), and `get_home_directory(rb)`; **unixstl_C_get_home_directory_w()** reads `HOME` and converts with `mbstowcs()`;
+  * **unixstl::filesystem_traits<wchar_t>** — separator finding and path classification (`is_path_rooted()` / `is_path_absolute()` / `is_path_UNC()`, including Windows drive-letter and UNC forms); path-resolve, current-directory, and directory-enumeration members, together with `load_library()` / `free_library()` / `expand_environment_strings()`, remain declared pending one conversion policy;
+  * `platformstl::get_home_directory()` and related functions; on Windows the lookup tries `"USERPROFILE"`, then `"HOMEDRIVE"` and `"HOMEPATH"`;
+  * `stlsoft_C_environment_variable_strtoll_m()` / `stlsoft::environment_variable_strtoll()`; renamed `stlsoft_C_environment_variable_exists_a()` to `stlsoft_C_environment_variable_exists_m()` (the `_a` form remains a deprecated forwarder); `platformstl::environment_variable_scope`;
+  * `unixstl_C_get_current_process_id()`, `winstl_C_get_current_process_id()`, and `platformstl_C_get_current_process_id()`;
+  * **unixstl::filesystem_traits** — `rewind_dir()` (wrapping `rewinddir()`);
+  * `platformstl::pid_sequence` / `unixstl::pid_sequence`; `winstl::codepage_sequence`; `winstl_C_printf_debug_string()`; Window write-to-console functions;
+  * `platformstl::FILE_stream::write_binary()` (writes every byte, including embedded NULs); `write(void const*, size_t)` deprecated in its favour;
+  * `platformstl::basic_file_lines<>` — move semantics, and parsing directly from the memory-mapped view (the full-file heap copy is gone; an embedded NUL is rejected in the parse loop); on the new harness (1000×64 LF), view-based forms are about **10–20×** faster than `fgetc` accumulation and typically comparable to or slightly ahead of `std::getline`;
+  * `stlsoft::member_selector_view<>` (alpha, for span-compatibility in **recls**);
+  * `stlsoft::doomgram` and `stlsoft::gram_scope`; **stlsoft/diagnostics/gram_utils.hpp** (`stlsoft::gram_to_strip()`);
+  * `stlsoft::count_decimal_digits()` (formerly `count_digits()`) and `stlsoft::count_hexadecimal_digits()`; unselected-by-default `count_bits_by_intrinsic()` and `find_highest_bit_by_intrinsic()`, with detection in **stlsoft/api/external/bitfns.h** and **stlsoft/api/internal/bitfns.h** (GCC/Clang builtins preferred over MSVC when both are visible); measurements and the default choice recorded in **strategy/BIT_FUNCTIONS.md** (table for `count_bits()`; scan for `find_highest_bit()`);
+  * **unixstl/time/comparison_functions.h** (`unixstl_C_compare_timevals()` / `unixstl::compare()`); `winstl_C_difference_in_microseconds_QPC()` and `winstl_C_absolute_difference_in_microseconds_QPC()`; `winstl::micro_sleep()` uses an active wait for short delays (`0 < delay_us <= 250000`);
+  * Stopwatch `pause()` / `unpause()` on `stlsoft::std_chrono_hrc_stopwatch`, **unixstl**, and **winstl**; **unixstl** stopwatch `get_kernel_nanoseconds()` / `get_user_nanoseconds()` / `get_nanoseconds()`; added `stlsoft::std_chrono_hrc_stopwatch`;
+  * `stlsoft::integral_traits<>` (**stlsoft/traits/integral_traits.hpp**), including specialisations for integer `true_typedef<>`; `stlsoft::unicode_point_map`;
+  * `stlsoft::integer_to_base32_string<>()` and `stlsoft::integer_to_base36_string<>()`; `stlsoft::write_string<>()`; true-typedef stream insertion (`operator <<()`);
+  * String API — `basic_simple_string` and `basic_static_string` gained `starts_with()` / `ends_with()` and `contains()`; `basic_simple_string` gained `equal()`; `basic_static_string` gained `substr()`, `front()`, and `back()`, and throws when an operation would exceed internal storage;
+  * `stlsoft::auto_buffer<>` — `cbegin()` / `cend()` / `crbegin()` / `crend()`; `resize()` keeps the external allocation so a shrink followed by a regrow can reuse it; memory-function abstraction, with performance improvements across components that use it; `STLSOFT_IS_CONSTANT_EVALUATED()` applied here in particular;
+  * `unixstl::glob_sequence` and `unixstl::readdir_sequence` can search for sockets and for devices, and can skip hidden directories and files; `readdir_sequence` no longer uses `basic_static_string`; the Windows `platformstl::readdir_sequence` is now `winstl::readdir_sequence`;
+  * `frequency_map` enhancements, including a default specialisation on `frequency_map_traits_unordered` when compiling as C++11 or later;
+  * **inetstl/util/uds_helpers.h** — Unix Domain Socket helper functions;
+  * `platformstl::isatty()`, `unixstl::isatty()`, and `winstl::isatty()`, with the corresponding `*_C_isatty_fd()` / `*_C_isatty_stm()` functions;
+  * Macros `STLSOFT_FALLTHROUGH()` and `STLSOFT_IS_CONSTANT_EVALUATED()`; `printf()` format attributes applied throughout; Clang cccap `STLSOFT_CLANG_VER`, and the shared `STLSOFT_GCC_VER` documented;
+  * **ACESTL** — `invoke_ACE_OS_snprintf` implemented in terms of `stlsoft_C_snprintf()`;
+  * Command-line handling components — minor improvements, including missing member types on `stlsoft::cmdargs`;
+* breaking changes:
+  * Renamed the UNIXSTL and WinSTL `module` class to `dl_module`, for prospective compatibility with the C++20 keyword `module`;
+* fixes:
+  * **unixstl** / **winstl** filesystem and system `rb` overloads follow the gold probe-then-fill pattern: early-out when the probe returns `0` (no resize-then-`&rb[0]` on an empty buffer); resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY` and is reported for every `resizeable_buffer_resize` failure on those paths, including **winstl** `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow; environment `rb` demand includes the trailing NUL (`cchValue + 1`);
+  * **unixstl::filesystem_traits** — `ensure_dir_end(rb)` leaves a lone-NUL `""` unchanged (`n > 1`, matching WinSTL); `remove_dir_end` (C-string and `rb`, A and W) strips all trailing path separators, matching WinSTL; **winstl** `remove_dir_end(rb)` shrinks `size()` to the post-strip length so a later `ensure_dir_end(rb)` cannot write past the NUL;
+  * **unixstl** / **winstl** `get_full_path_name_impl` sizes the scratch for a non-NUL-terminated counted slice as `1 + len` (WinSTL quoted-path handling takes this branch);
+  * **unixstl::readdir_sequence** — the non-exception `absolutePath` failure path soft-fails with an empty string (parallel to the throw when exceptions are enabled);
+  * **unixstl::filesystem_traits** — `class_type` is defined in terms of `char_type` (the wide specialisation previously named the narrow specialisation);
+  * `stlsoft::basic_simple_string<>` — `resize()` no longer over-reads when expanding a non-empty string; `assign()` defect fixed; counted construction, `assign`, `append`, `push_back`, and concatenation keep an embedded NUL, including assignment of a single `'\0'`;
+  * `stlsoft::basic_string_view` comparison defect fixed; `string_begins_with` compares a `wchar_t` prefix with `char_traits<C>::compare_max`; `char_traits_safe` treats a count of 0 as equal, and orders a null pointer before a live pointer when the count is non-zero;
+  * `stlsoft::string_to_integer_range<>()` calls the renamed `try_string_to_integer_4slre_` helper, with further string-to-integer compatibility corrections; `string_insert()` works with stream types that do and do not provide `sentry`;
+  * `stlsoft::unused_return_value_monitor<>` copy constructor clears `m_bUsed` on the source object; added `stlsoft::sinteger64` copy constructor;
+  * `stlsoft_C_environment_variable_exists_m()` treats an existing empty variable as present when `getenv_s()` reports one;
+  * `count_bits()` fixed when `STLSOFT_BIT_COUNT_BY_Kernighan` is defined;
+  * `unixstl::path_squeeze<>()` / `winstl::path_squeeze<>()` defects; compile defect in `winstl::basic_path<>`; defect in `winstl::basic_reg_key<>`; `winstl::codepage_sequence::data()` returns `m_cpids.data()`; `winstl_C_printf_debug_string()` compares the buffer length as a signed `int`; **winstl::netapi_allocator** passes a `DWORD` byte count to `NetApiBufferAllocate`;
+  * `STLSOFT_MESSAGE_ASSERT()` definition fixed for Clang; default definition of `STLSOFT_FALLTHROUGH()` fixed; minor defects in language-version detection corrected;
+  * Allocators reject element counts above `max_size()` before `n * sizeof(T)`; `pid_sequence` avoids a `size() - 1` underflow when eliding PIDs;
+  * **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS; **stlsoft/std/cstring.hpp** suppresses CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
+  * **execute_performance_tests.sh** preserves the child exit code across optional `expand` piping;
+  * `dl_call<>()` fixes and enhancements (UNIXSTL and WinSTL); minor fix to `basic_static_string`; minor fix to **example.platformstl.filesystem.readdir_sequence**; further defect fixes in the new `auto_buffer` behaviour; warning suppressions (including `basic_simple_string` and `winstl::readonly_memory_mapped_file`);
+* compatibility:
+  * Language coverage across C90, C99, C11, C17, and C23, and across C++98, C++11, C++14, C++17, C++20, and C++23, including `constexpr` application and C90 corrections; GCC 11 (`__builtin_is_constant_evaluated` when the dialect is not C++20) and GCC 14;
+  * Visual C++, from a partial restoration of v10 through current toolsets (`_MSC_VER` 1941–1944 and 18.x in **stlsoft.h**), including MSVC `/MT` and pre-VS-2022; Clang cccap uses `long long` for 64-bit sized types so they stay distinct from `long` on Linux LP64;
+  * MinGW and MinGW-w64, including omitted byte-comparers in **winstl/util/struct_comparers.hpp** (`NETWORK_APP_INSTANCE_EA`, `POWER_LIMIT_VALUE`, `SHUFFLE_FILE_DATA`) and compatibility in **winstl/internal/windows_version_.h** and **winstl/system/console_functions.h**; Windows ARM64; Windows 10/11 operating-system detection; **UNIXem**;
+  * **InetSTL** on macOS and Linux (including **test.component.inetstl.util.uds_helpers**); architecture discrimination in **InetSTL**, **UNIXSTL**, and **WinSTL** canonicalised; substantial refactoring of `winstl::filesystem_traits<>`;
+  * On Windows GNU (**MinGW**), CMake static-links **libgcc** and **libstdc++** into test and example programs so the images load when the runner **PATH** does not match the build toolchain;
+* testing:
+  * Unit tests extended for string comparison (`strnicmp`, `c_string_traits`, `char_traits` / `char_traits_safe`, `strcmp` / `strncmp`, BSTR, `string_begins_with`, and compare edges on `simple_string`, `static_string`, `string_view`, and `string_slice`), bit functions (including intrinsic helpers), the nine allocator suites (round-trip sizes, `max_size()`, and `std::list` / `std::vector` use; `null_allocator` throws `out_of_memory_exception`), integral traits and limits, doomgram and gram scope, decimal and hexadecimal digit counting, **unixstl** path and wide filesystem-traits classification, wide `path_str_compare`, `resizeable_buffer_resize`, and `ensure_dir_end` / `remove_dir_end`;
+  * Component tests added or extended for environment-variable existence and `strtoll`, home directory and environment `rb` overloads, process paths (**unixstl** and **winstl**), filesystem path `rb` overloads, `open_dir()` / `read_dir()` / `rewind_dir()` / `close_dir()`, **winstl** `get_module_directory(rb)`, `platformstl::file_lines` (LF, CR, and CRLF, including an empty line, and rejection of an embedded NUL), **winstl** directory functions, and **ACESTL** `ACE_String_Base` / `ACE_Time_Value` string-access shims;
+  * Performance suites for bit functions, `file_lines` (against `fgetc` and `std::getline`), digit counting, doomgram, gram utils, and `frequency_map`; scratch programs include `rewind_dir`, `micro_sleep`, and **test.scratch.versions.format** (library versions via `std::format`, built only for toolchains that provide it — MSVC 19.29+, GCC 13+, Clang 17+, AppleClang 16+, C++20 or later — and a stub when `__cpp_lib_format` is absent);
+  * Example **examples/by_project/unixstl/filesystem/rewind_dir**; previously unreleased example and test programs brought into the repository, including C-API suites; every unit and component assertion uses the **xTests** Terse API; empty placeholder cases removed; C-language test and example programs use the **subject.C** form;
+  * Leaf directories under **test/component**, **test/unit**, **test/scratch**, and **test/performance** renamed from `test.<kind>.…` to the subject name (executable names stay `test.<kind>.*`); performance programs nested by sub-project and area;
+* documentation and boilerplate:
+  * Documentation set modernised — **README.md** (components, CI badge on **ci.yml**), **FAQ.md**, **INSTALL.md**, **EXAMPLES.md**, **KNOWN_ISSUES.md**, **TODO.md** (1.11 / 1.12 roadmap), **HOW_YOU_CAN_HELP.md**, and **AUTHORS.md**; **CHANGES.txt** converted to **CHANGES.md** and **HISTORY.md** removed once subsumed; Doxygen generation via **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** (HTML under **_build/doxygen/html**); resizeable-buffer helper comments enriched; `\pre` comments normalised to bare boolean expressions, preferring `nullptr`;
+  * Repository drop-ins aligned with **misc-dev-scripts** **0.6.0** (editor settings, Git attributes, **.sis/project_name.txt**, and a sorted union **.gitignore**); **.gitattributes** Linguist policy classifies public C headers and sources as C, C++ as C++, and `*.cmake` as CMake, and excludes helper scripts, IDE files, **CMakeLists.txt**, and **makefile** from the language bar; repeated per-release boilerplate, include-order canonicalisation, and layout tidying across the alpha/beta/rc line, including the boilerplate-only **1.10.12** release, are absorbed here;
+  * CMake minimum **3.20**, with **BUILD_TESTING**, tree headers preferred over an installed **STLSoft** (`NO_SYSTEM_FROM_IMPORTED`), **CMP0177** on CMake 3.31 or later, and optional **shwild** / **ACE** / **ATL** / **MFC** discovery (`--no-shwild` / `CMAKE_NO_SHWILD`, `--no-ace`, **cmake/FindACE.cmake**, **cmake/FindATL.cmake**, `stlsoft_prepare_mfc_target`); depends on **xTests** 0.24+;
+  * Helper scripts rewritten to the common Synesis layout (`cmake --build`, coloured output, **.sis/project_name.txt** in status messages): **prepare_cmake.sh** (including `--build-shared-libs`, `--stlsoft-root-dir`, `SIS_CMAKE_GENERATOR`, and `SIS_CMAKE_MINGW`, with every `-D` passed on all generator paths), **build_cmake.sh**, **clean_cmake.sh**, **ctest_cmake.sh**, **remove_cmake_artefacts.sh** (no longer removes **docs** or **Doxyfile**), **run_all_unit_tests.sh** / **.cmd** (unit programs only; honours `XTESTS_VERBOSITY` and `TEST_VERBOSITY`), **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd** (`--gap-groups`), **run_all_automated_tests.sh** / **.cmd**, **run_all_examples.sh** (`--skip-interactive` via **.github/ci_skip_interactive_examples.txt**, and `SIS_EXAMPLE_SMOKE=1`), **run_all_scratch_tests.sh** / **.cmd**, and **execute_performance_tests.sh**; **dev/bin/batch_compile_check** accepts `--counts`;
+  * GitHub Actions **ci.yml** and **ci-cell.yml** on macOS, Linux, and Windows (**clang**, **gcc**, **MinGW**, **Visual C++**), with install-smoke, concurrency cancel-in-progress, component tests, a performance job (`SIS_PERFTESTS_GROUPGAPS=1`), and dedicated **ACE**, **ATL**, and **MFC** cells (the default MSVC cell does not require MFC); after an artifact download, non-Windows cells restore execute bits on test and example binaries and do not treat CMake artefacts as programs; a cell fails when it discovers zero unit tests;
+* version:
+  * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**);
+  * **inetstl** — **1.5.0** (**_INETSTL_VER_1_5_0**);
+  * **platformstl** — **1.10.0** (**_PLATFORMSTL_VER_1_10_0**);
+  * **unixstl** — **1.8.6** (**_UNIXSTL_VER_1_8_6**);
+  * **winstl** — **1.13.0** (**_WINSTL_VER_1_13_0**);
+
+
+## 1.11.1-rc10 - 20th October 2026
+
+* additions:
+  * Added **CONCEPTS.md** — documents the **Resizeable Buffer** concept (requirements, models / non-models, probe-then-fill gold contract for traits `rb` overloads);
+  * Added example **examples/by_concept/resizeable_buffer** — probe-then-fill into `auto_buffer` / `vector` via `platformstl` traits `rb` overloads and `resizeable_buffer_resize`;
+  * **winstl::system_traits** — added `get_module_directory(hModule, rb)` (A+W), gold probe-then-fill companion to the raw overload and to `get_module_filename(rb)`;
+* fixes:
+  * **unixstl::system_traits** — `get_home_directory(rb)` and `get_environment_variable(rb)` follow the gold pattern (early-out on probe `0`, conditional resize, `ENOMEM` on failure); environment `rb` demand includes the trailing NUL (`cchValue + 1`);
+  * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name` / `get_short_path_name` / `get_current_directory` `rb` overloads no longer resize-then-`&rb[0]` on an empty buffer when the probe returns `0`; resize failure sets `ENOMEM` / `ERROR_OUTOFMEMORY`;
+  * **unixstl::filesystem_traits** — `ensure_dir_end(rb)` leaves a lone-NUL `""` unchanged (`n > 1`, matching WinSTL and the C-string overload);
+  * **winstl::filesystem_traits** — `remove_dir_end(rb)` shrinks `size()` to the post-strip length so a later `ensure_dir_end(rb)` cannot write past the NUL;
+  * **unixstl::filesystem_traits** — `remove_dir_end` (C-string and `rb`, A+W) now strips **all** trailing path separators, matching WinSTL (was strip-one);
+  * **unixstl** / **winstl** `filesystem_traits` — every `resizeable_buffer_resize` failure on the `rb` / scratch paths above reports last-error (including WinSTL `ensure_dir_end(rb)` and the UnixSTL full-path cwd scratch grow);
+  * **unixstl::readdir_sequence** — non-exception `absolutePath` failure path no longer contains a broken `\'0'` write; soft-fails with an empty string (parallel to the throw when exceptions are enabled);
+  * **unixstl** / **winstl** `filesystem_traits` — `get_full_path_name_impl` scratch for a non-NUL-terminated counted slice is sized `1 + len` (was `1 + (len - 1)`), so writing the trailing NUL is in-bounds; WinSTL quoted-path handling takes this branch;
+  * **stlsoft::resizeable_buffer_resize** — invoke `rb.resize(newSize)` directly (with SFINAE detection of one-argument `bool` / `ss_bool_t` `resize`) so pre-C++11-style `resize(size, value = value())` models work; VC6 path adds a two-argument `void` member-pointer overload;
+* docs:
+  * Enriched Doxygen on **stlsoft/util/resizeable_buffer_helpers.hpp** (`resizeable_buffer_resize` parameters, return values, failure policy, caller OOM duty);
+  * **FAQ.md** — Q6 on the Resizeable Buffer concept;
+  * **EXAMPLES.md** — catalogues **by_concept/resizeable_buffer**;
+* testing:
+  * Component tests for unixstl `system_traits` home / environment `rb` overloads;
+  * Component tests for unixstl / winstl filesystem path `rb` overloads;
+  * Unit tests for unixstl / winstl `ensure_dir_end` / `remove_dir_end` (including size / round-trip, failing-resize OOM reporting, and unixstl strip-all trailing separators);
+  * Unit tests for `stlsoft::resizeable_buffer_resize` (including a stub with defaulted fill-argument `resize`, G5);
+  * Unit tests for **winstl** `get_module_directory(rb)` (`auto_buffer` / `vector`, invalid handle, grow-from-empty, pre-sized buffer);
+  * Added scratch program **test.scratch.versions.format** (**test/scratch/versions/versions.format**), reporting library versions via `std::format`; built only for toolchains known to provide `std::format` (MSVC 19.29+, GCC 13+, Clang 17+, AppleClang 16+, with C++20 or later), and degrades to a stub when `__cpp_lib_format` is absent;
+  * **test.unit.versions** — aligned with **1.11.1-rc10** (**_STLSOFT_VER_1_11_1_RC10**);
+* version:
+  * **STLSoft** — **1.11.1-rc10** (**_STLSOFT_VER_1_11_1_RC10**);
 
 
 ## 1.11.1-rc9 - 18th October 2026
@@ -31,10 +146,10 @@ T.B.C.
 * version:
   * **test.unit.versions** — aligned with **1.11.1-rc9** (**_STLSOFT_VER_1_11_1_RC9**);
   * **comstl** — **1.10.4** (**_COMSTL_VER_1_10_4**), with **STLSoft 1.11.1-rc9**;
-  * **inetstl** — **1.5.0 alpha 4** (**_INETSTL_VER_1_5_0_A04**), with **STLSoft 1.11.1-rc9**;
-  * **platformstl** — **1.10.0 beta 3** (**_PLATFORMSTL_VER_1_10_0_B03**), with **STLSoft 1.11.1-rc9**;
-  * **unixstl** — **1.8.6 beta 8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
-  * **winstl** — **1.13.0 beta 5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
+  * **inetstl** — **1.5.0-alpha4** (**_INETSTL_VER_1_5_0_A04**), with **STLSoft 1.11.1-rc9**;
+  * **platformstl** — **1.10.0-beta3** (**_PLATFORMSTL_VER_1_10_0_B03**), with **STLSoft 1.11.1-rc9**;
+  * **unixstl** — **1.8.6-beta8** (**_UNIXSTL_VER_1_8_6_B08**), with **STLSoft 1.11.1-rc9**;
+  * **winstl** — **1.13.0-beta5** (**_WINSTL_VER_1_13_0_B05**), with **STLSoft 1.11.1-rc9**;
 
 
 ## 1.11.1-rc8 - 10th October 2026
@@ -53,9 +168,9 @@ T.B.C.
   * Example **examples/by_project/unixstl/filesystem/rewind_dir** — enumerates a directory in two passes (count, then collect), using `rewind_dir()` between them;
   * **test.unit.versions** — aligned with **1.11.1-rc8** (**_STLSOFT_VER_1_11_1_RC8**);
 * version:
-  * **unixstl** — **1.8.6 beta 7** (**_UNIXSTL_VER_1_8_6_B07**), with **STLSoft 1.11.1-rc8**;
-  * **winstl** — **1.13.0 beta 4** (**_WINSTL_VER_1_13_0_B04**), with **STLSoft 1.11.1-rc8**;
-  * **inetstl** — **1.5.0 alpha 3** (**_INETSTL_VER_1_5_0_A03**), with **STLSoft 1.11.1-rc8**;
+  * **unixstl** — **1.8.6-beta7** (**_UNIXSTL_VER_1_8_6_B07**), with **STLSoft 1.11.1-rc8**;
+  * **winstl** — **1.13.0-beta4** (**_WINSTL_VER_1_13_0_B04**), with **STLSoft 1.11.1-rc8**;
+  * **inetstl** — **1.5.0-alpha3** (**_INETSTL_VER_1_5_0_A03**), with **STLSoft 1.11.1-rc8**;
 * boilerplate:
   * Added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd** (with `--gap-groups`), and **run_all_automated_tests.sh** / **.cmd** (unit then component; `--unit-only` / `--component-only`);
   * Added **generate_doxygen.sh**, **Doxyfile**, and **doc/mainpage.md** — HTML API documentation generated from the public headers into **_build/doxygen/html**;
@@ -86,7 +201,7 @@ T.B.C.
 * Strategy note **strategy/BIT_FUNCTIONS.md** — measurements and default choice (table for `count_bits()`; keep intrinsics unselected pending cross-toolchain evidence);
 * **winstl::netapi_allocator** — pass a `DWORD` byte count to `NetApiBufferAllocate`; the unit test links **netapi32**;
 * **stlsoft/std/cstring.hpp** — suppress CRT deprecation around the `strcpy`, `strcat`, and `strdup` wrappers;
-* **winstl** — **1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**), with **STLSoft 1.11.1-rc7**;
+* **winstl** — **1.13.0-beta3** (**_WINSTL_VER_1_13_0_B03**), with **STLSoft 1.11.1-rc7**;
 * CMake — Windows GNU (**MinGW**) test/example programs static-link **libgcc** / **libstdc++** so PE images load when runner **PATH** does not match the build toolchain;
 * CI — performance job exports **SIS_PERFTESTS_GROUPGAPS=1**;
 * **execute_performance_tests.sh** — capture the child exit code after optional `expand` piping (was overwriting a failed status with `$?` from the success branch);
@@ -99,7 +214,7 @@ T.B.C.
 * Performance suite **test/performance/stlsoft/util/bit_functions** (density patterns, intrinsic rows, median / ns-per-call reporting);
 * Performance suite **test/performance/platformstl/filesystem/file_lines** — comparative harness vs `fgetc` / `std::getline` (LF / CRLF / CR; mid-size and small-file shapes; C++11+);
 * Unit tests — removed empty placeholder cases; filled the nine allocator suites (**comstl::task_allocator**, **mfcstl::afx_allocator**, **malloc_allocator**, **new_allocator**, **null_allocator**, and WinSTL **global_allocator**, **netapi_allocator**, **processheap_allocator**, and **shell_allocator**) with round-trip sizes, `max_size()`, and `std::list` / `std::vector` use (`null_allocator` throws `out_of_memory_exception`);
-* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**) and **WinSTL 1.13.0 beta 3** (**_WINSTL_VER_1_13_0_B03**);
+* **test.unit.versions** — aligned with **1.11.1-rc7** (**_STLSOFT_VER_1_11_1_RC7**) and **WinSTL 1.13.0-beta3** (**_WINSTL_VER_1_13_0_B03**);
 
 
 ## 1.11.1-rc6 - 21st September 2026
@@ -600,48 +715,48 @@ T.B.C.
 * CMake support;
 
 
-## 1.10.1 beta 33 - 26th April 2021
+## 1.10.1-beta33 - 26th April 2021
 
 * Clang compatibility;
 
 
-## 1.10.1 beta 32 - 26th April 2021
+## 1.10.1-beta32 - 26th April 2021
 
 * GCC/Clang compatibility;
 
 
-## 1.10.1 beta 31 - 2nd April 2021
+## 1.10.1-beta31 - 2nd April 2021
 
 * Clang compatibility;
 * provision for customising inline (in C compilation);
 * warnings;
 
 
-## 1.10.1 beta 30 - 29th March 2021
+## 1.10.1-beta30 - 29th March 2021
 
 * Clang compatibility;
 * warnings;
 
 
-## 1.10.1 beta 29 - 16th February 2021
+## 1.10.1-beta29 - 16th February 2021
 
 * a whole lot of Clang- and GCC-compatibility;
 
 
-## 1.10.1 beta 28 - 18th January 2021
+## 1.10.1-beta28 - 18th January 2021
 
 * added character-array overloads of fast_strftime();
 * WinSTL hard link information functions now work for directories as well as files;
 * various defect fixes;
 
 
-## 1.10.1 beta 27 - 10th January 2021
+## 1.10.1-beta27 - 10th January 2021
 
 * added string access shims for std::chrono type(s);
 * some GCC compatibility tweaks;
 
 
-## 1.10.1 beta 26 - 4th January 2021
+## 1.10.1-beta26 - 4th January 2021
 
 * added (UNIXSTL and WinSTL) Path Classification API (from 1.12 work), which work with Windows UNC and long-path root designators and all slash conventions;
 * added (UNIXSTL and WinSTL) path parsing function - include/???stl/filesystem/path_parse_functions.h, presenting a consistent set of functions centralised from disparate parts of the libraries;
@@ -659,17 +774,17 @@ T.B.C.
 * BREAKING CHANGES: ~ abstracted out string-handling from *stl::system_traits<> into stlsoft::c_string_traits<>, and removed several unused (and sketchy) functions;
 
 
-## 1.10.1 beta 25 - 14th December 2020
+## 1.10.1-beta25 - 14th December 2020
 
-* added two more files missing from beta 23 - D'oh!;
-
-
-## 1.10.1 beta 24 - 13th December 2020
-
-* added file unixstl/filesystem/path_buffer.hpp missing from beta 23;
+* added two more files missing from-beta23 - D'oh!;
 
 
-## 1.10.1 beta 23 - 13th December 2020
+## 1.10.1-beta24 - 13th December 2020
+
+* added file unixstl/filesystem/path_buffer.hpp missing from-beta23;
+
+
+## 1.10.1-beta23 - 13th December 2020
 
 * basic_file_path_buffer<> is now deprecated in all projects, and all dependent components are modified to use other facilities;
 * added platformstl::environment_variable<> class template;
@@ -682,7 +797,7 @@ T.B.C.
 * large number of new methods and defect fixes in (platformstl|unixstl|winstl)::system_traits;
 
 
-## 1.10.1 beta 22 - 29th November 2020
+## 1.10.1-beta22 - 29th November 2020
 
 * added stlsoft::string_to_integer_range();
 * added stlsoft::strnchr(), stlsoft::strnistrn(), stlsoft::strnstrn() C-style string search functions;
@@ -698,7 +813,7 @@ T.B.C.
 * fixed case of a bunch of headers;
 
 
-## 1.10.1 beta 21 - 27th July 2020
+## 1.10.1-beta21 - 27th July 2020
 
 * VC++ 15/16 compatibility;
 * fixed unixstl::readdir_sequence::empty();
@@ -710,12 +825,12 @@ T.B.C.
 * fixed unixstl::readdir_sequence::empty();
 
 
-## 1.10.1 beta 20 - 4th July 2020
+## 1.10.1-beta20 - 4th July 2020
 
 * fixed detecton of shared_ptr and unique_ptr;
 
 
-## 1.10.1 beta 19 - 4th July 2020
+## 1.10.1-beta19 - 4th July 2020
 
 * added stlsoft::t2w, stlsoft::w2t, stlsoft::t2a, stlsoft::a2t for upcoming Pantheios release;
 * added stream insertion operator (generic) for string slice types;
@@ -734,14 +849,14 @@ T.B.C.
 * Add support for the ARM architecture when doing Android NDK GCC compilation;
 
 
-## 1.10.1 beta 18 - 31st October 2019
+## 1.10.1-beta18 - 31st October 2019
 
 * added stlsoft/system/environment/functions.hpp to enhances stlsoft::environment_variable_exists() with string access shims to support arbitrary string type;
 * remove vestigial (and erroneous) winstl/string/spin_policies.hpp;
 * various documentation fixes;
 
 
-## 1.10.1 beta 17 - 24th October 2019
+## 1.10.1-beta17 - 24th October 2019
 
 * GCC 8 compatibility;
 * GCC 9 compatibility;
@@ -749,7 +864,7 @@ T.B.C.
 * improved documentation;
 
 
-## 1.10.1 beta 16 - 13th October 2019
+## 1.10.1-beta16 - 13th October 2019
 
 * added stlsoft_C_environment_variable_exists_a() / environment_variable_exists() (from STLSoft 1.10-alpha);
 * added stlsoft::count_bits(int) overload;
@@ -768,7 +883,7 @@ T.B.C.
 * fixed up project files (README, NEWS, etc.);
 
 
-## 1.10.1 beta 15 - 13th September 2019
+## 1.10.1-beta15 - 13th September 2019
 
 * added stlsoft::fast_strftime() and stlsoft::fast_wcsftime() as drop-in replacements for std::strftime() and std::wcsftime();
 * added get_ptr() shim overload for std::shared_ptr and std::unique_ptr;
@@ -779,20 +894,20 @@ T.B.C.
 * various portability improvements to newer compilers;
 
 
-## 1.10.1 beta 14 - 4th August 2019
+## 1.10.1-beta14 - 4th August 2019
 
 * added SECURITY_DESCRIPTOR helpers();
 * stlsoft::w2m and stlsoft::m2w now more general;
 
 
-## 1.10.1 beta 13 - 16th April 2019
+## 1.10.1-beta13 - 16th April 2019
 
 * fixed STLSOFT_ALWAYS_FALSE() / STLSOFT_ALWAYS_TRUE();
 * platformstl::FILE_stream : ~ fixing character-encoding function selection defect;
 * canonicalising source file structure;
 
 
-## 1.10.1 beta 12 - 26th December 2018
+## 1.10.1-beta12 - 26th December 2018
 
 * added sas_to_string() (and related) functions;
 * added stlsoft::errno_exception (from 1.12 branch);
@@ -801,30 +916,30 @@ T.B.C.
 * UNIXSTL's timeval String Access Shims now work for arbitrary locale;
 
 
-## 1.10.1 beta 11 - 22nd December 2018
+## 1.10.1-beta11 - 22nd December 2018
 
 * stlsoft::ref_ptr : + borrow(); + own();
 * winstl::environment_variable : + data(); + equal(); + equal_ignore_case(); + exists(); + operators ==() and !=();
 
 
-## 1.10.1 beta 10 - 20th December 2018
+## 1.10.1-beta10 - 20th December 2018
 
 * winstl::process_mutex() now takes an optional EVENT handle which will be signalled if the mutex experiences an abandoned acquire;
 * special_string_instance now provides generic (SAS) (in)equality operators automatically;
 * try_parse_to_bool() semantics firmed up;
 
 
-## 1.10.1 beta 9 - 12th June 2018
+## 1.10.1-beta9 - 12th June 2018
 
 * Borland compatibility;
 
 
-## 1.10.1 beta 8 - 11th June 2018
+## 1.10.1-beta8 - 11th June 2018
 
 * fixing break to UNIX-compatibility introduced in beta-6/7;
 
 
-## 1.10.1 beta 7 - 9th June 2018
+## 1.10.1-beta7 - 9th June 2018
 
 * auto_buffer<> now supports limited form of pointer arithmethic via operator -();
 * added subscript operator for auto_array_destructor<>;
@@ -832,7 +947,7 @@ T.B.C.
 * refactoring of copy-proscriptions;
 
 
-## 1.10.1 beta 6 - 9th June 2018
+## 1.10.1-beta6 - 9th June 2018
 
 * refactored in terms of external API;
 * removed empty/meaningless "compatibility" sections;
@@ -840,19 +955,19 @@ T.B.C.
 * simplifying, and prospective changes (for getting to 1.12);
 
 
-## 1.10.1 beta 5 - 15th May 2017
+## 1.10.1-beta5 - 15th May 2017
 
 * enhanced STLSOFT_SUPPRESS_UNUSED() to work with rvalues;
 
 
-## 1.10.1 beta 3 - 19th February 2017
+## 1.10.1-beta3 - 19th February 2017
 
 * a whole bunch of non-functional changes to make the codebase more consistent and amenable to further automatic instrumentation by script auto-validation script compatibility, and ensure all files have full inclusion control;
 * fixing get_FILE_ptr() shim namespace issues;
 * winstl::token_information has additional compatibility up to W8/Svr12, and now defaults to throwing instances of winstl::security_exception;
 
 
-## 1.10.1 beta 2 - 28th January 2017
+## 1.10.1-beta2 - 28th January 2017
 
 * work on STLSoft integer_to_string functions to loosen non-array forms' preconditions, reduce dependencies in rest of codebase to integer_to_decimal_string()-only;
 * filesystem_traits - refactored is_dots() and starts_with_dots() to accomodate GCC 4.9 pedanticism;
@@ -861,7 +976,7 @@ T.B.C.
 * hiding/suppressing unused typedefs;
 
 
-## 1.10.1 beta 1 - 14th January 2017
+## 1.10.1-beta1 - 14th January 2017
 
 * too many changes to list here - it's a new world! (Bit of a shame it took 10 years to get here :$);
 * in summary:;
@@ -2109,7 +2224,7 @@ T.B.C.
 * stlsoft/smartptr/shared_ptr.hpp:;
 * now correctly handles failure to allocate the shared counter, even when compiling absent exceptions;
 * atlstl/automation/enumerators.hpp:;
-* fixed defect in Reset() - which did nothing! - that was introduced in STLSoft 1.9.1 beta 5 (!) upon transcription from the original, correct, Synesis Software proprietary source;
+* fixed defect in Reset() - which did nothing! - that was introduced in STLSoft 1.9.1-beta5 (!) upon transcription from the original, correct, Synesis Software proprietary source;
 * minor documentation fixes;
 * unixstl/filesystem/filesystem_traits.hpp:;
 * removal of dependency of str(n)cpy()/wcs(n)cpy(), which causes VC++ 8+ to carp about "safety";
@@ -2866,7 +2981,7 @@ T.B.C.
 
 ## 1.9.18 - 27th January 2008
 
-* enhancement of STLSoft's integral_printf_trait component to support Pantheios 1.0.1 beta 91;
+* enhancement of STLSoft's integral_printf_trait component to support Pantheios 1.0.1-beta91;
 * release of SAPI utility header for COMSTL;
 * added hex_format_a/w() methods to integral_printf_traits;
 * comstl/speech/sapi_util.hpp, which abstracts away the definitions of the SAPI interfaces and constants, for those compilers that do not have the headers supplied;
@@ -3025,14 +3140,14 @@ T.B.C.
 * rangelib/algorithms.hpp: bug fix in r_equal(), r_exists_if(), r_find_if();
 
 
-## 1.9.1 beta 48 - 12th April 2007
+## 1.9.1-beta48 - 12th April 2007
 
 * resource_type (and const_resource_type, for some) member type for: stlsoft::ptr_proxy stlsoft::ref_ptr stlsoft::shared_ptr comstl::bstr comstl::guid inetstl::connection inetstl::session unixstl::process_mutex unixstl::semaphore unixstl::thread_mutex winstl::module winstl::reg_key winstl::reg_key_sequence winstl::reg_value_sequence winstl::event winstl::process_mutex winstl::semaphore;
 * added operator () to fixed arrays (stlsoft/container/fixed_array.hpp) (as requested/persuaded by Neal Becker);
 * fixed bug in rangelib::r_exists() (Thanks to Yakov Markovitch);
 
 
-## 1.9.1 beta 47 - 6th April 2007
+## 1.9.1-beta47 - 6th April 2007
 
 * stlsoft::any_of() and stlsoft::all_of() composite predicate creator functions;
 * binary forms of stlsoft::ptr_fun and stlsoft::ptr_fun_void;
@@ -3053,12 +3168,12 @@ T.B.C.
 * winstl::basic_findvolume_sequence bug with VC++ 8 now fixed;
 
 
-## 1.9.1 beta 46 - 13th March 2007
+## 1.9.1-beta46 - 13th March 2007
 
 * wholesale lexical changes (e.g. "char const *x" => "char const* x");
 
 
-## 1.9.1 beta 45 - 12th March 2007
+## 1.9.1-beta45 - 12th March 2007
 
 * comstl::collection_sequence:;
 * const_iterator and const_pointer member types;
@@ -3079,12 +3194,12 @@ T.B.C.
 * winstl::reg_value:;
 
 
-## 1.9.1 beta 44 - 22nd February 2007
+## 1.9.1-beta44 - 22nd February 2007
 
 * distribution is now rooted under stlsoft-X.Y, e.g. stlsoft-1.9.1-beta44;
 
 
-## 1.9.1 beta 43 - 22nd January 2007
+## 1.9.1-beta43 - 22nd January 2007
 
 * comstl::co_create_instance() overloads now have a third, defaulted, member, for creation context. This is required for the new VOLE project, which will be released tomorrow;
 * mfcstl::CArray_cadaptor and mfcstl::CArray_iadaptor now support <, <=, >, and >= comparison, in addition to ==, !=;
@@ -3095,14 +3210,14 @@ T.B.C.
 * winstl/shims/access/string.hpp now includes winstl/shims/access/string/time.hpp;
 
 
-## 1.9.1 beta 42 - 15th January 2007
+## 1.9.1-beta42 - 15th January 2007
 
 * refactored atomic integer support on UNIX:;
 * Now only supports if for Mac OS-X, Win32 (when emulated, of course), and if UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS is defined, allowing the user to decide for themselves whether or not to use (non-portable) facilities such as asm/atomic.h;
 * unixstl/synch/util/features.h;
 
 
-## 1.9.1 beta 41 - 14th January 2007
+## 1.9.1-beta41 - 14th January 2007
 
 * refactored sized-integer detection:;
 * The symbols STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT are removed. Instead use STLSOFT_CF_CHAR_DISTINCT_INT_TYPE STLSOFT_CF_SHORT_DISTINCT_INT_TYPE STLSOFT_CF_INT_DISTINCT_INT_TYPE;
@@ -3119,7 +3234,7 @@ T.B.C.
 * removed (almost) all of the previously deprecated __STLSOFT* symbols, __STLSOFT_COMPILER_IS_BORLAND __STLSOFT_COMPILER_IS_COMO __STLSOFT_COMPILER_IS_DMC __STLSOFT_COMPILER_IS_INTEL __STLSOFT_COMPILER_IS_GCC __STLSOFT_COMPILER_IS_MSVC __STLSOFT_COMPILER_IS_MWERKS __STLSOFT_COMPILER_IS_VECTORC __STLSOFT_COMPILER_IS_WATCOM __STLSOFT_COMPILER_IS_UNKNOWN __STLSOFT_COMPILER_LABEL_STRING __STLSOFT_COMPILER_VERSION_STRING __STLSOFT_DOCUMENTATION_SKIP_SECTION __STLSOFT_CF_STATIC_ASSERT_SUPPORT __STLSOFT_CF_EXCEPTION_SUPPORT __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED __STLSOFT_CF_NAMESPACE_SUPPORT __STLSOFT_CF_TEMPLATE_SUPPORT __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT __STLSOFT_CF_THROW_BAD_ALLOC __STLSOFT_CF_NOTHROW_BAD_ALLOC __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT __STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT __STLSOFT_CF_std_NAMESPACE __STLSOFT_CF_std_char_traits_AVAILABLE __STLSOFT_CF_ALLOCATOR_ALLOCATE_HAS_HINT __STLSOFT_CF_ALLOCATOR_DEALLOCATE_HAS_OBJECTCOUNT __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT __STLSOFT_CF_VENEER_SUPPORT __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT;
 
 
-## 1.9.1 beta 40 - 6th January 2007
+## 1.9.1-beta40 - 6th January 2007
 
 * stlsoft::format_thousands() grouping function template, e.g. char result[101]; stlsoft::format_thousands(result, STLSOFT_NUM_ELEMENTS(result), "2;3", 987654321); assert(0 == ::strcmp(result, "9876,54,321"));
 * stlsoft::truncation_test() function suite; this is necessary to support the new VOLE library (see http://vole.sourceforge.net/);
@@ -3129,7 +3244,7 @@ T.B.C.
 * all remaining in-header unit-test blocks are removed into separate headers;
 
 
-## 1.9.1 beta 39 - 5th January 2007
+## 1.9.1-beta39 - 5th January 2007
 
 * oaidl interfaces to comstl/internal/interface_traits_std.hpp;
 * stream inserter for comstl::bstr;
@@ -3137,7 +3252,7 @@ T.B.C.
 * fix to winstl/time/format_functions.h to fix bug with 24-hr time picture elements (HH);
 
 
-## 1.9.1 beta 38 - 3rd January 2007
+## 1.9.1-beta38 - 3rd January 2007
 
 * stlsoft/filesystem/io_functions.hpp, which defines the function template read_line, used to read a line of text from a FILE* stream, e.g. FILE *stm = . . .; std::string str; while (stlsoft::read_line(stm, str)) { ::fprintf(stdout, "line: %.*s\n", int(str.size()), str.data()); };
 * stlsoft::ptr_ifun() indirection function pointer adaptor creator functions - used with std::for_each if you are storing a sequence of X but your function acts on X*, e.g. class X; void modX(X *); std::vector<X> vecx; std::for_each(vecx.begin(), vecx.end(), stlsoft::ptr_ifun(modX));
@@ -3152,7 +3267,7 @@ T.B.C.
 * fixed compilation problem with unixstl/dl/dl_call.hpp with GCC 4.x;
 
 
-## 1.9.1 beta 37 - 30th December 2006
+## 1.9.1-beta37 - 30th December 2006
 
 * stlsoft::equal_handle function class - this is dead and gone;
 * stlsoft/container_veneers.hpp - this is obsolete; it points to correct #include;
@@ -3178,14 +3293,14 @@ T.B.C.
 * winstl/registry/shared_handles.hpp => winstl/registry/util/shared_handles.hpp;
 
 
-## 1.9.1 beta 36 - 28th December 2006
+## 1.9.1-beta36 - 28th December 2006
 
 * unittest cases for unixstl::memory_mapped_file WinSTL;
 * winstl::memory_mapped_file can now be constructed from a wide string, in addition to a multibyte string. It can also be constructed from any type for which the stlsoft::c_str_ptr string access shim returns a wide string, in addition to any type for which the stlsoft::c_str_ptr string access shim returns a multibyte string;
 * unittest cases for winstl::memory_mapped_file;
 
 
-## 1.9.1 beta 35 - 27th December 2006
+## 1.9.1-beta35 - 27th December 2006
 
 * stlsoft::do_initialisation_never array initialisation policy, which stipulates that no initialisation whatsoever be performed on array elements;
 * stlsoft::scoped_handle now supports indirect cleanup functions. In other words, if you have a handle type handle_t, you can pass either a cleanup function taking handle_t - e.g. handle_close(handle_t ); - or a cleanup function taking a pointer to handle_t - e.g. handle_close_set_null(handle_t *);
@@ -3195,7 +3310,7 @@ T.B.C.
 * refactoring of #includes in unixstl/synch/thread_mutex.hpp;
 
 
-## 1.9.1 beta 34 - 24th December 2006
+## 1.9.1-beta34 - 24th December 2006
 
 * replacement of all per-component exception throwing mechanisms with stlsoft::throw_x() utility function STLSoft;
 * deprecation of stlsoft::cwd_stack::is_empty() method;
@@ -3224,20 +3339,20 @@ T.B.C.
 * winstl::to_SYSTEMTIME conversion shim;
 
 
-## 1.9.1 beta 33 - 13th December 2006
+## 1.9.1-beta33 - 13th December 2006
 
 * all comstl__??? functions are no longer in the comstl namespace (when in C++ compilation); their non comstl__-prefixed equivalents remain in the comstl namespace. For example, the full name of the comstl::comstl__set_error_info_description_w() function is now comstl__set_error_info_description_w() whether in C or C++; the name of comstl::set_error_info_description_w() remains as it was;
 * comstl::IDispatchImpl4;
 * comstl::try_interface_cast;
 
 
-## 1.9.1 beta 32 - 6th December 2006
+## 1.9.1-beta32 - 6th December 2006
 
 * fixed unixstl/unixstl.h (in)compatibility with C compilation;
 * fixed platformstl/platformstl.h (in)compatibility with C compilation;
 
 
-## 1.9.1 beta 31 - 6th December 2006
+## 1.9.1-beta31 - 6th December 2006
 
 * comstl/interface/bad_interface_cast.hpp -> comstl/error/bad_interface_cast.hpp;
 * comstl/interface/interface_cast.hpp -> comstl/conversion/interface_cast.hpp;
@@ -3256,12 +3371,12 @@ T.B.C.
 * winstl::WaitForMultipleObjects() function suite renamed winstl::wait_for_multiple_objects(), and now implemented in terms of new winstl::get_synch_handle shim;
 
 
-## 1.9.1 beta 30 - 2nd December 2006
+## 1.9.1-beta30 - 2nd December 2006
 
 * UNIXSTL components spin_mutex and the atomic_???() function suite are now compatible with both architectures (PPC + Intel) on MAC OSX;
 
 
-## 1.9.1 beta 29 - 27th November 2006
+## 1.9.1-beta29 - 27th November 2006
 
 * atlstl::Window class - a string access shim-aware enhancement to ATLs' Window class;
 * COMSTL value policies throw exceptions if fail to copy;
@@ -3269,13 +3384,13 @@ T.B.C.
 * WinSTL's pid_sequence and process_module_sequence classes have been rendered slightly more efficient;
 
 
-## 1.9.1 beta 28 - 29th October 2006
+## 1.9.1-beta28 - 29th October 2006
 
 * stlsoft::a2w() and stlsoft::w2a() char conversion functions (functionally the same as the WinSTL ones);
 * fixed bug in winstl/shims/access/string/time.hpp that breaks Pantheios in UNICODE builds;
 
 
-## 1.9.1 beta 27 - 22nd October 2006
+## 1.9.1-beta27 - 22nd October 2006
 
 * stlsoft::trip_bool class template;
 * stlsoft/functional/function_adaptors.hpp does not include stlsoft/functional/method_adaptors.hpp for GCC < 3.3;
@@ -3283,7 +3398,7 @@ T.B.C.
 * fixed for UNIX makefiles;
 
 
-## 1.9.1 beta 26 - 21st October 2006
+## 1.9.1-beta26 - 21st October 2006
 
 * stlsoft::scoped_handle<void> specialisation for scoping APIs with 0 params;
 * string access shims (in InetSTL) for struct in_addr;
@@ -3291,7 +3406,7 @@ T.B.C.
 * fix to stlsoft::integer_to_string() overloads to handle (unsigned) long in addition to all the others;
 
 
-## 1.9.1 beta 25 - 5th October 2006
+## 1.9.1-beta25 - 5th October 2006
 
 * fixed #include omission stlsoft/conversion/byte_format_functions.hpp;
 * fixed method omissions in stlsoft::special_string_instance_1;
@@ -3299,7 +3414,7 @@ T.B.C.
 * winstl/util/struct_initialisers.hpp now handles case where WIN32_LEAN_AND_MEAN may have been defined;
 
 
-## 1.9.1 beta 24 - 24th September 2006
+## 1.9.1-beta24 - 24th September 2006
 
 * stlsoft::basic_shim_string::internal_size();
 * unixstl::process_mutex now allows for wrapping of an externally created pthread_mutex_t*;
@@ -3313,25 +3428,25 @@ T.B.C.
 * platformstl/synch/atomic_functions.h now contains various feature detection symbols, e.g. PLATFORMSTL_HAS_ATOMIC_PREINCREMENT, PLATFORMSTL_HAS_ATOMIC_PREADD;
 
 
-## 1.9.1 beta 23 - 17th September 2006
+## 1.9.1-beta23 - 17th September 2006
 
 * mfcstl/collections/clist_adaptors.hpp: mfcstl::CList_iadaptor replaces the old mfcstl::list_adaptor class template;
 * a whole load more directory changes. Very few now remain, and 1.9.1 proper is very close;
 
 
-## 1.9.1 beta 22 - 13th September 2006
+## 1.9.1-beta22 - 13th September 2006
 
 * the following files were "moved" into stlsoft/util: options_verifier.hpp printf_traits.hpp true_typedef.hpp argument_proxies.hpp compiler_optimisation_traits.hpp constraints.hpp limit_traits.h sign_traits.hpp size_traits.hpp static_initialisers.hpp;
 * the following files were "moved" into stlsoft/obsolete: first_class_promoter.hpp explicit_inheritance_veneer.hpp;
 * fix of version numbers in stlsoft/stlsoft.h;
 
 
-## 1.9.1 beta 21 - 7th September 2006
+## 1.9.1-beta21 - 7th September 2006
 
 * fix bug in stlsoft::member_selector_iterator (which crops up when compiling Pantheios with Visual C++ 8);
 
 
-## 1.9.1 beta 20 - 2nd September 2006
+## 1.9.1-beta20 - 2nd September 2006
 
 * comstl::bstr (comstl/string/bstr.hpp) - facade for BSTR;
 * comstl::variant (comstl/util/variant.hpp) - facade for VARIANT;
@@ -3340,18 +3455,18 @@ T.B.C.
 * winstl::reg_get_dword_value() - retrieves a DWORD value from a reg key;
 
 
-## 1.9.1 beta 19 - 9th August 2006
+## 1.9.1-beta19 - 9th August 2006
 
 * dotnetstl::check_cast custom cast function template (dotnetstl/conversion/check_cast.hpp);
 
 
-## 1.9.1 beta 18 - 7th August 2006
+## 1.9.1-beta18 - 7th August 2006
 
 * stlsoft/string/special_string_instance.hpp: string access shims for stlsoft::special_string_instance_1 class template are now defined;
 * atlstl/automation/automation_collections.hpp: atlstl::generic_automation_collection (and atlstl::generic_collection_base) now both can accept a template param for the (dual) interface from which they inherit - they used to inherit from IDispatch;
 
 
-## 1.9.1 beta 17 - 5th August 2006
+## 1.9.1-beta17 - 5th August 2006
 
 * winstl/controls/dialog_functions.hpp: winstl::dialog_button_id_check unary function class;
 * The method form of atlstl::get_MemberValue() now is a bit more flexible, in that the returned type and the method return value may be different (but must still be compatible);
@@ -3360,34 +3475,34 @@ T.B.C.
 * winstl::load_text_file() now throws an exception if the file cannot be opened;
 
 
-## 1.9.1 beta 16 - 25th July 2006
+## 1.9.1-beta16 - 25th July 2006
 
 * stlsoft::byte_format() - powerful binary=>text formatting function;
 * winstl::console_colour_scope - scoping class for Win32 console soon to be released; http://pantheios.org/);
 * acestl::message_queue_sequence uses optimised scatter/slice IO technique described in "Extended STL, volume 1" (to be published at the end of the year, or early 2007), for faster processing of block copy operations;
 
 
-## 1.9.1 beta 15 - 18th July 2006
+## 1.9.1-beta15 - 18th July 2006
 
 * More directory changes, particularly for the Template Meta-programming library;
 * New container class: platformstl::cwd_stack - which is used to store current working directory checkpoints (via push(), and restore them via pop() - future enhancements to internals are planned, but interface likely to remain unchanged;
 * A whole host of algorithms that've been hiding in the research branch for over a year are now brought into the main trunk, under include/stlsoft/algorithms/..;
 
 
-## 1.9.1 beta 14 - 15th July 2006
+## 1.9.1-beta14 - 15th July 2006
 
 * More directory refactoring, particularly for the string access shims, <project>/shims/access/string.hpp;
 * Function/method pointer adaptors now cope with void/non-void return, const/non-const methods, and cdecl/fastcall/stdcall calling conventions Note: Please make sure that you delete directory include/stlsoft/typefixer;
 
 
-## 1.9.1 beta 13 - 12th July 2006
+## 1.9.1-beta13 - 12th July 2006
 
 * A massive amount of refactoring of the string access shims and their documentation;
 * unixstl::module / winstl::module get_handle() method removed, replaced with get_module_handle();
 * unixstl::process_mutex now throws exceptions (when compiled with exception-handling on) if any of the PThreads methods fail;
 
 
-## 1.9.1 beta 12 - 8th July 2006
+## 1.9.1-beta12 - 8th July 2006
 
 * stlsoft::special_string_instance, which supports the "Special String Instance" pattern (see online docs for expl);
 * unixstl::current_directory, winstl::current_directory, winstl::absolute_path, winstl::module_directory, winstl::module_filename, winstl::system_directory, winstl::windows_directory, are no longer separate classes, but rather specialisations (with different policies, as appropriate) of stlsoft::special_string_instance;
@@ -3399,12 +3514,12 @@ T.B.C.
 * lots and lots more directory re-arrangements, and addition of "better" documentation (to be seen currently at http://stlsoft.org/doc-1.9);
 
 
-## 1.9.1 beta 11 - 25th June 2006
+## 1.9.1-beta11 - 25th June 2006
 
 * no changes;
 
 
-## 1.9.1 beta 10 - 18th June 2006
+## 1.9.1-beta10 - 18th June 2006
 
 * stlsoft/string/copy_functions.hpp;
 * atlstl::SupportErrorInfoImpl5 class template;
@@ -3424,22 +3539,22 @@ T.B.C.
 * stlsoft/system/commandline_parser.hpp - minor bug fix;
 
 
-## 1.9.1 beta 9 - 11th June 2006
+## 1.9.1-beta9 - 11th June 2006
 
 * no changes;
 
 
-## 1.9.1 beta 8 - 7th June 2006
+## 1.9.1-beta8 - 7th June 2006
 
 * no changes;
 
 
-## 1.9.1 beta 7 - 1st June 2006
+## 1.9.1-beta7 - 1st June 2006
 
 * no changes;
 
 
-## 1.9.1 beta 6 - 28th May 2006
+## 1.9.1-beta6 - 28th May 2006
 
 * atlstl::IDispatch2 and atlstl::IDispatch3 class templates (atlstl/multiple_dispatch.hpp);
 * atlstl::get_ConstantValue() (atlstl/property_method_helpers.hpp);
@@ -3466,7 +3581,7 @@ T.B.C.
 * stlsoft::string_concatenator_iterator now works with Borland;
 
 
-## 1.9.1 beta 5 - 28th March 2006
+## 1.9.1-beta5 - 28th March 2006
 
 * a heap of memory-related components now reside in /memory/ sub-directory, e.g. comstl/task_allocator.hpp => comstl/memory/task_allocator.hpp;
 * same goes for many exceptions, e.g. stlsoft/contract_violation.hpp => stlsoft/exceptions/contract_violation.hpp;
@@ -3489,7 +3604,7 @@ T.B.C.
 * WinSTL Registry library has had a major reworking;
 
 
-## 1.9.1 beta 4 - 31st January 2006
+## 1.9.1-beta4 - 31st January 2006
 
 * stlsoft::charset_tokeniser (stlsoft/charset_tokeniser.hpp) - a "refinement" of stlsoft::string_tokeniser, making it easy to tokenise using charsets (a la strtok()) without the mess of using custom comparators with string_tokeniser (which can be something of a drag);
 * comstl::cloneable_cloning_policy (comstl/enumeration_policies.hpp) - a policy that enables comstl::enumerator_sequence to be used with enumerators that may, or may not, be cloneable;
@@ -3509,7 +3624,7 @@ T.B.C.
 * comstl::degenerate_cloning_policy;
 
 
-## 1.9.1 beta 3 - 20th January 2006
+## 1.9.1-beta3 - 20th January 2006
 
 * stlsoft/collections.hpp: contains new collection concept tags;
 * stlsoft::external_iterator_invalidation (stlsoft/exceptions/external_iterator_invalidation.hpp): new exception class for representing iterator interruption by external agents;
@@ -3536,14 +3651,14 @@ T.B.C.
 * stlsoft_proxy_ptr.h => stlsoft/ptr_proxy.hpp;
 
 
-## 1.9.1 beta 2 - 27th December 2005
+## 1.9.1-beta2 - 27th December 2005
 
 * stlsoft::exception_string class. (Replaces simple_string in exception classes);
 * stlsoft::string_concatenator_iterator;
 * stlsoft::tref_reverse_iterator;
 
 
-## 1.9.1 beta 1 - 20th December 2005
+## 1.9.1-beta1 - 20th December 2005
 
 * includes alpha version of new XMLSTL sub-project;
 * (nearly) completes the change of directory structure, e.g. from winstl_shell_allocator.h => winstl/shell_allocator.hpp;

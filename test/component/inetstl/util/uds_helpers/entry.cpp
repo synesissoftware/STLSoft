@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::environment_variable`.
  *
  * Created: 21st February 2025
- * Updated: 9th August 2026
+ * Updated: 23rd October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -414,7 +414,7 @@ static void TEST_VALID_paths()
 #endif
         TEST_INT_EQ(AF_UNIX, sa_un.sun_family);
 
-        if (104 == cb_sun_path)
+        if (108 == cb_sun_path)
         {
             TEST_MS_EQ_N("/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567", sa_un.sun_path, 108);
         }

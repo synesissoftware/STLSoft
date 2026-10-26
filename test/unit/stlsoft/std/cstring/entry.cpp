@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::strcmp and stlsoft::strncmp.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,8 +43,7 @@ namespace
     static void TEST_strcmp_SHIM_simple_string();
     static void TEST_strcmp_SHIM_string_view();
     static void TEST_strncmp_SHIM();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -211,8 +210,7 @@ static void TEST_strncmp_SHIM()
     TEST_INT_EQ(0, stlsoft::strncmp(wembedded1, wembedded2, 3));
     TEST_INT_EQ(0, stlsoft::strncmp(wv1, wv2, 3));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

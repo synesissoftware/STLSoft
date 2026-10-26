@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    filesystem_traits/entry.cpp
+ * File:    test/unit/winstl/filesystem/filesystem_traits/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,10 +47,12 @@ namespace {
     static void TEST_starts_with_dots();
 
     static void TEST_ensure_dir_end_1(); // TODO: rename to `dirname_ensure_pns()`
+    static void TEST_ensure_dir_end_RESIZE_FAILURE_sets_ERROR_OUTOFMEMORY();
 
     static void TEST_has_dir_end_1();
 
     static void TEST_remove_dir_end_1();
+    static void TEST_remove_then_ensure_round_trip();
 
     static void TEST_find_last_path_name_separator();
     static void TEST_find_next_path_name_separator();
@@ -94,10 +96,12 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_starts_with_dots);
 
         XTESTS_RUN_CASE(TEST_ensure_dir_end_1);
+        XTESTS_RUN_CASE(TEST_ensure_dir_end_RESIZE_FAILURE_sets_ERROR_OUTOFMEMORY);
 
         XTESTS_RUN_CASE(TEST_has_dir_end_1);
 
         XTESTS_RUN_CASE(TEST_remove_dir_end_1);
+        XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
 
         XTESTS_RUN_CASE(TEST_path_is_absolute_1);
         XTESTS_RUN_CASE(TEST_path_is_absolute_2);
@@ -145,6 +149,47 @@ namespace {
     typedef stlsoft::auto_buffer<wchar_t>                   ab_w_t;
     typedef winstl::filesystem_traits<char>                 filesystem_traits_m_t;
     typedef winstl::filesystem_traits<wchar_t>              filesystem_traits_w_t;
+
+    /* Resizeable-buffer model whose resize() always fails — used to lock
+     * C5 OOM reporting without exhausting the process heap.
+     */
+    struct fail_resize_buffer
+    {
+        typedef char                                        value_type;
+        typedef size_t                                      size_type;
+
+        std::vector<char>                                   storage;
+
+        size_type
+        size() const
+        {
+            return storage.size();
+        }
+
+        bool
+        empty() const
+        {
+            return storage.empty();
+        }
+
+        char&
+        operator [](size_type i)
+        {
+            return storage[i];
+        }
+
+        char const&
+        operator [](size_type i) const
+        {
+            return storage[i];
+        }
+
+        bool
+        resize(size_type /* n */)
+        {
+            return false;
+        }
+    };
 
 
 static void TEST_basename_is_dots()
@@ -225,21 +270,42 @@ static void TEST_ensure_dir_end_1()
 {
     // empty string
     {
+        /* C-string empty: exercise the sized overload with an explicit
+         * capacity. Calling the one-arg form on a tiny stack array such as
+         * `char dirname[] = "\0"` makes GCC -Warray-bounds / -Wstringop-
+         * overflow treat the capacity-0 append path as writing past the
+         * object under -Werror, even when an empty early-out is present.
+         */
+
         // passing character array (char)
         {
-            char        dirname[] = "\0";
-            char*       r = filesystem_traits_m_t::ensure_dir_end(dirname);
+            char        dirname[8] = { 0 };
+            ss_size_t   n = 0;
+            char*       r = filesystem_traits_m_t::ensure_dir_end(
+                                dirname
+                            ,   0
+                            ,   STLSOFT_NUM_ELEMENTS(dirname)
+                            ,   &n
+                            );
 
             TEST_MS_EQ("", dirname);
+            TEST_INT_EQ(0, n);
             TEST_PTR_EQ(dirname + 0, r);
         }
 
         // passing character array (wchar_t)
         {
-            wchar_t     dirname[] = L"\0";
-            wchar_t*    r = filesystem_traits_w_t::ensure_dir_end(dirname);
+            wchar_t     dirname[8] = { 0 };
+            ss_size_t   n = 0;
+            wchar_t*    r = filesystem_traits_w_t::ensure_dir_end(
+                                dirname
+                            ,   0
+                            ,   STLSOFT_NUM_ELEMENTS(dirname)
+                            ,   &n
+                            );
 
             TEST_WS_EQ(L"", dirname);
+            TEST_INT_EQ(0, n);
             TEST_PTR_EQ(dirname + 0, r);
         }
 
@@ -482,6 +548,24 @@ static void TEST_ensure_dir_end_1()
         }
 #endif
     }
+}
+
+static void TEST_ensure_dir_end_RESIZE_FAILURE_sets_ERROR_OUTOFMEMORY()
+{
+    fail_resize_buffer  rb;
+
+    rb.storage.push_back('a');
+    rb.storage.push_back('b');
+    rb.storage.push_back('c');
+    rb.storage.push_back('\0');
+
+    filesystem_traits_m_t::set_last_error(ERROR_SUCCESS);
+
+    ss_size_t const     n = filesystem_traits_m_t::ensure_dir_end(rb);
+
+    TEST_INT_EQ(0, n);
+    TEST_INT_EQ(4, rb.size());
+    TEST_INT_EQ(ERROR_OUTOFMEMORY, filesystem_traits_m_t::get_last_error());
 }
 
 static void TEST_has_dir_end_1()
@@ -866,6 +950,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (auto_buffer<wchar_t>)
@@ -875,6 +960,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<char>)
@@ -884,6 +970,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<wchar_t>)
@@ -893,6 +980,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 #endif
     }
@@ -926,6 +1014,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (auto_buffer<wchar_t>)
@@ -935,6 +1024,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<char>)
@@ -944,6 +1034,7 @@ static void TEST_remove_dir_end_1()
 
             TEST_MS_EQ("abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 
         // passing resizeable buffer (vector<wchar_t>)
@@ -953,9 +1044,32 @@ static void TEST_remove_dir_end_1()
 
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
+            TEST_INT_EQ(4, buff.size());
         }
 #endif
     }
+}
+
+static void TEST_remove_then_ensure_round_trip()
+{
+    vec_m_t         buff;
+    buff.push_back('a');
+    buff.push_back('b');
+    buff.push_back('c');
+    buff.push_back('\\');
+    buff.push_back('\0');
+
+    ss_size_t const n_remove = filesystem_traits_m_t::remove_dir_end(buff);
+
+    TEST_INT_EQ(3, n_remove);
+    TEST_INT_EQ(4, buff.size());
+    TEST_MS_EQ("abc", buff.data());
+
+    ss_size_t const n_ensure = filesystem_traits_m_t::ensure_dir_end(buff);
+
+    TEST_INT_EQ(4, n_ensure);
+    TEST_INT_EQ(5, buff.size());
+    TEST_MS_EQ("abc\\", buff.data());
 }
 
 static void TEST_path_is_absolute_1()
@@ -1145,9 +1259,9 @@ static void TEST_path_is_absolute_2()
 static void TEST_find_last_path_name_separator()
 {
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_last_path_name_separator(""));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_last_path_name_separator("abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_last_path_name_separator("abc_"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_last_path_name_separator(""));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_last_path_name_separator("abc"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_last_path_name_separator("abc_"));
 
         {
             char const input[] = "\\";
@@ -1211,9 +1325,9 @@ static void TEST_find_last_path_name_separator()
     }
 
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_last_path_name_separator(L""));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_last_path_name_separator(L"abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_last_path_name_separator(L"abc_"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_last_path_name_separator(L""));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_last_path_name_separator(L"abc"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_last_path_name_separator(L"abc_"));
 
         {
             wchar_t const input[] = L"\\";
@@ -1280,9 +1394,9 @@ static void TEST_find_last_path_name_separator()
 static void TEST_find_next_path_name_separator()
 {
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_next_path_name_separator(""));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_next_path_name_separator("abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_next_path_name_separator("abc_"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_next_path_name_separator(""));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_next_path_name_separator("abc"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_next_path_name_separator("abc_"));
 
         {
             char const input[] = "\\";
@@ -1346,9 +1460,9 @@ static void TEST_find_next_path_name_separator()
     }
 
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_next_path_name_separator(L""));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_next_path_name_separator(L"abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_next_path_name_separator(L"abc_"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_next_path_name_separator(L""));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_next_path_name_separator(L"abc"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_next_path_name_separator(L"abc_"));
 
         {
             wchar_t const input[] = L"\\";
@@ -1725,14 +1839,14 @@ static void TEST_patterns_all()
             auto const pa = filesystem_traits_m_t::patterns_all();
 
             TEST_MS_EQ("*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
 
         {
             auto const pa = filesystem_traits_w_t::patterns_all();
 
             TEST_WS_EQ(L"*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
     }
 
@@ -1743,7 +1857,7 @@ static void TEST_patterns_all()
 
             TEST_INT_EQ(1, n);
             TEST_MS_EQ("*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
 
         {
@@ -1752,7 +1866,7 @@ static void TEST_patterns_all()
 
             TEST_INT_EQ(1, n);
             TEST_WS_EQ(L"*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
     }
 }
@@ -1817,7 +1931,7 @@ static void TEST_str_fs_compare()
         }
     }
 }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

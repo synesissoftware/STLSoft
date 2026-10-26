@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
  *
  * Created:     1st October 2020
- * Updated:     11th March 2024
+ * Updated:     23rd October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,7 +116,7 @@ stlsoft_C_strnistrn(
 
             for (i = 1; i != n2; ++i)
             {
-                if (STLSOFT_NS_GLOBAL(toupper)(*s1) != STLSOFT_NS_GLOBAL(toupper)(*s2))
+                if (STLSOFT_NS_GLOBAL(toupper)(s1[i]) != STLSOFT_NS_GLOBAL(toupper)(s2[i]))
                 {
                     break;
                 }
@@ -165,7 +165,7 @@ stlsoft_C_wcsnistrn(
 
             for (i = 1; i != n2; ++i)
             {
-                if (STLSOFT_NS_GLOBAL(toupper)(*s1) != STLSOFT_NS_GLOBAL(toupper)(*s2))
+                if (STLSOFT_NS_GLOBAL(towupper)(s1[i]) != STLSOFT_NS_GLOBAL(towupper)(s2[i]))
                 {
                     break;
                 }

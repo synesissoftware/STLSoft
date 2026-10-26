@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    filesystem_traits/entry.cpp
+ * File:    test/component/winstl/filesystem/filesystem_traits/entry.cpp
  *
  * Purpose: Component-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,6 +47,12 @@ namespace {
 
     static void TEST_FIND_FILE_1();
     static void TEST_FIND_FILE_2();
+    static void TEST_get_current_directory_RESIZEABLE_auto_buffer();
+    static void TEST_get_current_directory_RESIZEABLE_vector();
+    static void TEST_get_full_path_name_RESIZEABLE_auto_buffer();
+    static void TEST_get_full_path_name_RESIZEABLE_vector();
+    static void TEST_get_short_path_name_RESIZEABLE_auto_buffer();
+    static void TEST_get_short_path_name_RESIZEABLE_vector();
 } // anonymous namespace
 
 
@@ -54,7 +60,7 @@ namespace {
  * main()
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -65,6 +71,12 @@ int main(int argc, char *argv[])
     {
         XTESTS_RUN_CASE(TEST_FIND_FILE_1);
         XTESTS_RUN_CASE(TEST_FIND_FILE_2);
+        XTESTS_RUN_CASE(TEST_get_current_directory_RESIZEABLE_auto_buffer);
+        XTESTS_RUN_CASE(TEST_get_current_directory_RESIZEABLE_vector);
+        XTESTS_RUN_CASE(TEST_get_full_path_name_RESIZEABLE_auto_buffer);
+        XTESTS_RUN_CASE(TEST_get_full_path_name_RESIZEABLE_vector);
+        XTESTS_RUN_CASE(TEST_get_short_path_name_RESIZEABLE_auto_buffer);
+        XTESTS_RUN_CASE(TEST_get_short_path_name_RESIZEABLE_vector);
 
         XTESTS_PRINT_RESULTS();
 
@@ -179,7 +191,146 @@ no_file_found:
         }
     }
 }
-} /* anonymous namespace */
+
+
+static void TEST_get_current_directory_RESIZEABLE_auto_buffer()
+{
+    vec_m_t         expected(1 + filesystem_traits_m_t::path_max());
+    size_t const    expected_len = filesystem_traits_m_t::get_current_directory(
+                                       &expected[0]
+                                   ,   expected.size()
+                                   );
+
+    TEST_INT_NE(0, expected_len);
+
+    ab_m_t          rb(0);
+    size_t const    n = filesystem_traits_m_t::get_current_directory(rb);
+
+    TEST_INT_EQ(expected_len, n);
+    TEST_INT_EQ(expected_len + 1, rb.size());
+    TEST_CHAR_EQ('\0', rb[n]);
+    TEST_MS_EQ(&expected[0], rb.data());
+}
+
+static void TEST_get_current_directory_RESIZEABLE_vector()
+{
+    vec_m_t         expected(1 + filesystem_traits_m_t::path_max());
+    size_t const    expected_len = filesystem_traits_m_t::get_current_directory(
+                                       &expected[0]
+                                   ,   expected.size()
+                                   );
+
+    TEST_INT_NE(0, expected_len);
+
+    vec_m_t         rb;
+    size_t const    n = filesystem_traits_m_t::get_current_directory(rb);
+
+    TEST_INT_EQ(expected_len, n);
+    TEST_INT_EQ(expected_len + 1, rb.size());
+    TEST_CHAR_EQ('\0', rb[n]);
+    TEST_MS_EQ(&expected[0], &rb[0]);
+}
+
+static void TEST_get_full_path_name_RESIZEABLE_auto_buffer()
+{
+    char const* const fileName = ".";
+
+    vec_m_t         expected(1 + filesystem_traits_m_t::path_max());
+    size_t const    expected_len = filesystem_traits_m_t::get_full_path_name(
+                                       fileName
+                                   ,   &expected[0]
+                                   ,   expected.size()
+                                   );
+
+    TEST_INT_NE(0, expected_len);
+
+    ab_m_t          rb(0);
+    size_t const    n = filesystem_traits_m_t::get_full_path_name(fileName, rb);
+
+    TEST_INT_EQ(expected_len, n);
+    TEST_INT_EQ(expected_len + 1, rb.size());
+    TEST_CHAR_EQ('\0', rb[n]);
+    TEST_MS_EQ(&expected[0], rb.data());
+}
+
+static void TEST_get_full_path_name_RESIZEABLE_vector()
+{
+    char const* const fileName = ".";
+
+    vec_m_t         expected(1 + filesystem_traits_m_t::path_max());
+    size_t const    expected_len = filesystem_traits_m_t::get_full_path_name(
+                                       fileName
+                                   ,   &expected[0]
+                                   ,   expected.size()
+                                   );
+
+    TEST_INT_NE(0, expected_len);
+
+    vec_m_t         rb;
+    size_t const    n = filesystem_traits_m_t::get_full_path_name(fileName, rb);
+
+    TEST_INT_EQ(expected_len, n);
+    TEST_INT_EQ(expected_len + 1, rb.size());
+    TEST_CHAR_EQ('\0', rb[n]);
+    TEST_MS_EQ(&expected[0], &rb[0]);
+}
+
+static void TEST_get_short_path_name_RESIZEABLE_auto_buffer()
+{
+    string_m_t const windir = get_windows_directory();
+
+    vec_m_t         expected(1 + filesystem_traits_m_t::path_max());
+    size_t const    expected_len = filesystem_traits_m_t::get_short_path_name(
+                                       windir.c_str()
+                                   ,   &expected[0]
+                                   ,   expected.size()
+                                   );
+
+    ab_m_t          rb(0);
+    size_t const    n = filesystem_traits_m_t::get_short_path_name(windir.c_str(), rb);
+
+    TEST_INT_EQ(expected_len, n);
+
+    if (0 == expected_len)
+    {
+        TEST_INT_EQ(0, rb.size());
+    }
+    else
+    {
+        TEST_INT_EQ(expected_len + 1, rb.size());
+        TEST_CHAR_EQ('\0', rb[n]);
+        TEST_MS_EQ(&expected[0], rb.data());
+    }
+}
+
+static void TEST_get_short_path_name_RESIZEABLE_vector()
+{
+    string_m_t const windir = get_windows_directory();
+
+    vec_m_t         expected(1 + filesystem_traits_m_t::path_max());
+    size_t const    expected_len = filesystem_traits_m_t::get_short_path_name(
+                                       windir.c_str()
+                                   ,   &expected[0]
+                                   ,   expected.size()
+                                   );
+
+    vec_m_t         rb;
+    size_t const    n = filesystem_traits_m_t::get_short_path_name(windir.c_str(), rb);
+
+    TEST_INT_EQ(expected_len, n);
+
+    if (0 == expected_len)
+    {
+        TEST_INT_EQ(0, rb.size());
+    }
+    else
+    {
+        TEST_INT_EQ(expected_len + 1, rb.size());
+        TEST_CHAR_EQ('\0', rb[n]);
+        TEST_MS_EQ(&expected[0], &rb[0]);
+    }
+}
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
