@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 15th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     0
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      288
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      289
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -4028,15 +4028,11 @@ basic_simple_string<C, T, A>::empty() const STLSOFT_NOEXCEPT
 } // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
- * illegally insert into the std namespace.
- */
 #if defined(STLSOFT_CF_std_NAMESPACE)
-# if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
-         defined(_MSC_VER))) && \
-     _MSC_VER < 1310
 namespace std
 {
+# ifdef STLSOFT_ALLOW_std_swap_SPECIALISATIONS
+
     template <
         ss_typename_param_k C
     ,   ss_typename_param_k T
@@ -4051,8 +4047,8 @@ namespace std
     {
         lhs.swap(rhs);
     }
+# endif
 } // namespace std
-# endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 

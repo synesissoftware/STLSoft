@@ -4,7 +4,7 @@
  * Purpose: Contains the exception_string limited functionality string class.
  *
  * Created: 26th December 2005
- * Updated: 15th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 10
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     40
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,6 +153,12 @@ public:
     }
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+public:
+    void swap(class_type& rhs) STLSOFT_NOEXCEPT
+    {
+        m_message.swap(rhs.m_message);
+    }
+
 
 public:
     /// Appends the given string to the message
@@ -390,12 +396,48 @@ exception_string operator +(
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * swapping
+ */
+
+inline
+void
+swap(
+    exception_string&   lhs
+,   exception_string&   rhs
+) STLSOFT_NOEXCEPT
+{
+    lhs.swap(rhs);
+}
+
+
 /* ////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
+
+# ifdef STLSOFT_CF_std_NAMESPACE
+
+#  if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
+          defined(_MSC_VER))) && \
+      _MSC_VER < 1310
+
+namespace std
+{
+    inline
+    void
+    swap(
+        STLSOFT_NS_QUAL(exception_string)&  lhs
+    ,   STLSOFT_NS_QUAL(exception_string)&  rhs
+    ) STLSOFT_NOEXCEPT
+    {
+        lhs.swap(rhs);
+    }
+} // namespace std
+#  endif /* INTEL && _MSC_VER < 1310 */
+# endif /* STLSOFT_CF_std_NAMESPACE */
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 29th September 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,25 +53,27 @@
 
 namespace {
 
-    static void test_ctor_default_1();
-    static void test_ctor_default_2();
+    static void TEST_ctor_default_1();
+    static void TEST_ctor_default_2();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_initializer_list_1();
-    static void test_ctor_initializer_list_2();
+    static void TEST_ctor_initializer_list_1();
+    static void TEST_ctor_initializer_list_2();
 #endif
-    static void test_push_1();
-    static void test_push_2();
-    static void test_push_n_1();
-    static void test_push_n_2();
-    static void test_clear();
-//     static void test_merge();
-//     static void test_op_addassign();
-//     static void test_op_add();
-    static void test_swap();
-    static void test_swap_std();
-    static void test_iteration_1();
-//     static void test_iteration_order_1();
+    static void TEST_push_1();
+    static void TEST_push_2();
+    static void TEST_push_n_1();
+    static void TEST_push_n_2();
+    static void TEST_clear();
+//     static void TEST_merge();
+//     static void TEST_op_addassign();
+//     static void TEST_op_add();
+    static void TEST_swap_METHOD();
+    static void TEST_swap_BY_ADL();
+    static void TEST_swap_stlsoft();
+    static void TEST_swap_std();
+    static void TEST_iteration_1();
+//     static void TEST_iteration_order_1();
 } // anonymous namespace
 
 
@@ -88,21 +90,23 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.containers.unicode_point_map", verbosity))
     {
-        XTESTS_RUN_CASE(test_ctor_default_1);
-        XTESTS_RUN_CASE(test_ctor_default_2);
+        XTESTS_RUN_CASE(TEST_ctor_default_1);
+        XTESTS_RUN_CASE(TEST_ctor_default_2);
 #if __cplusplus >= 201103L
 
-        XTESTS_RUN_CASE(test_ctor_initializer_list_1);
-        XTESTS_RUN_CASE(test_ctor_initializer_list_2);
+        XTESTS_RUN_CASE(TEST_ctor_initializer_list_1);
+        XTESTS_RUN_CASE(TEST_ctor_initializer_list_2);
 #endif
-        XTESTS_RUN_CASE(test_push_1);
-        XTESTS_RUN_CASE(test_push_2);
-        XTESTS_RUN_CASE(test_push_n_1);
-        XTESTS_RUN_CASE(test_push_n_2);
-        XTESTS_RUN_CASE(test_clear);
-        XTESTS_RUN_CASE(test_swap);
-        XTESTS_RUN_CASE(test_swap_std);
-        XTESTS_RUN_CASE(test_iteration_1);
+        XTESTS_RUN_CASE(TEST_push_1);
+        XTESTS_RUN_CASE(TEST_push_2);
+        XTESTS_RUN_CASE(TEST_push_n_1);
+        XTESTS_RUN_CASE(TEST_push_n_2);
+        XTESTS_RUN_CASE(TEST_clear);
+        XTESTS_RUN_CASE(TEST_swap_METHOD);
+        XTESTS_RUN_CASE(TEST_swap_BY_ADL);
+        XTESTS_RUN_CASE(TEST_swap_stlsoft);
+        XTESTS_RUN_CASE(TEST_swap_std);
+        XTESTS_RUN_CASE(TEST_iteration_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -127,7 +131,7 @@ namespace {
     using stlsoft::unicode_point_map;
 
 
-static void test_ctor_default_1()
+static void TEST_ctor_default_1()
 {
     unicode_point_map const upm;
 
@@ -145,7 +149,7 @@ static void test_ctor_default_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_ctor_default_2()
+static void TEST_ctor_default_2()
 {
     unicode_point_map const upm(0x64); // 'd'
 
@@ -165,7 +169,7 @@ static void test_ctor_default_2()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_initializer_list_1()
+static void TEST_ctor_initializer_list_1()
 {
     unicode_point_map upm = { 'a', 'b', 'c', 'd', 'd', 'd', 'a' };
 
@@ -179,7 +183,7 @@ static void test_ctor_initializer_list_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_ctor_initializer_list_2()
+static void TEST_ctor_initializer_list_2()
 {
     unicode_point_map upm(0x64, { 'a', 'b', 'c', 'd', 'd', 'd', 'a' });
 
@@ -194,7 +198,7 @@ static void test_ctor_initializer_list_2()
 }
 #endif
 
-static void test_push_1()
+static void TEST_push_1()
 {
     unicode_point_map upm;
 
@@ -220,7 +224,7 @@ static void test_push_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_push_2()
+static void TEST_push_2()
 {
     unicode_point_map upm(0x64); // 'd'
 
@@ -246,7 +250,7 @@ static void test_push_2()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_push_n_1()
+static void TEST_push_n_1()
 {
     unicode_point_map upm;
 
@@ -272,7 +276,7 @@ static void test_push_n_1()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_push_n_2()
+static void TEST_push_n_2()
 {
     unicode_point_map upm(0x64); // 'd'
 
@@ -298,7 +302,7 @@ static void test_push_n_2()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_clear()
+static void TEST_clear()
 {
     unicode_point_map upm;
 
@@ -334,7 +338,7 @@ static void test_clear()
     TEST_INT_EQ(0, upm['f']);
 }
 
-static void test_swap()
+static void TEST_swap_METHOD()
 {
     {
         unicode_point_map upm1;
@@ -646,7 +650,7 @@ static void test_swap()
     }
 }
 
-static void test_swap_std()
+static void TEST_swap_BY_ADL()
 {
     {
         unicode_point_map upm1;
@@ -660,7 +664,7 @@ static void test_swap_std()
         TEST_INT_EQ(0u, upm2.size());
         TEST_INT_EQ(0, upm2.total());
 
-        std::swap(upm1, upm2);
+        swap(upm2, upm1);
 
         TEST_BOOLEAN_TRUE(upm1.empty());
         TEST_INT_EQ(0u, upm1.size());
@@ -716,7 +720,7 @@ static void test_swap_std()
         TEST_INT_EQ(1, upm2['2']);
         TEST_INT_EQ(10, upm2['3']);
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_FALSE(upm1.empty());
         TEST_INT_EQ(4u, upm1.size());
@@ -763,7 +767,7 @@ static void test_swap_std()
         TEST_INT_EQ(0u, upm2.size());
         TEST_INT_EQ(0, upm2.total());
 
-        std::swap(upm1, upm2);
+        swap(upm2, upm1);
 
         TEST_BOOLEAN_TRUE(upm1.empty());
         TEST_INT_EQ(0u, upm1.size());
@@ -819,7 +823,7 @@ static void test_swap_std()
         TEST_INT_EQ(1, upm2['2']);
         TEST_INT_EQ(10, upm2['3']);
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_FALSE(upm1.empty());
         TEST_INT_EQ(4u, upm1.size());
@@ -866,7 +870,7 @@ static void test_swap_std()
         TEST_INT_EQ(0u, upm2.size());
         TEST_INT_EQ(0, upm2.total());
 
-        std::swap(upm1, upm2);
+        swap(upm2, upm1);
 
         TEST_BOOLEAN_TRUE(upm1.empty());
         TEST_INT_EQ(0u, upm1.size());
@@ -922,7 +926,7 @@ static void test_swap_std()
         TEST_INT_EQ(1, upm2['2']);
         TEST_INT_EQ(10, upm2['3']);
 
-        std::swap(upm1, upm2);
+        swap(upm1, upm2);
 
         TEST_BOOLEAN_FALSE(upm1.empty());
         TEST_INT_EQ(4u, upm1.size());
@@ -958,7 +962,633 @@ static void test_swap_std()
     }
 }
 
-static void test_iteration_1()
+static void TEST_swap_stlsoft()
+{
+    {
+        unicode_point_map upm1;
+        unicode_point_map upm2;
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+
+        stlsoft::swap(upm2, upm1);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1;
+        unicode_point_map upm2;
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(3u, upm1.size());
+        TEST_INT_EQ(3, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(1, upm1['A']);
+        TEST_INT_EQ(0, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(1, upm1['a']);
+        TEST_INT_EQ(0, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(1, upm1['1']);
+        TEST_INT_EQ(0, upm1['2']);
+        TEST_INT_EQ(0, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(4u, upm2.size());
+        TEST_INT_EQ(13, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(0, upm2['A']);
+        TEST_INT_EQ(1, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(0, upm2['a']);
+        TEST_INT_EQ(1, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(0, upm2['1']);
+        TEST_INT_EQ(1, upm2['2']);
+        TEST_INT_EQ(10, upm2['3']);
+
+        stlsoft::swap(upm1, upm2);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(4u, upm1.size());
+        TEST_INT_EQ(13, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(0, upm1['A']);
+        TEST_INT_EQ(1, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(0, upm1['a']);
+        TEST_INT_EQ(1, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(0, upm1['1']);
+        TEST_INT_EQ(1, upm1['2']);
+        TEST_INT_EQ(10, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(3u, upm2.size());
+        TEST_INT_EQ(3, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(1, upm2['A']);
+        TEST_INT_EQ(0, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(1, upm2['a']);
+        TEST_INT_EQ(0, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(1, upm2['1']);
+        TEST_INT_EQ(0, upm2['2']);
+        TEST_INT_EQ(0, upm2['3']);
+    }
+
+    {
+        unicode_point_map upm1(0x60);
+        unicode_point_map upm2(0x60);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+
+        stlsoft::swap(upm2, upm1);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1(0x60);
+        unicode_point_map upm2(0x60);
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(3u, upm1.size());
+        TEST_INT_EQ(3, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(1, upm1['A']);
+        TEST_INT_EQ(0, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(1, upm1['a']);
+        TEST_INT_EQ(0, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(1, upm1['1']);
+        TEST_INT_EQ(0, upm1['2']);
+        TEST_INT_EQ(0, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(4u, upm2.size());
+        TEST_INT_EQ(13, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(0, upm2['A']);
+        TEST_INT_EQ(1, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(0, upm2['a']);
+        TEST_INT_EQ(1, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(0, upm2['1']);
+        TEST_INT_EQ(1, upm2['2']);
+        TEST_INT_EQ(10, upm2['3']);
+
+        stlsoft::swap(upm1, upm2);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(4u, upm1.size());
+        TEST_INT_EQ(13, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(0, upm1['A']);
+        TEST_INT_EQ(1, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(0, upm1['a']);
+        TEST_INT_EQ(1, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(0, upm1['1']);
+        TEST_INT_EQ(1, upm1['2']);
+        TEST_INT_EQ(10, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(3u, upm2.size());
+        TEST_INT_EQ(3, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(1, upm2['A']);
+        TEST_INT_EQ(0, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(1, upm2['a']);
+        TEST_INT_EQ(0, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(1, upm2['1']);
+        TEST_INT_EQ(0, upm2['2']);
+        TEST_INT_EQ(0, upm2['3']);
+    }
+
+    {
+        unicode_point_map upm1(0);
+        unicode_point_map upm2(0x60);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+
+        stlsoft::swap(upm2, upm1);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1(0);
+        unicode_point_map upm2(0x60);
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(3u, upm1.size());
+        TEST_INT_EQ(3, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(1, upm1['A']);
+        TEST_INT_EQ(0, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(1, upm1['a']);
+        TEST_INT_EQ(0, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(1, upm1['1']);
+        TEST_INT_EQ(0, upm1['2']);
+        TEST_INT_EQ(0, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(4u, upm2.size());
+        TEST_INT_EQ(13, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(0, upm2['A']);
+        TEST_INT_EQ(1, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(0, upm2['a']);
+        TEST_INT_EQ(1, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(0, upm2['1']);
+        TEST_INT_EQ(1, upm2['2']);
+        TEST_INT_EQ(10, upm2['3']);
+
+        stlsoft::swap(upm1, upm2);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(4u, upm1.size());
+        TEST_INT_EQ(13, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(0, upm1['A']);
+        TEST_INT_EQ(1, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(0, upm1['a']);
+        TEST_INT_EQ(1, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(0, upm1['1']);
+        TEST_INT_EQ(1, upm1['2']);
+        TEST_INT_EQ(10, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(3u, upm2.size());
+        TEST_INT_EQ(3, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(1, upm2['A']);
+        TEST_INT_EQ(0, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(1, upm2['a']);
+        TEST_INT_EQ(0, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(1, upm2['1']);
+        TEST_INT_EQ(0, upm2['2']);
+        TEST_INT_EQ(0, upm2['3']);
+    }
+}
+
+static void TEST_swap_std()
+{
+    using std::swap;
+
+    {
+        unicode_point_map upm1;
+        unicode_point_map upm2;
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+
+        swap(upm1, upm2);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1;
+        unicode_point_map upm2;
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(3u, upm1.size());
+        TEST_INT_EQ(3, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(1, upm1['A']);
+        TEST_INT_EQ(0, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(1, upm1['a']);
+        TEST_INT_EQ(0, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(1, upm1['1']);
+        TEST_INT_EQ(0, upm1['2']);
+        TEST_INT_EQ(0, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(4u, upm2.size());
+        TEST_INT_EQ(13, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(0, upm2['A']);
+        TEST_INT_EQ(1, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(0, upm2['a']);
+        TEST_INT_EQ(1, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(0, upm2['1']);
+        TEST_INT_EQ(1, upm2['2']);
+        TEST_INT_EQ(10, upm2['3']);
+
+        swap(upm1, upm2);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(4u, upm1.size());
+        TEST_INT_EQ(13, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(0, upm1['A']);
+        TEST_INT_EQ(1, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(0, upm1['a']);
+        TEST_INT_EQ(1, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(0, upm1['1']);
+        TEST_INT_EQ(1, upm1['2']);
+        TEST_INT_EQ(10, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(3u, upm2.size());
+        TEST_INT_EQ(3, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(1, upm2['A']);
+        TEST_INT_EQ(0, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(1, upm2['a']);
+        TEST_INT_EQ(0, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(1, upm2['1']);
+        TEST_INT_EQ(0, upm2['2']);
+        TEST_INT_EQ(0, upm2['3']);
+    }
+
+    {
+        unicode_point_map upm1(0x60);
+        unicode_point_map upm2(0x60);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+
+        swap(upm1, upm2);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1(0x60);
+        unicode_point_map upm2(0x60);
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(3u, upm1.size());
+        TEST_INT_EQ(3, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(1, upm1['A']);
+        TEST_INT_EQ(0, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(1, upm1['a']);
+        TEST_INT_EQ(0, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(1, upm1['1']);
+        TEST_INT_EQ(0, upm1['2']);
+        TEST_INT_EQ(0, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(4u, upm2.size());
+        TEST_INT_EQ(13, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(0, upm2['A']);
+        TEST_INT_EQ(1, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(0, upm2['a']);
+        TEST_INT_EQ(1, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(0, upm2['1']);
+        TEST_INT_EQ(1, upm2['2']);
+        TEST_INT_EQ(10, upm2['3']);
+
+        swap(upm1, upm2);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(4u, upm1.size());
+        TEST_INT_EQ(13, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(0, upm1['A']);
+        TEST_INT_EQ(1, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(0, upm1['a']);
+        TEST_INT_EQ(1, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(0, upm1['1']);
+        TEST_INT_EQ(1, upm1['2']);
+        TEST_INT_EQ(10, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(3u, upm2.size());
+        TEST_INT_EQ(3, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(1, upm2['A']);
+        TEST_INT_EQ(0, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(1, upm2['a']);
+        TEST_INT_EQ(0, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(1, upm2['1']);
+        TEST_INT_EQ(0, upm2['2']);
+        TEST_INT_EQ(0, upm2['3']);
+    }
+
+    {
+        unicode_point_map upm1(0);
+        unicode_point_map upm2(0x60);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+
+        swap(upm1, upm2);
+
+        TEST_BOOLEAN_TRUE(upm1.empty());
+        TEST_INT_EQ(0u, upm1.size());
+        TEST_INT_EQ(0, upm1.total());
+
+        TEST_BOOLEAN_TRUE(upm2.empty());
+        TEST_INT_EQ(0u, upm2.size());
+        TEST_INT_EQ(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1(0);
+        unicode_point_map upm2(0x60);
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(3u, upm1.size());
+        TEST_INT_EQ(3, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(1, upm1['A']);
+        TEST_INT_EQ(0, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(1, upm1['a']);
+        TEST_INT_EQ(0, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(1, upm1['1']);
+        TEST_INT_EQ(0, upm1['2']);
+        TEST_INT_EQ(0, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(4u, upm2.size());
+        TEST_INT_EQ(13, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(0, upm2['A']);
+        TEST_INT_EQ(1, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(0, upm2['a']);
+        TEST_INT_EQ(1, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(0, upm2['1']);
+        TEST_INT_EQ(1, upm2['2']);
+        TEST_INT_EQ(10, upm2['3']);
+
+        swap(upm1, upm2);
+
+        TEST_BOOLEAN_FALSE(upm1.empty());
+        TEST_INT_EQ(4u, upm1.size());
+        TEST_INT_EQ(13, upm1.total());
+
+        TEST_INT_EQ(0, upm1[' ']);
+        TEST_INT_EQ(0, upm1['A']);
+        TEST_INT_EQ(1, upm1['B']);
+        TEST_INT_EQ(0, upm1['C']);
+        TEST_INT_EQ(0, upm1['a']);
+        TEST_INT_EQ(1, upm1['b']);
+        TEST_INT_EQ(0, upm1['c']);
+        TEST_INT_EQ(0, upm1['0']);
+        TEST_INT_EQ(0, upm1['1']);
+        TEST_INT_EQ(1, upm1['2']);
+        TEST_INT_EQ(10, upm1['3']);
+
+        TEST_BOOLEAN_FALSE(upm2.empty());
+        TEST_INT_EQ(3u, upm2.size());
+        TEST_INT_EQ(3, upm2.total());
+
+        TEST_INT_EQ(0, upm2[' ']);
+        TEST_INT_EQ(1, upm2['A']);
+        TEST_INT_EQ(0, upm2['B']);
+        TEST_INT_EQ(0, upm2['C']);
+        TEST_INT_EQ(1, upm2['a']);
+        TEST_INT_EQ(0, upm2['b']);
+        TEST_INT_EQ(0, upm2['c']);
+        TEST_INT_EQ(0, upm2['0']);
+        TEST_INT_EQ(1, upm2['1']);
+        TEST_INT_EQ(0, upm2['2']);
+        TEST_INT_EQ(0, upm2['3']);
+    }
+}
+
+static void TEST_iteration_1()
 {
     {
         unicode_point_map const upm;

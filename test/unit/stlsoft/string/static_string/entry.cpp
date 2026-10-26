@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *
  * Created: 4th November 2008
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,72 +53,74 @@ namespace {
 
     // construction
 
-    static void test_ctor_default();
-    static void test_ctor_copy();
-    static void test_ctor_s_pos();
-    static void test_ctor_s_pos_n();
-    static void test_ctor_ccs();
-    static void test_ctor_ccs_too_large();
-    static void test_ctor_ccs_n();
-    static void test_ctor_ccs_n_too_large();
-    static void test_ctor_n_ch();
-    static void test_ctor_n_ch_too_large();
-    static void test_ctor_range_too_large();
+    static void TEST_ctor_default();
+    static void TEST_ctor_copy();
+    static void TEST_ctor_s_pos();
+    static void TEST_ctor_s_pos_n();
+    static void TEST_ctor_ccs();
+    static void TEST_ctor_ccs_too_large();
+    static void TEST_ctor_ccs_n();
+    static void TEST_ctor_ccs_n_too_large();
+    static void TEST_ctor_n_ch();
+    static void TEST_ctor_n_ch_too_large();
+    static void TEST_ctor_range_too_large();
 
     // `assign()`
 
-    static void test_assign_ccs();
-    static void test_assign_ccs_too_large();
-    static void test_assign_ccs_n();
-    static void test_assign_ccs_n_too_large();
-    static void test_assign_s();
-    static void test_assign_s_pos_n();
-    static void test_assign_s_pos_n_outofrange();
-    static void test_assign_n_ch();
-    static void test_assign_n_ch_too_large();
-    static void test_assign_range();
-    static void test_assign_range_too_large();
-    static void test_opassign_ccs_too_large();
+    static void TEST_assign_ccs();
+    static void TEST_assign_ccs_too_large();
+    static void TEST_assign_ccs_n();
+    static void TEST_assign_ccs_n_too_large();
+    static void TEST_assign_s();
+    static void TEST_assign_s_pos_n();
+    static void TEST_assign_s_pos_n_outofrange();
+    static void TEST_assign_n_ch();
+    static void TEST_assign_n_ch_too_large();
+    static void TEST_assign_range();
+    static void TEST_assign_range_too_large();
+    static void TEST_opassign_ccs_too_large();
 
     // `append()`
 
-    static void test_append_ccs();
-    static void test_append_ccs_too_large();
-    static void test_append_ccs_n();
-    static void test_append_ccs_n_too_large();
-    static void test_append_s();
-    static void test_append_s_too_large();
-    static void test_append_s_pos_n();
-    static void test_append_s_pos_n_too_large();
-    static void test_append_n_ch();
-    static void test_append_n_ch_too_large();
-    static void test_append_range();
-    static void test_append_range_too_large();
-    static void test_opaddassign_ccs();
-    static void test_opaddassign_ccs_too_large();
-    static void test_opaddassign_s();
-    static void test_opaddassign_s_too_large();
-    static void test_opaddassign_ch();
-    static void test_opaddassign_ch_too_large();
-    static void test_push_back();
-    static void test_push_back_too_large();
-    static void test_pop_back();
+    static void TEST_append_ccs();
+    static void TEST_append_ccs_too_large();
+    static void TEST_append_ccs_n();
+    static void TEST_append_ccs_n_too_large();
+    static void TEST_append_s();
+    static void TEST_append_s_too_large();
+    static void TEST_append_s_pos_n();
+    static void TEST_append_s_pos_n_too_large();
+    static void TEST_append_n_ch();
+    static void TEST_append_n_ch_too_large();
+    static void TEST_append_range();
+    static void TEST_append_range_too_large();
+    static void TEST_opaddassign_ccs();
+    static void TEST_opaddassign_ccs_too_large();
+    static void TEST_opaddassign_s();
+    static void TEST_opaddassign_s_too_large();
+    static void TEST_opaddassign_ch();
+    static void TEST_opaddassign_ch_too_large();
+    static void TEST_push_back();
+    static void TEST_push_back_too_large();
+    static void TEST_pop_back();
 
     // modifiers
 
-    static void test_reserve();
-    static void test_reserve_too_large();
-    static void test_swap_1();
-    static void test_swap_2();
-    static void test_swap_3();
-    static void test_resize();
-    static void test_resize_too_large();
-    static void test_clear();
+    static void TEST_reserve();
+    static void TEST_reserve_too_large();
+    static void TEST_swap_METHOD();
+    static void TEST_swap_BY_ADL();
+    static void TEST_swap_stlsoft();
+    static void TEST_swap_2();
+    static void TEST_swap_3();
+    static void TEST_resize();
+    static void TEST_resize_too_large();
+    static void TEST_clear();
 
     // attributes
 
-    static void test_max_size();
-    static void test_capacity();
+    static void TEST_max_size();
+    static void TEST_capacity();
 
 
     // comparison
@@ -127,23 +129,23 @@ namespace {
     static void TEST_compare_EMPTY();
     static void TEST_compare_EMBEDDED_NUL();
     static void TEST_compare_WCHAR();
-    static void test_contains_1();
-    static void test_contains_2();
-    static void test_contains_3();
-    static void test_starts_with_1();
-    static void test_starts_with_2();
-    static void test_ends_with_1();
-    static void test_ends_with_2();
+    static void TEST_contains_1();
+    static void TEST_contains_2();
+    static void TEST_contains_3();
+    static void TEST_starts_with_1();
+    static void TEST_starts_with_2();
+    static void TEST_ends_with_1();
+    static void TEST_ends_with_2();
 
 
     // accessors
 
-    static void test_at();
-    static void test_at_out_of_range_1();
-    static void test_at_out_of_range_2();
-    static void test_copy();
-    static void test_substr();
-    static void test_substr_throw();
+    static void TEST_at();
+    static void TEST_at_out_of_range_1();
+    static void TEST_at_out_of_range_2();
+    static void TEST_copy();
+    static void TEST_substr();
+    static void TEST_substr_throw();
 
 
     // length-error attempts
@@ -162,15 +164,15 @@ namespace {
 
     // operators : insertion
 
-    static void test_insertion_1();
-    static void test_insertion_2();
-    static void test_insertion_3();
-    static void test_insertion_4();
+    static void TEST_insertion_1();
+    static void TEST_insertion_2();
+    static void TEST_insertion_3();
+    static void TEST_insertion_4();
 
 
     // shims : sas
 
-    static void test_string_access_shims();
+    static void TEST_string_access_shims();
 } // anonymous namespace
 
 
@@ -189,72 +191,74 @@ int main(int argc, char* argv[])
     {
         // construction
 
-        XTESTS_RUN_CASE(test_ctor_default);
-        XTESTS_RUN_CASE(test_ctor_copy);
-        XTESTS_RUN_CASE(test_ctor_s_pos);
-        XTESTS_RUN_CASE(test_ctor_s_pos_n);
-        XTESTS_RUN_CASE(test_ctor_ccs);
-        XTESTS_RUN_CASE_THAT_THROWS(test_ctor_ccs_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_ctor_ccs_n);
-        XTESTS_RUN_CASE_THAT_THROWS(test_ctor_ccs_n_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_ctor_n_ch);
-        XTESTS_RUN_CASE_THAT_THROWS(test_ctor_n_ch_too_large, std::length_error);
-        XTESTS_RUN_CASE_THAT_THROWS(test_ctor_range_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_ctor_default);
+        XTESTS_RUN_CASE(TEST_ctor_copy);
+        XTESTS_RUN_CASE(TEST_ctor_s_pos);
+        XTESTS_RUN_CASE(TEST_ctor_s_pos_n);
+        XTESTS_RUN_CASE(TEST_ctor_ccs);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_ctor_ccs_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_ctor_ccs_n);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_ctor_ccs_n_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_ctor_n_ch);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_ctor_n_ch_too_large, std::length_error);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_ctor_range_too_large, std::length_error);
 
         // `assign()`
 
-        XTESTS_RUN_CASE(test_assign_ccs);
-        XTESTS_RUN_CASE_THAT_THROWS(test_assign_ccs_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_assign_ccs_n);
-        XTESTS_RUN_CASE_THAT_THROWS(test_assign_ccs_n_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_assign_s);
-        XTESTS_RUN_CASE(test_assign_s_pos_n);
-        XTESTS_RUN_CASE_THAT_THROWS(test_assign_s_pos_n_outofrange, std::out_of_range);
-        XTESTS_RUN_CASE(test_assign_n_ch);
-        XTESTS_RUN_CASE_THAT_THROWS(test_assign_n_ch_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_assign_range);
-        XTESTS_RUN_CASE_THAT_THROWS(test_assign_range_too_large, std::length_error);
-        XTESTS_RUN_CASE_THAT_THROWS(test_opassign_ccs_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_assign_ccs);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_assign_ccs_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_assign_ccs_n);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_assign_ccs_n_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_assign_s);
+        XTESTS_RUN_CASE(TEST_assign_s_pos_n);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_assign_s_pos_n_outofrange, std::out_of_range);
+        XTESTS_RUN_CASE(TEST_assign_n_ch);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_assign_n_ch_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_assign_range);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_assign_range_too_large, std::length_error);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_opassign_ccs_too_large, std::length_error);
 
         // `append()`
 
-        XTESTS_RUN_CASE(test_append_ccs);
-        XTESTS_RUN_CASE_THAT_THROWS(test_append_ccs_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_append_ccs_n);
-        XTESTS_RUN_CASE_THAT_THROWS(test_append_ccs_n_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_append_s);
-        XTESTS_RUN_CASE_THAT_THROWS(test_append_s_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_append_s_pos_n);
-        XTESTS_RUN_CASE_THAT_THROWS(test_append_s_pos_n_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_append_n_ch);
-        XTESTS_RUN_CASE_THAT_THROWS(test_append_n_ch_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_append_range);
-        XTESTS_RUN_CASE_THAT_THROWS(test_append_range_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_opaddassign_ccs);
-        XTESTS_RUN_CASE_THAT_THROWS(test_opaddassign_ccs_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_opaddassign_s);
-        XTESTS_RUN_CASE_THAT_THROWS(test_opaddassign_s_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_opaddassign_ch);
-        XTESTS_RUN_CASE_THAT_THROWS(test_opaddassign_ch_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_push_back);
-        XTESTS_RUN_CASE_THAT_THROWS(test_push_back_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_pop_back);
+        XTESTS_RUN_CASE(TEST_append_ccs);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_append_ccs_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_append_ccs_n);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_append_ccs_n_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_append_s);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_append_s_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_append_s_pos_n);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_append_s_pos_n_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_append_n_ch);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_append_n_ch_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_append_range);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_append_range_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_opaddassign_ccs);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_opaddassign_ccs_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_opaddassign_s);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_opaddassign_s_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_opaddassign_ch);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_opaddassign_ch_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_push_back);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_push_back_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_pop_back);
 
         // modifiers
 
-        XTESTS_RUN_CASE(test_reserve);
-        XTESTS_RUN_CASE_THAT_THROWS(test_reserve_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_swap_1);
-        XTESTS_RUN_CASE(test_swap_2);
-        XTESTS_RUN_CASE(test_swap_3);
-        XTESTS_RUN_CASE(test_resize);
-        XTESTS_RUN_CASE_THAT_THROWS(test_resize_too_large, std::length_error);
-        XTESTS_RUN_CASE(test_clear);
+        XTESTS_RUN_CASE(TEST_reserve);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_reserve_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_swap_METHOD);
+        XTESTS_RUN_CASE(TEST_swap_BY_ADL);
+        XTESTS_RUN_CASE(TEST_swap_stlsoft);
+        XTESTS_RUN_CASE(TEST_swap_2);
+        XTESTS_RUN_CASE(TEST_swap_3);
+        XTESTS_RUN_CASE(TEST_resize);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_resize_too_large, std::length_error);
+        XTESTS_RUN_CASE(TEST_clear);
 
         // attributes
 
-        XTESTS_RUN_CASE(test_max_size);
-        XTESTS_RUN_CASE(test_capacity);
+        XTESTS_RUN_CASE(TEST_max_size);
+        XTESTS_RUN_CASE(TEST_capacity);
 
         // comparison
 
@@ -262,22 +266,22 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_compare_EMPTY);
         XTESTS_RUN_CASE(TEST_compare_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_compare_WCHAR);
-        XTESTS_RUN_CASE(test_contains_1);
-        XTESTS_RUN_CASE(test_contains_2);
-        XTESTS_RUN_CASE(test_contains_3);
-        XTESTS_RUN_CASE(test_starts_with_1);
-        XTESTS_RUN_CASE(test_starts_with_2);
-        XTESTS_RUN_CASE(test_ends_with_1);
-        XTESTS_RUN_CASE(test_ends_with_2);
+        XTESTS_RUN_CASE(TEST_contains_1);
+        XTESTS_RUN_CASE(TEST_contains_2);
+        XTESTS_RUN_CASE(TEST_contains_3);
+        XTESTS_RUN_CASE(TEST_starts_with_1);
+        XTESTS_RUN_CASE(TEST_starts_with_2);
+        XTESTS_RUN_CASE(TEST_ends_with_1);
+        XTESTS_RUN_CASE(TEST_ends_with_2);
 
         // accessors
 
-        XTESTS_RUN_CASE(test_at);
-        XTESTS_RUN_CASE_THAT_THROWS(test_at_out_of_range_1, std::out_of_range);
-        XTESTS_RUN_CASE_THAT_THROWS(test_at_out_of_range_2, std::out_of_range);
-        XTESTS_RUN_CASE(test_copy);
-        XTESTS_RUN_CASE(test_substr);
-        XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw, std::out_of_range);
+        XTESTS_RUN_CASE(TEST_at);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_at_out_of_range_1, std::out_of_range);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_at_out_of_range_2, std::out_of_range);
+        XTESTS_RUN_CASE(TEST_copy);
+        XTESTS_RUN_CASE(TEST_substr);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_substr_throw, std::out_of_range);
 
 
         // length-error attempts
@@ -297,15 +301,15 @@ int main(int argc, char* argv[])
 
         // operators : insertion
 
-        XTESTS_RUN_CASE(test_insertion_1);
-        XTESTS_RUN_CASE(test_insertion_2);
-        XTESTS_RUN_CASE(test_insertion_3);
-        XTESTS_RUN_CASE(test_insertion_4);
+        XTESTS_RUN_CASE(TEST_insertion_1);
+        XTESTS_RUN_CASE(TEST_insertion_2);
+        XTESTS_RUN_CASE(TEST_insertion_3);
+        XTESTS_RUN_CASE(TEST_insertion_4);
 
 
         // shims : sas
 
-        XTESTS_RUN_CASE(test_string_access_shims);
+        XTESTS_RUN_CASE(TEST_string_access_shims);
 
 
         XTESTS_PRINT_RESULTS();
@@ -374,7 +378,7 @@ namespace {
 
 // construction
 
-static void test_ctor_default()
+static void TEST_ctor_default()
 {
     typedef string_10_t string_t;
 
@@ -386,7 +390,7 @@ static void test_ctor_default()
     TEST_INT_NE(0u, s.max_size());
 }
 
-static void test_ctor_copy()
+static void TEST_ctor_copy()
 {
     typedef string_10_t string_t;
 
@@ -407,7 +411,7 @@ static void test_ctor_copy()
     }
 }
 
-static void test_ctor_s_pos()
+static void TEST_ctor_s_pos()
 {
     typedef string_10_t string_t;
 
@@ -428,7 +432,7 @@ static void test_ctor_s_pos()
     }
 }
 
-static void test_ctor_s_pos_n()
+static void TEST_ctor_s_pos_n()
 {
     typedef string_10_t string_t;
 
@@ -458,7 +462,7 @@ static void test_ctor_s_pos_n()
     }
 }
 
-static void test_ctor_ccs()
+static void TEST_ctor_ccs()
 {
     typedef string_10_t string_t;
 
@@ -480,14 +484,14 @@ static void test_ctor_ccs()
     }
 }
 
-static void test_ctor_ccs_too_large()
+static void TEST_ctor_ccs_too_large()
 {
     typedef string_10_t string_t;
 
     string_t s(alphabet);
 }
 
-static void test_ctor_ccs_n()
+static void TEST_ctor_ccs_n()
 {
     typedef string_30_t string_t;
 
@@ -510,14 +514,14 @@ static void test_ctor_ccs_n()
     }
 }
 
-static void test_ctor_ccs_n_too_large()
+static void TEST_ctor_ccs_n_too_large()
 {
     typedef string_10_t string_t;
 
     string_t s(alphabet, 11);
 }
 
-static void test_ctor_n_ch()
+static void TEST_ctor_n_ch()
 {
     typedef string_10_t string_t;
 
@@ -585,14 +589,14 @@ static void test_ctor_n_ch()
     }
 }
 
-static void test_ctor_n_ch_too_large()
+static void TEST_ctor_n_ch_too_large()
 {
     typedef string_10_t string_t;
 
     string_t s(11, '~');
 }
 
-static void test_ctor_range_too_large()
+static void TEST_ctor_range_too_large()
 {
     typedef string_30_t  string_t;
 
@@ -602,7 +606,7 @@ static void test_ctor_range_too_large()
 
 // `assign()`
 
-static void test_assign_ccs()
+static void TEST_assign_ccs()
 {
     typedef string_10_t string_t;
 
@@ -640,7 +644,7 @@ static void test_assign_ccs()
     }
 }
 
-static void test_assign_ccs_too_large()
+static void TEST_assign_ccs_too_large()
 {
     typedef string_10_t string_t;
 
@@ -649,7 +653,7 @@ static void test_assign_ccs_too_large()
     s.assign(alphabet);
 }
 
-static void test_assign_ccs_n()
+static void TEST_assign_ccs_n()
 {
     typedef string_10_t string_t;
 
@@ -687,7 +691,7 @@ static void test_assign_ccs_n()
     }
 }
 
-static void test_assign_ccs_n_too_large()
+static void TEST_assign_ccs_n_too_large()
 {
     typedef string_10_t string_t;
 
@@ -696,7 +700,7 @@ static void test_assign_ccs_n_too_large()
     s.assign(alphabet, 11);
 }
 
-static void test_assign_s()
+static void TEST_assign_s()
 {
     typedef string_10_t string_t;
 
@@ -736,7 +740,7 @@ static void test_assign_s()
 
 }
 
-static void test_assign_s_pos_n()
+static void TEST_assign_s_pos_n()
 {
     typedef string_10_t string_t;
 
@@ -774,7 +778,7 @@ static void test_assign_s_pos_n()
     }
 }
 
-static void test_assign_s_pos_n_outofrange()
+static void TEST_assign_s_pos_n_outofrange()
 {
     typedef string_10_t string_t;
 
@@ -784,7 +788,7 @@ static void test_assign_s_pos_n_outofrange()
     s2.assign(s1, 4, 0);
 }
 
-static void test_assign_n_ch()
+static void TEST_assign_n_ch()
 {
     typedef string_10_t string_t;
 
@@ -822,7 +826,7 @@ static void test_assign_n_ch()
     }
 }
 
-static void test_assign_n_ch_too_large()
+static void TEST_assign_n_ch_too_large()
 {
     typedef string_10_t string_t;
 
@@ -831,7 +835,7 @@ static void test_assign_n_ch_too_large()
     s.assign(11, 'x');
 }
 
-static void test_assign_range()
+static void TEST_assign_range()
 {
     typedef string_30_t string_t;
 
@@ -856,7 +860,7 @@ static void test_assign_range()
     }
 }
 
-static void test_assign_range_too_large()
+static void TEST_assign_range_too_large()
 {
     typedef string_10_t string_t;
 
@@ -865,7 +869,7 @@ static void test_assign_range_too_large()
     s.assign(&alphabet2[0], &alphabet2[0] + STLSOFT_NUM_ELEMENTS(alphabet2) -1);
 }
 
-static void test_opassign_ccs_too_large()
+static void TEST_opassign_ccs_too_large()
 {
     typedef string_10_t string_t;
 
@@ -879,7 +883,7 @@ static void test_opassign_ccs_too_large()
 
 // `append()`
 
-static void test_append_ccs()
+static void TEST_append_ccs()
 {
     typedef string_10_t string_t;
 
@@ -894,7 +898,7 @@ static void test_append_ccs()
     TEST_MS_EQ("abctuvwxyz", s);
 }
 
-static void test_append_ccs_too_large()
+static void TEST_append_ccs_too_large()
 {
     typedef string_10_t string_t;
 
@@ -903,7 +907,7 @@ static void test_append_ccs_too_large()
     s.append(alphabet + 3);
 }
 
-static void test_append_ccs_n()
+static void TEST_append_ccs_n()
 {
     typedef string_10_t string_t;
 
@@ -918,7 +922,7 @@ static void test_append_ccs_n()
     TEST_MS_EQ("abcdefghij", s);
 }
 
-static void test_append_ccs_n_too_large()
+static void TEST_append_ccs_n_too_large()
 {
     typedef string_10_t string_t;
 
@@ -927,7 +931,7 @@ static void test_append_ccs_n_too_large()
     s.append(alphabet + 3, 8);
 }
 
-static void test_append_s()
+static void TEST_append_s()
 {
     typedef string_10_t string_t;
 
@@ -943,7 +947,7 @@ static void test_append_s()
     TEST_MS_EQ("abcdefghij", s1);
 }
 
-static void test_append_s_too_large()
+static void TEST_append_s_too_large()
 {
     typedef string_10_t string_t;
 
@@ -953,7 +957,7 @@ static void test_append_s_too_large()
     s1.append(s2);
 }
 
-static void test_append_s_pos_n()
+static void TEST_append_s_pos_n()
 {
     typedef string_10_t string_t;
 
@@ -969,7 +973,7 @@ static void test_append_s_pos_n()
     TEST_MS_EQ("abcdefghij", s1);
 }
 
-static void test_append_s_pos_n_too_large()
+static void TEST_append_s_pos_n_too_large()
 {
     typedef string_10_t string_t;
 
@@ -979,7 +983,7 @@ static void test_append_s_pos_n_too_large()
     s1.append(s2, 0, 3);
 }
 
-static void test_append_n_ch()
+static void TEST_append_n_ch()
 {
     typedef string_10_t string_t;
 
@@ -994,7 +998,7 @@ static void test_append_n_ch()
     TEST_MS_EQ("abcdefghij", s);
 }
 
-static void test_append_n_ch_too_large()
+static void TEST_append_n_ch_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1003,7 +1007,7 @@ static void test_append_n_ch_too_large()
     s.append(1, 'k');
 }
 
-static void test_append_range()
+static void TEST_append_range()
 {
     typedef string_10_t string_t;
 
@@ -1018,7 +1022,7 @@ static void test_append_range()
     TEST_MS_EQ("abcdefghij", s);
 }
 
-static void test_append_range_too_large()
+static void TEST_append_range_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1027,7 +1031,7 @@ static void test_append_range_too_large()
     s.append(alphabet + 8, alphabet + 11);
 }
 
-static void test_opaddassign_ccs()
+static void TEST_opaddassign_ccs()
 {
     typedef string_10_t string_t;
 
@@ -1042,7 +1046,7 @@ static void test_opaddassign_ccs()
     TEST_MS_EQ("abctuvwxyz", s);
 }
 
-static void test_opaddassign_ccs_too_large()
+static void TEST_opaddassign_ccs_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1051,7 +1055,7 @@ static void test_opaddassign_ccs_too_large()
     s += alphabet + 3;
 }
 
-static void test_opaddassign_s()
+static void TEST_opaddassign_s()
 {
     typedef string_10_t string_t;
 
@@ -1067,7 +1071,7 @@ static void test_opaddassign_s()
     TEST_MS_EQ("abcdefghij", s1);
 }
 
-static void test_opaddassign_s_too_large()
+static void TEST_opaddassign_s_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1077,7 +1081,7 @@ static void test_opaddassign_s_too_large()
     s1 += s2;
 }
 
-static void test_opaddassign_ch()
+static void TEST_opaddassign_ch()
 {
     typedef string_10_t string_t;
 
@@ -1092,7 +1096,7 @@ static void test_opaddassign_ch()
     TEST_MS_EQ("~~~~~~~~~+", s);
 }
 
-static void test_opaddassign_ch_too_large()
+static void TEST_opaddassign_ch_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1101,7 +1105,7 @@ static void test_opaddassign_ch_too_large()
     s += '+';
 }
 
-static void test_push_back()
+static void TEST_push_back()
 {
     typedef string_10_t string_t;
 
@@ -1114,7 +1118,7 @@ static void test_push_back()
     TEST_MS_EQ("~~~~~~~~++", s);
 }
 
-static void test_push_back_too_large()
+static void TEST_push_back_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1123,7 +1127,7 @@ static void test_push_back_too_large()
     s.push_back('+');
 }
 
-static void test_pop_back()
+static void TEST_pop_back()
 {
     typedef string_10_t string_t;
 
@@ -1168,7 +1172,7 @@ static void test_pop_back()
 
 // modifiers
 
-static void test_reserve()
+static void TEST_reserve()
 {
     typedef string_10_t string_t;
 
@@ -1241,7 +1245,7 @@ static void test_reserve()
     }
 }
 
-static void test_reserve_too_large()
+static void TEST_reserve_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1250,7 +1254,7 @@ static void test_reserve_too_large()
     s.reserve(11);
 }
 
-static void test_swap_1()
+static void TEST_swap_METHOD()
 {
     typedef string_10_t string_t;
 
@@ -1287,7 +1291,81 @@ static void test_swap_1()
     }
 }
 
-static void test_swap_2()
+static void TEST_swap_BY_ADL()
+{
+    typedef string_10_t string_t;
+
+    {
+        string_t s1;
+        string_t s2;
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+
+        swap(s2, s1);
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+    }
+
+    {
+        string_t    s1("abc");
+        string_t    s2;
+
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
+
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
+
+        swap(s1, s2);
+
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
+
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
+    }
+}
+
+static void TEST_swap_stlsoft()
+{
+    typedef string_10_t string_t;
+
+    {
+        string_t s1;
+        string_t s2;
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+
+        stlsoft::swap(s2, s1);
+
+        TEST_BOOLEAN_TRUE(s1.empty());
+        TEST_BOOLEAN_TRUE(s2.empty());
+    }
+
+    {
+        string_t    s1("abc");
+        string_t    s2;
+
+        TEST_INT_EQ(3u, s1.size());
+        TEST_MS_EQ("abc", s1);
+
+        TEST_INT_EQ(0u, s2.size());
+        TEST_MS_EQ("", s2);
+
+        stlsoft::swap(s1, s2);
+
+        TEST_INT_EQ(0u, s1.size());
+        TEST_MS_EQ("", s1);
+
+        TEST_INT_EQ(3u, s2.size());
+        TEST_MS_EQ("abc", s2);
+    }
+}
+
+static void TEST_swap_2()
 {
     typedef string_10_t string_t;
 
@@ -1324,8 +1402,10 @@ static void test_swap_2()
     }
 }
 
-static void test_swap_3()
+static void TEST_swap_3()
 {
+    using std::swap;
+
     typedef string_10_t string_t;
 
     {
@@ -1335,7 +1415,7 @@ static void test_swap_3()
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
 
-        std::swap(s1, s2);
+        swap(s1, s2);
 
         TEST_BOOLEAN_TRUE(s1.empty());
         TEST_BOOLEAN_TRUE(s2.empty());
@@ -1351,7 +1431,7 @@ static void test_swap_3()
         TEST_INT_EQ(0u, s2.size());
         TEST_MS_EQ("", s2);
 
-        std::swap(s1, s2);
+        swap(s1, s2);
 
         TEST_INT_EQ(0u, s1.size());
         TEST_MS_EQ("", s1);
@@ -1361,7 +1441,7 @@ static void test_swap_3()
     }
 }
 
-static void test_resize()
+static void TEST_resize()
 {
     typedef string_10_t string_t;
 
@@ -1407,7 +1487,7 @@ static void test_resize()
     }
 }
 
-static void test_resize_too_large()
+static void TEST_resize_too_large()
 {
     typedef string_10_t string_t;
 
@@ -1416,7 +1496,7 @@ static void test_resize_too_large()
     s.resize(11);
 }
 
-static void test_clear()
+static void TEST_clear()
 {
     typedef string_10_t string_t;
 
@@ -1445,7 +1525,7 @@ static void test_clear()
 // attributes
 
 
-static void test_max_size()
+static void TEST_max_size()
 {
     {
         typedef string_10_t string_t;
@@ -1460,7 +1540,7 @@ static void test_max_size()
     }
 }
 
-static void test_capacity()
+static void TEST_capacity()
 {
     {
         typedef string_10_t string_t;
@@ -1569,7 +1649,7 @@ static void TEST_compare_WCHAR()
     TEST_INT_LT(0, w_ax.compare(w_ay));
 }
 
-static void test_contains_1()
+static void TEST_contains_1()
 {
     typedef string_30_t string_t;
 
@@ -1642,7 +1722,7 @@ static void test_contains_1()
     }
 }
 
-static void test_contains_2()
+static void TEST_contains_2()
 {
     typedef string_30_t string_t;
 
@@ -1718,7 +1798,7 @@ static void test_contains_2()
     }
 }
 
-static void test_contains_3()
+static void TEST_contains_3()
 {
     typedef string_30_t string_t;
 
@@ -1748,7 +1828,7 @@ static void test_contains_3()
     }
 }
 
-static void test_starts_with_1()
+static void TEST_starts_with_1()
 {
     typedef string_30_t string_t;
 
@@ -1821,7 +1901,7 @@ static void test_starts_with_1()
     }
 }
 
-static void test_starts_with_2()
+static void TEST_starts_with_2()
 {
     typedef string_30_t string_t;
 
@@ -1894,7 +1974,7 @@ static void test_starts_with_2()
     }
 }
 
-static void test_ends_with_1()
+static void TEST_ends_with_1()
 {
     typedef string_30_t string_t;
 
@@ -1968,7 +2048,7 @@ static void test_ends_with_1()
     }
 }
 
-static void test_ends_with_2()
+static void TEST_ends_with_2()
 {
     typedef string_30_t string_t;
 
@@ -2045,7 +2125,7 @@ static void test_ends_with_2()
 
 // accessors
 
-static void test_at()
+static void TEST_at()
 {
     typedef string_10_t string_t;
 
@@ -2078,7 +2158,7 @@ static void test_at()
     }
 }
 
-static void test_at_out_of_range_1()
+static void TEST_at_out_of_range_1()
 {
     typedef string_10_t string_t;
 
@@ -2087,7 +2167,7 @@ static void test_at_out_of_range_1()
     s.at(0u);
 }
 
-static void test_at_out_of_range_2()
+static void TEST_at_out_of_range_2()
 {
     typedef string_10_t string_t;
 
@@ -2096,7 +2176,7 @@ static void test_at_out_of_range_2()
     s.at(4u);
 }
 
-static void test_copy()
+static void TEST_copy()
 {
     typedef stlsoft::basic_static_string<char, 26> string_t;
 
@@ -2185,7 +2265,7 @@ static void test_copy()
     }
 }
 
-static void test_substr()
+static void TEST_substr()
 {
     typedef string_10_t string_t;
 
@@ -2201,7 +2281,7 @@ static void test_substr()
     TEST_MS_EQ(s1, s5);
 }
 
-static void test_substr_throw()
+static void TEST_substr_throw()
 {
     typedef string_10_t string_t;
 
@@ -2267,7 +2347,7 @@ static void TEST_overlong_resize()
 
 // operators : insertion
 
-static void test_insertion_1()
+static void TEST_insertion_1()
 {
     typedef string_10_t string_t;
 
@@ -2302,7 +2382,7 @@ static void test_insertion_1()
     }
 }
 
-static void test_insertion_2()
+static void TEST_insertion_2()
 {
     typedef string_10_t string_t;
 
@@ -2324,7 +2404,7 @@ static void test_insertion_2()
     }
 }
 
-static void test_insertion_3()
+static void TEST_insertion_3()
 {
     typedef string_10_t string_t;
 
@@ -2349,7 +2429,7 @@ static void test_insertion_3()
     }
 }
 
-static void test_insertion_4()
+static void TEST_insertion_4()
 {
     typedef string_10_t string_t;
 
@@ -2424,7 +2504,7 @@ static void test_insertion_4()
 
 // shims : sas
 
-static void test_string_access_shims()
+static void TEST_string_access_shims()
 {
     typedef string_10_t string_t;
     typedef wstring_10_t wstring_t;
