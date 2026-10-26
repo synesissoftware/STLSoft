@@ -1,8 +1,7 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.12.0-alpha2 - 30th October 2026
-
+## 1.12.0-alpha1 - 30th October 2026
 
 * fixes:
   * `swap()` semantics clarified and standardised, to adherence to pattern `{ using std::swap; swap(x, y); }`;
