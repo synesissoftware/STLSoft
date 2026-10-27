@@ -117,10 +117,11 @@ if(MFC_FOUND)
 	# static CRT (**MSVC_USE_MT**), in which case static MFC is required.
 	#
 	# **CMAKE_MFC_FLAG** / **_AFXDLL** are applied only to MFC-consuming
-	# targets (see **test/unit/mfcstl** and **test/unit/versions**). Setting
-	# them project-wide would force every subsequent MSVC executable to link
-	# MFC. Without them on those targets, `find_package(MFC)` can succeed
-	# while mfcstl tests fail to link — the historical GHA failure mode.
+	# targets (**test/unit/mfcstl**, **test/unit/versions**, and the scratch
+	# versions programs that include **mfcstl**). Setting them project-wide
+	# would force every subsequent MSVC executable to link MFC. Without them
+	# on those targets, `find_package(MFC)` can succeed while mfcstl tests
+	# fail to link — the historical GHA failure mode.
 
 	if(MSVC_USE_MT)
 
