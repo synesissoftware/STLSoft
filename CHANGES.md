@@ -3,12 +3,22 @@
 
 ## 1.11.3 - 27th October 2026
 
-* Defined `HAS_<Pkg>` and `HAS_<PKG>` when **cstring**, **shwild**, or **UNIXem** is detected, and stopped defining `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM`;
-* **woad** is now an opt-in dependency: pass `--use-woad` to **prepare_cmake.sh** (`USE_WOAD=ON`) to `find_package(woad 0.2.0)`, define `HAS_woad` / `HAS_WOAD`, and link `woad::woad` into the scratch version programs;
-* scratch version programs:
-  * **versions.iostreams** — `print_efferent_dependency_()` now has the functionality of its **versions.stdio** counterpart (Diagnosticism-rendered version string, `0x%08x` VER values, stream state restored);
-  * **versions.iostreams** — colours (via **woad**, when enabled): magenta section headings (**STLSoft libraries**, **Subprojects**, **Efferent dependencies**), blue names, green versions and VER values, and cyan macro names, across subproject, efferent-dependency, language, and compiler lines; output is uncoloured when **woad** is not in use;
-  * **versions.format** and **versions.iostreams** — report **ACESTL**, **ATLSTL**, **COMSTL**, and **MFCSTL** versions, ordered consistently;
+* compatibility:
+  * Subproject root headers require **STLSoft** 1.11.2 or later: **include/acestl/acestl.hpp**, **include/atlstl/atlstl.hpp**, **include/comstl/comstl.h**, **include/inetstl/inetstl.h**, **include/mfcstl/mfcstl.hpp**, **include/platformstl/platformstl.h**, **include/rangelib/rangelib.hpp**, **include/unixstl/unixstl.h**, **include/winstl/winstl.h**, and **include/wtlstl/wtlstl.hpp**;
+* behaviour:
+  * **include/stlsoft/string/c_string/strnicmp.h** and **include/stlsoft/string/c_string/strnistrn.h** — ASCII letters fold by 32, independent of the C locale, and every other byte is left unchanged; `wchar_t` units outside 0–127 still use `towupper()`. Non-ASCII bytes are no longer folded by the current locale. The needle's first unit in `stlsoft_C_strnistrn()` / `stlsoft_C_wcsnistrn()` is folded once;
+  * **include/stlsoft/string/c_string/strnchr.h** — `memchr()` / `wmemchr()` when the search value is in 0–127; any other value stays on the scalar loop, so a high byte still compares as a promoted `char`;
+  * **include/stlsoft/string/c_string/strnstrn.h** — the first unit is found with `memchr()` / `wmemchr()` and the remainder compared with `memcmp()` / `wmemcmp()`;
+* build:
+  * CMake publishes `HAS_<Pkg>` and `HAS_<PKG>` for a detected Synesis package other than **STLSoft** (a dot in the package name becomes an underscore): **cstring**, **shwild**, and **UNIXem** when found, **xTests** when tests are enabled, and **woad** when opted in. `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM` are no longer defined. **ACE**, **ATL**, **COM**, and **MFC** keep `STLSOFT_HAS_*`; `STLSOFT_HAS_COM` is defined on Windows so **COMSTL** is reported;
+  * **woad** 0.2.0 is opt-in. **`--use-woad`** on **prepare_cmake.sh** sets `USE_WOAD`, `find_package`s **woad**, defines `HAS_woad` / `HAS_WOAD`, and links `woad::woad` into the scratch version programs;
+* testing:
+  * **test/performance/stlsoft/conversion/integer_to_string/main.cpp** uses one shared schedule of 2 warmups, 1 loop, and 1,000,000 iterations (the previous 4 × 100 × 1,000,000 schedule, repeated in every section, took about ten minutes);
+  * **test.performance.stlsoft.string.c_string** times the counted-string functions; the measurements and the choice of `memchr` / ASCII fold are recorded in **strategy/performance/C_STRING.md**;
+  * **test.scratch.versions.stdio** and **test.scratch.versions.iostreams** share a layout: compiler lines, a **Subprojects** block, and an **Efferent dependencies** block for whichever of **cstring**, **Diagnosticism**, **shwild**, **UNIXem**, **woad**, and **xTests** is visible (the version string is rendered by **Diagnosticism** when `HAS_Diagnosticism` is set). **versions.iostreams** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, and is plain text otherwise. **versions.format** and **versions.iostreams** report **ACESTL**, **ATLSTL**, **COMSTL**, and **MFCSTL** when those libraries are enabled; **versions.stdio** reports **COMSTL** on Windows. The scratch targets link **xTests**, and **versions.iostreams** / **versions.format** receive the same per-target MFC settings as **test.unit.versions**;
+* documentation and boilerplate:
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.3**; **INSTALL.md** archive examples name **STLSoft-1.11.3** and document **`--use-woad`**;
+  * File-header fields on the touched headers align to column 13, including the declaration layout of **include/platformstl/filesystem/path.hpp**;
 
 
 ## 1.11.2 - 25th October 2026
@@ -254,7 +264,7 @@
 * **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS (`__APPLE__`); added **test.unit.stlsoft.api.external.string**;
 
 
-## 1.11.1-rc5 - 9th August 2026
+## 1.11.1-rc5 - 4th August 2026
 
 * Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);
 * Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;

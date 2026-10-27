@@ -52,18 +52,26 @@ Released 25th October 2026 (`17526622`). The planned test-coverage mission and t
 
 ### 1.11.3
 
-Open increment. On the **STLSoft** clone, `dev` / `1_12` already stamp `_STLSOFT_VER_1_11_3` (27th October 2026) with an empty **CHANGES.md** section.
+Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-script / CI review, and the Resizeable Buffer follow-ups moved to **1.11.4**.
+
+* [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
+* [x] ~~~`HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages; drop `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM`~~~ - ✅;
+* [x] ~~~Opt-in **woad** (`--use-woad`) and coloured **test.scratch.versions.iostreams**~~~ - ✅;
+* [x] ~~~ASCII case-fold and `memchr` / `memcmp` in the counted-string functions; **strategy/performance/C_STRING.md**~~~ - ✅;
+* [x] ~~~Subproject root headers require **STLSoft** 1.11.2 or later~~~ - ✅;
+
+
+### 1.11.4
+
+Carried forward from **1.11.3** (not in that release):
 
 * [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
-* [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
 * [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, and the unit tests. Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
 * [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
-
-Must resolve before finalising the **1.11.3** release:
-
 * [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
 * [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
 * [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
@@ -75,21 +83,6 @@ Must resolve before finalising the **1.11.3** release:
   * [ ] **P1** — several winstl `system_traits` `rb` overloads (e.g. `get_module_filename`, `get_home_directory`, `expand_environment_strings`) always perform a **second** fill API call even when the first call already succeeded with `rb.size() >= cchRequired`; prefer returning the first-call result when the buffer was already large enough (no behaviour change on the normative path) — measure/guard with existing unit coverage;
   * [ ] **P2** — unixstl `filesystem_traits` `rb` path helpers (notably relative `get_full_path_name(rb)`) **query twice** and/or allocate heavy scratch (`path_max()`-sized `auto_buffer`, large stack cwd) — reduce duplicate work (compute once into scratch then copy, or reuse probe data) without changing the public contract; add/extend component tests under **test/component/unixstl/filesystem/filesystem_traits/**;
   * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
-
-
-### 1.11.3
-
-* [ ] Remove defunct compilers;
-* [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
-* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
-* [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
-* [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
-* [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
-
-
-### 1.11.4
-
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 * [ ] Existing test consistency (deep analysis);
 
@@ -103,7 +96,7 @@ Must resolve before finalising the **1.11.3** release:
 ### 1.11.6
 
 * [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md):
-  * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare; full pickup brief under **1.11.3** Resizeable Buffer **G1**;
+  * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare; full pickup brief under **1.11.4** Resizeable Buffer **G1**;
 
 
 ### 1.11.7
@@ -142,7 +135,7 @@ Must resolve before finalising the **1.11.3** release:
 
 Misc:
 * [ ] Bring in **include/stlsoft/string/trim_functions.h** and **test/unit/stlsoft/string/trim_functions** from `mwsis/trim_functions` (on the **STLSoft** clone);
-* [ ] Bring in the `memchr` / `memcmp` and ASCII case-fold performance work for `strnchr`, `strnicmp`, `strnistrn`, and `strnstrn`, plus **test.performance.stlsoft.string.c_string**, from `mwsis/mem-fns` (on the **STLSoft** clone). The `strnistrn` correctness fix is already in **1.11.2**;
+* [x] ~~~Bring in the `memchr` / `memcmp` and ASCII case-fold performance work for `strnchr`, `strnicmp`, `strnistrn`, and `strnstrn`, plus **test.performance.stlsoft.string.c_string**~~~ - ✅;
 * [ ] Replace the duplicated ASCII case-fold helpers with one shared pair: `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()`, and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`;
 
 Normalise C API (and related C-facing) identifier prefixes. **House rule**
