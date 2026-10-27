@@ -4,7 +4,7 @@
  * Purpose: Root header for the STLSoft implementation of RangeLib.
  *
  * Created: 12th October 2004
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -184,8 +184,8 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a0181
-# error This version of the RangeLib libraries requires STLSoft version 1.10.1-beta1, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the RangeLib libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////

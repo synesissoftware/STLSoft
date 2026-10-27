@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -203,8 +203,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1-rc9, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the UNIXSTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -805,9 +805,9 @@ typedef us_int32_t                                          int32_t;        /*!<
 typedef us_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
 typedef us_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef us_int64_t                                         int64_t;        /*!< 64-bit integer */
- typedef us_sint64_t                                        sint64_t;       /*!< 64-bit signed integer */
- typedef us_uint64_t                                        uint64_t;       /*!< 64-bit unsigned integer */
+typedef us_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef us_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef us_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /* typedef us_short_t                                          short_t; */        /*!< short integer */
 typedef us_int_t                                            int_t;          /*!< integer */

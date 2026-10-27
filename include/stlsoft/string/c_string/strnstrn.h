@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
  *
  * Created: 1st October 2020
- * Updated: 23rd October 2026
+ * Updated: 27th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

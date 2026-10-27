@@ -2363,10 +2363,10 @@ typedef STLSOFT_UI64_T_BASE_TYPE                            STLSOFT_UI64_T_BASE_
 
 /* ptr-bit */
 #ifdef STLSOFT_SPTR_T_BASE_TYPE
- typedef STLSOFT_SPTR_T_BASE_TYPE                           STLSOFT_SPTR_T_BASE_TYPE_;
+typedef STLSOFT_SPTR_T_BASE_TYPE                            STLSOFT_SPTR_T_BASE_TYPE_;
 #endif
 #ifdef STLSOFT_UPTR_T_BASE_TYPE
- typedef STLSOFT_UPTR_T_BASE_TYPE                           STLSOFT_UPTR_T_BASE_TYPE_;
+typedef STLSOFT_UPTR_T_BASE_TYPE                            STLSOFT_UPTR_T_BASE_TYPE_;
 #endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

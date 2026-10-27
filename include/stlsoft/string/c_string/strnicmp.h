@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
  * Created: 25th November 2020
- * Updated: 23rd October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
