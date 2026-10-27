@@ -1,6 +1,11 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.3 - 27th October 2026
+
+* Defined `HAS_<Pkg>` and `HAS_<PKG>` when **cstring**, **shwild**, or **UNIXem** is detected, and stopped defining `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM`;
+
+
 ## 1.11.2 - 25th October 2026
 
 * fixes:

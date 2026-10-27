@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  10th October 2026
+# Updated:  27th October 2026
 #
 # ######################################################################## #
 
@@ -240,7 +240,12 @@ if(NOT (NO_SHWILD))
 
 			message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
 
-			add_compile_definitions(XTESTS_USE_SHWILD)
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
 		endif(shwild_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -261,7 +266,10 @@ if(NOT (NO_CSTRING))
 
 			message("-- CMake package cstring found (version ${cstring_VERSION}; ${cstring_REQUIRED_VERSION_} requested)")
 
-			add_compile_definitions(STLSOFT_HAS_CSTRING)
+			add_compile_definitions(
+				HAS_cstring
+				HAS_CSTRING
+			)
 		endif(cstring_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -280,8 +288,12 @@ if((USE_UNIXEM) AND (WIN32))
 
 		message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
 
+		add_compile_definitions(
+			HAS_UNIXem
+			HAS_UNIXEM
+		)
+
 		add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
-		add_compile_definitions(STLSOFT_HAS_UNIXEM)
 	endif()
 endif()
 
@@ -296,6 +308,11 @@ if(BUILD_TESTING)
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 
