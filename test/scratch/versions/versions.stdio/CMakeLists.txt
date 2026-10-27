@@ -6,3 +6,10 @@ if(HAS_woad)
 		woad::woad
 	)
 endif()
+
+if(xTests_FOUND)
+
+	target_link_libraries(test.scratch.versions.stdio
+		xTests::core
+	)
+endif()
