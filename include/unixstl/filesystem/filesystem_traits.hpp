@@ -1757,7 +1757,7 @@ public:
     }
 
 private:
-#if _STLSOFT_VER >= 0x010c0000
+#if _STLSOFT_VER >= 0x010C0080
 
 # error Sort get_root_len_() properly
 #endif

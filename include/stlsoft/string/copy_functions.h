@@ -4,7 +4,7 @@
  * Purpose: String copy functions.
  *
  * Created: 29th September 2016
- * Updated: 13th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_REVISION   7
-# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       18
+# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -558,7 +558,7 @@ STLSoft_C_string_copy_with_nul_w(
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
-#endif /* STLSOFT_NO_NAMESPACE */
+#endif /* !STLSOFT_NO_NAMESPACE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
