@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -186,8 +186,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the PlatformSTL libraries requires STLSoft version 1.10.1-beta26, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the PlatformSTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 
