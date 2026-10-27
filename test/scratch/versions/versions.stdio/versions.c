@@ -72,7 +72,6 @@ print_efferent_dependency_(
             stm
         ,   "\t"
             "%s: %s (%s = 0x%08x)\n"
-        ,   prefix
         ,   name
         ,   buffer
         ,   macroname
