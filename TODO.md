@@ -143,6 +143,7 @@ Must resolve before finalising the **1.11.3** release:
 Misc:
 * [ ] Bring in **include/stlsoft/string/trim_functions.h** and **test/unit/stlsoft/string/trim_functions** from `mwsis/trim_functions` (on the **STLSoft** clone);
 * [ ] Bring in the `memchr` / `memcmp` and ASCII case-fold performance work for `strnchr`, `strnicmp`, `strnistrn`, and `strnstrn`, plus **test.performance.stlsoft.string.c_string**, from `mwsis/mem-fns` (on the **STLSoft** clone). The `strnistrn` correctness fix is already in **1.11.2**;
+* [ ] Replace the duplicated ASCII case-fold helpers with one shared pair: `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()`, and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`;
 
 Normalise C API (and related C-facing) identifier prefixes. **House rule**
 (documented in **c-cpp-standards** → *STLSoft C API identifier prefixes*):

@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
  *
  * Created: 1st October 2020
- * Updated: 26th October 2026
+ * Updated: 27th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -69,6 +69,15 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -99,24 +108,32 @@ stlsoft_C_strnstrn(
     }
     else
     {
-        for (; n1 >= n2; --n1, ++s1)
+        unsigned char const ch0 = (unsigned char)s2[0];
+
+        /* First byte via memchr. The remaining n2-1 bytes via memcmp. */
+        while (n1 >= n2)
         {
-            if (*s1 == *s2)
+            size_t const    span = n1 - n2 + 1;
+            char const*     hit;
+
+            hit = STLSOFT_C_CAST(char const*, STLSOFT_NS_GLOBAL(memchr)(s1, ch0, span));
+
+            if (ss_nullptr_k == hit)
             {
-                size_t i;
+                break;
+            }
 
-                for (i = 1; i != n2; ++i)
-                {
-                    if (s1[i] != s2[i])
-                    {
-                        break;
-                    }
-                }
+            if (1 == n2 ||
+                0 == STLSOFT_NS_GLOBAL(memcmp)(hit + 1, s2 + 1, n2 - 1))
+            {
+                return hit;
+            }
 
-                if (i == n2)
-                {
-                    return s1;
-                }
+            {
+                size_t const skipped = STLSOFT_C_CAST(size_t, hit - s1) + 1;
+
+                s1 += skipped;
+                n1 -= skipped;
             }
         }
 
@@ -149,24 +166,32 @@ stlsoft_C_wcsnstrn(
     }
     else
     {
-        for (; n1 >= n2; --n1, ++s1)
+        wchar_t const ch0 = s2[0];
+
+        /* First unit via wmemchr. The remaining n2-1 units via wmemcmp. */
+        while (n1 >= n2)
         {
-            if (*s1 == *s2)
+            size_t const        span = n1 - n2 + 1;
+            wchar_t const*      hit;
+
+            hit = STLSOFT_NS_GLOBAL(wmemchr)(s1, ch0, span);
+
+            if (ss_nullptr_k == hit)
             {
-                size_t i;
+                break;
+            }
 
-                for (i = 1; i != n2; ++i)
-                {
-                    if (s1[i] != s2[i])
-                    {
-                        break;
-                    }
-                }
+            if (1 == n2 ||
+                0 == STLSOFT_NS_GLOBAL(wmemcmp)(hit + 1, s2 + 1, n2 - 1))
+            {
+                return hit;
+            }
 
-                if (i == n2)
-                {
-                    return s1;
-                }
+            {
+                size_t const skipped = STLSOFT_C_CAST(size_t, hit - s1) + 1;
+
+                s1 += skipped;
+                n1 -= skipped;
             }
         }
 
