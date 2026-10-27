@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::string_begins_with.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,8 +40,7 @@ namespace
     static void TEST_string_begins_with_LONGER_PREFIX();
     static void TEST_string_begins_with_CASE_SENSITIVE();
     static void TEST_string_begins_with_WCHAR();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,8 +167,7 @@ static void TEST_string_begins_with_WCHAR()
     TEST_BOOLEAN_FALSE(begins_case(L"abc"));
     TEST_BOOLEAN_TRUE(begins_case(L"Abc"));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

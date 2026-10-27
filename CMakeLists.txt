@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  10th October 2026
+# Updated:  27th October 2026
 #
 # ######################################################################## #
 
@@ -106,16 +106,22 @@ if(ATL_FOUND)
 	add_compile_definitions(STLSOFT_HAS_ATL)
 endif(ATL_FOUND)
 
+if(WIN32)
+
+	add_compile_definitions(STLSOFT_HAS_COM)
+endif(WIN32)
+
 if(MFC_FOUND)
 
 	# Shared MFC (/MD + _AFXDLL) unless the project is configured for the
 	# static CRT (**MSVC_USE_MT**), in which case static MFC is required.
 	#
 	# **CMAKE_MFC_FLAG** / **_AFXDLL** are applied only to MFC-consuming
-	# targets (see **test/unit/mfcstl** and **test/unit/versions**). Setting
-	# them project-wide would force every subsequent MSVC executable to link
-	# MFC. Without them on those targets, `find_package(MFC)` can succeed
-	# while mfcstl tests fail to link — the historical GHA failure mode.
+	# targets (**test/unit/mfcstl**, **test/unit/versions**, and the scratch
+	# versions programs that include **mfcstl**). Setting them project-wide
+	# would force every subsequent MSVC executable to link MFC. Without them
+	# on those targets, `find_package(MFC)` can succeed while mfcstl tests
+	# fail to link — the historical GHA failure mode.
 
 	if(MSVC_USE_MT)
 
@@ -173,6 +179,7 @@ option(BUILD_TESTING "Build tests" ON)
 # - cstring - facilitates some C tests;
 # - shwild - enhances xTests for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
+# - woad - opt-in (USE_WOAD / --use-woad); reported by the scratch versions programs;
 
 
 # ############################
@@ -240,7 +247,12 @@ if(NOT (NO_SHWILD))
 
 			message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
 
-			add_compile_definitions(XTESTS_USE_SHWILD)
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
 		endif(shwild_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -261,7 +273,10 @@ if(NOT (NO_CSTRING))
 
 			message("-- CMake package cstring found (version ${cstring_VERSION}; ${cstring_REQUIRED_VERSION_} requested)")
 
-			add_compile_definitions(STLSOFT_HAS_CSTRING)
+			add_compile_definitions(
+				HAS_cstring
+				HAS_CSTRING
+			)
 		endif(cstring_FOUND)
 	endif(BUILD_TESTING)
 endif()
@@ -280,9 +295,40 @@ if((USE_UNIXEM) AND (WIN32))
 
 		message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
 
+		add_compile_definitions(
+			HAS_UNIXem
+			HAS_UNIXEM
+		)
+
 		add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
-		add_compile_definitions(STLSOFT_HAS_UNIXEM)
 	endif()
+endif()
+
+
+# ############################
+# woad
+#
+# Opt-in (USE_WOAD / --use-woad): used only by scratch programs.
+
+set(HAS_woad OFF)
+
+if(USE_WOAD)
+
+	if(BUILD_TESTING)
+
+		set(woad_REQUIRED_VERSION_ 0.2.0)
+
+		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
+
+		message("-- CMake package woad found (version ${woad_VERSION}; ${woad_REQUIRED_VERSION_} requested)")
+
+		set(HAS_woad ON)
+
+		add_compile_definitions(
+			HAS_woad
+			HAS_WOAD
+		)
+	endif(BUILD_TESTING)
 endif()
 
 
@@ -291,11 +337,16 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26.4)
+	set(xTests_REQUIRED_VERSION_ 0.28)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      58
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -142,9 +142,9 @@
 # define _ACESTL_VER_1_0_4     0x00010004  /*!< Version 1.0.4 */
 # define _ACESTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 (STLSoft 1.9.1) */
 # define _ACESTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 (STLSoft 1.9.25) */
-# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1 beta 1 (STLSoft 1.10.1 b1) */
-# define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1 beta 2 (STLSoft 1.10.1 beta 26) */
-# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1 alpha 8) */
+# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1-beta1 (STLSoft 1.10.1 b1) */
+# define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1-beta2 (STLSoft 1.10.1-beta26) */
+# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1-alpha8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
@@ -198,8 +198,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the ACESTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the ACESTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -377,7 +377,7 @@
  */
 
 #ifndef ACESTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::acestl */
 /** The \c acestl namespace contains all components
@@ -498,9 +498,9 @@ typedef as_int32_t          int32_t;            //!< 32-bit integer
 typedef as_sint32_t         sint32_t;           //!< 32-bit signed integer
 typedef as_uint32_t         uint32_t;           //!< 32-bit unsigned integer
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef as_int64_t         int64_t;            //!< 64-bit integer
- typedef as_sint64_t        sint64_t;           //!< 64-bit signed integer
- typedef as_uint64_t        uint64_t;           //!< 64-bit unsigned integer
+typedef as_int64_t          int64_t;            //!< 64-bit integer
+typedef as_sint64_t         sint64_t;           //!< 64-bit signed integer
+typedef as_uint64_t         uint64_t;           //!< 64-bit unsigned integer
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 //typedef as_short_t          short_t;            //!< short integer
 typedef as_int_t            int_t;              //!< integer
@@ -566,7 +566,7 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef ACESTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace acestl
 # else

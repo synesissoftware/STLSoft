@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 12th May 2003
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    4
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     64
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -125,9 +125,9 @@
 #define _WTLSTL_VER_1_1_2       0x00010102  /*!< Version 1.1.2 */
 #define _WTLSTL_VER_1_2_1       0x00010201  /*!< Version 1.2.1 */
 #define _WTLSTL_VER_1_2_2       0x00010202  /*!< Version 1.2.2 (with STLSoft 1.9.25) */
-#define _WTLSTL_VER_1_2_3       0x00010203  /*!< Version 1.2.3 (with STLSoft 1.10.1 b1) */
-#define _WTLSTL_VER_1_2_4       0x00010204  /*!< Version 1.2.4 (with STLSoft 1.10.1 b 26) */
-#define _WTLSTL_VER_1_2_5       0x00010205  /*!< Version 1.2.5 (with STLSoft 1.11.1 alpha 8) */
+#define _WTLSTL_VER_1_2_3       0x00010203  /*!< Version 1.2.3 (with STLSoft 1.10.1-beta1) */
+#define _WTLSTL_VER_1_2_4       0x00010204  /*!< Version 1.2.4 (with STLSoft 1.10.1-beta26) */
+#define _WTLSTL_VER_1_2_5       0x00010205  /*!< Version 1.2.5 (with STLSoft 1.11.1-alphaß8) */
 
 #define _WTLSTL_VER_MAJOR       1
 #define _WTLSTL_VER_MINOR       2
@@ -219,8 +219,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the WTLSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the WTLSTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////

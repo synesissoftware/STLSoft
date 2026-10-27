@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for special_string_instance::equal.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,8 +61,7 @@ namespace
     static void TEST_equal_LENGTH_MISMATCH();
     static void TEST_equal_EMBEDDED_NUL();
     static void TEST_equal_WCHAR();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,8 +266,7 @@ static void TEST_equal_WCHAR()
     TEST_BOOLEAN_FALSE(wabc.equal(L"ab"));
     TEST_BOOLEAN_FALSE(wabc.equal(L"abcd"));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

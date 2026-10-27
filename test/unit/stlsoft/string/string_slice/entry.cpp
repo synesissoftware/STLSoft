@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *
  * Created: 19th February 2010
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -187,29 +187,29 @@ static void test_constructed_state()
     stlsoft::string_slice<wchar_t>  slice_w;
 
     TEST_INT_EQ(0u, slice.len);
-    TEST_PTR_EQ(NULL, slice.ptr);
+    TEST_PTR_NULL(slice.ptr);
     TEST_INT_EQ(0u, slice_w.len);
-    TEST_PTR_EQ(NULL, slice_w.ptr);
+    TEST_PTR_NULL(slice_w.ptr);
 
     TEST_INT_EQ(0u, ::stlsoft::c_str_len_a(slice));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data_a(slice));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data_a(slice));
     TEST_INT_EQ(0u, ::stlsoft::c_str_len_w(slice_w));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data_w(slice_w));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data_w(slice_w));
 
     TEST_INT_EQ(0u, ::stlsoft::c_str_len(slice));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data(slice));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data(slice));
     TEST_INT_EQ(0u, ::stlsoft::c_str_len(slice_w));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data(slice_w));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data(slice_w));
 
     TEST_INT_EQ(0u, ::stlsoft::c_str_len_a(&slice));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data_a(&slice));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data_a(&slice));
     TEST_INT_EQ(0u, ::stlsoft::c_str_len_w(&slice_w));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data_w(&slice_w));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data_w(&slice_w));
 
     TEST_INT_EQ(0u, ::stlsoft::c_str_len(&slice));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data(&slice));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data(&slice));
     TEST_INT_EQ(0u, ::stlsoft::c_str_len(&slice_w));
-    TEST_PTR_NE(NULL, ::stlsoft::c_str_data(&slice_w));
+    TEST_PTR_NOT_NULL(::stlsoft::c_str_data(&slice_w));
 }
 
 static void test_constructed_subslice_1()
@@ -338,9 +338,9 @@ static void test_string_access_shims_multibyte_3()
     wchar_t const*  ptr_w   =   stlsoft::c_str_data_w(slice_w);
 
     TEST_INT_EQ(0u, len);
-    TEST_PTR_NE(NULL, ptr);
+    TEST_PTR_NOT_NULL(ptr);
     TEST_INT_EQ(0u, len_w);
-    TEST_PTR_NE(NULL, ptr_w);
+    TEST_PTR_NOT_NULL(ptr_w);
 }
 
 static void test_equality_operator_1()

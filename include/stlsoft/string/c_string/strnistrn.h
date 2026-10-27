@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnistrn.h
+ * File:    stlsoft/string/c_string/strnistrn.h
  *
- * Purpose:     Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
+ * Purpose: Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
  *
- * Created:     1st October 2020
- * Updated:     11th March 2024
+ * Created: 1st October 2020
+ * Updated: 27th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,14 +69,57 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>
-#endif /* !STLSOFT_INCL_H_CTYPE */
 #ifndef STLSOFT_INCL_H_WCTYPE
 # define STLSOFT_INCL_H_WCTYPE
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helpers
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/* ASCII letters fold by 32. Every other byte is returned unchanged. */
+/* Duplicate of stlsoft_C_strnicmp_fold_char_m_(). */
+STLSOFT_INLINE
+int
+stlsoft_C_strnistrn_fold_char_m_(
+    unsigned char ch
+)
+{
+    if ('a' <= ch &&
+        ch <= 'z')
+    {
+        ch = (unsigned char)(ch - ('a' - 'A'));
+    }
+
+    return (int)ch;
+}
+
+/* ASCII letters fold by 32. Units outside 0-127 use towupper. */
+/* Duplicate of stlsoft_C_strnicmp_fold_char_w_(). */
+STLSOFT_INLINE
+int
+stlsoft_C_strnistrn_fold_char_w_(
+    wchar_t ch
+)
+{
+    if (L'a' <= ch &&
+        ch <= L'z')
+    {
+        return (int)ch - (L'a' - L'A');
+    }
+
+    if ((unsigned long)ch <= 127ul)
+    {
+        return (int)ch;
+    }
+
+    return (int)STLSOFT_NS_GLOBAL(towupper)(ch);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,30 +149,41 @@ stlsoft_C_strnistrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2 ||
-            STLSOFT_NS_GLOBAL(toupper)(*s1) == STLSOFT_NS_GLOBAL(toupper)(*s2))
-        {
-            size_t i;
+        unsigned char const ch0 =   (unsigned char)s2[0];
+        int const           fc0 =   stlsoft_C_strnistrn_fold_char_m_(ch0);
 
-            for (i = 1; i != n2; ++i)
+        for (; n1 >= n2; --n1, ++s1)
+        {
+            unsigned char const h0 = (unsigned char)s1[0];
+
+            if (h0 == ch0 ||
+                stlsoft_C_strnistrn_fold_char_m_(h0) == fc0)
             {
-                if (STLSOFT_NS_GLOBAL(toupper)(*s1) != STLSOFT_NS_GLOBAL(toupper)(*s2))
+                size_t i;
+
+                for (i = 1; i != n2; ++i)
                 {
-                    break;
+                    unsigned char const h = (unsigned char)s1[i];
+                    unsigned char const n = (unsigned char)s2[i];
+
+                    if (stlsoft_C_strnistrn_fold_char_m_(h) !=
+                        stlsoft_C_strnistrn_fold_char_m_(n))
+                    {
+                        break;
+                    }
+                }
+
+                if (i == n2)
+                {
+                    return s1;
                 }
             }
-
-            if (i == n2)
-            {
-                return s1;
-            }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 /** Finds a specific-length (slice of a) string within a specific-length
@@ -155,30 +209,38 @@ stlsoft_C_wcsnistrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2 ||
-            STLSOFT_NS_GLOBAL(towupper)(*s1) == STLSOFT_NS_GLOBAL(towupper)(*s2))
-        {
-            size_t i;
+        wchar_t const   ch0 =   s2[0];
+        int const       fc0 =   stlsoft_C_strnistrn_fold_char_w_(ch0);
 
-            for (i = 1; i != n2; ++i)
+        for (; n1 >= n2; --n1, ++s1)
+        {
+            wchar_t const h0 = s1[0];
+
+            if (h0 == ch0 ||
+                stlsoft_C_strnistrn_fold_char_w_(h0) == fc0)
             {
-                if (STLSOFT_NS_GLOBAL(toupper)(*s1) != STLSOFT_NS_GLOBAL(toupper)(*s2))
+                size_t i;
+
+                for (i = 1; i != n2; ++i)
                 {
-                    break;
+                    if (stlsoft_C_strnistrn_fold_char_w_(s1[i]) !=
+                        stlsoft_C_strnistrn_fold_char_w_(s2[i]))
+                    {
+                        break;
+                    }
+                }
+
+                if (i == n2)
+                {
+                    return s1;
                 }
             }
-
-            if (i == n2)
-            {
-                return s1;
-            }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 

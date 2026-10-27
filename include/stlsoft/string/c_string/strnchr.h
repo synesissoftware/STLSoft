@@ -4,11 +4,11 @@
  * Purpose: Definition of stlsoft_C_strnchr() and stlsoft_C_wcsnchr()
  *
  * Created: 1st October 2020
- * Updated: 29th September 2024
+ * Updated: 23rd October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_EDIT     3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,6 +69,15 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -82,6 +91,13 @@ stlsoft_C_strnchr(
 ,   int         ch
 )
 {
+    /* memchr matches char promotion only when ch is in 0-127. */
+    if (0 <= ch &&
+        ch <= 127)
+    {
+        return STLSOFT_C_CAST(char const*, STLSOFT_NS_GLOBAL(memchr)(s, ch, n));
+    }
+
     for (; 0 != n; --n, ++s)
     {
         if (ch == *s)
@@ -101,6 +117,17 @@ stlsoft_C_wcsnchr(
 ,   int             ch
 )
 {
+    /* wmemchr matches the int comparison only when ch is in 0-127. */
+    if (0 <= ch &&
+        ch <= 127)
+    {
+        return STLSOFT_NS_GLOBAL(wmemchr)(
+            s
+        ,   STLSOFT_C_CAST(wchar_t, ch)
+        ,   n
+        );
+    }
+
     for (; 0 != n; --n, ++s)
     {
         if (ch == STLSOFT_C_CAST(int, *s))

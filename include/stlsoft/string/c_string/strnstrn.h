@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnstrn.h
+ * File:    stlsoft/string/c_string/strnstrn.h
  *
- * Purpose:     Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
+ * Purpose: Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
  *
- * Created:     1st October 2020
- * Updated:     11th March 2024
+ * Created: 1st October 2020
+ * Updated: 27th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,6 +68,15 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,29 +106,39 @@ stlsoft_C_strnstrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2)
-        {
-            size_t i;
+        unsigned char const ch0 = (unsigned char)s2[0];
 
-            for (i = 1; i != n2; ++i)
+        /* First byte via memchr. The remaining n2-1 bytes via memcmp. */
+        while (n1 >= n2)
+        {
+            size_t const    span = n1 - n2 + 1;
+            char const*     hit;
+
+            hit = STLSOFT_C_CAST(char const*, STLSOFT_NS_GLOBAL(memchr)(s1, ch0, span));
+
+            if (ss_nullptr_k == hit)
             {
-                if (s1[i] != s2[i])
-                {
-                    break;
-                }
+                break;
             }
 
-            if (i == n2)
+            if (1 == n2 ||
+                0 == STLSOFT_NS_GLOBAL(memcmp)(hit + 1, s2 + 1, n2 - 1))
             {
-                return s1;
+                return hit;
+            }
+
+            {
+                size_t const skipped = STLSOFT_C_CAST(size_t, hit - s1) + 1;
+
+                s1 += skipped;
+                n1 -= skipped;
             }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 /** Finds a specific-length (slice of a) string within a specific-length
@@ -145,29 +164,39 @@ stlsoft_C_wcsnstrn(
     {
         return s1;
     }
-
-    for (; n1 >= n2; --n1, ++s1)
+    else
     {
-        if (*s1 == *s2)
-        {
-            size_t i;
+        wchar_t const ch0 = s2[0];
 
-            for (i = 1; i != n2; ++i)
+        /* First unit via wmemchr. The remaining n2-1 units via wmemcmp. */
+        while (n1 >= n2)
+        {
+            size_t const        span = n1 - n2 + 1;
+            wchar_t const*      hit;
+
+            hit = STLSOFT_NS_GLOBAL(wmemchr)(s1, ch0, span);
+
+            if (ss_nullptr_k == hit)
             {
-                if (s1[i] != s2[i])
-                {
-                    break;
-                }
+                break;
             }
 
-            if (i == n2)
+            if (1 == n2 ||
+                0 == STLSOFT_NS_GLOBAL(wmemcmp)(hit + 1, s2 + 1, n2 - 1))
             {
-                return s1;
+                return hit;
+            }
+
+            {
+                size_t const skipped = STLSOFT_C_CAST(size_t, hit - s1) + 1;
+
+                s1 += skipped;
+                n1 -= skipped;
             }
         }
-    }
 
-    return ss_nullptr_k;
+        return ss_nullptr_k;
+    }
 }
 
 

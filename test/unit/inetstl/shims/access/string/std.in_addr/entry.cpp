@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 29th September 2026
+ * Updated: 20th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,7 +72,7 @@ namespace {
  * types
  */
 
- namespace {
+namespace {
 
     typedef std::basic_string<char>                         string_a_t;
     typedef std::basic_string<wchar_t>                      string_w_t;
@@ -151,11 +151,11 @@ static void TEST_nullptr()
     /* c_str_ptr(|_a|_w) */
     {
 
-        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_a(stlsoft::c_str_ptr_null_a(addr)));
+        TEST_PTR_NULL(stlsoft::c_str_ptr_null_a(stlsoft::c_str_ptr_null_a(addr)));
 # ifdef PLATFORMSTL_OS_IS_WINDOWS
 
-        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_w(stlsoft::c_str_ptr_null_w(addr)));
-        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(stlsoft::c_str_ptr_null(addr)));
+        TEST_PTR_NULL(stlsoft::c_str_ptr_null_w(stlsoft::c_str_ptr_null_w(addr)));
+        TEST_PTR_NULL(stlsoft::c_str_ptr_null(stlsoft::c_str_ptr_null(addr)));
 # endif
     }
 #endif

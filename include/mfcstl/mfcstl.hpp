@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * Thanks:  To Cláudio Albuquerque for suggesting the inclusion of atlstr.h.
  *
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  6
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      112
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -140,9 +140,9 @@
 # define _MFCSTL_VER_1_5_2      0x00010502  /*!< Version 1.5.2 (with STLSoft 1.9.10) */
 # define _MFCSTL_VER_1_5_3      0x00010503  /*!< Version 1.5.3 (with STLSoft 1.9.25) */
 # define _MFCSTL_VER_1_5_4      0x010504ff  /*!< Version 1.5.4 (with STLSoft 1.9.113) */
-# define _MFCSTL_VER_1_6_1_B01  0x01060181  /*!< Version 1.6.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _MFCSTL_VER_1_6_1_B02  0x01060182  /*!< Version 1.6.1 beta 2 (with STLSoft 1.10.1 beta 26) */
-# define _MFCSTL_VER_1_6_1      0x010601ff  /*!< Version 1.6.1 (with STLSoft 1.11.1 alpha 8) */
+# define _MFCSTL_VER_1_6_1_B01  0x01060181  /*!< Version 1.6.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _MFCSTL_VER_1_6_1_B02  0x01060182  /*!< Version 1.6.1-beta2 (with STLSoft 1.10.1-beta26) */
+# define _MFCSTL_VER_1_6_1      0x010601ff  /*!< Version 1.6.1 (with STLSoft 1.11.1-alpha8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _MFCSTL_VER_MAJOR       1
@@ -199,8 +199,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the MFCSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the MFCSTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -396,7 +396,7 @@
  */
 
 #ifndef MFCSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::mfcstl */
 /** The \c mfcstl namespace contains all components
@@ -556,7 +556,7 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef MFCSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace mfcstl
 # else
