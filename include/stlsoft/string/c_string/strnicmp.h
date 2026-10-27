@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
  * Created: 25th November 2020
- * Updated: 26th October 2026
+ * Updated: 27th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        5
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,10 +79,13 @@
  * helpers
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 /* ASCII letters fold by 32. Every other byte is returned unchanged. */
+/* Duplicate of stlsoft_C_strnistrn_fold_char_m_(). */
 STLSOFT_INLINE
 int
-stlsoft_C_strnicmp_fold_char_(
+stlsoft_C_strnicmp_fold_char_m_(
     unsigned char ch
 )
 {
@@ -96,9 +99,10 @@ stlsoft_C_strnicmp_fold_char_(
 }
 
 /* ASCII letters fold by 32. Units outside 0-127 use towupper. */
+/* Duplicate of stlsoft_C_strnistrn_fold_char_w_(). */
 STLSOFT_INLINE
 int
-stlsoft_C_wcsnicmp_fold_(
+stlsoft_C_strnicmp_fold_char_w_(
     wchar_t ch
 )
 {
@@ -115,6 +119,7 @@ stlsoft_C_wcsnicmp_fold_(
 
     return (int)STLSOFT_NS_GLOBAL(towupper)(ch);
 }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -146,8 +151,8 @@ stlsoft_C_strnicmp(
 
         if (c1 != c2)
         {
-            int const d = stlsoft_C_strnicmp_fold_char_(c1) -
-                            stlsoft_C_strnicmp_fold_char_(c2);
+            int const d = stlsoft_C_strnicmp_fold_char_m_(c1) -
+                            stlsoft_C_strnicmp_fold_char_m_(c2);
 
             if (0 != d)
             {
@@ -188,8 +193,8 @@ stlsoft_C_wcsnicmp(
 
         if (c1 != c2)
         {
-            int const d = stlsoft_C_wcsnicmp_fold_(c1) -
-                            stlsoft_C_wcsnicmp_fold_(c2);
+            int const d = stlsoft_C_strnicmp_fold_char_w_(c1) -
+                            stlsoft_C_strnicmp_fold_char_w_(c2);
 
             if (0 != d)
             {
