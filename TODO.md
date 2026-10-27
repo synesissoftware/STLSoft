@@ -77,6 +77,17 @@ Must resolve before finalising the **1.11.3** release:
   * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
 
 
+### 1.11.3
+
+* [ ] Remove defunct compilers;
+* [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
+* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
+* [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
+* [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
+* [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
+
+
 ### 1.11.4
 
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;

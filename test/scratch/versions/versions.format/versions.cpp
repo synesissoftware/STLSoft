@@ -1,5 +1,14 @@
 
 #include <stlsoft/stlsoft.h>
+#ifdef STLSOFT_HAS_ACE
+# include <acestl/acestl.hpp>
+#endif
+#ifdef STLSOFT_HAS_ATL
+# include <atlstl/atlstl.hpp>
+#endif
+#ifdef STLSOFT_HAS_COM
+# include <comstl/comstl.h>
+#endif
 #include <platformstl/platformstl.h>
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
@@ -9,8 +18,8 @@
 # include <inetstl/inetstl.h>
 # include <winstl/winstl.h>
 #endif
-#ifdef STLSOFT_HAS_ACE
-# include <acestl/acestl.hpp>
+#ifdef STLSOFT_HAS_MFC
+# include <mfcstl/mfcstl.hpp>
 #endif
 
 #include <cstdint>

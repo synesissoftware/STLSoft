@@ -3,6 +3,12 @@
 
 ## 1.11.3 - 27th October 2026
 
+* Defined `HAS_<Pkg>` and `HAS_<PKG>` when **cstring**, **shwild**, or **UNIXem** is detected, and stopped defining `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM`;
+* **woad** is now an opt-in dependency: pass `--use-woad` to **prepare_cmake.sh** (`USE_WOAD=ON`) to `find_package(woad 0.2.0)`, define `HAS_woad` / `HAS_WOAD`, and link `woad::woad` into the scratch version programs;
+* scratch version programs:
+  * **versions.iostreams** — `print_efferent_dependency_()` now has the functionality of its **versions.stdio** counterpart (Diagnosticism-rendered version string, `0x%08x` VER values, stream state restored);
+  * **versions.iostreams** — colours (via **woad**, when enabled): magenta section headings (**STLSoft libraries**, **Subprojects**, **Efferent dependencies**), blue names, green versions and VER values, and cyan macro names, across subproject, efferent-dependency, language, and compiler lines; output is uncoloured when **woad** is not in use;
+  * **versions.format** and **versions.iostreams** — report **ACESTL**, **ATLSTL**, **COMSTL**, and **MFCSTL** versions, ordered consistently;
 
 
 ## 1.11.2 - 25th October 2026
