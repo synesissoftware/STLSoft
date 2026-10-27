@@ -106,6 +106,11 @@ if(ATL_FOUND)
 	add_compile_definitions(STLSOFT_HAS_ATL)
 endif(ATL_FOUND)
 
+if(WIN32)
+
+	add_compile_definitions(STLSOFT_HAS_COM)
+endif(WIN32)
+
 if(MFC_FOUND)
 
 	# Shared MFC (/MD + _AFXDLL) unless the project is configured for the
@@ -173,6 +178,7 @@ option(BUILD_TESTING "Build tests" ON)
 # - cstring - facilitates some C tests;
 # - shwild - enhances xTests for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
+# - woad - opt-in (USE_WOAD / --use-woad); reported by the scratch versions programs;
 
 
 # ############################
@@ -295,6 +301,33 @@ if((USE_UNIXEM) AND (WIN32))
 
 		add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
 	endif()
+endif()
+
+
+# ############################
+# woad
+#
+# Opt-in (USE_WOAD / --use-woad): used only by scratch programs.
+
+set(HAS_woad OFF)
+
+if(USE_WOAD)
+
+	if(BUILD_TESTING)
+
+		set(woad_REQUIRED_VERSION_ 0.2.0)
+
+		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
+
+		message("-- CMake package woad found (version ${woad_VERSION}; ${woad_REQUIRED_VERSION_} requested)")
+
+		set(HAS_woad ON)
+
+		add_compile_definitions(
+			HAS_woad
+			HAS_WOAD
+		)
+	endif(BUILD_TESTING)
 endif()
 
 

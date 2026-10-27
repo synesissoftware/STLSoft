@@ -78,6 +78,8 @@ $ ./prepare_cmake.sh -m -v
 >
 > To exercise **ACESTL**, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`**) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery.
 >
+> To have the scratch version programs (**test.scratch.versions.iostreams**) report in colour, install **woad** (0.2.0 or later) before configuring, and pass **`--use-woad`** to **prepare_cmake.sh**; **woad** is otherwise not used.
+>
 > To build and exercise the **STLSoft** unit-tests and you are installing **STLSoft** _for the first time_, then you must do the following steps:
 > 1. Configure and install **STLSoft** _without_ tests, by specifying flags `-E` and `-T`;
 > 2. Configure, build, and install **xTests**;

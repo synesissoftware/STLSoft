@@ -43,5 +43,12 @@ if(_has_std_format)
 			ACE::ACE
 		)
 	endif()
+
+	if(HAS_woad)
+
+		target_link_libraries(test.scratch.versions.format
+			woad::woad
+		)
+	endif()
 endif()
 

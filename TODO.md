@@ -75,6 +75,7 @@ Dedicated increment: **test analysis and coverage** (primary), plus **Resizeable
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
 * [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
 * [x] ~~~Add **test.performance.stlsoft.util.bit_functions**~~~ - ✅;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 
 
