@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/api/internal/stdio.h
+ * File:    stlsoft/api/internal/stdio.h
  *
- * Purpose:     Internal adaptations for stdio.h constructs.
+ * Purpose: Internal adaptations for stdio.h constructs.
  *
- * Created:     11th November 2020
- * Updated:     2nd January 2021
+ * Created: 11th November 2020
+ * Updated: 29th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -71,6 +71,12 @@
 # define STLSOFT_INCL_H_STDIO
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+# ifndef STLSOFT_INCL_H_WCHAR
+#  define STLSOFT_INCL_H_WCHAR
+#  include <wchar.h>
+# endif /* !STLSOFT_INCL_H_WCHAR */
+#endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,6 +105,32 @@ STLSOFT_API_INTERNAL_stdio_fopen_m(
     return (NULL == *ph) ? errno : 0;
 #endif
 }
+
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+
+STLSOFT_INLINE
+int
+STLSOFT_API_INTERNAL_stdio_fopen_w(
+    wchar_t const*  path
+,   wchar_t const*  mode
+,   FILE**          ph
+)
+{
+    STLSOFT_ASSERT(NULL != path);
+    STLSOFT_ASSERT(NULL != mode);
+    STLSOFT_ASSERT(NULL != ph);
+
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+
+    return STLSOFT_NS_GLOBAL_(_wfopen_s)(ph, path, mode);
+#else // }
+    *ph = STLSOFT_NS_GLOBAL_(_wfopen)(path, mode);
+
+    return (NULL == *ph) ? errno : 0;
+#endif
+}
+
+#endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
 /* /////////////////////////////////////////////////////////////////////////
