@@ -1,6 +1,14 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.4 - 29th October 2026
+
+* additions:
+  * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `stlsoft::string_concatenation_flags` gained `None` (`0x0000`);
+* documentation and boilerplate:
+  * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
+
+
 ## 1.11.3 - 27th October 2026
 
 * compatibility:

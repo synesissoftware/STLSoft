@@ -3,6 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
+| 29th October 2026   | Release of [STLSoft 1.11.4](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.4) | C++ compatibility issues |
 | 27th October 2026   | Release of [STLSoft 1.11.3](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.3) | `HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages (no `STLSOFT_HAS_CSTRING` / `STLSOFT_HAS_UNIXEM`); opt-in **woad** colours **test.scratch.versions.iostreams**; ASCII case-fold and `memchr` / `memcmp` in the counted-string functions; **strategy/performance/C_STRING.md**; subproject headers require **STLSoft** 1.11.2 |
 | 25th October 2026   | Release of [STLSoft 1.11.2](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.2) | `auto_buffer` GCC 12+ `-Wfree-nonheap-object` on the external-buffer `delete`; `strnistrn` first-character-only match fix; new **c_string** unit tests; xTests' null-ptr macros and **xTests** 0.28; alpha/beta/rc nomenclature; **ACE** / **ATL** / **MFC** cells build fully and run only their extra programs |
 | 21st October 2026   | Release of [STLSoft 1.11.1](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1) | **1.11.1-alpha1** through **1.11.1-rc10**: process and path APIs; Resizeable Buffer concept; `module` renamed `dl_module`; CI and docs |
