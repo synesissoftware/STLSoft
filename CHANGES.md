@@ -6,6 +6,7 @@
 * additions:
   * **include/stlsoft/string/encoding/mbstowcs.h** and **include/stlsoft/string/encoding/wcstombs.h** — `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()` take a destination capacity and a source limit, hide `mbstowcs_s()` / `wcstombs_s()`, and return a count that excludes the NUL. A null destination is the length probe;
   * **include/stlsoft/error/error_desc.hpp** and **include/acestl/shims/access/string/time_value.hpp** — the wide `error_desc` fallback and both wide `invoke_ACE_OS_snprintf()` overloads call `stlsoft_C_mbstowcs()`;
+  * **include/stlsoft/conversion/char_conversions.hpp** — `multibyte2wide` and `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`, and still stamp the NUL at `[size]`;
 * fixes:
   * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
 * testing:
