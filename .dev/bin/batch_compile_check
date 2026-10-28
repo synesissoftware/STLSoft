@@ -6,7 +6,7 @@
 # Purpose:  Finds and compiles (individually) headers in the libraries.
 #
 # Created:  14th February 2024
-# Updated:  6th May 2025
+# Updated:  29th October 2026
 #
 # Home:     http://stlsoft.org/
 #
@@ -159,7 +159,7 @@ while [[ $# -gt 0 ]]; do
 
             cat << EOF
 STLSoft is a suite of C/C++ libraries that provide STL extensions and facades over operating-system and technology-specific APIs
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
 Runs batch compilation over all library files for a given set of sub-project(s) and particular language(s) (C or C++)
 
@@ -492,7 +492,6 @@ if [ "$ShowCounts" = "true" ]; then
 
     echo "$NumFilesTotal file(s) found, of which $NumFilesSkipped skipped and the remaining $NumFilesCompiled compiled, of which $NumFilesFailed failed"
 fi
-
 
 # ############################## end of file ############################# #
 
