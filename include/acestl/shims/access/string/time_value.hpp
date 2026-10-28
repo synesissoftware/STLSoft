@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  12
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      57
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,6 +73,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
@@ -146,7 +149,7 @@ namespace acestl_time_access_string_util
         {
             ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
 
-            ::mbstowcs(s2, buff.data(), res);
+            stlsoft_C_mbstowcs(s2, static_cast<ss_size_t>(res) + 1, buff.data(), static_cast<ss_size_t>(res));
             s2[res] = '\0';
         }
 
@@ -173,7 +176,7 @@ namespace acestl_time_access_string_util
         {
             ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
 
-            ::mbstowcs(&s2[0], buff.data(), res);
+            stlsoft_C_mbstowcs(&s2[0], static_cast<ss_size_t>(res) + 1, buff.data(), static_cast<ss_size_t>(res));
             s2[res] = '\0';
         }
 
