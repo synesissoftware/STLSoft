@@ -4,7 +4,7 @@
  * Purpose: Contains the exception_string_creator class.
  *
  * Created: 25th May 2010
- * Updated: 15th October 2026
+ * Updated: 28th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     34
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,7 +111,7 @@
 #endif /* !STLSOFT_INCL_H_ERRNO */
 #ifndef STLSOFT_INCL_H_STDLIB
 # define STLSOFT_INCL_H_STDLIB
-# include <stdlib.h>                     // for wcstombs()
+# include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
 

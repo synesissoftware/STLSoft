@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `ACE_Time_Value`.
  *
  * Created: 7th August 2026
- * Updated: 26th October 2026
+ * Updated: 28th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <wchar.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -44,9 +45,10 @@
 
 namespace {
 
-    static void TEST_calls_possible();
+    static void TEST_CALLS_POSSIBLE();
     static void TEST_c_str_len();
     static void TEST_c_str_ptr_format_and_milliseconds();
+    static void TEST_c_str_ptr_w_MATCHES_NARROW();
 } // anonymous namespace
 
 
@@ -63,9 +65,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.acestl.shims.access.string.time_value", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_calls_possible);
+        XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
         XTESTS_RUN_CASE(TEST_c_str_len);
         XTESTS_RUN_CASE(TEST_c_str_ptr_format_and_milliseconds);
+        XTESTS_RUN_CASE(TEST_c_str_ptr_w_MATCHES_NARROW);
 
         XTESTS_PRINT_RESULTS();
 
@@ -82,7 +85,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_calls_possible()
+static void TEST_CALLS_POSSIBLE()
 {
     ACE_Time_Value const tv(1, 234567);
 
@@ -98,6 +101,11 @@ static void TEST_calls_possible()
     stlsoft::c_str_ptr_null_a(tv);
     stlsoft::c_str_ptr_null(tv);
 
+    stlsoft::c_str_data_w(tv);
+    stlsoft::c_str_len_w(tv);
+    stlsoft::c_str_ptr_w(tv);
+    stlsoft::c_str_ptr_null_w(tv);
+
     TEST_PASSED();
 }
 
@@ -107,6 +115,7 @@ static void TEST_c_str_len()
 
     TEST_INT_EQ(23u, stlsoft::c_str_len_a(tv));
     TEST_INT_EQ(23u, stlsoft::c_str_len(tv));
+    TEST_INT_EQ(23u, stlsoft::c_str_len_w(tv));
 }
 
 static void TEST_c_str_ptr_format_and_milliseconds()
@@ -162,6 +171,31 @@ static void TEST_c_str_ptr_format_and_milliseconds()
     TEST_INT_EQ(4, ::snprintf(expected_suffix, sizeof(expected_suffix), ".%03ld", msec));
 
     TEST_MS_EQ(expected_suffix, ptr + 19);
+}
+
+static void TEST_c_str_ptr_w_MATCHES_NARROW()
+{
+    /* Wide text is the locale conversion of the narrow text, so the
+     * check does not depend on the timezone.
+     */
+    long const              sec = 1;
+    long const              usec = 234567;
+    ACE_Time_Value const    tv(sec, usec);
+
+    stlsoft::basic_shim_string<char> const      narrow = stlsoft::c_str_ptr_a(tv);
+    stlsoft::basic_shim_string<wchar_t> const   wide = stlsoft::c_str_ptr_w(tv);
+
+    wchar_t expected[24];
+
+    TEST_INT_EQ(narrow.size(), wide.size());
+    TEST_INT_EQ(narrow.size(), ::mbstowcs(expected, narrow.data(), STLSOFT_NUM_ELEMENTS(expected)));
+    TEST_WS_EQ(expected, wide.data());
+
+    stlsoft::basic_shim_string<wchar_t> const data_w = stlsoft::c_str_data_w(tv);
+    stlsoft::basic_shim_string<wchar_t> const null_w = stlsoft::c_str_ptr_null_w(tv);
+
+    TEST_WS_EQ(wide.data(), data_w.data());
+    TEST_WS_EQ(wide.data(), null_w.data());
 }
 
 } // anonymous namespace
