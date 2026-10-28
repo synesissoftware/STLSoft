@@ -78,7 +78,7 @@ $ ./prepare_cmake.sh -m -v
 >
 > To exercise **ACESTL**, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`**) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery.
 >
-> To have the scratch version programs (**test.scratch.versions.iostreams**) report in colour, install **woad** (0.2.0 or later) before configuring, and pass **`--use-woad`** to **prepare_cmake.sh**; **woad** is otherwise not used. **test.scratch.versions.stdio** and **test.scratch.versions.iostreams** also list detected efferent packages (**cstring**, **Diagnosticism**, **shwild**, **UNIXem**, **woad**, **xTests**).
+> To have the scratch version programs (**test.scratch.versions.stdio** and **test.scratch.versions.iostreams**) report in colour, install **woad** (0.2.0 or later) before configuring, and pass **`--use-woad`** to **prepare_cmake.sh**; **woad** is otherwise not used. **test.scratch.versions.stdio** and **test.scratch.versions.iostreams** also list detected efferent packages (**cstring**, **Diagnosticism**, **shwild**, **UNIXem**, **woad**, **xTests**).
 >
 > A detected Synesis package other than **STLSoft** is published as `HAS_<Pkg>` and `HAS_<PKG>` (**cstring**, **shwild**, **UNIXem**, **xTests**, and **woad** when **`--use-woad`** is passed). `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM` are not defined.
 >

@@ -1,6 +1,12 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.4 - 29th October 2026
+
+* testing:
+  * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
+
+
 ## 1.11.3 - 27th October 2026
 
 * compatibility:

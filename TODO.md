@@ -67,7 +67,7 @@ Carried forward from **1.11.3** (not in that release):
 
 * [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
+* [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.stdio**~~~ - ✅;
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
 * [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, and the unit tests. Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
@@ -97,6 +97,7 @@ Carried forward from **1.11.3** (not in that release):
 
 * [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md):
   * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare; full pickup brief under **1.11.4** Resizeable Buffer **G1**;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 
 
 ### 1.11.7
