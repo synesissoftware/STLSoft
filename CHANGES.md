@@ -9,6 +9,7 @@
   * **include/stlsoft/conversion/char_conversions.hpp** — `multibyte2wide` and `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`, and still stamp the NUL at `[size]`;
   * **include/stlsoft/shims/access/string/std/exception.hpp** and **include/stlsoft/shims/access/string/std/type_info.hpp** — the wide shims call `stlsoft_C_mbstowcs()`. The private `mbstowcs_()` and `mbstowcs_len()` helpers are gone;
   * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
+  * **include/stlsoft/util/exception_string_creator.hpp** — `wide_to_multibyte_or_throw_()` calls `stlsoft_C_wcstombs()`. This is the last call site outside the encoding headers;
 * fixes:
   * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
 * testing:
