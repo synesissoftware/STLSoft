@@ -68,6 +68,7 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 * [x] ~~~Wide `error_desc` fallback and both wide `invoke_ACE_OS_snprintf()` overloads call `stlsoft_C_mbstowcs()`~~~ - ✅;
 * [x] ~~~`multibyte2wide` / `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`~~~ - ✅;
 * [x] ~~~`std::exception` and `std::type_info` wide shims call `stlsoft_C_mbstowcs()`. Their private `mbstowcs_()` / `mbstowcs_len()` helpers are removed~~~ - ✅;
+* [x] ~~~`system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`~~~ - ✅;
 * [ ] Centralise `mbstowcs` / `mbstowcs_s` and `wcstombs` / `wcstombs_s` in a single function;
 * [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
