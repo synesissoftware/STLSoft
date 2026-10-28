@@ -103,16 +103,20 @@ namespace {
 \
     do \
     { \
+        int caught_ = 0; \
+\
         try \
         { \
             invoke; \
-\
-            TEST_FAIL("invalid_integral_range_policy did not throw"); \
         } \
         catch (std::out_of_range& x) \
         { \
+            caught_ = 1; \
+\
             TEST_MS_EQ((expected), x.what()); \
         } \
+\
+        TEST_INT_EQ(1, caught_); \
     } while (0)
 
 static void TEST_policy_sint32()
@@ -212,18 +216,22 @@ static void TEST_policy_unsigned()
 
 static void TEST_range_rejects_non_closing()
 {
+    int caught = 0;
+
     try
     {
         rangelib::integral_range<stlsoft::ss_sint32_t> r(0, 10, 3);
 
         STLSOFT_SUPPRESS_UNUSED(r);
-
-        TEST_FAIL("integral_range did not throw");
     }
     catch (std::out_of_range& x)
     {
+        caught = 1;
+
         TEST_MS_EQ("Invalid integral range [0, 10), 3", x.what());
     }
+
+    TEST_INT_EQ(1, caught);
 }
 
 static void TEST_range_accepts_closing()
