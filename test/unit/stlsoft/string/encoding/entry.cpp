@@ -5,7 +5,7 @@
  *          `stlsoft_C_wcstombs()`.
  *
  * Created: 28th October 2026
- * Updated: 28th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -322,7 +322,6 @@ static void TEST_CXX_FORWARDS()
     TEST_MS_EQ("hello", narrow);
     TEST_INT_EQ(5u, stlsoft::encoding::wcstombs(NULL, 0u, L"hello", 0u));
 }
-
 } // anonymous namespace
 
 
