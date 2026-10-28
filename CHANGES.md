@@ -3,6 +3,11 @@
 
 ## 1.11.4 - 29th October 2026
 
+* testing:
+  * **test.unit.stlsoft.conversion.char_conversions** — `multibyte2wide` / `wide2multibyte`: ASCII, empty, counted, round-trip, a string longer than the internal buffer, and rejection when the C library rejects the input;
+  * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
+  * **test.unit.stlsoft.error.error_desc** — `error_desc_w` matches `mbstowcs()` of the narrow `strerror()` text on the fallback path; a `_wcserror` / `_wcserror_s` build records a pass;
+  * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
 
 
 ## 1.11.3 - 27th October 2026

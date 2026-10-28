@@ -63,6 +63,7 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 
 ### 1.11.4
 
+* [x] ~~~Unit tests for the extant `mbstowcs` / `wcstombs` call sites: `multibyte2wide` / `wide2multibyte`, wide `exception_string_creator`, the `error_desc_w` fallback, and the `ACE_Time_Value` wide shims~~~ - ✅;
 * [ ] Centralise `mbstowcs` / `mbstowcs_s` and `wcstombs` / `wcstombs_s` in a single function;
 * [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
