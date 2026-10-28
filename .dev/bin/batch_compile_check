@@ -323,6 +323,7 @@ trap "exit" INT
 
 IncludeDirLen=${#IncludeDir}+1
 
+FailedCompilations=()
 NumFilesCompiled=0
 NumFilesFailed=0
 NumFilesSkipped=0
@@ -461,7 +462,12 @@ do
 
                     echo -e $contents | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
 
-                    [ $? -eq 0 ] || ((NumFilesFailed++))
+                    if [ $? -ne 0 ]; then
+
+                        ((NumFilesFailed++))
+
+                        FailedCompilations+=("$srp (C++, $l)")
+                    fi
                 else
 
                     echo $contents \| $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
@@ -479,7 +485,12 @@ do
 
                 echo "#include <$srp>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
 
-                [ $? -eq 0 ] || ((NumFilesFailed++))
+                if [ $? -ne 0 ]; then
+
+                    ((NumFilesFailed++))
+
+                    FailedCompilations+=("$srp (C, $LANGUAGE_STD_DEFAULT_VERSION_C)")
+                fi
             else
 
                 echo "#include <$srp>" \| $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
@@ -491,6 +502,19 @@ done
 if [ "$ShowCounts" = "true" ]; then
 
     echo "$NumFilesTotal file(s) found, of which $NumFilesSkipped skipped and the remaining $NumFilesCompiled compiled, of which $NumFilesFailed failed"
+fi
+
+if [ $NumFilesFailed -ne 0 ]; then
+
+    >&2 echo "$NumFilesFailed compilation(s) FAILED:"
+
+    for fc in "${FailedCompilations[@]}"
+    do
+
+        >&2 echo "FAIL: $fc"
+    done
+
+    exit 1
 fi
 
 # ############################## end of file ############################# #
