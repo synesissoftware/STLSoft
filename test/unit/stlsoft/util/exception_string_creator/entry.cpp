@@ -86,6 +86,32 @@ int main(int argc, char* argv[])
 
 namespace {
 
+static size_t crt_wcstombs_(char* dest, wchar_t const* src, size_t n)
+{
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+
+    size_t  numConverted = 0;
+    int     err;
+
+    err = ::wcstombs_s(&numConverted, dest, n, src, _TRUNCATE);
+
+    if (0 != err)
+    {
+        return static_cast<size_t>(-1);
+    }
+
+    if (0 != numConverted)
+    {
+        --numConverted;
+    }
+
+    return numConverted;
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+    return ::wcstombs(dest, src, n);
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+}
+
 static void TEST_APPEND_WIDE_STRING()
 {
     stlsoft::exception_string_creator creator;
@@ -143,7 +169,7 @@ static void TEST_WIDE_REJECTION()
 {
     wchar_t const bad[] = { static_cast<wchar_t>(0xDC00), L'\0' };
     char scratch[8];
-    size_t const n = ::wcstombs(scratch, bad, STLSOFT_NUM_ELEMENTS(scratch));
+    size_t const n = crt_wcstombs_(scratch, bad, STLSOFT_NUM_ELEMENTS(scratch));
 
     if (static_cast<size_t>(-1) == n)
     {

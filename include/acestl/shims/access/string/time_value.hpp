@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     7th August 2026
+ * Updated:     28th October 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  12
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      56
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -173,7 +173,7 @@ namespace acestl_time_access_string_util
         {
             ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
 
-            ::mbstowcs(&s2[2], buff.data(), res);
+            ::mbstowcs(&s2[0], buff.data(), res);
             s2[res] = '\0';
         }
 
