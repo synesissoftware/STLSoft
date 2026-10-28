@@ -3,9 +3,12 @@
 
 ## 1.11.4 - 29th October 2026
 
+* additions:
+  * **include/stlsoft/string/encoding/mbstowcs.h** and **include/stlsoft/string/encoding/wcstombs.h** — `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()` take a destination capacity and a source limit, hide `mbstowcs_s()` / `wcstombs_s()`, and return a count that excludes the NUL. A null destination is the length probe. No call site uses them yet;
 * fixes:
   * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
 * testing:
+  * **test.unit.stlsoft.string.encoding** — ASCII success, length probe, exact fit, counted source, zero capacity, short buffer, "count excludes the NUL", and rejection for `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`;
   * **test.unit.stlsoft.conversion.char_conversions** — `multibyte2wide` / `wide2multibyte`: ASCII, empty, counted, round-trip, a string longer than the internal buffer, and rejection when the C library rejects the input;
   * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
   * **test.unit.stlsoft.std.exception** — the narrow shims are `exception::what()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that message, and an empty `what()` yields an empty wide string and a null `c_str_ptr_null_w`;
