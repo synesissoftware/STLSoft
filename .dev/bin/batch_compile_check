@@ -17,20 +17,8 @@ ScriptPath=$0
 ProjectDir=$(cd "$(dirname "$ScriptPath")" && pwd)
 Basename=$(basename "$ScriptPath")
 IncludeDir="$ProjectDir/../../include"
-ScratchDir="$ProjectDir/../../scratch"
-
-if ! [ -d "$ScratchDir" ]; then
-
-    if ! mkdir -p "$ScratchDir"; then
-
-        >&2 echo "$ScriptPath: failed to create scratch directory '$ScratchDir'"
-
-        exit 1
-    fi
-fi
 
 IncludeDir=$(cd "$IncludeDir"; pwd)
-ScratchDir=$(cd "$ScratchDir"; pwd)
 
 
 COMPILER_COMMAND_C=cc
@@ -466,7 +454,7 @@ do
 
                     ((NumFilesCompiled++))
 
-                    echo -e $contents | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+                    echo -e $contents | $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
 
                     if [ $? -ne 0 ]; then
 
@@ -476,7 +464,7 @@ do
                     fi
                 else
 
-                    echo $contents \| $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+                    echo $contents \| $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
                 fi
             done
         fi
@@ -489,7 +477,7 @@ do
 
                 ((NumFilesCompiled++))
 
-                echo "#include <$srp>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+                echo "#include <$srp>" | $COMPILER_COMMAND_C -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
 
                 if [ $? -ne 0 ]; then
 
@@ -499,7 +487,7 @@ do
                 fi
             else
 
-                echo "#include <$srp>" \| $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+                echo "#include <$srp>" \| $COMPILER_COMMAND_C -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
             fi
         fi
     done
