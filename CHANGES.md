@@ -9,6 +9,8 @@
   * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
 * testing:
   * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text;
+* compatibility:
+  * Output-iterator `deref_proxy` types declare an explicit copy constructor, so C++11 and C++14 no longer deprecate the implicit one when copy assignment is deleted (`-Wdeprecated-copy` under `-Werror`). Copy assignment stays deleted. **include/stlsoft/iterator/associative_eraser_iterator.hpp**, **include/stlsoft/iterator/eraser_iterator.hpp**, **include/stlsoft/iterator/FILE_iterator.hpp** (the constructor is present in every dialect; it had been guarded on C++11), **include/stlsoft/iterator/push_insert_iterator.hpp**, **include/stlsoft/iterator/string_insert_iterator.hpp**, **include/stlsoft/iterators/c_str_inserter.hpp**, **include/stlsoft/iterators/cstring_concatenator_iterator.hpp**, **include/stlsoft/iterators/null_output_iterator.hpp**, **include/stlsoft/iterators/ostream_iterator.hpp**, **include/stlsoft/iterators/string_concatenator_iterator.hpp**, and **include/stlsoft/iterators/unary_function_output_iterator_adaptor.hpp**;
 * documentation and boilerplate:
   * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
 
