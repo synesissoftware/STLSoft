@@ -72,7 +72,8 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 * [x] ~~~Centralise `mbstowcs` / `mbstowcs_s` and `wcstombs` / `wcstombs_s` in `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. `wide_to_multibyte_or_throw_()` was the last call site outside the encoding headers~~~ - ✅;
 * [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
+* [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.stdio**~~~ - ✅;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
 
 
