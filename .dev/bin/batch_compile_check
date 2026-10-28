@@ -18,7 +18,12 @@ ProjectDir=$(cd "$(dirname "$ScriptPath")" && pwd)
 Basename=$(basename "$ScriptPath")
 IncludeDir="$ProjectDir/../../include"
 
-IncludeDir=$(cd "$IncludeDir"; pwd)
+if ! IncludeDir=$(cd "$IncludeDir" 2>/dev/null && pwd); then
+
+    >&2 echo "$ScriptPath: include directory '$IncludeDir' does not exist"
+
+    exit 1
+fi
 
 
 COMPILER_COMMAND_C=cc
@@ -38,6 +43,8 @@ SUPPORTED_LANGUAGE_VERSIONS_Cxx=(98 03 11 14 17 20 23)
 COMMON_SKIP_SEQUENCES=(STLSOFT:FILE_DEPRECATED STLSOFT:FILE_EXCEPTED STLSOFT:FILE_NOT_SELF_SUFFICIENT)
 
 UNIX_SKIP_SEQUENCES=(STLSOFT:Windows:FILE_EXCEPTED)
+
+WARNING_FLAGS=(-Wall -Wextra -pedantic)
 
 
 # ##########################################################
@@ -75,6 +82,7 @@ LanguageVersions=()
 ShowCounts="false"
 Subprojects=()
 VerboseMode=0
+WerrorConfiguration=0
 
 
 while [[ $# -gt 0 ]]; do
@@ -123,6 +131,26 @@ while [[ $# -gt 0 ]]; do
                 exit 1
             fi
 
+            language_version_valid=0
+
+            for v in "${SUPPORTED_LANGUAGE_VERSIONS_Cxx[@]}"
+            do
+
+                if [ "$language_version" = "$v" ]; then
+
+                    language_version_valid=1
+
+                    break
+                fi
+            done
+
+            if [ $language_version_valid -eq 0 ]; then
+
+                >&2 echo "$ScriptPath: unrecognised C++ language version '$language_version'; supported versions: ${SUPPORTED_LANGUAGE_VERSIONS_Cxx[*]}"
+
+                exit 1
+            fi
+
             LanguageVersions+=($language_version)
             ;;
         --subproject|-p)
@@ -142,6 +170,10 @@ while [[ $# -gt 0 ]]; do
         --verbose-mode|-v)
 
             VerboseMode=1
+            ;;
+        --werror|-W)
+
+            WerrorConfiguration=1
             ;;
         --help)
 
@@ -203,6 +235,10 @@ Flags/options:
     -v
     --verbose-mode
         announces each include file as it is compiled
+
+    -W
+    --werror
+        specifies that compiler warnings are treated as errors
 
 
     standard flags:
@@ -275,6 +311,13 @@ Defines2_=${Defines[@]/#/-D}
 Defines=()
 Defines+=(${Defines2_[@]})
 
+CompilerFlags=("${WARNING_FLAGS[@]}")
+
+if [ $WerrorConfiguration -eq 1 ]; then
+
+    CompilerFlags+=(-Werror)
+fi
+
 [ $VerboseMode -eq 0 ] || echo "defines{${#Defines[@]}}: ${Defines[@]}"
 
 
@@ -303,6 +346,38 @@ Subprojects=($(echo "${Subprojects[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n
 [ $VerboseMode -eq 0 ] || echo "subprojects{${#Subprojects[@]}}: (${Subprojects[*]})"
 
 
+for p in "${Subprojects[@]}"
+do
+
+    if ! [ -d "$IncludeDir/$p" ]; then
+
+        >&2 echo "$ScriptPath: subproject directory '$IncludeDir/$p' does not exist"
+
+        exit 1
+    fi
+done
+
+if [ "$Language" != "Cxx" ]; then
+
+    if ! command -v "$COMPILER_COMMAND_C" > /dev/null 2>&1; then
+
+        >&2 echo "$ScriptPath: C compiler '$COMPILER_COMMAND_C' not found"
+
+        exit 1
+    fi
+fi
+
+if [ "$Language" != "C" ]; then
+
+    if ! command -v "$COMPILER_COMMAND_Cxx" > /dev/null 2>&1; then
+
+        >&2 echo "$ScriptPath: C++ compiler '$COMPILER_COMMAND_Cxx' not found"
+
+        exit 1
+    fi
+fi
+
+
 # ##########################################################
 # main()
 
@@ -312,17 +387,18 @@ trap "exit" INT
 IncludeDirLen=${#IncludeDir}+1
 
 FailedCompilations=()
+NumCompilationsSkipped=0
 NumFilesCompiled=0
 NumFilesFailed=0
 NumFilesSkipped=0
 NumFilesTotal=0
 
-for p in ${Subprojects[*]}
+for p in "${Subprojects[@]}"
 do
 
     [ $VerboseMode -eq 0 ] || echo "    $p:"
 
-    for f in $(find "$IncludeDir/$p" -type f -name "$FilePattern")
+    while IFS= read -r -d '' f
     do
         srp=${f:$IncludeDirLen}
 
@@ -435,7 +511,7 @@ do
 
                     [ $VerboseMode -eq 0 ] || echo "            ($l) - skipped ($SkipCause)"
 
-                    ((NumFilesSkipped++))
+                    ((NumCompilationsSkipped++))
 
                     continue
                 fi
@@ -454,7 +530,7 @@ do
 
                     ((NumFilesCompiled++))
 
-                    echo -e $contents | $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+                    echo -e $contents | "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
 
                     if [ $? -ne 0 ]; then
 
@@ -464,7 +540,7 @@ do
                     fi
                 else
 
-                    echo $contents \| $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+                    echo $contents \| "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
                 fi
             done
         fi
@@ -477,7 +553,7 @@ do
 
                 ((NumFilesCompiled++))
 
-                echo "#include <$srp>" | $COMPILER_COMMAND_C -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+                echo "#include <$srp>" | "$COMPILER_COMMAND_C" -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
 
                 if [ $? -ne 0 ]; then
 
@@ -487,15 +563,22 @@ do
                 fi
             else
 
-                echo "#include <$srp>" \| $COMPILER_COMMAND_C -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+                echo "#include <$srp>" \| "$COMPILER_COMMAND_C" -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
             fi
         fi
-    done
+    done < <(find "$IncludeDir/$p" -type f -name "$FilePattern" -print0)
 done
+
+if [ $NumFilesTotal -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no files found matching '$FilePattern' in the specified subproject(s)"
+
+    exit 1
+fi
 
 if [ "$ShowCounts" = "true" ]; then
 
-    echo "$NumFilesTotal file(s) found, of which $NumFilesSkipped skipped and the remaining $NumFilesCompiled compiled, of which $NumFilesFailed failed"
+    echo "$NumFilesTotal file(s) found, of which $NumFilesSkipped file(s) skipped; $NumFilesCompiled compilation(s) attempted, of which $NumFilesFailed failed and $NumCompilationsSkipped skipped"
 fi
 
 if [ $NumFilesFailed -ne 0 ]; then
