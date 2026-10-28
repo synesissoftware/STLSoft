@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 12
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     73
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -190,11 +190,11 @@ public:
 private:
     static char const* format_sint64()
     {
-        return printf_traits<ss_sint64_t>::format_a();
+        return printf_traits<ss_sint64_t>::decimal_format_a();
     }
     static char const* format_uint64()
     {
-        return printf_traits<ss_uint64_t>::format_a();
+        return printf_traits<ss_uint64_t>::decimal_format_a();
     }
 
 public:

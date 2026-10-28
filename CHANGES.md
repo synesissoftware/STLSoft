@@ -5,6 +5,10 @@
 
 * additions:
   * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `stlsoft::string_concatenation_flags` gained `None` (`0x0000`);
+* behaviour:
+  * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
+* testing:
+  * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text;
 * documentation and boilerplate:
   * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
 
