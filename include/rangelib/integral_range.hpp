@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/integral_range.hpp
+ * File:    rangelib/integral_range.hpp
  *
- * Purpose:     Integral range class.
+ * Purpose: Integral range class.
  *
- * Created:     4th November 2003
- * Updated:     20th March 2025
+ * Created: 4th November 2003
+ * Updated: 29th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 11
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     72
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 12
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,16 +104,14 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF
+# include <stlsoft/util/string/snprintf.h>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF */
 
 #ifndef STLSOFT_INCL_STDEXCEPT
 # define STLSOFT_INCL_STDEXCEPT
 # include <stdexcept>                    // for std::out_of_range
 #endif /* !STLSOFT_INCL_STDEXCEPT */
-
-#ifndef STLSOFT_INCL_H_STDIO
-# define STLSOFT_INCL_H_STDIO
-# include <stdio.h>                     // for sprintf
-#endif /* !STLSOFT_INCL_H_STDIO */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,7 +146,7 @@ struct invalid_integral_range_policy
 {
 public:
     /// The thrown type
-    typedef std::out_of_range   thrown_type;
+    typedef std::out_of_range                               thrown_type;
 
 public:
     /// Function call operator, taking three 32-bit signed integer parameters
@@ -156,7 +154,7 @@ public:
     {
         static const char   s_format[]  =   "Invalid integral range [%ld, %ld), %ld";
         char                message[3 * 21 + STLSOFT_NUM_ELEMENTS(s_format)];
-        const ss_size_t     cch         =   static_cast<ss_size_t>(::sprintf(message, s_format, long(first), long(last), long(increment)));
+        const ss_size_t     cch         =   static_cast<ss_size_t>(stlsoft_C_snprintf(message, STLSOFT_NUM_ELEMENTS(message), s_format, long(first), long(last), long(increment)));
 
         STLSOFT_ASSERT(cch < STLSOFT_NUM_ELEMENTS(message));
         STLSOFT_SUPPRESS_UNUSED(cch);
@@ -168,13 +166,10 @@ public:
     {
         static const char   s_format[] = "Invalid integral range [%lu, %lu), %lu";
         char                message[3 * 21 + STLSOFT_NUM_ELEMENTS(s_format)];
-        const ss_size_t     cch         =   static_cast<ss_size_t>(::sprintf(message, "Invalid integral range [%lu, %lu), %lu", ss_ulong_t(first), ss_ulong_t(last), ss_ulong_t(increment)));
+        const ss_size_t     cch         =   static_cast<ss_size_t>(stlsoft_C_snprintf(message, STLSOFT_NUM_ELEMENTS(message), s_format, ss_ulong_t(first), ss_ulong_t(last), ss_ulong_t(increment)));
 
         STLSOFT_ASSERT(cch < STLSOFT_NUM_ELEMENTS(message));
         STLSOFT_SUPPRESS_UNUSED(cch);
-#if defined(STLSOFT_COMPILER_IS_COMO)
-        STLSOFT_SUPPRESS_UNUSED(s_format);
-#endif /* compiler */
 
         STLSOFT_THROW_X(thrown_type(message));
     }
@@ -209,8 +204,8 @@ public:
         static const char   s_fmtfmt[]  =   "Invalid integral range [%s, %s), %s";
         char                format[3 * 4 + STLSOFT_NUM_ELEMENTS(s_fmtfmt)];
         char                message[3 * 21 + STLSOFT_NUM_ELEMENTS(s_fmtfmt)];
-        const ss_size_t     cch1        =   static_cast<ss_size_t>(::sprintf(format, s_fmtfmt, format_sint64(), format_sint64(), format_sint64()));
-        const ss_size_t     cch2        =   static_cast<ss_size_t>(::sprintf(message, format, first, last, increment));
+        const ss_size_t     cch1        =   static_cast<ss_size_t>(stlsoft_C_snprintf(format, STLSOFT_NUM_ELEMENTS(format), s_fmtfmt, format_sint64(), format_sint64(), format_sint64()));
+        const ss_size_t     cch2        =   static_cast<ss_size_t>(stlsoft_C_snprintf(message, STLSOFT_NUM_ELEMENTS(message), format, first, last, increment));
 
         STLSOFT_ASSERT(cch1 < STLSOFT_NUM_ELEMENTS(format));
         STLSOFT_SUPPRESS_UNUSED(cch1);
@@ -225,8 +220,8 @@ public:
         static const char   s_fmtfmt[] = "Invalid integral range [%s, %s), %s";
         char                format[3 * 4 + STLSOFT_NUM_ELEMENTS(s_fmtfmt)];
         char                message[3 * 21 + STLSOFT_NUM_ELEMENTS(s_fmtfmt)];
-        const ss_size_t     cch1        =   static_cast<ss_size_t>(::sprintf(format, s_fmtfmt, format_uint64(), format_uint64(), format_uint64()));
-        const ss_size_t     cch2        =   static_cast<ss_size_t>(::sprintf(message, format, first, last, increment));
+        const ss_size_t     cch1        =   static_cast<ss_size_t>(stlsoft_C_snprintf(format, STLSOFT_NUM_ELEMENTS(format), s_fmtfmt, format_uint64(), format_uint64(), format_uint64()));
+        const ss_size_t     cch2        =   static_cast<ss_size_t>(stlsoft_C_snprintf(message, STLSOFT_NUM_ELEMENTS(message), format, first, last, increment));
 
         STLSOFT_ASSERT(cch1 < STLSOFT_NUM_ELEMENTS(format));
         STLSOFT_SUPPRESS_UNUSED(cch1);
@@ -266,11 +261,11 @@ class integral_range
 /// \name Types
 /// @{
 public:
-    typedef T                       value_type;
-    typedef T const&                const_reference;
-    typedef XP                      exception_policy_type;
-    typedef notional_range_tag      range_tag_type;
-    typedef integral_range<T, XP>   class_type;
+    typedef T                                               value_type;
+    typedef T const&                                        const_reference;
+    typedef XP                                              exception_policy_type;
+    typedef notional_range_tag                              range_tag_type;
+    typedef integral_range<T, XP>                           class_type;
 /// @}
 
 /// \name Construction

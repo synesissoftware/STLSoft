@@ -65,7 +65,7 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 
 Carried forward from **1.11.3** (not in that release):
 
-* [ ] `invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`);
+* [x] ~~~`invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`)~~~ - ✅;
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 * [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
 * [ ] Complete coverage of currently tested components (improvement / completion);
