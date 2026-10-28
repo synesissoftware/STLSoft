@@ -334,7 +334,7 @@ do
 
     [ $VerboseMode -eq 0 ] || echo "    $p:"
 
-    for f in $(find "$IncludeDir/$p" -type f -name $FilePattern)
+    for f in $(find "$IncludeDir/$p" -type f -name "$FilePattern")
     do
         srp=${f:$IncludeDirLen}
 
@@ -404,15 +404,18 @@ do
             continue
         fi
 
-        for s in "${UNIX_SKIP_SEQUENCES[@]}"
-        do
+        if [ $IsWindows -eq 0 ]; then
 
-            if grep -q "$s" "$f"; then
+            for s in "${UNIX_SKIP_SEQUENCES[@]}"
+            do
 
-                ShouldSkip="true"
-                SkipCause="$s"
-            fi
-        done
+                if grep -q "$s" "$f"; then
+
+                    ShouldSkip="true"
+                    SkipCause="$s"
+                fi
+            done
+        fi
 
         if [ "$ShouldSkip" = "true" ]; then
 
@@ -430,6 +433,9 @@ do
 
             for l in "${LanguageVersions[@]}"
             do
+
+                ShouldSkip="false"
+                SkipCause=""
 
                 if grep -i -q "STLSOFT:$l:FILE_\(DEPRECATED\|EXCEPTED\)" "$f"; then
 
