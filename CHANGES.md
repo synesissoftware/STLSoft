@@ -3,6 +3,10 @@
 
 ## 1.11.4 - 29th October 2026
 
+* behaviour:
+  * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
+* testing:
+  * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text;
 
 
 ## 1.11.3 - 27th October 2026
