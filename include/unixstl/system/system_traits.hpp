@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     7
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      146
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      147
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -87,6 +87,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS
 # include <stlsoft/string/c_string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_WCSTOMBS
+# include <stlsoft/string/encoding/wcstombs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_WCSTOMBS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS
 # include <stlsoft/util/resizeable_buffer_helpers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
@@ -1142,7 +1148,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != name);
 
-        size_t const cchName = ::wcstombs(NULL, name, 0);
+        size_t const cchName = stlsoft_C_wcstombs(NULL, 0, name, 0);
 
         if (static_cast<size_t>(-1) == cchName)
         {
@@ -1156,7 +1162,7 @@ public:
             return 0;
         }
 
-        if (static_cast<size_t>(-1) == ::wcstombs(&name_m[0], name, name_m.size()))
+        if (static_cast<size_t>(-1) == stlsoft_C_wcstombs(&name_m[0], name_m.size(), name, cchName))
         {
             return 0;
         }
@@ -1173,7 +1179,7 @@ public:
         }
         else
         {
-            size_t const cchValue = ::mbstowcs(NULL, var, 0);
+            size_t const cchValue = stlsoft_C_mbstowcs(NULL, 0, var, 0);
 
             if (static_cast<size_t>(-1) == cchValue)
             {
@@ -1193,7 +1199,7 @@ public:
                     return 0;
                 }
 
-                if (static_cast<size_t>(-1) == ::mbstowcs(&value_w[0], var, value_w.size()))
+                if (static_cast<size_t>(-1) == stlsoft_C_mbstowcs(&value_w[0], value_w.size(), var, cchValue))
                 {
                     return 0;
                 }
