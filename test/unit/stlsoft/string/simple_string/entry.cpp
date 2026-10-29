@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    simple_string/entry.cpp
+ * File:    test/unit/stlsoft/string/simple_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *

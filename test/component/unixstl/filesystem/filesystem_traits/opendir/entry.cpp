@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/unixstl/filesystem/filesystem_traits/opendir/entry.cpp)
+ * File:    test/component/unixstl/filesystem/filesystem_traits/opendir/entry.cpp
  *
  * Purpose: Component-tests for `unixstl::filesystem_traits`, in respect of
  *          the directory-enumeration functions `open_dir()`, `read_dir()`,

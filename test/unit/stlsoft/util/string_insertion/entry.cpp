@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_insertion/entry.cpp
+ * File:    test/unit/stlsoft/util/string_insertion/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::string_insert`.
  *

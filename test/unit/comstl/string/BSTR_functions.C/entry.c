@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    BSTR_functions.C/entry.c
+ * File:    test/unit/comstl/string/BSTR_functions.C/entry.c
  *
  * Purpose: Scratch test for BSTR functions.
  *

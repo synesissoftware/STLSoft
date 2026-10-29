@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    integral_traits/entry.cpp
+ * File:    test/unit/stlsoft/traits/integral_traits/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integral_traits`.
  *

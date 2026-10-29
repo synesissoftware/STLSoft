@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    squeeze_functions/entry.cpp
+ * File:    test/unit/unixstl/filesystem/squeeze_functions/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl::squeeze_path`.
  *

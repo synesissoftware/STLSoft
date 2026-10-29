@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    auto_buffer.C/entry.c
+ * File:    test/unit/stlsoft/memory/auto_buffer.C/entry.c
  *
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *

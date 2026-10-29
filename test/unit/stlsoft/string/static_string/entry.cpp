@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    static_string/entry.cpp
+ * File:    test/unit/stlsoft/string/static_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *

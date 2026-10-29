@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    group_functions/entry.cpp
+ * File:    test/unit/stlsoft/conversion/number/group_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::format_thousands` and
  *          `stlsoft::translate_thousands`.

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    grouping_functions/entry.cpp
+ * File:    test/unit/winstl/conversion/number/grouping_functions/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::format_thousands`.
  *

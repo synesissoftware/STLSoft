@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    integer_to_lc_string/entry.cpp
+ * File:    test/unit/stlsoft/conversion/integer_to_lc_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integer_to_lc_string`.
  *

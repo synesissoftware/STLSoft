@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    char_traits/entry.cpp
+ * File:    test/unit/stlsoft/string/char_traits/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::char_traits and char_traits_safe.
  *

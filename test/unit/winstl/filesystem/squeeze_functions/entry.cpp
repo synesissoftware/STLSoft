@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    squeeze_functions/entry.cpp
+ * File:    test/unit/winstl/filesystem/squeeze_functions/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::squeeze_path`.
  *

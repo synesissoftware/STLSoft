@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    readdir_sequence/entry.cpp
+ * File:    test/component/unixstl/filesystem/readdir_sequence/entry.cpp
  *
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *

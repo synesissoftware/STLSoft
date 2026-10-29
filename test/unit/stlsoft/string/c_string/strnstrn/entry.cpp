@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnstrn/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string/strnstrn/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string::strnstrn() and wcsnstrn().
  *

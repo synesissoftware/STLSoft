@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    netapi_allocator/entry.cpp
+ * File:    test/unit/winstl/memory/netapi_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::netapi_allocator`.
  *

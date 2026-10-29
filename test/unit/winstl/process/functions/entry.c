@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    functions/entry.c
+ * File:    test/unit/winstl/process/functions/entry.c
  *
  * Purpose: Unit-tests for `winstl_C_get_current_process_id()`.
  *

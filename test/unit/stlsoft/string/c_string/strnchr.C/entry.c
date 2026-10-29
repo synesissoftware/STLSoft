@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnchr.C/entry.c
+ * File:    test/unit/stlsoft/string/c_string/strnchr.C/entry.c
  *
  * Purpose: Unit-tests for stlsoft_C_strnchr() and stlsoft_C_wcsnchr().
  *

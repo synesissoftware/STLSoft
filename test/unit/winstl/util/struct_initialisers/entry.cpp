@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    struct_initialisers/entry.cpp
+ * File:    test/unit/winstl/util/struct_initialisers/entry.cpp
  *
  * Purpose: Component test for `winstl::struct_initialisers`.
  *

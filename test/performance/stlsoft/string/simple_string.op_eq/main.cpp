@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    simple_string.op_eq/main.cpp
+ * File:    test/performance/stlsoft/string/simple_string.op_eq/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::basic_simple_string#operator ==()`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.component.inetstl.util.uds_helpers/entry.cpp
+ * File:    test/component/inetstl/util/uds_helpers/entry.cpp
  *
  * Purpose: Unit-tests for `inetstl::environment_variable`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    truncation_test/entry.cpp
+ * File:    test/unit/stlsoft/conversion/truncation_test/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *

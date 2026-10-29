@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    functions/entry.c
+ * File:    test/unit/platformstl/process/functions/entry.c
  *
  * Purpose: Unit-tests for `platformstl_C_get_current_process_id()`.
  *

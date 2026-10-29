@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    bit_functions/entry.cpp
+ * File:    test/unit/stlsoft/util/bit_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *

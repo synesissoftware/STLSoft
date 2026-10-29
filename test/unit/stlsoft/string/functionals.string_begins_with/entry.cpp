@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    functionals.string_begins_with/entry.cpp
+ * File:    test/unit/stlsoft/string/functionals.string_begins_with/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::string_begins_with.
  *

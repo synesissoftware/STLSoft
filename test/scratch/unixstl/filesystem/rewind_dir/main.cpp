@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    rewind_dir/main.cpp
+ * File:    test/scratch/unixstl/filesystem/rewind_dir/main.cpp
  *
  * Purpose: Scratch test for `unixstl::filesystem_traits<>::rewind_dir()`,
  *          exploring its interaction with `open_dir()`, `read_dir()`, and

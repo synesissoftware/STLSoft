@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_slice/entry.cpp
+ * File:    test/unit/stlsoft/string/string_slice/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *

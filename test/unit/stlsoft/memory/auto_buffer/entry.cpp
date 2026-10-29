@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    auto_buffer/entry.cpp
+ * File:    test/unit/stlsoft/memory/auto_buffer/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *

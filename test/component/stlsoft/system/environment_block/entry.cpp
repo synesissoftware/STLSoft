@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    environment_block/entry.cpp
+ * File:    test/component/stlsoft/system/environment_block/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *

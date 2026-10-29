@@ -1,6 +1,6 @@
 
 /* /////////////////////////////////////////////////////////////////////////
- * File:    cmdargs/entry.cpp
+ * File:    test/unit/stlsoft/system/cmdargs/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::cmdargs`.
  *

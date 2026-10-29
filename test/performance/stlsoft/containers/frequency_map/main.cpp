@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    frequency_map/main.cpp
+ * File:    test/performance/stlsoft/containers/frequency_map/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::frequency_map<>`.
  *

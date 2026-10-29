@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    memory_mapped_file/entry.cpp
+ * File:    test/component/unixstl/filesystem/memory_mapped_file/entry.cpp
  *
  * Purpose: Component test for `unixstl::memory_mapped_file`.
  *

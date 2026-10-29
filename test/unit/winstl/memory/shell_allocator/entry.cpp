@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    shell_allocator/entry.cpp
+ * File:    test/unit/winstl/memory/shell_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::shell_allocator`.
  *

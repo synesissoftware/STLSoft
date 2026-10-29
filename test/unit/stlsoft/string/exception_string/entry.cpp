@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    exception_string/entry.cpp
+ * File:    test/unit/stlsoft/string/exception_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *

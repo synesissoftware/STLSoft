@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    gram_scope/entry.cpp
+ * File:    test/unit/stlsoft/diagnostics/gram_scope/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *

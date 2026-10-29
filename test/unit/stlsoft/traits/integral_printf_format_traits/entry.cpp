@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    integral_printf_format_traits/entry.cpp
+ * File:    test/unit/stlsoft/traits/integral_printf_format_traits/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integral_printf_format_traits`.
  *

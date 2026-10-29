@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    struct_comparers/entry.cpp
+ * File:    test/unit/winstl/util/struct_comparers/entry.cpp
  *
  * Purpose: Component test for `winstl::struct_comparers`.
  *

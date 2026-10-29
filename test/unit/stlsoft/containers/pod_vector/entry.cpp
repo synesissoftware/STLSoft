@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    pod_vector/entry.cpp
+ * File:    test/unit/stlsoft/containers/pod_vector/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::pod_vector`
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    atomic_functions/entry.cpp
+ * File:    test/component/winstl/synch/atomic_functions/entry.cpp
  *
  * Purpose: Component test for WinSTL atomic_functions.
  *

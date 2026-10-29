@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    processheap_allocator/entry.cpp
+ * File:    test/unit/winstl/memory/processheap_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::processheap_allocator`.
  *

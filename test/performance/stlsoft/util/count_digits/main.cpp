@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    count_digits/main.cpp
+ * File:    test/performance/stlsoft/util/count_digits/main.cpp
  *
  * Purpose: Perf-test for digit-counting functions.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    environment_variable_exists/entry.cpp
+ * File:    test/component/stlsoft/system/environment_variable_exists/entry.cpp
  *
  * Purpose: Component-tests for `stlsoft::environment_variable_exists()`.
  *

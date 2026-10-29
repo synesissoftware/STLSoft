@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_base/entry.cpp
+ * File:    test/unit/acestl/shims/access/string/string_base/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for `ACE_String_Base`.
  *

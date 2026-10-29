@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    dl_call/entry.cpp
+ * File:    test/component/winstl/dl/dl_call/entry.cpp
  *
  * Purpose: Component test for `winstl::dl_call`.
  *

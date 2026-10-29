@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    cstring/entry.cpp
+ * File:    test/unit/stlsoft/std/cstring/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::strcmp and stlsoft::strncmp.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_switch/entry.cpp
+ * File:    test/unit/stlsoft/util/string_switch/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *

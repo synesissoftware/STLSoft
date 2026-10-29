@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    output_debug_line.C/main.c
+ * File:    test/scratch/winstl/diagnostics/output_debug_line.C/main.c
  *
  * Purpose: Scratch test for `winstl_C_diagnostics_output_debug_line_1_m()`, etc.
  *

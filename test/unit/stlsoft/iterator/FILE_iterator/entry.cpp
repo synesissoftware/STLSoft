@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    FILE_iterator/entry.cpp
+ * File:    test/unit/stlsoft/iterator/FILE_iterator/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::FILE_iterator`.
  *

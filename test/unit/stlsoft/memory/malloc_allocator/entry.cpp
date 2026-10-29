@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    malloc_allocator/entry.cpp
+ * File:    test/unit/stlsoft/memory/malloc_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::malloc_allocator`.
  *

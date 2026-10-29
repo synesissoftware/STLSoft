@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    directory_functions/entry.cpp
+ * File:    test/component/winstl/system/directory_functions/entry.cpp
  *
  * Purpose: Component test for WinSTL atomic_functions.
  *

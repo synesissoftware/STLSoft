@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    byte_format_functions/entry.cpp
+ * File:    test/unit/stlsoft/conversion/byte_format_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *

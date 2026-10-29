@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string.snprintf/entry.cpp
+ * File:    test/unit/stlsoft/util/string.snprintf/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::snprintf`, `stlsoft::snwprintf`.
  *

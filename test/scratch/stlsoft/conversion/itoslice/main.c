@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    itoslice/main.c
+ * File:    test/scratch/stlsoft/conversion/itoslice/main.c
  *
  * Purpose: Scratch test for `stlsoft_C_itoslice_a()` etc.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    spin_mutex/entry.cpp
+ * File:    test/component/winstl/synch/spin_mutex/entry.cpp
  *
  * Purpose: Component test for `winstl::spin_mutex`.
  *

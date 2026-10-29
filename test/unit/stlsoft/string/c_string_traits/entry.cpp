@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string_traits/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string_traits/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string_traits compare functions.
  *

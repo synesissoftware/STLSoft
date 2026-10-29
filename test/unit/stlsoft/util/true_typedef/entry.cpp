@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    true_typedef/entry.cpp
+ * File:    test/unit/stlsoft/util/true_typedef/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *

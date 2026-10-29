@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    stopwatch/entry.cpp
+ * File:    test/component/platformstl/diagnostics/stopwatch/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *

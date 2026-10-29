@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.bit_functions/main.cpp
+ * File:    test/performance/stlsoft/util/bit_functions/main.cpp
  *
  * Purpose: Perf-test for bit functions.
  *

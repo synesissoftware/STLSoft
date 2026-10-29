@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    integral_limits/entry.cpp
+ * File:    test/unit/stlsoft/limits/integral_limits/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *

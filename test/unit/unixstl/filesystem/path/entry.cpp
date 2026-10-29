@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    path/entry.cpp
+ * File:    test/unit/unixstl/filesystem/path/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    shared_ptr/entry.cpp
+ * File:    test/unit/stlsoft/smartptr/shared_ptr/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *

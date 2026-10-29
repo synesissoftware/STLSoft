@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_to_integer/entry.cpp
+ * File:    test/unit/stlsoft/conversion/string_to_integer/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::string_to_integer`.
  *

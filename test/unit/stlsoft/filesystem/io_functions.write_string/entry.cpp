@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    io_functions.write_string/entry.cpp
+ * File:    test/unit/stlsoft/filesystem/io_functions.write_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::write_string<>()`.
  *

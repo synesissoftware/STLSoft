@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    glob_sequence/entry.cpp
+ * File:    test/component/unixstl/filesystem/glob_sequence/entry.cpp
  *
  * Purpose: Component test for `unixstl::glob_sequence`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    doomgram/entry.cpp
+ * File:    test/unit/stlsoft/diagnostics/doomgram/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::doomgram`.
  *

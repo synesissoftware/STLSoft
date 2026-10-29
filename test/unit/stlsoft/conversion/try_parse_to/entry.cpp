@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    try_parse_to/entry.cpp
+ * File:    test/unit/stlsoft/conversion/try_parse_to/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::try_parse_to`.
  *

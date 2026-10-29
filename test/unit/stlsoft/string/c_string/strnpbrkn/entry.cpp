@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnpbrkn/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string/strnpbrkn/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string::strnpbrkn() and wcsnpbrkn().
  *

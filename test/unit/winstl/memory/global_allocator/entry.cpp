@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    global_allocator/entry.cpp
+ * File:    test/unit/winstl/memory/global_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::global_allocator`.
  *

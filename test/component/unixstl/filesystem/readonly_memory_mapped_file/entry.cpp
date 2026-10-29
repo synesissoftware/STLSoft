@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    readonly_memory_mapped_file/entry.cpp
+ * File:    test/component/unixstl/filesystem/readonly_memory_mapped_file/entry.cpp
  *
  * Purpose: Component test for `unixstl::readonly_memory_mapped_file`.
  *

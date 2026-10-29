@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    time_value/entry.cpp
+ * File:    test/unit/acestl/shims/access/string/time_value/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for `ACE_Time_Value`.
  *

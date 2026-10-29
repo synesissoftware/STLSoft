@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    copy_functions/entry.cpp
+ * File:    test/unit/stlsoft/string/copy_functions/entry.cpp
  *
  * Purpose: Scratch test for string copy functions.
  *

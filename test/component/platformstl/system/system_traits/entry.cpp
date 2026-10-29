@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    system_traits/entry.cpp
+ * File:    test/component/platformstl/system/system_traits/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::system_traits`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    stopwatch/main.cpp
+ * File:    test/performance/platformstl/diagnostics/stopwatch/main.cpp
  *
  * Purpose: Perf-test for stopwatch types.
  *

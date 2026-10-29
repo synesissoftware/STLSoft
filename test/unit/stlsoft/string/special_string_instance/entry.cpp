@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    special_string_instance/entry.cpp
+ * File:    test/unit/stlsoft/string/special_string_instance/entry.cpp
  *
  * Purpose: Unit-tests for special_string_instance::equal.
  *

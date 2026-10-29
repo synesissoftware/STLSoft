@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    doomgram/main.cpp
+ * File:    test/performance/stlsoft/diagnostics/doomgram/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::doomgram<>`.
  *

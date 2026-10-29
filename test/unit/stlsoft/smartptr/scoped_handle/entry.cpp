@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    scoped_handle/entry.cpp
+ * File:    test/unit/stlsoft/smartptr/scoped_handle/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::scoped_handle`.
  *

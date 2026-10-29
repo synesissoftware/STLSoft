@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    shim_string/entry.cpp
+ * File:    test/unit/stlsoft/string/shim_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *

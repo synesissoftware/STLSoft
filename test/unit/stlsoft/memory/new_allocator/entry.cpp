@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    new_allocator/entry.cpp
+ * File:    test/unit/stlsoft/memory/new_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::new_allocator`.
  *

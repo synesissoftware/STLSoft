@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    frequency_map/entry.cpp
+ * File:    test/unit/stlsoft/containers/frequency_map/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    reg_value/entry.cpp
+ * File:    test/component/winstl/registry/reg_value/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::reg_value`.
  *

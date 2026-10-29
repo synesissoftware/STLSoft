@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    external.string/entry.cpp
+ * File:    test/unit/stlsoft/api/external.string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft/api/external/string.h` case-insensitive
  *          aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin).

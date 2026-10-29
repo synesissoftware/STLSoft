@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_view/entry.cpp
+ * File:    test/unit/stlsoft/string/string_view/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *

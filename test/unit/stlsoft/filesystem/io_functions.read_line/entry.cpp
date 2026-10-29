@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    io_functions.read_line/entry.cpp
+ * File:    test/unit/stlsoft/filesystem/io_functions.read_line/entry.cpp
  *
  * Purpose: Unit-test
  *

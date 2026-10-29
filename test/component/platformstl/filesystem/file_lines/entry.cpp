@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    file_lines/entry.cpp
+ * File:    test/component/platformstl/filesystem/file_lines/entry.cpp
  *
  * Purpose: Component-tests for `platformstl::file_lines`.
  *

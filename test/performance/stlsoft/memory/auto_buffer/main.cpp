@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    auto_buffer/main.cpp
+ * File:    test/performance/stlsoft/memory/auto_buffer/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *

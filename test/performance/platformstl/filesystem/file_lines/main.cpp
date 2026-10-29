@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.platformstl.file_lines/main.cpp
+ * File:    test/performance/platformstl/filesystem/file_lines/main.cpp
  *
  * Purpose: Comparative perf-test for platformstl::file_lines and
  *          std::ifstream + std::getline.

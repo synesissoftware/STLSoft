@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    integer_to_string/main.cpp
+ * File:    test/performance/stlsoft/conversion/integer_to_string/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::integer_to_string<>`.
  *

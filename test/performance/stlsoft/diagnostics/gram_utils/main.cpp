@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    gram_utils/main.cpp
+ * File:    test/performance/stlsoft/diagnostics/gram_utils/main.cpp
  *
  * Purpose: Perf-test for gram_utils
  *

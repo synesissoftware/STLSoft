@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    unicode_point_map/entry.cpp
+ * File:    test/unit/stlsoft/containers/unicode_point_map/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *

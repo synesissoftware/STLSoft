@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    environment_variable_traits/entry.cpp
+ * File:    test/component/platformstl/system/environment_variable_traits/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::environment_variable_traits`.
  *

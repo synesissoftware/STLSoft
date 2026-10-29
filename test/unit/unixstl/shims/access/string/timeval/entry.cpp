@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    timeval/entry.cpp
+ * File:    test/unit/unixstl/shims/access/string/timeval/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *

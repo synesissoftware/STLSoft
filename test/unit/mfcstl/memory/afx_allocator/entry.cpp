@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    afx_allocator/entry.cpp
+ * File:    test/unit/mfcstl/memory/afx_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `mfcstl::afx_allocator`.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    count_hexadecimal_digits/entry.cpp
+ * File:    test/unit/stlsoft/util/count_hexadecimal_digits/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
