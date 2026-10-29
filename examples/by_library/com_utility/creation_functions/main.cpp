@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/creation_functions/creation_functions.cpp
+ * File:    examples/by_library/com_utility/creation_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use the COMSTL creation
  *          functions.
  *
  * Created: 13th December 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

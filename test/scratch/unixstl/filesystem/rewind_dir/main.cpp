@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    rewind_dir/main.cpp
+ * File:    test/scratch/unixstl/filesystem/rewind_dir/main.cpp
  *
  * Purpose: Scratch test for `unixstl::filesystem_traits<>::rewind_dir()`,
  *          exploring its interaction with `open_dir()`, `read_dir()`, and
@@ -7,7 +7,7 @@
  *          current directory, if none is given).
  *
  * Created: 8th October 2026
- * Updated: 8th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

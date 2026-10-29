@@ -1,0 +1,860 @@
+#! /bin/bash
+
+# ######################################################################## #
+# File:     .dev/bin/batch_compile_check
+#
+# Purpose:  Finds and compiles (individually) headers in the libraries.
+#
+# Created:  14th February 2024
+# Updated:  29th October 2026
+#
+# Home:     http://stlsoft.org/
+#
+# ######################################################################## #
+
+
+ScriptPath=$0
+ScriptDir=$(cd "$(dirname "$ScriptPath")" && pwd)
+IncludeDir="$ScriptDir/../../include"
+
+if ! IncludeDir=$(cd "$IncludeDir" 2>/dev/null && pwd); then
+
+    >&2 echo "$ScriptPath: include directory '$IncludeDir' does not exist"
+
+    exit 1
+fi
+
+
+COMPILER_COMMAND_C=cc
+COMPILER_COMMAND_Cxx=c++
+FILE_PATTERN_C='*.h'
+FILE_PATTERN_Cxx='*.hpp'
+INPUT_FILE_LANGUAGE_C=c
+INPUT_FILE_LANGUAGE_Cxx=c++
+LANGUAGE_STD_DEFAULT_VERSIONS_C=(17)
+LANGUAGE_STD_DEFAULT_VERSIONS_Cxx=(98 03 11 14 17 20)
+
+SUBPROJECTS_DEFAULT=(stlsoft platformstl unixstl)
+
+SUPPORTED_LANGUAGE_VERSIONS_C=(89 90 99 11 17 20 23)
+SUPPORTED_LANGUAGE_VERSIONS_Cxx=(98 03 11 14 17 20 23)
+
+COMMON_SKIP_SEQUENCES=(STLSOFT:FILE_DEPRECATED STLSOFT:FILE_EXCEPTED STLSOFT:FILE_NOT_SELF_SUFFICIENT)
+
+UNIX_SKIP_SEQUENCES=(STLSOFT:Windows:FILE_EXCEPTED)
+
+# Subprojects whose headers target the Windows API. Requesting one
+# of these when not on Windows is an error.
+WINDOWS_ONLY_SUBPROJECTS=(comstl winstl)
+
+WARNING_FLAGS=(-Wall -Wextra -pedantic)
+
+
+# ##########################################################
+# operating environment detection
+
+OsName="$(uname -s)"
+IsWindows=0
+IsWindowsX64=0
+case "${OsName}" in
+    CYGWIN*|MINGW*|MSYS_NT*)
+
+        IsWindows=1
+
+        if [[ $(uname -m) == *"x86_64"* ]]; then
+
+            IsWindowsX64=1
+        fi
+
+        SUBPROJECTS_DEFAULT=(stlsoft comstl inetstl platformstl winstl)
+        ;;
+    *)
+
+        ;;
+esac
+
+
+# ##########################################################
+# command-line handling
+
+DebugConfiguration=0
+Defines=()
+DryRun="false"
+Language=
+Jobs=1
+LanguageVersionsCRequested=()
+LanguageVersionsCxxRequested=()
+ShowCounts="false"
+Subprojects=()
+VerboseMode=0
+WerrorConfiguration=0
+
+
+# An option value is missing when it is absent or when the next token
+# is another flag.
+require_option_value()
+{
+    if [ -z "$1" ] || [ "${1#-}" != "$1" ]; then
+
+        >&2 echo "$ScriptPath: missing argument; use --help for usage"
+
+        exit 1
+    fi
+}
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --c-compiler|-c)
+
+            shift
+            require_option_value "$1"
+            COMPILER_COMMAND_C=$1
+
+            ;;
+        --c-language-version)
+
+            shift
+            require_option_value "$1"
+            language_version=$1
+
+            LanguageVersionsCRequested+=($language_version)
+            ;;
+        --cxx-compiler|-x)
+
+            shift
+            require_option_value "$1"
+            COMPILER_COMMAND_Cxx=$1
+
+            ;;
+        --cxx-language-version)
+
+            shift
+            require_option_value "$1"
+            language_version=$1
+
+            LanguageVersionsCxxRequested+=($language_version)
+            ;;
+        --counts|-n)
+
+            ShowCounts="true"
+            ;;
+        --debug-configuration|-d)
+
+            DebugConfiguration=1
+            ;;
+        --dry-run|-y)
+
+            DryRun="true"
+            ;;
+        --jobs|-j)
+
+            shift
+            require_option_value "$1"
+
+            case "$1" in
+                *[!0-9]*|0*)
+
+                    >&2 echo "$ScriptPath: --jobs requires a positive integer; use --help for usage"
+
+                    exit 1
+                    ;;
+            esac
+
+            Jobs=$1
+            ;;
+        --language-is-C|-C)
+
+            Language=C
+            ;;
+        --language-is-C++|-C++)
+
+            Language=Cxx
+            ;;
+        --subproject|-p)
+
+            shift
+            require_option_value "$1"
+            subproject=$1
+
+            Subprojects+=($subproject)
+            ;;
+        --verbose-mode|-v)
+
+            VerboseMode=1
+            ;;
+        --werror|-W)
+
+            WerrorConfiguration=1
+            ;;
+        --help)
+
+            cat << EOF
+STLSoft is a suite of C/C++ libraries that provide STL extensions and facades over operating-system and technology-specific APIs
+Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
+Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
+Runs batch compilation over all library files for a given set of sub-project(s) and particular language(s) (C or C++)
+
+$ScriptPath [ ... flags/options ... ]
+
+Flags/options:
+
+    behaviour:
+
+    -c
+    --c-compiler
+        specifies the name of the C-compiler, which otherwise defaults
+        to cc
+
+    --c-language-version <version>
+        specifies a C language version (bare digits, such as 17). Can
+        be specified multiple times. Supported versions: 89, 90, 99,
+        11, 17, 20, 23. When omitted, C uses 17
+
+    -x
+    --cxx-compiler
+        specifies the name of the C++-compiler, which otherwise
+        defaults to c++
+
+    --cxx-language-version <version>
+        specifies a C++ language version (bare digits, such as 17).
+        Can be specified multiple times. Supported versions: 98, 03,
+        11, 14, 17, 20, 23. When omitted, C++ uses 98, 03, 11, 14, 17,
+        20
+
+    -n
+    --counts
+        show counts of events, including number of files compiled
+
+    -d
+    --debug-configuration
+        specifies STLSOFT_DEBUG and not NDEBUG. Default is to specify
+        NDEBUG and not STLSOFT_DEBUG
+
+    -y
+    --dry-run
+        runs through all actions except performing the compilation
+
+    -j <n>
+    --jobs <n>
+        compiles up to <n> headers at once. Default is 1. Results are
+        collected in the order the compilations were started
+
+    -C
+    --language-is-C
+        specifies that processing should only be for C. Default is to
+        process all files for all suitable languages
+
+    -C++
+    --language-is-C++
+        specifies that processing should only be for C++. Default is to
+        process all files for all suitable languages
+
+    -p <subproject>
+    --subproject <subproject>
+        adds specified <subproject> to the list of subprojects to be
+        evaluated. comstl and winstl are Windows-only
+
+    -v
+    --verbose-mode
+        announces each include file as it is compiled
+
+    -W
+    --werror
+        specifies that compiler warnings are treated as errors
+
+
+    standard flags:
+
+    --help
+        displays this help and terminates
+
+EOF
+
+            exit 0
+            ;;
+        *)
+
+            >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
+
+            exit 1
+            ;;
+    esac
+
+    shift
+done
+
+
+if false; then
+    :
+elif [ "$Language" = "Cxx" ]; then
+
+    FilePattern=$FILE_PATTERN_Cxx
+elif [ "$Language" = "C" ]; then
+
+    FilePattern=$FILE_PATTERN_C
+else
+
+    FilePattern='*.h*'
+fi
+
+if [ -z "$Subprojects" ]; then
+
+    Subprojects=${SUBPROJECTS_DEFAULT[@]}
+fi
+
+# de-duplicate subprojects (without changing order)
+Subprojects=($(echo "${Subprojects[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+
+for p in "${Subprojects[@]}"
+do
+
+    if ! [ -d "$IncludeDir/$p" ]; then
+
+        >&2 echo "$ScriptPath: subproject directory '$IncludeDir/$p' does not exist"
+
+        exit 1
+    fi
+
+    if [ $IsWindows -eq 0 ]; then
+
+        for w in "${WINDOWS_ONLY_SUBPROJECTS[@]}"
+        do
+
+            if [ "$p" = "$w" ]; then
+
+                >&2 echo "$ScriptPath: subproject '$p' is Windows-only"
+
+                exit 1
+            fi
+        done
+    fi
+done
+
+[ $VerboseMode -eq 0 ] || echo "searching for files matching '$FilePattern'"
+
+
+if [ -z "$Defines" ]; then
+
+    if [ $IsWindows -eq 1 ]; then
+
+        if [ $IsWindowsX64 -eq 1 ]; then
+
+            Defines+=(WIN64)
+        else
+
+            Defines+=(WIN32)
+        fi
+    else
+
+        Defines+=(_REENTRANT)
+        Defines+=(UNIX)
+    fi
+
+fi
+
+if [ $DebugConfiguration -eq 1 ]; then
+
+    Defines+=(STLSOFT_DEBUG _DEBUG)
+else
+
+    Defines+=(NDEBUG)
+fi
+
+# de-duplicate #defines (without changing order)
+Defines=($(echo "${Defines[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+Defines2_=${Defines[@]/#/-D}
+Defines=()
+Defines+=(${Defines2_[@]})
+
+CompilerFlags=("${WARNING_FLAGS[@]}")
+
+if [ $WerrorConfiguration -eq 1 ]; then
+
+    CompilerFlags+=(-Werror)
+fi
+
+[ $VerboseMode -eq 0 ] || echo "defines{${#Defines[@]}}: ${Defines[@]}"
+
+
+if [ "$Language" = "Cxx" ] && [ ${#LanguageVersionsCRequested[@]} -ne 0 ]; then
+
+    >&2 echo "$ScriptPath: --c-language-version given but processing is C++ only"
+
+    exit 1
+fi
+
+if [ "$Language" = "C" ] && [ ${#LanguageVersionsCxxRequested[@]} -ne 0 ]; then
+
+    >&2 echo "$ScriptPath: --cxx-language-version given but processing is C only"
+
+    exit 1
+fi
+
+LanguageVersionsC=()
+LanguageVersionsCxx=()
+
+if [ "$Language" != "Cxx" ]; then
+
+    if [ ${#LanguageVersionsCRequested[@]} -eq 0 ]; then
+
+        LanguageVersionsC=("${LANGUAGE_STD_DEFAULT_VERSIONS_C[@]}")
+    else
+
+        LanguageVersionsCRequested=($(echo "${LanguageVersionsCRequested[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+
+        for v in "${LanguageVersionsCRequested[@]}"
+        do
+
+            language_version_valid=0
+
+            for s in "${SUPPORTED_LANGUAGE_VERSIONS_C[@]}"
+            do
+
+                if [ "$v" = "$s" ]; then
+
+                    language_version_valid=1
+                fi
+            done
+
+            if [ $language_version_valid -eq 0 ]; then
+
+                >&2 echo "$ScriptPath: unrecognised C language version '$v'; supported versions: ${SUPPORTED_LANGUAGE_VERSIONS_C[*]}"
+
+                exit 1
+            fi
+
+            LanguageVersionsC+=("$v")
+        done
+    fi
+fi
+
+if [ "$Language" != "C" ]; then
+
+    if [ ${#LanguageVersionsCxxRequested[@]} -eq 0 ]; then
+
+        LanguageVersionsCxx=("${LANGUAGE_STD_DEFAULT_VERSIONS_Cxx[@]}")
+    else
+
+        LanguageVersionsCxxRequested=($(echo "${LanguageVersionsCxxRequested[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+
+        for v in "${LanguageVersionsCxxRequested[@]}"
+        do
+
+            language_version_valid=0
+
+            for s in "${SUPPORTED_LANGUAGE_VERSIONS_Cxx[@]}"
+            do
+
+                if [ "$v" = "$s" ]; then
+
+                    language_version_valid=1
+                fi
+            done
+
+            if [ $language_version_valid -eq 0 ]; then
+
+                >&2 echo "$ScriptPath: unrecognised C++ language version '$v'; supported versions: ${SUPPORTED_LANGUAGE_VERSIONS_Cxx[*]}"
+
+                exit 1
+            fi
+
+            LanguageVersionsCxx+=("$v")
+        done
+    fi
+fi
+
+if [ ${#LanguageVersionsC[@]} -ne 0 ]; then
+
+    LanguageVersionsC2_=${LanguageVersionsC[@]/#/c}
+    LanguageVersionsC=()
+    LanguageVersionsC+=(${LanguageVersionsC2_[@]})
+fi
+
+if [ ${#LanguageVersionsCxx[@]} -ne 0 ]; then
+
+    LanguageVersionsCxx2_=${LanguageVersionsCxx[@]/#/c++}
+    LanguageVersionsCxx=()
+    LanguageVersionsCxx+=(${LanguageVersionsCxx2_[@]})
+fi
+
+[ $VerboseMode -eq 0 ] || echo "C language versions{${#LanguageVersionsC[@]}}: (${LanguageVersionsC[*]})"
+[ $VerboseMode -eq 0 ] || echo "C++ language versions{${#LanguageVersionsCxx[@]}}: (${LanguageVersionsCxx[*]})"
+[ $VerboseMode -eq 0 ] || echo "subprojects{${#Subprojects[@]}}: (${Subprojects[*]})"
+
+if [ "$Language" != "Cxx" ]; then
+
+    if ! command -v "$COMPILER_COMMAND_C" > /dev/null 2>&1; then
+
+        >&2 echo "$ScriptPath: C compiler '$COMPILER_COMMAND_C' not found"
+
+        exit 1
+    fi
+fi
+
+if [ "$Language" != "C" ]; then
+
+    if ! command -v "$COMPILER_COMMAND_Cxx" > /dev/null 2>&1; then
+
+        >&2 echo "$ScriptPath: C++ compiler '$COMPILER_COMMAND_Cxx' not found"
+
+        exit 1
+    fi
+fi
+
+
+# ##########################################################
+# main()
+
+# $1 is a skip-marker token, compared case-insensitively against the
+# markers collected for the current file.
+marker_listed()
+{
+    shopt -s nocasematch
+
+    [[ $'\n'"$file_markers"$'\n' == *$'\n'"$1"$'\n'* ]]
+    local rc=$?
+
+    shopt -u nocasematch
+
+    return $rc
+}
+
+# Compilations above the default of one job are started in batches.
+# Each batch is waited for in start order, so a failure is kept and the
+# summary stays in header order.
+PendingPids=()
+PendingLabels=()
+PendingLogs=()
+
+reap_cleanup()
+{
+    local pid log
+
+    for pid in "${PendingPids[@]}"
+    do
+
+        kill "$pid" 2>/dev/null
+    done
+
+    for log in "${PendingLogs[@]}"
+    do
+
+        rm -f "$log"
+    done
+}
+
+reap_pending()
+{
+    local i rc label log
+
+    for i in "${!PendingPids[@]}"
+    do
+
+        wait "${PendingPids[$i]}"
+        rc=$?
+        label="${PendingLabels[$i]}"
+        log="${PendingLogs[$i]}"
+
+        ((NumFilesCompiled++))
+
+        if [ $rc -ne 0 ]; then
+
+            ((NumFilesFailed++))
+
+            FailedCompilations+=("$label")
+
+            if [ -s "$log" ]; then
+
+                >&2 printf '%s:\n' "$label"
+                >&2 cat "$log"
+            fi
+        fi
+
+        rm -f "$log"
+    done
+
+    PendingPids=()
+    PendingLabels=()
+    PendingLogs=()
+}
+
+# $1 is the failure label. $2 is the compiler. The rest is its
+# arguments. $contents is the translation unit.
+start_compile()
+{
+    local label="$1"
+    local compiler="$2"
+    local log
+
+    shift 2
+
+    if [ "$Jobs" -eq 1 ]; then
+
+        ((NumFilesCompiled++))
+
+        printf '%b\n' "$contents" | "$compiler" "$@"
+
+        if [ $? -ne 0 ]; then
+
+            ((NumFilesFailed++))
+
+            FailedCompilations+=("$label")
+        fi
+
+        return
+    fi
+
+    if [ "${#PendingPids[@]}" -ge "$Jobs" ]; then
+
+        reap_pending
+    fi
+
+    log=$(mktemp "${TMPDIR:-/tmp}/batch_compile_check.XXXXXX") || exit 1
+
+    printf '%b\n' "$contents" | "$compiler" "$@" >"$log" 2>&1 &
+
+    PendingPids+=($!)
+    PendingLabels+=("$label")
+    PendingLogs+=("$log")
+}
+
+trap 'reap_cleanup; exit 130' INT
+
+
+IncludeDirLen=${#IncludeDir}+1
+
+FailedCompilations=()
+NumCompilationsSkipped=0
+NumFilesCompiled=0
+NumFilesFailed=0
+NumFilesSkipped=0
+NumFilesTotal=0
+
+for p in "${Subprojects[@]}"
+do
+
+    [ $VerboseMode -eq 0 ] || echo "    $p:"
+
+    # LC_ALL=C sort -z: locale-independent order of NUL-delimited
+    # paths, so repeated runs list the same header in the same place
+    while IFS= read -r -d '' f
+    do
+        srp=${f:$IncludeDirLen}
+
+        ((NumFilesTotal++))
+
+        # at this point we need to check the language of the file, since we
+        # may wish to compile the .h files as both C and C++
+
+        FileIsCxx="false"
+        if [ ".hpp" = "${srp: -4}" ]; then
+
+            FileIsCxx="true"
+        fi
+
+        ShouldCompileC="false"
+        ShouldCompileCxx="false"
+
+        if [ "$FileIsCxx" = "true" ]; then
+
+            # NOTE: this should not be necessary, if $FilePattern is
+            # evaluated correctly
+            if [ "$Language" != "C" ]; then
+
+                ShouldCompileCxx="true"
+            fi
+        else
+
+            if false; then
+                :
+            elif [ "$Language" = "Cxx" ]; then
+
+                :
+            elif [ "$Language" = "C" ]; then
+
+                ShouldCompileC="true"
+            else
+
+                ShouldCompileC="true"
+                ShouldCompileCxx="true"
+            fi
+        fi
+
+        if [ ! "$ShouldCompileC" = "true" ] && [ ! "$ShouldCompileCxx" = "true" ]; then
+
+            continue
+        fi
+
+        ShouldSkip="false"
+        SkipCause=""
+
+        # One scan per header. Only a whole /* STLSOFT:… */ comment counts,
+        # so a prose mention of the marker convention does not skip the file.
+        file_markers=$(grep -o -i -E '/\*[[:space:]]*STLSOFT:([A-Za-z0-9+]+:)?FILE_(DEPRECATED|EXCEPTED|NOT_SELF_SUFFICIENT)[[:space:]]*\*/' "$f" | sed -e 's/^.*[Ss][Tt][Ll][Ss][Oo][Ff][Tt]:/STLSOFT:/' -e 's/[[:space:]]*\*\/$//')
+
+        for s in "${COMMON_SKIP_SEQUENCES[@]}"
+        do
+
+            if marker_listed "$s"; then
+
+                ShouldSkip="true"
+                SkipCause="$s"
+            fi
+        done
+
+        if [ "$ShouldSkip" = "true" ]; then
+
+            [ $VerboseMode -eq 0 ] || echo "        $srp - skipped ($SkipCause)"
+
+            ((NumFilesSkipped++))
+
+            continue
+        fi
+
+        if [ $IsWindows -eq 0 ]; then
+
+            for s in "${UNIX_SKIP_SEQUENCES[@]}"
+            do
+
+                if marker_listed "$s"; then
+
+                    ShouldSkip="true"
+                    SkipCause="$s"
+                fi
+            done
+        fi
+
+        if [ "$ShouldSkip" = "true" ]; then
+
+            [ $VerboseMode -eq 0 ] || echo "        $srp - skipped ($SkipCause)"
+
+            ((NumFilesSkipped++))
+
+            continue
+        fi
+
+
+        # On Windows, headers in these subprojects are compiled after the
+        # Windows headers they assume are already included. ntsecapi.h is
+        # winstl-only: LSA_UNICODE_STRING.hpp errors without it.
+        contents="#include <$srp>"
+
+        if [ $IsWindows -eq 1 ]; then
+
+            case "$p" in
+                comstl|inetstl)
+
+                    contents="#include <windows.h>\n#include <$srp>"
+                    ;;
+                winstl)
+
+                    contents="#include <windows.h>\n#include <ntsecapi.h>\n#include <$srp>"
+                    ;;
+            esac
+        fi
+
+        if [ "$ShouldCompileCxx" = "true" ] && [ ${#LanguageVersionsCxx[@]} -ne 0 ]; then
+
+            [ $VerboseMode -eq 0 ] || echo "        $srp ($COMPILER_COMMAND_Cxx):"
+
+            for l in "${LanguageVersionsCxx[@]}"
+            do
+
+                ShouldSkip="false"
+                SkipCause=""
+
+                if marker_listed "STLSOFT:$l:FILE_DEPRECATED" || marker_listed "STLSOFT:$l:FILE_EXCEPTED"; then
+
+                    ShouldSkip="true"
+                    SkipCause="STLSOFT:$l:FILE_DEPRECATED/FILE_EXCEPTED"
+                fi
+
+                if [ "$ShouldSkip" = "true" ]; then
+
+                    [ $VerboseMode -eq 0 ] || echo "            ($l) - skipped ($SkipCause)"
+
+                    ((NumCompilationsSkipped++))
+
+                    continue
+                fi
+
+                [ $VerboseMode -eq 0 ] || echo "            ($l)"
+
+                if [ "$DryRun" != "true" ]; then
+
+                    start_compile "$srp (C++, $l)" "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                else
+
+                    printf '%s\n' "$contents | $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${CompilerFlags[*]} ${Defines[*]} -I $IncludeDir -"
+                fi
+            done
+        fi
+
+        if [ "$ShouldCompileC" = "true" ] && [ ${#LanguageVersionsC[@]} -ne 0 ]; then
+
+            [ $VerboseMode -eq 0 ] || echo "        $srp ($COMPILER_COMMAND_C):"
+
+            for l in "${LanguageVersionsC[@]}"
+            do
+
+                ShouldSkip="false"
+                SkipCause=""
+
+                if marker_listed "STLSOFT:$l:FILE_DEPRECATED" || marker_listed "STLSOFT:$l:FILE_EXCEPTED"; then
+
+                    ShouldSkip="true"
+                    SkipCause="STLSOFT:$l:FILE_DEPRECATED/FILE_EXCEPTED"
+                fi
+
+                if [ "$ShouldSkip" = "true" ]; then
+
+                    [ $VerboseMode -eq 0 ] || echo "            ($l) - skipped ($SkipCause)"
+
+                    ((NumCompilationsSkipped++))
+
+                    continue
+                fi
+
+                [ $VerboseMode -eq 0 ] || echo "            ($l)"
+
+                if [ "$DryRun" != "true" ]; then
+
+                    start_compile "$srp (C, $l)" "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                else
+
+                    printf '%s\n' "$contents | $COMPILER_COMMAND_C -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C ${CompilerFlags[*]} ${Defines[*]} -I $IncludeDir -"
+                fi
+            done
+        fi
+    done < <(find "$IncludeDir/$p" -type f -name "$FilePattern" -print0 | LC_ALL=C sort -z)
+done
+
+reap_pending
+
+if [ $NumFilesTotal -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no files found matching '$FilePattern' in the specified subproject(s)"
+
+    exit 1
+fi
+
+if [ "$ShowCounts" = "true" ]; then
+
+    echo "$NumFilesTotal file(s) found, of which $NumFilesSkipped file(s) skipped; $NumFilesCompiled compilation(s) attempted, of which $NumFilesFailed failed and $NumCompilationsSkipped skipped"
+fi
+
+if [ $NumFilesFailed -ne 0 ]; then
+
+    >&2 echo "$NumFilesFailed compilation(s) FAILED:"
+
+    for fc in "${FailedCompilations[@]}"
+    do
+
+        >&2 echo "FAIL: $fc"
+    done
+
+    exit 1
+fi
+
+# ############################## end of file ############################# #
+
