@@ -88,7 +88,7 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 
 ### 1.11.7
 
-* [ ] Review the relationship between **include/*stl*/error** and **include/*stl*/diagnostics**, and retain or consolidate only distinct responsibilities;
+* [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
 
 
