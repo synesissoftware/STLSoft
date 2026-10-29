@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # ######################################################################## #
-# File:     dev/bin/batch_compile_check
+# File:     .dev/bin/batch_compile_check
 #
 # Purpose:  Finds and compiles (individually) headers in the libraries.
 #
@@ -14,9 +14,8 @@
 
 
 ScriptPath=$0
-ProjectDir=$(cd "$(dirname "$ScriptPath")" && pwd)
-Basename=$(basename "$ScriptPath")
-IncludeDir="$ProjectDir/../../include"
+ScriptDir=$(cd "$(dirname "$ScriptPath")" && pwd)
+IncludeDir="$ScriptDir/../../include"
 
 if ! IncludeDir=$(cd "$IncludeDir" 2>/dev/null && pwd); then
 
@@ -343,7 +342,7 @@ else
     Defines+=(NDEBUG)
 fi
 
-# sort #defines (without changing order)
+# de-duplicate #defines (without changing order)
 Defines=($(echo "${Defines[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
 Defines2_=${Defines[@]/#/-D}
 Defines=()
