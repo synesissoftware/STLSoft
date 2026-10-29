@@ -19,8 +19,11 @@
     * Every compile passes `-Wall -Wextra -pedantic`. `-W` / `--werror` adds `-Werror`;
     * Skip markers are whole `/* STLSOFT:… */` comments, read once per header and matched case-insensitively: `STLSOFT:FILE_DEPRECATED`, `STLSOFT:FILE_EXCEPTED`, `STLSOFT:FILE_NOT_SELF_SUFFICIENT`, and per-standard `STLSOFT:<std>:FILE_DEPRECATED` / `FILE_EXCEPTED`. `STLSOFT:Windows:FILE_EXCEPTED` applies only when not on Windows. `--counts` reports files found and skipped separately from compilation attempts, failures, and per-version skips;
     * Headers are discovered with NUL-delimited `find` and listed in `LC_ALL=C` order. **comstl** and **winstl** are rejected when not on Windows, before any verbose configuration is printed. On Windows, **comstl** and **inetstl** are compiled after `windows.h`, and **winstl** also after `ntsecapi.h`;
+  * **.dev/bin/check_unit_test_names.rb** (0.3.0) checks `File:` labels and `XTESTS_START_RUNNER*` names. `--mode` selects both, file, or runner (default both). A `File:` label under **examples** or **test** is the project-relative path. A runner name, for `test/unit` and `test/component` programs named `entry.c` or `entry.cpp`, is that directory with `/` replaced by `.`; `__FILE__` is accepted. `--project-root` / `-R` selects the tree (the default is two levels above the script). Either mismatch count exits 1. The **Check test names** job runs the script once on Ubuntu over **examples** and **test**;
 * documentation and boilerplate:
   * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
+  * `File:` labels under **test** and **examples** use the project-relative path;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.4**;
 
 
 ## 1.11.3 - 27th October 2026

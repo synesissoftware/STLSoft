@@ -70,6 +70,7 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 * [x] ~~~`invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`)~~~ - ✅;
 * [x] ~~~Output-iterator `deref_proxy` copy constructors, so C++11 and C++14 do not warn `-Wdeprecated-copy` when copy assignment is deleted~~~ - ✅;
 * [x] ~~~**.dev/bin/batch_compile_check** — `-fsyntax-only`, separate C and C++ language versions, `-j`, skip-marker scan, Windows prelude, and a failing exit status with a `FAIL:` list~~~ - ✅;
+* [x] ~~~**.dev/bin/check_unit_test_names.rb** — project-relative `File:` labels, runner names from the test directory, `--project-root`, and one CI job~~~ - ✅;
 
 
 ### 1.11.5
@@ -193,6 +194,13 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 * [ ] Remove defunct / outmoded components;
 * [ ] New Website (contemporaneous with 1.12);
 * [ ] STLSoft-related blog posts on the new Website (focusing on new components);
+* [ ] Search, by several different means, for existing facilities worth future blog posts and articles on stlsoft.org. Starting candidates include:
+  * [ ] fast string-searching functions;
+  * [ ] fine-grained microsecond wait on Windows (`winstl::micro_sleep()`);
+  * [ ] the fast integer-to-string functions;
+  * [ ] `doomgram`;
+  * [ ] `par_strip`;
+  * [ ] ... and many more ...;
 * [ ] Set-up donation;
 * [ ] Work out how to provide compiler/language-dialect compatibility reporting in an automated or semi-automated manner henceforth (replaces the retired manual matrix);
 
