@@ -3,6 +3,8 @@
 
 ## 1.11.5 - 31st October 2026
 
+* compatibility:
+  * `string_concatenation_flags` members arrayed to avoid trailing commas;
 
 
 ## 1.11.4 - 29th October 2026
