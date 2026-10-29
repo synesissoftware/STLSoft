@@ -75,7 +75,6 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 * [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.stdio**~~~ - ✅;
 * [x] ~~~`invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`)~~~ - ✅;
 * [x] ~~~Output-iterator `deref_proxy` copy constructors, so C++11 and C++14 do not warn `-Wdeprecated-copy` when copy assignment is deleted~~~ - ✅;
-* [x] ~~~**.dev/bin/batch_compile_check** — `-fsyntax-only`, separate C and C++ language versions, `-j`, skip-marker scan, Windows prelude, and a failing exit status with a `FAIL:` list~~~ - ✅;
 
 
 ### 1.11.5
