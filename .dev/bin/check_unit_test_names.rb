@@ -35,7 +35,7 @@ require 'xqsr3/extensions/string/map_option_string'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 2
-PROGRAM_VER_PATCH = 1
+PROGRAM_VER_PATCH = 2
 
 PROCESS_MODE_STRINGS = %w{
     [b]oth
@@ -66,6 +66,23 @@ end
 def project_relative_path(entry)
 
   Recls.derive_relative_path(PROJECT_ROOT, entry.path)
+end
+
+# Automated tests are test/unit and test/component programs named
+# entry.c or entry.cpp. The runner name is that directory, from the
+# project root, with '/' turned into '.'.
+def automated_test_entry?(relative_path)
+
+  base = File.basename(relative_path)
+
+  return false unless base == 'entry.c' || base == 'entry.cpp'
+
+  relative_path.start_with?('test/component/', 'test/unit/')
+end
+
+def expected_runner_name(relative_path)
+
+  File.dirname(relative_path).tr('\\/', '.')
 end
 
 
@@ -136,9 +153,6 @@ directories.each do |directory|
       "#{this_dir}#{fe.basename}"
     end
 
-    expected_name = "#{this_dir}#{fe.basename}"
-
-
     num_files += 1
 
     # "File:" processing?
@@ -167,24 +181,28 @@ directories.each do |directory|
     case options[:process_mode]
     when :both, :runner
 
-      lines_START_RUNNER = lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }
+      next unless automated_test_entry? relative_path
 
-      unless lines_START_RUNNER.empty?
+      expected_runner = expected_runner_name relative_path
 
-        lines_START_RUNNER.each do |line|
+      lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }.each do |line|
 
-          if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
+        if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*__FILE__\s*,/
 
-            name = $1
+          next
+        elsif line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
 
-            if this_dir != (name + '/')
+          name = $1
+        else
 
-              $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
-
-              num_files_bad_RUNNER += 1
-            end
-          end
+          name = nil
         end
+
+        next if name == expected_runner
+
+        $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_runner, :green)}'"
+
+        num_files_bad_RUNNER += 1
       end
     end
   end
