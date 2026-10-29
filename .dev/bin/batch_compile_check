@@ -89,45 +89,47 @@ VerboseMode=0
 WerrorConfiguration=0
 
 
+# An option value is missing when it is absent or when the next token
+# is another flag.
+require_option_value()
+{
+    if [ -z "$1" ] || [ "${1#-}" != "$1" ]; then
+
+        >&2 echo "$ScriptPath: missing argument; use --help for usage"
+
+        exit 1
+    fi
+}
+
 while [[ $# -gt 0 ]]; do
     case $1 in
         --c-compiler|-c)
 
             shift
+            require_option_value "$1"
             COMPILER_COMMAND_C=$1
 
             ;;
         --c-language-version)
 
             shift
+            require_option_value "$1"
             language_version=$1
-
-            if [ -z "$language_version" ]; then
-
-                >&2 echo "$ScriptPath: missing argument; use --help for usage"
-
-                exit 1
-            fi
 
             LanguageVersionsCRequested+=($language_version)
             ;;
         --cxx-compiler|-x)
 
             shift
+            require_option_value "$1"
             COMPILER_COMMAND_Cxx=$1
 
             ;;
         --cxx-language-version)
 
             shift
+            require_option_value "$1"
             language_version=$1
-
-            if [ -z "$language_version" ]; then
-
-                >&2 echo "$ScriptPath: missing argument; use --help for usage"
-
-                exit 1
-            fi
 
             LanguageVersionsCxxRequested+=($language_version)
             ;;
@@ -154,14 +156,8 @@ while [[ $# -gt 0 ]]; do
         --subproject|-p)
 
             shift
+            require_option_value "$1"
             subproject=$1
-
-            if [ -z "$subproject" ]; then
-
-                >&2 echo "$ScriptPath: missing argument; use --help for usage"
-
-                exit 1
-            fi
 
             Subprojects+=($subproject)
             ;;
