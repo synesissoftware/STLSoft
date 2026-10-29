@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

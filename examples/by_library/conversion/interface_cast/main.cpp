@@ -5,7 +5,7 @@
  *          library's interface_cast component.
  *
  * Created: 9th December 2006
- * Updated: 5th September 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

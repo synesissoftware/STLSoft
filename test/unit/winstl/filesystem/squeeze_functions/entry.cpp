@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::squeeze_path`.
  *
  * Created: 29th October 2016
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
  * Created: 19th March 2010
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

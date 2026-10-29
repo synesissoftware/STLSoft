@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::strcmp and stlsoft::strncmp.
  *
  * Created: 29th September 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

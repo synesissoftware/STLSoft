@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_to_integer`.
  *
  * Created: 18th November 2008
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

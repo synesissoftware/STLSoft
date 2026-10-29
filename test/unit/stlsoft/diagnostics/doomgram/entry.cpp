@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::doomgram`.
  *
  * Created: 13th May 2013
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

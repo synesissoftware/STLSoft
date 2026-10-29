@@ -5,7 +5,7 @@
  *          library filesystem functions.
  *
  * Created: 9th December 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

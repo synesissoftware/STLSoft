@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_initialisers`.
  *
  * Created: 9th October 2024
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::commandline_parser` / `winstl::commandline_parser`.
  *
  * Created: 29th December 2024
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

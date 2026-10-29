@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_lc_string`.
  *
  * Created: 1st November 2011
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

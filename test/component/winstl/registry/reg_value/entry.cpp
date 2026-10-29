@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value`.
  *
  * Created: 23rd February 2009
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

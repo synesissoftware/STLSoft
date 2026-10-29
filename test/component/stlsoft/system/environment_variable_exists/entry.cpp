@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `stlsoft::environment_variable_exists()`.
  *
  * Created: 28th September 2026
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

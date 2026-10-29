@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::integer_to_string<>`.
  *
  * Created: 29th October 2016
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

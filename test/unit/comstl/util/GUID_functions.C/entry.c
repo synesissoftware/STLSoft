@@ -4,7 +4,7 @@
  * Purpose: Scratch test for GUID functions.
  *
  * Created: 12th May 2010
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::cmdargs`.
  *
  * Created: 29th December 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

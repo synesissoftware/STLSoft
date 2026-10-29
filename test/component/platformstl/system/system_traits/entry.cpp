@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::system_traits`.
  *
  * Created: 29th January 2013
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

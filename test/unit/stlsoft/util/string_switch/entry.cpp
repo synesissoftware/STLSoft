@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 9th June 2010
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `platformstl::file_lines`.
  *
  * Created: 23rd September 2026
- * Updated: 30th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Scratch test for VARIANT functions.
  *
  * Created: 26th October 2008
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `ACE_String_Base`.
  *
  * Created: 7th August 2026
- * Updated: 26th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

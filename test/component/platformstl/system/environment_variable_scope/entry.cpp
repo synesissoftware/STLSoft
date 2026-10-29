@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::environment_variable_scope`.
  *
  * Created: 26th April 2025
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

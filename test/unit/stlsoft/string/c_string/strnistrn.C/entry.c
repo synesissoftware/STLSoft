@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn().
  *
  * Created: 23rd October 2026
- * Updated: 23rd October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

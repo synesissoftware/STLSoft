@@ -5,7 +5,7 @@
  *          Panel library.
  *
  * Created: 27th May 2006
- * Updated: 13th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

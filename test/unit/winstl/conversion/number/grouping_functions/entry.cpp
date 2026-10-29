@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::format_thousands`.
  *
  * Created: 30th November 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

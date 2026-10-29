@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

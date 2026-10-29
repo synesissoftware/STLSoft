@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::doomgram<>`.
  *
  * Created: 11th December 2024
- * Updated: 30th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

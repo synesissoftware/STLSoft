@@ -4,7 +4,7 @@
  * Purpose: Scratch test for BSTR functions.
  *
  * Created: 31st May 2010
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

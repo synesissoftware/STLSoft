@@ -5,7 +5,7 @@
  *          component auto_buffer.
  *
  * Created: 15th September 2006
- * Updated: 30th May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

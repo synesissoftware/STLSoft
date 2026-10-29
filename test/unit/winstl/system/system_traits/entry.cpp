@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::system_traits`.
  *
  * Created: 22nd May 2025
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

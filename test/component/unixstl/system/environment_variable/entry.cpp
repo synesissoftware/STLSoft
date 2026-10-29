@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::environment_variable`.
  *
  * Created: 11th August 2010
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

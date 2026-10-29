@@ -5,7 +5,7 @@
  *          `platformstl::stopwatch` from the Performance library.
  *
  * Created: 22nd May 2006
- * Updated: 17th December 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

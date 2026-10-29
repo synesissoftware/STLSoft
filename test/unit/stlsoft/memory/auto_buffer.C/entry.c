@@ -4,7 +4,7 @@
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *
  * Created: 5th August 2011
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
