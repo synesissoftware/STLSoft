@@ -1,13 +1,13 @@
 #! /usr/bin/env ruby
 
 # ######################################################################## #
-# File:     dev/bin/generate_cmakelists.rb
+# File:     .dev/bin/generate_cmakelists.rb
 #
 # Purpose:  Creates or regenerates CMakeLists.txt files in a manner
 #           compatible with Synesis Information Systems' libraries.
 #
 # Created:  9th January 2025
-# Updated:  12th August 2026
+# Updated:  30th October 2026
 #
 # Author:   Matthew Wilson
 #
@@ -34,11 +34,17 @@ require 'recls'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 1
-PROGRAM_VER_PATCH = 4
+PROGRAM_VER_PATCH = 5
+
+DIRECTORY_PARTS_TO_IGNORE = [
+  '.dev/',
+  'cmake/',
+  'doc/',
+  'include/',
+  'strategy/',
+]
 
 EYECATCHER = '# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten'
-
-
 
 FILES_TO_IGNORE = [
   'implicit_link.c',
@@ -47,7 +53,7 @@ FILES_TO_IGNORE = [
   /\.vcproj$/,
   /\.vcxproj$/,
   /\.vcxproj.filters$/,
-  lambda { |fe| fe.directory_parts.include?('include/') },
+  lambda { |fe| DIRECTORY_PARTS_TO_IGNORE.any? { |part| fe.directory_parts.include?(part) }},
 ]
 
 
