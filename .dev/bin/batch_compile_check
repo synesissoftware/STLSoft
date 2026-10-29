@@ -44,6 +44,10 @@ COMMON_SKIP_SEQUENCES=(STLSOFT:FILE_DEPRECATED STLSOFT:FILE_EXCEPTED STLSOFT:FIL
 
 UNIX_SKIP_SEQUENCES=(STLSOFT:Windows:FILE_EXCEPTED)
 
+# Subprojects whose headers target the Windows API. Requesting one
+# of these when not on Windows is an error.
+WINDOWS_ONLY_SUBPROJECTS=(comstl winstl)
+
 WARNING_FLAGS=(-Wall -Wextra -pedantic)
 
 
@@ -231,7 +235,7 @@ Flags/options:
     -p <subproject>
     --subproject <subproject>
         adds specified <subproject> to the list of subprojects to be
-        evaluated
+        evaluated. comstl and winstl are Windows-only
 
     -v
     --verbose-mode
@@ -275,6 +279,39 @@ else
 
     FilePattern='*.h*'
 fi
+
+if [ -z "$Subprojects" ]; then
+
+    Subprojects=${SUBPROJECTS_DEFAULT[@]}
+fi
+
+# de-duplicate subprojects (without changing order)
+Subprojects=($(echo "${Subprojects[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+
+for p in "${Subprojects[@]}"
+do
+
+    if ! [ -d "$IncludeDir/$p" ]; then
+
+        >&2 echo "$ScriptPath: subproject directory '$IncludeDir/$p' does not exist"
+
+        exit 1
+    fi
+
+    if [ $IsWindows -eq 0 ]; then
+
+        for w in "${WINDOWS_ONLY_SUBPROJECTS[@]}"
+        do
+
+            if [ "$p" = "$w" ]; then
+
+                >&2 echo "$ScriptPath: subproject '$p' is Windows-only"
+
+                exit 1
+            fi
+        done
+    fi
+done
 
 [ $VerboseMode -eq 0 ] || echo "searching for files matching '$FilePattern'"
 
@@ -425,29 +462,7 @@ fi
 
 [ $VerboseMode -eq 0 ] || echo "C language versions{${#LanguageVersionsC[@]}}: (${LanguageVersionsC[*]})"
 [ $VerboseMode -eq 0 ] || echo "C++ language versions{${#LanguageVersionsCxx[@]}}: (${LanguageVersionsCxx[*]})"
-
-
-if [ -z "$Subprojects" ]; then
-
-    Subprojects=${SUBPROJECTS_DEFAULT[@]}
-fi
-
-# sort sub-projects (without changing order)
-Subprojects=($(echo "${Subprojects[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
-
 [ $VerboseMode -eq 0 ] || echo "subprojects{${#Subprojects[@]}}: (${Subprojects[*]})"
-
-
-for p in "${Subprojects[@]}"
-do
-
-    if ! [ -d "$IncludeDir/$p" ]; then
-
-        >&2 echo "$ScriptPath: subproject directory '$IncludeDir/$p' does not exist"
-
-        exit 1
-    fi
-done
 
 if [ "$Language" != "Cxx" ]; then
 
@@ -585,6 +600,25 @@ do
         fi
 
 
+        # On Windows, headers in these subprojects are compiled after the
+        # Windows headers they assume are already included. ntsecapi.h is
+        # winstl-only: LSA_UNICODE_STRING.hpp errors without it.
+        contents="#include <$srp>"
+
+        if [ $IsWindows -eq 1 ]; then
+
+            case "$p" in
+                comstl|inetstl)
+
+                    contents="#include <windows.h>\n#include <$srp>"
+                    ;;
+                winstl)
+
+                    contents="#include <windows.h>\n#include <ntsecapi.h>\n#include <$srp>"
+                    ;;
+            esac
+        fi
+
         if [ "$ShouldCompileCxx" = "true" ] && [ ${#LanguageVersionsCxx[@]} -ne 0 ]; then
 
             [ $VerboseMode -eq 0 ] || echo "        $srp ($COMPILER_COMMAND_Cxx):"
@@ -612,19 +646,11 @@ do
 
                 [ $VerboseMode -eq 0 ] || echo "            ($l)"
 
-                if [ "$p" == "winstl" ]; then
-
-                    contents="#include <windows.h>\n#include <ntsecapi.h>\n#include <$srp>"
-                else
-
-                    contents="#include <$srp>"
-                fi
-
                 if [ "$DryRun" != "true" ]; then
 
                     ((NumFilesCompiled++))
 
-                    echo -e $contents | "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                    printf '%b\n' "$contents" | "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
 
                     if [ $? -ne 0 ]; then
 
@@ -634,7 +660,7 @@ do
                     fi
                 else
 
-                    echo $contents \| "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                    printf '%s\n' "$contents | $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${CompilerFlags[*]} ${Defines[*]} -I $IncludeDir -"
                 fi
             done
         fi
@@ -670,7 +696,7 @@ do
 
                     ((NumFilesCompiled++))
 
-                    echo "#include <$srp>" | "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                    printf '%b\n' "$contents" | "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
 
                     if [ $? -ne 0 ]; then
 
@@ -680,7 +706,7 @@ do
                     fi
                 else
 
-                    echo "#include <$srp>" \| "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                    printf '%s\n' "$contents | $COMPILER_COMMAND_C -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C ${CompilerFlags[*]} ${Defines[*]} -I $IncludeDir -"
                 fi
             done
         fi
