@@ -197,7 +197,6 @@ static void TEST_c_str_ptr_w_MATCHES_NARROW()
     TEST_WS_EQ(wide.data(), data_w.data());
     TEST_WS_EQ(wide.data(), null_w.data());
 }
-
 } // anonymous namespace
 
 
