@@ -81,6 +81,7 @@ DebugConfiguration=0
 Defines=()
 DryRun="false"
 Language=
+Jobs=1
 LanguageVersionsCRequested=()
 LanguageVersionsCxxRequested=()
 ShowCounts="false"
@@ -144,6 +145,22 @@ while [[ $# -gt 0 ]]; do
         --dry-run|-y)
 
             DryRun="true"
+            ;;
+        --jobs|-j)
+
+            shift
+            require_option_value "$1"
+
+            case "$1" in
+                *[!0-9]*|0*)
+
+                    >&2 echo "$ScriptPath: --jobs requires a positive integer; use --help for usage"
+
+                    exit 1
+                    ;;
+            esac
+
+            Jobs=$1
             ;;
         --language-is-C|-C)
 
@@ -216,6 +233,11 @@ Flags/options:
     -y
     --dry-run
         runs through all actions except performing the compilation
+
+    -j <n>
+    --jobs <n>
+        compiles up to <n> headers at once. Default is 1. Results are
+        collected in the order the compilations were started
 
     -C
     --language-is-C
@@ -497,7 +519,106 @@ marker_listed()
     return $rc
 }
 
-trap 'exit 130' INT
+# Compilations above the default of one job are started in batches.
+# Each batch is waited for in start order, so a failure is kept and the
+# summary stays in header order.
+PendingPids=()
+PendingLabels=()
+PendingLogs=()
+
+reap_cleanup()
+{
+    local pid log
+
+    for pid in "${PendingPids[@]}"
+    do
+
+        kill "$pid" 2>/dev/null
+    done
+
+    for log in "${PendingLogs[@]}"
+    do
+
+        rm -f "$log"
+    done
+}
+
+reap_pending()
+{
+    local i rc label log
+
+    for i in "${!PendingPids[@]}"
+    do
+
+        wait "${PendingPids[$i]}"
+        rc=$?
+        label="${PendingLabels[$i]}"
+        log="${PendingLogs[$i]}"
+
+        ((NumFilesCompiled++))
+
+        if [ $rc -ne 0 ]; then
+
+            ((NumFilesFailed++))
+
+            FailedCompilations+=("$label")
+
+            if [ -s "$log" ]; then
+
+                >&2 printf '%s:\n' "$label"
+                >&2 cat "$log"
+            fi
+        fi
+
+        rm -f "$log"
+    done
+
+    PendingPids=()
+    PendingLabels=()
+    PendingLogs=()
+}
+
+# $1 is the failure label. $2 is the compiler. The rest is its
+# arguments. $contents is the translation unit.
+start_compile()
+{
+    local label="$1"
+    local compiler="$2"
+    local log
+
+    shift 2
+
+    if [ "$Jobs" -eq 1 ]; then
+
+        ((NumFilesCompiled++))
+
+        printf '%b\n' "$contents" | "$compiler" "$@"
+
+        if [ $? -ne 0 ]; then
+
+            ((NumFilesFailed++))
+
+            FailedCompilations+=("$label")
+        fi
+
+        return
+    fi
+
+    if [ "${#PendingPids[@]}" -ge "$Jobs" ]; then
+
+        reap_pending
+    fi
+
+    log=$(mktemp "${TMPDIR:-/tmp}/batch_compile_check.XXXXXX") || exit 1
+
+    printf '%b\n' "$contents" | "$compiler" "$@" >"$log" 2>&1 &
+
+    PendingPids+=($!)
+    PendingLabels+=("$label")
+    PendingLogs+=("$log")
+}
+
+trap 'reap_cleanup; exit 130' INT
 
 
 IncludeDirLen=${#IncludeDir}+1
@@ -661,16 +782,7 @@ do
 
                 if [ "$DryRun" != "true" ]; then
 
-                    ((NumFilesCompiled++))
-
-                    printf '%b\n' "$contents" | "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
-
-                    if [ $? -ne 0 ]; then
-
-                        ((NumFilesFailed++))
-
-                        FailedCompilations+=("$srp (C++, $l)")
-                    fi
+                    start_compile "$srp (C++, $l)" "$COMPILER_COMMAND_Cxx" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
                 else
 
                     printf '%s\n' "$contents | $COMPILER_COMMAND_Cxx -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${CompilerFlags[*]} ${Defines[*]} -I $IncludeDir -"
@@ -707,16 +819,7 @@ do
 
                 if [ "$DryRun" != "true" ]; then
 
-                    ((NumFilesCompiled++))
-
-                    printf '%b\n' "$contents" | "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
-
-                    if [ $? -ne 0 ]; then
-
-                        ((NumFilesFailed++))
-
-                        FailedCompilations+=("$srp (C, $l)")
-                    fi
+                    start_compile "$srp (C, $l)" "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
                 else
 
                     printf '%s\n' "$contents | $COMPILER_COMMAND_C -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C ${CompilerFlags[*]} ${Defines[*]} -I $IncludeDir -"
@@ -725,6 +828,8 @@ do
         fi
     done < <(find "$IncludeDir/$p" -type f -name "$FilePattern" -print0 | LC_ALL=C sort -z)
 done
+
+reap_pending
 
 if [ $NumFilesTotal -eq 0 ]; then
 
