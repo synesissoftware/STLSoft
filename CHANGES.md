@@ -11,12 +11,12 @@
   * **include/stlsoft/string/encoding/mbstowcs.h** and **include/stlsoft/string/encoding/wcstombs.h** — `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()` take a destination capacity and a source limit, hide `mbstowcs_s()` / `wcstombs_s()`, and return a count that excludes the NUL. A null destination is the length probe;
   * **include/stlsoft/util/exception_string_creator.hpp** — `wide_to_multibyte_or_throw_()` calls `stlsoft_C_wcstombs()`. This is the last call site outside the encoding headers;
   * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
-* behaviour:
 * refactoring:
   * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
   * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
 * compatibility:
   * Output-iterator `deref_proxy` types declare an explicit copy constructor, so C++11 and C++14 no longer deprecate the implicit one when copy assignment is deleted (`-Wdeprecated-copy` under `-Werror`). Copy assignment stays deleted. **include/stlsoft/iterator/associative_eraser_iterator.hpp**, **include/stlsoft/iterator/eraser_iterator.hpp**, **include/stlsoft/iterator/FILE_iterator.hpp** (the constructor is present in every dialect; it had been guarded on C++11), **include/stlsoft/iterator/push_insert_iterator.hpp**, **include/stlsoft/iterator/string_insert_iterator.hpp**, **include/stlsoft/iterators/c_str_inserter.hpp**, **include/stlsoft/iterators/cstring_concatenator_iterator.hpp**, **include/stlsoft/iterators/null_output_iterator.hpp**, **include/stlsoft/iterators/ostream_iterator.hpp**, **include/stlsoft/iterators/string_concatenator_iterator.hpp**, and **include/stlsoft/iterators/unary_function_output_iterator_adaptor.hpp**;
+  * C functions with no parameters are prototyped as `(void)`: `stlsoft_C_count_functions_get_8bit_table()` in **include/stlsoft/util/bits/count_functions.h**, and `unixstl_C_path_classify_alwaysInvalidChars_X_()` in **include/unixstl/filesystem/path_functions/classify_functions_X_.h**;
 * testing:
   * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
   * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
@@ -29,6 +29,7 @@
   * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
   * The rejection oracles in **test.unit.stlsoft.conversion.char_conversions** and **test.unit.stlsoft.util.exception_string_creator** call `mbstowcs_s()` / `wcstombs_s()` when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set;
 * build:
+  * **batch_compile_check**, **check_unit_test_names.rb**, and **generate_cmakelists.rb** moved from **dev/bin** to **.dev/bin**;
   * **.dev/bin/batch_compile_check** (the human-driven bulk smoke-test script):
     * compiles each header with `-fsyntax-only` (no object files). A failed compilation exits 1 and lists `FAIL: <header> (C|C++, <std>)`. A missing include directory, a missing subproject directory, an unknown compiler, a missing option value, an unrecognised language version, or zero matching headers also exits 1. SIGINT exits 130 and stops jobs still running;
     * `--c-language-version` and `--cxx-language-version` are independent. C accepts 89, 90, 99, 11, 17, 20, and 23 (default 17). C++ accepts 98, 03, 11, 14, 17, 20, and 23 (default 98, 03, 11, 14, 17, and 20; 23 is selectable and is not in the default sweep). A version flag for the language excluded by `-C` or `-C++` is an error;
@@ -37,10 +38,15 @@
     * Skip markers are whole `/* STLSOFT:… */` comments, read once per header and matched case-insensitively: `STLSOFT:FILE_DEPRECATED`, `STLSOFT:FILE_EXCEPTED`, `STLSOFT:FILE_NOT_SELF_SUFFICIENT`, and per-standard `STLSOFT:<std>:FILE_DEPRECATED` / `FILE_EXCEPTED`. `STLSOFT:Windows:FILE_EXCEPTED` applies only when not on Windows. `--counts` reports files found and skipped separately from compilation attempts, failures, and per-version skips;
     * Headers are discovered with NUL-delimited `find` and listed in `LC_ALL=C` order. **comstl** and **winstl** are rejected when not on Windows, before any verbose configuration is printed. On Windows, **comstl** and **inetstl** are compiled after `windows.h`, and **winstl** also after `ntsecapi.h`;
   * **.dev/bin/check_unit_test_names.rb** (0.3.0) checks `File:` labels and `XTESTS_START_RUNNER*` names. `--mode` selects both, file, or runner (default both). A `File:` label under **examples** or **test** is the project-relative path. A runner name, for `test/unit` and `test/component` programs named `entry.c` or `entry.cpp`, is that directory with `/` replaced by `.`; `__FILE__` is accepted. `--project-root` / `-R` selects the tree (the default is two levels above the script). Either mismatch count exits 1. The **Check test names** job runs the script once on Ubuntu over **examples** and **test**;
+  * **Gemfile.lock** records clasp-ruby **0.23.4**, libclimate-ruby **0.17.4**, recls-ruby **2.13.5**, and xqsr3 **0.39.11**, and adds the **arm64-darwin-25** platform;
 * documentation and boilerplate:
   * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
   * `File:` labels under **test** and **examples** use the project-relative path;
   * **Doxyfile** `PROJECT_NUMBER` is **1.11.4**;
+  * **README.md** **New in 1.11** lists **stlsoft/string/encoding/mbstowcs** and **stlsoft/string/encoding/wcstombs**;
+  * **include/unixstl/unixstl.h** — the `_UNIXSTL_VER_1_8_6*` comments name **1.8.6** (they had said **1.8.8**);
+* version:
+  * **_STLSOFT_VER** is **1.11.4** (**_STLSOFT_VER_1_11_4** = `0x010B04FF`); **test.unit.versions** asserts it. No subproject composite version changed;
 
 
 ## 1.11.3 - 27th October 2026

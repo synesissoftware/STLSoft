@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_MINOR      1
 # define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_REVISION   1
-# define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_EDIT       14
+# define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,12 +90,14 @@ struct string_concatenation_flags
 {
     enum
     {
-            None            =   0x0000
-            /// Causes string concatenation to always insert the separator, even
-            /// between empty elements
-        ,   AlwaysSeparate  =   0x0001
+        /// No additional flags
+        None            =   0x0000,
+        /// Causes string concatenation to always insert the separator, even
+        /// between empty elements
+        AlwaysSeparate  =   0x0001,
     };
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -117,4 +119,5 @@ struct string_concatenation_flags
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
 
