@@ -289,5 +289,5 @@ jobs:
       - name: Install checker dependencies
         run: gem install highline libclimate-ruby recls-ruby xqsr3
 
-      - name: Check File: labels and runner names
+      - name: "Check File: labels and runner names"
         run: ./.dev/bin/check_unit_test_names.rb examples test

@@ -63,10 +63,16 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 
 ### 1.11.4
 
-* [ ] Centralise `mbstowcs` / `mbstowcs_s` and `wcstombs` / `wcstombs_s` in a single function;
-* [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
-* [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to the other two versions programs: **test.scratch.versions.stdio** and **test.scratch.versions.format**;
+Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstraction and `platformstl::FILE_stream` in terms of **stlsoft/api/internal/memfns.h** moved to **1.11.5**.
+
+* [x] ~~~Unit tests for the extant `mbstowcs` / `wcstombs` call sites: `multibyte2wide` / `wide2multibyte`, wide `exception_string_creator`, the `error_desc_w` fallback, the `ACE_Time_Value` wide shims, the `std::exception` wide shims, and the `std::type_info` wide shims~~~ - ✅;
+* [x] ~~~`stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()` contract (destination capacity, source limit, secure CRT) and **test.unit.stlsoft.string.encoding**. Call sites are not switched yet~~~ - ✅;
+* [x] ~~~Wide `error_desc` fallback and both wide `invoke_ACE_OS_snprintf()` overloads call `stlsoft_C_mbstowcs()`~~~ - ✅;
+* [x] ~~~`multibyte2wide` / `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`~~~ - ✅;
+* [x] ~~~`std::exception` and `std::type_info` wide shims call `stlsoft_C_mbstowcs()`. Their private `mbstowcs_()` / `mbstowcs_len()` helpers are removed~~~ - ✅;
+* [x] ~~~`system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`~~~ - ✅;
+* [x] ~~~Centralise `mbstowcs` / `mbstowcs_s` and `wcstombs` / `wcstombs_s` in `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. `wide_to_multibyte_or_throw_()` was the last call site outside the encoding headers~~~ - ✅;
+* [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.stdio**~~~ - ✅;
 * [x] ~~~`invalid_integral_range_policy::operator()` — implement in terms of `stlsoft_C_snprintf()` (replace `::sprintf`)~~~ - ✅;
 * [x] ~~~Output-iterator `deref_proxy` copy constructors, so C++11 and C++14 do not warn `-Wdeprecated-copy` when copy assignment is deleted~~~ - ✅;
 * [x] ~~~**.dev/bin/batch_compile_check** — `-fsyntax-only`, separate C and C++ language versions, `-j`, skip-marker scan, Windows prelude, and a failing exit status with a `FAIL:` list~~~ - ✅;
@@ -75,6 +81,9 @@ Released 27th October 2026. Coverage, **path-classify**, the CMake / helper-scri
 
 ### 1.11.5
 
+* [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
+* [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
 * [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
 * [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
