@@ -32,12 +32,12 @@ FILE_PATTERN_C='*.h'
 FILE_PATTERN_Cxx='*.hpp'
 INPUT_FILE_LANGUAGE_C=c
 INPUT_FILE_LANGUAGE_Cxx=c++
-LANGUAGE_STD_DEFAULT_VERSION_C=c17
+LANGUAGE_STD_DEFAULT_VERSIONS_C=(17)
 LANGUAGE_STD_DEFAULT_VERSIONS_Cxx=(98 03 11 14 17 20)
 
 SUBPROJECTS_DEFAULT=(stlsoft platformstl unixstl)
 
-SUPPORTED_LANGUAGE_VERSIONS_C=(89 90 9 11 17 20 23)
+SUPPORTED_LANGUAGE_VERSIONS_C=(89 90 99 11 17 20 23)
 SUPPORTED_LANGUAGE_VERSIONS_Cxx=(98 03 11 14 17 20 23)
 
 COMMON_SKIP_SEQUENCES=(STLSOFT:FILE_DEPRECATED STLSOFT:FILE_EXCEPTED STLSOFT:FILE_NOT_SELF_SUFFICIENT)
@@ -78,7 +78,8 @@ DebugConfiguration=0
 Defines=()
 DryRun="false"
 Language=
-LanguageVersions=()
+LanguageVersionsCRequested=()
+LanguageVersionsCxxRequested=()
 ShowCounts="false"
 Subprojects=()
 VerboseMode=0
@@ -93,11 +94,39 @@ while [[ $# -gt 0 ]]; do
             COMPILER_COMMAND_C=$1
 
             ;;
+        --c-language-version)
+
+            shift
+            language_version=$1
+
+            if [ -z "$language_version" ]; then
+
+                >&2 echo "$ScriptPath: missing argument; use --help for usage"
+
+                exit 1
+            fi
+
+            LanguageVersionsCRequested+=($language_version)
+            ;;
         --cxx-compiler|-x)
 
             shift
             COMPILER_COMMAND_Cxx=$1
 
+            ;;
+        --cxx-language-version)
+
+            shift
+            language_version=$1
+
+            if [ -z "$language_version" ]; then
+
+                >&2 echo "$ScriptPath: missing argument; use --help for usage"
+
+                exit 1
+            fi
+
+            LanguageVersionsCxxRequested+=($language_version)
             ;;
         --counts|-n)
 
@@ -118,40 +147,6 @@ while [[ $# -gt 0 ]]; do
         --language-is-C++|-C++)
 
             Language=Cxx
-            ;;
-        --language-version|-l)
-
-            shift
-            language_version=$1
-
-            if [ -z "$language_version" ]; then
-
-                >&2 echo "$ScriptPath: missing argument; use --help for usage"
-
-                exit 1
-            fi
-
-            language_version_valid=0
-
-            for v in "${SUPPORTED_LANGUAGE_VERSIONS_Cxx[@]}"
-            do
-
-                if [ "$language_version" = "$v" ]; then
-
-                    language_version_valid=1
-
-                    break
-                fi
-            done
-
-            if [ $language_version_valid -eq 0 ]; then
-
-                >&2 echo "$ScriptPath: unrecognised C++ language version '$language_version'; supported versions: ${SUPPORTED_LANGUAGE_VERSIONS_Cxx[*]}"
-
-                exit 1
-            fi
-
-            LanguageVersions+=($language_version)
             ;;
         --subproject|-p)
 
@@ -194,10 +189,21 @@ Flags/options:
         specifies the name of the C-compiler, which otherwise defaults
         to cc
 
+    --c-language-version <version>
+        specifies a C language version (bare digits, such as 17). Can
+        be specified multiple times. Supported versions: 89, 90, 99,
+        11, 17, 20, 23. When omitted, C uses 17
+
     -x
     --cxx-compiler
-        specifies the name of the C++-compiler, which otherwise defaults
-        to c++
+        specifies the name of the C++-compiler, which otherwise
+        defaults to c++
+
+    --cxx-language-version <version>
+        specifies a C++ language version (bare digits, such as 17).
+        Can be specified multiple times. Supported versions: 98, 03,
+        11, 14, 17, 20, 23. When omitted, C++ uses 98, 03, 11, 14, 17,
+        20
 
     -n
     --counts
@@ -221,11 +227,6 @@ Flags/options:
     --language-is-C++
         specifies that processing should only be for C++. Default is to
         process all files for all suitable languages
-
-    -l <language-version>
-    --language-version <language-version>
-        specifies the C++ language version. Can be specified multiple
-        times in order to run compilations over multiple versions
 
     -p <subproject>
     --subproject <subproject>
@@ -321,18 +322,109 @@ fi
 [ $VerboseMode -eq 0 ] || echo "defines{${#Defines[@]}}: ${Defines[@]}"
 
 
-if [ -z "$LanguageVersions" ]; then
+if [ "$Language" = "Cxx" ] && [ ${#LanguageVersionsCRequested[@]} -ne 0 ]; then
 
-    LanguageVersions=${LANGUAGE_STD_DEFAULT_VERSIONS_Cxx[@]}
+    >&2 echo "$ScriptPath: --c-language-version given but processing is C++ only"
+
+    exit 1
 fi
 
-# sort language versions (without changing order)
-LanguageVersions=($(echo "${LanguageVersions[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
-LanguageVersions2_=${LanguageVersions[@]/#/c++}
-LanguageVersions=()
-LanguageVersions+=(${LanguageVersions2_[@]})
+if [ "$Language" = "C" ] && [ ${#LanguageVersionsCxxRequested[@]} -ne 0 ]; then
 
-[ $VerboseMode -eq 0 ] || echo "language versions{${#LanguageVersions[@]}}: (${LanguageVersions[*]})"
+    >&2 echo "$ScriptPath: --cxx-language-version given but processing is C only"
+
+    exit 1
+fi
+
+LanguageVersionsC=()
+LanguageVersionsCxx=()
+
+if [ "$Language" != "Cxx" ]; then
+
+    if [ ${#LanguageVersionsCRequested[@]} -eq 0 ]; then
+
+        LanguageVersionsC=("${LANGUAGE_STD_DEFAULT_VERSIONS_C[@]}")
+    else
+
+        LanguageVersionsCRequested=($(echo "${LanguageVersionsCRequested[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+
+        for v in "${LanguageVersionsCRequested[@]}"
+        do
+
+            language_version_valid=0
+
+            for s in "${SUPPORTED_LANGUAGE_VERSIONS_C[@]}"
+            do
+
+                if [ "$v" = "$s" ]; then
+
+                    language_version_valid=1
+                fi
+            done
+
+            if [ $language_version_valid -eq 0 ]; then
+
+                >&2 echo "$ScriptPath: unrecognised C language version '$v'; supported versions: ${SUPPORTED_LANGUAGE_VERSIONS_C[*]}"
+
+                exit 1
+            fi
+
+            LanguageVersionsC+=("$v")
+        done
+    fi
+fi
+
+if [ "$Language" != "C" ]; then
+
+    if [ ${#LanguageVersionsCxxRequested[@]} -eq 0 ]; then
+
+        LanguageVersionsCxx=("${LANGUAGE_STD_DEFAULT_VERSIONS_Cxx[@]}")
+    else
+
+        LanguageVersionsCxxRequested=($(echo "${LanguageVersionsCxxRequested[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n' ' '))
+
+        for v in "${LanguageVersionsCxxRequested[@]}"
+        do
+
+            language_version_valid=0
+
+            for s in "${SUPPORTED_LANGUAGE_VERSIONS_Cxx[@]}"
+            do
+
+                if [ "$v" = "$s" ]; then
+
+                    language_version_valid=1
+                fi
+            done
+
+            if [ $language_version_valid -eq 0 ]; then
+
+                >&2 echo "$ScriptPath: unrecognised C++ language version '$v'; supported versions: ${SUPPORTED_LANGUAGE_VERSIONS_Cxx[*]}"
+
+                exit 1
+            fi
+
+            LanguageVersionsCxx+=("$v")
+        done
+    fi
+fi
+
+if [ ${#LanguageVersionsC[@]} -ne 0 ]; then
+
+    LanguageVersionsC2_=${LanguageVersionsC[@]/#/c}
+    LanguageVersionsC=()
+    LanguageVersionsC+=(${LanguageVersionsC2_[@]})
+fi
+
+if [ ${#LanguageVersionsCxx[@]} -ne 0 ]; then
+
+    LanguageVersionsCxx2_=${LanguageVersionsCxx[@]/#/c++}
+    LanguageVersionsCxx=()
+    LanguageVersionsCxx+=(${LanguageVersionsCxx2_[@]})
+fi
+
+[ $VerboseMode -eq 0 ] || echo "C language versions{${#LanguageVersionsC[@]}}: (${LanguageVersionsC[*]})"
+[ $VerboseMode -eq 0 ] || echo "C++ language versions{${#LanguageVersionsCxx[@]}}: (${LanguageVersionsCxx[*]})"
 
 
 if [ -z "$Subprojects" ]; then
@@ -491,11 +583,11 @@ do
         fi
 
 
-        if [ "$ShouldCompileCxx" = "true" ]; then
+        if [ "$ShouldCompileCxx" = "true" ] && [ ${#LanguageVersionsCxx[@]} -ne 0 ]; then
 
             [ $VerboseMode -eq 0 ] || echo "        $srp ($COMPILER_COMMAND_Cxx):"
 
-            for l in "${LanguageVersions[@]}"
+            for l in "${LanguageVersionsCxx[@]}"
             do
 
                 ShouldSkip="false"
@@ -545,26 +637,50 @@ do
             done
         fi
 
-        if [ "$ShouldCompileC" = "true" ]; then
+        if [ "$ShouldCompileC" = "true" ] && [ ${#LanguageVersionsC[@]} -ne 0 ]; then
 
             [ $VerboseMode -eq 0 ] || echo "        $srp ($COMPILER_COMMAND_C):"
 
-            if [ "$DryRun" != "true" ]; then
+            for l in "${LanguageVersionsC[@]}"
+            do
 
-                ((NumFilesCompiled++))
+                ShouldSkip="false"
+                SkipCause=""
 
-                echo "#include <$srp>" | "$COMPILER_COMMAND_C" -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                if grep -i -q "STLSOFT:$l:FILE_\(DEPRECATED\|EXCEPTED\)" "$f"; then
 
-                if [ $? -ne 0 ]; then
-
-                    ((NumFilesFailed++))
-
-                    FailedCompilations+=("$srp (C, $LANGUAGE_STD_DEFAULT_VERSION_C)")
+                    ShouldSkip="true"
+                    SkipCause="STLSOFT:$l:FILE_DEPRECATED/FILE_EXCEPTED"
                 fi
-            else
 
-                echo "#include <$srp>" \| "$COMPILER_COMMAND_C" -fsyntax-only -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
-            fi
+                if [ "$ShouldSkip" = "true" ]; then
+
+                    [ $VerboseMode -eq 0 ] || echo "            ($l) - skipped ($SkipCause)"
+
+                    ((NumCompilationsSkipped++))
+
+                    continue
+                fi
+
+                [ $VerboseMode -eq 0 ] || echo "            ($l)"
+
+                if [ "$DryRun" != "true" ]; then
+
+                    ((NumFilesCompiled++))
+
+                    echo "#include <$srp>" | "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+
+                    if [ $? -ne 0 ]; then
+
+                        ((NumFilesFailed++))
+
+                        FailedCompilations+=("$srp (C, $l)")
+                    fi
+                else
+
+                    echo "#include <$srp>" \| "$COMPILER_COMMAND_C" -fsyntax-only -std=$l -x $INPUT_FILE_LANGUAGE_C "${CompilerFlags[@]}" "${Defines[@]}" -I "$IncludeDir" -
+                fi
+            done
         fi
     done < <(find "$IncludeDir/$p" -type f -name "$FilePattern" -print0)
 done
