@@ -490,6 +490,8 @@ do
 
     [ $VerboseMode -eq 0 ] || echo "    $p:"
 
+    # LC_ALL=C sort -z: locale-independent order of NUL-delimited
+    # paths, so repeated runs list the same header in the same place
     while IFS= read -r -d '' f
     do
         srp=${f:$IncludeDirLen}
@@ -682,7 +684,7 @@ do
                 fi
             done
         fi
-    done < <(find "$IncludeDir/$p" -type f -name "$FilePattern" -print0)
+    done < <(find "$IncludeDir/$p" -type f -name "$FilePattern" -print0 | LC_ALL=C sort -z)
 done
 
 if [ $NumFilesTotal -eq 0 ]; then
