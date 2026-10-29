@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.string.encoding/entry.cpp
+ * File:    test/unit/stlsoft/string/encoding/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft_C_mbstowcs()` and
  *          `stlsoft_C_wcstombs()`.

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.error.error_desc/entry.cpp
+ * File:    test/unit/stlsoft/error/error_desc/entry.cpp
  *
  * Purpose: Unit-tests for the `stlsoft::error_desc_w` multibyte fallback.
  *
  * Created: 28th October 2026
- * Updated: 28th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
