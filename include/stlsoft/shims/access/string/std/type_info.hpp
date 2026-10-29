@@ -4,7 +4,7 @@
  * Purpose: Contains the string access shims for std::type_info.
  *
  * Created: 19th December 2011
- * Updated: 15th October 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MINOR       3
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_REVISION    4
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        59
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_REVISION    5
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -76,6 +76,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
 # include <stlsoft/shims/access/string/std/c_string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
@@ -84,9 +87,6 @@
 #  include <stlsoft/error/conversion_error.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_CONVERSION_ERROR */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
 # include <stlsoft/quality/contract.h>
@@ -129,88 +129,6 @@ namespace stlsoft
 struct ximpl_stlsoft_shims_access_string_std_type_info_
 {
 public:
-    //
-    // *numConverted excludes the NUL character
-    static
-    int
-    mbstowcs_(
-        ss_char_a_t const*  mbs
-    ,   ss_size_t           mbsLen
-    ,   ss_char_w_t*        ws
-    ,   ss_size_t           wsSizeInChars
-    ,   ss_size_t*          numConverted
-    )
-    {
-        // Always assume the NUL character
-        STLSOFT_ASSERT(NULL != mbs);
-
-        STLSOFT_ASSERT(NULL != numConverted);
-
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-
-        int r = ::mbstowcs_s(numConverted, ws, wsSizeInChars, mbs, mbsLen);
-
-        if (0 == r)
-        {
-            STLSOFT_ASSERT(0 != *numConverted);
-
-            --*numConverted; // mbstowcs_s() always adds one for NUL character
-        }
-
-        return r;
-
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
-        STLSOFT_SUPPRESS_UNUSED(mbsLen);
-        STLSOFT_SUPPRESS_UNUSED(wsSizeInChars);
-
-        *numConverted = ::mbstowcs(ws, mbs, mbsLen);
-        if (static_cast<ss_size_t>(-1) == *numConverted)
-        {
-            return errno;
-        }
-
-        return 0;
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-    }
-
-    //
-    // *numConverted excludes the NUL character
-    static
-    int
-    mbstowcs_len(
-        ss_char_a_t const*  s
-    ,   ss_size_t*          len
-    )
-    {
-        STLSOFT_ASSERT(NULL != len);
-
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-
-        int r = ::mbstowcs_s(len, NULL, 0, s, 0);
-
-        if (0 == r)
-        {
-            STLSOFT_ASSERT(0 != *len);
-
-            --*len; // mbstowcs_s() always adds one for NUL character
-        }
-
-        return r;
-
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
-        *len = ::mbstowcs(NULL, s, 0);
-        if (static_cast<ss_size_t>(-1) == *len)
-        {
-            return errno;
-        }
-
-        return 0;
-
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-    }
-
     static
     int
     throw_conversion_error_or_return_(
@@ -271,28 +189,30 @@ c_str_data_w(STLSOFT_NS_QUAL_STD(type_info) const& ti)
     ss_size_t const             len = ::strlen(s);
 
     // Calculate the wide-string length
-    ss_size_t   wlen;
-    int         err = ximpl_stlsoft_shims_access_string_std_type_info_::mbstowcs_len(s, &wlen);
+    ss_size_t   wlen    =   stlsoft_C_mbstowcs(NULL, 0, s, 0);
+    int         err     =   0;
 
     // handle failure to get length
-    if (0 != err)
+    if (static_cast<ss_size_t>(-1) == wlen)
     {
+        err = errno;
+
         ximpl_stlsoft_shims_access_string_std_type_info_::throw_conversion_error_or_return_(err, "cannot elicit wide-string length of type_info message");
     }
 
     // Create the shim string, which will be returned
     basic_shim_string<ss_char_w_t, 100> r(wlen);
-    ss_size_t                           wlen2;
-
-    err = ximpl_stlsoft_shims_access_string_std_type_info_::mbstowcs_(s, len, r.data(), 1u + r.size(), &wlen2);
+    ss_size_t                           wlen2 = stlsoft_C_mbstowcs(r.data(), 1u + r.size(), s, len);
 
     // Sanity checks
     STLSOFT_ASSERT(wlen2 == r.size());
     STLSOFT_SUPPRESS_UNUSED(wlen2);
 
     // handle failure to convert
-    if (0 != err)
+    if (static_cast<ss_size_t>(-1) == wlen2)
     {
+        err = errno;
+
         ximpl_stlsoft_shims_access_string_std_type_info_::throw_conversion_error_or_return_(err, "cannot elicit wide-string equivalent of type_info message");
     }
 
@@ -350,11 +270,12 @@ inline
 ss_size_t
 c_str_len_w(STLSOFT_NS_QUAL_STD(type_info) const& ti)
 {
-    ss_size_t   len;
-    int         err = ximpl_stlsoft_shims_access_string_std_type_info_::mbstowcs_len(ti.name(), &len);
+    ss_size_t   len = stlsoft_C_mbstowcs(NULL, 0, ti.name(), 0);
 
-    if (0 != err)
+    if (static_cast<ss_size_t>(-1) == len)
     {
+        int const err = errno;
+
         ximpl_stlsoft_shims_access_string_std_type_info_::throw_conversion_error_or_return_(err, "failed to elicit length of multibyte string");
 
         len = 0;
@@ -478,28 +399,30 @@ c_str_ptr_null_w(STLSOFT_NS_QUAL_STD(type_info) const& ti)
     ss_size_t const             len = ::strlen(s);
 
     // Calculate the wide-string length
-    ss_size_t   wlen;
-    int         err = ximpl_stlsoft_shims_access_string_std_type_info_::mbstowcs_len(s, &wlen);
+    ss_size_t   wlen    =   stlsoft_C_mbstowcs(NULL, 0, s, 0);
+    int         err     =   0;
 
     // handle failure to get length
-    if (0 != err)
+    if (static_cast<ss_size_t>(-1) == wlen)
     {
+        err = errno;
+
         ximpl_stlsoft_shims_access_string_std_type_info_::throw_conversion_error_or_return_(err, "cannot elicit wide-string length of type_info message");
     }
 
     // Create the shim string, which will be returned
     basic_shim_string<ss_char_w_t, 100, true>  r(wlen);
-    ss_size_t                                  wlen2;
-
-    err = ximpl_stlsoft_shims_access_string_std_type_info_::mbstowcs_(s, len, r.data(), 1u + r.size(), &wlen2);
+    ss_size_t                                  wlen2 = stlsoft_C_mbstowcs(r.data(), 1u + r.size(), s, len);
 
     // Sanity checks
     STLSOFT_ASSERT(wlen2 == r.size());
     STLSOFT_SUPPRESS_UNUSED(wlen2);
 
     // handle failure to convert
-    if (0 != err)
+    if (static_cast<ss_size_t>(-1) == wlen2)
     {
+        err = errno;
+
         ximpl_stlsoft_shims_access_string_std_type_info_::throw_conversion_error_or_return_(err, "cannot elicit wide-string equivalent of type_info message");
     }
 

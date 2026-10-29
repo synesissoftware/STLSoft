@@ -41,6 +41,23 @@
 #include <stdio.h>
 
 
+#ifdef HAS_woad
+
+# define VERSIONS_CLR_NAME_                                 WOAD_FG_BLUE_FOR(stdout)
+# define VERSIONS_CLR_VERSION_                              WOAD_FG_GREEN_FOR(stdout)
+# define VERSIONS_CLR_HEADING_                              WOAD_FG_MAGENTA_FOR(stdout)
+# define VERSIONS_CLR_MACRO_                                WOAD_FG_CYAN_FOR(stdout)
+# define VERSIONS_CLR_RESET_                                WOAD_RESET_FOR(stdout)
+#else /* ? HAS_woad */
+
+# define VERSIONS_CLR_NAME_                                 ""
+# define VERSIONS_CLR_VERSION_                              ""
+# define VERSIONS_CLR_HEADING_                              ""
+# define VERSIONS_CLR_MACRO_                                ""
+# define VERSIONS_CLR_RESET_                                ""
+#endif /* HAS_woad */
+
+
 static
 void
 print_efferent_dependency_(
@@ -71,11 +88,19 @@ print_efferent_dependency_(
         fprintf(
             stm
         ,   "\t"
-            "%s: %s (%s = 0x%08x)\n"
+            "%s%s%s: %s%s%s (%s%s%s = %s0x%08x%s)\n"
+        ,   VERSIONS_CLR_NAME_
         ,   name
+        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_VERSION_
         ,   buffer
+        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_MACRO_
         ,   macroname
+        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_VERSION_
         ,   libver
+        ,   VERSIONS_CLR_RESET_
         );
 
         return;
@@ -85,14 +110,22 @@ print_efferent_dependency_(
     fprintf(
         stm
     ,   "\t"
-        "%s: v%u.%u.%u.%u (%s = 0x%08x)\n"
+        "%s%s%s: %sv%u.%u.%u.%u%s (%s%s%s = %s0x%08x%s)\n"
+    ,   VERSIONS_CLR_NAME_
     ,   name
+    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_VERSION_
     ,   (libver >> 24) & 0xff
     ,   (libver >> 16) & 0xff
     ,   (libver >> 8) & 0xff
     ,   (libver >> 0) & 0xff
+    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_MACRO_
     ,   macroname
+    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_VERSION_
     ,   libver
+    ,   VERSIONS_CLR_RESET_
     );
 }
 
@@ -107,31 +140,41 @@ print_subproject_(
     fprintf(
         stm
     ,   "\t"
-        "%s"
+        "%s%s%s"
         ":\n"
         "\n"
+    ,   VERSIONS_CLR_NAME_
     ,   name
+    ,   VERSIONS_CLR_RESET_
     );
 
     fprintf(
         stm
     ,   "\t\t"
-        "%s = %d.%d.%d.%d"
+        "%s%s%s = %s%d.%d.%d.%d%s"
         "\n"
+    ,   VERSIONS_CLR_NAME_
     ,   name
+    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_VERSION_
     ,   (int)((libver >> 24) & 0xff)
     ,   (int)((libver >> 16) & 0xff)
     ,   (int)((libver >> 8) & 0xff)
     ,   (int)((libver >> 0) & 0xff)
+    ,   VERSIONS_CLR_RESET_
     );
 
     fprintf(
         stm
     ,   "\t\t"
-        "%s = 0x%04x%04x\n"
+        "%s%s%s = %s0x%04x%04x%s\n"
+    ,   VERSIONS_CLR_MACRO_
     ,   macroName
+    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_VERSION_
     ,   (unsigned int)((libver >> 16) & 0xffff)
     ,   (unsigned int)((libver >> 0) & 0xffff)
+    ,   VERSIONS_CLR_RESET_
     );
 
     fprintf(
@@ -147,7 +190,14 @@ int main(int argc, char* argv[])
     STLSOFT_SUPPRESS_UNUSED(argv);
 
     fprintf(stdout, "\n");
-    fprintf(stdout, "STLSoft libraries:\n");
+    fprintf(
+        stdout
+    ,   "%s"
+        "STLSoft libraries"
+        "%s:\n"
+    ,   VERSIONS_CLR_HEADING_
+    ,   VERSIONS_CLR_RESET_
+    );
 
 
     /* __STDC__ */
@@ -158,8 +208,12 @@ int main(int argc, char* argv[])
         fprintf(
             stdout
         ,   "\t"
-            "__STDC__ = %d\n"
+            "%s__STDC__%s = %s%d%s\n"
+        ,   VERSIONS_CLR_MACRO_
+        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_VERSION_
         ,   __STDC__
+        ,   VERSIONS_CLR_RESET_
         );
         fprintf(stdout, "\n");
 #endif
@@ -169,22 +223,37 @@ int main(int argc, char* argv[])
         fprintf(
             stdout
         ,   "\t"
-            "STLSOFT_COMPILER_LABEL_STRING = %s\n"
+            "%sSTLSOFT_COMPILER_LABEL_STRING%s = %s%s%s\n"
+        ,   VERSIONS_CLR_MACRO_
+        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_VERSION_
         ,   STLSOFT_COMPILER_LABEL_STRING
+        ,   VERSIONS_CLR_RESET_
         );
 
         fprintf(
             stdout
         ,   "\t"
-            "STLSOFT_COMPILER_VERSION_STRING = %s\n"
+            "%sSTLSOFT_COMPILER_VERSION_STRING%s = %s%s%s\n"
+        ,   VERSIONS_CLR_MACRO_
+        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_VERSION_
         ,   STLSOFT_COMPILER_VERSION_STRING
+        ,   VERSIONS_CLR_RESET_
         );
     }
 
 
     {
         fprintf(stdout, "\n");
-        fprintf(stdout, "Subprojects:\n");
+        fprintf(
+            stdout
+        ,   "%s"
+            "Subprojects"
+            "%s:\n"
+        ,   VERSIONS_CLR_HEADING_
+        ,   VERSIONS_CLR_RESET_
+        );
         fprintf(stdout, "\n");
 
 
@@ -226,7 +295,14 @@ int main(int argc, char* argv[])
 
 
     {
-        fprintf(stdout, "Efferent dependencies:\n");
+        fprintf(
+            stdout
+        ,   "%s"
+            "Efferent dependencies"
+            "%s:\n"
+        ,   VERSIONS_CLR_HEADING_
+        ,   VERSIONS_CLR_RESET_
+        );
         fprintf(stdout, "\n");
 
 
