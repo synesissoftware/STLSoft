@@ -23,6 +23,7 @@
 require 'highline'
 require 'libclimate'
 require 'recls'
+require 'xqsr3/extensions/string/map_option_string'
 
 
 # ######################################################################## #
@@ -33,9 +34,14 @@ require 'recls'
 # constants
 
 PROGRAM_VER_MAJOR = 0
-PROGRAM_VER_MINOR = 0
-PROGRAM_VER_PATCH = 1
+PROGRAM_VER_MINOR = 1
+PROGRAM_VER_PATCH = 0
 
+PROCESS_MODE_STRINGS = %w{
+    [b]oth
+    [f]ile
+    [r]unner
+}
 
 # ######################################################################## #
 # functions
@@ -47,7 +53,14 @@ PROGRAM_VER_PATCH = 1
 options = {}
 climate = LibCLImate::Climate.new do |cl|
 
-  cl.add_flag('--verbose', alias: '-v', help: 'operate verbosely') { options[:verbose] = true }
+  cl.add_flag('--verbose', alias: '-v', help: 'Operate verbosely') { options[:verbose] = true }
+
+  cl.add_option('--mode', alias: '-m', help: "Processing mode. Defaults to 'both'", values: PROCESS_MODE_STRINGS) do |o, sp|
+
+    cl.abort "processing mode already specified; use --help for usage" if options[:process_mode]
+
+    options[:process_mode] = o.value.map_option_string(PROCESS_MODE_STRINGS) or cl.abort "invalid processing mode '#{o.value}'; use --help for usage"
+  end
 
   cl.info_lines = [
     'STLSoft Development Tools',
@@ -67,6 +80,8 @@ directories = r.values
 
 directories.all? { |directory| Recls.directory? directory } or climate.abort "one or more of given arguments is not a directory"
 
+options[:process_mode] ||= :both
+
 
 # ######################################################################## #
 # main()
@@ -83,35 +98,48 @@ directories.each do |directory|
 
     lines = IO.readlines fe, chomp: true
 
-    line_File = lines.find { |line| line =~ / File: / }
-    lines_START_RUNNER = lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }
-
     this_dir = fe.directory_parts[-1]
 
     expected_name = "#{this_dir}#{fe.basename}"
 
-    if line_File
-      line_File =~ / File:\s+(.+)$/
+    # "File:" processing?
 
-      file_name = $1
+    case options[:process_mode]
+    when :both, :file
 
-      if expected_name != file_name
+      line_File = lines.find { |line| line =~ / File: / }
 
-        $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+      if line_File
+        line_File =~ / File:\s+(.+)$/
+
+        file_name = $1
+
+        if expected_name != file_name
+
+          $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+        end
       end
     end
 
-    unless lines_START_RUNNER.empty?
+    # runner processing?
 
-      lines_START_RUNNER.each do |line|
+    case options[:process_mode]
+    when :both, :runner
 
-        if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
+      lines_START_RUNNER = lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }
 
-          name = $1
+      unless lines_START_RUNNER.empty?
 
-          if this_dir != (name + '/')
+        lines_START_RUNNER.each do |line|
 
-            $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+          if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
+
+            name = $1
+
+            if this_dir != (name + '/')
+
+              $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+            end
           end
         end
       end
@@ -119,7 +147,5 @@ directories.each do |directory|
   end
 end
 
-
 # ############################## end of file ############################# #
-
 
