@@ -34,7 +34,7 @@ require 'xqsr3/extensions/string/map_option_string'
 # constants
 
 PROGRAM_VER_MAJOR = 0
-PROGRAM_VER_MINOR = 1
+PROGRAM_VER_MINOR = 2
 PROGRAM_VER_PATCH = 0
 
 PROCESS_MODE_STRINGS = %w{
@@ -43,8 +43,19 @@ PROCESS_MODE_STRINGS = %w{
     [r]unner
 }
 
+
 # ######################################################################## #
 # functions
+
+def num_clr(n)
+
+  case n
+  when 0
+    HighLine.color(n.to_s, :green, :blue)
+  else
+    HighLine.color(n.to_s, :red, :bold)
+  end
+end
 
 
 # ######################################################################## #
@@ -86,6 +97,10 @@ options[:process_mode] ||= :both
 # ######################################################################## #
 # main()
 
+num_files             = 0
+num_files_bad_File    = 0
+num_files_bad_RUNNER  = 0
+
 directories.each do |directory|
 
   $stdout.puts "processing in #{HighLine.color(directory, :blue, :bold)} ..." if options[:verbose]
@@ -102,6 +117,9 @@ directories.each do |directory|
 
     expected_name = "#{this_dir}#{fe.basename}"
 
+
+    num_files += 1
+
     # "File:" processing?
 
     case options[:process_mode]
@@ -117,6 +135,8 @@ directories.each do |directory|
         if expected_name != file_name
 
           $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+
+          num_files_bad_File += 1
         end
       end
     end
@@ -139,6 +159,8 @@ directories.each do |directory|
             if this_dir != (name + '/')
 
               $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+
+              num_files_bad_RUNNER += 1
             end
           end
         end
@@ -147,5 +169,17 @@ directories.each do |directory|
   end
 end
 
-# ############################## end of file ############################# #
+case options[:process_mode]
+when :file
 
+  $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_File)} had bad 'File:' labels"
+when :runner
+
+  $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_RUNNER)} had bad START_RUNNER labels"
+else
+
+  $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_File)} had bad 'File:' labels and #{num_clr(num_files_bad_RUNNER)} had bad START_RUNNER labels"
+end
+
+
+# ############################## end of file ############################# #
