@@ -4,13 +4,30 @@
 ## 1.11.4 - 29th October 2026
 
 * additions:
+  * **include/stlsoft/conversion/char_conversions.hpp** — `multibyte2wide` and `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`, and still stamp the NUL at `[size]`;
+  * **include/stlsoft/error/error_desc.hpp** and **include/acestl/shims/access/string/time_value.hpp** — the wide `error_desc` fallback and both wide `invoke_ACE_OS_snprintf()` overloads call `stlsoft_C_mbstowcs()`;
   * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `stlsoft::string_concatenation_flags` gained `None` (`0x0000`);
+  * **include/stlsoft/shims/access/string/std/exception.hpp** and **include/stlsoft/shims/access/string/std/type_info.hpp** — the wide shims call `stlsoft_C_mbstowcs()`. The private `mbstowcs_()` and `mbstowcs_len()` helpers are gone;
+  * **include/stlsoft/string/encoding/mbstowcs.h** and **include/stlsoft/string/encoding/wcstombs.h** — `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()` take a destination capacity and a source limit, hide `mbstowcs_s()` / `wcstombs_s()`, and return a count that excludes the NUL. A null destination is the length probe;
+  * **include/stlsoft/util/exception_string_creator.hpp** — `wide_to_multibyte_or_throw_()` calls `stlsoft_C_wcstombs()`. This is the last call site outside the encoding headers;
+  * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
 * behaviour:
+* refactoring:
+  * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
   * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
-* testing:
-  * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text. The caught result is recorded before the assertion, so a non-returning policy call is not followed by unreachable code under MSVC (C4702);
 * compatibility:
   * Output-iterator `deref_proxy` types declare an explicit copy constructor, so C++11 and C++14 no longer deprecate the implicit one when copy assignment is deleted (`-Wdeprecated-copy` under `-Werror`). Copy assignment stays deleted. **include/stlsoft/iterator/associative_eraser_iterator.hpp**, **include/stlsoft/iterator/eraser_iterator.hpp**, **include/stlsoft/iterator/FILE_iterator.hpp** (the constructor is present in every dialect; it had been guarded on C++11), **include/stlsoft/iterator/push_insert_iterator.hpp**, **include/stlsoft/iterator/string_insert_iterator.hpp**, **include/stlsoft/iterators/c_str_inserter.hpp**, **include/stlsoft/iterators/cstring_concatenator_iterator.hpp**, **include/stlsoft/iterators/null_output_iterator.hpp**, **include/stlsoft/iterators/ostream_iterator.hpp**, **include/stlsoft/iterators/string_concatenator_iterator.hpp**, and **include/stlsoft/iterators/unary_function_output_iterator_adaptor.hpp**;
+* testing:
+  * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
+  * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
+  * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text. The caught result is recorded before the assertion, so a non-returning policy call is not followed by unreachable code under MSVC (C4702);
+  * **test.unit.stlsoft.conversion.char_conversions** — `multibyte2wide` / `wide2multibyte`: ASCII, empty, counted, round-trip, a string longer than the internal buffer, and rejection when the C library rejects the input;
+  * **test.unit.stlsoft.error.error_desc** — `error_desc_w` matches `mbstowcs()` of the narrow `strerror()` text on the fallback path; a `_wcserror` / `_wcserror_s` build records a pass;
+  * **test.unit.stlsoft.std.exception** — the narrow shims are `exception::what()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that message, and an empty `what()` yields an empty wide string and a null `c_str_ptr_null_w`;
+  * **test.unit.stlsoft.std.type_info** — the narrow shims are `type_info::name()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that name;
+  * **test.unit.stlsoft.string.encoding** — ASCII success, length probe, exact fit, counted source, zero capacity, short buffer, "count excludes the NUL", and rejection for `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`;
+  * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
+  * The rejection oracles in **test.unit.stlsoft.conversion.char_conversions** and **test.unit.stlsoft.util.exception_string_creator** call `mbstowcs_s()` / `wcstombs_s()` when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set;
 * build:
   * **.dev/bin/batch_compile_check** (the human-driven bulk smoke-test script):
     * compiles each header with `-fsyntax-only` (no object files). A failed compilation exits 1 and lists `FAIL: <header> (C|C++, <std>)`. A missing include directory, a missing subproject directory, an unknown compiler, a missing option value, an unrecognised language version, or zero matching headers also exits 1. SIGINT exits 130 and stops jobs still running;
