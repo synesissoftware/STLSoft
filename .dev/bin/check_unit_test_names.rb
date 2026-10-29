@@ -34,8 +34,8 @@ require 'xqsr3/extensions/string/map_option_string'
 # constants
 
 PROGRAM_VER_MAJOR = 0
-PROGRAM_VER_MINOR = 2
-PROGRAM_VER_PATCH = 3
+PROGRAM_VER_MINOR = 3
+PROGRAM_VER_PATCH = 0
 
 PROCESS_MODE_STRINGS = %w{
     [b]oth
@@ -43,7 +43,8 @@ PROCESS_MODE_STRINGS = %w{
     [r]unner
 }
 
-PROJECT_ROOT = File.expand_path('../..', __dir__)
+# We assume that the containing STLSoft project is the default project root.
+DEFAULT_PROJECT_ROOT = File.expand_path('../..', __dir__)
 
 
 # ######################################################################## #
@@ -59,13 +60,13 @@ def num_clr(n)
   end
 end
 
-# Path of +entry+ relative to the STLSoft project root. For a test or
-# example this is the File: label, e.g.
+# Path of +entry+ relative to +project_root+. For a test or example this
+# is the File: label, e.g.
 # `test/component/inetstl/util/uds_helpers/entry.cpp`. xTests infers a
 # runner name from the same path; the label keeps the slashes.
-def project_relative_path(entry)
+def project_relative_path(project_root, entry)
 
-  Recls.derive_relative_path(PROJECT_ROOT, entry.path)
+  Recls.derive_relative_path(project_root, entry.path)
 end
 
 # Automated tests are test/unit and test/component programs named
@@ -101,6 +102,13 @@ climate = LibCLImate::Climate.new do |cl|
     options[:process_mode] = o.value.map_option_string(PROCESS_MODE_STRINGS) or cl.abort "invalid processing mode '#{o.value}'; use --help for usage"
   end
 
+  cl.add_option('--project-root', alias: '-R', help: "Project root for 'File:' labels and runner names. Defaults to the root of the STLSoft directory in which this script is located") do |o, sp|
+
+    cl.abort "project root already specified; use --help for usage" if options[:project_root]
+
+    options[:project_root] = o.value
+  end
+
   cl.info_lines = [
     'STLSoft Development Tools',
     'Copyright Synesis Information Systems Pty Ltd (c) 2025-2026',
@@ -120,6 +128,10 @@ directories = r.values
 directories.all? { |directory| Recls.directory? directory } or climate.abort "one or more of given arguments is not a directory"
 
 options[:process_mode] ||= :both
+
+project_root = File.expand_path(options[:project_root] || DEFAULT_PROJECT_ROOT)
+
+Recls.directory?(project_root) or climate.abort "project root '#{project_root}' is not a directory"
 
 
 # ######################################################################## #
@@ -143,7 +155,7 @@ directories.each do |directory|
 
     this_dir = fe.directory_parts[-1]
 
-    relative_path = project_relative_path fe
+    relative_path = project_relative_path project_root, fe
 
     expected_file = if relative_path =~ %r{\A(?:example|examples|test)/}
 
