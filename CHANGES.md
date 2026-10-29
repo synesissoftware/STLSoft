@@ -13,8 +13,11 @@
   * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
 * behaviour:
   * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
-* fixes:
+* refactoring:
   * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
+* compatibility:
+  * Output-iterator `deref_proxy` types declare an explicit copy constructor, so C++11 and C++14 no longer deprecate the implicit one when copy assignment is deleted (`-Wdeprecated-copy` under `-Werror`). Copy assignment stays deleted. **include/stlsoft/iterator/associative_eraser_iterator.hpp**, **include/stlsoft/iterator/eraser_iterator.hpp**, **include/stlsoft/iterator/FILE_iterator.hpp** (the constructor is present in every dialect; it had been guarded on C++11), **include/stlsoft/iterator/push_insert_iterator.hpp**, **include/stlsoft/iterator/string_insert_iterator.hpp**, **include/stlsoft/iterators/c_str_inserter.hpp**, **include/stlsoft/iterators/cstring_concatenator_iterator.hpp**, **include/stlsoft/iterators/null_output_iterator.hpp**, **include/stlsoft/iterators/ostream_iterator.hpp**, **include/stlsoft/iterators/string_concatenator_iterator.hpp**, and **include/stlsoft/iterators/unary_function_output_iterator_adaptor.hpp**;
+* testing:
 * testing:
   * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
   * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
