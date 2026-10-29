@@ -4,11 +4,11 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      52
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  2
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS
 # include <stlsoft/string/cstring_functions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
@@ -88,7 +91,7 @@
 
 #ifndef STLSOFT_INCL_H_STDLIB
 # define STLSOFT_INCL_H_STDLIB
-# include <stdlib.h>                    // for mbstowcs()
+# include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
 #ifndef STLSOFT_INCL_H_ERRNO
@@ -224,7 +227,7 @@ struct error_desc_traits<ss_char_w_t>
 
         std::string const   s(::strerror(code));
         return_t            ss(s.size());
-        size_t const        n = ::mbstowcs(ss.data(), s.data(), s.size());
+        size_t const        n = stlsoft_C_mbstowcs(ss.data(), ss.size(), s.data(), s.size());
 
         if (size_t(-1) == n)
         {
