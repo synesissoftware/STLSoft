@@ -497,7 +497,7 @@ marker_listed()
     return $rc
 }
 
-trap "exit" INT
+trap 'exit 130' INT
 
 
 IncludeDirLen=${#IncludeDir}+1
