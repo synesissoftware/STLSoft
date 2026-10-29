@@ -483,6 +483,20 @@ fi
 # ##########################################################
 # main()
 
+# $1 is a skip-marker token, compared case-insensitively against the
+# markers collected for the current file.
+marker_listed()
+{
+    shopt -s nocasematch
+
+    [[ $'\n'"$file_markers"$'\n' == *$'\n'"$1"$'\n'* ]]
+    local rc=$?
+
+    shopt -u nocasematch
+
+    return $rc
+}
+
 trap "exit" INT
 
 
@@ -553,10 +567,14 @@ do
         ShouldSkip="false"
         SkipCause=""
 
+        # One scan per header. Only a whole /* STLSOFT:… */ comment counts,
+        # so a prose mention of the marker convention does not skip the file.
+        file_markers=$(grep -o -i -E '/\*[[:space:]]*STLSOFT:([A-Za-z0-9+]+:)?FILE_(DEPRECATED|EXCEPTED|NOT_SELF_SUFFICIENT)[[:space:]]*\*/' "$f" | sed -e 's/^.*[Ss][Tt][Ll][Ss][Oo][Ff][Tt]:/STLSOFT:/' -e 's/[[:space:]]*\*\/$//')
+
         for s in "${COMMON_SKIP_SEQUENCES[@]}"
         do
 
-            if grep -q "$s" "$f"; then
+            if marker_listed "$s"; then
 
                 ShouldSkip="true"
                 SkipCause="$s"
@@ -577,7 +595,7 @@ do
             for s in "${UNIX_SKIP_SEQUENCES[@]}"
             do
 
-                if grep -q "$s" "$f"; then
+                if marker_listed "$s"; then
 
                     ShouldSkip="true"
                     SkipCause="$s"
@@ -624,7 +642,7 @@ do
                 ShouldSkip="false"
                 SkipCause=""
 
-                if grep -i -q "STLSOFT:$l:FILE_\(DEPRECATED\|EXCEPTED\)" "$f"; then
+                if marker_listed "STLSOFT:$l:FILE_DEPRECATED" || marker_listed "STLSOFT:$l:FILE_EXCEPTED"; then
 
                     ShouldSkip="true"
                     SkipCause="STLSOFT:$l:FILE_DEPRECATED/FILE_EXCEPTED"
@@ -670,7 +688,7 @@ do
                 ShouldSkip="false"
                 SkipCause=""
 
-                if grep -i -q "STLSOFT:$l:FILE_\(DEPRECATED\|EXCEPTED\)" "$f"; then
+                if marker_listed "STLSOFT:$l:FILE_DEPRECATED" || marker_listed "STLSOFT:$l:FILE_EXCEPTED"; then
 
                     ShouldSkip="true"
                     SkipCause="STLSOFT:$l:FILE_DEPRECATED/FILE_EXCEPTED"
