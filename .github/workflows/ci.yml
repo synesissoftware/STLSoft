@@ -12,6 +12,8 @@ on:
       - rc3
       - rc4
       - rc5
+      - 1_11_4
+      - check_unit_test_names
   pull_request:
 
 concurrency:
