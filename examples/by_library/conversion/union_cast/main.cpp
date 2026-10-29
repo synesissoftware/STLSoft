@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/conversion/union_cast/union_cast.cpp
+ * File:    examples/by_library/conversion/union_cast/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Conversion
  *          library's union_cast component.
  *
  * Created: 10th June 2006
- * Updated: 5th September 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

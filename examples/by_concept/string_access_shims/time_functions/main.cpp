@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_concept/string_access_shims/time_functions.cpp
+ * File:    examples/by_concept/string_access_shims/time_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of string access shims.
  *
  * Created: 27th January 2017
- * Updated: 28th April 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

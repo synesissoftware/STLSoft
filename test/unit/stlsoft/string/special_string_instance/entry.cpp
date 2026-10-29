@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    special_string_instance/entry.cpp
+ * File:    test/unit/stlsoft/string/special_string_instance/entry.cpp
  *
  * Purpose: Unit-tests for special_string_instance::equal.
  *
  * Created: 29th September 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

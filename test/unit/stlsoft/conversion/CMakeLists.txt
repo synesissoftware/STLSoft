@@ -2,6 +2,7 @@
 add_subdirectory(number)
 
 add_subdirectory(byte_format_functions)
+add_subdirectory(char_conversions)
 add_subdirectory(integer_to_base32_string)
 add_subdirectory(integer_to_base36_string)
 add_subdirectory(integer_to_lc_string)

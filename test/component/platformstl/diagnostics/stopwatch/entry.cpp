@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    stopwatch/entry.cpp
+ * File:    test/component/platformstl/diagnostics/stopwatch/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *
  * Created: 19th November 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

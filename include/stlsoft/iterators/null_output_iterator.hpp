@@ -4,11 +4,11 @@
  * Purpose: Null output iterator.
  *
  * Created: 18th February 2006
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        36
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    13
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -166,6 +166,9 @@ private:
     public:
         deref_proxy(null_output_iterator *it)
             : m_it(it)
+        {}
+        deref_proxy(class_type const& rhs)
+            : m_it(rhs.m_it)
         {}
     private:
         void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;

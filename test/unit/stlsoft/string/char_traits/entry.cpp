@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    char_traits/entry.cpp
+ * File:    test/unit/stlsoft/string/char_traits/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::char_traits and char_traits_safe.
  *
  * Created: 29th September 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

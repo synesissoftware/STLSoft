@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    spin_mutex/entry.cpp
+ * File:    test/component/winstl/synch/spin_mutex/entry.cpp
  *
  * Purpose: Component test for `winstl::spin_mutex`.
  *
  * Created: sometime in 2015
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

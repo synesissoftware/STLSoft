@@ -4,7 +4,7 @@
  * Purpose: FILE* output iterator.
  *
  * Created: 21st April 2009
- * Updated: 15th October 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    12
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        25
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    13
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -244,11 +244,9 @@ private:
         deref_proxy(FILE_iterator* it)
             : m_it(it)
         {}
-#if __cplusplus >= 201103L
         deref_proxy(class_type const& rhs)
             : m_it(rhs.m_it)
         {}
-#endif
     private:
         void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 

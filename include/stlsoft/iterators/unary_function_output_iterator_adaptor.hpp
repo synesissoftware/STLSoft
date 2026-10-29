@@ -4,11 +4,11 @@
  * Purpose: Class that adapts a unary function to an output iterator.
  *
  * Created: 20th July 2005
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      31
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  9
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,6 +127,9 @@ private:
     public:
         deref_proxy(unary_function_output_iterator_adaptor<F> *it)
             : m_it(it)
+        {}
+        deref_proxy(class_type const& rhs)
+            : m_it(rhs.m_it)
         {}
     private:
         void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;

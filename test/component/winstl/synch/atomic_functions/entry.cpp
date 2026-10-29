@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    atomic_functions/entry.cpp
+ * File:    test/component/winstl/synch/atomic_functions/entry.cpp
  *
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

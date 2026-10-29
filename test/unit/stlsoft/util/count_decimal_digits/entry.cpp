@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    count_decimal_digits/entry.cpp
+ * File:    test/unit/stlsoft/util/count_decimal_digits/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::count_decimal_digits`.
  *
  * Created: 18th October 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
