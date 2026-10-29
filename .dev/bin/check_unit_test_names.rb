@@ -35,7 +35,7 @@ require 'xqsr3/extensions/string/map_option_string'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 2
-PROGRAM_VER_PATCH = 2
+PROGRAM_VER_PATCH = 3
 
 PROCESS_MODE_STRINGS = %w{
     [b]oth
@@ -219,6 +219,8 @@ else
 
   $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_File)} had bad 'File:' labels and #{num_clr(num_files_bad_RUNNER)} had bad START_RUNNER labels"
 end
+
+exit 1 if num_files_bad_File != 0 || num_files_bad_RUNNER != 0
 
 
 # ############################## end of file ############################# #
