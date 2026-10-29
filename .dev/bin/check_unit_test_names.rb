@@ -35,13 +35,15 @@ require 'xqsr3/extensions/string/map_option_string'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 2
-PROGRAM_VER_PATCH = 0
+PROGRAM_VER_PATCH = 1
 
 PROCESS_MODE_STRINGS = %w{
     [b]oth
     [f]ile
     [r]unner
 }
+
+PROJECT_ROOT = File.expand_path('../..', __dir__)
 
 
 # ######################################################################## #
@@ -55,6 +57,15 @@ def num_clr(n)
   else
     HighLine.color(n.to_s, :red, :bold)
   end
+end
+
+# Path of +entry+ relative to the STLSoft project root. For a test or
+# example this is the File: label, e.g.
+# `test/component/inetstl/util/uds_helpers/entry.cpp`. xTests infers a
+# runner name from the same path; the label keeps the slashes.
+def project_relative_path(entry)
+
+  Recls.derive_relative_path(PROJECT_ROOT, entry.path)
 end
 
 
@@ -115,6 +126,16 @@ directories.each do |directory|
 
     this_dir = fe.directory_parts[-1]
 
+    relative_path = project_relative_path fe
+
+    expected_file = if relative_path =~ %r{\A(?:example|examples|test)/}
+
+      relative_path
+    else
+
+      "#{this_dir}#{fe.basename}"
+    end
+
     expected_name = "#{this_dir}#{fe.basename}"
 
 
@@ -132,9 +153,9 @@ directories.each do |directory|
 
         file_name = $1
 
-        if expected_name != file_name
+        if expected_file != file_name
 
-          $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
+          $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_file, :green)}'"
 
           num_files_bad_File += 1
         end
