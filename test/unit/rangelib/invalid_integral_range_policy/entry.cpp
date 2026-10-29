@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    invalid_integral_range_policy/entry.cpp
+ * File:    test/unit/rangelib/invalid_integral_range_policy/entry.cpp
  *
  * Purpose: Unit-tests for `rangelib::invalid_integral_range_policy`.
  *

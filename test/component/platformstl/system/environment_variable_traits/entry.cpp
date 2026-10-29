@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    environment_variable_traits/entry.cpp
+ * File:    test/component/platformstl/system/environment_variable_traits/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::environment_variable_traits`.
  *
  * Created: 30th December 2024
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

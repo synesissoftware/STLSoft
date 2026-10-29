@@ -29,14 +29,18 @@
   * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
   * The rejection oracles in **test.unit.stlsoft.conversion.char_conversions** and **test.unit.stlsoft.util.exception_string_creator** call `mbstowcs_s()` / `wcstombs_s()` when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set;
 * build:
-  * **.dev/bin/batch_compile_check** compiles each header with `-fsyntax-only` (no object files). A failed compilation exits 1 and lists `FAIL: <header> (C|C++, <std>)`. A missing include directory, a missing subproject directory, an unknown compiler, a missing option value, an unrecognised language version, or zero matching headers also exits 1. SIGINT exits 130 and stops jobs still running;
-  * `--c-language-version` and `--cxx-language-version` are independent. C accepts 89, 90, 99, 11, 17, 20, and 23 (default 17). C++ accepts 98, 03, 11, 14, 17, 20, and 23 (default 98, 03, 11, 14, 17, and 20; 23 is selectable and is not in the default sweep). A version flag for the language excluded by `-C` or `-C++` is an error;
-  * `-j` / `--jobs` compiles up to N headers at once (default 1, a positive integer). Failures stay in the order the compilations were started. With one job the compiler's diagnostics stay on the terminal; with more than one they are kept only for failures;
-  * Every compile passes `-Wall -Wextra -pedantic`. `-W` / `--werror` adds `-Werror`;
-  * Skip markers are whole `/* STLSOFT:… */` comments, read once per header and matched case-insensitively: `STLSOFT:FILE_DEPRECATED`, `STLSOFT:FILE_EXCEPTED`, `STLSOFT:FILE_NOT_SELF_SUFFICIENT`, and per-standard `STLSOFT:<std>:FILE_DEPRECATED` / `FILE_EXCEPTED`. `STLSOFT:Windows:FILE_EXCEPTED` applies only when not on Windows. `--counts` reports files found and skipped separately from compilation attempts, failures, and per-version skips;
-  * Headers are discovered with NUL-delimited `find` and listed in `LC_ALL=C` order. **comstl** and **winstl** are rejected when not on Windows, before any verbose configuration is printed. On Windows, **comstl** and **inetstl** are compiled after `windows.h`, and **winstl** also after `ntsecapi.h`;
+  * **.dev/bin/batch_compile_check** (the human-driven bulk smoke-test script):
+    * compiles each header with `-fsyntax-only` (no object files). A failed compilation exits 1 and lists `FAIL: <header> (C|C++, <std>)`. A missing include directory, a missing subproject directory, an unknown compiler, a missing option value, an unrecognised language version, or zero matching headers also exits 1. SIGINT exits 130 and stops jobs still running;
+    * `--c-language-version` and `--cxx-language-version` are independent. C accepts 89, 90, 99, 11, 17, 20, and 23 (default 17). C++ accepts 98, 03, 11, 14, 17, 20, and 23 (default 98, 03, 11, 14, 17, and 20; 23 is selectable and is not in the default sweep). A version flag for the language excluded by `-C` or `-C++` is an error;
+    * `-j` / `--jobs` compiles up to N headers at once (default 1, a positive integer). Failures stay in the order the compilations were started. With one job the compiler's diagnostics stay on the terminal; with more than one they are kept only for failures;
+    * Every compile passes `-Wall -Wextra -pedantic`. `-W` / `--werror` adds `-Werror`;
+    * Skip markers are whole `/* STLSOFT:… */` comments, read once per header and matched case-insensitively: `STLSOFT:FILE_DEPRECATED`, `STLSOFT:FILE_EXCEPTED`, `STLSOFT:FILE_NOT_SELF_SUFFICIENT`, and per-standard `STLSOFT:<std>:FILE_DEPRECATED` / `FILE_EXCEPTED`. `STLSOFT:Windows:FILE_EXCEPTED` applies only when not on Windows. `--counts` reports files found and skipped separately from compilation attempts, failures, and per-version skips;
+    * Headers are discovered with NUL-delimited `find` and listed in `LC_ALL=C` order. **comstl** and **winstl** are rejected when not on Windows, before any verbose configuration is printed. On Windows, **comstl** and **inetstl** are compiled after `windows.h`, and **winstl** also after `ntsecapi.h`;
+  * **.dev/bin/check_unit_test_names.rb** (0.3.0) checks `File:` labels and `XTESTS_START_RUNNER*` names. `--mode` selects both, file, or runner (default both). A `File:` label under **examples** or **test** is the project-relative path. A runner name, for `test/unit` and `test/component` programs named `entry.c` or `entry.cpp`, is that directory with `/` replaced by `.`; `__FILE__` is accepted. `--project-root` / `-R` selects the tree (the default is two levels above the script). Either mismatch count exits 1. The **Check test names** job runs the script once on Ubuntu over **examples** and **test**;
 * documentation and boilerplate:
   * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
+  * `File:` labels under **test** and **examples** use the project-relative path;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.4**;
 
 
 ## 1.11.3 - 27th October 2026

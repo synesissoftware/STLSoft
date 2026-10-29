@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.bit_functions/main.cpp
+ * File:    test/performance/stlsoft/util/bit_functions/main.cpp
  *
  * Purpose: Perf-test for bit functions.
  *
  * Created: 24th September 2026
- * Updated: 30th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

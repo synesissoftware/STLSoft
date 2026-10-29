@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    integral_limits/entry.cpp
+ * File:    test/unit/stlsoft/limits/integral_limits/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

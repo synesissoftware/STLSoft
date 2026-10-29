@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    simple_string/entry.cpp
+ * File:    test/unit/stlsoft/string/simple_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

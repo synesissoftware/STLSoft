@@ -7,11 +7,11 @@
 #           labels.
 #
 # Created:  23rd August 2025
-# Updated:  23rd August 2025
+# Updated:  29th October 2026
 #
 # Author:   Matthew Wilson
 #
-# Copyright (c) Matthew Wilson, Synesis Information Systems
+# Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
 # All rights reserved
 #
 # ######################################################################## #
@@ -23,6 +23,7 @@
 require 'highline'
 require 'libclimate'
 require 'recls'
+require 'xqsr3/extensions/string/map_option_string'
 
 
 # ######################################################################## #
@@ -33,12 +34,57 @@ require 'recls'
 # constants
 
 PROGRAM_VER_MAJOR = 0
-PROGRAM_VER_MINOR = 0
+PROGRAM_VER_MINOR = 3
 PROGRAM_VER_PATCH = 0
+
+PROCESS_MODE_STRINGS = %w{
+    [b]oth
+    [f]ile
+    [r]unner
+}
+
+# We assume that the containing STLSoft project is the default project root.
+DEFAULT_PROJECT_ROOT = File.expand_path('../..', __dir__)
 
 
 # ######################################################################## #
 # functions
+
+def num_clr(n)
+
+  case n
+  when 0
+    HighLine.color(n.to_s, :green, :blue)
+  else
+    HighLine.color(n.to_s, :red, :bold)
+  end
+end
+
+# Path of +entry+ relative to +project_root+. For a test or example this
+# is the File: label, e.g.
+# `test/component/inetstl/util/uds_helpers/entry.cpp`. xTests infers a
+# runner name from the same path; the label keeps the slashes.
+def project_relative_path(project_root, entry)
+
+  Recls.derive_relative_path(project_root, entry.path)
+end
+
+# Automated tests are test/unit and test/component programs named
+# entry.c or entry.cpp. The runner name is that directory, from the
+# project root, with '/' turned into '.'.
+def automated_test_entry?(relative_path)
+
+  base = File.basename(relative_path)
+
+  return false unless base == 'entry.c' || base == 'entry.cpp'
+
+  relative_path.start_with?('test/component/', 'test/unit/')
+end
+
+def expected_runner_name(relative_path)
+
+  File.dirname(relative_path).tr('\\/', '.')
+end
 
 
 # ######################################################################## #
@@ -47,11 +93,25 @@ PROGRAM_VER_PATCH = 0
 options = {}
 climate = LibCLImate::Climate.new do |cl|
 
-  cl.add_flag('--verbose', alias: '-v', help: 'operate verbosely') { options[:verbose] = true }
+  cl.add_flag('--verbose', alias: '-v', help: 'Operate verbosely') { options[:verbose] = true }
+
+  cl.add_option('--mode', alias: '-m', help: "Processing mode. Defaults to 'both'", values: PROCESS_MODE_STRINGS) do |o, sp|
+
+    cl.abort "processing mode already specified; use --help for usage" if options[:process_mode]
+
+    options[:process_mode] = o.value.map_option_string(PROCESS_MODE_STRINGS) or cl.abort "invalid processing mode '#{o.value}'; use --help for usage"
+  end
+
+  cl.add_option('--project-root', alias: '-R', help: "Project root for 'File:' labels and runner names. Defaults to the root of the STLSoft directory in which this script is located") do |o, sp|
+
+    cl.abort "project root already specified; use --help for usage" if options[:project_root]
+
+    options[:project_root] = o.value
+  end
 
   cl.info_lines = [
     'STLSoft Development Tools',
-    'Copyright Synesis Information Systems Pty Ltd (c) 2025',
+    'Copyright Synesis Information Systems Pty Ltd (c) 2025-2026',
     :version,
     "Searches unit-test files to verify the test names and file labels",
     nil,
@@ -67,9 +127,19 @@ directories = r.values
 
 directories.all? { |directory| Recls.directory? directory } or climate.abort "one or more of given arguments is not a directory"
 
+options[:process_mode] ||= :both
+
+project_root = File.expand_path(options[:project_root] || DEFAULT_PROJECT_ROOT)
+
+Recls.directory?(project_root) or climate.abort "project root '#{project_root}' is not a directory"
+
 
 # ######################################################################## #
 # main()
+
+num_files             = 0
+num_files_bad_File    = 0
+num_files_bad_RUNNER  = 0
 
 directories.each do |directory|
 
@@ -83,42 +153,86 @@ directories.each do |directory|
 
     lines = IO.readlines fe, chomp: true
 
-    line_File = lines.find { |line| line =~ / File: / }
-    lines_START_RUNNER = lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }
-
     this_dir = fe.directory_parts[-1]
 
-    if line_File
-      line_File =~ / File:\s+(.+)$/
+    relative_path = project_relative_path project_root, fe
 
-      file_name = $1
-      expected_name = "#{this_dir}#{fe.basename}"
+    expected_file = if relative_path =~ %r{\A(?:example|examples|test)/}
 
-      if expected_name != file_name
+      relative_path
+    else
 
-        $stderr.puts "\t#{srp}'s #{HighLine.color(file_name, :green, :bold)} does not match"
+      "#{this_dir}#{fe.basename}"
+    end
+
+    num_files += 1
+
+    # "File:" processing?
+
+    case options[:process_mode]
+    when :both, :file
+
+      line_File = lines.find { |line| line =~ / File: / }
+
+      if line_File
+        line_File =~ / File:\s+(.+)$/
+
+        file_name = $1
+
+        if expected_file != file_name
+
+          $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_file, :green)}'"
+
+          num_files_bad_File += 1
+        end
       end
     end
 
-    unless lines_START_RUNNER.empty?
+    # runner processing?
 
-      lines_START_RUNNER.each do |line|
+    case options[:process_mode]
+    when :both, :runner
 
-        if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
+      next unless automated_test_entry? relative_path
+
+      expected_runner = expected_runner_name relative_path
+
+      lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }.each do |line|
+
+        if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*__FILE__\s*,/
+
+          next
+        elsif line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
 
           name = $1
+        else
 
-          if this_dir != (name + '/')
-
-            $stderr.puts "\t#{srp}'s #{HighLine.color(line, :green, :bold)} does not match"
-          end
+          name = nil
         end
+
+        next if name == expected_runner
+
+        $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_runner, :green)}'"
+
+        num_files_bad_RUNNER += 1
       end
     end
   end
 end
 
+case options[:process_mode]
+when :file
+
+  $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_File)} had bad 'File:' labels"
+when :runner
+
+  $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_RUNNER)} had bad START_RUNNER labels"
+else
+
+  $stdout.puts "processed #{HighLine.color(num_files.to_s, :green, :blue)} files, of which #{num_clr(num_files_bad_File)} had bad 'File:' labels and #{num_clr(num_files_bad_RUNNER)} had bad START_RUNNER labels"
+end
+
+exit 1 if num_files_bad_File != 0 || num_files_bad_RUNNER != 0
+
 
 # ############################## end of file ############################# #
-
-

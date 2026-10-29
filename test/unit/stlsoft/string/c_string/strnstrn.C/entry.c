@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnstrn.C/entry.c
+ * File:    test/unit/stlsoft/string/c_string/strnstrn.C/entry.c
  *
  * Purpose: Unit-tests for stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn().
  *
  * Created: 23rd October 2026
- * Updated: 23rd October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

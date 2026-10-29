@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    glob_sequence/entry.cpp
+ * File:    test/component/unixstl/filesystem/glob_sequence/entry.cpp
  *
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

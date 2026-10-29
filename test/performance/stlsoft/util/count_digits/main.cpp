@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    count_digits/main.cpp
+ * File:    test/performance/stlsoft/util/count_digits/main.cpp
  *
  * Purpose: Perf-test for digit-counting functions.
  *
  * Created: 18th December 2024
- * Updated: 30th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

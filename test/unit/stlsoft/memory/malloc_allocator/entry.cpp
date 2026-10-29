@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    malloc_allocator/entry.cpp
+ * File:    test/unit/stlsoft/memory/malloc_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::malloc_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

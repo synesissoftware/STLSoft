@@ -12,6 +12,8 @@ on:
       - rc3
       - rc4
       - rc5
+      - 1_11_4
+      - check_unit_test_names
   pull_request:
 
 concurrency:
@@ -271,3 +273,23 @@ jobs:
             cmake --build consumer-build --parallel
             consumer-build/consumer
           fi
+
+  # File: labels and XTESTS_START_RUNNER names. Source text only, so this
+  # job is one Ubuntu runner, not a cell per platform and compiler. The
+  # script exits non-zero when either mismatch total is non-zero.
+  check-test-names:
+    name: Check test names
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Install checker dependencies
+        run: gem install highline libclimate-ruby recls-ruby xqsr3
+
+      - name: "Check File: labels and runner names"
+        run: ./.dev/bin/check_unit_test_names.rb examples test

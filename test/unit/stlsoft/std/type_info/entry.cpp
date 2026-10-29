@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.std.type_info/entry.cpp
+ * File:    test/unit/stlsoft/std/type_info/entry.cpp
  *
  * Purpose: Unit-tests for the `std::type_info` string-access shims.
  *
  * Created: 28th October 2026
- * Updated: 28th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

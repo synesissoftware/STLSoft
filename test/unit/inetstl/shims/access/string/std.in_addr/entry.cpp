@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    std.in_addr/entry.cpp
+ * File:    test/unit/inetstl/shims/access/string/std.in_addr/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

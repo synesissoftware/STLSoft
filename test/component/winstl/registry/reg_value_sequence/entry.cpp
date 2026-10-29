@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    reg_value_sequence/entry.cpp
+ * File:    test/component/winstl/registry/reg_value_sequence/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::reg_value_sequence`.
  *
  * Created: 22nd October 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

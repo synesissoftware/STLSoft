@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    exception_string/entry.cpp
+ * File:    test/unit/stlsoft/string/exception_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
