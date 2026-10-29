@@ -8,20 +8,23 @@
   * **include/stlsoft/error/error_desc.hpp** and **include/acestl/shims/access/string/time_value.hpp** — the wide `error_desc` fallback and both wide `invoke_ACE_OS_snprintf()` overloads call `stlsoft_C_mbstowcs()`;
   * **include/stlsoft/conversion/char_conversions.hpp** — `multibyte2wide` and `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`, and still stamp the NUL at `[size]`;
   * **include/stlsoft/shims/access/string/std/exception.hpp** and **include/stlsoft/shims/access/string/std/type_info.hpp** — the wide shims call `stlsoft_C_mbstowcs()`. The private `mbstowcs_()` and `mbstowcs_len()` helpers are gone;
-  * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
   * **include/stlsoft/util/exception_string_creator.hpp** — `wide_to_multibyte_or_throw_()` calls `stlsoft_C_wcstombs()`. This is the last call site outside the encoding headers;
+  * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
+* behaviour:
+  * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
 * fixes:
   * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
 * testing:
+  * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
+  * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
+  * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text. The caught result is recorded before the assertion, so a non-returning policy call is not followed by unreachable code under MSVC (C4702);
   * **test.unit.stlsoft.string.encoding** — ASCII success, length probe, exact fit, counted source, zero capacity, short buffer, "count excludes the NUL", and rejection for `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`;
   * **test.unit.stlsoft.conversion.char_conversions** — `multibyte2wide` / `wide2multibyte`: ASCII, empty, counted, round-trip, a string longer than the internal buffer, and rejection when the C library rejects the input;
   * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
   * **test.unit.stlsoft.std.exception** — the narrow shims are `exception::what()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that message, and an empty `what()` yields an empty wide string and a null `c_str_ptr_null_w`;
   * **test.unit.stlsoft.std.type_info** — the narrow shims are `type_info::name()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that name;
   * **test.unit.stlsoft.error.error_desc** — `error_desc_w` matches `mbstowcs()` of the narrow `strerror()` text on the fallback path; a `_wcserror` / `_wcserror_s` build records a pass;
-  * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
   * The rejection oracles in **test.unit.stlsoft.conversion.char_conversions** and **test.unit.stlsoft.util.exception_string_creator** call `mbstowcs_s()` / `wcstombs_s()` when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set;
-  * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
 
 
 ## 1.11.3 - 27th October 2026
