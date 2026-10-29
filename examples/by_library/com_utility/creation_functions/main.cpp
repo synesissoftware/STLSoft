@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/creation_functions/creation_functions.cpp
+ * File:    examples/by_library/com_utility/creation_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use the COMSTL creation
  *          functions.

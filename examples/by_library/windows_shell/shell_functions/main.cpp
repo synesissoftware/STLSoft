@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_shell/shell_functions/shell_functions.cpp
+ * File:    examples/by_library/windows_shell/shell_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Shell
  *          library filesystem functions.

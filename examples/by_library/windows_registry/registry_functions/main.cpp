@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_registry/registry_functions/registry_functions.cpp
+ * File:    examples/by_library/windows_registry/registry_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Registry
  *          library.

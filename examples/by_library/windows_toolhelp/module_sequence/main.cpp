@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/toolhelp/module_sequence/module_sequence.cpp
+ * File:    examples/by_library/windows_toolhelp/module_sequence/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the ToolHelp library.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/conversion/union_cast/union_cast.cpp
+ * File:    examples/by_library/conversion/union_cast/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Conversion
  *          library's union_cast component.

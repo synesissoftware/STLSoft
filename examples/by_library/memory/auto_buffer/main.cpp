@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/memory/auto_buffer/auto_buffer.cpp
+ * File:    examples/by_library/memory/auto_buffer/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Memory library
  *          component auto_buffer.

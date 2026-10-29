@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/diagnostics/processtimes_stopwatch.cpp
+ * File:    examples/by_library/diagnostics/processtimes_stopwatch/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Diagnostics
  *          library's processtimes_stopwatch component.

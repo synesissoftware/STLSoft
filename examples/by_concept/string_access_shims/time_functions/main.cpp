@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_concept/string_access_shims/time_functions.cpp
+ * File:    examples/by_concept/string_access_shims/time_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of string access shims.
  *

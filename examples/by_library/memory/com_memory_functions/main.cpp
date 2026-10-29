@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/memory/com_memory_functions/com_memory_functions.cpp
+ * File:    examples/by_library/memory/com_memory_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the COMSTL memory
  *          functions.

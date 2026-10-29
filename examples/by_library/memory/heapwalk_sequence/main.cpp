@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/memory/heapwalk_sequence/heapwalk_sequence.cpp
+ * File:    examples/by_library/memory/heapwalk_sequence/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Memory library.
  *

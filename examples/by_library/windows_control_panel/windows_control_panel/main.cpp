@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_control_panel/windows_control_panel/windows_control_panel.cpp
+ * File:    examples/by_library/windows_control_panel/windows_control_panel/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Control
  *          Panel library.

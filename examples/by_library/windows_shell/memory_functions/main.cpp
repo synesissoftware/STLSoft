@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_shell/memory_functions/memory_functions.cpp
+ * File:    examples/by_library/windows_shell/memory_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Shell
  *          library memory functions.

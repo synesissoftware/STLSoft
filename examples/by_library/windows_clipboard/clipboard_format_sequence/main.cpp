@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_clipboard/clipboard_format_sequence/clipboard_format_sequence.cpp
+ * File:    examples/by_library/windows_clipboard/clipboard_format_sequence/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Clipboard
  *          library.

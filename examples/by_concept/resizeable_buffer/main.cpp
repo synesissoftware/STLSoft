@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_concept/resizeable_buffer/main.cpp
+ * File:    examples/by_concept/resizeable_buffer/main.cpp
  *
  * Purpose: C++ example program demonstrating the Resizeable Buffer
  *          concept: probe-then-fill into `stlsoft::auto_buffer` and

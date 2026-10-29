@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_registry/enum_values/enum_values.cpp
+ * File:    examples/by_library/windows_registry/enum_values/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Registry
  *          library.

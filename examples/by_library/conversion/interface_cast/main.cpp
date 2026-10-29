@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/conversion/interface_cast/interface_cast.cpp
+ * File:    examples/by_library/conversion/interface_cast/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Conversion
  *          library's interface_cast component.

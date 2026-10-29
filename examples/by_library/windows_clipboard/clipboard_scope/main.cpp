@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_clipboard/clipboard_scope/clipboard_scope.cpp
+ * File:    examples/by_library/windows_clipboard/clipboard_scope/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Clipboard
  *          library.

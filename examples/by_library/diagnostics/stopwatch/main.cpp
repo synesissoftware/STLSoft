@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/diagnostics/stopwatch.cpp
+ * File:    examples/by_library/diagnostics/stopwatch/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the stopwatch type
  *          `platformstl::stopwatch` from the Performance library.

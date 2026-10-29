@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/conversion/sap_cast/sap_cast.cpp
+ * File:    examples/by_library/conversion/sap_cast/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Conversion
  *          library's sap_cast cast operator.
