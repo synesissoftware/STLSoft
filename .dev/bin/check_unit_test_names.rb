@@ -7,11 +7,11 @@
 #           labels.
 #
 # Created:  23rd August 2025
-# Updated:  23rd August 2025
+# Updated:  29th October 2026
 #
 # Author:   Matthew Wilson
 #
-# Copyright (c) Matthew Wilson, Synesis Information Systems
+# Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
 # All rights reserved
 #
 # ######################################################################## #
@@ -34,7 +34,7 @@ require 'recls'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 0
-PROGRAM_VER_PATCH = 0
+PROGRAM_VER_PATCH = 1
 
 
 # ######################################################################## #
@@ -51,7 +51,7 @@ climate = LibCLImate::Climate.new do |cl|
 
   cl.info_lines = [
     'STLSoft Development Tools',
-    'Copyright Synesis Information Systems Pty Ltd (c) 2025',
+    'Copyright Synesis Information Systems Pty Ltd (c) 2025-2026',
     :version,
     "Searches unit-test files to verify the test names and file labels",
     nil,
@@ -88,15 +88,16 @@ directories.each do |directory|
 
     this_dir = fe.directory_parts[-1]
 
+    expected_name = "#{this_dir}#{fe.basename}"
+
     if line_File
       line_File =~ / File:\s+(.+)$/
 
       file_name = $1
-      expected_name = "#{this_dir}#{fe.basename}"
 
       if expected_name != file_name
 
-        $stderr.puts "\t#{srp}'s #{HighLine.color(file_name, :green, :bold)} does not match"
+        $stderr.puts "\t#{srp}'s '#{HighLine.color(line_File, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
       end
     end
 
@@ -110,7 +111,7 @@ directories.each do |directory|
 
           if this_dir != (name + '/')
 
-            $stderr.puts "\t#{srp}'s #{HighLine.color(line, :green, :bold)} does not match"
+            $stderr.puts "\t#{srp}'s '#{HighLine.color(line, :magenta, :bold)}' does not match '#{HighLine.color(expected_name, :green)}'"
           end
         end
       end
