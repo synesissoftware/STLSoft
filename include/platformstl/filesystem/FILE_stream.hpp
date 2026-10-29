@@ -4,7 +4,7 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 23rd September 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    6
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        29
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    7
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,6 +133,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_stdio
+# include <stlsoft/api/internal/stdio.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_stdio */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -383,22 +386,11 @@ private: // Implementation
     ,   char const* mode
     )
     {
-#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
-    defined(STLSOFT_COMPILER_IS_MSVC)
-
-        FILE* handle;
-        int   e = ::fopen_s(&handle, path, mode);
+        FILE* handle = NULL;
+        int   e = STLSOFT_API_INTERNAL_stdio_fopen_m(path, mode, &handle);
 
         if (0 != e)
         {
-#else // }
-        FILE* handle = ::fopen(path, mode);
-
-        if (NULL == handle)
-        {
-            int e = errno;
-#endif
-
             e = validate_errno_(handle, e);
 
             STLSOFT_MESSAGE_ASSERT("errno should not be 0 when file could not be opened. If it is, the FILE_stream component is not correctly implemented for your compiler. Please contact Synesis Software for assistance", 0 != e);
@@ -427,21 +419,11 @@ private: // Implementation
     ,   wchar_t const*  mode
     )
     {
-# if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
-     defined(STLSOFT_COMPILER_IS_MSVC)
-        FILE* handle;
-        int   e = ::_wfopen_s(&handle, path, mode);
+        FILE* handle = NULL;
+        int   e = STLSOFT_API_INTERNAL_stdio_fopen_w(path, mode, &handle);
 
         if (0 != e)
         {
-# else // }
-        FILE* handle = ::_wfopen(path, mode);
-
-        if (NULL == handle)
-        {
-            int e = errno;
-# endif
-
             e = validate_errno_(handle, e);
 
             STLSOFT_MESSAGE_ASSERT("errno should not be 0 when file could not be opened. If it is, the FILE_stream component is not correctly implemented for your compiler. Please contact Synesis Software for assistance", 0 != e);
