@@ -1,13 +1,13 @@
 #! /usr/bin/env ruby
 
 # ######################################################################## #
-# File:     dev/bin/check_unit_test_names.rb
+# File:     .dev/bin/check_unit_test_names.rb
 #
 # Purpose:  Searches unit-test files to verify the test names and file
 #           labels.
 #
 # Created:  23rd August 2025
-# Updated:  29th October 2026
+# Updated:  30th October 2026
 #
 # Author:   Matthew Wilson
 #
