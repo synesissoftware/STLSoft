@@ -23,6 +23,7 @@
 require 'highline'
 require 'libclimate'
 require 'recls'
+require 'xqsr3/extensions/string/map_option_string'
 
 
 # ######################################################################## #
@@ -33,8 +34,8 @@ require 'recls'
 # constants
 
 PROGRAM_VER_MAJOR = 0
-PROGRAM_VER_MINOR = 1
-PROGRAM_VER_PATCH = 5
+PROGRAM_VER_MINOR = 2
+PROGRAM_VER_PATCH = 0
 
 DIRECTORY_PARTS_TO_IGNORE = [
   '.dev/',
@@ -56,9 +57,197 @@ FILES_TO_IGNORE = [
   lambda { |fe| DIRECTORY_PARTS_TO_IGNORE.any? { |part| fe.directory_parts.include?(part) }},
 ]
 
+NAME_MODE_STRINGS = %w{
+  [le]gacy
+  [m]odern
+}
+
+# Extensions and stems for which xTests infers a runner name from __FILE__.
+SOURCE_EXTENSIONS = %w{
+  .c
+  .cc
+  .cpp
+  .cxx
+}
+
+STOCK_STEMS = %w{
+  entry
+  main
+}
+
 
 # ######################################################################## #
 # functions
+
+# Program name for the leaf source +source_path+ under +mode+.
+#
+# :modern follows xTests infer_name_ (__FILE__ passed to
+# XTESTS_START_RUNNER): a stem of "entry" or "main" walks up to the
+# nearest "test", "example", or "examples" directory ("examples" becomes
+# "example") and joins that anchor to the leaf with '.'. A leaf already
+# named "test.<X>" or "example.<X>" is the whole name. A stem equal to
+# its leaf directory is that stem.
+#
+# When that rule does not apply, the name is the leaf directory. :legacy
+# is always the leaf directory.
+def program_name source_path, mode
+
+  leaf = source_path.split(%r{[/\\]}).reject { |part| part.empty? }
+  leaf_directory = leaf.empty? ? source_path : leaf[-2] || leaf[-1]
+
+  return leaf_directory if mode == :legacy
+
+  inferred_program_name(source_path) || leaf_directory
+end
+
+# The xTests' +__FILE__+ runner name for +source_path+, or +nil+ when the
+# path is not a stock +entry+ / +main+ source under +test+ or +examples+.
+def inferred_program_name source_path
+
+  parts = source_path.split(%r{[/\\]}).reject { |part| part.empty? }
+
+  return nil if parts.size < 2
+
+  filename = parts.last
+  directories = parts[0...-1]
+  extension = File.extname(filename)
+
+  return nil unless SOURCE_EXTENSIONS.include?(extension)
+
+  stem = filename[0...-extension.size]
+  leaf = directories.last
+
+  unless STOCK_STEMS.include?(stem)
+
+    return stem if stem == leaf
+
+    return nil
+  end
+
+  return leaf if prefixed_name?(leaf, 'example.') || prefixed_name?(leaf, 'test.')
+
+  (directories.size - 1).downto(1) do |index|
+
+    anchor = case directories[index - 1]
+    when 'example', 'examples'
+
+      'example'
+    when 'test'
+
+      'test'
+    end
+
+    next unless anchor
+
+    return ([ anchor ] + directories[index..-1]).join('.')
+  end
+
+  nil
+end
+
+# +true+ when +name+ begins with +prefix+ and has at least one further
+# character, as with +test.<X>+ and +example.<X>+.
+def prefixed_name? name, prefix
+
+  name.start_with?(prefix) && name.size > prefix.size
+end
+
+# Stock leaf +CMakeLists.txt+ text for +fe_prg+: the eyecatcher and one
+# +define_*+ call, named for +name_mode+.
+def leaf_cmake_text fe_prg, name_mode
+
+  macro = case fe_prg.stem
+  when 'entry'
+
+    'define_automated_test_program'
+  when 'main'
+
+    'define_example_program'
+  else
+
+    if fe_prg.directory_parts.include?('test/') && [ 'component/', 'unit/' ].any? { |dirname| fe_prg.directory_parts.include?(dirname) }
+
+      'define_automated_test_program'
+    else
+
+      'define_example_program'
+    end
+  end
+
+  name = program_name(fe_prg.path, name_mode)
+
+  "#{EYECATCHER}\n#{macro}(#{name} #{fe_prg.basename})\n"
+end
+
+# Stock non-leaf +CMakeLists.txt+ text: the eyecatcher and a sorted
+# +add_subdirectory+ line for each entry in +contents+.
+def nonleaf_cmake_text contents
+
+  lines = [ EYECATCHER ]
+
+  contents.map { |fe| fe.basename }.sort.each do |subdir_name|
+
+    next if subdir_name == 'CMakeLists.txt'
+
+    lines << "add_subdirectory(#{subdir_name})"
+  end
+
+  lines.join("\n") + "\n"
+end
+
+# Path relative to the current directory when +path+ is under it.
+def display_path path
+
+  full = File.expand_path(path)
+  prefix = Dir.pwd + File::SEPARATOR
+
+  return full[(prefix.size)..-1] if full.start_with?(prefix)
+
+  full
+end
+
+# Prints how +proposed+ differs from +existing+ at +path+. +existing+ is
+# +nil+ when the file is absent.
+def report_cmake_change path, existing, proposed
+
+  $stdout.puts "#{existing.nil? ? 'create' : 'update'} #{display_path(path)}"
+
+  old_lines = existing.nil? ? [] : existing.lines
+  new_lines = proposed.lines
+  count = [ old_lines.size, new_lines.size ].max
+
+  count.times do |index|
+
+    old_line = old_lines[index]
+    new_line = new_lines[index]
+
+    next if old_line == new_line
+
+    $stdout.puts "\t- #{old_line.chomp}" if old_line
+    $stdout.puts "\t+ #{new_line.chomp}" if new_line
+  end
+end
+
+# Writes +text+ to +path+ unless +dry_run+ is set. A dry-run reports the
+# file only when the bytes would change, and returns +:create+ or
+# +:update+ in that case.
+def publish_cmake_list path, text, dry_run
+
+  if dry_run
+
+    existing = File.file?(path) ? IO.read(path) : nil
+
+    return nil if existing == text
+
+    report_cmake_change path, existing, text
+
+    return existing.nil? ? :create : :update
+  end
+
+  File.write path, text
+
+  nil
+end
 
 def get_program_source_entry entries, **options
 
@@ -109,7 +298,15 @@ end
 options = {}
 climate = LibCLImate::Climate.new do |cl|
 
+  cl.add_flag('--dry-run', alias: '-d', help: 'does not make any changes, but reports which changes would be made') { options[:dry_run] = true }
   cl.add_flag('--verbose', alias: '-v', help: 'operate verbosely') { options[:verbose] = true }
+
+  cl.add_option('--mode', alias: '-m', help: "Program-name mode. 'modern' (the default) follows the xTests __FILE__ runner-name rule. 'legacy' uses the leaf directory name", values: NAME_MODE_STRINGS) do |o, sp|
+
+    cl.abort "program-name mode already specified; use --help for usage" if options[:name_mode]
+
+    options[:name_mode] = o.value.map_option_string(NAME_MODE_STRINGS) or cl.abort "invalid program-name mode '#{o.value}'; use --help for usage"
+  end
 
   cl.info_lines = [
     'STLSoft Development Tools',
@@ -129,6 +326,8 @@ directories = r.values
 
 directories.all? { |directory| Recls.directory? directory } or climate.abort "one or more of given arguments is not a directory"
 
+options[:name_mode] ||= :modern
+
 
 # ######################################################################## #
 # main()
@@ -138,6 +337,8 @@ num_custom_directories_found  = 0
 num_missing_makelists_created = 0
 num_stock_makelists_replaced  = 0
 num_dead_directories          = 0
+num_dry_run_creates           = 0
+num_dry_run_updates           = 0
 
 
 directories.each do |directory|
@@ -202,35 +403,18 @@ directories.each do |directory|
       is_leaf = true
       is_leaf = is_leaf && fe_prg
 
+      action = options[:dry_run] ? 'would generate' : 'generating'
+
       if is_leaf
 
-        $stdout.puts HighLine.color("generating LEAF", :magenta, :bold) if options[:verbose]
+        $stdout.puts HighLine.color("#{action} LEAF", :magenta, :bold) if options[:verbose]
 
-        File.open(cml_path, 'w') do |f|
+        if options[:verbose] && options[:name_mode] == :modern && inferred_program_name(fe_prg.path).nil?
 
-          macro = case fe_prg.stem
-          when 'entry'
-
-            'define_automated_test_program'
-          when 'main'
-
-            'define_example_program'
-          else
-
-            if fe_prg.directory_parts.include?('test/') && [ 'unit/', 'component/' ].any? { |dirname| $stderr.puts "\t\t#{dirname} => #{fe_prg.directory_parts.include? dirname}" ; fe_prg.directory_parts.include?(dirname) }
-
-              'define_automated_test_program'
-            else
-
-              'define_example_program'
-            end
-          end
-
-          f << <<-END_of_
-#{EYECATCHER}
-#{macro}(#{subdirectory.basename} #{fe_prg.basename})
-END_of_
+          $stdout.puts HighLine.color("program name is the leaf directory", :yellow)
         end
+
+        result = publish_cmake_list cml_path, leaf_cmake_text(fe_prg, options[:name_mode]), options[:dry_run]
       else
 
         # not-leaf, but might be a dead directory
@@ -244,29 +428,28 @@ END_of_
           next
         end
 
-        $stdout.puts HighLine.color("generating non-LEAF", :magenta, :bold) if options[:verbose]
+        $stdout.puts HighLine.color("#{action} non-LEAF", :magenta, :bold) if options[:verbose]
 
-        File.open(cml_path, 'w') do |f|
+        result = publish_cmake_list cml_path, nonleaf_cmake_text(contents), options[:dry_run]
+      end
 
-          f << <<-END_of_
-#{EYECATCHER}
-END_of_
+      case result
+      when :create
 
-          subdirectory_names = contents.map { |fe| fe.basename }.to_a.sort
+        num_dry_run_creates += 1
+      when :update
 
-          subdirectory_names.each do |subdir_name|
-
-            next if subdir_name == 'CMakeLists.txt'
-
-            f << "add_subdirectory(#{subdir_name})" << "\n"
-          end
-        end
+        num_dry_run_updates += 1
       end
     end
   end
 end
 
-$stdout.puts "#{num_directories_processed} directories processed, in which there were #{num_custom_directories_found} custom configuration(s), #{num_missing_makelists_created} missing configuration(s), #{num_stock_makelists_replaced} stock configuration(s); #{num_dead_directories} dead directories"
+summary = "#{num_directories_processed} directories processed, in which there were #{num_custom_directories_found} custom configuration(s), #{num_missing_makelists_created} missing configuration(s), #{num_stock_makelists_replaced} stock configuration(s); #{num_dead_directories} dead directories"
+
+summary += "; dry-run: #{num_dry_run_creates} would be created, #{num_dry_run_updates} would be updated" if options[:dry_run]
+
+$stdout.puts summary
 
 
 # ############################## end of file ############################# #
