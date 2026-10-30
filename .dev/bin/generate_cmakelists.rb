@@ -79,25 +79,30 @@ STOCK_STEMS = %w{
 # ######################################################################## #
 # functions
 
-# Program name for the leaf source +source_path+ under +mode+.
-#
-# :modern follows xTests infer_name_ (__FILE__ passed to
-# XTESTS_START_RUNNER): a stem of "entry" or "main" walks up to the
-# nearest "test", "example", or "examples" directory ("examples" becomes
-# "example") and joins that anchor to the leaf with '.'. A leaf already
-# named "test.<X>" or "example.<X>" is the whole name. A stem equal to
-# its leaf directory is that stem.
-#
-# When that rule does not apply, the name is the leaf directory. :legacy
-# is always the leaf directory.
-def program_name source_path, mode
+def dead_directory? subdirectory, contents, **options
 
-  leaf = source_path.split(%r{[/\\]}).reject { |part| part.empty? }
-  leaf_directory = leaf.empty? ? source_path : leaf[-2] || leaf[-1]
+  return true if contents.empty?
 
-  return leaf_directory if mode == :legacy
+  false
+end
 
-  inferred_program_name(source_path) || leaf_directory
+# Path relative to the current directory when +path+ is under it.
+def display_path path
+
+  full    = File.expand_path(path)
+  prefix  = Dir.pwd + File::SEPARATOR
+
+  return full[(prefix.size)..-1] if full.start_with?(prefix)
+
+  full
+end
+
+def get_program_source_entry entries, **options
+
+  all_files   = entries.select { |fe| fe.file? }
+  c_cpp_files = all_files.select { |fe| [ '.c', '.cpp' ].include?(fe.extension) }
+
+  return c_cpp_files[0] if c_cpp_files.size == 1
 end
 
 # The xTests' +__FILE__+ runner name for +source_path+, or +nil+ when the
@@ -108,9 +113,9 @@ def inferred_program_name source_path
 
   return nil if parts.size < 2
 
-  filename = parts.last
+  filename    = parts.last
   directories = parts[0...-1]
-  extension = File.extname(filename)
+  extension   = File.extname(filename)
 
   return nil unless SOURCE_EXTENSIONS.include?(extension)
 
@@ -143,13 +148,6 @@ def inferred_program_name source_path
   end
 
   nil
-end
-
-# +true+ when +name+ begins with +prefix+ and has at least one further
-# character, as with +test.<X>+ and +example.<X>+.
-def prefixed_name? name, prefix
-
-  name.start_with?(prefix) && name.size > prefix.size
 end
 
 # Stock leaf +CMakeLists.txt+ text for +fe_prg+: the eyecatcher and one
@@ -195,15 +193,62 @@ def nonleaf_cmake_text contents
   lines.join("\n") + "\n"
 end
 
-# Path relative to the current directory when +path+ is under it.
-def display_path path
+# +n+ in green when it is zero (already good), and in +colour+ when it
+# is not. Red is only for a broken count; this summary has none.
+def num_clr n, colour
 
-  full = File.expand_path(path)
-  prefix = Dir.pwd + File::SEPARATOR
+  case n
+  when 0
 
-  return full[(prefix.size)..-1] if full.start_with?(prefix)
+    HighLine.color(n.to_s, :green)
+  else
 
-  full
+    HighLine.color(n.to_s, colour, :bold)
+  end
+end
+
+# +true+ when +name+ begins with +prefix+ and has at least one further
+# character, as with +test.<X>+ and +example.<X>+.
+def prefixed_name? name, prefix
+
+  name.start_with?(prefix) && name.size > prefix.size
+end
+
+# Program name for the leaf source +source_path+ under +mode+.
+#
+# :modern follows xTests infer_name_ (__FILE__ passed to
+# XTESTS_START_RUNNER): a stem of "entry" or "main" walks up to the
+# nearest "test", "example", or "examples" directory ("examples" becomes
+# "example") and joins that anchor to the leaf with '.'. A leaf already
+# named "test.<X>" or "example.<X>" is the whole name. A stem equal to
+# its leaf directory is that stem.
+#
+# When that rule does not apply, the name is the leaf directory. :legacy
+# is always the leaf directory.
+def program_name source_path, mode
+
+  leaf            = source_path.split(%r{[/\\]}).reject { |part| part.empty? }
+  leaf_directory  = leaf.empty? ? source_path : leaf[-2] || leaf[-1]
+
+  return leaf_directory if mode == :legacy
+
+  inferred_program_name(source_path) || leaf_directory
+end
+
+# Writes +text+ to +path+ unless +dry_run+ is set. Returns +:create+ or
+# +:update+ when the bytes differ, and +nil+ when the file already
+# matches. A dry-run reports that difference and does not write.
+def publish_cmake_list path, text, dry_run
+
+  existing = File.file?(path) ? IO.read(path) : nil
+
+  return nil if existing == text
+
+  report_cmake_change path, existing, text if dry_run
+
+  File.write path, text unless dry_run
+
+  existing.nil? ? :create : :update
 end
 
 # Prints how +proposed+ differs from +existing+ at +path+. +existing+ is
@@ -214,7 +259,7 @@ def report_cmake_change path, existing, proposed
 
   old_lines = existing.nil? ? [] : existing.lines
   new_lines = proposed.lines
-  count = [ old_lines.size, new_lines.size ].max
+  count     = [ old_lines.size, new_lines.size ].max
 
   count.times do |index|
 
@@ -226,43 +271,6 @@ def report_cmake_change path, existing, proposed
     $stdout.puts "\t- #{old_line.chomp}" if old_line
     $stdout.puts "\t+ #{new_line.chomp}" if new_line
   end
-end
-
-# Writes +text+ to +path+ unless +dry_run+ is set. A dry-run reports the
-# file only when the bytes would change, and returns +:create+ or
-# +:update+ in that case.
-def publish_cmake_list path, text, dry_run
-
-  if dry_run
-
-    existing = File.file?(path) ? IO.read(path) : nil
-
-    return nil if existing == text
-
-    report_cmake_change path, existing, text
-
-    return existing.nil? ? :create : :update
-  end
-
-  File.write path, text
-
-  nil
-end
-
-def get_program_source_entry entries, **options
-
-  files = entries.select { |fe| fe.file? }
-
-  c_cpp_files = files.select { |fe| [ '.c', '.cpp' ].include?(fe.extension) }
-
-  return c_cpp_files[0] if c_cpp_files.size == 1
-end
-
-def dead_directory? subdirectory, contents, **options
-
-  return true if contents.empty?
-
-  false
 end
 
 def strip_excludes entries, ignore_list, **options
@@ -337,8 +345,8 @@ num_custom_directories_found  = 0
 num_missing_makelists_created = 0
 num_stock_makelists_replaced  = 0
 num_dead_directories          = 0
-num_dry_run_creates           = 0
-num_dry_run_updates           = 0
+num_lists_created             = 0
+num_lists_updated             = 0
 
 
 directories.each do |directory|
@@ -394,16 +402,16 @@ directories.each do |directory|
 
     if regenerate_cml
 
-      contents = Recls.search(subdirectory, nil, Recls::FILES | Recls::DIRECTORIES).to_a
+      contents  = Recls.search(subdirectory, nil, Recls::FILES | Recls::DIRECTORIES).to_a
 
-      contents = strip_excludes contents, FILES_TO_IGNORE, **options
+      contents  = strip_excludes contents, FILES_TO_IGNORE, **options
 
-      fe_prg = get_program_source_entry contents
+      fe_prg    = get_program_source_entry contents
 
-      is_leaf = true
-      is_leaf = is_leaf && fe_prg
+      is_leaf   = true
+      is_leaf   = is_leaf && fe_prg
 
-      action = options[:dry_run] ? 'would generate' : 'generating'
+      action    = options[:dry_run] ? 'would generate' : 'generating'
 
       if is_leaf
 
@@ -436,18 +444,23 @@ directories.each do |directory|
       case result
       when :create
 
-        num_dry_run_creates += 1
+        num_lists_created += 1
       when :update
 
-        num_dry_run_updates += 1
+        num_lists_updated += 1
       end
     end
   end
 end
 
-summary = "#{num_directories_processed} directories processed, in which there were #{num_custom_directories_found} custom configuration(s), #{num_missing_makelists_created} missing configuration(s), #{num_stock_makelists_replaced} stock configuration(s); #{num_dead_directories} dead directories"
+processed       = HighLine.color(num_directories_processed.to_s, :blue, :bold)
 
-summary += "; dry-run: #{num_dry_run_creates} would be created, #{num_dry_run_updates} would be updated" if options[:dry_run]
+summary         = "#{processed} directories processed, in which there were #{num_clr(num_custom_directories_found, :cyan)} custom configuration(s), #{num_clr(num_missing_makelists_created, :magenta)} missing configuration(s), #{num_clr(num_stock_makelists_replaced, :green)} stock configuration(s); #{num_clr(num_dead_directories, :green)} dead directories"
+
+created_phrase  = options[:dry_run] ? 'would be created' : 'created'
+updated_phrase  = options[:dry_run] ? 'would be updated' : 'updated'
+
+summary += "; #{num_clr(num_lists_created, :magenta)} #{created_phrase}, #{num_clr(num_lists_updated, :magenta)} #{updated_phrase}"
 
 $stdout.puts summary
 
