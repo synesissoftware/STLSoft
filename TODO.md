@@ -87,6 +87,9 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 * [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
 * [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
 * [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
+* [ ] C-API prefix follow-ups noticed while checking retained wrappers:
+  * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
+  * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
 
 
 ### 1.11.6
