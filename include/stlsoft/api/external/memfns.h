@@ -114,6 +114,10 @@
 # define STLSOFT_API_EXTERNAL_memfns_wmemcpy                STLSOFT_NS_GLOBAL_(wmemcpy)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_wmemcpy */
 
+#ifndef STLSOFT_API_EXTERNAL_memfns_wmemmove
+# define STLSOFT_API_EXTERNAL_memfns_wmemmove               STLSOFT_NS_GLOBAL_(wmemmove)
+#endif /* !STLSOFT_API_EXTERNAL_memfns_wmemmove */
+
 #ifndef STLSOFT_API_EXTERNAL_memfns_wmemset
 # define STLSOFT_API_EXTERNAL_memfns_wmemset                STLSOFT_NS_GLOBAL_(wmemset)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_wmemset */
