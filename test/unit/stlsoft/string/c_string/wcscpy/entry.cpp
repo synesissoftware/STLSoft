@@ -54,30 +54,6 @@ namespace
 #else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
     static void TEST_CLASSIC_IGNORES_SHORT_CAPACITY();
 #endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
-    static void fill_(wchar_t* p, size_t n, wchar_t ch)
-    {
-        for (size_t i = 0; i != n; ++i)
-        {
-            p[i] = ch;
-        }
-    }
-
-    static wchar_t* call_wcscpy_(wchar_t* dest, wchar_t const* src)
-    {
-#if defined(_MSC_VER)
-# pragma warning(push)
-# pragma warning(disable : 4996)
-#endif /* _MSC_VER */
-
-        wchar_t* const r = ::wcscpy(dest, src);
-
-#if defined(_MSC_VER)
-# pragma warning(pop)
-#endif /* _MSC_VER */
-
-        return r;
-    }
 } // anonymous namespace
 
 
@@ -113,6 +89,39 @@ int main(int argc, char* argv[])
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+namespace
+{
+
+    static void fill_(wchar_t* p, size_t n, wchar_t ch)
+    {
+        for (size_t i = 0; i != n; ++i)
+        {
+            p[i] = ch;
+        }
+    }
+
+    static wchar_t* call_wcscpy_(wchar_t* dest, wchar_t const* src)
+    {
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif /* _MSC_VER */
+
+        wchar_t* const r = ::wcscpy(dest, src);
+
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif /* _MSC_VER */
+
+        return r;
+    }
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -185,7 +194,6 @@ static void TEST_EMPTY_SOURCE()
     call_wcscpy_(classic, L"");
 
     TEST_INT_EQ(0, ::wmemcmp(classic, dest, 4));
-
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     wchar_t secure[4];
@@ -224,7 +232,6 @@ static void TEST_FITS_WITH_SPARE()
     call_wcscpy_(classic, L"ab");
 
     TEST_INT_EQ(0, ::wmemcmp(classic, dest, 8));
-
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     wchar_t secure[8];
@@ -263,7 +270,6 @@ static void TEST_EXACT_FIT()
     call_wcscpy_(classic, L"ab");
 
     TEST_INT_EQ(0, ::wmemcmp(classic, dest, 3));
-
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     wchar_t secure[3];
@@ -304,7 +310,6 @@ static void TEST_NON_ASCII()
     call_wcscpy_(classic, src);
 
     TEST_INT_EQ(0, ::wmemcmp(classic, dest, 4));
-
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     wchar_t secure[4];
@@ -320,7 +325,6 @@ static void TEST_NON_ASCII()
     TEST_INT_EQ(0, ::wmemcmp(secure, dest, 4));
 #endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 }
-
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
 static void TEST_SECURE_SHORT_BUFFER()
@@ -358,7 +362,6 @@ static void TEST_SECURE_SHORT_BUFFER()
     TEST_WCHAR_EQ_(L'a', classic[0]);
     TEST_WCHAR_EQ_(L'\0', dest[0]);
 }
-
 #else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
 static void TEST_CLASSIC_IGNORES_SHORT_CAPACITY()
