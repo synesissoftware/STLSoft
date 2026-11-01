@@ -4,11 +4,11 @@
  * Purpose: Contains scale functions.
  *
  * Created: 7th February 2002
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_EDIT        57
+# define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,7 +96,7 @@ namespace winstl_project
 
 STLSOFT_INLINE
 ws_sint_t
-winstl__calc_SIZE_width(SIZE const* size)
+winstl_C_calc_SIZE_width(SIZE const* size)
 {
     WINSTL_ASSERT(NULL != size);
 
@@ -105,7 +105,7 @@ winstl__calc_SIZE_width(SIZE const* size)
 
 STLSOFT_INLINE
 ws_sint_t
-winstl__calc_SIZE_height(SIZE const* size)
+winstl_C_calc_SIZE_height(SIZE const* size)
 {
     WINSTL_ASSERT(NULL != size);
 
@@ -114,7 +114,7 @@ winstl__calc_SIZE_height(SIZE const* size)
 
 STLSOFT_INLINE
 ws_sint_t
-winstl__calc_RECT_width(RECT const* rect)
+winstl_C_calc_RECT_width(RECT const* rect)
 {
     WINSTL_ASSERT(NULL != rect);
 
@@ -123,7 +123,7 @@ winstl__calc_RECT_width(RECT const* rect)
 
 STLSOFT_INLINE
 ws_sint_t
-winstl__calc_RECT_height(RECT const* rect)
+winstl_C_calc_RECT_height(RECT const* rect)
 {
     WINSTL_ASSERT(NULL != rect);
 
@@ -151,7 +151,7 @@ inline
 ws_sint_t
 calc_width(SIZE const& size)
 {
-    return winstl__calc_SIZE_width(&size);
+    return winstl_C_calc_SIZE_width(&size);
 }
 
 /** Calculates the width of a \c RECT instance
@@ -162,7 +162,7 @@ inline
 ws_sint_t
 calc_width(RECT const& rc)
 {
-    return winstl__calc_RECT_width(&rc);
+    return winstl_C_calc_RECT_width(&rc);
 }
 
 
@@ -180,7 +180,7 @@ inline
 ws_sint_t
 calc_height(SIZE const& size)
 {
-    return winstl__calc_SIZE_height(&size);
+    return winstl_C_calc_SIZE_height(&size);
 }
 
 /** Calculates the height of a \c RECT instance
@@ -191,10 +191,61 @@ inline
 ws_sint_t
 calc_height(RECT const& rc)
 {
-    return winstl__calc_RECT_height(&rc);
+    return winstl_C_calc_RECT_height(&rc);
 }
 #endif /* __cplusplus */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_calc_SIZE_width
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__calc_SIZE_width, winstl_C_calc_SIZE_width)
+STLSOFT_INLINE
+ws_sint_t
+winstl__calc_SIZE_width(SIZE const* size)
+{
+    return winstl_C_calc_SIZE_width(size);
+}
+
+/** \deprecated Use winstl_C_calc_SIZE_height
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__calc_SIZE_height, winstl_C_calc_SIZE_height)
+STLSOFT_INLINE
+ws_sint_t
+winstl__calc_SIZE_height(SIZE const* size)
+{
+    return winstl_C_calc_SIZE_height(size);
+}
+
+/** \deprecated Use winstl_C_calc_RECT_width
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__calc_RECT_width, winstl_C_calc_RECT_width)
+STLSOFT_INLINE
+ws_sint_t
+winstl__calc_RECT_width(RECT const* rect)
+{
+    return winstl_C_calc_RECT_width(rect);
+}
+
+/** \deprecated Use winstl_C_calc_RECT_height
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__calc_RECT_height, winstl_C_calc_RECT_height)
+STLSOFT_INLINE
+ws_sint_t
+winstl__calc_RECT_height(RECT const* rect)
+{
+    return winstl_C_calc_RECT_height(rect);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

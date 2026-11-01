@@ -127,7 +127,14 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 * [ ] Window message and creation C API, noticed while renaming `winstl_C_SendMessage*` and `winstl_C_CreateWindow*`:
   * [ ] None of `winstl_C_SendMessage()`, `winstl_C_SendMessageA()`, or `winstl_C_SendMessageW()` has a documentation comment. The C++ `SendMessageA` and `SendMessageW` overloads are compiled only when the namespace is enabled and the compiler is not Borland. There is no C++ unsuffixed `SendMessage`;
   * [ ] None of the `winstl_C_CreateWindow*` functions has a documentation comment. The file brief says "Control creation functions"; the purpose line says window creation. The C++ `CreateWindowA`, `CreateWindowW`, `CreateWindow`, and `CreateWindowEx` overloads are commented out; only `CreateWindowExA` and `CreateWindowExW` are compiled;
-  * [ ] **font_functions.h** says its purpose is "Error functions";
+  * [x] **font_functions.h** says its purpose is "Error functions";
+* [ ] Font, GDI, menu, scale, and text-metrics C API, noticed while renaming:
+  * [ ] `winstl_C_get_LOGBRUSH()` names its brush `hpal`. `winstl_C_get_LOGFONT()` names its font `hpal`;
+  * [ ] The six `winstl_C_get_*` GDI functions, the three menu functions, the four `winstl_C_calc_*` functions, and the three `winstl_C_get_textmetrics*` functions have no documentation comments. `get_object_helper()` turns a zero `GetObject` result into a value-initialised description, so failure looks like an empty object;
+  * [ ] `winstl_C_IsMenuItemChecked()` returns FALSE when `GetMenuItemInfo` fails, the same result as an unchecked item. None of the three menu functions zeroes `MENUITEMINFO` before use;
+  * [ ] `winstl_C_get_textmetrics_a()` and `winstl_C_get_textmetrics_w()` return a zero `TEXTMETRIC` when `GetTextMetrics` fails. The contract does not say so;
+  * [ ] `winstl_C_calc_RECT_width()` and `winstl_C_calc_RECT_height()` return `right - left` and `bottom - top`, which are negative when the rectangle is inverted;
+  * [ ] The C++ `treeview_getchilditem`, `treeview_getrootitem`, and `treeview_getcaretitem` call `winstl_C_treeview_getnextitem` directly, rather than the C functions of the same role;
 
 
 ### 1.11.6
