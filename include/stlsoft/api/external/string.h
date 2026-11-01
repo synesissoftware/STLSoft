@@ -114,11 +114,14 @@
 #  undef STLSOFT_API_EXTERNAL_string_USE_MSVC_COMPILER_EXTENSION_FORMS_
 # endif
 
-  // Whether we use ANSI
+  /* Whether we use ANSI */
 
-  // If __STDC__ is defined then we use compiler-extension forms
-  // If VC++ 10+ and neither "secure" deprecation nor CRT deprecation is
-  //  suppressed then we use compiler-extension forms
+  /*
+   * If __STDC__ is defined then we use compiler-extension forms.
+   *
+   * If VC++ 10+ and neither "secure" deprecation nor CRT deprecation is
+   * suppressed then we use compiler-extension forms
+   */
 
 # if 0
 # elif defined(__STDC__)
