@@ -112,15 +112,16 @@ jobs:
             cmake --install "$STLINSTALL"
           fi
 
-      # xTests is built against the STLSoft just installed from this tree;
-      # STLSoft itself is therefore not in the list.
+      # shwild supplies TEST_MS_MATCHES. STLSoft is already in the prefix
+      # from the bootstrap above, so this list does not name it. shwild
+      # precedes xTests.
       - name: Install Synesis dependencies
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ inputs.build-type }}
           c-compiler: ${{ inputs.c-compiler == 'mingw' && 'gcc' || inputs.c-compiler }}
           cpp-compiler: ${{ inputs.c-compiler == 'mingw' && 'g++' || inputs.cpp-compiler }}
-          dependencies: xTests
+          dependencies: shwild xTests
           install-prefix: ${{ env.SIS_DEPS }}
           toolchain: ${{ inputs.c-compiler == 'mingw' && 'mingw' || '' }}
 
@@ -153,7 +154,6 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE \
               $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
@@ -164,7 +164,6 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE \
               $ACE_FLAG
           else
             cmake -B build -S . \
@@ -174,7 +173,6 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE \
               $ACE_FLAG
           fi
 

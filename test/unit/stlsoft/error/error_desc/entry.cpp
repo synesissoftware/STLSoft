@@ -42,6 +42,38 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+/* shwild pattern checks. Without shwild, xTests does not declare
+ * TEST_MS_MATCHES or TEST_MS_DOES_NOT_MATCH. The equality checks in each
+ * case still apply.
+ */
+
+#if defined(XTESTS_USE_SHWILD)
+
+# define TEST_MS_MATCHES_(pattern, actual) \
+\
+    TEST_MS_MATCHES((pattern), (actual))
+
+# define TEST_MS_DOES_NOT_MATCH_(pattern, actual) \
+\
+    TEST_MS_DOES_NOT_MATCH((pattern), (actual))
+
+#else /* ? XTESTS_USE_SHWILD */
+
+# define TEST_MS_MATCHES_(pattern, actual) \
+\
+    STLSOFT_SUPPRESS_UNUSED(actual)
+
+# define TEST_MS_DOES_NOT_MATCH_(pattern, actual) \
+\
+    STLSOFT_SUPPRESS_UNUSED(actual)
+
+#endif /* XTESTS_USE_SHWILD */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
@@ -225,19 +257,19 @@ static void TEST_NARROW_ERRNO_0()
 static void TEST_NARROW_EACCES()
 {
     EXPECT_NARROW_(EACCES);
-    TEST_MS_MATCHES("*ermission denied*", stlsoft::error_desc(EACCES).c_str());
+    TEST_MS_MATCHES_("*ermission denied*", stlsoft::error_desc(EACCES).c_str());
 }
 
 static void TEST_NARROW_EEXIST()
 {
     EXPECT_NARROW_(EEXIST);
-    TEST_MS_MATCHES("*File exists*", stlsoft::error_desc(EEXIST).c_str());
+    TEST_MS_MATCHES_("*File exists*", stlsoft::error_desc(EEXIST).c_str());
 }
 
 static void TEST_NARROW_EINVAL()
 {
     EXPECT_NARROW_(EINVAL);
-    TEST_MS_MATCHES("*nvalid argument*", stlsoft::error_desc(EINVAL).c_str());
+    TEST_MS_MATCHES_("*nvalid argument*", stlsoft::error_desc(EINVAL).c_str());
 }
 
 static void TEST_NARROW_EIO()
@@ -249,7 +281,7 @@ static void TEST_NARROW_EIO()
 static void TEST_NARROW_ENOENT()
 {
     EXPECT_NARROW_(ENOENT);
-    TEST_MS_MATCHES("*No such file*", stlsoft::error_desc(ENOENT).c_str());
+    TEST_MS_MATCHES_("*No such file*", stlsoft::error_desc(ENOENT).c_str());
 }
 
 static void TEST_NARROW_ENOMEM()
@@ -286,14 +318,14 @@ static void TEST_NARROW_UNKNOWN()
     int const e = 99999;
 
     EXPECT_NARROW_(e);
-    TEST_MS_MATCHES("*rror*", stlsoft::error_desc(e).c_str());
-    TEST_MS_DOES_NOT_MATCH("Success", stlsoft::error_desc(e).c_str());
+    TEST_MS_MATCHES_("*rror*", stlsoft::error_desc(e).c_str());
+    TEST_MS_DOES_NOT_MATCH_("Success", stlsoft::error_desc(e).c_str());
 }
 
 static void TEST_NARROW_NEGATIVE()
 {
     EXPECT_NARROW_(-1);
-    TEST_MS_MATCHES("*rror*", stlsoft::error_desc(-1).c_str());
+    TEST_MS_MATCHES_("*rror*", stlsoft::error_desc(-1).c_str());
 }
 
 static void TEST_NARROW_DEFAULT_USES_ERRNO()
@@ -303,7 +335,7 @@ static void TEST_NARROW_DEFAULT_USES_ERRNO()
     stlsoft::error_desc const ed;
 
     TEST_MS_EQ(crt_message_(ENOENT).c_str(), ed.c_str());
-    TEST_MS_MATCHES("*No such file*", ed.c_str());
+    TEST_MS_MATCHES_("*No such file*", ed.c_str());
 }
 
 static void TEST_NARROW_OWNS_COPY()

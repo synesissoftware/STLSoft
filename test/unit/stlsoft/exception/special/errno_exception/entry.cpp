@@ -42,6 +42,38 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+/* shwild pattern checks. Without shwild, xTests does not declare
+ * TEST_MS_MATCHES or TEST_MS_DOES_NOT_MATCH. The equality checks in each
+ * case still apply.
+ */
+
+#if defined(XTESTS_USE_SHWILD)
+
+# define TEST_MS_MATCHES_(pattern, actual) \
+\
+    TEST_MS_MATCHES((pattern), (actual))
+
+# define TEST_MS_DOES_NOT_MATCH_(pattern, actual) \
+\
+    TEST_MS_DOES_NOT_MATCH((pattern), (actual))
+
+#else /* ? XTESTS_USE_SHWILD */
+
+# define TEST_MS_MATCHES_(pattern, actual) \
+\
+    STLSOFT_SUPPRESS_UNUSED(actual)
+
+# define TEST_MS_DOES_NOT_MATCH_(pattern, actual) \
+\
+    STLSOFT_SUPPRESS_UNUSED(actual)
+
+#endif /* XTESTS_USE_SHWILD */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
@@ -171,7 +203,7 @@ static void TEST_EACCES()
     TEST_INT_EQ(EACCES, x.ErrnoValue);
     TEST_PTR_NOT_NULL(x.what());
     TEST_MS_EQ(crt.c_str(), x.what());
-    TEST_MS_MATCHES("*ermission denied*", x.what());
+    TEST_MS_MATCHES_("*ermission denied*", x.what());
 }
 
 static void TEST_EEXIST()
@@ -182,7 +214,7 @@ static void TEST_EEXIST()
     TEST_INT_EQ(EEXIST, x.ErrnoValue);
     TEST_PTR_NOT_NULL(x.what());
     TEST_MS_EQ(crt.c_str(), x.what());
-    TEST_MS_MATCHES("*File exists*", x.what());
+    TEST_MS_MATCHES_("*File exists*", x.what());
 }
 
 static void TEST_EINVAL()
@@ -193,7 +225,7 @@ static void TEST_EINVAL()
     TEST_INT_EQ(EINVAL, x.ErrnoValue);
     TEST_PTR_NOT_NULL(x.what());
     TEST_MS_EQ(crt.c_str(), x.what());
-    TEST_MS_MATCHES("*nvalid argument*", x.what());
+    TEST_MS_MATCHES_("*nvalid argument*", x.what());
 }
 
 static void TEST_EIO()
@@ -215,7 +247,7 @@ static void TEST_ENOENT()
     TEST_INT_EQ(ENOENT, x.ErrnoValue);
     TEST_PTR_NOT_NULL(x.what());
     TEST_MS_EQ(crt.c_str(), x.what());
-    TEST_MS_MATCHES("*No such file*", x.what());
+    TEST_MS_MATCHES_("*No such file*", x.what());
 }
 
 static void TEST_ENOMEM()
@@ -264,8 +296,8 @@ static void TEST_UNKNOWN_ERRNO()
     TEST_INT_EQ(e, x.ErrnoValue);
     TEST_PTR_NOT_NULL(x.what());
     TEST_MS_EQ(crt.c_str(), x.what());
-    TEST_MS_MATCHES("*rror*", x.what());
-    TEST_MS_DOES_NOT_MATCH("Success", x.what());
+    TEST_MS_MATCHES_("*rror*", x.what());
+    TEST_MS_DOES_NOT_MATCH_("Success", x.what());
 }
 
 static void TEST_NEGATIVE_ERRNO()
@@ -276,7 +308,7 @@ static void TEST_NEGATIVE_ERRNO()
     TEST_INT_EQ(-1, x.ErrnoValue);
     TEST_PTR_NOT_NULL(x.what());
     TEST_MS_EQ(crt.c_str(), x.what());
-    TEST_MS_MATCHES("*rror*", x.what());
+    TEST_MS_MATCHES_("*rror*", x.what());
 }
 
 static void TEST_MESSAGE_CHAR()
@@ -320,7 +352,7 @@ static void TEST_MESSAGE_DOES_NOT_REPLACE_ERRNO()
 
     TEST_INT_EQ(ENOENT, x.ErrnoValue);
     TEST_MS_EQ("supplied", x.what());
-    TEST_MS_DOES_NOT_MATCH("*No such file*", x.what());
+    TEST_MS_DOES_NOT_MATCH_("*No such file*", x.what());
 }
 
 static void TEST_COPY()
@@ -330,7 +362,7 @@ static void TEST_COPY()
 
     TEST_INT_EQ(ENOENT, copy.ErrnoValue);
     TEST_MS_EQ(original.what(), copy.what());
-    TEST_MS_MATCHES("*No such file*", copy.what());
+    TEST_MS_MATCHES_("*No such file*", copy.what());
 }
 
 static void TEST_CAUGHT_AS_ERRNO_EXCEPTION()
@@ -342,7 +374,7 @@ static void TEST_CAUGHT_AS_ERRNO_EXCEPTION()
     catch (stlsoft::errno_exception const& x)
     {
         TEST_INT_EQ(ENOENT, x.ErrnoValue);
-        TEST_MS_MATCHES("*No such file*", x.what());
+        TEST_MS_MATCHES_("*No such file*", x.what());
 
         return;
     }
@@ -361,7 +393,7 @@ static void TEST_CAUGHT_AS_RUNTIME_ERROR()
     }
     catch (std::runtime_error const& x)
     {
-        TEST_MS_MATCHES("*ermission denied*", x.what());
+        TEST_MS_MATCHES_("*ermission denied*", x.what());
 
         return;
     }
