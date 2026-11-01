@@ -42,7 +42,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* WARNING: this file contains undocumented internal features that are
+/* WARNING: this file contains undocumented external features that are
  * subject to change at any time, so if you use them it is at your own risk.
  */
 
