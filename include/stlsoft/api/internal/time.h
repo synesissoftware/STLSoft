@@ -138,7 +138,7 @@ STLSOFT_API_INTERNAL_Time_gmtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
@@ -167,7 +167,7 @@ STLSOFT_API_INTERNAL_Time_gmtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
@@ -234,7 +234,7 @@ STLSOFT_API_INTERNAL_Time_localtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
@@ -263,7 +263,7 @@ STLSOFT_API_INTERNAL_Time_localtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
