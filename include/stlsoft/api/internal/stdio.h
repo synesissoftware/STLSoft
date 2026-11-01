@@ -74,7 +74,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * time functions
+ * stdio functions
  */
 
 /** Opens a file, via fopen_s() when STLSOFT_USING_SAFE_STR_FUNCTIONS is
