@@ -4,11 +4,11 @@
  * Purpose: COM memory functions.
  *
  * Created: 2nd March 1996
- * Updated: 26th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     1
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  9
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      64
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  10
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,7 +113,7 @@ namespace comstl_project
  */
 STLSOFT_INLINE
 cs_size_t
-comstl__CoTaskMemGetSize(void* pv)
+comstl_C_CoTaskMemGetSize(void* pv)
 {
     LPMALLOC    lpmalloc;
     cs_size_t   ulRet;
@@ -151,7 +151,7 @@ comstl__CoTaskMemGetSize(void* pv)
  */
 STLSOFT_INLINE
 cs_sint_t
-comstl__CoTaskMemDidAlloc(void* pv)
+comstl_C_CoTaskMemDidAlloc(void* pv)
 {
     LPMALLOC    lpmalloc;
     cs_sint_t   iRet;
@@ -184,7 +184,7 @@ comstl__CoTaskMemDidAlloc(void* pv)
  */
 STLSOFT_INLINE
 void
-comstl__CoTaskMemHeapMinimise(void)
+comstl_C_CoTaskMemHeapMinimise(void)
 {
     LPMALLOC    lpmalloc;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(CoGetMalloc)(MEMCTX_TASK, &lpmalloc);
@@ -221,7 +221,7 @@ namespace comstl
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for comstl__CoTaskMemGetSize().
+ * This function is a wrapper for comstl_C_CoTaskMemGetSize().
  *
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
@@ -230,14 +230,14 @@ inline
 cs_size_t
 CoTaskMemGetSize(void* pv)
 {
-    return comstl__CoTaskMemGetSize(pv);
+    return comstl_C_CoTaskMemGetSize(pv);
 }
 
 /** Determines allocation ownership of a memory block
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for comstl__CoTaskMemDidAlloc().
+ * This function is a wrapper for comstl_C_CoTaskMemDidAlloc().
  *
  * \param pv Pointer to the memory block
  * \return Result indicating ownership
@@ -249,35 +249,77 @@ inline
 cs_sint_t
 CoTaskMemDidAlloc(void* pv)
 {
-    return comstl__CoTaskMemDidAlloc(pv);
+    return comstl_C_CoTaskMemDidAlloc(pv);
 }
 
 /** Minimises the heap
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for comstl__CoTaskMemHeapMinimise().
+ * This function is a wrapper for comstl_C_CoTaskMemHeapMinimise().
  */
 inline
 void
 CoTaskMemHeapMinimise()
 {
-    comstl__CoTaskMemHeapMinimise();
+    comstl_C_CoTaskMemHeapMinimise();
 }
 
 /** Minimises the heap
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for comstl__CoTaskMemHeapMinimise().
+ * This function is a wrapper for comstl_C_CoTaskMemHeapMinimise().
  */
 inline
 void
 CoTaskMemHeapMinimize()
 {
-    comstl__CoTaskMemHeapMinimise();
+    comstl_C_CoTaskMemHeapMinimise();
 }
 #endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the comstl_C_CoTaskMem* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use comstl_C_CoTaskMemGetSize
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__CoTaskMemGetSize, comstl_C_CoTaskMemGetSize)
+STLSOFT_INLINE
+cs_size_t
+comstl__CoTaskMemGetSize(void* pv)
+{
+    return comstl_C_CoTaskMemGetSize(pv);
+}
+
+/** \deprecated Use comstl_C_CoTaskMemDidAlloc
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__CoTaskMemDidAlloc, comstl_C_CoTaskMemDidAlloc)
+STLSOFT_INLINE
+cs_sint_t
+comstl__CoTaskMemDidAlloc(void* pv)
+{
+    return comstl_C_CoTaskMemDidAlloc(pv);
+}
+
+/** \deprecated Use comstl_C_CoTaskMemHeapMinimise
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__CoTaskMemHeapMinimise, comstl_C_CoTaskMemHeapMinimise)
+STLSOFT_INLINE
+void
+comstl__CoTaskMemHeapMinimise(void)
+{
+    comstl_C_CoTaskMemHeapMinimise();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

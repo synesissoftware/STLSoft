@@ -99,6 +99,10 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] `comstl_C_set_error_info_a_helper_()` leaves its `CoTaskMemAlloc` block allocated when `MultiByteToWideChar` fails. `comstl_C_set_error_info_a_()` frees it; any other caller would leak;
   * [ ] The C functions that take a help file reject NULL, and there is no public C function for description + source + GUID alone. The C++ three-argument `set_error_info` calls `comstl_C_set_error_info_a_` / `comstl_C_set_error_info_w_` directly;
   * [ ] `comstl_C_EXCEPINFO_free()` asserts `NULL != pxi` and then dereferences `pxi`. A release build does not reject NULL;
+* [ ] COM task-memory, refcount, and stream C API, noticed while renaming:
+  * [ ] `comstl_C_CoTaskMemGetSize()` returns 0 when `CoGetMalloc` fails, the same value as a zero-length block. `comstl_C_CoTaskMemDidAlloc()` returns -1 in that case, the same value as "cannot determine". `comstl_C_olestring_destroy()` treats -1 as allocated (`0 != -1`) and still calls `CoTaskMemFree`;
+  * [ ] `comstl_C_addref()` asserts a non-null pointer and documents `\pre`. `comstl_C_release()` says the pointer cannot be null and does not assert, so a null pointer is a release-build crash;
+  * [ ] `comstl_C_get_stream_size()` does not document its pointers. A failed `Stat` leaves `*psize` unchanged. **refcount_functions.h** and **stream_functions.h** describe themselves as C++ only, while both publish a C API;
 
 
 ### 1.11.6
