@@ -90,6 +90,10 @@
  * memory functions
  */
 
+#ifndef STLSOFT_API_EXTERNAL_memfns_memchr
+# define STLSOFT_API_EXTERNAL_memfns_memchr                 STLSOFT_NS_GLOBAL_(memchr)
+#endif /* !STLSOFT_API_EXTERNAL_memfns_memchr */
+
 #ifndef STLSOFT_API_EXTERNAL_memfns_memcmp
 # define STLSOFT_API_EXTERNAL_memfns_memcmp                 STLSOFT_NS_GLOBAL_(memcmp)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_memcmp */
@@ -105,6 +109,10 @@
 #ifndef STLSOFT_API_EXTERNAL_memfns_memset
 # define STLSOFT_API_EXTERNAL_memfns_memset                 STLSOFT_NS_GLOBAL_(memset)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_memset */
+
+#ifndef STLSOFT_API_EXTERNAL_memfns_wmemchr
+# define STLSOFT_API_EXTERNAL_memfns_wmemchr                STLSOFT_NS_GLOBAL_(wmemchr)
+#endif /* !STLSOFT_API_EXTERNAL_memfns_wmemchr */
 
 #ifndef STLSOFT_API_EXTERNAL_memfns_wmemcmp
 # define STLSOFT_API_EXTERNAL_memfns_wmemcmp                STLSOFT_NS_GLOBAL_(wmemcmp)
