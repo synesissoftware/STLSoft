@@ -90,6 +90,10 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 * [ ] C-API prefix follow-ups noticed while checking retained wrappers:
   * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
   * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
+* [ ] OLE-string C API, noticed while renaming `comstl_C_olestring_*`:
+  * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
+  * [ ] `comstl_C_olestring_destroy()` asserts `CoTaskMemDidAlloc` and therefore rejects NULL, while `CoTaskMemFree(NULL)` is a no-op. The assert text says "non-COM string";
+  * [ ] `comstl_C_olestring_create_w()` still branches on `STLSOFT_USING_SAFE_STR_FUNCTIONS` (`wcscpy` / `wcscpy_s`) rather than `stlsoft_C_wcscpy()`;
 
 
 ### 1.11.6
