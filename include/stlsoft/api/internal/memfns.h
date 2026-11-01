@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for memXXX() functions.
  *
  * Created: 2nd January 2021
- * Updated: 24th December 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *

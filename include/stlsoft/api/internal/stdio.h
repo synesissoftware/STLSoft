@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/api/internal/stdio.h
+ * File:    stlsoft/api/internal/stdio.h
  *
- * Purpose:     Internal adaptations for stdio.h constructs.
+ * Purpose: Internal adaptations for stdio.h constructs.
  *
- * Created:     11th November 2020
- * Updated:     2nd January 2021
+ * Created: 11th November 2020
+ * Updated: 2nd November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -103,11 +103,11 @@ STLSOFT_API_INTERNAL_stdio_fopen_m(
     STLSOFT_ASSERT(NULL != mode);
     STLSOFT_ASSERT(NULL != ph);
 
-#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) &&\
     defined(STLSOFT_COMPILER_IS_MSVC)
 
     return STLSOFT_NS_GLOBAL_(fopen_s)(ph, path, mode);
-#else // }
+#else
     *ph = STLSOFT_NS_GLOBAL_(fopen)(path, mode);
 
     return (NULL == *ph) ? errno : 0;

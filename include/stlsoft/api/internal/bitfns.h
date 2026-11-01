@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for bit functions.
  *
  * Created: 24th September 2026
- * Updated: 25th September 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
