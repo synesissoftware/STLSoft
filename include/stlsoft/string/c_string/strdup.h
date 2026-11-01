@@ -171,7 +171,7 @@ stlsoft_C_wcsdup(
      defined(STLSOFT_COMPILER_IS_WATCOM)
 
         size_t const    n = STLSOFT_NS_GLOBAL(wcslen)(src);
-        wchar_t* const  r = stlsoft_static_cast(wchar_t*, STLSOFT_NS_GLOBAL(malloc)(sizeof(wchar_t) * (1u + n));
+        wchar_t* const  r = stlsoft_static_cast(wchar_t*, STLSOFT_NS_GLOBAL(malloc)(sizeof(wchar_t) * (1u + n)));
 
         if (NULL != r)
         {
