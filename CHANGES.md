@@ -4,7 +4,17 @@
 ## 1.11.5 - 31st October 2026
 
 * compatibility:
-  * `string_concatenation_flags` members arrayed to avoid trailing commas;
+  * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `string_concatenation_flags` enumerators are arrayed (`None`, then `, AlwaysSeparate`) to avoid a trailing comma;
+* build:
+  * **.dev/bin/generate_cmakelists.rb** 0.2.0. The default `--mode modern` names a generated program the way xTests infers a runner from `__FILE__`: a stem of `entry` or `main` walks up to **test**, **example**, or **examples** (**examples** becomes `example`) and joins that anchor to the leaf with `.`. `--mode legacy` keeps the leaf directory name. `--dry-run` reports each **CMakeLists.txt** that would be created or updated and does not write. Searches skip **.dev/**, **cmake/**, **doc/**, **include/**, and **strategy/**. A **CMakeLists.txt** whose first line is not `# SIS:AUTO_GENERATED` is left untouched;
+  * Nineteen **examples** programs now use that dotted name: seventeen `example.by_library.…` targets that had been the leaf directory, **example.by_project.unixstl.filesystem.rewind_dir** (was `example.unixstl.filesystem.rewind_dir`), and **example.by_project.winstl.diagnostics.printf_debug_string** (was `printf_debug_string`);
+  * Eleven performance and scratch targets include the directory they omitted: **test.performance.platformstl.diagnostics.stopwatch**, **test.performance.platformstl.filesystem.file_lines**, **test.performance.stlsoft.containers.frequency_map**, **test.performance.stlsoft.diagnostics.doomgram**, **test.performance.stlsoft.diagnostics.gram_utils**, **test.performance.stlsoft.memory.auto_buffer**, **test.performance.stlsoft.string.simple_string.compare**, **test.performance.stlsoft.string.simple_string.op_eq**, **test.performance.stlsoft.util.bit_functions**, **test.performance.stlsoft.util.count_digits**, and **test.scratch.winstl.synch.micro_sleep**;
+  * **test/performance/platformstl/filesystem/CMakeLists.txt** no longer carries `# SIS:AUTO_GENERATED`. Its `X_CMAKE_CXX_FULLSTANDARD` guard is hand-written, so the generator leaves the file alone. The **platformstl**, **unixstl**, and **winstl** `process` lists drop a trailing blank line;
+* documentation and boilerplate:
+  * **INSTALL.md** archive examples name **STLSoft-1.11.5**;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.5**;
+* version:
+  * **_STLSOFT_VER** is **1.11.5** (**_STLSOFT_VER_1_11_5** = `0x010B05FF`); **test.unit.versions** asserts it. No subproject composite version changed;
 
 
 ## 1.11.4 - 29th October 2026
