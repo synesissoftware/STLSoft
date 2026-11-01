@@ -4,7 +4,7 @@
  * Purpose: External preprocessor aliases for string functions.
  *
  * Created: 15th November 2002
- * Updated: 17th September 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -490,9 +490,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 

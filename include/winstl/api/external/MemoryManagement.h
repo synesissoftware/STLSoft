@@ -5,11 +5,11 @@
  *          Management Functions API.
  *
  * Created: 18th July 2014
- * Updated: 27th December 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -418,9 +418,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
 
