@@ -107,6 +107,11 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] A NULL `path` is treated as `""`. The contract does not say so;
   * [ ] A path that exactly fills `sun_path` is stored without a terminating NUL. The public text only lists the too-long `EINVAL` cases, and the first `EINVAL` line has an unclosed backtick;
   * [ ] The function documentation uses `@param` while the file block uses `\brief`;
+* [ ] Combo-box, list-box, and edit C API, noticed while renaming `winstl_C_combobox_*`, `winstl_C_listbox_*`, and `winstl_C_edit_*`:
+  * [ ] `winstl_C_combobox_gettext()` and `winstl_C_listbox_gettext()` are documented as the ambient encoding, but the buffer parameter is `LPCSTR`. `CB_GETLBTEXT` and `LB_GETTEXT` write through that pointer. The `_a` and `_w` forms take a non-const `ws_char_*_t*`. `winstl_C_combobox_gettext_w()` is also missing the `\ingroup` line its siblings have;
+  * [ ] The `combobox_insertstring` and `listbox_insertstring` string templates always call the ANSI overload. The `addstring` templates dispatch on the pointer type from `c_str_ptr`, so a wide string passed to an insert template is treated as ANSI;
+  * [ ] `winstl_C_edit_getline_a()` and `winstl_C_edit_getline_w()` store `cchBuffer` in the first word of `buffer` (the `EM_GETLINE` contract) and do not say so. The control does not NUL-terminate the line, and `cchBuffer` is cast to `int` with no check that the buffer is at least `sizeof(int)`;
+  * [ ] `winstl_C_combobox_getitemdata()` and `winstl_C_listbox_getitemdata()` return `ws_dword_t`, so `CB_ERR` / `LB_ERR` (`-1`) collides with a stored value of `0xFFFFFFFF`;
 
 
 ### 1.11.6

@@ -4,11 +4,11 @@
  * Purpose: Various Windows control functions.
  *
  * Created: 13th November 2002
- * Updated: 26th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       2
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    8
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        66
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    9
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,7 +77,6 @@
 #  include <stlsoft/shims/access/string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #endif /* __cplusplus */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -109,7 +108,7 @@ namespace winstl_project
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_addstring_a(
+winstl_C_combobox_addstring_a(
     HWND                hwnd
 ,   ws_char_a_t const*  s
 )
@@ -122,7 +121,7 @@ winstl__combobox_addstring_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_addstring_w(
+winstl_C_combobox_addstring_w(
     HWND                hwnd
 ,   ws_char_w_t const*  s
 )
@@ -135,7 +134,7 @@ winstl__combobox_addstring_w(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_addstring(
+winstl_C_combobox_addstring(
     HWND    hwnd
 ,   LPCTSTR s
 )
@@ -149,7 +148,7 @@ winstl__combobox_addstring(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_insertstring_a(
+winstl_C_combobox_insertstring_a(
     HWND                hwnd
 ,   ws_char_a_t const*  s
 ,   int                 index
@@ -163,7 +162,7 @@ winstl__combobox_insertstring_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_insertstring_w(
+winstl_C_combobox_insertstring_w(
     HWND                hwnd
 ,   ws_char_w_t const*  s
 ,   int                 index
@@ -177,7 +176,7 @@ winstl__combobox_insertstring_w(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_insertstring(
+winstl_C_combobox_insertstring(
     HWND    hwnd
 ,   LPCTSTR s
 ,   int     index
@@ -192,7 +191,7 @@ winstl__combobox_insertstring(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_gettextlen(
+winstl_C_combobox_gettextlen(
     HWND        hwnd
 ,   ws_int_t    index
 )
@@ -206,7 +205,7 @@ winstl__combobox_gettextlen(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_gettext_a(
+winstl_C_combobox_gettext_a(
     HWND            hwnd
 ,   ws_int_t        index
 ,   ws_char_a_t*    s
@@ -220,7 +219,7 @@ winstl__combobox_gettext_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_gettext_w(
+winstl_C_combobox_gettext_w(
     HWND            hwnd
 ,   ws_int_t        index
 ,   ws_char_w_t*    s
@@ -234,7 +233,7 @@ winstl__combobox_gettext_w(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_gettext(
+winstl_C_combobox_gettext(
     HWND        hwnd
 ,   ws_int_t    index
 ,   LPCSTR      s
@@ -249,7 +248,7 @@ winstl__combobox_gettext(
  */
 STLSOFT_INLINE
 ws_dword_t
-winstl__combobox_getitemdata(
+winstl_C_combobox_getitemdata(
     HWND        hwnd
 ,   ws_int_t    index
 )
@@ -263,7 +262,7 @@ winstl__combobox_getitemdata(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__combobox_getcount(HWND hwnd)
+winstl_C_combobox_getcount(HWND hwnd)
 {
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETCOUNT, 0, 0L));
 }
@@ -278,7 +277,7 @@ winstl__combobox_getcount(HWND hwnd)
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_addstring_a(
+winstl_C_listbox_addstring_a(
     HWND                hwnd
 ,   ws_char_a_t const*  s
 )
@@ -291,7 +290,7 @@ winstl__listbox_addstring_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_addstring_w(
+winstl_C_listbox_addstring_w(
     HWND                hwnd
 ,   ws_char_w_t const*  s
 )
@@ -304,7 +303,7 @@ winstl__listbox_addstring_w(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_addstring(
+winstl_C_listbox_addstring(
     HWND    hwnd
 ,   LPCTSTR s
 )
@@ -318,7 +317,7 @@ winstl__listbox_addstring(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_insertstring_a(
+winstl_C_listbox_insertstring_a(
     HWND                hwnd
 ,   ws_char_a_t const*  s
 ,   int                 index
@@ -332,7 +331,7 @@ winstl__listbox_insertstring_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_insertstring_w(
+winstl_C_listbox_insertstring_w(
     HWND                hwnd
 ,   ws_char_w_t const*  s
 ,   int                 index
@@ -346,7 +345,7 @@ winstl__listbox_insertstring_w(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_insertstring(
+winstl_C_listbox_insertstring(
     HWND    hwnd
 ,   LPCTSTR s
 ,   int     index
@@ -361,7 +360,7 @@ winstl__listbox_insertstring(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_gettextlen(
+winstl_C_listbox_gettextlen(
     HWND        hwnd
 ,   ws_int_t    index
 )
@@ -375,7 +374,7 @@ winstl__listbox_gettextlen(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_gettext_a(
+winstl_C_listbox_gettext_a(
     HWND            hwnd
 ,   ws_int_t        index
 ,   ws_char_a_t*    s
@@ -389,7 +388,7 @@ winstl__listbox_gettext_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_gettext_w(
+winstl_C_listbox_gettext_w(
     HWND            hwnd
 ,   ws_int_t        index
 ,   ws_char_w_t*    s
@@ -403,7 +402,7 @@ winstl__listbox_gettext_w(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_gettext(
+winstl_C_listbox_gettext(
     HWND        hwnd
 ,   ws_int_t    index
 ,   LPCSTR      s
@@ -418,7 +417,7 @@ winstl__listbox_gettext(
  */
 STLSOFT_INLINE
 ws_dword_t
-winstl__listbox_getitemdata(
+winstl_C_listbox_getitemdata(
     HWND        hwnd
 ,   ws_int_t    index
 )
@@ -432,7 +431,7 @@ winstl__listbox_getitemdata(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__listbox_getcount(HWND hwnd)
+winstl_C_listbox_getcount(HWND hwnd)
 {
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETCOUNT, 0, 0L));
 }
@@ -443,7 +442,7 @@ winstl__listbox_getcount(HWND hwnd)
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__edit_getcount(HWND hwnd)
+winstl_C_edit_getcount(HWND hwnd)
 {
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, EM_GETLINECOUNT, 0, 0L));
 }
@@ -454,7 +453,7 @@ winstl__edit_getcount(HWND hwnd)
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__edit_linelength(
+winstl_C_edit_linelength(
     HWND        hwnd
 ,   ws_int_t    charIndex
 )
@@ -468,7 +467,7 @@ winstl__edit_linelength(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__edit_getline_a(
+winstl_C_edit_getline_a(
     HWND            hwnd
 ,   ws_int_t        lineIndex
 ,   ws_char_a_t*    buffer
@@ -488,7 +487,7 @@ winstl__edit_getline_a(
  */
 STLSOFT_INLINE
 ws_int_t
-winstl__edit_getline_w(
+winstl_C_edit_getline_w(
     HWND            hwnd
 ,   ws_int_t        lineIndex
 ,   ws_char_w_t*    buffer
@@ -533,7 +532,7 @@ combobox_addstring_a(
 ,   ws_char_a_t const*  s
 )
 {
-    return winstl__combobox_addstring_a(hwnd, s);
+    return winstl_C_combobox_addstring_a(hwnd, s);
 }
 
 /** Adds a Unicode string to a combo-box
@@ -547,7 +546,7 @@ combobox_addstring_w(
 ,   ws_char_w_t const*  s
 )
 {
-    return winstl__combobox_addstring_w(hwnd, s);
+    return winstl_C_combobox_addstring_w(hwnd, s);
 }
 
 /** Adds a string to a combo-box
@@ -561,7 +560,7 @@ combobox_addstring(
 ,   ws_char_a_t const*  s
 )
 {
-    return winstl__combobox_addstring_a(hwnd, s);
+    return winstl_C_combobox_addstring_a(hwnd, s);
 }
 /** Adds a string to a combo-box
  *
@@ -574,7 +573,7 @@ combobox_addstring(
 ,   ws_char_w_t const*  s
 )
 {
-    return winstl__combobox_addstring_w(hwnd, s);
+    return winstl_C_combobox_addstring_w(hwnd, s);
 }
 /** Adds a string to a combo-box
  *
@@ -603,7 +602,7 @@ combobox_insertstring_a(
 ,   int                 index
 )
 {
-    return winstl__combobox_insertstring_a(hwnd, s, index);
+    return winstl_C_combobox_insertstring_a(hwnd, s, index);
 }
 
 /** Inserts a Unicode string into a combo-box at the given index
@@ -618,7 +617,7 @@ combobox_insertstring_w(
 ,   int                 index
 )
 {
-    return winstl__combobox_insertstring_w(hwnd, s, index);
+    return winstl_C_combobox_insertstring_w(hwnd, s, index);
 }
 
 /** Inserts a string into a combo-box at the given index
@@ -633,7 +632,7 @@ combobox_insertstring(
 ,   int                 index
 )
 {
-    return winstl__combobox_insertstring_a(hwnd, s, index);
+    return winstl_C_combobox_insertstring_a(hwnd, s, index);
 }
 /** Inserts a string into a combo-box at the given index
  *
@@ -647,7 +646,7 @@ combobox_insertstring(
 ,   int                 index
 )
 {
-    return winstl__combobox_insertstring_w(hwnd, s, index);
+    return winstl_C_combobox_insertstring_w(hwnd, s, index);
 }
 /** Inserts a string into a combo-box at the given index
  *
@@ -676,7 +675,7 @@ combobox_gettextlen(
 ,   ws_int_t    index
 )
 {
-    return winstl__combobox_gettextlen(hwnd, index);
+    return winstl_C_combobox_gettextlen(hwnd, index);
 }
 
 /** Gets the text (in ANSI encoding) of an item in a combo-box
@@ -691,7 +690,7 @@ combobox_gettext_a(
 ,   ws_char_a_t*    s
 )
 {
-    return winstl__combobox_gettext_a(hwnd, index, s);
+    return winstl_C_combobox_gettext_a(hwnd, index, s);
 }
 /** Gets the text (in Unicode encoding) of an item in a combo-box
  *
@@ -705,7 +704,7 @@ combobox_gettext_w(
 ,   ws_char_w_t*    s
 )
 {
-    return winstl__combobox_gettext_w(hwnd, index, s);
+    return winstl_C_combobox_gettext_w(hwnd, index, s);
 }
 /** Gets the text of an item in a combo-box
  *
@@ -747,7 +746,7 @@ combobox_getitemdata(
 ,   ws_int_t    index
 )
 {
-    return winstl__combobox_getitemdata(hwnd, index);
+    return winstl_C_combobox_getitemdata(hwnd, index);
 }
 
 /** Gets the number of items in a combo-box
@@ -758,7 +757,7 @@ inline
 ws_int_t
 combobox_getcount(HWND hwnd)
 {
-    return winstl__combobox_getcount(hwnd);
+    return winstl_C_combobox_getcount(hwnd);
 }
 
 
@@ -776,7 +775,7 @@ listbox_addstring_a(
 ,   ws_char_a_t const*  s
 )
 {
-    return winstl__listbox_addstring_a(hwnd, s);
+    return winstl_C_listbox_addstring_a(hwnd, s);
 }
 
 /** Adds a Unicode string to a list-box
@@ -790,7 +789,7 @@ listbox_addstring_w(
 ,   ws_char_w_t const*  s
 )
 {
-    return winstl__listbox_addstring_w(hwnd, s);
+    return winstl_C_listbox_addstring_w(hwnd, s);
 }
 
 /** Adds a string to a list-box
@@ -804,7 +803,7 @@ listbox_addstring(
 ,   ws_char_a_t const*  s
 )
 {
-    return winstl__listbox_addstring_a(hwnd, s);
+    return winstl_C_listbox_addstring_a(hwnd, s);
 }
 /** Adds a string to a list-box
  *
@@ -817,7 +816,7 @@ listbox_addstring(
 ,   ws_char_w_t const*  s
 )
 {
-    return winstl__listbox_addstring_w(hwnd, s);
+    return winstl_C_listbox_addstring_w(hwnd, s);
 }
 /** Adds a string to a list-box
  *
@@ -846,7 +845,7 @@ listbox_insertstring_a(
 ,   int                 index
 )
 {
-    return winstl__listbox_insertstring_a(hwnd, s, index);
+    return winstl_C_listbox_insertstring_a(hwnd, s, index);
 }
 
 /** Inserts a Unicode string into a list-box at the given index
@@ -861,7 +860,7 @@ listbox_insertstring_w(
 ,   int                 index
 )
 {
-    return winstl__listbox_insertstring_w(hwnd, s, index);
+    return winstl_C_listbox_insertstring_w(hwnd, s, index);
 }
 
 /** Inserts a string into a list-box at the given index
@@ -876,7 +875,7 @@ listbox_insertstring(
 ,   int                 index
 )
 {
-    return winstl__listbox_insertstring_a(hwnd, s, index);
+    return winstl_C_listbox_insertstring_a(hwnd, s, index);
 }
 /** Inserts a string into a list-box at the given index
  *
@@ -890,7 +889,7 @@ listbox_insertstring(
 ,   int                 index
 )
 {
-    return winstl__listbox_insertstring_w(hwnd, s, index);
+    return winstl_C_listbox_insertstring_w(hwnd, s, index);
 }
 /** Inserts a string into a list-box at the given index
  *
@@ -919,7 +918,7 @@ listbox_gettextlen(
 ,   ws_int_t    index
 )
 {
-    return winstl__listbox_gettextlen(hwnd, index);
+    return winstl_C_listbox_gettextlen(hwnd, index);
 }
 
 /** Gets the text (in ANSI encoding) of an item in a list-box
@@ -934,7 +933,7 @@ listbox_gettext_a(
 ,   ws_char_a_t*    s
 )
 {
-    return winstl__listbox_gettext_a(hwnd, index, s);
+    return winstl_C_listbox_gettext_a(hwnd, index, s);
 }
 /** Gets the text (in Unicode encoding) of an item in a list-box
  *
@@ -948,7 +947,7 @@ listbox_gettext_w(
 ,   ws_char_w_t*    s
 )
 {
-    return winstl__listbox_gettext_w(hwnd, index, s);
+    return winstl_C_listbox_gettext_w(hwnd, index, s);
 }
 /** Gets the text of an item in a list-box
  *
@@ -990,7 +989,7 @@ listbox_getitemdata(
 ,   ws_int_t    index
 )
 {
-    return winstl__listbox_getitemdata(hwnd, index);
+    return winstl_C_listbox_getitemdata(hwnd, index);
 }
 
 /** Gets the number of items in a list-box
@@ -1001,7 +1000,7 @@ inline
 ws_int_t
 listbox_getcount(HWND hwnd)
 {
-    return winstl__listbox_getcount(hwnd);
+    return winstl_C_listbox_getcount(hwnd);
 }
 
 
@@ -1013,7 +1012,7 @@ inline
 ws_int_t
 edit_getcount(HWND hwnd)
 {
-    return winstl__edit_getcount(hwnd);
+    return winstl_C_edit_getcount(hwnd);
 }
 
 /** Gets the length of the line in which the given character resides.
@@ -1027,7 +1026,7 @@ edit_linelength(
 ,   ws_int_t    charIndex
 )
 {
-    return winstl__edit_linelength(hwnd, charIndex);
+    return winstl_C_edit_linelength(hwnd, charIndex);
 }
 
 /** Gets a copy of the text of the given line.
@@ -1043,7 +1042,7 @@ edit_getline(
 ,   ws_size_t       cchBuffer
 )
 {
-    return winstl__edit_getline_a(hwnd, lineIndex, buffer, cchBuffer);
+    return winstl_C_edit_getline_a(hwnd, lineIndex, buffer, cchBuffer);
 }
 
 /** Gets a copy of the text of the given line.
@@ -1059,9 +1058,392 @@ edit_getline(
 ,   ws_size_t       cchBuffer
 )
 {
-    return winstl__edit_getline_w(hwnd, lineIndex, buffer, cchBuffer);
+    return winstl_C_edit_getline_w(hwnd, lineIndex, buffer, cchBuffer);
 }
 #endif /* __cplusplus */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_combobox_*, winstl_C_listbox_*, or winstl_C_edit_*
+ * function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_combobox_addstring_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_addstring_a, winstl_C_combobox_addstring_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_addstring_a(
+    HWND                hwnd
+,   ws_char_a_t const*  s
+)
+{
+    return winstl_C_combobox_addstring_a(hwnd, s);
+}
+
+/** \deprecated Use winstl_C_combobox_addstring_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_addstring_w, winstl_C_combobox_addstring_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_addstring_w(
+    HWND                hwnd
+,   ws_char_w_t const*  s
+)
+{
+    return winstl_C_combobox_addstring_w(hwnd, s);
+}
+
+/** \deprecated Use winstl_C_combobox_addstring
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_addstring, winstl_C_combobox_addstring)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_addstring(
+    HWND    hwnd
+,   LPCTSTR s
+)
+{
+    return winstl_C_combobox_addstring(hwnd, s);
+}
+
+/** \deprecated Use winstl_C_combobox_insertstring_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_insertstring_a, winstl_C_combobox_insertstring_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_insertstring_a(
+    HWND                hwnd
+,   ws_char_a_t const*  s
+,   int                 index
+)
+{
+    return winstl_C_combobox_insertstring_a(hwnd, s, index);
+}
+
+/** \deprecated Use winstl_C_combobox_insertstring_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_insertstring_w, winstl_C_combobox_insertstring_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_insertstring_w(
+    HWND                hwnd
+,   ws_char_w_t const*  s
+,   int                 index
+)
+{
+    return winstl_C_combobox_insertstring_w(hwnd, s, index);
+}
+
+/** \deprecated Use winstl_C_combobox_insertstring
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_insertstring, winstl_C_combobox_insertstring)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_insertstring(
+    HWND    hwnd
+,   LPCTSTR s
+,   int     index
+)
+{
+    return winstl_C_combobox_insertstring(hwnd, s, index);
+}
+
+/** \deprecated Use winstl_C_combobox_gettextlen
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_gettextlen, winstl_C_combobox_gettextlen)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_gettextlen(
+    HWND        hwnd
+,   ws_int_t    index
+)
+{
+    return winstl_C_combobox_gettextlen(hwnd, index);
+}
+
+/** \deprecated Use winstl_C_combobox_gettext_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_gettext_a, winstl_C_combobox_gettext_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_gettext_a(
+    HWND            hwnd
+,   ws_int_t        index
+,   ws_char_a_t*    s
+)
+{
+    return winstl_C_combobox_gettext_a(hwnd, index, s);
+}
+
+/** \deprecated Use winstl_C_combobox_gettext_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_gettext_w, winstl_C_combobox_gettext_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_gettext_w(
+    HWND            hwnd
+,   ws_int_t        index
+,   ws_char_w_t*    s
+)
+{
+    return winstl_C_combobox_gettext_w(hwnd, index, s);
+}
+
+/** \deprecated Use winstl_C_combobox_gettext
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_gettext, winstl_C_combobox_gettext)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_gettext(
+    HWND        hwnd
+,   ws_int_t    index
+,   LPCSTR      s
+)
+{
+    return winstl_C_combobox_gettext(hwnd, index, s);
+}
+
+/** \deprecated Use winstl_C_combobox_getitemdata
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_getitemdata, winstl_C_combobox_getitemdata)
+STLSOFT_INLINE
+ws_dword_t
+winstl__combobox_getitemdata(
+    HWND        hwnd
+,   ws_int_t    index
+)
+{
+    return winstl_C_combobox_getitemdata(hwnd, index);
+}
+
+/** \deprecated Use winstl_C_combobox_getcount
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__combobox_getcount, winstl_C_combobox_getcount)
+STLSOFT_INLINE
+ws_int_t
+winstl__combobox_getcount(HWND hwnd)
+{
+    return winstl_C_combobox_getcount(hwnd);
+}
+
+/** \deprecated Use winstl_C_listbox_addstring_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_addstring_a, winstl_C_listbox_addstring_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_addstring_a(
+    HWND                hwnd
+,   ws_char_a_t const*  s
+)
+{
+    return winstl_C_listbox_addstring_a(hwnd, s);
+}
+
+/** \deprecated Use winstl_C_listbox_addstring_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_addstring_w, winstl_C_listbox_addstring_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_addstring_w(
+    HWND                hwnd
+,   ws_char_w_t const*  s
+)
+{
+    return winstl_C_listbox_addstring_w(hwnd, s);
+}
+
+/** \deprecated Use winstl_C_listbox_addstring
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_addstring, winstl_C_listbox_addstring)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_addstring(
+    HWND    hwnd
+,   LPCTSTR s
+)
+{
+    return winstl_C_listbox_addstring(hwnd, s);
+}
+
+/** \deprecated Use winstl_C_listbox_insertstring_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_insertstring_a, winstl_C_listbox_insertstring_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_insertstring_a(
+    HWND                hwnd
+,   ws_char_a_t const*  s
+,   int                 index
+)
+{
+    return winstl_C_listbox_insertstring_a(hwnd, s, index);
+}
+
+/** \deprecated Use winstl_C_listbox_insertstring_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_insertstring_w, winstl_C_listbox_insertstring_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_insertstring_w(
+    HWND                hwnd
+,   ws_char_w_t const*  s
+,   int                 index
+)
+{
+    return winstl_C_listbox_insertstring_w(hwnd, s, index);
+}
+
+/** \deprecated Use winstl_C_listbox_insertstring
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_insertstring, winstl_C_listbox_insertstring)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_insertstring(
+    HWND    hwnd
+,   LPCTSTR s
+,   int     index
+)
+{
+    return winstl_C_listbox_insertstring(hwnd, s, index);
+}
+
+/** \deprecated Use winstl_C_listbox_gettextlen
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_gettextlen, winstl_C_listbox_gettextlen)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_gettextlen(
+    HWND        hwnd
+,   ws_int_t    index
+)
+{
+    return winstl_C_listbox_gettextlen(hwnd, index);
+}
+
+/** \deprecated Use winstl_C_listbox_gettext_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_gettext_a, winstl_C_listbox_gettext_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_gettext_a(
+    HWND            hwnd
+,   ws_int_t        index
+,   ws_char_a_t*    s
+)
+{
+    return winstl_C_listbox_gettext_a(hwnd, index, s);
+}
+
+/** \deprecated Use winstl_C_listbox_gettext_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_gettext_w, winstl_C_listbox_gettext_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_gettext_w(
+    HWND            hwnd
+,   ws_int_t        index
+,   ws_char_w_t*    s
+)
+{
+    return winstl_C_listbox_gettext_w(hwnd, index, s);
+}
+
+/** \deprecated Use winstl_C_listbox_gettext
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_gettext, winstl_C_listbox_gettext)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_gettext(
+    HWND        hwnd
+,   ws_int_t    index
+,   LPCSTR      s
+)
+{
+    return winstl_C_listbox_gettext(hwnd, index, s);
+}
+
+/** \deprecated Use winstl_C_listbox_getitemdata
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_getitemdata, winstl_C_listbox_getitemdata)
+STLSOFT_INLINE
+ws_dword_t
+winstl__listbox_getitemdata(
+    HWND        hwnd
+,   ws_int_t    index
+)
+{
+    return winstl_C_listbox_getitemdata(hwnd, index);
+}
+
+/** \deprecated Use winstl_C_listbox_getcount
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__listbox_getcount, winstl_C_listbox_getcount)
+STLSOFT_INLINE
+ws_int_t
+winstl__listbox_getcount(HWND hwnd)
+{
+    return winstl_C_listbox_getcount(hwnd);
+}
+
+/** \deprecated Use winstl_C_edit_getcount
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__edit_getcount, winstl_C_edit_getcount)
+STLSOFT_INLINE
+ws_int_t
+winstl__edit_getcount(HWND hwnd)
+{
+    return winstl_C_edit_getcount(hwnd);
+}
+
+/** \deprecated Use winstl_C_edit_linelength
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__edit_linelength, winstl_C_edit_linelength)
+STLSOFT_INLINE
+ws_int_t
+winstl__edit_linelength(
+    HWND        hwnd
+,   ws_int_t    charIndex
+)
+{
+    return winstl_C_edit_linelength(hwnd, charIndex);
+}
+
+/** \deprecated Use winstl_C_edit_getline_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__edit_getline_a, winstl_C_edit_getline_a)
+STLSOFT_INLINE
+ws_int_t
+winstl__edit_getline_a(
+    HWND            hwnd
+,   ws_int_t        lineIndex
+,   ws_char_a_t*    buffer
+,   ws_size_t       cchBuffer
+)
+{
+    return winstl_C_edit_getline_a(hwnd, lineIndex, buffer, cchBuffer);
+}
+
+/** \deprecated Use winstl_C_edit_getline_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__edit_getline_w, winstl_C_edit_getline_w)
+STLSOFT_INLINE
+ws_int_t
+winstl__edit_getline_w(
+    HWND            hwnd
+,   ws_int_t        lineIndex
+,   ws_char_w_t*    buffer
+,   ws_size_t       cchBuffer
+)
+{
+    return winstl_C_edit_getline_w(hwnd, lineIndex, buffer, cchBuffer);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
