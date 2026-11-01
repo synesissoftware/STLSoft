@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MAJOR       1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MINOR       2
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    0
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        18
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    3
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,9 +73,12 @@
 # include <stlsoft/shims/access/string/std/c_string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
 
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRDUP
+# include <stlsoft/string/c_string/strdup.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRDUP*/
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR
+# include <stlsoft/string/error/strerror.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR */
 
 #ifndef STLSOFT_INCL_NEW
 # define STLSOFT_INCL_NEW
@@ -89,6 +92,14 @@
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>
+#endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -163,22 +174,27 @@ private: // implementation
     }
 
     char const*
-    make_message_(
+    strerror_message_(
         int e
     )
     {
-        construction_context_ = NULL;
+        char                buff[241];
+        char const* const   text = stlsoft_C_strerror(
+            e
+        ,   sizeof(buff)
+        ,   buff
+        ,   NULL
+        );
 
-        if (ENOMEM == e)
+        /* buff is returned only when the worker wrote that array. The
+         * pointer dies with this frame, so the text is copied.
+         * std::runtime_error copies after this function returns. Any other
+         * result is a static string. An empty buffer stored no message.
+         */
+        if (text == buff)
         {
-            return ENOMEM_stock_message_();
-        }
-        else
-        {
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-            char        buff[1001];
-            int const   e2  =   ::strerror_s(buff, e);
-            char* const r   =   ::_strdup((0 == e2) ? buff : "unknown failure");
+            char const* const   message =   ('\0' != text[0]) ? text : "unknown failure";
+            char* const         r       =   stlsoft_C_strdup(message);
 
             if (NULL == r)
             {
@@ -188,10 +204,28 @@ private: // implementation
             construction_context_ = r;
 
             return r;
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+        }
+        else
+        {
+            return text;
+        }
+    }
 
-            return ::strerror(e);
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+    char const*
+    make_message_(
+        int e
+    )
+    {
+        construction_context_ = NULL;
+
+        switch (e)
+        {
+        case ENOMEM:
+
+            return ENOMEM_stock_message_();
+        default:
+
+            return strerror_message_(e);
         }
     }
 
@@ -203,7 +237,7 @@ private: // implementation
     {
         if (NULL != pv)
         {
-            ::free(pv);
+            STLSOFT_NS_GLOBAL(free)(pv);
         }
     }
 

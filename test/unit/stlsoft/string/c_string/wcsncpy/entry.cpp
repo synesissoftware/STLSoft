@@ -58,30 +58,6 @@ namespace
     static void TEST_CLASSIC_PADS();
     static void TEST_CLASSIC_IGNORES_SHORT_CAPACITY();
 #endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
-    static void fill_(wchar_t* p, size_t n, wchar_t ch)
-    {
-        for (size_t i = 0; i != n; ++i)
-        {
-            p[i] = ch;
-        }
-    }
-
-    static wchar_t* call_wcsncpy_(wchar_t* dest, wchar_t const* src, size_t cchSrc)
-    {
-#if defined(_MSC_VER)
-# pragma warning(push)
-# pragma warning(disable : 4996)
-#endif /* _MSC_VER */
-
-        wchar_t* const r = ::wcsncpy(dest, src, cchSrc);
-
-#if defined(_MSC_VER)
-# pragma warning(pop)
-#endif /* _MSC_VER */
-
-        return r;
-    }
 } // anonymous namespace
 
 
@@ -121,6 +97,39 @@ int main(int argc, char* argv[])
 
     return retCode;
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+namespace
+{
+
+    static void fill_(wchar_t* p, size_t n, wchar_t ch)
+    {
+        for (size_t i = 0; i != n; ++i)
+        {
+            p[i] = ch;
+        }
+    }
+
+    static wchar_t* call_wcsncpy_(wchar_t* dest, wchar_t const* src, size_t cchSrc)
+    {
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif /* _MSC_VER */
+
+        wchar_t* const r = ::wcsncpy(dest, src, cchSrc);
+
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif /* _MSC_VER */
+
+        return r;
+    }
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////

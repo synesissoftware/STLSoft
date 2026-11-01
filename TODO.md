@@ -81,7 +81,8 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 
 ### 1.11.5
 
-* [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
+* [x] ~~~Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions~~~ - ✅;
+* [ ] Verify every `STLSOFT_SUPPRESS_UNUSED` of a destination-capacity parameter (`cchDest`, `cchSrc`, and the same pattern) before **1.11.5** is finished. For each site, decide whether that parameter belongs in the contract or the call is passing a size the callee ignores. Start with the new workers in **include/stlsoft/string/encoding/** (`stlsoft_C_mbstowcs`, `stlsoft_C_wcstombs`, `stlsoft_C_wcscpy`, `stlsoft_C_wcsncpy`) and then the same pattern in every other SIS C/C++ project;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 * [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;

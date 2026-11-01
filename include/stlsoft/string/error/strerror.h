@@ -72,6 +72,12 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+# ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
+#  include <stlsoft/memory/auto_buffer.h>
+# endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
@@ -84,11 +90,6 @@
 # define STLSOFT_INCL_H_STRING
 # include <string.h>
 #endif /* !STLSOFT_INCL_H_STRING */
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-# ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
-#  include <stlsoft/memory/auto_buffer.h>
-# endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -144,7 +145,6 @@ stlsoft_C_strerror(
 )
 {
     STLSOFT_ASSERT(0 == cchDest || NULL != dest);
-
 #ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 
     char const*     r = "";
@@ -226,10 +226,9 @@ stlsoft_C_strerror(
     }
 
     return r;
-
 #else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
-    char const* const   r = STLSOFT_NS_GLOBAL(strerror)(e);
+    char const* const r = STLSOFT_NS_GLOBAL(strerror)(e);
 
     if (0 != cchDest && NULL != dest)
     {

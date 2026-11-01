@@ -1,4 +1,5 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(strdup)
 add_subdirectory(strnchr)
 add_subdirectory(strnchr.C)
 add_subdirectory(strnicmp)

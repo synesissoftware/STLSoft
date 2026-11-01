@@ -4,11 +4,11 @@
  * Purpose: Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created: 2nd March 1996
- * Updated: 24th December 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    11
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        176
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    12
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        177
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,9 +72,9 @@
 #ifndef COMSTL_INCL_COMSTL_MEMORY_H_MEMORY_FUNCTIONS
 # include <comstl/memory/functions.h>
 #endif /* !COMSTL_INCL_COMSTL_MEMORY_H_MEMORY_FUNCTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_WCSCPY
+# include <stlsoft/string/c_string/wcscpy.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_WCSCPY */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
@@ -174,11 +174,7 @@ comstl__olestring_create_w(cs_char_w_t const* s)
 
         if (NULL != posz)
         {
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-            STLSOFT_NS_GLOBAL(wcscpy_s)(posz, 1 + cch, s);
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-            STLSOFT_NS_GLOBAL(wcscpy)(posz, s);
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+            stlsoft_C_wcscpy(posz, 1 + cch, s);
         }
     }
 
