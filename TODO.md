@@ -118,6 +118,11 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] Every function's documentation comment is an empty brief plus `\ingroup`;
   * [ ] The first `CreateEdit` template is missing the `(` after the function name, so that overload is ill-formed;
   * [ ] The C++ `CreateStaticFrame` overloads default `id` to `-1`. `winstl_C_control_creation_functions_Id2HMENU_()` then passes that as `HMENU`, so the control id is `0xFFFF` rather than "no id";
+* [ ] Shell-memory C API, noticed while renaming `winstl_C_SHMem*`:
+  * [ ] `winstl_C_SHMemFree()` and `winstl_C_SHMemRealloc()` say they use the shell allocator to allocate a block;
+  * [ ] `winstl_C_SHMemGetSize()` returns 0 when `SHGetMalloc` fails, the same value as a zero-length block. `winstl_C_SHMemDidAlloc()` returns -1 in that case;
+  * [ ] `Alloc`, `Free`, and `Realloc` say "shell allocator". `GetSize`, `DidAlloc`, and `HeapMinimise` say "COM task allocator". All six call `SHGetMalloc`. `GetSize` also spells it "alloctor", and `HeapMinimise` says "as as per";
+  * [ ] When `winstl_C_SHMemRealloc()` fails it returns NULL and the original block is still allocated. The contract does not say so;
 
 
 ### 1.11.6
