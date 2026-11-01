@@ -1,2 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(clipboard_format_sequence main.cpp)
+define_example_program(example.by_library.windows_clipboard.clipboard_format_sequence main.cpp)
