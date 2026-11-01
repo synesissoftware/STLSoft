@@ -1,8 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/api/external/time.h
  *
- * Purpose: External preprocessor aliases and support discrimination for
- *          time functions.
+ * Purpose: External preprocessor support discrimination for time functions.
  *
  * Created: 30th September 2024
  * Updated: 2nd November 2026
@@ -180,11 +179,6 @@
 #  define STLSOFT_LF_SUPPORT_STD_localtime_r
 # endif
 #endif
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * time functions
- */
 
 
 /* /////////////////////////////////////////////////////////////////////////
