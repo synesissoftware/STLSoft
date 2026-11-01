@@ -4,11 +4,11 @@
  * Purpose:     EXCEPINFO functions.
  *
  * Created:     11th August 2007
- * Updated:     11th March 2024
+ * Updated:     1st November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MINOR    0
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 8
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     15
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 9
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -102,7 +102,7 @@ namespace comstl_project
 
 STLSOFT_INLINE
 void
-comstl_c_EXCEPINFO_free(
+comstl_C_EXCEPINFO_free(
     EXCEPINFO *pxi
 )
 {
@@ -145,10 +145,35 @@ EXCEPINFO_free(
     EXCEPINFO* pxi
 )
 {
-    comstl_c_EXCEPINFO_free(pxi);
+    comstl_C_EXCEPINFO_free(pxi);
 }
 
 #endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names comstl_C_EXCEPINFO_free, which the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use comstl_C_EXCEPINFO_free
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl_c_EXCEPINFO_free, comstl_C_EXCEPINFO_free)
+STLSOFT_INLINE
+void
+comstl_c_EXCEPINFO_free(
+    EXCEPINFO* pxi
+)
+{
+    comstl_C_EXCEPINFO_free(pxi);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

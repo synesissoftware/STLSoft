@@ -364,7 +364,6 @@ comstl__olestring_dup(LPCOLESTR posz)
 {
     return comstl_C_olestring_dup(posz);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

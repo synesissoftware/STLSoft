@@ -94,6 +94,11 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
   * [ ] `comstl_C_olestring_destroy()` asserts `CoTaskMemDidAlloc` and therefore rejects NULL, while `CoTaskMemFree(NULL)` is a no-op. The assert text says "non-COM string";
   * [ ] `comstl_C_olestring_create_w()` still branches on `STLSOFT_USING_SAFE_STR_FUNCTIONS` (`wcscpy` / `wcscpy_s`) rather than `stlsoft_C_wcscpy()`;
+* [ ] Error-info C API, noticed while renaming `comstl_C_set_error_info_*`:
+  * [ ] `comstl_C_set_error_info_w_()` stores each `ICreateErrorInfo` setter's `HRESULT` over the previous one. A later success hides an earlier failure, and `SetErrorInfo` then publishes the partial object;
+  * [ ] `comstl_C_set_error_info_a_helper_()` leaves its `CoTaskMemAlloc` block allocated when `MultiByteToWideChar` fails. `comstl_C_set_error_info_a_()` frees it; any other caller would leak;
+  * [ ] The C functions that take a help file reject NULL, and there is no public C function for description + source + GUID alone. The C++ three-argument `set_error_info` calls `comstl_C_set_error_info_a_` / `comstl_C_set_error_info_w_` directly;
+  * [ ] `comstl_C_EXCEPINFO_free()` asserts `NULL != pxi` and then dereferences `pxi`. A release build does not reject NULL;
 
 
 ### 1.11.6
