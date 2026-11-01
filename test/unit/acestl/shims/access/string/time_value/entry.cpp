@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    time_value/entry.cpp
+ * File:    test/unit/acestl/shims/access/string/time_value/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for `ACE_Time_Value`.
  *
  * Created: 7th August 2026
- * Updated: 28th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.acestl.shims.access.string.time_value", verbosity))
+    if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
         XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
         XTESTS_RUN_CASE(TEST_c_str_len);
@@ -197,7 +197,6 @@ static void TEST_c_str_ptr_w_MATCHES_NARROW()
     TEST_WS_EQ(wide.data(), data_w.data());
     TEST_WS_EQ(wide.data(), null_w.data());
 }
-
 } // anonymous namespace
 
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    output_debug_line.C/entry.c
+ * File:    test/unit/winstl/diagnostics/output_debug_line.C/entry.c
  *
  * Purpose: Unit test for `winstl_C_diagnostics_output_debug_line_1_m()`, etc.
  *
  * Created: 22nd November 2011
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

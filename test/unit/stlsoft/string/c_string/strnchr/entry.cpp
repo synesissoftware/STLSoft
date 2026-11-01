@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnchr/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string/strnchr/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string::strnchr() and wcsnchr().
  *
  * Created: 23rd October 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

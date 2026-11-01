@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string_traits/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string_traits/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string_traits compare functions.
  *
  * Created: 29th September 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

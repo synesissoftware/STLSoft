@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.component.inetstl.util.uds_helpers/entry.cpp
+ * File:    test/component/inetstl/util/uds_helpers/entry.cpp
  *
  * Purpose: Unit-tests for `inetstl::environment_variable`.
  *
  * Created: 21st February 2025
- * Updated: 23rd October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

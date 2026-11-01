@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.char_conversions/entry.cpp
+ * File:    test/unit/stlsoft/conversion/char_conversions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::multibyte2wide` and
  *          `stlsoft::wide2multibyte`.
  *
  * Created: 28th October 2026
- * Updated: 28th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

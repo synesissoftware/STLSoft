@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    group_functions/entry.cpp
+ * File:    test/unit/stlsoft/conversion/number/group_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::format_thousands` and
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

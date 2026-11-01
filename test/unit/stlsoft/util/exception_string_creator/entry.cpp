@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.util.exception_string_creator/entry.cpp
+ * File:    test/unit/stlsoft/util/exception_string_creator/entry.cpp
  *
  * Purpose: Unit-tests for wide append on `stlsoft::exception_string_creator`.
  *
  * Created: 28th October 2026
- * Updated: 28th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
