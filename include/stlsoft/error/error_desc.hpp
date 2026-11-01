@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 1st November 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      56
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -413,7 +413,8 @@ public: // construction
      defined(STLSOFT_COMPILER_IS_GCC) || \
      0
     basic_error_desc(class_type const& rhs)
-        : m_str(string_dup(rhs.m_str, rhs.m_length, get_allocator_()))
+        : parent_class_type()
+        , m_str(string_dup(rhs.m_str, rhs.m_length, get_allocator_()))
         , m_length(rhs.m_length)
     {}
 # endif /* compiler */
@@ -492,7 +493,8 @@ inline
 basic_error_desc<C>::basic_error_desc(
     ss_typename_type_k basic_error_desc<C>::error_type error /* = errno */
 )
-    : m_str(traits_type::duplicate_message_(error, get_allocator_(), &m_length))
+    : parent_class_type()
+    , m_str(traits_type::duplicate_message_(error, get_allocator_(), &m_length))
 {}
 
 template <ss_typename_param_k C>
