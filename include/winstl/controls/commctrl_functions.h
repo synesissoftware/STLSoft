@@ -4,11 +4,11 @@
  * Purpose: Various Windows common control functions.
  *
  * Created: 13th November 2002
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   7
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       58
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ winstl__treeview_getnextitem(
 ,   UINT        flag
 )
 {
-    return stlsoft_reinterpret_cast(HTREEITEM, winstl__SendMessage(hwnd, TVM_GETNEXTITEM, stlsoft_static_cast(WPARAM, flag), stlsoft_reinterpret_cast(LPARAM, hitem)));
+    return stlsoft_reinterpret_cast(HTREEITEM, winstl_C_SendMessage(hwnd, TVM_GETNEXTITEM, stlsoft_static_cast(WPARAM, flag), stlsoft_reinterpret_cast(LPARAM, hitem)));
 }
 
 /** Gets the tree view child item

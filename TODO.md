@@ -90,6 +90,7 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 * [ ] C-API prefix follow-ups noticed while checking retained wrappers:
   * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
   * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
+  * [ ] Search the other Synesis projects for calls to the deprecated STLSoft C API spellings (`comstl__*`, `winstl__*`, `inetstl_c_*`, and the other `<subproject>__` / `<subproject>_c_` function names retained until 1.13) and retarget them to the `*_C_*` successors. Record any obsolete `#define` aliases separately; those stay until their own pass;
 * [ ] OLE-string C API, noticed while renaming `comstl_C_olestring_*`:
   * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
   * [ ] `comstl_C_olestring_destroy()` asserts `CoTaskMemDidAlloc` and therefore rejects NULL, while `CoTaskMemFree(NULL)` is a no-op. The assert text says "non-COM string";
@@ -123,6 +124,10 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] `winstl_C_SHMemGetSize()` returns 0 when `SHGetMalloc` fails, the same value as a zero-length block. `winstl_C_SHMemDidAlloc()` returns -1 in that case;
   * [ ] `Alloc`, `Free`, and `Realloc` say "shell allocator". `GetSize`, `DidAlloc`, and `HeapMinimise` say "COM task allocator". All six call `SHGetMalloc`. `GetSize` also spells it "alloctor", and `HeapMinimise` says "as as per";
   * [ ] When `winstl_C_SHMemRealloc()` fails it returns NULL and the original block is still allocated. The contract does not say so;
+* [ ] Window message and creation C API, noticed while renaming `winstl_C_SendMessage*` and `winstl_C_CreateWindow*`:
+  * [ ] None of `winstl_C_SendMessage()`, `winstl_C_SendMessageA()`, or `winstl_C_SendMessageW()` has a documentation comment. The C++ `SendMessageA` and `SendMessageW` overloads are compiled only when the namespace is enabled and the compiler is not Borland. There is no C++ unsuffixed `SendMessage`;
+  * [ ] None of the `winstl_C_CreateWindow*` functions has a documentation comment. The file brief says "Control creation functions"; the purpose line says window creation. The C++ `CreateWindowA`, `CreateWindowW`, `CreateWindow`, and `CreateWindowEx` overloads are commented out; only `CreateWindowExA` and `CreateWindowExW` are compiled;
+  * [ ] **font_functions.h** says its purpose is "Error functions";
 
 
 ### 1.11.6

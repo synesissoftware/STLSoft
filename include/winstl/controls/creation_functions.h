@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    11
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        37
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -163,7 +163,7 @@ winstl_C_CreateStaticA(
 ,   int                 id
 )
 {
-    HWND hwnd = winstl__CreateWindowA("STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    HWND hwnd = winstl_C_CreateWindowA("STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
     winstl_C_setchildfont_(hwnd, hwndParent);
 
@@ -186,7 +186,7 @@ winstl_C_CreateStaticW(
 ,   int                 id
 )
 {
-    HWND hwnd = winstl__CreateWindowW(L"STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    HWND hwnd = winstl_C_CreateWindowW(L"STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
     winstl_C_setchildfont_(hwnd, hwndParent);
 
@@ -213,7 +213,7 @@ winstl_C_CreateStaticFrame(
 
     WINSTL_ASSERT(SS_BLACKFRAME == frameStyle || SS_GRAYFRAME == frameStyle || SS_WHITEFRAME == frameStyle || SS_ETCHEDFRAME == frameStyle);
 
-    hwnd = winstl__CreateWindowA("STATIC", "", WS_CHILD | WS_VISIBLE | frameStyle, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    hwnd = winstl_C_CreateWindowA("STATIC", "", WS_CHILD | WS_VISIBLE | frameStyle, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
     winstl_C_setchildfont_(hwnd, hwndParent);
 
@@ -237,7 +237,7 @@ winstl_C_CreateEditA(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowA("EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowA("EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 /**
@@ -257,7 +257,7 @@ winstl_C_CreateEditW(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowW(L"EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowW(L"EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 /**
@@ -277,7 +277,7 @@ winstl_C_CreateCheckboxA(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowA("BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowA("BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 /**
@@ -297,7 +297,7 @@ winstl_C_CreateCheckboxW(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowW(L"BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowW(L"BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 

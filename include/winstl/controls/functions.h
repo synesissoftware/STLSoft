@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       2
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    9
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        67
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,7 +113,7 @@ winstl_C_combobox_addstring_a(
 ,   ws_char_a_t const*  s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, CB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, CB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Adds a Unicode string to a combo-box
  *
@@ -126,7 +126,7 @@ winstl_C_combobox_addstring_w(
 ,   ws_char_w_t const*  s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, CB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, CB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Adds a string (in the ambient char-encoding) to a combo-box
  *
@@ -139,7 +139,7 @@ winstl_C_combobox_addstring(
 ,   LPCTSTR s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, CB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
 /** Inserts an ANSI string into a combo-box at the given index
@@ -154,7 +154,7 @@ winstl_C_combobox_insertstring_a(
 ,   int                 index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, CB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, CB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Inserts a Unicode string into a combo-box at the given index
  *
@@ -168,7 +168,7 @@ winstl_C_combobox_insertstring_w(
 ,   int                 index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, CB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, CB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Inserts a string (in the ambient char-encoding) into a combo-box at the given index
  *
@@ -182,7 +182,7 @@ winstl_C_combobox_insertstring(
 ,   int     index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, CB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
 /** Gets the text length of an item in a combo-box
@@ -196,7 +196,7 @@ winstl_C_combobox_gettextlen(
 ,   ws_int_t    index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETLBTEXTLEN, stlsoft_static_cast(WPARAM, index), 0L));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, CB_GETLBTEXTLEN, stlsoft_static_cast(WPARAM, index), 0L));
 }
 
 /** Gets the text (in ANSI encoding) of an item in a combo-box
@@ -211,7 +211,7 @@ winstl_C_combobox_gettext_a(
 ,   ws_char_a_t*    s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Gets the text (in Unicode encoding) of an item in a combo-box
  *
@@ -225,7 +225,7 @@ winstl_C_combobox_gettext_w(
 ,   ws_char_w_t*    s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Gets the text (in the ambient char-encoding) of an item in a combo-box
  *
@@ -239,7 +239,7 @@ winstl_C_combobox_gettext(
 ,   LPCSTR      s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
 /** Gets the data value associated with an item in a combo-box
@@ -253,7 +253,7 @@ winstl_C_combobox_getitemdata(
 ,   ws_int_t    index
 )
 {
-    return stlsoft_static_cast(ws_dword_t, winstl__SendMessage(hwnd, CB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
+    return stlsoft_static_cast(ws_dword_t, winstl_C_SendMessage(hwnd, CB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
 }
 
 /** Gets the number of items in a combo-box
@@ -264,7 +264,7 @@ STLSOFT_INLINE
 ws_int_t
 winstl_C_combobox_getcount(HWND hwnd)
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETCOUNT, 0, 0L));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, CB_GETCOUNT, 0, 0L));
 }
 
 
@@ -282,7 +282,7 @@ winstl_C_listbox_addstring_a(
 ,   ws_char_a_t const*  s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, LB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, LB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Adds a Unicode string to a list-box
  *
@@ -295,7 +295,7 @@ winstl_C_listbox_addstring_w(
 ,   ws_char_w_t const*  s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, LB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, LB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Adds a string (in the ambient char-encoding) to a list-box
  *
@@ -308,7 +308,7 @@ winstl_C_listbox_addstring(
 ,   LPCTSTR s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, LB_ADDSTRING, 0, stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
 /** Inserts an ANSI string into a list-box at the given index
@@ -323,7 +323,7 @@ winstl_C_listbox_insertstring_a(
 ,   int                 index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, LB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, LB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Inserts a Unicode string into a list-box at the given index
  *
@@ -337,7 +337,7 @@ winstl_C_listbox_insertstring_w(
 ,   int                 index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, LB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, LB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Inserts a string (in the ambient char-encoding) into a list-box at the given index
  *
@@ -351,7 +351,7 @@ winstl_C_listbox_insertstring(
 ,   int     index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, LB_INSERTSTRING, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
 /** Gets the text length of an item in a list-box
@@ -365,7 +365,7 @@ winstl_C_listbox_gettextlen(
 ,   ws_int_t    index
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETTEXTLEN, stlsoft_static_cast(WPARAM, index), 0L));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, LB_GETTEXTLEN, stlsoft_static_cast(WPARAM, index), 0L));
 }
 
 /** Gets the text (in ANSI encoding) of an item in a list-box
@@ -380,7 +380,7 @@ winstl_C_listbox_gettext_a(
 ,   ws_char_a_t*    s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Gets the text (in Unicode encoding) of an item in a list-box
  *
@@ -394,7 +394,7 @@ winstl_C_listbox_gettext_w(
 ,   ws_char_w_t*    s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 /** Gets the text (in the ambient char-encoding) of an item in a list-box
  *
@@ -408,7 +408,7 @@ winstl_C_listbox_gettext(
 ,   LPCSTR      s
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
 /** Gets the data value associated with an item in a list-box
@@ -422,7 +422,7 @@ winstl_C_listbox_getitemdata(
 ,   ws_int_t    index
 )
 {
-    return stlsoft_static_cast(ws_dword_t, winstl__SendMessage(hwnd, LB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
+    return stlsoft_static_cast(ws_dword_t, winstl_C_SendMessage(hwnd, LB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
 }
 
 /** Gets the number of items in a list-box
@@ -433,7 +433,7 @@ STLSOFT_INLINE
 ws_int_t
 winstl_C_listbox_getcount(HWND hwnd)
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETCOUNT, 0, 0L));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, LB_GETCOUNT, 0, 0L));
 }
 
 /** Gets the number of lines in an edit-box
@@ -444,7 +444,7 @@ STLSOFT_INLINE
 ws_int_t
 winstl_C_edit_getcount(HWND hwnd)
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, EM_GETLINECOUNT, 0, 0L));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, EM_GETLINECOUNT, 0, 0L));
 }
 
 /** Gets the length of the line in which the given character resides.
@@ -458,7 +458,7 @@ winstl_C_edit_linelength(
 ,   ws_int_t    charIndex
 )
 {
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, EM_LINELENGTH, stlsoft_static_cast(WPARAM, charIndex), 0L));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessage(hwnd, EM_LINELENGTH, stlsoft_static_cast(WPARAM, charIndex), 0L));
 }
 
 /** Gets a copy of the text of the given line.
@@ -478,7 +478,7 @@ winstl_C_edit_getline_a(
 
     *stlsoft_reinterpret_cast(int*, buffer) = stlsoft_static_cast(int, cchBuffer);
 
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageA(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageA(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
 }
 
 /** Gets a copy of the text of the given line.
@@ -498,7 +498,7 @@ winstl_C_edit_getline_w(
 
     *stlsoft_reinterpret_cast(int*, buffer) = stlsoft_static_cast(int, cchBuffer);
 
-    return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
+    return stlsoft_static_cast(ws_int_t, winstl_C_SendMessageW(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
 }
 
 

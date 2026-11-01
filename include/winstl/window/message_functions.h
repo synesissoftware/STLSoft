@@ -4,11 +4,11 @@
  * Purpose: Message functions.
  *
  * Created: 7th May 2000
- * Updated: 26th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT      53
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION  8
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,7 @@ namespace winstl_project
 
 STLSOFT_INLINE
 LRESULT
-winstl__SendMessageA(
+winstl_C_SendMessageA(
     HWND    hwnd
 ,   UINT    uMsg
 ,   WPARAM  wParam
@@ -112,7 +112,7 @@ winstl__SendMessageA(
 
 STLSOFT_INLINE
 LRESULT
-winstl__SendMessageW(
+winstl_C_SendMessageW(
     HWND    hwnd
 ,   UINT    uMsg
 ,   WPARAM  wParam
@@ -124,7 +124,7 @@ winstl__SendMessageW(
 
 STLSOFT_INLINE
 LRESULT
-winstl__SendMessage(
+winstl_C_SendMessage(
     HWND    hwnd
 ,   UINT    uMsg
 ,   WPARAM  wParam
@@ -151,7 +151,7 @@ SendMessageA(
 ,   LPARAM  lParam
 )
 {
-    return winstl__SendMessageA(hwnd, uMsg, wParam, lParam);
+    return winstl_C_SendMessageA(hwnd, uMsg, wParam, lParam);
 }
 
 inline
@@ -163,10 +163,66 @@ SendMessageW(
 ,   LPARAM  lParam
 )
 {
-    return winstl__SendMessageW(hwnd, uMsg, wParam, lParam);
+    return winstl_C_SendMessageW(hwnd, uMsg, wParam, lParam);
 }
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_SendMessage* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_SendMessageA
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SendMessageA, winstl_C_SendMessageA)
+STLSOFT_INLINE
+LRESULT
+winstl__SendMessageA(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
+{
+    return winstl_C_SendMessageA(hwnd, uMsg, wParam, lParam);
+}
+
+/** \deprecated Use winstl_C_SendMessageW
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SendMessageW, winstl_C_SendMessageW)
+STLSOFT_INLINE
+LRESULT
+winstl__SendMessageW(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
+{
+    return winstl_C_SendMessageW(hwnd, uMsg, wParam, lParam);
+}
+
+/** \deprecated Use winstl_C_SendMessage
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SendMessage, winstl_C_SendMessage)
+STLSOFT_INLINE
+LRESULT
+winstl__SendMessage(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
+{
+    return winstl_C_SendMessage(hwnd, uMsg, wParam, lParam);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
