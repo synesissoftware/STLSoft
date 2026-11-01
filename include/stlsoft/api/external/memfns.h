@@ -76,6 +76,10 @@
 #  include <string.h>
 # endif /* !STLSOFT_INCL_H_STRING */
 #endif /* compiler */
+#ifndef STLSOFT_INCL_H_STDDEF
+# define STLSOFT_INCL_H_STDDEF
+# include <stddef.h>
+#endif /* !STLSOFT_INCL_H_STDDEF */
 #ifndef STLSOFT_INCL_H_WCHAR
 # define STLSOFT_INCL_H_WCHAR
 # include <wchar.h>
