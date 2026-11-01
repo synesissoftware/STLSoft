@@ -112,6 +112,12 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] The `combobox_insertstring` and `listbox_insertstring` string templates always call the ANSI overload. The `addstring` templates dispatch on the pointer type from `c_str_ptr`, so a wide string passed to an insert template is treated as ANSI;
   * [ ] `winstl_C_edit_getline_a()` and `winstl_C_edit_getline_w()` store `cchBuffer` in the first word of `buffer` (the `EM_GETLINE` contract) and do not say so. The control does not NUL-terminate the line, and `cchBuffer` is cast to `int` with no check that the buffer is at least `sizeof(int)`;
   * [ ] `winstl_C_combobox_getitemdata()` and `winstl_C_listbox_getitemdata()` return `ws_dword_t`, so `CB_ERR` / `LB_ERR` (`-1`) collides with a stored value of `0xFFFFFFFF`;
+* [ ] Control-creation C API, noticed while renaming `winstl_C_CreateStatic*`, `winstl_C_CreateEdit*`, and `winstl_C_CreateCheckbox*`:
+  * [ ] `winstl_C_setchildfont_()` discards both windows. The commented body would send `WM_SETFONT` to the parent, using the child's font, which is the reverse of giving the child the parent's font. Only the static creators call it;
+  * [ ] `winstl_C_CreateEditA()`, `winstl_C_CreateEditW()`, `winstl_C_CreateCheckboxA()`, and `winstl_C_CreateCheckboxW()` mask the caller style with `0xFFFF`, so high-word window styles such as `WS_BORDER`, `WS_VSCROLL`, `WS_GROUP`, and `WS_DISABLED` are discarded. Nothing in the contract says so;
+  * [ ] Every function's documentation comment is an empty brief plus `\ingroup`;
+  * [ ] The first `CreateEdit` template is missing the `(` after the function name, so that overload is ill-formed;
+  * [ ] The C++ `CreateStaticFrame` overloads default `id` to `-1`. `winstl_C_control_creation_functions_Id2HMENU_()` then passes that as `HMENU`, so the control id is `0xFFFF` rather than "no id";
 
 
 ### 1.11.6
