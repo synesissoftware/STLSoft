@@ -1,8 +1,15 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.5 - 31st October 2026
+## 1.11.5 - 2nd November 2026
 
+* behaviour:
+  * **include/stlsoft/exception/special/errno_exception.hpp** — `errno_exception(ENOMEM)` returns a static string and does not allocate: `"Not enough memory"` when `_MSC_VER` is set, otherwise `"Cannot allocate memory"`. `free_context_()` frees only a non-null construction copy;
+* refactoring:
+  * **include/stlsoft/exception/special/errno_exception.hpp** — `strerror_s` / `_strdup` and `strerror` stay inside `strerror_message_()`. `ENOMEM` still returns the static string and does not call it;
+  * **include/stlsoft/string/encoding/wcscpy.h** — `stlsoft_C_wcscpy()` and `stlsoft_C_wcsncpy()` hide `wcscpy_s` / `wcsncpy_s`. The secure return code is discarded. The classic forms ignore the destination capacity;
+  * **include/comstl/string/olestring_functions.h** — `comstl__olestring_create_w()` calls `stlsoft_C_wcscpy()` with capacity `1 + cch`;
+  * **include/comstl/string/bstr.hpp** — the wide constructor calls `stlsoft_C_wcscpy()` with capacity `actualLen`, and `append()` calls `stlsoft_C_wcsncpy()` with capacity `totalLen` and count `len`. Those counts are unchanged;
 * compatibility:
   * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `string_concatenation_flags` enumerators are arrayed (`None`, then `, AlwaysSeparate`) to avoid a trailing comma;
 * build:
@@ -11,6 +18,7 @@
   * Eleven performance and scratch targets include the directory they omitted: **test.performance.platformstl.diagnostics.stopwatch**, **test.performance.platformstl.filesystem.file_lines**, **test.performance.stlsoft.containers.frequency_map**, **test.performance.stlsoft.diagnostics.doomgram**, **test.performance.stlsoft.diagnostics.gram_utils**, **test.performance.stlsoft.memory.auto_buffer**, **test.performance.stlsoft.string.simple_string.compare**, **test.performance.stlsoft.string.simple_string.op_eq**, **test.performance.stlsoft.util.bit_functions**, **test.performance.stlsoft.util.count_digits**, and **test.scratch.winstl.synch.micro_sleep**;
   * **test/performance/platformstl/filesystem/CMakeLists.txt** no longer carries `# SIS:AUTO_GENERATED`. Its `X_CMAKE_CXX_FULLSTANDARD` guard is hand-written, so the generator leaves the file alone. The **platformstl**, **unixstl**, and **winstl** `process` lists drop a trailing blank line;
 * documentation and boilerplate:
+  * **include/stlsoft/algorithms/std/alt.hpp** — `std_copy()`, `std_fill_n()`, and `std_transform()` keep a handwritten loop when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set, because the secure CRT deprecates the standard algorithms for character buffers. This is not a `*_s` call;
   * **INSTALL.md** archive examples name **STLSoft-1.11.5**;
   * **Doxyfile** `PROJECT_NUMBER` is **1.11.5**;
 * version:
