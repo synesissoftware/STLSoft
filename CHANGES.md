@@ -10,6 +10,8 @@
   * **include/stlsoft/string/encoding/wcscpy.h** — `stlsoft_C_wcscpy()` and `stlsoft_C_wcsncpy()` hide `wcscpy_s` / `wcsncpy_s`. The secure return code is discarded. The classic forms ignore the destination capacity;
   * **include/comstl/string/olestring_functions.h** — `comstl__olestring_create_w()` calls `stlsoft_C_wcscpy()` with capacity `1 + cch`;
   * **include/comstl/string/bstr.hpp** — the wide constructor calls `stlsoft_C_wcscpy()` with capacity `actualLen`, and `append()` calls `stlsoft_C_wcsncpy()` with capacity `totalLen` and count `len`. Those counts are unchanged;
+* compatibility:
+  * `string_concatenation_flags` members arrayed to avoid trailing commas;
 * documentation:
   * **include/stlsoft/algorithms/std/alt.hpp** — `std_copy()`, `std_fill_n()`, and `std_transform()` keep a handwritten loop when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set, because the secure CRT deprecates the standard algorithms for character buffers. This is not a `*_s` call;
 
