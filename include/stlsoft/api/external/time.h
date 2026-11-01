@@ -109,6 +109,7 @@
       0
 
 # if 1 &&\
+     !defined(__MINGW32__) &&\
      !defined(__MINGW64__) &&\
      1
 
@@ -147,10 +148,15 @@
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
+/* The *_s functions are C11 Annex K, which is optional (and is not part of
+ * C++): the implementation signals support by defining __STDC_LIB_EXT1__,
+ * and the user must request it by defining __STDC_WANT_LIB_EXT1__ before
+ * <time.h> is first included. Applies to both C and C++.
+ */
 #if 0
 #elif 1 &&\
-      defined(__cplusplus) &&\
-      __cplusplus >= 201103L &&\
+      defined(__STDC_LIB_EXT1__) &&\
+      defined(__STDC_WANT_LIB_EXT1__) &&\
       1
 
 # define STLSOFT_LF_SUPPORT_STD_asctime_s
