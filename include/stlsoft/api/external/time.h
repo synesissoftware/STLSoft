@@ -87,9 +87,7 @@
  *
  * - STLSOFT_LF_SUPPORT_STD_asctime_s
  * - STLSOFT_LF_SUPPORT_STD_ctime_s
- * - STLSOFT_LF_SUPPORT_STD_gmtime_r
  * - STLSOFT_LF_SUPPORT_STD_gmtime_s
- * - STLSOFT_LF_SUPPORT_STD_localtime_r
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
@@ -142,9 +140,7 @@
 /*
  * - STLSOFT_LF_SUPPORT_STD_asctime_s
  * - STLSOFT_LF_SUPPORT_STD_ctime_s
- * - STLSOFT_LF_SUPPORT_STD_gmtime_r
  * - STLSOFT_LF_SUPPORT_STD_gmtime_s
- * - STLSOFT_LF_SUPPORT_STD_localtime_r
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
@@ -163,27 +159,6 @@
 # define STLSOFT_LF_SUPPORT_STD_ctime_s
 # define STLSOFT_LF_SUPPORT_STD_gmtime_s
 # define STLSOFT_LF_SUPPORT_STD_localtime_s
-#endif
-
-#if 0
-#elif 1 &&\
-      defined(__cplusplus) &&\
-      __cplusplus >= 202302L &&\
-      1
-
- /* C++23 claims POSIX gmtime_r/localtime_r in the working draft, but MinGW
-  * (and MSVC) do not provide them; keep the MSVC exclusion and also exclude
-  * MinGW so discrimination falls through to gmtime()/localtime() (or *_s).
-  */
-# if 1 &&\
-     !defined(_MSC_VER) && \
-     !defined(__MINGW32__) && \
-     !defined(__MINGW64__) &&\
-     1
-
-#  define STLSOFT_LF_SUPPORT_STD_gmtime_r
-#  define STLSOFT_LF_SUPPORT_STD_localtime_r
-# endif
 #endif
 
 

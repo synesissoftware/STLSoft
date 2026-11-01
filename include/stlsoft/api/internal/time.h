@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for time.h constructs.
  *
  * Created: 11th January 2017
- * Updated: 30th September 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -124,7 +124,6 @@ STLSOFT_API_INTERNAL_Time_gmtime(
 
 #if 0
 #elif 0 ||\
-      defined(STLSOFT_LF_SUPPORT_STD_gmtime_r) ||\
       defined(STLSOFT_LF_SUPPORT_GCC_gmtime_r) ||\
       0
 
@@ -219,7 +218,6 @@ STLSOFT_API_INTERNAL_Time_localtime(
 
 #if 0
 #elif 0 ||\
-      defined(STLSOFT_LF_SUPPORT_STD_localtime_r) ||\
       defined(STLSOFT_LF_SUPPORT_GCC_localtime_r) ||\
       0
 
