@@ -77,6 +77,20 @@
  * time functions
  */
 
+/** Opens a file, via fopen_s() when STLSOFT_USING_SAFE_STR_FUNCTIONS is
+ * defined and the compiler is Visual C/C++, otherwise via fopen().
+ *
+ * \param path The path of the file to open. May not be \c nullptr
+ * \param mode The open mode. May not be \c nullptr
+ * \param ph Pointer to receive the file handle. May not be \c nullptr
+ *
+ * \retval 0 if the operation succeeded;
+ * \retval an "errno" value if the operation failed;
+ *
+ * \pre nullptr != path
+ * \pre nullptr != mode
+ * \pre nullptr != ph
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_stdio_fopen_m(

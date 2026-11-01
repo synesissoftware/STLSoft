@@ -75,6 +75,15 @@
      defined (STLSOFT_API_EXTERNAL_bitfns_popcnt_uint16) ||\
      0
 
+/** Population count of a 16-bit value, in terms of the first available of
+ * the external adaptations (see stlsoft/api/external/bitfns.h). This
+ * function is defined only if at least one such adaptation is available,
+ * so clients must test for the macro of the same name.
+ *
+ * \param v The value whose set bits are to be counted
+ *
+ * \return The number of set bits in \c v
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_bitfns_popcount_uint16(
@@ -104,6 +113,15 @@ STLSOFT_API_INTERNAL_bitfns_popcount_uint16(
      defined (STLSOFT_API_EXTERNAL_bitfns_popcnt_uint32) ||\
      0
 
+/** Population count of a 32-bit value, in terms of the first available of
+ * the external adaptations (see stlsoft/api/external/bitfns.h). This
+ * function is defined only if at least one such adaptation is available,
+ * so clients must test for the macro of the same name.
+ *
+ * \param v The value whose set bits are to be counted
+ *
+ * \return The number of set bits in \c v
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_bitfns_popcount_uint32(
@@ -133,6 +151,15 @@ STLSOFT_API_INTERNAL_bitfns_popcount_uint32(
      defined (STLSOFT_API_EXTERNAL_bitfns_popcnt_uint64) ||\
      0
 
+/** Population count of a 64-bit value, in terms of the first available of
+ * the external adaptations (see stlsoft/api/external/bitfns.h). This
+ * function is defined only if at least one such adaptation is available,
+ * so clients must test for the macro of the same name.
+ *
+ * \param v The value whose set bits are to be counted
+ *
+ * \return The number of set bits in \c v
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_bitfns_popcount_uint64(

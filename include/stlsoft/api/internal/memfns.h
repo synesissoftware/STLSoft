@@ -118,6 +118,18 @@ STLSOFT_API_INTERNAL_memfns_memcpy(
     return r;
 }
 
+/** Adaptation of memset() that, like STLSOFT_API_INTERNAL_memfns_memcpy(),
+ * permits \c nullptr \c dest when \c count is 0.
+ *
+ * \param dest Pointer to the destination. May be \c nullptr only if
+ *   \c count is 0
+ * \param value The value to set
+ * \param count The number of bytes to set
+ *
+ * \return \c dest
+ *
+ * \pre 0 == count || nullptr != dest
+ */
 STLSOFT_INLINE
 void*
 STLSOFT_API_INTERNAL_memfns_memset(
@@ -153,6 +165,17 @@ STLSOFT_API_INTERNAL_memfns_memset(
     return r;
 }
 
+/** Wide-character equivalent of STLSOFT_API_INTERNAL_memfns_memcpy().
+ *
+ * \param dest Pointer to the destination. May be \c nullptr only if
+ *   \c count is 0
+ * \param src Pointer to the source. May be \c nullptr only if \c count is 0
+ * \param count The number of wide characters to copy
+ *
+ * \return \c dest
+ *
+ * \pre 0 == count || (nullptr != dest && nullptr != src)
+ */
 STLSOFT_INLINE
 wchar_t*
 STLSOFT_API_INTERNAL_memfns_wmemcpy(
@@ -196,6 +219,17 @@ STLSOFT_API_INTERNAL_memfns_wmemcpy(
     return r;
 }
 
+/** Wide-character equivalent of STLSOFT_API_INTERNAL_memfns_memset().
+ *
+ * \param dest Pointer to the destination. May be \c nullptr only if
+ *   \c count is 0
+ * \param value The value to set
+ * \param count The number of wide characters to set
+ *
+ * \return \c dest
+ *
+ * \pre 0 == count || nullptr != dest
+ */
 STLSOFT_INLINE
 wchar_t*
 STLSOFT_API_INTERNAL_memfns_wmemset(
