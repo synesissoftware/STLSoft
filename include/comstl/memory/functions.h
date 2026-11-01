@@ -318,7 +318,6 @@ comstl__CoTaskMemHeapMinimise(void)
 {
     comstl_C_CoTaskMemHeapMinimise();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

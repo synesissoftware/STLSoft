@@ -208,7 +208,6 @@ comstl__get_stream_size(
 {
     return comstl_C_get_stream_size(pstm, psize);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

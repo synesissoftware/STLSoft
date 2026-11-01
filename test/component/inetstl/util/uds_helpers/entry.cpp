@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/component/inetstl/util/uds_helpers/entry.cpp
  *
- * Purpose: Unit-tests for `inetstl::environment_variable`.
+ * Purpose: Component tests for `inetstl_C_sockaddr_un_init_from_path`.
  *
  * Created: 21st February 2025
- * Updated: 29th October 2026
+ * Updated: 1st November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -95,7 +95,7 @@ static void TEST_INSUFFICIENT_SPACE()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         reinterpret_cast<struct sockaddr_un*>(&buff)
                                     ,   sizeof(buff)
                                     ,   NULL
@@ -114,7 +114,7 @@ static void TEST_INSUFFICIENT_SPACE()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         reinterpret_cast<struct sockaddr_un*>(&buff)
                                     ,   sizeof(buff)
                                     ,   NULL
@@ -136,7 +136,7 @@ static void TEST_EMPTY_path()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         reinterpret_cast<struct sockaddr_un*>(&buff)
                                     ,   sizeof(buff)
                                     ,   NULL
@@ -157,7 +157,7 @@ static void TEST_EMPTY_path()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         reinterpret_cast<struct sockaddr_un*>(&buff)
                                     ,   sizeof(buff)
                                     ,   ""
@@ -178,7 +178,7 @@ static void TEST_EMPTY_path()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         reinterpret_cast<struct sockaddr_un*>(&buff)
                                     ,   3
                                     ,   NULL
@@ -200,7 +200,7 @@ static void TEST_EMPTY_path()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         reinterpret_cast<struct sockaddr_un*>(&buff)
                                     ,   3
                                     ,   ""
@@ -227,7 +227,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "p"
@@ -252,7 +252,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/my_socket"
@@ -278,7 +278,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789" /* 100 characters */
@@ -304,7 +304,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" /* 102 characters */
@@ -330,7 +330,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" /* 103 characters */
@@ -356,7 +356,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" /* 104 characters */
@@ -397,7 +397,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" /* 108 characters */
@@ -432,7 +432,7 @@ static void TEST_VALID_paths()
         errno = 0;
 
         size_t      cb_actual   =   std::numeric_limits<size_t>::max();
-        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+        int const   r           =   inetstl_C_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
                                     ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" /* 108 characters */

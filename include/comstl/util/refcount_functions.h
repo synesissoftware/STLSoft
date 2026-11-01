@@ -295,7 +295,6 @@ comstl__safe_release(LPUNKNOWN punk)
 {
     comstl_C_safe_release(punk);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

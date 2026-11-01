@@ -103,6 +103,10 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
   * [ ] `comstl_C_CoTaskMemGetSize()` returns 0 when `CoGetMalloc` fails, the same value as a zero-length block. `comstl_C_CoTaskMemDidAlloc()` returns -1 in that case, the same value as "cannot determine". `comstl_C_olestring_destroy()` treats -1 as allocated (`0 != -1`) and still calls `CoTaskMemFree`;
   * [ ] `comstl_C_addref()` asserts a non-null pointer and documents `\pre`. `comstl_C_release()` says the pointer cannot be null and does not assert, so a null pointer is a release-build crash;
   * [ ] `comstl_C_get_stream_size()` does not document its pointers. A failed `Stat` leaves `*psize` unchanged. **refcount_functions.h** and **stream_functions.h** describe themselves as C++ only, while both publish a C API;
+* [ ] Unix-domain socket helper, noticed while renaming `inetstl_C_sockaddr_un_init_from_path`:
+  * [ ] A NULL `path` is treated as `""`. The contract does not say so;
+  * [ ] A path that exactly fills `sun_path` is stored without a terminating NUL. The public text only lists the too-long `EINVAL` cases, and the first `EINVAL` line has an unclosed backtick;
+  * [ ] The function documentation uses `@param` while the file block uses `\brief`;
 
 
 ### 1.11.6
