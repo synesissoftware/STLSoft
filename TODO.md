@@ -83,9 +83,10 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 
 The enumerator-comma fix and the CMake program-name generator are in the tree (`2b36be19`). The items below remain.
 
+* [ ] Verify every `STLSOFT_SUPPRESS_UNUSED` of a destination-capacity parameter (`cchDest`, `cchSrc`, and the same pattern) before **1.11.5** is finished. For each site, decide whether that parameter belongs in the contract or the call is passing a size the callee ignores. Start with the new workers in **include/stlsoft/string/encoding/** (`stlsoft_C_mbstowcs`, `stlsoft_C_wcstombs`, `stlsoft_C_wcscpy`, `stlsoft_C_wcsncpy`) and then the same pattern in every other SIS C/C++ project;
 * [x] ~~~`string_concatenation_flags` enumerators arrayed (`None`, then `, AlwaysSeparate`) to avoid a trailing comma~~~ - ✅;
 * [x] ~~~**.dev/bin/generate_cmakelists.rb** 0.2.0 names generated programs by the xTests `__FILE__` rule (`--mode modern` default, `--mode legacy`, `--dry-run`) and was applied to the nineteen **examples** programs and the eleven performance / scratch targets that omitted a directory~~~ - ✅;
-* [ ] Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions;
+* [x] ~~~Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions~~~ - ✅;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 * [ ] Survey and improve API(External) functions;
 * [ ] Survey and improve API(Internal) functions;
