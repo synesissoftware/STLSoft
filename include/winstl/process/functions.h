@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 12th March 2006
- * Updated: 8th October 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    2
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     37
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -263,12 +263,35 @@ winstl_C_get_current_process_id(void)
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * obsolete functions
+ * obsolete symbols
+ *
+ * NOTE: these are only defined if:
+ *
+ * - we're generating documentation, or
+ * - STLSOFT_OBSOLETE is specified, or
+ * - it's STLSoft 1.10 (or earlier)
  */
 
-#define winstl__CreateProcessFEA                            winstl_C_CreateProcessFEA_a
-#define winstl__CreateProcessEA                             winstl_C_CreateProcessEA
-#define winstl__CreateProcess0A                             winstl_C_CreateProcess0A
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+    defined(STLSOFT_OBSOLETE) || \
+    _STLSOFT_VER < 0x010b0000
+
+/** \def winstl__CreateProcessFEA
+ *
+ * \deprecated Use winstl_C_CreateProcessFEA_a
+ */
+# define winstl__CreateProcessFEA                           winstl_C_CreateProcessFEA_a
+/** \def winstl__CreateProcessEA
+ *
+ * \deprecated Use winstl_C_CreateProcessEA
+ */
+# define winstl__CreateProcessEA                            winstl_C_CreateProcessEA
+/** \def winstl__CreateProcess0A
+ *
+ * \deprecated Use winstl_C_CreateProcess0A
+ */
+# define winstl__CreateProcess0A                            winstl_C_CreateProcess0A
+#endif /* obsolete || 1.10- */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -372,8 +395,6 @@ create_process(
 {
     return winstl_C_CreateProcess0A(cmdLine);
 }
-
-
 
 
 /** [DEPRECATED] Creates a process, with flags and environment

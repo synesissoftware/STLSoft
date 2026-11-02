@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    winstl/window/font_functions.h (originally MWGdi.h / MWWinCmn, ::SynesisWin)
  *
- * Purpose: Error functions.
+ * Purpose: Window font functions.
  *
  * Created: 20th October 1994
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,7 +43,7 @@
 
 /** \file winstl/window/font_functions.h
  *
- * \brief [C, C++] Error functions
+ * \brief [C, C++] Window font functions
  *   (\ref group__library__Windows_Window "Windows Window" Library).
  */
 
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT     150
+# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_REVISION 5
+# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT     152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,9 +104,9 @@ namespace winstl_project
  */
 STLSOFT_INLINE
 HFONT
-winstl__get_window_font(HWND hwnd)
+winstl_C_get_window_font(HWND hwnd)
 {
-    return stlsoft_reinterpret_cast(HFONT, winstl__SendMessage(hwnd, WM_GETFONT, 0, 0L));
+    return stlsoft_reinterpret_cast(HFONT, winstl_C_SendMessage(hwnd, WM_GETFONT, 0, 0L));
 }
 
 /** Sets the window's font.
@@ -115,13 +115,13 @@ winstl__get_window_font(HWND hwnd)
  */
 STLSOFT_INLINE
 void
-winstl__set_window_font(
+winstl_C_set_window_font(
     HWND        hwnd
 ,   HFONT       hfont
 ,   ws_int_t    bRedraw
 )
 {
-    stlsoft_static_cast(void, winstl__SendMessage(hwnd, WM_SETFONT, stlsoft_reinterpret_cast(WPARAM, hfont), bRedraw));
+    stlsoft_static_cast(void, winstl_C_SendMessage(hwnd, WM_SETFONT, stlsoft_reinterpret_cast(WPARAM, hfont), bRedraw));
 }
 
 
@@ -149,7 +149,7 @@ inline
 HFONT
 get_window_font(HWND hwnd)
 {
-    return winstl__get_window_font(hwnd);
+    return winstl_C_get_window_font(hwnd);
 }
 
 /** Sets the window's font.
@@ -164,10 +164,45 @@ set_window_font(
 ,   ws_bool_t   bRedraw = true
 )
 {
-    winstl__set_window_font(hwnd, hfont, bRedraw);
+    winstl_C_set_window_font(hwnd, hfont, bRedraw);
 }
 #endif /* __cplusplus */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_get_window_font
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_window_font, winstl_C_get_window_font)
+STLSOFT_INLINE
+HFONT
+winstl__get_window_font(HWND hwnd)
+{
+    return winstl_C_get_window_font(hwnd);
+}
+
+/** \deprecated Use winstl_C_set_window_font
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__set_window_font, winstl_C_set_window_font)
+STLSOFT_INLINE
+void
+winstl__set_window_font(
+    HWND        hwnd
+,   HFONT       hfont
+,   ws_int_t    bRedraw
+)
+{
+    winstl_C_set_window_font(hwnd, hfont, bRedraw);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

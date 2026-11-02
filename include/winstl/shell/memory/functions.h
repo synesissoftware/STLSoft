@@ -4,7 +4,7 @@
  * Purpose: Shell memory functions.
  *
  * Created: 2nd March 1996
- * Updated: 15th October 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MAJOR       6
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        71
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    11
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -122,7 +122,7 @@ namespace winstl_project
  */
 STLSOFT_INLINE
 void*
-winstl__SHMemAlloc(ws_size_t cb)
+winstl_C_SHMemAlloc(ws_size_t cb)
 {
     LPMALLOC    lpmalloc;
     void*       pv;
@@ -148,7 +148,7 @@ winstl__SHMemAlloc(ws_size_t cb)
 }
 
 /** [C] Deallocates a block of shell memory previously allocated by a call
- * to winstl__SHMemAlloc(), winstl__SHMemRealloc() or through the
+ * to winstl_C_SHMemAlloc(), winstl_C_SHMemRealloc() or through the
  * <code>IMalloc::Alloc()</code> or <code>IMalloc::Realloc()</code> methods
  * on the shell allocator (obtained via <code>SHGetMalloc()</code>).
  *
@@ -166,7 +166,7 @@ winstl__SHMemAlloc(ws_size_t cb)
  */
 STLSOFT_INLINE
 void
-winstl__SHMemFree(void* pv)
+winstl_C_SHMemFree(void* pv)
 {
     LPMALLOC    lpmalloc;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(&lpmalloc);
@@ -210,7 +210,7 @@ DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
 
 
 
-/** [C] Rellocates a block of shell memory.
+/** [C] Reallocates a block of shell memory.
  *
  * \ingroup group__library__Memory
  *
@@ -234,7 +234,7 @@ DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
 
 STLSOFT_INLINE
 void*
-winstl__SHMemRealloc(
+winstl_C_SHMemRealloc(
     void*       pv
 ,   ws_size_t   cb
 )
@@ -286,7 +286,7 @@ winstl__SHMemRealloc(
  */
 STLSOFT_INLINE
 ws_size_t
-winstl__SHMemGetSize(void* pv)
+winstl_C_SHMemGetSize(void* pv)
 {
     LPMALLOC    lpmalloc;
     ws_size_t   ulRet;
@@ -326,7 +326,7 @@ winstl__SHMemGetSize(void* pv)
  */
 STLSOFT_INLINE
 ws_sint_t
-winstl__SHMemDidAlloc(void* pv)
+winstl_C_SHMemDidAlloc(void* pv)
 {
     LPMALLOC    lpmalloc;
     ws_sint_t   iRet;
@@ -359,7 +359,7 @@ winstl__SHMemDidAlloc(void* pv)
  */
 STLSOFT_INLINE
 void
-winstl__SHMemHeapMinimise(void)
+winstl_C_SHMemHeapMinimise(void)
 {
     LPMALLOC    lpmalloc;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(&lpmalloc);
@@ -396,7 +396,7 @@ namespace winstl
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemAlloc().
+ * This function is a wrapper for winstl_C_SHMemAlloc().
  *
  * \param cb The size, in bytes, of the memory block to be allocated.
  * \return Pointer to the allocated memory block, or \c nullptr if the
@@ -406,14 +406,14 @@ inline
 void*
 SHMemAlloc(ws_size_t cb)
 {
-    return winstl__SHMemAlloc(cb);
+    return winstl_C_SHMemAlloc(cb);
 }
 
 /** Deallocates a block of shell memory.
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemFree().
+ * This function is a wrapper for winstl_C_SHMemFree().
  *
  * \param pv Pointer to the memory block to be deallocated
  */
@@ -421,14 +421,14 @@ inline
 void
 SHMemFree(void* pv)
 {
-    winstl__SHMemFree(pv);
+    winstl_C_SHMemFree(pv);
 }
 
 /** Changes the size of a previously allocated block of shell memory.
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemRelloc().
+ * This function is a wrapper for winstl_C_SHMemRealloc().
  *
  * \param pv Pointer to the memory block to be reallocated. Can be
  *   \c nullptr, in which case the function acts like SHMemAlloc()
@@ -445,14 +445,14 @@ SHMemRealloc(
 ,   ws_size_t   cb
 )
 {
-    return winstl__SHMemRealloc(pv, cb);
+    return winstl_C_SHMemRealloc(pv, cb);
 }
 
 /** Gives the size of a memory block
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemGetSize().
+ * This function is a wrapper for winstl_C_SHMemGetSize().
  *
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
@@ -461,14 +461,14 @@ inline
 ws_size_t
 SHMemGetSize(void* pv)
 {
-    return winstl__SHMemGetSize(pv);
+    return winstl_C_SHMemGetSize(pv);
 }
 
 /** Determines allocation ownership of a memory block
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemDidAlloc().
+ * This function is a wrapper for winstl_C_SHMemDidAlloc().
  *
  * \param pv Pointer to the memory block
  * \return Result indicating ownership
@@ -481,36 +481,109 @@ inline
 ws_sint_t
 SHMemDidAlloc(void* pv)
 {
-    return winstl__SHMemDidAlloc(pv);
+    return winstl_C_SHMemDidAlloc(pv);
 }
 
 /** Minimises the heap
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemHeapMinimise().
+ * This function is a wrapper for winstl_C_SHMemHeapMinimise().
  */
 inline
 void
 SHMemHeapMinimise()
 {
-    winstl__SHMemHeapMinimise();
+    winstl_C_SHMemHeapMinimise();
 }
 
 /** Minimises the heap
  *
  * \ingroup group__library__Memory
  *
- * This function is a wrapper for winstl__SHMemHeapMinimise().
+ * This function is a wrapper for winstl_C_SHMemHeapMinimise().
  */
 inline
 void
 SHMemHeapMinimize()
 {
-    winstl__SHMemHeapMinimise();
+    winstl_C_SHMemHeapMinimise();
 }
 #endif /* __cplusplus */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_SHMem* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_SHMemAlloc
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SHMemAlloc, winstl_C_SHMemAlloc)
+STLSOFT_INLINE
+void*
+winstl__SHMemAlloc(ws_size_t cb)
+{
+    return winstl_C_SHMemAlloc(cb);
+}
+
+/** \deprecated Use winstl_C_SHMemFree
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SHMemFree, winstl_C_SHMemFree)
+STLSOFT_INLINE
+void
+winstl__SHMemFree(void* pv)
+{
+    winstl_C_SHMemFree(pv);
+}
+
+/** \deprecated Use winstl_C_SHMemRealloc
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SHMemRealloc, winstl_C_SHMemRealloc)
+STLSOFT_INLINE
+void*
+winstl__SHMemRealloc(
+    void*       pv
+,   ws_size_t   cb
+)
+{
+    return winstl_C_SHMemRealloc(pv, cb);
+}
+
+/** \deprecated Use winstl_C_SHMemGetSize
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SHMemGetSize, winstl_C_SHMemGetSize)
+STLSOFT_INLINE
+ws_size_t
+winstl__SHMemGetSize(void* pv)
+{
+    return winstl_C_SHMemGetSize(pv);
+}
+
+/** \deprecated Use winstl_C_SHMemDidAlloc
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SHMemDidAlloc, winstl_C_SHMemDidAlloc)
+STLSOFT_INLINE
+ws_sint_t
+winstl__SHMemDidAlloc(void* pv)
+{
+    return winstl_C_SHMemDidAlloc(pv);
+}
+
+/** \deprecated Use winstl_C_SHMemHeapMinimise
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__SHMemHeapMinimise, winstl_C_SHMemHeapMinimise)
+STLSOFT_INLINE
+void
+winstl__SHMemHeapMinimise(void)
+{
+    winstl_C_SHMemHeapMinimise();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * inline
