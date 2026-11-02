@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/unit/stlsoft/conversion/byte_format_functions/entry.cpp
  *
- * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
+ * Purpose: Unit-tests for `stlsoft::format_bytes()`.
  *
  * Created: 12th September 2019
- * Updated: 29th October 2026
+ * Updated: 2nd November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,6 +61,31 @@ namespace {
     static void test_format_bytes_5_byte_4_grouping();
     static void test_format_bytes_5_byte_8_grouping();
     static void test_format_bytes_5_byte_16_grouping();
+
+    static void test_format_bytes_ZERO_BYTES();
+    static void test_format_bytes_ALL_NIBBLES();
+    static void test_format_bytes_32_bytes_1_grouping();
+    static void test_format_bytes_32_bytes_2_grouping();
+    static void test_format_bytes_32_bytes_4_grouping();
+    static void test_format_bytes_32_bytes_8_grouping();
+    static void test_format_bytes_32_bytes_16_grouping();
+    static void test_format_bytes_32_bytes_32_grouping();
+    static void test_format_bytes_3_bytes_32_grouping();
+    static void test_format_bytes_33_bytes_32_grouping();
+    static void test_format_bytes_0_grouping_DEFAULTS_TO_4();
+    static void test_format_bytes_NULL_group_separator();
+    static void test_format_bytes_EMPTY_group_separator();
+    static void test_format_bytes_MULTI_CHAR_separators();
+    static void test_format_bytes_lines_PARTIAL_LAST_LINE();
+    static void test_format_bytes_lines_EXACT_LINES();
+    static void test_format_bytes_lines_ONE_GROUP_PER_LINE();
+    static void test_format_bytes_lines_MORE_GROUPS_PER_LINE_THAN_GROUPS();
+    static void test_format_bytes_lines_NONPOSITIVE_groupsPerLine();
+    static void test_format_bytes_lines_32_BYTE_GROUPS();
+    static void test_format_bytes_BUFFER_EXACT_PLUS_NUL();
+    static void test_format_bytes_BUFFER_EXACT_NO_NUL();
+    static void test_format_bytes_BUFFER_TOO_SMALL_RETURNS_REQUIRED_SIZE();
+    static void test_format_bytes_NULL_BUFFER_QUERIES_REQUIRED_SIZE();
 } // anonymous namespace
 
 
@@ -93,8 +118,33 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_format_bytes_5_byte_8_grouping);
         XTESTS_RUN_CASE(test_format_bytes_5_byte_16_grouping);
 
+        XTESTS_RUN_CASE(test_format_bytes_ZERO_BYTES);
+        XTESTS_RUN_CASE(test_format_bytes_ALL_NIBBLES);
+        XTESTS_RUN_CASE(test_format_bytes_32_bytes_1_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_32_bytes_2_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_32_bytes_4_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_32_bytes_8_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_32_bytes_16_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_32_bytes_32_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_3_bytes_32_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_33_bytes_32_grouping);
+        XTESTS_RUN_CASE(test_format_bytes_0_grouping_DEFAULTS_TO_4);
+        XTESTS_RUN_CASE(test_format_bytes_NULL_group_separator);
+        XTESTS_RUN_CASE(test_format_bytes_EMPTY_group_separator);
+        XTESTS_RUN_CASE(test_format_bytes_MULTI_CHAR_separators);
+        XTESTS_RUN_CASE(test_format_bytes_lines_PARTIAL_LAST_LINE);
+        XTESTS_RUN_CASE(test_format_bytes_lines_EXACT_LINES);
+        XTESTS_RUN_CASE(test_format_bytes_lines_ONE_GROUP_PER_LINE);
+        XTESTS_RUN_CASE(test_format_bytes_lines_MORE_GROUPS_PER_LINE_THAN_GROUPS);
+        XTESTS_RUN_CASE(test_format_bytes_lines_NONPOSITIVE_groupsPerLine);
+        XTESTS_RUN_CASE(test_format_bytes_lines_32_BYTE_GROUPS);
+        XTESTS_RUN_CASE(test_format_bytes_BUFFER_EXACT_PLUS_NUL);
+        XTESTS_RUN_CASE(test_format_bytes_BUFFER_EXACT_NO_NUL);
+        XTESTS_RUN_CASE(test_format_bytes_BUFFER_TOO_SMALL_RETURNS_REQUIRED_SIZE);
+        XTESTS_RUN_CASE(test_format_bytes_NULL_BUFFER_QUERIES_REQUIRED_SIZE);
+
 #ifdef STLSOFT_USE_XCOVER
-        XCOVER_REPORT_FILE_COVERAGE("*stlsoft*/simple_string.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*stlsoft*/byte_format_functions.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -114,6 +164,24 @@ int main(int argc, char *argv[])
  */
 
 namespace {
+
+#define FORMAT_BYTES_EXPECT_(bytes_, grouping_, group_sep_, groups_per_line_, line_sep_, expected_) \
+    \
+    do \
+    { \
+        char                sz_[1001]; \
+        std::size_t const   n_ = stlsoft::format_bytes( \
+                                    &(bytes_)[0], sizeof(bytes_) \
+                                ,   &sz_[0], STLSOFT_NUM_ELEMENTS(sz_) \
+                                ,   (grouping_) \
+                                ,   (group_sep_) \
+                                ,   (groups_per_line_) \
+                                ,   (line_sep_) \
+                                ); \
+        \
+        TEST_INT_EQ(static_cast<int>(sizeof(expected_) - 1), static_cast<int>(n_)); \
+        TEST_MS_EQ_N((expected_), sz_, static_cast<int>(n_)); \
+    } while (0)
 
 static void test_format_bytes_1_byte_1_grouping()
 {
@@ -254,6 +322,221 @@ static void test_format_bytes_5_byte_16_grouping()
 
     TEST_MS_EQ_N("00000000000000000000000504030201", sz, static_cast<int>(n));
 }
+
+static void test_format_bytes_ZERO_BYTES()
+{
+    char                    sz[8];
+    stlsoft::byte_t const   bytes[] = { 0x01 };
+
+    TEST_INT_EQ(0, static_cast<int>(stlsoft::format_bytes(&bytes[0], 0, &sz[0], STLSOFT_NUM_ELEMENTS(sz), 1, " ")));
+    TEST_INT_EQ(0, static_cast<int>(stlsoft::format_bytes(&bytes[0], 0, NULL, 0, 1, " ")));
+}
+
+static void test_format_bytes_ALL_NIBBLES()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef, 0x80, 0xff };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, "", -1, "\n",
+        "0123456789abcdef80ff");
+}
+
+static void test_format_bytes_32_bytes_1_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, " ", -1, "\n",
+        "00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f");
+}
+
+static void test_format_bytes_32_bytes_2_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 2, " ", -1, "\n",
+        "0100 0302 0504 0706 0908 0b0a 0d0c 0f0e 1110 1312 1514 1716 1918 1b1a 1d1c 1f1e");
+}
+
+static void test_format_bytes_32_bytes_4_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 4, " ", -1, "\n",
+        "03020100 07060504 0b0a0908 0f0e0d0c 13121110 17161514 1b1a1918 1f1e1d1c");
+}
+
+static void test_format_bytes_32_bytes_8_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 8, " ", -1, "\n",
+        "0706050403020100 0f0e0d0c0b0a0908 1716151413121110 1f1e1d1c1b1a1918");
+}
+
+static void test_format_bytes_32_bytes_16_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 16, " ", -1, "\n",
+        "0f0e0d0c0b0a09080706050403020100 1f1e1d1c1b1a19181716151413121110");
+}
+
+static void test_format_bytes_32_bytes_32_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 32, " ", -1, "\n",
+        "1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100");
+}
+
+static void test_format_bytes_3_bytes_32_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 32, " ", -1, "\n",
+        "0000000000000000000000000000000000000000000000000000000000030201");
+}
+
+static void test_format_bytes_33_bytes_32_grouping()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 32, " ", -1, "\n",
+        "1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100 0000000000000000000000000000000000000000000000000000000000000020");
+}
+
+static void test_format_bytes_0_grouping_DEFAULTS_TO_4()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 0, " ", -1, "\n",
+        "04030201 08070605");
+}
+
+static void test_format_bytes_NULL_group_separator()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, NULL, -1, "\n",
+        "01020304");
+}
+
+static void test_format_bytes_EMPTY_group_separator()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 2, "", -1, "\n",
+        "02010403");
+}
+
+static void test_format_bytes_MULTI_CHAR_separators()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, "::", 3, "||",
+        "01::02::03||04::05::06||07::08");
+}
+
+static void test_format_bytes_lines_PARTIAL_LAST_LINE()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, " ", 3, "\n",
+        "01 02 03\n04 05 06\n07 08");
+}
+
+static void test_format_bytes_lines_EXACT_LINES()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, " ", 4, "\n",
+        "01 02 03 04\n05 06 07 08");
+}
+
+static void test_format_bytes_lines_ONE_GROUP_PER_LINE()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 2, " ", 1, "\r\n",
+        "0201\r\n0403\r\n0605\r\n0807");
+}
+
+static void test_format_bytes_lines_MORE_GROUPS_PER_LINE_THAN_GROUPS()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, " ", 100, "\n",
+        "01 02 03 04 05 06 07 08");
+}
+
+static void test_format_bytes_lines_NONPOSITIVE_groupsPerLine()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes, 1, " ", 0, "\n",
+        "01 02 03 04 05 06 07 08");
+
+    stlsoft::byte_t const   bytes2[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+
+    FORMAT_BYTES_EXPECT_(bytes2, 1, " ", -1, "\n",
+        "01 02 03 04 05 06 07 08");
+}
+
+static void test_format_bytes_lines_32_BYTE_GROUPS()
+{
+    stlsoft::byte_t const   bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f };
+
+    FORMAT_BYTES_EXPECT_(bytes, 32, " ", 1, "\n",
+        "1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100\n3f3e3d3c3b3a393837363534333231302f2e2d2c2b2a29282726252423222120");
+}
+
+static void test_format_bytes_BUFFER_EXACT_PLUS_NUL()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03 };
+    char                    sz[9];
+    std::size_t const       n = stlsoft::format_bytes(&bytes[0], sizeof(bytes), &sz[0], STLSOFT_NUM_ELEMENTS(sz), 1, " ");
+
+    TEST_INT_EQ(8, static_cast<int>(n));
+    TEST_MS_EQ_N("01 02 03", sz, 8);
+    TEST_CHAR_EQ('\0', sz[8]);
+}
+
+static void test_format_bytes_BUFFER_EXACT_NO_NUL()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03 };
+    char                    sz[8];
+    std::size_t const       n = stlsoft::format_bytes(&bytes[0], sizeof(bytes), &sz[0], STLSOFT_NUM_ELEMENTS(sz), 1, " ");
+
+    TEST_INT_EQ(8, static_cast<int>(n));
+    TEST_MS_EQ_N("01 02 03", sz, 8);
+}
+
+static void test_format_bytes_BUFFER_TOO_SMALL_RETURNS_REQUIRED_SIZE()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03 };
+    char                    sz[7];
+    std::size_t const       n = stlsoft::format_bytes(&bytes[0], sizeof(bytes), &sz[0], STLSOFT_NUM_ELEMENTS(sz), 1, " ");
+
+    TEST_INT_EQ(8, static_cast<int>(n));
+
+    {
+        char                sz2[8];
+        std::size_t const   n2 = stlsoft::format_bytes(&bytes[0], sizeof(bytes), &sz2[0], STLSOFT_NUM_ELEMENTS(sz2), 1, " ");
+
+        TEST_INT_EQ(static_cast<int>(n), static_cast<int>(n2));
+        TEST_MS_EQ_N("01 02 03", sz2, static_cast<int>(n2));
+    }
+}
+
+static void test_format_bytes_NULL_BUFFER_QUERIES_REQUIRED_SIZE()
+{
+    stlsoft::byte_t const   bytes[] = { 0x01, 0x02, 0x03, 0x04, 0x05 };
+
+    TEST_INT_EQ(14, static_cast<int>(stlsoft::format_bytes(&bytes[0], sizeof(bytes), NULL, 0, 1, " ")));
+    TEST_INT_EQ(17, static_cast<int>(stlsoft::format_bytes(&bytes[0], sizeof(bytes), NULL, 0, 4, " ")));
+    TEST_INT_EQ(14, static_cast<int>(stlsoft::format_bytes(&bytes[0], sizeof(bytes), NULL, 0, 2, " ")));
+}
+
+#undef FORMAT_BYTES_EXPECT_
 } // anonymous namespace
 
 

@@ -81,17 +81,16 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 
 ### 1.11.5
 
-The enumerator-comma fix and the CMake program-name generator are in the tree (`2b36be19`). The items below remain.
+The enumerator-comma fix, the CMake program-name generator, the secure-CRT worker functions, the `STLSOFT_API_EXTERNAL_*` / `STLSOFT_API_INTERNAL_*` revisions, and the `<subproject>_C_` renames are in the tree. The items below remain.
 
-* [ ] Verify every `STLSOFT_SUPPRESS_UNUSED` of a destination-capacity parameter (`cchDest`, `cchSrc`, and the same pattern) before **1.11.5** is finished. For each site, decide whether that parameter belongs in the contract or the call is passing a size the callee ignores. Start with the new workers in **include/stlsoft/string/encoding/** (`stlsoft_C_mbstowcs`, `stlsoft_C_wcstombs`, `stlsoft_C_wcscpy`, `stlsoft_C_wcsncpy`) and then the same pattern in every other SIS C/C++ project;
+* [ ] Verify every `STLSOFT_SUPPRESS_UNUSED` of a destination-capacity parameter (`cchDest`, `cchSrc`, and the same pattern) before **1.11.5** is finished. For each site, decide whether that parameter belongs in the contract or the call is passing a size the callee ignores. Start with the new workers in **include/stlsoft/string/encoding/** (`stlsoft_C_mbstowcs`, `stlsoft_C_wcstombs`) and **include/stlsoft/string/c_string/** (`stlsoft_C_wcscpy`, `stlsoft_C_wcsncpy`) and then the same pattern in every other SIS C/C++ project;
 * [x] ~~~`string_concatenation_flags` enumerators arrayed (`None`, then `, AlwaysSeparate`) to avoid a trailing comma~~~ - ✅;
 * [x] ~~~**.dev/bin/generate_cmakelists.rb** 0.2.0 names generated programs by the xTests `__FILE__` rule (`--mode modern` default, `--mode legacy`, `--dry-run`) and was applied to the nineteen **examples** programs and the eleven performance / scratch targets that omitted a directory~~~ - ✅;
 * [x] ~~~Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions~~~ - ✅;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
-* [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
-* [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
-* [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
+* [ ] Survey and improve API(External) functions;
+* [ ] Survey and improve API(Internal) functions;
+* [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
 * [ ] C-API prefix follow-ups noticed while checking retained wrappers:
   * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
   * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
@@ -99,7 +98,7 @@ The enumerator-comma fix and the CMake program-name generator are in the tree (`
 * [ ] OLE-string C API, noticed while renaming `comstl_C_olestring_*`:
   * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
   * [ ] `comstl_C_olestring_destroy()` asserts `CoTaskMemDidAlloc` and therefore rejects NULL, while `CoTaskMemFree(NULL)` is a no-op. The assert text says "non-COM string";
-  * [ ] `comstl_C_olestring_create_w()` still branches on `STLSOFT_USING_SAFE_STR_FUNCTIONS` (`wcscpy` / `wcscpy_s`) rather than `stlsoft_C_wcscpy()`;
+  * [x] ~~~`comstl_C_olestring_create_w()` calls `stlsoft_C_wcscpy()` rather than branching on `STLSOFT_USING_SAFE_STR_FUNCTIONS`~~~ - ✅;
 * [ ] Error-info C API, noticed while renaming `comstl_C_set_error_info_*`:
   * [ ] `comstl_C_set_error_info_w_()` stores each `ICreateErrorInfo` setter's `HRESULT` over the previous one. A later success hides an earlier failure, and `SetErrorInfo` then publishes the partial object;
   * [ ] `comstl_C_set_error_info_a_helper_()` leaves its `CoTaskMemAlloc` block allocated when `MultiByteToWideChar` fails. `comstl_C_set_error_info_a_()` frees it; any other caller would leak;

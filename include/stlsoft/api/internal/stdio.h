@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for stdio.h constructs.
  *
  * Created: 11th November 2020
- * Updated: 29th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -80,9 +80,23 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * time functions
+ * stdio functions
  */
 
+/** Opens a file, via fopen_s() when STLSOFT_USING_SAFE_STR_FUNCTIONS is
+ * defined and the compiler is Visual C/C++, otherwise via fopen().
+ *
+ * \param path The path of the file to open. May not be \c nullptr
+ * \param mode The open mode. May not be \c nullptr
+ * \param ph Pointer to receive the file handle. May not be \c nullptr
+ *
+ * \retval 0 if the operation succeeded;
+ * \retval an "errno" value if the operation failed;
+ *
+ * \pre nullptr != path
+ * \pre nullptr != mode
+ * \pre nullptr != ph
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_stdio_fopen_m(
@@ -95,11 +109,11 @@ STLSOFT_API_INTERNAL_stdio_fopen_m(
     STLSOFT_ASSERT(NULL != mode);
     STLSOFT_ASSERT(NULL != ph);
 
-#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) &&\
     defined(STLSOFT_COMPILER_IS_MSVC)
 
     return STLSOFT_NS_GLOBAL_(fopen_s)(ph, path, mode);
-#else // }
+#else
     *ph = STLSOFT_NS_GLOBAL_(fopen)(path, mode);
 
     return (NULL == *ph) ? errno : 0;

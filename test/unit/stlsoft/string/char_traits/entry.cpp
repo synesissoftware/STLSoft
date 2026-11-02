@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::char_traits and char_traits_safe.
  *
  * Created: 29th September 2026
- * Updated: 29th October 2026
+ * Updated: 2nd November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,6 +45,13 @@ namespace
     static void TEST_compare_HIGH_BIT_UNSIGNED_ORDER();
     static void TEST_char_traits_safe_compare();
     static void TEST_char_traits_safe_compare_NULL();
+    static void TEST_assign_n_CHAR();
+    static void TEST_assign_n_WCHAR();
+    static void TEST_assign_n_0_NEITHER_WRITES_NOR_DEREFERENCES();
+    static void TEST_assign_HIGH_VALUES();
+    static void TEST_copy_n_CHAR();
+    static void TEST_copy_n_WCHAR();
+    static void TEST_copy_n_0_NEITHER_WRITES_NOR_DEREFERENCES();
 } // anonymous namespace
 
 
@@ -73,6 +80,13 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_compare_HIGH_BIT_UNSIGNED_ORDER);
         XTESTS_RUN_CASE(TEST_char_traits_safe_compare);
         XTESTS_RUN_CASE(TEST_char_traits_safe_compare_NULL);
+        XTESTS_RUN_CASE(TEST_assign_n_CHAR);
+        XTESTS_RUN_CASE(TEST_assign_n_WCHAR);
+        XTESTS_RUN_CASE(TEST_assign_n_0_NEITHER_WRITES_NOR_DEREFERENCES);
+        XTESTS_RUN_CASE(TEST_assign_HIGH_VALUES);
+        XTESTS_RUN_CASE(TEST_copy_n_CHAR);
+        XTESTS_RUN_CASE(TEST_copy_n_WCHAR);
+        XTESTS_RUN_CASE(TEST_copy_n_0_NEITHER_WRITES_NOR_DEREFERENCES);
 
         XTESTS_PRINT_RESULTS();
 
@@ -278,6 +292,135 @@ static void TEST_char_traits_safe_compare_NULL()
     TEST_INT_EQ(0, w_safe_t::compare_max(NULL, NULL, 4));
     TEST_INT_EQ(-1, w_safe_t::compare_max(NULL, L"a", 1));
     TEST_INT_EQ(1, w_safe_t::compare_max(L"a", NULL, 1));
+}
+
+static void TEST_assign_n_CHAR()
+{
+    char buff[6] = { 'X', 'X', 'X', 'X', 'X', 'X' };
+    char* const r = a_traits_t::assign(&buff[1], 4, 'a');
+
+    TEST_BOOLEAN_TRUE(&buff[1] == r);
+    TEST_CHAR_EQ('X', buff[0]);
+    TEST_CHAR_EQ('a', buff[1]);
+    TEST_CHAR_EQ('a', buff[2]);
+    TEST_CHAR_EQ('a', buff[3]);
+    TEST_CHAR_EQ('a', buff[4]);
+    TEST_CHAR_EQ('X', buff[5]);
+}
+
+static void TEST_assign_n_WCHAR()
+{
+    wchar_t buff[6] = { L'X', L'X', L'X', L'X', L'X', L'X' };
+    wchar_t* const r = w_traits_t::assign(&buff[1], 4, L'a');
+
+    TEST_BOOLEAN_TRUE(&buff[1] == r);
+    TEST_CHAR_EQ(L'X', buff[0]);
+    TEST_CHAR_EQ(L'a', buff[1]);
+    TEST_CHAR_EQ(L'a', buff[2]);
+    TEST_CHAR_EQ(L'a', buff[3]);
+    TEST_CHAR_EQ(L'a', buff[4]);
+    TEST_CHAR_EQ(L'X', buff[5]);
+}
+
+static void TEST_assign_n_0_NEITHER_WRITES_NOR_DEREFERENCES()
+{
+    {
+        char buff[2] = { 'X', 'X' };
+
+        TEST_BOOLEAN_TRUE(&buff[0] == a_traits_t::assign(&buff[0], 0, 'a'));
+        TEST_CHAR_EQ('X', buff[0]);
+        TEST_CHAR_EQ('X', buff[1]);
+
+        TEST_BOOLEAN_TRUE(NULL == a_traits_t::assign(NULL, 0, 'a'));
+    }
+
+    {
+        wchar_t buff[2] = { L'X', L'X' };
+
+        TEST_BOOLEAN_TRUE(&buff[0] == w_traits_t::assign(&buff[0], 0, L'a'));
+        TEST_CHAR_EQ(L'X', buff[0]);
+        TEST_CHAR_EQ(L'X', buff[1]);
+
+        TEST_BOOLEAN_TRUE(NULL == w_traits_t::assign(NULL, 0, L'a'));
+    }
+}
+
+static void TEST_assign_HIGH_VALUES()
+{
+    /* a byte fill must not sign-extend, and a wide fill must not be
+     * truncated to a byte
+     */
+    char buff[3] = { 'X', 'X', 'X' };
+    wchar_t wbuff[3] = { L'X', L'X', L'X' };
+
+    a_traits_t::assign(&buff[1], 1, '\xff');
+
+    TEST_CHAR_EQ('X', buff[0]);
+    TEST_CHAR_EQ('\xff', buff[1]);
+    TEST_CHAR_EQ('X', buff[2]);
+
+    w_traits_t::assign(&wbuff[1], 1, L'\x0152');
+
+    TEST_CHAR_EQ(L'X', wbuff[0]);
+    TEST_CHAR_EQ(L'\x0152', wbuff[1]);
+    TEST_CHAR_EQ(L'X', wbuff[2]);
+}
+
+static void TEST_copy_n_CHAR()
+{
+    char const  src[] = { 'a', 'b', 'c', 'd' };
+    char        buff[6] = { 'X', 'X', 'X', 'X', 'X', 'X' };
+    char* const r = a_traits_t::copy(&buff[1], src, 4);
+
+    TEST_BOOLEAN_TRUE(&buff[1] == r);
+    TEST_CHAR_EQ('X', buff[0]);
+    TEST_CHAR_EQ('a', buff[1]);
+    TEST_CHAR_EQ('b', buff[2]);
+    TEST_CHAR_EQ('c', buff[3]);
+    TEST_CHAR_EQ('d', buff[4]);
+    TEST_CHAR_EQ('X', buff[5]);
+}
+
+static void TEST_copy_n_WCHAR()
+{
+    wchar_t const   src[] = { L'a', L'b', L'c', L'd' };
+    wchar_t         buff[6] = { L'X', L'X', L'X', L'X', L'X', L'X' };
+    wchar_t* const  r = w_traits_t::copy(&buff[1], src, 4);
+
+    TEST_BOOLEAN_TRUE(&buff[1] == r);
+    TEST_CHAR_EQ(L'X', buff[0]);
+    TEST_CHAR_EQ(L'a', buff[1]);
+    TEST_CHAR_EQ(L'b', buff[2]);
+    TEST_CHAR_EQ(L'c', buff[3]);
+    TEST_CHAR_EQ(L'd', buff[4]);
+    TEST_CHAR_EQ(L'X', buff[5]);
+}
+
+static void TEST_copy_n_0_NEITHER_WRITES_NOR_DEREFERENCES()
+{
+    {
+        char const  src[] = { 'a' };
+        char        buff[2] = { 'X', 'X' };
+
+        TEST_BOOLEAN_TRUE(&buff[0] == a_traits_t::copy(&buff[0], src, 0));
+        TEST_CHAR_EQ('X', buff[0]);
+        TEST_CHAR_EQ('X', buff[1]);
+
+        TEST_BOOLEAN_TRUE(&buff[0] == a_traits_t::copy(&buff[0], NULL, 0));
+        TEST_BOOLEAN_TRUE(NULL == a_traits_t::copy(NULL, NULL, 0));
+    }
+
+    {
+        wchar_t const   src[] = { L'a' };
+        wchar_t         buff[2] = { L'X', L'X' };
+
+        TEST_BOOLEAN_TRUE(&buff[0] == w_traits_t::copy(&buff[0], src, 0));
+        TEST_CHAR_EQ(L'X', buff[0]);
+        TEST_CHAR_EQ(L'X', buff[1]);
+
+        TEST_BOOLEAN_TRUE(&buff[0] == w_traits_t::copy(&buff[0], NULL, 0));
+        TEST_BOOLEAN_TRUE(NULL == w_traits_t::copy(NULL, NULL, 0));
+    }
 }
 } // anonymous namespace
 
