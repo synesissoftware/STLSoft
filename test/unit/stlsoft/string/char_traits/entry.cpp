@@ -52,6 +52,8 @@ namespace
     static void TEST_copy_n_CHAR();
     static void TEST_copy_n_WCHAR();
     static void TEST_copy_n_0_NEITHER_WRITES_NOR_DEREFERENCES();
+    static void TEST_find_n_0_NEITHER_READS();
+    static void TEST_find_MATCH_AND_MISS();
 } // anonymous namespace
 
 
@@ -87,6 +89,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_copy_n_CHAR);
         XTESTS_RUN_CASE(TEST_copy_n_WCHAR);
         XTESTS_RUN_CASE(TEST_copy_n_0_NEITHER_WRITES_NOR_DEREFERENCES);
+        XTESTS_RUN_CASE(TEST_find_n_0_NEITHER_READS);
+        XTESTS_RUN_CASE(TEST_find_MATCH_AND_MISS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -157,10 +161,14 @@ static void TEST_compare_n_0()
 {
     TEST_INT_EQ(0, a_traits_t::compare("abc", "xyz", 0));
     TEST_INT_EQ(0, a_traits_t::compare(NULL, NULL, 0));
+    TEST_INT_EQ(0, a_traits_t::compare(NULL, "a", 0));
+    TEST_INT_EQ(0, a_traits_t::compare("a", NULL, 0));
     TEST_INT_EQ(0, a_traits_t::compare_max("abc", "xyz", 0));
 
     TEST_INT_EQ(0, w_traits_t::compare(L"abc", L"xyz", 0));
     TEST_INT_EQ(0, w_traits_t::compare(NULL, NULL, 0));
+    TEST_INT_EQ(0, w_traits_t::compare(NULL, L"a", 0));
+    TEST_INT_EQ(0, w_traits_t::compare(L"a", NULL, 0));
     TEST_INT_EQ(0, w_traits_t::compare_max(L"abc", L"xyz", 0));
 }
 
@@ -421,6 +429,37 @@ static void TEST_copy_n_0_NEITHER_WRITES_NOR_DEREFERENCES()
         TEST_BOOLEAN_TRUE(&buff[0] == w_traits_t::copy(&buff[0], NULL, 0));
         TEST_BOOLEAN_TRUE(NULL == w_traits_t::copy(NULL, NULL, 0));
     }
+}
+
+static void TEST_find_n_0_NEITHER_READS()
+{
+    char const      s[] = "abc";
+    wchar_t const   ws[] = L"abc";
+
+    TEST_PTR_NULL(a_traits_t::find(s, 0, 'a'));
+    TEST_PTR_NULL(a_traits_t::find(NULL, 0, 'a'));
+    TEST_PTR_NULL(w_traits_t::find(ws, 0, L'a'));
+    TEST_PTR_NULL(w_traits_t::find(NULL, 0, L'a'));
+}
+
+static void TEST_find_MATCH_AND_MISS()
+{
+    char const          s[] = "abaca";
+    wchar_t const       ws[] = L"abaca";
+    unsigned char const hi_u[] = { 0xE9, 'b', 'c' };
+    char const* const   hi = reinterpret_cast<char const*>(hi_u);
+    wchar_t const       whi[] = { L'\x0152', L'b' };
+
+    TEST_PTR_EQ(s, a_traits_t::find(s, 5, 'a'));
+    TEST_PTR_EQ(s + 1, a_traits_t::find(s, 5, 'b'));
+    TEST_PTR_NULL(a_traits_t::find(s, 5, 'x'));
+    TEST_PTR_NULL(a_traits_t::find(s, 2, 'c'));
+    TEST_PTR_EQ(hi, a_traits_t::find(hi, 3, hi[0]));
+
+    TEST_PTR_EQ(ws, w_traits_t::find(ws, 5, L'a'));
+    TEST_PTR_EQ(ws + 1, w_traits_t::find(ws, 5, L'b'));
+    TEST_PTR_NULL(w_traits_t::find(ws, 5, L'x'));
+    TEST_PTR_EQ(whi, w_traits_t::find(whi, 2, whi[0]));
 }
 } // anonymous namespace
 
