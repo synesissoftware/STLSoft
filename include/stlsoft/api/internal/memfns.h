@@ -83,39 +83,14 @@ STLSOFT_API_INTERNAL_memfns_memcpy(
 ,   size_t      count
 )
 {
-    void* const r = dest;
-
     STLSOFT_ASSERT(0 == count || (NULL != dest && NULL != src));
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        char    dummyDest[1];
-        char    dummySrc[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-        if (NULL == src)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            src     =   &dummySrc[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, count);
     }
 
-    return r;
+    return dest;
 }
 
 /** Adaptation of memset() that, like STLSOFT_API_INTERNAL_memfns_memcpy(),
@@ -138,31 +113,14 @@ STLSOFT_API_INTERNAL_memfns_memset(
 ,   size_t      count
 )
 {
-    void* const r = dest;
-
     STLSOFT_ASSERT(0 == count || NULL != dest);
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        char    dummyDest[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_memset(dest, value, count);
     }
 
-    return r;
+    return dest;
 }
 
 /** Wide-character equivalent of STLSOFT_API_INTERNAL_memfns_memcpy().
@@ -184,39 +142,14 @@ STLSOFT_API_INTERNAL_memfns_wmemcpy(
 ,   size_t          count
 )
 {
-    wchar_t* const r = dest;
-
     STLSOFT_ASSERT(0 == count || (NULL != dest && NULL != src));
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        wchar_t dummyDest[1];
-        wchar_t dummySrc[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-        if (NULL == src)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            src     =   &dummySrc[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_wmemcpy(dest, src, count);
     }
 
-    return r;
+    return dest;
 }
 
 /** Wide-character equivalent of STLSOFT_API_INTERNAL_memfns_memset().
@@ -238,31 +171,14 @@ STLSOFT_API_INTERNAL_memfns_wmemset(
 ,   size_t      count
 )
 {
-    wchar_t* const r = dest;
-
     STLSOFT_ASSERT(0 == count || NULL != dest);
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        wchar_t dummyDest[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_wmemset(dest, value, count);
     }
 
-    return r;
+    return dest;
 }
 
 
