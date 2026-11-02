@@ -4,7 +4,7 @@
  * Purpose: Byte formatting functions.
  *
  * Created: 23rd July 2006
- * Updated: 30th March 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -454,7 +454,7 @@ format_bytes(
                 {
                     if (++lineIndex < numLines)
                     {
-                        STLSOFT_API_EXTERNAL_memfns_memcpy(buff, lineSeparator, cchLineSeparator * sizeof(char));
+                        STLSOFT_API_INTERNAL_memfns_memcpy(buff, lineSeparator, cchLineSeparator * sizeof(char));
 
                         buff += cchLineSeparator;
                     }
