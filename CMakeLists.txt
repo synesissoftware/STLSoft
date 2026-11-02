@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  27th October 2026
+# Updated:  2nd November 2026
 #
 # ######################################################################## #
 
@@ -233,13 +233,37 @@ endif(BUILD_TESTING)
 
 
 # ############################
+# cstring
+
+if(NOT (NO_CSTRING))
+
+	if(BUILD_TESTING)
+
+		set(cstring_REQUIRED_VERSION_ 4.0.19)
+
+		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
+
+		if(cstring_FOUND)
+
+			message("-- CMake package cstring found (version ${cstring_VERSION}; ${cstring_REQUIRED_VERSION_} requested)")
+
+			add_compile_definitions(
+				HAS_cstring
+				HAS_CSTRING
+			)
+		endif(cstring_FOUND)
+	endif(BUILD_TESTING)
+endif()
+
+
+# ############################
 # shwild
 
 if(NOT (NO_SHWILD))
 
 	if(BUILD_TESTING)
 
-		set(shwild_REQUIRED_VERSION_ 0.12.6)
+		set(shwild_REQUIRED_VERSION_ 0.12.15)
 
 		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
 
@@ -259,37 +283,13 @@ endif()
 
 
 # ############################
-# cstring
-
-if(NOT (NO_CSTRING))
-
-	if(BUILD_TESTING)
-
-		set(cstring_REQUIRED_VERSION_ 4.0)
-
-		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
-
-		if(cstring_FOUND)
-
-			message("-- CMake package cstring found (version ${cstring_VERSION}; ${cstring_REQUIRED_VERSION_} requested)")
-
-			add_compile_definitions(
-				HAS_cstring
-				HAS_CSTRING
-			)
-		endif(cstring_FOUND)
-	endif(BUILD_TESTING)
-endif()
-
-
-# ############################
 # UNIXem
 
 if((USE_UNIXEM) AND (WIN32))
 
 	if((BUILD_EXAMPLES) OR (BUILD_TESTING))
 
-		set(UNIXem_REQUIRED_VERSION_ 1.12.7)
+		set(UNIXem_REQUIRED_VERSION_ 1.14.2)
 
 		find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
@@ -316,7 +316,7 @@ if(USE_WOAD)
 
 	if(BUILD_TESTING)
 
-		set(woad_REQUIRED_VERSION_ 0.2.0)
+		set(woad_REQUIRED_VERSION_ 0.2.1)
 
 		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
@@ -337,7 +337,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28)
+	set(xTests_REQUIRED_VERSION_ 0.28.2)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

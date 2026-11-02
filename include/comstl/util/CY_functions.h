@@ -4,7 +4,7 @@
  * Purpose: CY helper functions.
  *
  * Created: 23rd August 2008
- * Updated: 11th October 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT     19
+# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,6 +144,8 @@ comstl_C_CY_compare(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+/** \deprecated Use comstl_C_CY_compare
+ */
 STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__CY_compare, comstl_C_CY_compare)
 STLSOFT_INLINE
 int
