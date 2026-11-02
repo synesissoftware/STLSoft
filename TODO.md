@@ -89,6 +89,7 @@ The enumerator-comma fix and the CMake program-name generator are in the tree (`
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 * [ ] Survey and improve API(External) functions;
 * [ ] Survey and improve API(Internal) functions;
+* [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
 * [ ] **include/stlsoft/conversion/byte_format_functions.hpp** known / suspected issues in `format_bytes()` (unit tests landed in **test.unit.stlsoft.conversion.byte_format_functions**; none of these is pinned by a test yet):
   * [x] ~~~the line-separator copy uses `STLSOFT_API_EXTERNAL_memfns_memcpy()` rather than `STLSOFT_API_INTERNAL_memfns_memcpy()`, so a `nullptr` `lineSeparator` with `groupsPerLine > 0` calls `memcpy(buff, nullptr, 0)` (the case the internal adaptation exists for)~~~ - ✅;
   * a `nullptr` `lineSeparator` with `groupsPerLine > 0` drops the group separator at each wrap point, so the last group of a line runs into the first of the next; the documented "no line separation is done" does not state this, so decide the intended behaviour, document it, and add tests;
