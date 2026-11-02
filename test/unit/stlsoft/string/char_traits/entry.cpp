@@ -161,10 +161,14 @@ static void TEST_compare_n_0()
 {
     TEST_INT_EQ(0, a_traits_t::compare("abc", "xyz", 0));
     TEST_INT_EQ(0, a_traits_t::compare(NULL, NULL, 0));
+    TEST_INT_EQ(0, a_traits_t::compare(NULL, "a", 0));
+    TEST_INT_EQ(0, a_traits_t::compare("a", NULL, 0));
     TEST_INT_EQ(0, a_traits_t::compare_max("abc", "xyz", 0));
 
     TEST_INT_EQ(0, w_traits_t::compare(L"abc", L"xyz", 0));
     TEST_INT_EQ(0, w_traits_t::compare(NULL, NULL, 0));
+    TEST_INT_EQ(0, w_traits_t::compare(NULL, L"a", 0));
+    TEST_INT_EQ(0, w_traits_t::compare(L"a", NULL, 0));
     TEST_INT_EQ(0, w_traits_t::compare_max(L"abc", L"xyz", 0));
 }
 

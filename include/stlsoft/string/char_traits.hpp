@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        104
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -963,6 +963,14 @@ stlsoft_char_traits<char>::compare(
 ,   ss_size_t   cch
 ) STLSOFT_NOEXCEPT
 {
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
+
+    if (0 == cch)
+    {
+        return 0;
+    }
+
     return STLSOFT_API_EXTERNAL_memfns_memcmp(s1, s2, cch);
 }
 
@@ -1067,6 +1075,14 @@ stlsoft_char_traits<wchar_t>::compare(
 ,   ss_size_t       cch
 ) STLSOFT_NOEXCEPT
 {
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
+
+    if (0 == cch)
+    {
+        return 0;
+    }
+
     return STLSOFT_API_EXTERNAL_memfns_wmemcmp(s1, s2, cch);
 }
 
