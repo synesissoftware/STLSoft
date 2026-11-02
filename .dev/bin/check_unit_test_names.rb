@@ -7,7 +7,7 @@
 #           labels.
 #
 # Created:  23rd August 2025
-# Updated:  30th October 2026
+# Updated:  2nd November 2026
 #
 # Author:   Matthew Wilson
 #
@@ -35,7 +35,7 @@ require 'xqsr3/extensions/string/map_option_string'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 3
-PROGRAM_VER_PATCH = 0
+PROGRAM_VER_PATCH = 1
 
 PROCESS_MODE_STRINGS = %w{
     [b]oth
@@ -199,7 +199,7 @@ directories.each do |directory|
 
       lines.select { |line| line =~ /XTESTS_START_RUNNER\w*\(/ }.each do |line|
 
-        if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*__FILE__\s*,/
+        if line =~ /XTESTS_START_RUNNER\w*\s*\(\s*__FILE__|runnerName\s*,/
 
           next
         elsif line =~ /XTESTS_START_RUNNER\w*\s*\(\s*"([^"]+)"/
