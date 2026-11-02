@@ -93,7 +93,7 @@ The enumerator-comma fix and the CMake program-name generator are in the tree (`
   * [x] ~~~the line-separator copy uses `STLSOFT_API_EXTERNAL_memfns_memcpy()` rather than `STLSOFT_API_INTERNAL_memfns_memcpy()`, so a `nullptr` `lineSeparator` with `groupsPerLine > 0` calls `memcpy(buff, nullptr, 0)` (the case the internal adaptation exists for)~~~ - ✅;
   * a `nullptr` `lineSeparator` with `groupsPerLine > 0` drops the group separator at each wrap point, so the last group of a line runs into the first of the next; the documented "no line separation is done" does not state this, so decide the intended behaviour, document it, and add tests;
   * `cb == 0` returns 0 without writing a terminating NUL (in `STLSOFT_DEBUG` builds the buffer is left filled with `'~'`), whereas every other sufficient-buffer path terminates; decide and document the contract, then test it;
-  * `format_hex_uint256()` and `format_hex_uint128()` declare `char buff[16]` (documentation only, but wrong: 64 and 32 characters are written);
+  * [x] ~~~`format_hex_uint256()` and `format_hex_uint128()` declare `char buff[16]` (documentation only, but wrong: 64 and 32 characters are written)~~~ - ✅;
   * the `STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF` path is untested, as are the `requestUppercaseAlpha` / `highByteFirst` variants, which `format_bytes()` hard-codes to `false`;
   * the exact-fit case (`size == cchBuff`) writes no terminating NUL, and the `size` arithmetic mixes `int` `groupsPerLine` with `ss_size_t` operands; review both for overflow and signedness warnings;
 * [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;

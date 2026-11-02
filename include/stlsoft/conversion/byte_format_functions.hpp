@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      41
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  14
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -213,13 +213,13 @@ inline void format_hex_uint64(char buff[16], ss_byte_t const* py, bool requestUp
 #endif /* 0 */
 }
 
-inline void format_hex_uint128(char buff[16], ss_byte_t const* py, bool requestUppercaseAlpha, bool highByteFirst)
+inline void format_hex_uint128(char buff[32], ss_byte_t const* py, bool requestUppercaseAlpha, bool highByteFirst)
 {
     format_hex_uint64(buff + (highByteFirst ? 16 : 0), py + (highByteFirst ? 0 : 8), requestUppercaseAlpha, highByteFirst);
     format_hex_uint64(buff + (highByteFirst ? 0 : 16), py + (highByteFirst ? 8 : 0), requestUppercaseAlpha, highByteFirst);
 }
 
-inline void format_hex_uint256(char buff[16], ss_byte_t const* py, bool requestUppercaseAlpha, bool highByteFirst)
+inline void format_hex_uint256(char buff[64], ss_byte_t const* py, bool requestUppercaseAlpha, bool highByteFirst)
 {
     format_hex_uint128(buff + (highByteFirst ? 32 : 0), py + (highByteFirst ? 0 : 16), requestUppercaseAlpha, highByteFirst);
     format_hex_uint128(buff + (highByteFirst ? 0 : 32), py + (highByteFirst ? 16 : 0), requestUppercaseAlpha, highByteFirst);
