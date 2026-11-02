@@ -96,6 +96,7 @@ The enumerator-comma fix and the CMake program-name generator are in the tree (`
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
 * [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
+* [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
 
 
 ### 1.11.7
