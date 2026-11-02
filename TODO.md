@@ -88,6 +88,58 @@ The enumerator-comma fix and the CMake program-name generator are in the tree (`
 * [x] ~~~**.dev/bin/generate_cmakelists.rb** 0.2.0 names generated programs by the xTests `__FILE__` rule (`--mode modern` default, `--mode legacy`, `--dry-run`) and was applied to the nineteen **examples** programs and the eleven performance / scratch targets that omitted a directory~~~ - ✅;
 * [x] ~~~Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions~~~ - ✅;
 * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
+* [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
+* [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
+* [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
+* [ ] C-API prefix follow-ups noticed while checking retained wrappers:
+  * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
+  * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
+  * [ ] Search the other Synesis projects for calls to the deprecated STLSoft C API spellings (`comstl__*`, `winstl__*`, `inetstl_c_*`, and the other `<subproject>__` / `<subproject>_c_` function names retained until 1.13) and retarget them to the `*_C_*` successors. Record any obsolete `#define` aliases separately; those stay until their own pass;
+* [ ] OLE-string C API, noticed while renaming `comstl_C_olestring_*`:
+  * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
+  * [ ] `comstl_C_olestring_destroy()` asserts `CoTaskMemDidAlloc` and therefore rejects NULL, while `CoTaskMemFree(NULL)` is a no-op. The assert text says "non-COM string";
+  * [ ] `comstl_C_olestring_create_w()` still branches on `STLSOFT_USING_SAFE_STR_FUNCTIONS` (`wcscpy` / `wcscpy_s`) rather than `stlsoft_C_wcscpy()`;
+* [ ] Error-info C API, noticed while renaming `comstl_C_set_error_info_*`:
+  * [ ] `comstl_C_set_error_info_w_()` stores each `ICreateErrorInfo` setter's `HRESULT` over the previous one. A later success hides an earlier failure, and `SetErrorInfo` then publishes the partial object;
+  * [ ] `comstl_C_set_error_info_a_helper_()` leaves its `CoTaskMemAlloc` block allocated when `MultiByteToWideChar` fails. `comstl_C_set_error_info_a_()` frees it; any other caller would leak;
+  * [ ] The C functions that take a help file reject NULL, and there is no public C function for description + source + GUID alone. The C++ three-argument `set_error_info` calls `comstl_C_set_error_info_a_` / `comstl_C_set_error_info_w_` directly;
+  * [ ] `comstl_C_EXCEPINFO_free()` asserts `NULL != pxi` and then dereferences `pxi`. A release build does not reject NULL;
+* [ ] COM task-memory, refcount, and stream C API, noticed while renaming:
+  * [ ] `comstl_C_CoTaskMemGetSize()` returns 0 when `CoGetMalloc` fails, the same value as a zero-length block. `comstl_C_CoTaskMemDidAlloc()` returns -1 in that case, the same value as "cannot determine". `comstl_C_olestring_destroy()` treats -1 as allocated (`0 != -1`) and still calls `CoTaskMemFree`;
+  * [ ] `comstl_C_addref()` asserts a non-null pointer and documents `\pre`. `comstl_C_release()` says the pointer cannot be null and does not assert, so a null pointer is a release-build crash;
+  * [ ] `comstl_C_get_stream_size()` does not document its pointers. A failed `Stat` leaves `*psize` unchanged. **refcount_functions.h** and **stream_functions.h** describe themselves as C++ only, while both publish a C API;
+* [ ] Unix-domain socket helper, noticed while renaming `inetstl_C_sockaddr_un_init_from_path`:
+  * [ ] A NULL `path` is treated as `""`. The contract does not say so;
+  * [ ] A path that exactly fills `sun_path` is stored without a terminating NUL. The public text only lists the too-long `EINVAL` cases, and the first `EINVAL` line has an unclosed backtick;
+  * [ ] The function documentation uses `@param` while the file block uses `\brief`;
+* [ ] Combo-box, list-box, and edit C API, noticed while renaming `winstl_C_combobox_*`, `winstl_C_listbox_*`, and `winstl_C_edit_*`:
+  * [ ] `winstl_C_combobox_gettext()` and `winstl_C_listbox_gettext()` are documented as the ambient encoding, but the buffer parameter is `LPCSTR`. `CB_GETLBTEXT` and `LB_GETTEXT` write through that pointer. The `_a` and `_w` forms take a non-const `ws_char_*_t*`. `winstl_C_combobox_gettext_w()` is also missing the `\ingroup` line its siblings have;
+  * [ ] The `combobox_insertstring` and `listbox_insertstring` string templates always call the ANSI overload. The `addstring` templates dispatch on the pointer type from `c_str_ptr`, so a wide string passed to an insert template is treated as ANSI;
+  * [ ] `winstl_C_edit_getline_a()` and `winstl_C_edit_getline_w()` store `cchBuffer` in the first word of `buffer` (the `EM_GETLINE` contract) and do not say so. The control does not NUL-terminate the line, and `cchBuffer` is cast to `int` with no check that the buffer is at least `sizeof(int)`;
+  * [ ] `winstl_C_combobox_getitemdata()` and `winstl_C_listbox_getitemdata()` return `ws_dword_t`, so `CB_ERR` / `LB_ERR` (`-1`) collides with a stored value of `0xFFFFFFFF`;
+* [ ] Control-creation C API, noticed while renaming `winstl_C_CreateStatic*`, `winstl_C_CreateEdit*`, and `winstl_C_CreateCheckbox*`:
+  * [ ] `winstl_C_setchildfont_()` discards both windows. The commented body would send `WM_SETFONT` to the parent, using the child's font, which is the reverse of giving the child the parent's font. Only the static creators call it;
+  * [ ] `winstl_C_CreateEditA()`, `winstl_C_CreateEditW()`, `winstl_C_CreateCheckboxA()`, and `winstl_C_CreateCheckboxW()` mask the caller style with `0xFFFF`, so high-word window styles such as `WS_BORDER`, `WS_VSCROLL`, `WS_GROUP`, and `WS_DISABLED` are discarded. Nothing in the contract says so;
+  * [ ] Every function's documentation comment is an empty brief plus `\ingroup`;
+  * [ ] The first `CreateEdit` template is missing the `(` after the function name, so that overload is ill-formed;
+  * [ ] The C++ `CreateStaticFrame` overloads default `id` to `-1`. `winstl_C_control_creation_functions_Id2HMENU_()` then passes that as `HMENU`, so the control id is `0xFFFF` rather than "no id";
+* [ ] Shell-memory C API, noticed while renaming `winstl_C_SHMem*`:
+  * [ ] `winstl_C_SHMemFree()` and `winstl_C_SHMemRealloc()` say they use the shell allocator to allocate a block;
+  * [ ] `winstl_C_SHMemGetSize()` returns 0 when `SHGetMalloc` fails, the same value as a zero-length block. `winstl_C_SHMemDidAlloc()` returns -1 in that case;
+  * [ ] `Alloc`, `Free`, and `Realloc` say "shell allocator". `GetSize`, `DidAlloc`, and `HeapMinimise` say "COM task allocator". All six call `SHGetMalloc`. `GetSize` also spells it "alloctor", and `HeapMinimise` says "as as per";
+  * [ ] When `winstl_C_SHMemRealloc()` fails it returns NULL and the original block is still allocated. The contract does not say so;
+* [ ] Window message and creation C API, noticed while renaming `winstl_C_SendMessage*` and `winstl_C_CreateWindow*`:
+  * [ ] None of `winstl_C_SendMessage()`, `winstl_C_SendMessageA()`, or `winstl_C_SendMessageW()` has a documentation comment. The C++ `SendMessageA` and `SendMessageW` overloads are compiled only when the namespace is enabled and the compiler is not Borland. There is no C++ unsuffixed `SendMessage`;
+  * [ ] None of the `winstl_C_CreateWindow*` functions has a documentation comment. The file brief says "Control creation functions"; the purpose line says window creation. The C++ `CreateWindowA`, `CreateWindowW`, `CreateWindow`, and `CreateWindowEx` overloads are commented out; only `CreateWindowExA` and `CreateWindowExW` are compiled;
+  * [x] **font_functions.h** says its purpose is "Error functions";
+* [ ] Font, GDI, menu, scale, and text-metrics C API, noticed while renaming:
+  * [ ] `winstl_C_get_LOGBRUSH()` names its brush `hpal`. `winstl_C_get_LOGFONT()` names its font `hpal`;
+  * [ ] The six `winstl_C_get_*` GDI functions, the three menu functions, the four `winstl_C_calc_*` functions, and the three `winstl_C_get_textmetrics*` functions have no documentation comments. `get_object_helper()` turns a zero `GetObject` result into a value-initialised description, so failure looks like an empty object;
+  * [ ] `winstl_C_IsMenuItemChecked()` returns FALSE when `GetMenuItemInfo` fails, the same result as an unchecked item. None of the three menu functions zeroes `MENUITEMINFO` before use;
+  * [ ] `winstl_C_get_textmetrics_a()` and `winstl_C_get_textmetrics_w()` return a zero `TEXTMETRIC` when `GetTextMetrics` fails. The contract does not say so;
+  * [ ] `winstl_C_calc_RECT_width()` and `winstl_C_calc_RECT_height()` return `right - left` and `bottom - top`, which are negative when the rectangle is inverted;
+  * [ ] The C++ `treeview_getchilditem`, `treeview_getrootitem`, and `treeview_getcaretitem` call `winstl_C_treeview_getnextitem` directly, rather than the C functions of the same role;
 
 
 ### 1.11.6

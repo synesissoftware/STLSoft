@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    12
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        177
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    13
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        178
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,7 +118,7 @@ namespace comstl_project
  */
 STLSOFT_INLINE
 LPOLESTR
-comstl__olestring_create_a(cs_char_a_t const* s)
+comstl_C_olestring_create_a(cs_char_a_t const* s)
 {
     LPOLESTR    posz;
 
@@ -158,7 +158,7 @@ comstl__olestring_create_a(cs_char_a_t const* s)
  */
 STLSOFT_INLINE
 LPOLESTR
-comstl__olestring_create_w(cs_char_w_t const* s)
+comstl_C_olestring_create_w(cs_char_w_t const* s)
 {
     LPOLESTR posz;
 
@@ -189,9 +189,9 @@ comstl__olestring_create_w(cs_char_w_t const* s)
  */
 STLSOFT_INLINE
 void
-comstl__olestring_destroy(LPOLESTR posz)
+comstl_C_olestring_destroy(LPOLESTR posz)
 {
-    COMSTL_MESSAGE_ASSERT("Invalid request to destroy non-COM string", 0 != comstl__CoTaskMemDidAlloc(posz));
+    COMSTL_MESSAGE_ASSERT("Invalid request to destroy non-COM string", 0 != comstl_C_CoTaskMemDidAlloc(posz));
 
     STLSOFT_NS_GLOBAL(CoTaskMemFree)(stlsoft_static_cast(LPVOID, posz));
 }
@@ -205,9 +205,9 @@ comstl__olestring_destroy(LPOLESTR posz)
  */
 STLSOFT_INLINE
 LPOLESTR
-comstl__olestring_dup(LPCOLESTR posz)
+comstl_C_olestring_dup(LPCOLESTR posz)
 {
-    return comstl__olestring_create_w(posz);
+    return comstl_C_olestring_create_w(posz);
 }
 
 
@@ -238,7 +238,7 @@ inline
 LPOLESTR
 olestring_create_a(cs_char_a_t const* s)
 {
-    return comstl__olestring_create_a(s);
+    return comstl_C_olestring_create_a(s);
 }
 
 /** Creates an OLE string from a Unicode string
@@ -252,7 +252,7 @@ inline
 LPOLESTR
 olestring_create_w(cs_char_w_t const* s)
 {
-    return comstl__olestring_create_w(s);
+    return comstl_C_olestring_create_w(s);
 }
 
 /** Creates an OLE string from an ANSI string
@@ -293,7 +293,7 @@ inline
 void
 olestring_destroy(LPOLESTR posz)
 {
-    comstl__olestring_destroy(posz);
+    comstl_C_olestring_destroy(posz);
 }
 
 /** Duplicates an OLE string
@@ -310,6 +310,57 @@ olestring_dup(LPCOLESTR posz)
     return olestring_create(posz);
 }
 #endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the comstl_C_olestring_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use comstl_C_olestring_create_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__olestring_create_a, comstl_C_olestring_create_a)
+STLSOFT_INLINE
+LPOLESTR
+comstl__olestring_create_a(cs_char_a_t const* s)
+{
+    return comstl_C_olestring_create_a(s);
+}
+
+/** \deprecated Use comstl_C_olestring_create_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__olestring_create_w, comstl_C_olestring_create_w)
+STLSOFT_INLINE
+LPOLESTR
+comstl__olestring_create_w(cs_char_w_t const* s)
+{
+    return comstl_C_olestring_create_w(s);
+}
+
+/** \deprecated Use comstl_C_olestring_destroy
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__olestring_destroy, comstl_C_olestring_destroy)
+STLSOFT_INLINE
+void
+comstl__olestring_destroy(LPOLESTR posz)
+{
+    comstl_C_olestring_destroy(posz);
+}
+
+/** \deprecated Use comstl_C_olestring_dup
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__olestring_dup, comstl_C_olestring_dup)
+STLSOFT_INLINE
+LPOLESTR
+comstl__olestring_dup(LPCOLESTR posz)
+{
+    return comstl_C_olestring_dup(posz);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

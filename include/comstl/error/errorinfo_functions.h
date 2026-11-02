@@ -4,11 +4,11 @@
  * Purpose: Error info functions.
  *
  * Created: 5th February 2004
- * Updated: 28th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 13
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     64
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 14
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,7 +118,7 @@ namespace comstl_project
 
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_w_(
+comstl_C_set_error_info_w_(
     cs_char_w_t const*  description
 ,   cs_char_w_t const*  source
 ,   GUID const*         guid
@@ -183,7 +183,7 @@ comstl__set_error_info_w_(
 
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_a_helper_(
+comstl_C_set_error_info_a_helper_(
     cs_char_a_t const*  s_a
 ,   cs_char_w_t**       ps_w
 )
@@ -225,7 +225,7 @@ comstl__set_error_info_a_helper_(
 
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_a_(
+comstl_C_set_error_info_a_(
     cs_char_a_t const*  description
 ,   cs_char_a_t const*  source
 ,   GUID const*         guid
@@ -240,20 +240,20 @@ comstl__set_error_info_a_(
 
     if (SUCCEEDED(hr))
     {
-        hr = comstl__set_error_info_a_helper_(description, &description_w);
+        hr = comstl_C_set_error_info_a_helper_(description, &description_w);
     }
     if (SUCCEEDED(hr))
     {
-        hr = comstl__set_error_info_a_helper_(source, &source_w);
+        hr = comstl_C_set_error_info_a_helper_(source, &source_w);
     }
     if (SUCCEEDED(hr))
     {
-        hr = comstl__set_error_info_a_helper_(helpFile, &helpFile_w);
+        hr = comstl_C_set_error_info_a_helper_(helpFile, &helpFile_w);
     }
 
     if (SUCCEEDED(hr))
     {
-        hr = comstl__set_error_info_w_(description_w, source_w, guid, helpFile_w, helpContext);
+        hr = comstl_C_set_error_info_w_(description_w, source_w, guid, helpFile_w, helpContext);
     }
 
     STLSOFT_NS_GLOBAL(CoTaskMemFree)(description_w);
@@ -272,11 +272,11 @@ comstl__set_error_info_a_(
  */
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_description_w(cs_char_w_t const* description)
+comstl_C_set_error_info_description_w(cs_char_w_t const* description)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
 
-    return comstl__set_error_info_w_(description, NULL, NULL, NULL, NULL);
+    return comstl_C_set_error_info_w_(description, NULL, NULL, NULL, NULL);
 }
 
 /** [C] Sets the description of the current error object to the given ANSI string
@@ -287,11 +287,11 @@ comstl__set_error_info_description_w(cs_char_w_t const* description)
  */
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_description_a(cs_char_a_t const* description)
+comstl_C_set_error_info_description_a(cs_char_a_t const* description)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
 
-    return comstl__set_error_info_a_(description, NULL, NULL, NULL, NULL);
+    return comstl_C_set_error_info_a_(description, NULL, NULL, NULL, NULL);
 }
 
 /** [C] Sets the description and source of the current error object to the given Unicode strings
@@ -302,7 +302,7 @@ comstl__set_error_info_description_a(cs_char_a_t const* description)
  */
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_description_and_source_w(
+comstl_C_set_error_info_description_and_source_w(
     cs_char_w_t const*  description
 ,   cs_char_w_t const*  source
 )
@@ -310,7 +310,7 @@ comstl__set_error_info_description_and_source_w(
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
 
-    return comstl__set_error_info_w_(description, source, NULL, NULL, NULL);
+    return comstl_C_set_error_info_w_(description, source, NULL, NULL, NULL);
 }
 
 /** [C] Sets the description and source of the current error object to the given ANSI strings
@@ -321,7 +321,7 @@ comstl__set_error_info_description_and_source_w(
  */
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_description_and_source_a(
+comstl_C_set_error_info_description_and_source_a(
     cs_char_a_t const*  description
 ,   cs_char_a_t const*  source
 )
@@ -329,7 +329,7 @@ comstl__set_error_info_description_and_source_a(
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
 
-    return comstl__set_error_info_a_(description, source, NULL, NULL, NULL);
+    return comstl_C_set_error_info_a_(description, source, NULL, NULL, NULL);
 }
 
 /** [C] Sets the description, source, interface ID and help information of the current error object
@@ -340,7 +340,7 @@ comstl__set_error_info_description_and_source_a(
  */
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_w(
+comstl_C_set_error_info_w(
     cs_char_w_t const*  description
 ,   cs_char_w_t const*  source
 ,   REFGUID             guid
@@ -352,7 +352,7 @@ comstl__set_error_info_w(
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
     COMSTL_MESSAGE_ASSERT("error info help file string cannot be NULL", NULL != helpFile);
 
-    return comstl__set_error_info_w_(description, source, COMSTL_REF_2_PTR(guid), helpFile, &helpContext);
+    return comstl_C_set_error_info_w_(description, source, COMSTL_REF_2_PTR(guid), helpFile, &helpContext);
 }
 
 /** [C] Sets the description, source, interface ID and help information of the current error object
@@ -363,7 +363,7 @@ comstl__set_error_info_w(
  */
 STLSOFT_INLINE
 HRESULT
-comstl__set_error_info_a(
+comstl_C_set_error_info_a(
     cs_char_a_t const*  description
 ,   cs_char_a_t const*  source
 ,   REFGUID             guid
@@ -375,7 +375,7 @@ comstl__set_error_info_a(
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
     COMSTL_MESSAGE_ASSERT("error info help file string cannot be NULL", NULL != helpFile);
 
-    return comstl__set_error_info_a_(description, source, COMSTL_REF_2_PTR(guid), helpFile, &helpContext);
+    return comstl_C_set_error_info_a_(description, source, COMSTL_REF_2_PTR(guid), helpFile, &helpContext);
 }
 
 
@@ -403,7 +403,7 @@ inline
 HRESULT
 set_error_info(cs_char_a_t const* description)
 {
-    return comstl__set_error_info_description_a(description);
+    return comstl_C_set_error_info_description_a(description);
 }
 
 /** Sets the description of the current error object to the given Unicode string
@@ -416,7 +416,7 @@ inline
 HRESULT
 set_error_info(cs_char_w_t const* description)
 {
-    return comstl__set_error_info_description_w(description);
+    return comstl_C_set_error_info_description_w(description);
 }
 
 /** Sets the description and source of the current error object to the given ANSI string
@@ -433,7 +433,7 @@ set_error_info(
 ,   cs_char_a_t const*  source
 )
 {
-    return comstl__set_error_info_description_and_source_a(description, source);
+    return comstl_C_set_error_info_description_and_source_a(description, source);
 }
 
 /** Sets the description and source of the current error object to the given Unicode string
@@ -450,7 +450,7 @@ set_error_info(
 ,   cs_char_w_t const*  source
 )
 {
-    return comstl__set_error_info_description_and_source_w(description, source);
+    return comstl_C_set_error_info_description_and_source_w(description, source);
 }
 
 /** Sets the description, source and GUID of the current error object to the given ANSI string
@@ -469,7 +469,7 @@ set_error_info(
 ,   REFGUID             guid
 )
 {
-    return comstl__set_error_info_a_(description, source, &guid, NULL, NULL);
+    return comstl_C_set_error_info_a_(description, source, &guid, NULL, NULL);
 }
 
 /** Sets the description, source and GUID of the current error object to the given Unicode string
@@ -488,9 +488,144 @@ set_error_info(
 ,   REFGUID             guid
 )
 {
-    return comstl__set_error_info_w_(description, source, &guid, NULL, NULL);
+    return comstl_C_set_error_info_w_(description, source, &guid, NULL, NULL);
 }
 #endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the comstl_C_set_error_info_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use comstl_C_set_error_info_w_
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_w_, comstl_C_set_error_info_w_)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_w_(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+,   GUID const*         guid
+,   cs_char_w_t const*  helpFile
+,   cs_dword_t const*   helpContext
+)
+{
+    return comstl_C_set_error_info_w_(description, source, guid, helpFile, helpContext);
+}
+
+/** \deprecated Use comstl_C_set_error_info_a_helper_
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_a_helper_, comstl_C_set_error_info_a_helper_)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_a_helper_(
+    cs_char_a_t const*  s_a
+,   cs_char_w_t**       ps_w
+)
+{
+    return comstl_C_set_error_info_a_helper_(s_a, ps_w);
+}
+
+/** \deprecated Use comstl_C_set_error_info_a_
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_a_, comstl_C_set_error_info_a_)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_a_(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+,   GUID const*         guid
+,   cs_char_a_t const*  helpFile
+,   cs_dword_t const*   helpContext
+)
+{
+    return comstl_C_set_error_info_a_(description, source, guid, helpFile, helpContext);
+}
+
+/** \deprecated Use comstl_C_set_error_info_description_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_description_w, comstl_C_set_error_info_description_w)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_w(cs_char_w_t const* description)
+{
+    return comstl_C_set_error_info_description_w(description);
+}
+
+/** \deprecated Use comstl_C_set_error_info_description_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_description_a, comstl_C_set_error_info_description_a)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_a(cs_char_a_t const* description)
+{
+    return comstl_C_set_error_info_description_a(description);
+}
+
+/** \deprecated Use comstl_C_set_error_info_description_and_source_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_description_and_source_w, comstl_C_set_error_info_description_and_source_w)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_and_source_w(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+)
+{
+    return comstl_C_set_error_info_description_and_source_w(description, source);
+}
+
+/** \deprecated Use comstl_C_set_error_info_description_and_source_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_description_and_source_a, comstl_C_set_error_info_description_and_source_a)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_and_source_a(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+)
+{
+    return comstl_C_set_error_info_description_and_source_a(description, source);
+}
+
+/** \deprecated Use comstl_C_set_error_info_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_w, comstl_C_set_error_info_w)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_w(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+,   REFGUID             guid
+,   cs_char_w_t const*  helpFile
+,   cs_dword_t          helpContext
+)
+{
+    return comstl_C_set_error_info_w(description, source, guid, helpFile, helpContext);
+}
+
+/** \deprecated Use comstl_C_set_error_info_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__set_error_info_a, comstl_C_set_error_info_a)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_a(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+,   REFGUID             guid
+,   cs_char_a_t const*  helpFile
+,   cs_dword_t          helpContext
+)
+{
+    return comstl_C_set_error_info_a(description, source, guid, helpFile, helpContext);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
