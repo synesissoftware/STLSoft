@@ -18,6 +18,7 @@
   - [1.11.10](#11110)
   - [1.11.11](#11111)
   - [1.11.12](#11112)
+  - [1.11.13](#11113)
   - [Cross-publish to STLSoft-1.11](#cross-publish-to-stlsoft-111)
 - [1.12](#112)
 - [1.13](#113)
@@ -83,13 +84,26 @@ Released 29th October 2026. `STLSOFT_USING_SAFE_STR_FUNCTIONS` worker abstractio
 
 The enumerator-comma fix, the CMake program-name generator, the secure-CRT worker functions, the `STLSOFT_API_EXTERNAL_*` / `STLSOFT_API_INTERNAL_*` revisions, and the `<subproject>_C_` renames are in the tree. The items below remain.
 
-* [ ] Verify every `STLSOFT_SUPPRESS_UNUSED` of a destination-capacity parameter (`cchDest`, `cchSrc`, and the same pattern) before **1.11.5** is finished. For each site, decide whether that parameter belongs in the contract or the call is passing a size the callee ignores. Start with the new workers in **include/stlsoft/string/encoding/** (`stlsoft_C_mbstowcs`, `stlsoft_C_wcstombs`) and **include/stlsoft/string/c_string/** (`stlsoft_C_wcscpy`, `stlsoft_C_wcsncpy`) and then the same pattern in every other SIS C/C++ project;
+* [x] ~~~Verify every `STLSOFT_SUPPRESS_UNUSED` of a destination-capacity parameter (`cchDest`, `cchSrc`, and the same pattern) before **1.11.5** is finished. For each site, decide whether that parameter belongs in the contract or the call is passing a size the callee ignores. Start with the new workers in **include/stlsoft/string/encoding/** (`stlsoft_C_mbstowcs`, `stlsoft_C_wcstombs`) and **include/stlsoft/string/c_string/** (`stlsoft_C_wcscpy`, `stlsoft_C_wcsncpy`) and then the same pattern in every other SIS C/C++ project~~~ - ✅;
 * [x] ~~~`string_concatenation_flags` enumerators arrayed (`None`, then `, AlwaysSeparate`) to avoid a trailing comma~~~ - ✅;
 * [x] ~~~**.dev/bin/generate_cmakelists.rb** 0.2.0 names generated programs by the xTests `__FILE__` rule (`--mode modern` default, `--mode legacy`, `--dry-run`) and was applied to the nineteen **examples** programs and the eleven performance / scratch targets that omitted a directory~~~ - ✅;
 * [x] ~~~Find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract call sites to worker functions~~~ - ✅;
-* [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
-* [ ] Survey and improve API(External) functions;
-* [ ] Survey and improve API(Internal) functions;
+* [x] ~~~`platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**~~~ - ✅;
+* [x] ~~~Survey and improve API(External) functions~~~ - ✅;
+* [x] ~~~Survey and improve API(Internal) functions~~~ - ✅;
+
+
+### 1.11.6
+
+* [ ] Existing test consistency (deep analysis);
+* [ ] Complete coverage of currently tested components (improvement / completion);
+* [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
+* [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
+
+
+### 1.11.7
+
 * [ ] **include/stlsoft/conversion/byte_format_functions.hpp** known / suspected issues in `format_bytes()` (unit tests landed in **test.unit.stlsoft.conversion.byte_format_functions**; none of these is pinned by a test yet):
   * [x] ~~~the line-separator copy uses `STLSOFT_API_EXTERNAL_memfns_memcpy()` rather than `STLSOFT_API_INTERNAL_memfns_memcpy()`, so a `nullptr` `lineSeparator` with `groupsPerLine > 0` calls `memcpy(buff, nullptr, 0)` (the case the internal adaptation exists for)~~~ - ✅;
   * a `nullptr` `lineSeparator` with `groupsPerLine > 0` drops the group separator at each wrap point, so the last group of a line runs into the first of the next; the documented "no line separation is done" does not state this, so decide the intended behaviour, document it, and add tests;
@@ -104,7 +118,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] C-API prefix follow-ups noticed while checking retained wrappers:
   * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
   * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
-  * [ ] Search the other Synesis projects for calls to the deprecated STLSoft C API spellings (`comstl__*`, `winstl__*`, `inetstl_c_*`, and the other `<subproject>__` / `<subproject>_c_` function names retained until 1.13) and retarget them to the `*_C_*` successors. Record any obsolete `#define` aliases separately; those stay until their own pass;
+  * [x] ~~~Search the other Synesis projects for calls to the deprecated STLSoft C API spellings (`comstl__*`, `winstl__*`, `inetstl_c_*`, and the other `<subproject>__` / `<subproject>_c_` function names retained until 1.13) and retarget them to the `*_C_*` successors. Record any obsolete `#define` aliases separately; those stay until their own pass~~~ - ✅ (no other project uses the obsolete macros; **cstring** calls `comstl_C_CoTaskMemGetSize`, **recls** calls `inetstl_C_sockaddr_un_init_from_path`);
 * [ ] OLE-string C API, noticed while renaming `comstl_C_olestring_*`:
   * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
   * [ ] `comstl_C_olestring_destroy()` asserts `CoTaskMemDidAlloc` and therefore rejects NULL, while `CoTaskMemFree(NULL)` is a no-op. The assert text says "non-COM string";
@@ -123,7 +137,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] A path that exactly fills `sun_path` is stored without a terminating NUL. The public text only lists the too-long `EINVAL` cases, and the first `EINVAL` line has an unclosed backtick;
   * [ ] The function documentation uses `@param` while the file block uses `\brief`;
 * [ ] Combo-box, list-box, and edit C API, noticed while renaming `winstl_C_combobox_*`, `winstl_C_listbox_*`, and `winstl_C_edit_*`:
-  * [ ] `winstl_C_combobox_gettext()` and `winstl_C_listbox_gettext()` are documented as the ambient encoding, but the buffer parameter is `LPCSTR`. `CB_GETLBTEXT` and `LB_GETTEXT` write through that pointer. The `_a` and `_w` forms take a non-const `ws_char_*_t*`. `winstl_C_combobox_gettext_w()` is also missing the `\ingroup` line its siblings have;
+  * [ ] `winstl_C_combobox_gettext()` and `winstl_C_listbox_gettext()` are documented as the ambient encoding, but the buffer parameter is `LPCSTR`. `CB_GETLBTEXT` and `LB_GETTEXT` write through that pointer. The `_a` and `_w` forms take a non-const `ws_char_*_t*`;
   * [ ] The `combobox_insertstring` and `listbox_insertstring` string templates always call the ANSI overload. The `addstring` templates dispatch on the pointer type from `c_str_ptr`, so a wide string passed to an insert template is treated as ANSI;
   * [ ] `winstl_C_edit_getline_a()` and `winstl_C_edit_getline_w()` store `cchBuffer` in the first word of `buffer` (the `EM_GETLINE` contract) and do not say so. The control does not NUL-terminate the line, and `cchBuffer` is cast to `int` with no check that the buffer is at least `sizeof(int)`;
   * [ ] `winstl_C_combobox_getitemdata()` and `winstl_C_listbox_getitemdata()` return `ws_dword_t`, so `CB_ERR` / `LB_ERR` (`-1`) collides with a stored value of `0xFFFFFFFF`;
@@ -141,7 +155,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] Window message and creation C API, noticed while renaming `winstl_C_SendMessage*` and `winstl_C_CreateWindow*`:
   * [ ] None of `winstl_C_SendMessage()`, `winstl_C_SendMessageA()`, or `winstl_C_SendMessageW()` has a documentation comment. The C++ `SendMessageA` and `SendMessageW` overloads are compiled only when the namespace is enabled and the compiler is not Borland. There is no C++ unsuffixed `SendMessage`;
   * [ ] None of the `winstl_C_CreateWindow*` functions has a documentation comment. The file brief says "Control creation functions"; the purpose line says window creation. The C++ `CreateWindowA`, `CreateWindowW`, `CreateWindow`, and `CreateWindowEx` overloads are commented out; only `CreateWindowExA` and `CreateWindowExW` are compiled;
-  * [x] **font_functions.h** says its purpose is "Error functions";
+  * [x] ~~~**font_functions.h** said its purpose was "Error functions"~~~ - ✅ (now "Window font functions");
 * [ ] Font, GDI, menu, scale, and text-metrics C API, noticed while renaming:
   * [ ] `winstl_C_get_LOGBRUSH()` names its brush `hpal`. `winstl_C_get_LOGFONT()` names its font `hpal`;
   * [ ] The six `winstl_C_get_*` GDI functions, the three menu functions, the four `winstl_C_calc_*` functions, and the three `winstl_C_get_textmetrics*` functions have no documentation comments. `get_object_helper()` turns a zero `GetObject` result into a value-initialised description, so failure looks like an empty object;
@@ -151,16 +165,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] The C++ `treeview_getchilditem`, `treeview_getrootitem`, and `treeview_getcaretitem` call `winstl_C_treeview_getnextitem` directly, rather than the C functions of the same role;
 
 
-### 1.11.6
-
-* [ ] Existing test consistency (deep analysis);
-* [ ] Complete coverage of currently tested components (improvement / completion);
-* [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
-* [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
-
-
-### 1.11.7
+### 1.11.8
 
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
@@ -169,14 +174,14 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] All \pre => precondition enforcements;
 
 
-### 1.11.8
+### 1.11.9
 
 * [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
 * [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
 * [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
 
 
-### 1.11.9
+### 1.11.10
 
 * [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, and the unit tests. Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
 * [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
@@ -192,21 +197,21 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
 
 
-### 1.11.10
+### 1.11.11
 
 * [ ] Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only);
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
 * [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
 
 
-### 1.11.11
+### 1.11.12
 
 * [ ] Deeper API documentation on top of the Doxygen build that landed in **1.11.1** (**Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
 * [ ] Remove defunct compilers;
 * [ ] Remove **WTL**;
 
 
-### 1.11.12
+### 1.11.13
 
 Misc:
 * [x] ~~~Bring in the `memchr` / `memcmp` and ASCII case-fold performance work for `strnchr`, `strnicmp`, `strnistrn`, and `strnstrn`, plus **test.performance.stlsoft.string.c_string**~~~ - ✅;
