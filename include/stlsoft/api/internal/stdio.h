@@ -71,6 +71,12 @@
 # define STLSOFT_INCL_H_STDIO
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+# ifndef STLSOFT_INCL_H_WCHAR
+#  define STLSOFT_INCL_H_WCHAR
+#  include <wchar.h>
+# endif /* !STLSOFT_INCL_H_WCHAR */
+#endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,6 +119,32 @@ STLSOFT_API_INTERNAL_stdio_fopen_m(
     return (NULL == *ph) ? errno : 0;
 #endif
 }
+
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+
+STLSOFT_INLINE
+int
+STLSOFT_API_INTERNAL_stdio_fopen_w(
+    wchar_t const*  path
+,   wchar_t const*  mode
+,   FILE**          ph
+)
+{
+    STLSOFT_ASSERT(NULL != path);
+    STLSOFT_ASSERT(NULL != mode);
+    STLSOFT_ASSERT(NULL != ph);
+
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+
+    return STLSOFT_NS_GLOBAL_(_wfopen_s)(ph, path, mode);
+#else // }
+    *ph = STLSOFT_NS_GLOBAL_(_wfopen)(path, mode);
+
+    return (NULL == *ph) ? errno : 0;
+#endif
+}
+
+#endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
 /* /////////////////////////////////////////////////////////////////////////
