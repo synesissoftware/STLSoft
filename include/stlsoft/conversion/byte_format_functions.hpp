@@ -215,14 +215,14 @@ inline void format_hex_uint64(char buff[16], ss_byte_t const* py, bool requestUp
 
 inline void format_hex_uint128(char buff[32], ss_byte_t const* py, bool requestUppercaseAlpha, bool highByteFirst)
 {
-    format_hex_uint64(buff + (highByteFirst ? 16 : 0), py + (highByteFirst ? 0 : 8), requestUppercaseAlpha, highByteFirst);
-    format_hex_uint64(buff + (highByteFirst ? 0 : 16), py + (highByteFirst ? 8 : 0), requestUppercaseAlpha, highByteFirst);
+    format_hex_uint64(buff + 0, py + (highByteFirst ? 0 : 8), requestUppercaseAlpha, highByteFirst);
+    format_hex_uint64(buff + 16, py + (highByteFirst ? 8 : 0), requestUppercaseAlpha, highByteFirst);
 }
 
 inline void format_hex_uint256(char buff[64], ss_byte_t const* py, bool requestUppercaseAlpha, bool highByteFirst)
 {
-    format_hex_uint128(buff + (highByteFirst ? 32 : 0), py + (highByteFirst ? 0 : 16), requestUppercaseAlpha, highByteFirst);
-    format_hex_uint128(buff + (highByteFirst ? 0 : 32), py + (highByteFirst ? 16 : 0), requestUppercaseAlpha, highByteFirst);
+    format_hex_uint128(buff + 0, py + (highByteFirst ? 0 : 16), requestUppercaseAlpha, highByteFirst);
+    format_hex_uint128(buff + 32, py + (highByteFirst ? 16 : 0), requestUppercaseAlpha, highByteFirst);
 }
 # endif /* !STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
 

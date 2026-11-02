@@ -92,8 +92,8 @@ namespace {
     static void test_format_hex_impl_uint16_CASE_AND_ORDER();
     static void test_format_hex_impl_uint32_CASE_AND_ORDER();
     static void test_format_hex_impl_uint64_CASE_AND_ORDER();
-    static void test_format_hex_impl_uint128_CASE_LOW_BYTE_FIRST();
-    static void test_format_hex_impl_uint256_CASE_LOW_BYTE_FIRST();
+    static void test_format_hex_impl_uint128_CASE_AND_ORDER();
+    static void test_format_hex_impl_uint256_CASE_AND_ORDER();
 #endif /* !STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
 } // anonymous namespace
 
@@ -163,8 +163,8 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_format_hex_impl_uint16_CASE_AND_ORDER);
         XTESTS_RUN_CASE(test_format_hex_impl_uint32_CASE_AND_ORDER);
         XTESTS_RUN_CASE(test_format_hex_impl_uint64_CASE_AND_ORDER);
-        XTESTS_RUN_CASE(test_format_hex_impl_uint128_CASE_LOW_BYTE_FIRST);
-        XTESTS_RUN_CASE(test_format_hex_impl_uint256_CASE_LOW_BYTE_FIRST);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint128_CASE_AND_ORDER);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint256_CASE_AND_ORDER);
 #endif /* !STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
 
 #ifdef STLSOFT_USE_XCOVER
@@ -641,24 +641,32 @@ static void test_format_hex_impl_uint64_CASE_AND_ORDER()
         "0123456789ABCDEF");
 }
 
-static void test_format_hex_impl_uint128_CASE_LOW_BYTE_FIRST()
+static void test_format_hex_impl_uint128_CASE_AND_ORDER()
 {
     stlsoft::byte_t const bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
 
     FORMAT_HEX_EXPECT_(impl_::format_hex_uint128, 32, bytes, false, false,
         "0f0e0d0c0b0a09080706050403020100");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint128, 32, bytes, false, true,
+        "000102030405060708090a0b0c0d0e0f");
     FORMAT_HEX_EXPECT_(impl_::format_hex_uint128, 32, bytes, true, false,
         "0F0E0D0C0B0A09080706050403020100");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint128, 32, bytes, true, true,
+        "000102030405060708090A0B0C0D0E0F");
 }
 
-static void test_format_hex_impl_uint256_CASE_LOW_BYTE_FIRST()
+static void test_format_hex_impl_uint256_CASE_AND_ORDER()
 {
     stlsoft::byte_t const bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
 
     FORMAT_HEX_EXPECT_(impl_::format_hex_uint256, 64, bytes, false, false,
         "1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint256, 64, bytes, false, true,
+        "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
     FORMAT_HEX_EXPECT_(impl_::format_hex_uint256, 64, bytes, true, false,
         "1F1E1D1C1B1A191817161514131211100F0E0D0C0B0A09080706050403020100");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint256, 64, bytes, true, true,
+        "000102030405060708090A0B0C0D0E0F101112131415161718191A1B1C1D1E1F");
 }
 
 # undef FORMAT_HEX_EXPECT_
