@@ -14,7 +14,7 @@
  */
 
 // #define STLSOFT_DEBUG
-// #define STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
+// #define STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF   // defined by CMake for test.unit.stlsoft.conversion.byte_format_functions.sprintf
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,6 +86,15 @@ namespace {
     static void test_format_bytes_BUFFER_EXACT_NO_NUL();
     static void test_format_bytes_BUFFER_TOO_SMALL_RETURNS_REQUIRED_SIZE();
     static void test_format_bytes_NULL_BUFFER_QUERIES_REQUIRED_SIZE();
+
+#ifndef STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
+    static void test_format_hex_impl_uint8_CASE();
+    static void test_format_hex_impl_uint16_CASE_AND_ORDER();
+    static void test_format_hex_impl_uint32_CASE_AND_ORDER();
+    static void test_format_hex_impl_uint64_CASE_AND_ORDER();
+    static void test_format_hex_impl_uint128_CASE_LOW_BYTE_FIRST();
+    static void test_format_hex_impl_uint256_CASE_LOW_BYTE_FIRST();
+#endif /* !STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
 } // anonymous namespace
 
 
@@ -98,9 +107,15 @@ int main(int argc, char *argv[])
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
+#ifdef STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
+    char const* const runnerName = "test.unit.stlsoft.conversion.byte_format_functions.sprintf";
+#else /* ? STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
+    char const* const runnerName = "test.unit.stlsoft.conversion.byte_format_functions";
+#endif /* STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
+
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.byte_format_functions", verbosity))
+    if (XTESTS_START_RUNNER(runnerName, verbosity))
     {
 #ifdef STLSOFT_USE_XCOVER
         xcover::init();
@@ -142,6 +157,15 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_format_bytes_BUFFER_EXACT_NO_NUL);
         XTESTS_RUN_CASE(test_format_bytes_BUFFER_TOO_SMALL_RETURNS_REQUIRED_SIZE);
         XTESTS_RUN_CASE(test_format_bytes_NULL_BUFFER_QUERIES_REQUIRED_SIZE);
+
+#ifndef STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
+        XTESTS_RUN_CASE(test_format_hex_impl_uint8_CASE);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint16_CASE_AND_ORDER);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint32_CASE_AND_ORDER);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint64_CASE_AND_ORDER);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint128_CASE_LOW_BYTE_FIRST);
+        XTESTS_RUN_CASE(test_format_hex_impl_uint256_CASE_LOW_BYTE_FIRST);
+#endif /* !STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
 
 #ifdef STLSOFT_USE_XCOVER
         XCOVER_REPORT_FILE_COVERAGE("*stlsoft*/byte_format_functions.hpp", NULL);
@@ -535,6 +559,108 @@ static void test_format_bytes_NULL_BUFFER_QUERIES_REQUIRED_SIZE()
     TEST_INT_EQ(17, static_cast<int>(stlsoft::format_bytes(&bytes[0], sizeof(bytes), NULL, 0, 4, " ")));
     TEST_INT_EQ(14, static_cast<int>(stlsoft::format_bytes(&bytes[0], sizeof(bytes), NULL, 0, 2, " ")));
 }
+
+#ifndef STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
+
+# define FORMAT_HEX_EXPECT_(fn_, num_chars_, bytes_, upper_, high_first_, expected_) \
+    \
+    do \
+    { \
+        char        sz_[(num_chars_) + 1]; \
+        std::size_t i_; \
+        \
+        for (i_ = 0; i_ != STLSOFT_NUM_ELEMENTS(sz_); ++i_) \
+        { \
+            sz_[i_] = '#'; \
+        } \
+        \
+        fn_(&sz_[0], &(bytes_)[0], (upper_), (high_first_)); \
+        \
+        TEST_MS_EQ_N((expected_), sz_, (num_chars_)); \
+        TEST_CHAR_EQ('#', sz_[num_chars_]); \
+    } while (0)
+
+namespace impl_ = ::stlsoft::conversion::format::impl;
+
+static void test_format_hex_impl_uint8_CASE()
+{
+    stlsoft::byte_t const bytes[] = { 0xab };
+    char sz[3] = { '#', '#', '#' };
+
+    impl_::format_hex_uint8(&sz[0], &bytes[0], false);
+    TEST_MS_EQ_N("ab", sz, 2);
+    TEST_CHAR_EQ('#', sz[2]);
+
+    impl_::format_hex_uint8(&sz[0], &bytes[0], true);
+    TEST_MS_EQ_N("AB", sz, 2);
+    TEST_CHAR_EQ('#', sz[2]);
+}
+
+static void test_format_hex_impl_uint16_CASE_AND_ORDER()
+{
+    stlsoft::byte_t const bytes[] = { 0x12, 0xab };
+
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint16, 4, bytes, false, false,
+        "ab12");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint16, 4, bytes, false, true,
+        "12ab");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint16, 4, bytes, true, false,
+        "AB12");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint16, 4, bytes, true, true,
+        "12AB");
+}
+
+static void test_format_hex_impl_uint32_CASE_AND_ORDER()
+{
+    stlsoft::byte_t const bytes[] = { 0x01, 0x23, 0xab, 0xcd };
+
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint32, 8, bytes, false, false,
+        "cdab2301");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint32, 8, bytes, false, true,
+        "0123abcd");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint32, 8, bytes, true, false,
+        "CDAB2301");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint32, 8, bytes, true, true,
+        "0123ABCD");
+}
+
+static void test_format_hex_impl_uint64_CASE_AND_ORDER()
+{
+    stlsoft::byte_t const bytes[] = { 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef };
+
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint64, 16, bytes, false, false,
+        "efcdab8967452301");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint64, 16, bytes, false, true,
+        "0123456789abcdef");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint64, 16, bytes, true, false,
+        "EFCDAB8967452301");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint64, 16, bytes, true, true,
+        "0123456789ABCDEF");
+}
+
+static void test_format_hex_impl_uint128_CASE_LOW_BYTE_FIRST()
+{
+    stlsoft::byte_t const bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
+
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint128, 32, bytes, false, false,
+        "0f0e0d0c0b0a09080706050403020100");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint128, 32, bytes, true, false,
+        "0F0E0D0C0B0A09080706050403020100");
+}
+
+static void test_format_hex_impl_uint256_CASE_LOW_BYTE_FIRST()
+{
+    stlsoft::byte_t const bytes[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
+
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint256, 64, bytes, false, false,
+        "1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100");
+    FORMAT_HEX_EXPECT_(impl_::format_hex_uint256, 64, bytes, true, false,
+        "1F1E1D1C1B1A191817161514131211100F0E0D0C0B0A09080706050403020100");
+}
+
+# undef FORMAT_HEX_EXPECT_
+
+#endif /* !STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */
 
 #undef FORMAT_BYTES_EXPECT_
 } // anonymous namespace
