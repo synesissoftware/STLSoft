@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnstrn() and stlsoft_C_wcsnstrn()
  *
  * Created: 1st October 2020
- * Updated: 27th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNSTRN_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,14 +69,9 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_H_STRING
-# define STLSOFT_INCL_H_STRING
-# include <string.h>
-#endif /* !STLSOFT_INCL_H_STRING */
-#ifndef STLSOFT_INCL_H_WCHAR
-# define STLSOFT_INCL_H_WCHAR
-# include <wchar.h>
-#endif /* !STLSOFT_INCL_H_WCHAR */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +111,7 @@ stlsoft_C_strnstrn(
             size_t const    span = n1 - n2 + 1;
             char const*     hit;
 
-            hit = STLSOFT_C_CAST(char const*, STLSOFT_NS_GLOBAL(memchr)(s1, ch0, span));
+            hit = STLSOFT_C_CAST(char const*, STLSOFT_API_EXTERNAL_memfns_memchr(s1, ch0, span));
 
             if (ss_nullptr_k == hit)
             {
@@ -124,7 +119,7 @@ stlsoft_C_strnstrn(
             }
 
             if (1 == n2 ||
-                0 == STLSOFT_NS_GLOBAL(memcmp)(hit + 1, s2 + 1, n2 - 1))
+                0 == STLSOFT_API_EXTERNAL_memfns_memcmp(hit + 1, s2 + 1, n2 - 1))
             {
                 return hit;
             }
@@ -174,7 +169,7 @@ stlsoft_C_wcsnstrn(
             size_t const        span = n1 - n2 + 1;
             wchar_t const*      hit;
 
-            hit = STLSOFT_NS_GLOBAL(wmemchr)(s1, ch0, span);
+            hit = STLSOFT_API_EXTERNAL_memfns_wmemchr(s1, ch0, span);
 
             if (ss_nullptr_k == hit)
             {
@@ -182,7 +177,7 @@ stlsoft_C_wcsnstrn(
             }
 
             if (1 == n2 ||
-                0 == STLSOFT_NS_GLOBAL(wmemcmp)(hit + 1, s2 + 1, n2 - 1))
+                0 == STLSOFT_API_EXTERNAL_memfns_wmemcmp(hit + 1, s2 + 1, n2 - 1))
             {
                 return hit;
             }
