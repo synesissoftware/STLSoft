@@ -352,7 +352,10 @@ static void test_format_bytes_ZERO_BYTES()
     char                    sz[8];
     stlsoft::byte_t const   bytes[] = { 0x01 };
 
+    sz[0] = 'X';
+
     TEST_INT_EQ(0, static_cast<int>(stlsoft::format_bytes(&bytes[0], 0, &sz[0], STLSOFT_NUM_ELEMENTS(sz), 1, " ")));
+    TEST_CHAR_EQ('\0', sz[0]);
     TEST_INT_EQ(0, static_cast<int>(stlsoft::format_bytes(&bytes[0], 0, NULL, 0, 1, " ")));
 }
 

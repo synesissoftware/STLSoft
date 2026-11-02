@@ -250,6 +250,11 @@ inline void format_hex_uint256(char buff[64], ss_byte_t const* py, bool requestU
  * \param lineSeparator Line separator. If \c nullptr, no line separation is
  *   done
  *
+ * \note If there is room for it (i.e. the result is shorter than
+ *   \c cchBuff, which includes the case of an empty block, \c cb == 0), the
+ *   result is terminated with a NUL character, which is not counted in the
+ *   return value
+ *
  * \return If sufficient space was available, then the number of characters
  *   written to the buffer. Otherwise, returns a size that is guaranteed to
  *   be large enough to write the result.
@@ -284,6 +289,11 @@ format_bytes(
 
     if (0 == cb)
     {
+        if (0 != cchBuff)
+        {
+            0[buff] = '\0';
+        }
+
         return 0;
     }
     else
