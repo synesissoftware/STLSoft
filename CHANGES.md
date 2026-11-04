@@ -7,6 +7,8 @@
   * **include/stlsoft/string/trim_functions.h** — C slice-trimming API: `stlsoft_C_string_trim_left_m()`, `stlsoft_C_string_trim_right_m()`, `stlsoft_C_string_trim_all_m()`, the `_chars_` forms, and wide counterparts (`_w`). Each returns a non-owning `stlsoft_C_string_slice_m_t` / `stlsoft_C_string_slice_w_t`. An empty result has `ptr` of `""` / `L""`, never `NULL`. Default whitespace is space, newline, carriage return, tab, and vertical tab;
 * testing:
   * **test.unit.stlsoft.string.trim_functions** — new C suite for the multibyte and wide trim functions, including empty slices, each default whitespace character, custom character sets, bounded slices, and the empty-result C-string contract;
+* build:
+  * **.github/workflows/ci-cell.yml** installs **woad** before **xTests** (xTests 0.29 requires **woad** 0.2);
 * documentation and boilerplate:
   * **INSTALL.md** archive examples name **STLSoft-1.12.0-alpha1**;
   * **Doxyfile** `PROJECT_NUMBER` is **1.12.0-alpha1**;
