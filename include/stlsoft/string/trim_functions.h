@@ -99,10 +99,41 @@ stlsoft_C_string_slice_default_whitespace_m_(void)
 }
 
 STLSOFT_INLINE
+stlsoft_C_string_slice_w_t
+stlsoft_C_string_slice_default_whitespace_w_(void)
+{
+    static wchar_t const trim_chars[] = L" \n\r\t\v";
+
+    stlsoft_C_string_slice_w_t const r = { STLSOFT_NUM_ELEMENTS(trim_chars) - 1, trim_chars };
+
+    return r;
+}
+
+STLSOFT_INLINE
 ss_truthy_t
 stlsoft_C_string_slice_trim_contains_char_m_(
     stlsoft_C_string_slice_m_t  trim_chars
 ,   char                        ch
+)
+{
+    size_t i;
+
+    for (i = 0; i != trim_chars.len; ++i)
+    {
+        if (trim_chars.ptr[i] == ch)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+STLSOFT_INLINE
+ss_truthy_t
+stlsoft_C_string_slice_trim_contains_char_w_(
+    stlsoft_C_string_slice_w_t  trim_chars
+,   wchar_t                     ch
 )
 {
     size_t i;
