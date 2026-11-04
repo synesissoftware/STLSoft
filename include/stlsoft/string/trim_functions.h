@@ -40,7 +40,7 @@
 
 /** \file stlsoft/string/trim_functions.h
  *
- * \brief [C] Definition of the STLSoft_C_string_trim_*() suite of functions
+ * \brief [C] Definition of the stlsoft_C_string_trim_*() suite of functions
  *   (\ref group__library__String "String" Library).
  */
 
@@ -93,14 +93,14 @@ stlsoft_C_string_slice_default_whitespace_m_(void)
 {
     static char const trim_chars[] = " \n\r\t\v";
 
-    stlsoft_C_string_slice_m_t const r = { sizeof(trim_chars) - 1, trim_chars };
+    stlsoft_C_string_slice_m_t const r = { STLSOFT_NUM_ELEMENTS(trim_chars) - 1, trim_chars };
 
     return r;
 }
 
 STLSOFT_INLINE
 ss_truthy_t
-STLSoft_C_string_slice_trim_contains_char_m_(
+stlsoft_C_string_slice_trim_contains_char_m_(
     stlsoft_C_string_slice_m_t  trim_chars
 ,   char                        ch
 )
@@ -126,7 +126,7 @@ STLSoft_C_string_slice_trim_contains_char_m_(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_left_chars_m(
+stlsoft_C_string_trim_left_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
 )
@@ -138,7 +138,7 @@ STLSoft_C_string_trim_left_chars_m(
 
     for (first = 0; first != slice.len; ++first)
     {
-        if (!STLSoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[first]))
+        if (!stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[first]))
         {
             break;
         }
@@ -151,7 +151,7 @@ STLSoft_C_string_trim_left_chars_m(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_right_chars_m(
+stlsoft_C_string_trim_right_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
 )
@@ -164,7 +164,7 @@ STLSoft_C_string_trim_right_chars_m(
     last = slice.len;
 
     while (0 != last &&
-           STLSoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[last - 1]))
+           stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[last - 1]))
     {
         --last;
     }
@@ -176,7 +176,7 @@ STLSoft_C_string_trim_right_chars_m(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_all_chars_m(
+stlsoft_C_string_trim_all_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
 )
@@ -189,7 +189,7 @@ STLSoft_C_string_trim_all_chars_m(
 
     for (first = 0; first != slice.len; ++first)
     {
-        if (!STLSoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[first]))
+        if (!stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[first]))
         {
             break;
         }
@@ -198,7 +198,7 @@ STLSoft_C_string_trim_all_chars_m(
     last = slice.len;
 
     while (first != last &&
-           STLSoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[last - 1]))
+           stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[last - 1]))
     {
         --last;
     }
@@ -210,35 +210,35 @@ STLSoft_C_string_trim_all_chars_m(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_left_m(
+stlsoft_C_string_trim_left_m(
     stlsoft_C_string_slice_m_t slice
 )
 {
     stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    return STLSoft_C_string_trim_left_chars_m(slice, trim_chars);
+    return stlsoft_C_string_trim_left_chars_m(slice, trim_chars);
 }
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_right_m(
+stlsoft_C_string_trim_right_m(
     stlsoft_C_string_slice_m_t slice
 )
 {
     stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    return STLSoft_C_string_trim_right_chars_m(slice, trim_chars);
+    return stlsoft_C_string_trim_right_chars_m(slice, trim_chars);
 }
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_all_m(
+stlsoft_C_string_trim_all_m(
     stlsoft_C_string_slice_m_t slice
 )
 {
     stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    return STLSoft_C_string_trim_all_chars_m(slice, trim_chars);
+    return stlsoft_C_string_trim_all_chars_m(slice, trim_chars);
 }
 
 

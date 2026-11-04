@@ -114,15 +114,15 @@ static void TEST_empty_slice(void)
     slice.len = 0;
     slice.ptr = NULL;
 
-    result = STLSoft_C_string_trim_left_m(slice);
+    result = stlsoft_C_string_trim_left_m(slice);
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
 
-    result = STLSoft_C_string_trim_right_m(slice);
+    result = stlsoft_C_string_trim_right_m(slice);
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
 
-    result = STLSoft_C_string_trim_all_m(slice);
+    result = stlsoft_C_string_trim_all_m(slice);
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
 }
@@ -131,7 +131,7 @@ static void TEST_default_left(void)
 {
     char const input[] = "\n\r\t\v  value  ";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_left_m(make_slice(input));
+        stlsoft_C_string_trim_left_m(make_slice(input));
 
     TEST_INT_EQ(7u, result.len);
     TEST_PTR_EQ(input + 6, result.ptr);
@@ -142,7 +142,7 @@ static void TEST_default_right(void)
 {
     char const input[] = "  value\n\r\t\v ";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_right_m(make_slice(input));
+        stlsoft_C_string_trim_right_m(make_slice(input));
 
     TEST_INT_EQ(7u, result.len);
     TEST_PTR_EQ(input, result.ptr);
@@ -153,7 +153,7 @@ static void TEST_default_all(void)
 {
     char const input[] = "\n\r\t\v  value  \v\t\r\n";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_all_m(make_slice(input));
+        stlsoft_C_string_trim_all_m(make_slice(input));
 
     TEST_INT_EQ(5u, result.len);
     TEST_PTR_EQ(input + 6, result.ptr);
@@ -175,12 +175,12 @@ static void TEST_default_whitespace_characters(void)
         input[2] = whitespace[i];
         input[3] = '\0';
 
-        result = STLSoft_C_string_trim_left_m(make_slice_n(input, 3));
+        result = stlsoft_C_string_trim_left_m(make_slice_n(input, 3));
         TEST_INT_EQ(2u, result.len);
         TEST_PTR_EQ(input + 1, result.ptr);
         TEST_CHAR_EQ('x', result.ptr[0]);
 
-        result = STLSoft_C_string_trim_right_m(make_slice_n(input, 3));
+        result = stlsoft_C_string_trim_right_m(make_slice_n(input, 3));
         TEST_INT_EQ(2u, result.len);
         TEST_PTR_EQ(input, result.ptr);
         TEST_CHAR_EQ('x', result.ptr[1]);
@@ -191,7 +191,7 @@ static void TEST_all_default_whitespace(void)
 {
     char const input[] = " \n\r\t\v";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_all_m(make_slice_n(input, sizeof(input) - 1));
+        stlsoft_C_string_trim_all_m(make_slice_n(input, sizeof(input) - 1));
 
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
@@ -201,7 +201,7 @@ static void TEST_no_default_whitespace(void)
 {
     char const input[] = "value";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_all_m(make_slice(input));
+        stlsoft_C_string_trim_all_m(make_slice(input));
 
     TEST_INT_EQ(5u, result.len);
     TEST_PTR_EQ(input, result.ptr);
@@ -213,7 +213,7 @@ static void TEST_custom_left(void)
     char const input[] = ",;:value  ";
     char const chars[] = ",;:";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_left_chars_m(
+        stlsoft_C_string_trim_left_chars_m(
             make_slice(input)
         ,   make_slice(chars));
 
@@ -227,7 +227,7 @@ static void TEST_custom_right(void)
     char const input[] = "  value,;:";
     char const chars[] = ",;:";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_right_chars_m(
+        stlsoft_C_string_trim_right_chars_m(
             make_slice(input)
         ,   make_slice(chars));
 
@@ -241,7 +241,7 @@ static void TEST_custom_all(void)
     char const input[] = ",;:value:;,";
     char const chars[] = ",;:";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_all_chars_m(
+        stlsoft_C_string_trim_all_chars_m(
             make_slice(input)
         ,   make_slice(chars));
 
@@ -259,7 +259,7 @@ static void TEST_custom_empty_set(void)
     chars.len = 0;
     chars.ptr = NULL;
 
-    result = STLSoft_C_string_trim_all_chars_m(make_slice(input), chars);
+    result = stlsoft_C_string_trim_all_chars_m(make_slice(input), chars);
 
     TEST_INT_EQ(9u, result.len);
     TEST_PTR_EQ(input, result.ptr);
@@ -270,7 +270,7 @@ static void TEST_bounded_slice(void)
 {
     char const input[] = "  value  suffix";
     stlsoft_C_string_slice_m_t result =
-        STLSoft_C_string_trim_all_m(make_slice_n(input, 9));
+        stlsoft_C_string_trim_all_m(make_slice_n(input, 9));
 
     TEST_INT_EQ(5u, result.len);
     TEST_PTR_EQ(input + 2, result.ptr);
@@ -283,15 +283,15 @@ static void TEST_empty_result(void)
     stlsoft_C_string_slice_m_t const slice = make_slice(input);
     stlsoft_C_string_slice_m_t result;
 
-    result = STLSoft_C_string_trim_left_m(slice);
+    result = stlsoft_C_string_trim_left_m(slice);
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
 
-    result = STLSoft_C_string_trim_right_m(slice);
+    result = stlsoft_C_string_trim_right_m(slice);
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
 
-    result = STLSoft_C_string_trim_all_m(slice);
+    result = stlsoft_C_string_trim_all_m(slice);
     TEST_INT_EQ(0u, result.len);
     TEST_PTR_NULL(result.ptr);
 }
