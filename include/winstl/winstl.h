@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -294,8 +294,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B01C9
-# error This version of the WinSTL libraries requires STLSoft version 1.11.1-rc9, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the WinSTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 

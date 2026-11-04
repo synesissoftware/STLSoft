@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.string.trim_functions/entry.c
+ * File:    test/unit/stlsoft/string/trim_functions/entry.c
  *
  * Purpose: Unit-tests for the C string trimming functions.
  *
  * Created: 10th August 2026
- * Updated: 20th October 2026
+ * Updated: 4th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

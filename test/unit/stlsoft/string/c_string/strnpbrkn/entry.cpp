@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnpbrkn/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string/strnpbrkn/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string::strnpbrkn() and wcsnpbrkn().
  *
  * Created: 23rd October 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

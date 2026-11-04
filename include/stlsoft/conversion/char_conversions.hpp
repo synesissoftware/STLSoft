@@ -4,11 +4,11 @@
  * Purpose: Character-encoding scheme interconversion components.
  *
  * Created: 31st May 2003
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR      3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT       123
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION   6
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT       124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,13 +92,15 @@
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_WCSTOMBS
+# include <stlsoft/string/encoding/wcstombs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_WCSTOMBS */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -303,26 +305,18 @@ private:
         }
         else
         {
-            int         err;
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-            ss_size_t   numConverted;
+            ss_size_t const n = stlsoft_C_mbstowcs(data, size + 1, s, size);
 
-            err = ::mbstowcs_s(&numConverted, data, size + 1, s, size);
-
-            if (0 != err)
+            if (static_cast<ss_size_t>(-1) == n)
             {
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-            if (static_cast<ss_size_t>(-1) == ::mbstowcs(data, s, size))
-            {
-                err = errno;
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                int const err = errno;
+
                 STLSOFT_THROW_X(conversion_error("failed to convert multibyte string to wide string", err));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-            } // '}'
+            }
             else
             {
                 data[size] = '\0';
@@ -448,21 +442,13 @@ private:
         }
         else
         {
-            int         err;
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-            ss_size_t   numConverted;
+            ss_size_t const n = stlsoft_C_wcstombs(data, size + 1, s, size);
 
-            err = ::wcstombs_s(&numConverted, data, size + 1, s, size);
-
-            if (0 != err)
+            if (static_cast<ss_size_t>(-1) == n)
             {
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-            if (static_cast<ss_size_t>(-1) == ::wcstombs(data, s, size))
-            {
-                err = errno;
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                int const err = errno;
+
                 STLSOFT_THROW_X(conversion_error("failed to convert wide string to multibyte string", err));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';

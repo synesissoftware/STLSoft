@@ -4,14 +4,14 @@
  * Purpose: Compiler feature discrimination for Borland C/C++.
  *
  * Created: 7th February 2003
- * Updated: 25th November 2024
+ * Updated: 2nd November 2026
  *
  * Thanks:  markitus82 for pointing out overlooking of support for
  *          __FUNCTION__.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -64,9 +64,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      23
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       99
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      24
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,6 +94,7 @@
 
 #if (__BORLANDC__ & 0xfff0) >= 0x0580
 # define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# define STLSOFT_PPF_pragma_once_SUPPORT
 #endif /* __BORLANDC__ */
 
 /* Variadic Macros

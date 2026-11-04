@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 30th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 25
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     616
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 27
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     619
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -428,7 +428,9 @@
 # define _STLSOFT_VER_1_11_1        0x010B01FF  /*!< Version 1.11.1 (21st October 2026) */
 # define _STLSOFT_VER_1_11_2        0x010B02FF  /*!< Version 1.11.2 (25th October 2026) */
 # define _STLSOFT_VER_1_11_3        0x010B03FF  /*!< Version 1.11.3 (27th October 2026) */
-# define _STLSOFT_VER_1_12_0_A1     0x010C0041  /*!< Version 1.12.0-alpha1 (30th October 2026) */
+# define _STLSOFT_VER_1_11_4        0x010B04FF  /*!< Version 1.11.4 (29th October 2026) */
+# define _STLSOFT_VER_1_11_5        0x010B05FF  /*!< Version 1.11.5 (2nd November 2026) */
+# define _STLSOFT_VER_1_12_0_A1     0x010C0041  /*!< Version 1.12.0-alpha1 (15th November 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
@@ -2364,10 +2366,10 @@ typedef STLSOFT_UI64_T_BASE_TYPE                            STLSOFT_UI64_T_BASE_
 
 /* ptr-bit */
 #ifdef STLSOFT_SPTR_T_BASE_TYPE
- typedef STLSOFT_SPTR_T_BASE_TYPE                           STLSOFT_SPTR_T_BASE_TYPE_;
+typedef STLSOFT_SPTR_T_BASE_TYPE                            STLSOFT_SPTR_T_BASE_TYPE_;
 #endif
 #ifdef STLSOFT_UPTR_T_BASE_TYPE
- typedef STLSOFT_UPTR_T_BASE_TYPE                           STLSOFT_UPTR_T_BASE_TYPE_;
+typedef STLSOFT_UPTR_T_BASE_TYPE                            STLSOFT_UPTR_T_BASE_TYPE_;
 #endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

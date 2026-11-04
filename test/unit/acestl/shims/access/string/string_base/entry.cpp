@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_base/entry.cpp
+ * File:    test/unit/acestl/shims/access/string/string_base/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for `ACE_String_Base`.
  *
  * Created: 7th August 2026
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -100,7 +100,7 @@ static void TEST_calls_possible()
     stlsoft::c_str_ptr_null_a(s);
     stlsoft::c_str_ptr_null(s);
 
-    XTESTS_TEST_PASSED();
+    TEST_PASSED();
 }
 
 static void TEST_empty_string()

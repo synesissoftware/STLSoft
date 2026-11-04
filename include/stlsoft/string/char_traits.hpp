@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 15th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        103
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -963,6 +963,14 @@ stlsoft_char_traits<char>::compare(
 ,   ss_size_t   cch
 ) STLSOFT_NOEXCEPT
 {
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
+
+    if (0 == cch)
+    {
+        return 0;
+    }
+
     return STLSOFT_API_EXTERNAL_memfns_memcmp(s1, s2, cch);
 }
 
@@ -987,13 +995,20 @@ stlsoft_char_traits<char>::find(
 ,   char const& c
 ) STLSOFT_NOEXCEPT
 {
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", (0 == cch || NULL != s));
+
+    if (0 == cch)
+    {
+        return NULL;
+    }
+
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0560
 
-    return static_cast<char const*>(memchr(s, c, cch));
+    return static_cast<char const*>(STLSOFT_API_EXTERNAL_memfns_memchr(s, c, cch));
 #else /* ? compiler */
 
-    void const* const p = STLSOFT_NS_GLOBAL(memchr)(s, c, cch);
+    void const* const p = STLSOFT_API_EXTERNAL_memfns_memchr(s, c, cch);
 
     return static_cast<char const*>(p);
 #endif /* compiler */
@@ -1060,6 +1075,14 @@ stlsoft_char_traits<wchar_t>::compare(
 ,   ss_size_t       cch
 ) STLSOFT_NOEXCEPT
 {
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
+
+    if (0 == cch)
+    {
+        return 0;
+    }
+
     return STLSOFT_API_EXTERNAL_memfns_wmemcmp(s1, s2, cch);
 }
 
@@ -1084,13 +1107,20 @@ stlsoft_char_traits<wchar_t>::find(
 ,   wchar_t const&  c
 ) STLSOFT_NOEXCEPT
 {
+    STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", (0 == cch || NULL != s));
+
+    if (0 == cch)
+    {
+        return NULL;
+    }
+
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0560
 
-    return static_cast<wchar_t const*>(wmemchr(s, c, cch));
+    return static_cast<wchar_t const*>(STLSOFT_API_EXTERNAL_memfns_wmemchr(s, c, cch));
 #else /* ? compiler */
 
-    void const* const p = STLSOFT_NS_GLOBAL(wmemchr)(s, c, cch);
+    void const* const p = STLSOFT_API_EXTERNAL_memfns_wmemchr(s, c, cch);
 
     return static_cast<wchar_t const*>(p);
 #endif /* compiler */

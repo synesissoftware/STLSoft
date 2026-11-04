@@ -5,11 +5,11 @@
  *          Object Functions API.
  *
  * Created: 20th August 2017
- * Updated: 27th December 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,7 +42,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* WARNING: this file contains undocumented internal features that are
+/* WARNING: this file contains undocumented external features that are
  * subject to change at any time, so if you use them it is at your own risk.
  */
 
@@ -100,9 +100,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
 
