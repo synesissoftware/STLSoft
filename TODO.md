@@ -251,7 +251,7 @@ The **`prospective-msvc`** branch is absent from both the **STLSoft** and **STLS
 From **1.12** onwards, every new component or feature must ship with an **example**, **unit tests**, and a **blog entry** on the new Website (website work is contemporaneous with 1.12). See **oss-library-modernisation** (STLSoft 1.12+ feature completeness).
 
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
-* [ ] Bring in **include/stlsoft/string/trim_functions.h** and **test/unit/stlsoft/string/trim_functions** from `mwsis/trim_functions` (on the **STLSoft** clone);
+* [x] ~~~Bring in **include/stlsoft/string/trim_functions.h** and **test/unit/stlsoft/string/trim_functions** from `mwsis/trim_functions` (on the **STLSoft** clone)~~~ - ✅;
 * [ ] Assess all **1.12** (separate internal repository) contents for inclusion, component by component;
 * [ ] Inventory remaining C++11/14/17/20/23/26 gaps and record concrete per-standard fixes (see NOTE above);
 * [ ] Further `system_traits` structural refactoring (CRTP common code; string abstraction into `stlsoft::`; safe-string sorting; `#make_writeable()` / `#make_readonly()`);

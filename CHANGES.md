@@ -1,6 +1,22 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.12.0-alpha1 - 15th November 2026
+
+* additions:
+  * **include/stlsoft/string/trim_functions.h** — C slice-trimming API: `stlsoft_C_string_trim_left_m()`, `stlsoft_C_string_trim_right_m()`, `stlsoft_C_string_trim_all_m()`, the `_chars_` forms, and wide counterparts (`_w`). Each returns a non-owning `stlsoft_C_string_slice_m_t` / `stlsoft_C_string_slice_w_t`. An empty result has `ptr` of `""` / `L""`, never `NULL`. Default whitespace is space, newline, carriage return, tab, and vertical tab;
+* testing:
+  * **test.unit.stlsoft.string.trim_functions** — new C suite for the multibyte and wide trim functions, including empty slices, each default whitespace character, custom character sets, bounded slices, and the empty-result C-string contract;
+* build:
+  * **.github/workflows/ci-cell.yml** installs **woad** before **xTests** (xTests 0.29 requires **woad** 0.2);
+* documentation and boilerplate:
+  * **INSTALL.md** archive examples name **STLSoft-1.12.0-alpha1**;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.12.0-alpha1**;
+  * **README.md** records the **1.12** line and lists **trim_functions.h** under **New in 1.12**;
+* version:
+  * **_STLSOFT_VER** is **1.12.0-alpha1** (**_STLSOFT_VER_1_12_0_A1** = `0x010C0041`); **test.unit.versions** asserts it. No subproject composite version changed;
+
+
 ## 1.11.5 - 2nd November 2026
 
 * additions:

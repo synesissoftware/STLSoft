@@ -206,40 +206,13 @@ endif()
 
 
 # ############################
-# STLSoft
-#
-# Since we use xTests for testing, and it relies in turn on STLSoft, we must
-# detect a CMake installation of STLSoft in order to run testing.
-#
-# (This implication, therefore, is that first-time installation of
-# STLSoft/xTests must follow the sequence:
-#  1. Configure/build/install STLSoft **without** tests;
-#  2. Configure/build/install xTests;
-#  3. Configure/build/install STLSoft in full;
-# )
-
-if(BUILD_TESTING)
-
-	find_package(STLSoft REQUIRED)
-
-	if(NOT STLSoft_FOUND)
-
-		message(FATAL_ERROR "No existing installation of STLSoft was found, which means you are not able to configure CMake with testing enabled, because STLSoft's component/unit tests are implemented in terms of xTests, which itself relies on STLSoft. Instead, you must perform an initial CMake configuration and installation with testing disabled (-DBUILD_TESTING:BOOL=OFF, or passing --disable-testing to prepare_cmake.sh), and then configure and install xTests, whereupon you will be free to (re)configure STLSoft for testing.")
-	else()
-
-		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
-	endif()
-endif(BUILD_TESTING)
-
-
-# ############################
 # cstring
 
 if(NOT (NO_CSTRING))
 
 	if(BUILD_TESTING)
 
-		set(cstring_REQUIRED_VERSION_ 4.0.19)
+		set(cstring_REQUIRED_VERSION_ 4.1)
 
 		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
 
@@ -283,6 +256,33 @@ endif()
 
 
 # ############################
+# STLSoft
+#
+# Since we use xTests for testing, and it relies in turn on STLSoft, we must
+# detect a CMake installation of STLSoft in order to run testing.
+#
+# (This implication, therefore, is that first-time installation of
+# STLSoft/xTests must follow the sequence:
+#  1. Configure/build/install STLSoft **without** tests;
+#  2. Configure/build/install xTests;
+#  3. Configure/build/install STLSoft in full;
+# )
+
+if(BUILD_TESTING)
+
+	find_package(STLSoft REQUIRED)
+
+	if(NOT STLSoft_FOUND)
+
+		message(FATAL_ERROR "No existing installation of STLSoft was found, which means you are not able to configure CMake with testing enabled, because STLSoft's component/unit tests are implemented in terms of xTests, which itself relies on STLSoft. Instead, you must perform an initial CMake configuration and installation with testing disabled (-DBUILD_TESTING:BOOL=OFF, or passing --disable-testing to prepare_cmake.sh), and then configure and install xTests, whereupon you will be free to (re)configure STLSoft for testing.")
+	else()
+
+		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
+	endif()
+endif(BUILD_TESTING)
+
+
+# ############################
 # UNIXem
 
 if((USE_UNIXEM) AND (WIN32))
@@ -316,7 +316,7 @@ if(USE_WOAD)
 
 	if(BUILD_TESTING)
 
-		set(woad_REQUIRED_VERSION_ 0.2.1)
+		set(woad_REQUIRED_VERSION_ 0.2.2)
 
 		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
@@ -337,7 +337,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28.2)
+	set(xTests_REQUIRED_VERSION_ 0.29)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

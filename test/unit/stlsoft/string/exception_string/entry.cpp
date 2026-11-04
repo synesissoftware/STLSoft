@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 29th October 2026
+ * Updated: 4th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ namespace {
 
     static void test_string_concatenation_1();
     static void test_string_concatenation_2();
-#if _STLSOFT_VER >= 0x010c0000
+#if _STLSOFT_VER >= 0x010c0080
 
     static void test_swap_1();
     static void test_swap_2();
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 
         XTESTS_RUN_CASE(test_string_concatenation_1);
         XTESTS_RUN_CASE(test_string_concatenation_2);
-#if _STLSOFT_VER >= 0x010c0000
+#if _STLSOFT_VER >= 0x010c0080
 
         XTESTS_RUN_CASE(test_swap_1);
         XTESTS_RUN_CASE(test_swap_2);
@@ -334,7 +334,7 @@ static void test_string_concatenation_2()
     }}
 }
 
-#if _STLSOFT_VER >= 0x010c0000
+#if _STLSOFT_VER >= 0x010c0080
 
 static void test_swap_1()
 {

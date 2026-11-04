@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/string_slice.h
+ * File:    stlsoft/string/string_slice.h
  *
- * Purpose:     Defines the string_slice class template.
+ * Purpose: Defines the string_slice class template.
  *
- * Created:     3rd May 2014
- * Updated:     11th March 2024
+ * Created: 3rd May 2014
+ * Updated: 25th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MAJOR    1
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MINOR    6
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_EDIT     32
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MINOR    7
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -91,6 +91,8 @@
  * types
  */
 
+/** Defines a non-mutating string slice, in the form of a \c len and \c ptr.
+ */
 struct stlsoft_C_string_slice_m_t
 {
     size_t          len;    /*!< The length of the slice */
@@ -123,6 +125,8 @@ public: /* Construction */
 typedef struct stlsoft_C_string_slice_m_t                   stlsoft_C_string_slice_m_t;
 #endif /* !__cplusplus */
 
+/** Defines a non-mutating string slice, in the form of a \c len and \c ptr.
+ */
 struct stlsoft_C_string_slice_w_t
 {
     size_t          len;    /*!< The length of the slice */
@@ -154,6 +158,39 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct stlsoft_C_string_slice_w_t                   stlsoft_C_string_slice_w_t;
 #endif /* !__cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API helper functions
+ */
+
+STLSOFT_INLINE
+stlsoft_C_string_slice_m_t
+stlsoft_C_string_slice_make_m(
+    char const* ptr
+,   size_t      len
+)
+{
+    stlsoft_C_string_slice_m_t r = { len, ptr };
+
+    STLSOFT_ASSERT(0u == len || NULL != ptr);
+
+    return r;
+}
+
+STLSOFT_INLINE
+stlsoft_C_string_slice_w_t
+stlsoft_C_string_slice_make_w(
+    wchar_t const*  ptr
+,   size_t          len
+)
+{
+    stlsoft_C_string_slice_w_t r = { len, ptr };
+
+    STLSOFT_ASSERT(0u == len || NULL != ptr);
+
+    return r;
+}
 
 
 /* /////////////////////////////////////////////////////////////////////////
