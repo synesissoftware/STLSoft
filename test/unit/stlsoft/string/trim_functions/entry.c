@@ -116,15 +116,18 @@ static void TEST_empty_slice(void)
 
     result = stlsoft_C_string_trim_left_m(slice);
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 
     result = stlsoft_C_string_trim_right_m(slice);
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 
     result = stlsoft_C_string_trim_all_m(slice);
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 }
 
 static void TEST_default_left(void)
@@ -194,7 +197,8 @@ static void TEST_all_default_whitespace(void)
         stlsoft_C_string_trim_all_m(make_slice_n(input, sizeof(input) - 1));
 
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 }
 
 static void TEST_no_default_whitespace(void)
@@ -285,15 +289,18 @@ static void TEST_empty_result(void)
 
     result = stlsoft_C_string_trim_left_m(slice);
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 
     result = stlsoft_C_string_trim_right_m(slice);
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 
     result = stlsoft_C_string_trim_all_m(slice);
     TEST_INT_EQ(0u, result.len);
-    TEST_PTR_NULL(result.ptr);
+    TEST_PTR_NE(NULL, result.ptr);
+    TEST_CHAR_EQ('\0', result.ptr[0]);
 }
 
 

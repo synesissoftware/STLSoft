@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_REVISION   0
-# define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_EDIT       4
+# define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -185,7 +185,7 @@ stlsoft_C_string_trim_all_chars_m(
     }
 
     return stlsoft_C_string_slice_make_m(
-        (first == last) ? NULL : slice.ptr + first
+        (first == last) ? "" : slice.ptr + first
     ,   last - first);
 }
 
@@ -210,7 +210,7 @@ stlsoft_C_string_trim_left_chars_m(
     }
 
     return stlsoft_C_string_slice_make_m(
-        (first == slice.len) ? NULL : slice.ptr + first
+        (first == slice.len) ? "" : slice.ptr + first
     ,   slice.len - first);
 }
 
@@ -235,7 +235,7 @@ stlsoft_C_string_trim_right_chars_m(
     }
 
     return stlsoft_C_string_slice_make_m(
-        (0u == last) ? NULL : slice.ptr
+        (0u == last) ? "" : slice.ptr
     ,   last);
 }
 
