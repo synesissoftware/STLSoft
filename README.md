@@ -19,6 +19,7 @@
   - [Subprojects](#subprojects)
   - [Libraries](#libraries)
   - [Notable components](#notable-components)
+    - [New in 1.12](#new-in-112)
     - [New in 1.11](#new-in-111)
     - [New in 1.10](#new-in-110)
     - [Notable legacy components](#notable-legacy-components)
@@ -33,7 +34,7 @@
 
 ## Introduction
 
-**STLSoft** is a suite of C and C++ libraries (currently the **1.11** line) that provides:
+**STLSoft** is a suite of C and C++ libraries (currently the **1.12** line) that provides:
 
 * STL extensions;
 * general-purpose utility components;
@@ -127,7 +128,14 @@ The significant libraries include (examples are illustrative, not exhaustive):
 
 ### Notable components
 
-The tables below list the significant components of **STLSoft** by *header stem* (a `.h` and `.hpp` pair counts once), each with the release in which it first appeared. Badges are coloured by era: dark grey for 1.9.118 and earlier, orange for 1.9.119+, blue for 1.10+, green for 1.11+. Tag history in this repository begins at 1.9.118, so *since* values for earlier components are estimates derived from header `Created:` dates and **CHANGES.md** (`≤1.9.1-beta1` means created before the first release recorded there). *Enhanced* is the latest tag at which the header's major or minor version changed, i.e. a significant enhancement; `-` means no such change since 1.9.118 (or since introduction).
+The tables below list the significant components of **STLSoft** by *header stem* (a `.h` and `.hpp` pair counts once), each with the release in which it first appeared. Badges are coloured by era: dark grey for 1.9.118 and earlier, orange for 1.9.119+, blue for 1.10+, green for 1.11+, purple for 1.12+. Tag history in this repository begins at 1.9.118, so *since* values for earlier components are estimates derived from header `Created:` dates and **CHANGES.md** (`≤1.9.1-beta1` means created before the first release recorded there). *Enhanced* is the latest tag at which the header's major or minor version changed, i.e. a significant enhancement; `-` means no such change since 1.9.118 (or since introduction).
+
+
+#### New in 1.12
+
+| Component | Sub-project | Since |
+| --- | --- | --- |
+| [`stlsoft/string/trim_functions`](include/stlsoft/string/trim_functions.h) | STLSoft | [![since 1.12.0-alpha1](https://img.shields.io/badge/since-1.12.0--alpha1-8250df.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.12.0-alpha1) |
 
 
 #### New in 1.11
