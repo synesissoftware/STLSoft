@@ -31,19 +31,19 @@
  * forward declarations
  */
 
-static void TEST_empty_slice(void);
-static void TEST_default_left(void);
-static void TEST_default_right(void);
-static void TEST_default_all(void);
-static void TEST_default_whitespace_characters(void);
-static void TEST_all_default_whitespace(void);
-static void TEST_no_default_whitespace(void);
-static void TEST_custom_left(void);
-static void TEST_custom_right(void);
-static void TEST_custom_all(void);
-static void TEST_custom_empty_set(void);
-static void TEST_bounded_slice(void);
-static void TEST_empty_result(void);
+static void TEST_EMPTY_SLICE(void);
+static void TEST_trim_left_m(void);
+static void TEST_trim_right_m(void);
+static void TEST_trim_all_m(void);
+static void TEST_EACH_DEFAULT_WHITESPACE_CHARACTER(void);
+static void TEST_ALL_DEFAULT_WHITESPACE(void);
+static void TEST_NO_DEFAULT_WHITESPACE(void);
+static void TEST_trim_left_chars_m(void);
+static void TEST_trim_right_chars_m(void);
+static void TEST_trim_all_chars_m(void);
+static void TEST_trim_all_chars_m_WITH_EMPTY_SET(void);
+static void TEST_BOUNDED_SLICE(void);
+static void TEST_EMPTY_RESULT(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,19 +59,19 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.trim_functions", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_empty_slice);
-        XTESTS_RUN_CASE(TEST_default_left);
-        XTESTS_RUN_CASE(TEST_default_right);
-        XTESTS_RUN_CASE(TEST_default_all);
-        XTESTS_RUN_CASE(TEST_default_whitespace_characters);
-        XTESTS_RUN_CASE(TEST_all_default_whitespace);
-        XTESTS_RUN_CASE(TEST_no_default_whitespace);
-        XTESTS_RUN_CASE(TEST_custom_left);
-        XTESTS_RUN_CASE(TEST_custom_right);
-        XTESTS_RUN_CASE(TEST_custom_all);
-        XTESTS_RUN_CASE(TEST_custom_empty_set);
-        XTESTS_RUN_CASE(TEST_bounded_slice);
-        XTESTS_RUN_CASE(TEST_empty_result);
+        XTESTS_RUN_CASE(TEST_EMPTY_SLICE);
+        XTESTS_RUN_CASE(TEST_trim_left_m);
+        XTESTS_RUN_CASE(TEST_trim_right_m);
+        XTESTS_RUN_CASE(TEST_trim_all_m);
+        XTESTS_RUN_CASE(TEST_EACH_DEFAULT_WHITESPACE_CHARACTER);
+        XTESTS_RUN_CASE(TEST_ALL_DEFAULT_WHITESPACE);
+        XTESTS_RUN_CASE(TEST_NO_DEFAULT_WHITESPACE);
+        XTESTS_RUN_CASE(TEST_trim_left_chars_m);
+        XTESTS_RUN_CASE(TEST_trim_right_chars_m);
+        XTESTS_RUN_CASE(TEST_trim_all_chars_m);
+        XTESTS_RUN_CASE(TEST_trim_all_chars_m_WITH_EMPTY_SET);
+        XTESTS_RUN_CASE(TEST_BOUNDED_SLICE);
+        XTESTS_RUN_CASE(TEST_EMPTY_RESULT);
 
         XTESTS_PRINT_RESULTS();
 
@@ -106,7 +106,7 @@ static stlsoft_C_string_slice_m_t make_slice_n(char const* s, size_t n)
     return result;
 }
 
-static void TEST_empty_slice(void)
+static void TEST_EMPTY_SLICE(void)
 {
     stlsoft_C_string_slice_m_t slice;
     stlsoft_C_string_slice_m_t result;
@@ -130,7 +130,7 @@ static void TEST_empty_slice(void)
     TEST_CHAR_EQ('\0', result.ptr[0]);
 }
 
-static void TEST_default_left(void)
+static void TEST_trim_left_m(void)
 {
     char const input[] = "\n\r\t\v  value  ";
     stlsoft_C_string_slice_m_t result =
@@ -141,7 +141,7 @@ static void TEST_default_left(void)
     TEST_MS_EQ_N("value  ", result.ptr, result.len);
 }
 
-static void TEST_default_right(void)
+static void TEST_trim_right_m(void)
 {
     char const input[] = "  value\n\r\t\v ";
     stlsoft_C_string_slice_m_t result =
@@ -152,7 +152,7 @@ static void TEST_default_right(void)
     TEST_MS_EQ_N("  value", result.ptr, result.len);
 }
 
-static void TEST_default_all(void)
+static void TEST_trim_all_m(void)
 {
     char const input[] = "\n\r\t\v  value  \v\t\r\n";
     stlsoft_C_string_slice_m_t result =
@@ -163,7 +163,7 @@ static void TEST_default_all(void)
     TEST_MS_EQ_N("value", result.ptr, result.len);
 }
 
-static void TEST_default_whitespace_characters(void)
+static void TEST_EACH_DEFAULT_WHITESPACE_CHARACTER(void)
 {
     char const whitespace[] = " \n\r\t\v";
     size_t i;
@@ -190,7 +190,7 @@ static void TEST_default_whitespace_characters(void)
     }
 }
 
-static void TEST_all_default_whitespace(void)
+static void TEST_ALL_DEFAULT_WHITESPACE(void)
 {
     char const input[] = " \n\r\t\v";
     stlsoft_C_string_slice_m_t result =
@@ -201,7 +201,7 @@ static void TEST_all_default_whitespace(void)
     TEST_CHAR_EQ('\0', result.ptr[0]);
 }
 
-static void TEST_no_default_whitespace(void)
+static void TEST_NO_DEFAULT_WHITESPACE(void)
 {
     char const input[] = "value";
     stlsoft_C_string_slice_m_t result =
@@ -212,7 +212,7 @@ static void TEST_no_default_whitespace(void)
     TEST_MS_EQ_N(input, result.ptr, result.len);
 }
 
-static void TEST_custom_left(void)
+static void TEST_trim_left_chars_m(void)
 {
     char const input[] = ",;:value  ";
     char const chars[] = ",;:";
@@ -226,7 +226,7 @@ static void TEST_custom_left(void)
     TEST_MS_EQ_N("value  ", result.ptr, result.len);
 }
 
-static void TEST_custom_right(void)
+static void TEST_trim_right_chars_m(void)
 {
     char const input[] = "  value,;:";
     char const chars[] = ",;:";
@@ -240,7 +240,7 @@ static void TEST_custom_right(void)
     TEST_MS_EQ_N("  value", result.ptr, result.len);
 }
 
-static void TEST_custom_all(void)
+static void TEST_trim_all_chars_m(void)
 {
     char const input[] = ",;:value:;,";
     char const chars[] = ",;:";
@@ -254,7 +254,7 @@ static void TEST_custom_all(void)
     TEST_MS_EQ_N("value", result.ptr, result.len);
 }
 
-static void TEST_custom_empty_set(void)
+static void TEST_trim_all_chars_m_WITH_EMPTY_SET(void)
 {
     char const input[] = "  value  ";
     stlsoft_C_string_slice_m_t chars;
@@ -270,7 +270,7 @@ static void TEST_custom_empty_set(void)
     TEST_MS_EQ_N(input, result.ptr, result.len);
 }
 
-static void TEST_bounded_slice(void)
+static void TEST_BOUNDED_SLICE(void)
 {
     char const input[] = "  value  suffix";
     stlsoft_C_string_slice_m_t result =
@@ -281,7 +281,7 @@ static void TEST_bounded_slice(void)
     TEST_MS_EQ_N("value", result.ptr, result.len);
 }
 
-static void TEST_empty_result(void)
+static void TEST_EMPTY_RESULT(void)
 {
     char const input[] = " \t\n";
     stlsoft_C_string_slice_m_t const slice = make_slice(input);
