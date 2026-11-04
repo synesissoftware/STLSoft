@@ -157,6 +157,40 @@ stlsoft_C_string_slice_trim_contains_char_w_(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
+stlsoft_C_string_trim_all_chars_m(
+    stlsoft_C_string_slice_m_t       slice
+,   stlsoft_C_string_slice_m_t const trim_chars
+)
+{
+    size_t first;
+    size_t last;
+
+    STLSOFT_ASSERT(0 == slice.len || NULL != slice.ptr);
+    STLSOFT_ASSERT(0 == trim_chars.len || NULL != trim_chars.ptr);
+
+    for (first = 0; first != slice.len; ++first)
+    {
+        if (!stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[first]))
+        {
+            break;
+        }
+    }
+
+    last = slice.len;
+
+    while (first != last &&
+           stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[last - 1]))
+    {
+        --last;
+    }
+
+    return stlsoft_C_string_slice_make_m(
+        (first == last) ? NULL : slice.ptr + first
+    ,   last - first);
+}
+
+STLSOFT_INLINE
+stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_left_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
@@ -207,36 +241,13 @@ stlsoft_C_string_trim_right_chars_m(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-stlsoft_C_string_trim_all_chars_m(
-    stlsoft_C_string_slice_m_t       slice
-,   stlsoft_C_string_slice_m_t const trim_chars
+stlsoft_C_string_trim_all_m(
+    stlsoft_C_string_slice_m_t slice
 )
 {
-    size_t first;
-    size_t last;
+    stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    STLSOFT_ASSERT(0 == slice.len || NULL != slice.ptr);
-    STLSOFT_ASSERT(0 == trim_chars.len || NULL != trim_chars.ptr);
-
-    for (first = 0; first != slice.len; ++first)
-    {
-        if (!stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[first]))
-        {
-            break;
-        }
-    }
-
-    last = slice.len;
-
-    while (first != last &&
-           stlsoft_C_string_slice_trim_contains_char_m_(trim_chars, slice.ptr[last - 1]))
-    {
-        --last;
-    }
-
-    return stlsoft_C_string_slice_make_m(
-        (first == last) ? NULL : slice.ptr + first
-    ,   last - first);
+    return stlsoft_C_string_trim_all_chars_m(slice, trim_chars);
 }
 
 STLSOFT_INLINE
@@ -259,17 +270,6 @@ stlsoft_C_string_trim_right_m(
     stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
     return stlsoft_C_string_trim_right_chars_m(slice, trim_chars);
-}
-
-STLSOFT_INLINE
-stlsoft_C_string_slice_m_t
-stlsoft_C_string_trim_all_m(
-    stlsoft_C_string_slice_m_t slice
-)
-{
-    stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
-
-    return stlsoft_C_string_trim_all_chars_m(slice, trim_chars);
 }
 
 
