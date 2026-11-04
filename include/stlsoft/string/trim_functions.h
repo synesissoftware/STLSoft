@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_REVISION   0
-# define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_EDIT       5
+# define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -155,6 +155,26 @@ stlsoft_C_string_slice_trim_contains_char_w_(
  * API functions
  */
 
+/** Trims all leading and trailing characters in \c trim_chars from
+ * \c slice.
+ *
+ * \ingroup group__library__String
+ *
+ * \param slice The multibyte slice to be trimmed. The function does not
+ *   mutate the underlying character storage; it returns a (possibly
+ *   narrower) view of the same range;
+ * \param trim_chars The set of characters to remove from each end. An empty
+ *   set leaves \c slice unchanged;
+ *
+ * \return A slice of the remaining characters. If the result is empty,
+ *   \c ptr is a pointer to an empty C-string (\c ""), never \c nullptr.
+ *
+ * \note The result is a non-owning view. Its lifetime is that of the
+ *   storage referred to by \c slice, except when the result is empty.
+ *
+ * \pre 0 == slice.len || nullptr != slice.ptr
+ * \pre 0 == trim_chars.len || nullptr != trim_chars.ptr
+ */
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_all_chars_m(
@@ -189,6 +209,25 @@ stlsoft_C_string_trim_all_chars_m(
     ,   last - first);
 }
 
+/** Trims all leading characters in \c trim_chars from \c slice
+ *
+ * \ingroup group__library__String
+ *
+ * \param slice The multibyte slice to be trimmed. The function does not
+ *   mutate the underlying character storage; it returns a (possibly
+ *   narrower) view of the same range;
+ * \param trim_chars The set of characters to remove from the start. An
+ *   empty set leaves \c slice unchanged;
+ *
+ * \return A slice of the remaining characters. If the result is empty,
+ *   \c ptr is a pointer to an empty C-string (\c ""), never \c nullptr.
+ *
+ * \note The result is a non-owning view. Its lifetime is that of the
+ *   storage referred to by \c slice, except when the result is empty.
+ *
+ * \pre 0 == slice.len || nullptr != slice.ptr
+ * \pre 0 == trim_chars.len || nullptr != trim_chars.ptr
+ */
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_left_chars_m(
@@ -214,6 +253,25 @@ stlsoft_C_string_trim_left_chars_m(
     ,   slice.len - first);
 }
 
+/** Trims all trailing characters in \c trim_chars from \c slice
+ *
+ * \ingroup group__library__String
+ *
+ * \param slice The multibyte slice to be trimmed. The function does not
+ *   mutate the underlying character storage; it returns a (possibly
+ *   narrower) view of the same range;
+ * \param trim_chars The set of characters to remove from the end. An
+ *   empty set leaves \c slice unchanged;
+ *
+ * \return A slice of the remaining characters. If the result is empty,
+ *   \c ptr is a pointer to an empty C-string (\c ""), never \c nullptr
+ *
+ * \note The result is a non-owning view. Its lifetime is that of the
+ *   storage referred to by \c slice, except when the result is empty.
+ *
+ * \pre 0 == slice.len || nullptr != slice.ptr
+ * \pre 0 == trim_chars.len || nullptr != trim_chars.ptr
+ */
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_right_chars_m(
@@ -239,6 +297,25 @@ stlsoft_C_string_trim_right_chars_m(
     ,   last);
 }
 
+/** Trims all leading and trailing whitespace characters from \c slice.
+ *
+ * \ingroup group__library__String
+ *
+ * The default whitespace set is space, newline, carriage return, tab,
+ * and vertical tab (\c ' ', \c '\\n', \c '\\r', \c '\\t', \c '\\v').
+ *
+ * \param slice The multibyte slice to be trimmed. The function does not
+ *   mutate the underlying character storage; it returns a (possibly
+ *   narrower) view of the same range;
+ *
+ * \return A slice of the remaining characters. If the result is empty,
+ *   \c ptr is a pointer to an empty C-string (\c ""), never \c NULL.
+ *
+ * \note The result is a non-owning view. Its lifetime is that of the
+ *   storage referred to by \c slice, except when the result is empty.
+ *
+ * \pre 0 == slice.len || NULL != slice.ptr
+ */
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_all_m(
@@ -250,6 +327,25 @@ stlsoft_C_string_trim_all_m(
     return stlsoft_C_string_trim_all_chars_m(slice, trim_chars);
 }
 
+/** Trims all leading whitespace characters from \c slice.
+ *
+ * \ingroup group__library__String
+ *
+ * The default whitespace set is space, newline, carriage return, tab,
+ * and vertical tab (\c ' ', \c '\\n', \c '\\r', \c '\\t', \c '\\v').
+ *
+ * \param slice The multibyte slice to be trimmed. The function does not
+ *   mutate the underlying character storage; it returns a (possibly
+ *   narrower) view of the same range;
+ *
+ * \return A slice of the remaining characters. If the result is empty,
+ *   \c ptr is a pointer to an empty C-string (\c ""), never \c NULL.
+ *
+ * \note The result is a non-owning view. Its lifetime is that of the
+ *   storage referred to by \c slice, except when the result is empty.
+ *
+ * \pre 0 == slice.len || NULL != slice.ptr
+ */
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_left_m(
@@ -261,6 +357,25 @@ stlsoft_C_string_trim_left_m(
     return stlsoft_C_string_trim_left_chars_m(slice, trim_chars);
 }
 
+/** Trims all trailing whitespace characters from \c slice.
+ *
+ * \ingroup group__library__String
+ *
+ * The default whitespace set is space, newline, carriage return, tab,
+ * and vertical tab (\c ' ', \c '\\n', \c '\\r', \c '\\t', \c '\\v').
+ *
+ * \param slice The multibyte slice to be trimmed. The function does not
+ *   mutate the underlying character storage; it returns a (possibly
+ *   narrower) view of the same range;
+ *
+ * \return A slice of the remaining characters. If the result is empty,
+ *   \c ptr is a pointer to an empty C-string (\c ""), never \c NULL.
+ *
+ * \note The result is a non-owning view. Its lifetime is that of the
+ *   storage referred to by \c slice, except when the result is empty.
+ *
+ * \pre 0 == slice.len || NULL != slice.ptr
+ */
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
 stlsoft_C_string_trim_right_m(
