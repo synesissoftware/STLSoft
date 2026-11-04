@@ -4,7 +4,7 @@
  * Purpose: C string slice trimming functions.
  *
  * Created: 10th August 2026
- * Updated: 26th October 2026
+ * Updated: 4th November 2026
  *
  * Copyright (c) 2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_REVISION   0
-# define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_EDIT       3
+# define STLSOFT_VER_STLSOFT_STRING_H_TRIM_FUNCTIONS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -88,6 +88,17 @@ namespace stlsoft
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 STLSOFT_INLINE
+stlsoft_C_string_slice_m_t
+stlsoft_C_string_slice_default_whitespace_m_(void)
+{
+    static char const trim_chars[] = " \n\r\t\v";
+
+    stlsoft_C_string_slice_m_t const r = { sizeof(trim_chars) - 1, trim_chars };
+
+    return r;
+}
+
+STLSOFT_INLINE
 ss_truthy_t
 STLSoft_C_string_slice_trim_contains_char_m_(
     stlsoft_C_string_slice_m_t  trim_chars
@@ -115,7 +126,7 @@ STLSoft_C_string_slice_trim_contains_char_m_(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_left_chars_a(
+STLSoft_C_string_trim_left_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
 )
@@ -140,7 +151,7 @@ STLSoft_C_string_trim_left_chars_a(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_right_chars_a(
+STLSoft_C_string_trim_right_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
 )
@@ -165,7 +176,7 @@ STLSoft_C_string_trim_right_chars_a(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_all_chars_a(
+STLSoft_C_string_trim_all_chars_m(
     stlsoft_C_string_slice_m_t       slice
 ,   stlsoft_C_string_slice_m_t const trim_chars
 )
@@ -199,38 +210,35 @@ STLSoft_C_string_trim_all_chars_a(
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_left_a(
+STLSoft_C_string_trim_left_m(
     stlsoft_C_string_slice_m_t slice
 )
 {
-    static char const trim_chars[] = " \n\r\t\v";
-    stlsoft_C_string_slice_m_t const chars = { sizeof(trim_chars) - 1, trim_chars };
+    stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    return STLSoft_C_string_trim_left_chars_a(slice, chars);
+    return STLSoft_C_string_trim_left_chars_m(slice, trim_chars);
 }
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_right_a(
+STLSoft_C_string_trim_right_m(
     stlsoft_C_string_slice_m_t slice
 )
 {
-    static char const trim_chars[] = " \n\r\t\v";
-    stlsoft_C_string_slice_m_t const chars = { sizeof(trim_chars) - 1, trim_chars };
+    stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    return STLSoft_C_string_trim_right_chars_a(slice, chars);
+    return STLSoft_C_string_trim_right_chars_m(slice, trim_chars);
 }
 
 STLSOFT_INLINE
 stlsoft_C_string_slice_m_t
-STLSoft_C_string_trim_all_a(
+STLSoft_C_string_trim_all_m(
     stlsoft_C_string_slice_m_t slice
 )
 {
-    static char const trim_chars[] = " \n\r\t\v";
-    stlsoft_C_string_slice_m_t const chars = { sizeof(trim_chars) - 1, trim_chars };
+    stlsoft_C_string_slice_m_t const trim_chars = stlsoft_C_string_slice_default_whitespace_m_();
 
-    return STLSoft_C_string_trim_all_chars_a(slice, chars);
+    return STLSoft_C_string_trim_all_chars_m(slice, trim_chars);
 }
 
 
