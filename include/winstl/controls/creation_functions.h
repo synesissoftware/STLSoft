@@ -4,11 +4,11 @@
  * Purpose: Control creation functions.
  *
  * Created: 7th May 2000
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        36
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    11
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -136,7 +136,7 @@ winstl_C_control_creation_functions_Id2HMENU_(
  */
 STLSOFT_INLINE
 void
-winstl__setchildfont_(
+winstl_C_setchildfont_(
     HWND    hwnd
 ,   HWND    hwndParent
 )
@@ -153,7 +153,7 @@ winstl__setchildfont_(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateStaticA(
+winstl_C_CreateStaticA(
     HWND                hwndParent
 ,   ws_char_a_t const*  name
 ,   int                 x
@@ -163,9 +163,9 @@ winstl__CreateStaticA(
 ,   int                 id
 )
 {
-    HWND hwnd = winstl__CreateWindowA("STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    HWND hwnd = winstl_C_CreateWindowA("STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
-    winstl__setchildfont_(hwnd, hwndParent);
+    winstl_C_setchildfont_(hwnd, hwndParent);
 
     return hwnd;
 }
@@ -176,7 +176,7 @@ winstl__CreateStaticA(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateStaticW(
+winstl_C_CreateStaticW(
     HWND                hwndParent
 ,   ws_char_w_t const*  name
 ,   int                 x
@@ -186,9 +186,9 @@ winstl__CreateStaticW(
 ,   int                 id
 )
 {
-    HWND hwnd = winstl__CreateWindowW(L"STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    HWND hwnd = winstl_C_CreateWindowW(L"STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
-    winstl__setchildfont_(hwnd, hwndParent);
+    winstl_C_setchildfont_(hwnd, hwndParent);
 
     return hwnd;
 }
@@ -199,7 +199,7 @@ winstl__CreateStaticW(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateStaticFrame(
+winstl_C_CreateStaticFrame(
     HWND    hwndParent
 ,   DWORD   frameStyle
 ,   int     x
@@ -213,9 +213,9 @@ winstl__CreateStaticFrame(
 
     WINSTL_ASSERT(SS_BLACKFRAME == frameStyle || SS_GRAYFRAME == frameStyle || SS_WHITEFRAME == frameStyle || SS_ETCHEDFRAME == frameStyle);
 
-    hwnd = winstl__CreateWindowA("STATIC", "", WS_CHILD | WS_VISIBLE | frameStyle, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    hwnd = winstl_C_CreateWindowA("STATIC", "", WS_CHILD | WS_VISIBLE | frameStyle, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
-    winstl__setchildfont_(hwnd, hwndParent);
+    winstl_C_setchildfont_(hwnd, hwndParent);
 
     return hwnd;
 }
@@ -226,7 +226,7 @@ winstl__CreateStaticFrame(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateEditA(
+winstl_C_CreateEditA(
     HWND                hwndParent
 ,   ws_char_a_t const*  text
 ,   DWORD               editStyle
@@ -237,7 +237,7 @@ winstl__CreateEditA(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowA("EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowA("EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 /**
@@ -246,7 +246,7 @@ winstl__CreateEditA(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateEditW(
+winstl_C_CreateEditW(
     HWND                hwndParent
 ,   ws_char_w_t const*  text
 ,   DWORD               editStyle
@@ -257,7 +257,7 @@ winstl__CreateEditW(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowW(L"EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowW(L"EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 /**
@@ -266,7 +266,7 @@ winstl__CreateEditW(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateCheckboxA(
+winstl_C_CreateCheckboxA(
     HWND                hwndParent
 ,   ws_char_a_t const*  name
 ,   DWORD               buttonStyle
@@ -277,7 +277,7 @@ winstl__CreateCheckboxA(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowA("BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowA("BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 /**
@@ -286,7 +286,7 @@ winstl__CreateCheckboxA(
  */
 STLSOFT_INLINE
 HWND
-winstl__CreateCheckboxW(
+winstl_C_CreateCheckboxW(
     HWND                hwndParent
 ,   ws_char_w_t const*  name
 ,   DWORD               buttonStyle
@@ -297,7 +297,7 @@ winstl__CreateCheckboxW(
 ,   int                 id
 )
 {
-    return winstl__CreateWindowW(L"BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    return winstl_C_CreateWindowW(L"BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
 
 
@@ -323,7 +323,7 @@ namespace winstl
  */
 inline
 HWND
-winstl__CreateStatic(
+winstl_C_CreateStatic(
     HWND                hwndParent
 ,   ws_char_a_t const*  name
 ,   int                 x
@@ -333,7 +333,7 @@ winstl__CreateStatic(
 ,   int                 id
 )
 {
-    return winstl__CreateStaticA(hwndParent, name, x, y, cx, cy, id);
+    return winstl_C_CreateStaticA(hwndParent, name, x, y, cx, cy, id);
 }
 
 /**
@@ -342,7 +342,7 @@ winstl__CreateStatic(
  */
 inline
 HWND
-winstl__CreateStatic(
+winstl_C_CreateStatic(
     HWND                hwndParent
 ,   ws_char_w_t const*  name
 ,   int                 x
@@ -352,7 +352,7 @@ winstl__CreateStatic(
 ,   int                 id
 )
 {
-    return winstl__CreateStaticW(hwndParent, name, x, y, cx, cy, id);
+    return winstl_C_CreateStaticW(hwndParent, name, x, y, cx, cy, id);
 }
 
 
@@ -362,7 +362,7 @@ winstl__CreateStatic(
  */
 inline
 HWND
-winstl__CreateEdit(
+winstl_C_CreateEdit(
     HWND                hwndParent
 ,   ws_char_a_t const*  text
 ,   DWORD               editStyle
@@ -373,7 +373,7 @@ winstl__CreateEdit(
 ,   int                 id
 )
 {
-    return winstl__CreateEditA(hwndParent, text, editStyle, x, y, cx, cy, id);
+    return winstl_C_CreateEditA(hwndParent, text, editStyle, x, y, cx, cy, id);
 }
 
 /**
@@ -382,7 +382,7 @@ winstl__CreateEdit(
  */
 inline
 HWND
-winstl__CreateEdit(
+winstl_C_CreateEdit(
     HWND                hwndParent
 ,   ws_char_w_t const*  text
 ,   DWORD               editStyle
@@ -393,7 +393,7 @@ winstl__CreateEdit(
 ,   int                 id
 )
 {
-    return winstl__CreateEditW(hwndParent, text, editStyle, x, y, cx, cy, id);
+    return winstl_C_CreateEditW(hwndParent, text, editStyle, x, y, cx, cy, id);
 }
 
 
@@ -403,7 +403,7 @@ winstl__CreateEdit(
  */
 inline
 HWND
-winstl__CreateCheckbox(
+winstl_C_CreateCheckbox(
     HWND                hwndParent
 ,   ws_char_a_t const*  name
 ,   DWORD               buttonStyle
@@ -414,7 +414,7 @@ winstl__CreateCheckbox(
 ,   int                 id
 )
 {
-    return winstl__CreateCheckboxA(hwndParent, name, buttonStyle, x, y, cx, cy, id);
+    return winstl_C_CreateCheckboxA(hwndParent, name, buttonStyle, x, y, cx, cy, id);
 }
 
 /**
@@ -423,7 +423,7 @@ winstl__CreateCheckbox(
  */
 inline
 HWND
-winstl__CreateCheckbox(
+winstl_C_CreateCheckbox(
     HWND                hwndParent
 ,   ws_char_w_t const*  name
 ,   DWORD               buttonStyle
@@ -434,7 +434,7 @@ winstl__CreateCheckbox(
 ,   int                 id
 )
 {
-    return winstl__CreateCheckboxW(hwndParent, name, buttonStyle, x, y, cx, cy, id);
+    return winstl_C_CreateCheckboxW(hwndParent, name, buttonStyle, x, y, cx, cy, id);
 }
 
 
@@ -455,7 +455,7 @@ CreateStatic(
 ,   int         id
 )
 {
-    return winstl__CreateStatic(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), x, y, cx, cy, id);
+    return winstl_C_CreateStatic(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), x, y, cx, cy, id);
 }
 
 /**
@@ -472,7 +472,7 @@ CreateStatic(
 ,   int         id
 )
 {
-    return winstl__CreateStatic(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
+    return winstl_C_CreateStatic(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
 
 
@@ -494,7 +494,7 @@ CreateEdit
 ,   int         id
 )
 {
-    return winstl__CreateEdit(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(text), editStyle, x, y, cx, cy, id);
+    return winstl_C_CreateEdit(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(text), editStyle, x, y, cx, cy, id);
 }
 
 /**
@@ -512,7 +512,7 @@ CreateEdit(
 ,   int         id
 )
 {
-    return winstl__CreateEdit(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(text), editStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
+    return winstl_C_CreateEdit(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(text), editStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
 
 
@@ -532,7 +532,7 @@ CreateStaticFrame(
 ,   int     id = -1
 )
 {
-    return winstl__CreateStaticFrame(hwndParent, frameStyle, x, y, cx, cy, id);
+    return winstl_C_CreateStaticFrame(hwndParent, frameStyle, x, y, cx, cy, id);
 }
 
 /**
@@ -569,7 +569,7 @@ CreateCheckbox(
 ,   int         id
 )
 {
-    return winstl__CreateCheckbox(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), buttonStyle, x, y, cx, cy, id);
+    return winstl_C_CreateCheckbox(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), buttonStyle, x, y, cx, cy, id);
 }
 
 /**
@@ -587,10 +587,280 @@ CreateCheckbox(
 ,   int         id
 )
 {
-    return winstl__CreateCheckbox(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), buttonStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
+    return winstl_C_CreateCheckbox(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), buttonStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
 #endif /* __cplusplus */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_Create* function, or winstl_C_setchildfont_, that the
+ * wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_setchildfont_
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__setchildfont_, winstl_C_setchildfont_)
+STLSOFT_INLINE
+void
+winstl__setchildfont_(
+    HWND    hwnd
+,   HWND    hwndParent
+)
+{
+    winstl_C_setchildfont_(hwnd, hwndParent);
+}
+
+/** \deprecated Use winstl_C_CreateStaticA
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateStaticA, winstl_C_CreateStaticA)
+STLSOFT_INLINE
+HWND
+winstl__CreateStaticA(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateStaticA(hwndParent, name, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateStaticW
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateStaticW, winstl_C_CreateStaticW)
+STLSOFT_INLINE
+HWND
+winstl__CreateStaticW(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateStaticW(hwndParent, name, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateStaticFrame
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateStaticFrame, winstl_C_CreateStaticFrame)
+STLSOFT_INLINE
+HWND
+winstl__CreateStaticFrame(
+    HWND    hwndParent
+,   DWORD   frameStyle
+,   int     x
+,   int     y
+,   int     cx
+,   int     cy
+,   int     id
+)
+{
+    return winstl_C_CreateStaticFrame(hwndParent, frameStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateEditA
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateEditA, winstl_C_CreateEditA)
+STLSOFT_INLINE
+HWND
+winstl__CreateEditA(
+    HWND                hwndParent
+,   ws_char_a_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateEditA(hwndParent, text, editStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateEditW
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateEditW, winstl_C_CreateEditW)
+STLSOFT_INLINE
+HWND
+winstl__CreateEditW(
+    HWND                hwndParent
+,   ws_char_w_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateEditW(hwndParent, text, editStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateCheckboxA
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateCheckboxA, winstl_C_CreateCheckboxA)
+STLSOFT_INLINE
+HWND
+winstl__CreateCheckboxA(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateCheckboxA(hwndParent, name, buttonStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateCheckboxW
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateCheckboxW, winstl_C_CreateCheckboxW)
+STLSOFT_INLINE
+HWND
+winstl__CreateCheckboxW(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateCheckboxW(hwndParent, name, buttonStyle, x, y, cx, cy, id);
+}
+
+#ifdef __cplusplus
+
+/** \deprecated Use winstl_C_CreateStatic
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateStatic, winstl_C_CreateStatic)
+STLSOFT_INLINE
+HWND
+winstl__CreateStatic(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateStatic(hwndParent, name, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateStatic
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateStatic, winstl_C_CreateStatic)
+STLSOFT_INLINE
+HWND
+winstl__CreateStatic(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateStatic(hwndParent, name, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateEdit
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateEdit, winstl_C_CreateEdit)
+STLSOFT_INLINE
+HWND
+winstl__CreateEdit(
+    HWND                hwndParent
+,   ws_char_a_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateEdit(hwndParent, text, editStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateEdit
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateEdit, winstl_C_CreateEdit)
+STLSOFT_INLINE
+HWND
+winstl__CreateEdit(
+    HWND                hwndParent
+,   ws_char_w_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateEdit(hwndParent, text, editStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateCheckbox
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateCheckbox, winstl_C_CreateCheckbox)
+STLSOFT_INLINE
+HWND
+winstl__CreateCheckbox(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateCheckbox(hwndParent, name, buttonStyle, x, y, cx, cy, id);
+}
+
+/** \deprecated Use winstl_C_CreateCheckbox
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__CreateCheckbox, winstl_C_CreateCheckbox)
+STLSOFT_INLINE
+HWND
+winstl__CreateCheckbox(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
+{
+    return winstl_C_CreateCheckbox(hwndParent, name, buttonStyle, x, y, cx, cy, id);
+}
+
+#endif /* __cplusplus */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

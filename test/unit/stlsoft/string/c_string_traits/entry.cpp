@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string_traits/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string_traits/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string_traits compare functions.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 2nd November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,8 +40,10 @@ namespace
     static void TEST_str_n_compare_IGNORES_BYTE_PAST_n();
     static void TEST_str_compare_no_case_ASCII();
     static void TEST_str_n_compare_no_case_ASCII();
-
-} /* anonymous namespace */
+    static void TEST_char_copy_CHAR();
+    static void TEST_char_copy_WCHAR();
+    static void TEST_char_copy_n_0_NO_WRITE();
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,6 +66,9 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_str_n_compare_IGNORES_BYTE_PAST_n);
         XTESTS_RUN_CASE(TEST_str_compare_no_case_ASCII);
         XTESTS_RUN_CASE(TEST_str_n_compare_no_case_ASCII);
+        XTESTS_RUN_CASE(TEST_char_copy_CHAR);
+        XTESTS_RUN_CASE(TEST_char_copy_WCHAR);
+        XTESTS_RUN_CASE(TEST_char_copy_n_0_NO_WRITE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -167,7 +172,56 @@ static void TEST_str_n_compare_no_case_ASCII()
     TEST_INT_EQ(0, w_traits_t::str_n_compare_no_case(w1, w2, 3));
 }
 
-} /* anonymous namespace */
+static void TEST_char_copy_CHAR()
+{
+    char const  src[] = { 'a', 'b', 'c', 'd' };
+    char        buff[6] = { 'X', 'X', 'X', 'X', 'X', 'X' };
+    char* const r = a_traits_t::char_copy(&buff[1], src, 4);
+
+    TEST_BOOLEAN_TRUE(&buff[1] == r);
+    TEST_CHAR_EQ('X', buff[0]);
+    TEST_CHAR_EQ('a', buff[1]);
+    TEST_CHAR_EQ('b', buff[2]);
+    TEST_CHAR_EQ('c', buff[3]);
+    TEST_CHAR_EQ('d', buff[4]);
+    TEST_CHAR_EQ('X', buff[5]);
+}
+
+static void TEST_char_copy_WCHAR()
+{
+    /* the byte count is scaled by sizeof(wchar_t) */
+    wchar_t const   src[] = { L'a', L'b', L'c', L'd' };
+    wchar_t         buff[6] = { L'X', L'X', L'X', L'X', L'X', L'X' };
+    wchar_t* const  r = w_traits_t::char_copy(&buff[1], src, 4);
+
+    TEST_BOOLEAN_TRUE(&buff[1] == r);
+    TEST_CHAR_EQ(L'X', buff[0]);
+    TEST_CHAR_EQ(L'a', buff[1]);
+    TEST_CHAR_EQ(L'b', buff[2]);
+    TEST_CHAR_EQ(L'c', buff[3]);
+    TEST_CHAR_EQ(L'd', buff[4]);
+    TEST_CHAR_EQ(L'X', buff[5]);
+}
+
+static void TEST_char_copy_n_0_NO_WRITE()
+{
+    {
+        char buff[2] = { 'X', 'X' };
+
+        TEST_BOOLEAN_TRUE(&buff[0] == a_traits_t::char_copy(&buff[0], NULL, 0));
+        TEST_CHAR_EQ('X', buff[0]);
+        TEST_CHAR_EQ('X', buff[1]);
+    }
+
+    {
+        wchar_t buff[2] = { L'X', L'X' };
+
+        TEST_BOOLEAN_TRUE(&buff[0] == w_traits_t::char_copy(&buff[0], NULL, 0));
+        TEST_CHAR_EQ(L'X', buff[0]);
+        TEST_CHAR_EQ(L'X', buff[1]);
+    }
+}
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose: Compiler feature discrimination for Comeau C/C++.
  *
  * Created: 7th February 2003
- * Updated: 28th May 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,9 +60,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     18
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      82
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     19
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,18 +80,19 @@
  * back end discrimination
  */
 
-#if defined(__BORLANDC__)
-# define    STLSOFT_CF_COMO_BACKEND_IS_BORLAND
+#if 0
+#elif defined(__BORLANDC__)
+# define                                                    STLSOFT_CF_COMO_BACKEND_IS_BORLAND
 #elif defined(__DMC__)
-# define    STLSOFT_CF_COMO_BACKEND_IS_DMC
+# define                                                    STLSOFT_CF_COMO_BACKEND_IS_DMC
 #elif defined(__GNUC__)
-# define    STLSOFT_CF_COMO_BACKEND_IS_GCC
+# define                                                    STLSOFT_CF_COMO_BACKEND_IS_GCC
 #elif defined(__INTEL_COMPILER)
-# define    STLSOFT_CF_COMO_BACKEND_IS_INTEL
+# define                                                    STLSOFT_CF_COMO_BACKEND_IS_INTEL
 #elif defined(__MWERKS__)
-# define    STLSOFT_CF_COMO_BACKEND_IS_MWERKS
+# define                                                    STLSOFT_CF_COMO_BACKEND_IS_MWERKS
 #elif defined(_MSC_VER)
-# define    STLSOFT_CF_COMO_BACKEND_IS_MSVC
+# define                                                    STLSOFT_CF_COMO_BACKEND_IS_MSVC
 #else /* ? compiler */
 # error Your Comeau back-end is not recognised. Please contact admin hat stlsoft dot org
 #endif /* compiler */
@@ -110,6 +111,7 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#define STLSOFT_PPF_pragma_once_SUPPORT
 
 /* Support for:
  *  - __func__

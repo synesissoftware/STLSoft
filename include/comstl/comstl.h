@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    10
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        136
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -164,13 +164,13 @@
 # define _COMSTL_VER_1_8_6      0x010806ff  /*!< Version 1.8.6 (with STLSoft 1.9.97) */
 # define _COMSTL_VER_1_9_1      0x010901ff  /*!< Version 1.9.1 (with STLSoft 1.9.98) */
 # define _COMSTL_VER_1_9_2      0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.9.113) */
-# define _COMSTL_VER_1_10_1_B01 0x010a0181  /*!< Version 1.10.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1 beta 2 (with STLSoft 1.10.1 beta 17) */
-# define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1 beta 3 (with STLSoft 1.10.1 beta 26) */
+# define _COMSTL_VER_1_10_1_B01 0x010a0181  /*!< Version 1.10.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1-beta2 (with STLSoft 1.10.1-beta17) */
+# define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
-# define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1 alpha 8) */
-# define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1 alpha 17) */
-# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1 rc 9) */
+# define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1-alpha8) */
+# define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1-alpha17) */
+# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1-rc9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
@@ -208,9 +208,9 @@
 # include <objbase.h>
 #endif /* !STLSOFT_INCL_H_OBJBASE */
 
-#if defined(STLSOFT_COMPILER_IS_GCC) && \
-    defined(_WIN32) && \
-    (   defined(WIN32) || \
+#if defined(STLSOFT_COMPILER_IS_GCC) &&\
+    defined(_WIN32) &&\
+    (   defined(WIN32) ||\
         defined(WIN64))
 # ifndef STLSOFT_INCL_H_OLEAUTO
 #  define STLSOFT_INCL_H_OLEAUTO
@@ -227,8 +227,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0151
-# error This version of the COMSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the COMSTL libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -362,10 +362,10 @@
 #undef __COMSTL_CF_DCOM_SUPPORT
 #endif /* __COMSTL_CF_DCOM_SUPPORT */
 
-#if !defined(_COMSTL_NO_DCOM) && \
-    (   (   defined(_WIN32_WINNT ) && \
-            (_WIN32_WINNT >= 0x0400)) || \
-        defined(_WIN32_DCOM) || \
+#if !defined(_COMSTL_NO_DCOM) &&\
+    (   (   defined(_WIN32_WINNT ) &&\
+            (_WIN32_WINNT >= 0x0400)) ||\
+        defined(_WIN32_DCOM) ||\
         defined(_COMSTL_DCOM))
 
 # define __COMSTL_CF_DCOM_SUPPORT
@@ -472,7 +472,7 @@
  */
 
 #ifndef COMSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 /* There is no stlsoft namespace, so must define ::comstl */
@@ -654,10 +654,10 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  * An alternative to the general \c _FORCENAMELESSUNION
  */
 
-#if 1 && \
-    !defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) && \
-    !defined(_FORCENAMELESSUNION) && \
-    defined(NONAMELESSUNION) && \
+#if 1 &&\
+    !defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) &&\
+    !defined(_FORCENAMELESSUNION) &&\
+    defined(NONAMELESSUNION) &&\
     1
 
 # define COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES
@@ -698,7 +698,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 
     defined(NONAMELESSUNION) ||
 
-    (  __STDC__ && \
+    (  __STDC__ &&\
         !defined(_FORCENAMELESSUNION)) ||
 
     0
@@ -752,23 +752,23 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 #  if STLSOFT_GCC_VER >= 80000 /* NOTE: this number may be wrong - too large, but still old way with 4.9 */
 
 #   if 0
-#   elif __STDC__ && \
-         !defined(__cplusplus) && \
+#   elif __STDC__ &&\
+         !defined(__cplusplus) &&\
          !defined(_FORCENAMELESSUNION)
 
 #    define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
-#   elif defined(_MSC_VER) && \
-         !defined(_MSC_EXTENSIONS) && \
+#   elif defined(_MSC_VER) &&\
+         !defined(_MSC_EXTENSIONS) &&\
          !defined(_FORCENAMELESSUNION)
 
 #    define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
 #   endif /* ? GCC version */
 #  endif
-# elif __STDC__ && \
+# elif __STDC__ &&\
        defined(_FORCENAMELESSUNION)
 
 #  define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
-# elif !defined(_MSC_EXTENSIONS) && \
+# elif !defined(_MSC_EXTENSIONS) &&\
        !defined(_FORCENAMELESSUNION)
 
 #  define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
@@ -781,7 +781,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  *
  *
  */
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 # define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)         (pvar)->mem
 # else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
@@ -812,7 +812,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  *
  */
 
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 #  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)              (pvar)->vt
 # else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
@@ -842,7 +842,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  *
  *
  */
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 # define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)           (pvar)->decVal
 # else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
@@ -1006,7 +1006,7 @@ const cs_size_t COMSTL_CCH_GUID     =   38;
  */
 
 #ifndef COMSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace comstl */
 # else

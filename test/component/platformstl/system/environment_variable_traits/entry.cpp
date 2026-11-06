@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    environment_variable_traits/entry.cpp
+ * File:    test/component/platformstl/system/environment_variable_traits/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::environment_variable_traits`.
  *
  * Created: 30th December 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -105,7 +105,7 @@ static void TEST_set_variable()
     {
         char const* ev_value = environment_variable_traits::get_variable("EV_2C4D392B_22CD_4452_9525_382043AD2611");
 
-        XTESTS_REQUIRE(TEST_PTR_NE(NULL, ev_value));
+        REQUIRE(TEST_PTR_NOT_NULL(ev_value));
 
         TEST_MS_EQ("some-value", ev_value);
     }

@@ -82,6 +82,7 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      execute-full-suite: false
       with-ace: true
       with-atl: false
       with-mfc: false
@@ -105,6 +106,7 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      execute-full-suite: false
       with-ace: false
       with-atl: true
       with-mfc: false
@@ -128,6 +130,7 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      execute-full-suite: false
       with-ace: false
       with-atl: false
       with-mfc: true
@@ -297,3 +300,23 @@ jobs:
             cmake --build consumer-build --parallel
             consumer-build/consumer
           fi
+
+  # File: labels and XTESTS_START_RUNNER names. Source text only, so this
+  # job is one Ubuntu runner, not a cell per platform and compiler. The
+  # script exits non-zero when either mismatch total is non-zero.
+  check-test-names:
+    name: Check test names
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Install checker dependencies
+        run: gem install highline libclimate-ruby recls-ruby xqsr3
+
+      - name: "Check File: labels and runner names"
+        run: ./.dev/bin/check_unit_test_names.rb examples test

@@ -1,19 +1,20 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    clasp-ruby (0.23.1)
+    clasp-ruby (0.23.4)
     highline (3.1.2)
       reline
-    io-console (0.8.1)
-    libclimate-ruby (0.17.0.1)
+    io-console (0.9.5)
+    libclimate-ruby (0.17.4)
       clasp-ruby (~> 0.23, >= 0.23.0.2)
-      xqsr3 (~> 0.39)
-    recls-ruby (2.13.2)
-    reline (0.6.2)
+      xqsr3 (>= 0.39.5, < 1.0)
+    recls-ruby (2.13.5)
+    reline (0.7.0)
       io-console (~> 0.5)
-    xqsr3 (0.39.3.1)
+    xqsr3 (0.39.11)
 
 PLATFORMS
+  arm64-darwin-25
   x86_64-darwin-20
 
 DEPENDENCIES

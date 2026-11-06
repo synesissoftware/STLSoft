@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for Clang C/C++.
  *
  * Created: 14th March 2015
- * Updated: 25th September 2026
+ * Updated: 6th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -571,7 +571,7 @@
  */
 
 #define STLSOFT_CF_ASSERT_SUPPORT
-#if STLSOFT_HEAD_VER >= 0x010c0000
+#if STLSOFT_HEAD_VER >= 0x010d0000
 # ifdef __cplusplus
 #  define STLSOFT_STOCK_ASSERT_INCLUDE_                     <cassert>
 # else /* ? __cplusplus */

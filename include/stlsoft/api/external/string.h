@@ -4,7 +4,7 @@
  * Purpose: External preprocessor aliases for string functions.
  *
  * Created: 15th November 2002
- * Updated: 17th September 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* WARNING: this file contains undocumented internal features that are
+/* WARNING: this file contains undocumented external features that are
  * subject to change at any time, so if you use them it is at your own risk.
  */
 
@@ -114,11 +114,14 @@
 #  undef STLSOFT_API_EXTERNAL_string_USE_MSVC_COMPILER_EXTENSION_FORMS_
 # endif
 
-  // Whether we use ANSI
+  /* Whether we use ANSI */
 
-  // If __STDC__ is defined then we use compiler-extension forms
-  // If VC++ 10+ and neither "secure" deprecation nor CRT deprecation is
-  //  suppressed then we use compiler-extension forms
+  /*
+   * If __STDC__ is defined then we use compiler-extension forms.
+   *
+   * If VC++ 10+ and neither "secure" deprecation nor CRT deprecation is
+   * suppressed then we use compiler-extension forms
+   */
 
 # if 0
 # elif defined(__STDC__)
@@ -490,9 +493,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 

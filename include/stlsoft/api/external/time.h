@@ -1,11 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/api/external/time.h
  *
- * Purpose: External preprocessor aliases and support discrimination for
- *          time functions.
+ * Purpose: External preprocessor support discrimination for time functions.
  *
  * Created: 30th September 2024
- * Updated: 20th September 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -42,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* WARNING: this file contains undocumented internal features that are
+/* WARNING: this file contains undocumented external features that are
  * subject to change at any time, so if you use them it is at your own risk.
  */
 
@@ -88,9 +87,7 @@
  *
  * - STLSOFT_LF_SUPPORT_STD_asctime_s
  * - STLSOFT_LF_SUPPORT_STD_ctime_s
- * - STLSOFT_LF_SUPPORT_STD_gmtime_r
  * - STLSOFT_LF_SUPPORT_STD_gmtime_s
- * - STLSOFT_LF_SUPPORT_STD_localtime_r
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
@@ -110,6 +107,7 @@
       0
 
 # if 1 &&\
+     !defined(__MINGW32__) &&\
      !defined(__MINGW64__) &&\
      1
 
@@ -142,16 +140,19 @@
 /*
  * - STLSOFT_LF_SUPPORT_STD_asctime_s
  * - STLSOFT_LF_SUPPORT_STD_ctime_s
- * - STLSOFT_LF_SUPPORT_STD_gmtime_r
  * - STLSOFT_LF_SUPPORT_STD_gmtime_s
- * - STLSOFT_LF_SUPPORT_STD_localtime_r
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
+/* The *_s functions are C11 Annex K, which is optional (and is not part of
+ * C++): the implementation signals support by defining __STDC_LIB_EXT1__,
+ * and the user must request it by defining __STDC_WANT_LIB_EXT1__ before
+ * <time.h> is first included. Applies to both C and C++.
+ */
 #if 0
 #elif 1 &&\
-      defined(__cplusplus) &&\
-      __cplusplus >= 201103L &&\
+      defined(__STDC_LIB_EXT1__) &&\
+      defined(__STDC_WANT_LIB_EXT1__) &&\
       1
 
 # define STLSOFT_LF_SUPPORT_STD_asctime_s
@@ -160,41 +161,14 @@
 # define STLSOFT_LF_SUPPORT_STD_localtime_s
 #endif
 
-#if 0
-#elif 1 &&\
-      defined(__cplusplus) &&\
-      __cplusplus >= 202302L &&\
-      1
-
- /* C++23 claims POSIX gmtime_r/localtime_r in the working draft, but MinGW
-  * (and MSVC) do not provide them; keep the MSVC exclusion and also exclude
-  * MinGW so discrimination falls through to gmtime()/localtime() (or *_s).
-  */
-# if 1 &&\
-     !defined(_MSC_VER) && \
-     !defined(__MINGW32__) && \
-     !defined(__MINGW64__) &&\
-     1
-
-#  define STLSOFT_LF_SUPPORT_STD_gmtime_r
-#  define STLSOFT_LF_SUPPORT_STD_localtime_r
-# endif
-#endif
-
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * time functions
- */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_time */
 

@@ -4,7 +4,7 @@
  * Purpose: Directory functions.
  *
  * Created: 1st October 2016
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -75,6 +75,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_H_COPY_FUNCTIONS
 # include <stlsoft/string/copy_functions.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_COPY_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
 
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -242,7 +245,7 @@ unixstl_C_get_home_directory_a(
 }
 
 /* Policy: read HOME via getenv() (multibyte) and convert to wide with
- * mbstowcs() using the locale multibyte encoding.
+ * stlsoft_C_mbstowcs() using the locale multibyte encoding.
  */
 STLSOFT_INLINE
 us_size_t
@@ -259,11 +262,7 @@ unixstl_C_get_home_directory_w(
     }
     else
     {
-# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-
-        size_t const cchHome = STLSOFT_NS_GLOBAL(mbstowcs)(NULL, home, 0);
-
-# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+        size_t const cchHome = stlsoft_C_mbstowcs(NULL, 0, home, 0);
 
         if ((size_t)-1 == cchHome)
         {
@@ -276,11 +275,7 @@ unixstl_C_get_home_directory_w(
         }
 
         {
-# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-
-            size_t const n = STLSOFT_NS_GLOBAL(mbstowcs)(buffer, home, cchBuffer);
-
-# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+            size_t const n = stlsoft_C_mbstowcs(buffer, cchBuffer, home, cchHome + 1);
 
             if ((size_t)-1 == n)
             {

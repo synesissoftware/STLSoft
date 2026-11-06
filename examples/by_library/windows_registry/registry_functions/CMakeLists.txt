@@ -1,2 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(registry_functions main.cpp)
+define_example_program(example.by_library.windows_registry.registry_functions main.cpp)

@@ -4,7 +4,7 @@
  * Purpose: DECIMAL helper functions.
  *
  * Created: 23rd August 2008
- * Updated: 11th October 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MINOR       0
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_REVISION    7
-# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        20
+# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,6 +228,8 @@ comstl_C_DECIMAL_compare(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+/** \deprecated Use comstl_C_DECIMAL_compare
+ */
 STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__DECIMAL_compare, comstl_C_DECIMAL_compare)
 STLSOFT_INLINE
 int
