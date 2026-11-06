@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    memory_map_functions.C/entry.c
+ * File:    test/component/winstl/filesystem/memory_map_functions.C/entry.c
  *
  * Purpose: Scratch test for memory-map functions.
  *
  * Created: 26th August 2010
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

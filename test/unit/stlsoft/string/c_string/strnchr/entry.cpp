@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnchr/entry.cpp
+ * File:    test/unit/stlsoft/string/c_string/strnchr/entry.cpp
  *
  * Purpose: Unit-tests for stlsoft::c_string::strnchr() and wcsnchr().
  *
  * Created: 23rd October 2026
- * Updated: 25th October 2026
+ * Updated: 2nd November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -122,6 +122,8 @@ static void TEST_c_string_strnchr_n_0()
 {
     TEST_PTR_NULL(stlsoft::c_string::strnchr("abc", 0, 'a'));
     TEST_PTR_NULL(stlsoft::c_string::strnchr("", 0, '\0'));
+    TEST_PTR_NULL(stlsoft::c_string::strnchr(static_cast<char const*>(NULL), 0, 'a'));
+    TEST_PTR_NULL(stlsoft::c_string::strnchr(static_cast<char const*>(NULL), 0, 200));
 }
 
 static void TEST_c_string_strnchr_MATCH_AT_START()
@@ -198,6 +200,8 @@ static void TEST_c_string_wcsnchr_n_0()
 {
     TEST_PTR_NULL(wcsnchr_both_(L"abc", 0, L'a'));
     TEST_PTR_NULL(wcsnchr_both_(L"", 0, L'\0'));
+    TEST_PTR_NULL(wcsnchr_both_(NULL, 0, L'a'));
+    TEST_PTR_NULL(wcsnchr_both_(NULL, 0, 200));
 }
 
 static void TEST_c_string_wcsnchr_MATCH_AT_START()

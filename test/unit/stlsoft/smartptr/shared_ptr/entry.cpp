@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    shared_ptr/entry.cpp
+ * File:    test/unit/stlsoft/smartptr/shared_ptr/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 20th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

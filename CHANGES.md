@@ -1,12 +1,128 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.12.0-alpha1 - 30th October 2026
+## 1.12.0-alpha1 - 10th November 2026
 
+
+
+## 1.11.5 - 2nd November 2026
+
+* additions:
+  * **include/stlsoft/string/c_string/strdup.h** — `stlsoft_C_strdup()` hides `strdup()` / `_strdup()`; a null source returns null;
+  * **include/stlsoft/string/c_string/wcscpy.h** and **include/stlsoft/string/c_string/wcsncpy.h** — `stlsoft_C_wcscpy()` and `stlsoft_C_wcsncpy()` take a destination capacity and hide `wcscpy_s()` / `wcsncpy_s()`. The secure return code is discarded; the classic forms ignore the destination capacity;
+  * **include/stlsoft/string/error/strerror.h** — `stlsoft_C_strerror()` takes an error code, a destination capacity, a destination buffer, and an optional pointer to the required length, and hides `strerror()` / `strerror_s()`;
+  * **include/stlsoft/api/external/memfns.h** — `STLSOFT_API_EXTERNAL_memfns_memchr`, `STLSOFT_API_EXTERNAL_memfns_wmemchr`, and `STLSOFT_API_EXTERNAL_memfns_wmemmove`;
+  * **include/stlsoft/api/internal/stdio.h** — `STLSOFT_API_INTERNAL_stdio_fopen_w()` (Visual C/C++ only), the wide counterpart of `STLSOFT_API_INTERNAL_stdio_fopen_m()`;
+* behaviour:
+  * **include/stlsoft/api/external/time.h** — `STLSOFT_LF_SUPPORT_STD_asctime_s`, `STLSOFT_LF_SUPPORT_STD_ctime_s`, `STLSOFT_LF_SUPPORT_STD_gmtime_s`, and `STLSOFT_LF_SUPPORT_STD_localtime_s` are defined only when both `__STDC_LIB_EXT1__` and `__STDC_WANT_LIB_EXT1__` are defined (C11 Annex K is optional), in C as well as C++; they had been defined for any C++11 translation unit. The GCC `*_r` block now excludes `__MINGW32__` as well as `__MINGW64__`. The spurious C++23 `STLSOFT_LF_SUPPORT_STD_gmtime_r` / `STLSOFT_LF_SUPPORT_STD_localtime_r` block is removed, and the matching dead conditions are removed from **include/stlsoft/api/internal/time.h**;
+  * **include/stlsoft/api/internal/time.h** — the `gmtime` and `localtime` adaptations return `EINVAL` rather than `errno` when the conversion fails and `errno` is 0, so failure is never reported as success;
+  * **include/stlsoft/api/internal/memfns.h** — `STLSOFT_API_INTERNAL_memfns_memcpy()`, `_memset()`, `_wmemcpy()`, and `_wmemset()` no longer substitute dummy buffers under GCC when a null pointer is passed with a count of 0; they return `dest`. The precondition is `0 == count || nullptr != ptr`, and each function is now documented;
+  * **include/stlsoft/conversion/byte_format_functions.hpp** — `impl::format_hex_uint128()` and `impl::format_hex_uint256()` no longer swap their halves when `highByteFirst` is `true`, so the output is in byte order, like `format_hex_uint16()` to `format_hex_uint64()`. `format_bytes()` with `cb == 0` writes a terminating NUL when `cchBuff` is not 0. The `STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF` path formats into a local buffer and copies the digits, so an exact-sized caller buffer is no longer overrun by `stlsoft_C_snprintf()`'s NUL;
+  * **include/stlsoft/algorithms/pod.hpp** — `pod_copy_n()`, `pod_copy()`, `pod_move_n()`, `pod_move()`, and the `pod_fill_n()` forms skip the CRT call for a count of 0, so a null pointer is legal for an empty range. **include/stlsoft/string/char_traits.hpp** — `compare()` returns 0 and `find()` returns null for a count of 0, and assert on a null string only when the count is not 0. **include/stlsoft/string/c_string/strnchr.h** — a count of 0 returns null;
+  * **include/stlsoft/exception/special/errno_exception.hpp** — `errno_exception(ENOMEM)` returns a static string and does not allocate: `"Not enough memory"` when `_MSC_VER` is set, otherwise `"Cannot allocate memory"`. `free_context_()` frees only a non-null construction copy;
+* refactoring:
+  * **include/stlsoft/exception/special/errno_exception.hpp** — `strerror_s` / `_strdup` and `strerror` stay inside `strerror_message_()`. `ENOMEM` still returns the static string and does not call it;
+  * **include/stlsoft/error/error_desc.hpp** — the narrow and wide `error_desc` message copies are made through `stlsoft_C_strerror()` (a 241-character buffer, refetched at the reported length when a secure message is longer); the private `strerror_s` / `strerror` invokers are gone;
+  * **include/platformstl/filesystem/FILE_stream.hpp** — `FILE_stream_base` opens files through `STLSOFT_API_INTERNAL_stdio_fopen_m()` and `STLSOFT_API_INTERNAL_stdio_fopen_w()` rather than discriminating on `STLSOFT_USING_SAFE_STR_FUNCTIONS` itself;
+  * **include/stlsoft/algorithms/std/alt.hpp** — `std_copy()`, `std_fill_n()`, and `std_transform()` keep a handwritten loop when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set, because the secure CRT deprecates the standard algorithms for character buffers. This is not a `*_s` call;
+  * **include/stlsoft/api/external/** and **include/stlsoft/internal/cccap/** — discrimination on `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` moved to `STLSOFT_PPF_pragma_once_SUPPORT`, which each **cccap** header now defines wherever it defines `STLSOFT_CF_PRAGMA_ONCE_SUPPORT`; C++ comments removed from the API external headers, and their documentation markup says "external" rather than "internal". The seventeen **include/winstl/api/external/** headers received the same change;
+  * **C API prefixes** — the C functions of **comstl**, **inetstl**, and **winstl** are renamed to the `<subproject>_C_` form (`comstl_C_*`, `inetstl_C_*`, `winstl_C_*`). The old names (`comstl__*`, `comstl_c_*`, `inetstl_c_*`, `winstl__*`) are retained as deprecated, each naming its successor, until at least **1.13**. Headers: **include/comstl/error/errorinfo_functions.h**, **include/comstl/error/excepinfo_functions.h**, **include/comstl/memory/functions.h**, **include/comstl/string/BSTR_functions.h**, **include/comstl/string/olestring_functions.h**, **include/comstl/util/CY_functions.h**, **include/comstl/util/DECIMAL_functions.h**, **include/comstl/util/VARIANT_functions.h**, **include/comstl/util/object_functions.h**, **include/comstl/util/refcount_functions.h**, **include/comstl/util/stream_functions.h**, **include/inetstl/util/uds_helpers.h**, **include/winstl/controls/commctrl_functions.h**, **include/winstl/controls/creation_functions.h**, **include/winstl/controls/functions.h**, **include/winstl/process/functions.h**, **include/winstl/shell/memory/functions.h**, **include/winstl/time/comparison_functions.h**, **include/winstl/window/creation_functions.h**, **include/winstl/window/font_functions.h**, **include/winstl/window/gdi_functions.h**, **include/winstl/window/menu_functions.h**, **include/winstl/window/message_functions.h**, **include/winstl/window/scale_functions.h**, and **include/winstl/window/textmetrics_functions.h**. **strategy/COMPONENTS-INVENTORY.md** lists the new names;
+  * **include/stlsoft/string/c_string/strnchr.h**, **include/stlsoft/string/c_string/strnstrn.h**, **include/stlsoft/string/char_traits.hpp**, and **include/unixstl/process/functions.h** call `STLSOFT_API_EXTERNAL_memfns_memchr`, `_wmemchr`, `_memcmp`, `_wmemcmp`, and `_memcpy` rather than the global CRT functions;
+  * **include/stlsoft/api/internal/** — **bitfns.h**, **memfns.h**, **stdio.h**, and **time.h** document each adaptation (the `popcount` forms are defined only when an external adaptation is available, so clients test for the macro of the same name), and the **time.h** notes state the non-thread-safe `gmtime()` / `localtime()` fallback;
+  * **include/comstl/string/olestring_functions.h** — `comstl_C_olestring_create_w()` calls `stlsoft_C_wcscpy()` with capacity `1 + cch`;
+  * **include/comstl/string/bstr.hpp** — the wide constructor calls `stlsoft_C_wcscpy()` with capacity `actualLen`, and `append()` calls `stlsoft_C_wcsncpy()` with capacity `totalLen` and count `len`. Those counts are unchanged;
+* compatibility:
+  * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `string_concatenation_flags` enumerators are arrayed (`None`, then `, AlwaysSeparate`) to avoid a trailing comma;
+* testing:
+  * **test.unit.stlsoft.conversion.byte_format_functions** — `format_bytes()` and the line-wrapping form: zero bytes, all nibbles, groupings of 1 to 32, partial and exact lines, a zero grouping (defaults to 4), null, empty, and multi-character separators, and non-positive `groupsPerLine`; `impl::format_hex_uint8()` to `impl::format_hex_uint256()` for case and byte order; the exact-fit and `cb == 0` NUL. **test.unit.stlsoft.conversion.byte_format_functions.sprintf** builds the same source with `STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF`;
+  * **test.unit.stlsoft.algorithms.pod** — new; `pod_copy_n()`, `pod_copy()`, `pod_move_n()`, `pod_move()`, and `pod_fill_n()`: empty ranges neither read nor write, copies of different element types, and overlapping moves;
+  * **test.unit.unixstl.process.functions** and **test.unit.stlsoft.string.c_string.strnchr** (C and C++) — extended;
+  * **test.unit.stlsoft.error.error_desc** — the `strerror()` / `stlsoft_C_strerror()` message paths for `error_desc`;
+  * **test.unit.stlsoft.exception.special.errno_exception** — new; includes the static, non-allocating `ENOMEM` text;
+  * **test.unit.stlsoft.string.c_string.strdup**, **test.unit.stlsoft.string.c_string.wcscpy**, **test.unit.stlsoft.string.c_string.wcsncpy**, and **test.unit.stlsoft.string.error.strerror** — new, for the corresponding `stlsoft_C_*` functions;
+  * **test.unit.stlsoft.string.c_string_traits** and **test.unit.stlsoft.string.char_traits** — `char_copy()`, `assign()`, and `copy()` with a count of 0 neither write nor dereference, high-value characters, and narrow and wide forms;
+  * **test/component/inetstl/util/uds_helpers** — uses the `inetstl_C_` names;
+* build:
+  * **CMakeLists.txt** requires **xTests** 0.28.2, **UNIXem** 1.14.2, **woad** 0.2.1, **shwild** 0.12.15, and **cstring** 4.0.19;
+  * **.dev/bin/check_unit_test_names.rb** 0.3.1 accepts a `runnerName` argument to `XTESTS_START_RUNNER*` as well as `__FILE__`;
+  * **test/unit/stlsoft/conversion/byte_format_functions/CMakeLists.txt** no longer carries `# SIS:AUTO_GENERATED`; it adds the `.sprintf` program;
+  * **.dev/bin/generate_cmakelists.rb** 0.2.0. The default `--mode modern` names a generated program the way xTests infers a runner from `__FILE__`: a stem of `entry` or `main` walks up to **test**, **example**, or **examples** (**examples** becomes `example`) and joins that anchor to the leaf with `.`. `--mode legacy` keeps the leaf directory name. `--dry-run` reports each **CMakeLists.txt** that would be created or updated and does not write. Searches skip **.dev/**, **cmake/**, **doc/**, **include/**, and **strategy/**. A **CMakeLists.txt** whose first line is not `# SIS:AUTO_GENERATED` is left untouched;
+  * Nineteen **examples** programs now use that dotted name: seventeen `example.by_library.…` targets that had been the leaf directory, **example.by_project.unixstl.filesystem.rewind_dir** (was `example.unixstl.filesystem.rewind_dir`), and **example.by_project.winstl.diagnostics.printf_debug_string** (was `printf_debug_string`);
+  * Eleven performance and scratch targets include the directory they omitted: **test.performance.platformstl.diagnostics.stopwatch**, **test.performance.platformstl.filesystem.file_lines**, **test.performance.stlsoft.containers.frequency_map**, **test.performance.stlsoft.diagnostics.doomgram**, **test.performance.stlsoft.diagnostics.gram_utils**, **test.performance.stlsoft.memory.auto_buffer**, **test.performance.stlsoft.string.simple_string.compare**, **test.performance.stlsoft.string.simple_string.op_eq**, **test.performance.stlsoft.util.bit_functions**, **test.performance.stlsoft.util.count_digits**, and **test.scratch.winstl.synch.micro_sleep**;
+  * **test/performance/platformstl/filesystem/CMakeLists.txt** no longer carries `# SIS:AUTO_GENERATED`. Its `X_CMAKE_CXX_FULLSTANDARD` guard is hand-written, so the generator leaves the file alone. The **platformstl**, **unixstl**, and **winstl** `process` lists drop a trailing blank line;
+* documentation and boilerplate:
+  * **INSTALL.md** archive examples name **STLSoft-1.11.5**;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.5**;
+* version:
+  * **_STLSOFT_VER** is **1.11.5** (**_STLSOFT_VER_1_11_5** = `0x010B05FF`); **test.unit.versions** asserts it. No subproject composite version changed;
+
+
+## 1.11.4 - 29th October 2026
+
+* additions:
+  * **include/stlsoft/conversion/char_conversions.hpp** — `multibyte2wide` and `wide2multibyte` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`, and still stamp the NUL at `[size]`;
+  * **include/stlsoft/error/error_desc.hpp** and **include/acestl/shims/access/string/time_value.hpp** — the wide `error_desc` fallback and both wide `invoke_ACE_OS_snprintf()` overloads call `stlsoft_C_mbstowcs()`;
+  * **include/stlsoft/iterators/common/string_concatenation_flags.hpp** — `stlsoft::string_concatenation_flags` gained `None` (`0x0000`);
+  * **include/stlsoft/shims/access/string/std/exception.hpp** and **include/stlsoft/shims/access/string/std/type_info.hpp** — the wide shims call `stlsoft_C_mbstowcs()`. The private `mbstowcs_()` and `mbstowcs_len()` helpers are gone;
+  * **include/stlsoft/string/encoding/mbstowcs.h** and **include/stlsoft/string/encoding/wcstombs.h** — `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()` take a destination capacity and a source limit, hide `mbstowcs_s()` / `wcstombs_s()`, and return a count that excludes the NUL. A null destination is the length probe;
+  * **include/stlsoft/util/exception_string_creator.hpp** — `wide_to_multibyte_or_throw_()` calls `stlsoft_C_wcstombs()`. This is the last call site outside the encoding headers;
+  * **include/unixstl/system/system_traits.hpp** and **include/unixstl/system/directory_functions.h** — `system_traits<wchar_t>::get_environment_variable()` and `unixstl_C_get_home_directory_w()` call `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`. A short home-directory buffer still returns `cchBuffer - 1`;
+* refactoring:
+  * **include/acestl/shims/access/string/time_value.hpp** — the non-`ACE_USES_WCHAR` wide `invoke_ACE_OS_snprintf()` wrote the `mbstowcs()` result at `&s2[2]`; it now writes at `s2`, matching the wide-ACE overload;
+  * **include/rangelib/integral_range.hpp** — `invalid_integral_range_policy::operator()` formats the `std::out_of_range` message with `stlsoft_C_snprintf()`; the 64-bit helpers take the format from `printf_traits<>::decimal_format_a()`. The exception text is unchanged;
+* compatibility:
+  * Output-iterator `deref_proxy` types declare an explicit copy constructor, so C++11 and C++14 no longer deprecate the implicit one when copy assignment is deleted (`-Wdeprecated-copy` under `-Werror`). Copy assignment stays deleted. **include/stlsoft/iterator/associative_eraser_iterator.hpp**, **include/stlsoft/iterator/eraser_iterator.hpp**, **include/stlsoft/iterator/FILE_iterator.hpp** (the constructor is present in every dialect; it had been guarded on C++11), **include/stlsoft/iterator/push_insert_iterator.hpp**, **include/stlsoft/iterator/string_insert_iterator.hpp**, **include/stlsoft/iterators/c_str_inserter.hpp**, **include/stlsoft/iterators/cstring_concatenator_iterator.hpp**, **include/stlsoft/iterators/null_output_iterator.hpp**, **include/stlsoft/iterators/ostream_iterator.hpp**, **include/stlsoft/iterators/string_concatenator_iterator.hpp**, and **include/stlsoft/iterators/unary_function_output_iterator_adaptor.hpp**;
+  * C functions with no parameters are prototyped as `(void)`: `stlsoft_C_count_functions_get_8bit_table()` in **include/stlsoft/util/bits/count_functions.h**, and `unixstl_C_path_classify_alwaysInvalidChars_X_()` in **include/unixstl/filesystem/path_functions/classify_functions_X_.h**;
+* testing:
+  * **test.scratch.versions.stdio** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, matching **test.scratch.versions.iostreams**; plain text when **woad** is not opted in;
+  * **test.unit.acestl.shims.access.string.time_value** — wide shims `c_str_len_w`, `c_str_data_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the locale conversion of the narrow text;
+  * **test.unit.rangelib.invalid_integral_range_policy** locks those messages, including the 32-bit and 64-bit extremes, and checks that a non-closing `integral_range` throws the same text. The caught result is recorded before the assertion, so a non-returning policy call is not followed by unreachable code under MSVC (C4702);
+  * **test.unit.stlsoft.conversion.char_conversions** — `multibyte2wide` / `wide2multibyte`: ASCII, empty, counted, round-trip, a string longer than the internal buffer, and rejection when the C library rejects the input;
+  * **test.unit.stlsoft.error.error_desc** — `error_desc_w` matches `mbstowcs()` of the narrow `strerror()` text on the fallback path; a `_wcserror` / `_wcserror_s` build records a pass;
+  * **test.unit.stlsoft.std.exception** — the narrow shims are `exception::what()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that message, and an empty `what()` yields an empty wide string and a null `c_str_ptr_null_w`;
+  * **test.unit.stlsoft.std.type_info** — the narrow shims are `type_info::name()`; `c_str_data_w`, `c_str_len_w`, `c_str_ptr_w`, and `c_str_ptr_null_w` match the ASCII widening of that name;
+  * **test.unit.stlsoft.string.encoding** — ASCII success, length probe, exact fit, counted source, zero capacity, short buffer, "count excludes the NUL", and rejection for `stlsoft_C_mbstowcs()` / `stlsoft_C_wcstombs()`;
+  * **test.unit.stlsoft.util.exception_string_creator** — wide `append()` (string, character, counted, and after a narrow prefix) and `create()`;
+  * The rejection oracles in **test.unit.stlsoft.conversion.char_conversions** and **test.unit.stlsoft.util.exception_string_creator** call `mbstowcs_s()` / `wcstombs_s()` when `STLSOFT_USING_SAFE_STR_FUNCTIONS` is set;
+* build:
+  * **batch_compile_check**, **check_unit_test_names.rb**, and **generate_cmakelists.rb** moved from **dev/bin** to **.dev/bin**;
+  * **.dev/bin/batch_compile_check** (the human-driven bulk smoke-test script):
+    * compiles each header with `-fsyntax-only` (no object files). A failed compilation exits 1 and lists `FAIL: <header> (C|C++, <std>)`. A missing include directory, a missing subproject directory, an unknown compiler, a missing option value, an unrecognised language version, or zero matching headers also exits 1. SIGINT exits 130 and stops jobs still running;
+    * `--c-language-version` and `--cxx-language-version` are independent. C accepts 89, 90, 99, 11, 17, 20, and 23 (default 17). C++ accepts 98, 03, 11, 14, 17, 20, and 23 (default 98, 03, 11, 14, 17, and 20; 23 is selectable and is not in the default sweep). A version flag for the language excluded by `-C` or `-C++` is an error;
+    * `-j` / `--jobs` compiles up to N headers at once (default 1, a positive integer). Failures stay in the order the compilations were started. With one job the compiler's diagnostics stay on the terminal; with more than one they are kept only for failures;
+    * Every compile passes `-Wall -Wextra -pedantic`. `-W` / `--werror` adds `-Werror`;
+    * Skip markers are whole `/* STLSOFT:… */` comments, read once per header and matched case-insensitively: `STLSOFT:FILE_DEPRECATED`, `STLSOFT:FILE_EXCEPTED`, `STLSOFT:FILE_NOT_SELF_SUFFICIENT`, and per-standard `STLSOFT:<std>:FILE_DEPRECATED` / `FILE_EXCEPTED`. `STLSOFT:Windows:FILE_EXCEPTED` applies only when not on Windows. `--counts` reports files found and skipped separately from compilation attempts, failures, and per-version skips;
+    * Headers are discovered with NUL-delimited `find` and listed in `LC_ALL=C` order. **comstl** and **winstl** are rejected when not on Windows, before any verbose configuration is printed. On Windows, **comstl** and **inetstl** are compiled after `windows.h`, and **winstl** also after `ntsecapi.h`;
+  * **.dev/bin/check_unit_test_names.rb** (0.3.0) checks `File:` labels and `XTESTS_START_RUNNER*` names. `--mode` selects both, file, or runner (default both). A `File:` label under **examples** or **test** is the project-relative path. A runner name, for `test/unit` and `test/component` programs named `entry.c` or `entry.cpp`, is that directory with `/` replaced by `.`; `__FILE__` is accepted. `--project-root` / `-R` selects the tree (the default is two levels above the script). Either mismatch count exits 1. The **Check test names** job runs the script once on Ubuntu over **examples** and **test**;
+  * **Gemfile.lock** records clasp-ruby **0.23.4**, libclimate-ruby **0.17.4**, recls-ruby **2.13.5**, and xqsr3 **0.39.11**, and adds the **arm64-darwin-25** platform;
+* documentation and boilerplate:
+  * **INSTALL.md** archive examples name **STLSoft-1.11.4**;
+  * `File:` labels under **test** and **examples** use the project-relative path;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.4**;
+  * **README.md** **New in 1.11** lists **stlsoft/string/encoding/mbstowcs** and **stlsoft/string/encoding/wcstombs**;
+  * **include/unixstl/unixstl.h** — the `_UNIXSTL_VER_1_8_6*` comments name **1.8.6** (they had said **1.8.8**);
+* version:
+  * **_STLSOFT_VER** is **1.11.4** (**_STLSOFT_VER_1_11_4** = `0x010B04FF`); **test.unit.versions** asserts it. No subproject composite version changed;
 
 
 ## 1.11.3 - 27th October 2026
 
+* compatibility:
+  * Subproject root headers require **STLSoft** 1.11.2 or later: **include/acestl/acestl.hpp**, **include/atlstl/atlstl.hpp**, **include/comstl/comstl.h**, **include/inetstl/inetstl.h**, **include/mfcstl/mfcstl.hpp**, **include/platformstl/platformstl.h**, **include/rangelib/rangelib.hpp**, **include/unixstl/unixstl.h**, **include/winstl/winstl.h**, and **include/wtlstl/wtlstl.hpp**;
+* behaviour:
+  * **include/stlsoft/string/c_string/strnicmp.h** and **include/stlsoft/string/c_string/strnistrn.h** — ASCII letters fold by 32, independent of the C locale, and every other byte is left unchanged; `wchar_t` units outside 0–127 still use `towupper()`. Non-ASCII bytes are no longer folded by the current locale. The needle's first unit in `stlsoft_C_strnistrn()` / `stlsoft_C_wcsnistrn()` is folded once;
+  * **include/stlsoft/string/c_string/strnchr.h** — `memchr()` / `wmemchr()` when the search value is in 0–127; any other value stays on the scalar loop, so a high byte still compares as a promoted `char`;
+  * **include/stlsoft/string/c_string/strnstrn.h** — the first unit is found with `memchr()` / `wmemchr()` and the remainder compared with `memcmp()` / `wmemcmp()`;
+* build:
+  * CMake publishes `HAS_<Pkg>` and `HAS_<PKG>` for a detected Synesis package other than **STLSoft** (a dot in the package name becomes an underscore): **cstring**, **shwild**, and **UNIXem** when found, **xTests** when tests are enabled, and **woad** when opted in. `STLSOFT_HAS_CSTRING` and `STLSOFT_HAS_UNIXEM` are no longer defined. **ACE**, **ATL**, **COM**, and **MFC** keep `STLSOFT_HAS_*`; `STLSOFT_HAS_COM` is defined on Windows so **COMSTL** is reported;
+  * **woad** 0.2.0 is opt-in. **`--use-woad`** on **prepare_cmake.sh** sets `USE_WOAD`, `find_package`s **woad**, defines `HAS_woad` / `HAS_WOAD`, and links `woad::woad` into the scratch version programs;
+* testing:
+  * **test/performance/stlsoft/conversion/integer_to_string/main.cpp** uses one shared schedule of 2 warmups, 1 loop, and 1,000,000 iterations (the previous 4 × 100 × 1,000,000 schedule, repeated in every section, took about ten minutes);
+  * **test.performance.stlsoft.string.c_string** times the counted-string functions; the measurements and the choice of `memchr` / ASCII fold are recorded in **strategy/performance/C_STRING.md**;
+  * **test.scratch.versions.stdio** and **test.scratch.versions.iostreams** share a layout: compiler lines, a **Subprojects** block, and an **Efferent dependencies** block for whichever of **cstring**, **Diagnosticism**, **shwild**, **UNIXem**, **woad**, and **xTests** is visible (the version string is rendered by **Diagnosticism** when `HAS_Diagnosticism` is set). **versions.iostreams** colours headings (magenta), names (blue), versions and VER values (green), and macro names (cyan) through **woad** when **`--use-woad`** is set, and is plain text otherwise. **versions.format** and **versions.iostreams** report **ACESTL**, **ATLSTL**, **COMSTL**, and **MFCSTL** when those libraries are enabled; **versions.stdio** reports **COMSTL** on Windows. The scratch targets link **xTests**, and **versions.iostreams** / **versions.format** receive the same per-target MFC settings as **test.unit.versions**;
+* documentation and boilerplate:
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.3**; **INSTALL.md** archive examples name **STLSoft-1.11.3** and document **`--use-woad`**;
+  * File-header fields on the touched headers align to column 13, including the declaration layout of **include/platformstl/filesystem/path.hpp**;
 
 
 ## 1.11.2 - 25th October 2026

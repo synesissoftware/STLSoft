@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    c_string.strnicmp.C/entry.c
+ * File:    test/unit/stlsoft/string/c_string/strnicmp.C/entry.c
  *
  * Purpose: Unit-tests for stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp().
  *
  * Created: 29th September 2026
- * Updated: 23rd October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

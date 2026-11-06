@@ -4,11 +4,11 @@
  * Purpose: Comparison functions for Windows time structures.
  *
  * Created: 21st November 2003
- * Updated: 17th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    3
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     67
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -762,10 +762,16 @@ absolute_difference_in_seconds(
 
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
+ *
+ * Present only when STLSOFT_OBSOLETE is defined. Each wrapper is deprecated
+ * in favour of the winstl_C_ function it calls.
  */
 
 #ifdef STLSOFT_OBSOLETE
 
+/** \deprecated Use winstl_C_compare_FILETIMEs
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__compare_FILETIMEs, winstl_C_compare_FILETIMEs)
 STLSOFT_INLINE
 ws_sint_t
 winstl__compare_FILETIMEs(
@@ -775,6 +781,9 @@ winstl__compare_FILETIMEs(
 {
     return winstl_C_compare_FILETIMEs(lhs, rhs);
 }
+/** \deprecated Use winstl_C_compare_FILETIME_with_SYSTEMTIME
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__compare_FILETIME_with_SYSTEMTIME, winstl_C_compare_FILETIME_with_SYSTEMTIME)
 STLSOFT_INLINE
 ws_sint_t
 winstl__compare_FILETIME_with_SYSTEMTIME(
@@ -784,6 +793,9 @@ winstl__compare_FILETIME_with_SYSTEMTIME(
 {
     return winstl_C_compare_FILETIME_with_SYSTEMTIME(lhs, rhs);
 }
+/** \deprecated Use winstl_C_compare_SYSTEMTIME_with_FILETIME
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__compare_SYSTEMTIME_with_FILETIME, winstl_C_compare_SYSTEMTIME_with_FILETIME)
 STLSOFT_INLINE
 ws_sint_t
 winstl__compare_SYSTEMTIME_with_FILETIME(
@@ -793,6 +805,9 @@ winstl__compare_SYSTEMTIME_with_FILETIME(
 {
     return winstl_C_compare_SYSTEMTIME_with_FILETIME(lhs, rhs);
 }
+/** \deprecated Use winstl_C_compare_SYSTEMTIMEs
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__compare_SYSTEMTIMEs, winstl_C_compare_SYSTEMTIMEs)
 STLSOFT_INLINE
 ws_sint_t
 winstl__compare_SYSTEMTIMEs(

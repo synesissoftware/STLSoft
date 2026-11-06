@@ -4,11 +4,11 @@
  * Purpose: Definition of stlsoft_C_strnchr() and stlsoft_C_wcsnchr()
  *
  * Created: 1st October 2020
- * Updated: 29th September 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_EDIT     3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_REVISION 3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNCHR_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,6 +69,10 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -82,6 +86,18 @@ stlsoft_C_strnchr(
 ,   int         ch
 )
 {
+    if (0 == n)
+    {
+        return ss_nullptr_k;
+    }
+
+    /* memchr matches char promotion only when ch is in 0-127. */
+    if (0 <= ch &&
+        ch <= 127)
+    {
+        return STLSOFT_C_CAST(char const*, STLSOFT_API_EXTERNAL_memfns_memchr(s, ch, n));
+    }
+
     for (; 0 != n; --n, ++s)
     {
         if (ch == *s)
@@ -101,6 +117,22 @@ stlsoft_C_wcsnchr(
 ,   int             ch
 )
 {
+    if (0 == n)
+    {
+        return ss_nullptr_k;
+    }
+
+    /* wmemchr matches the int comparison only when ch is in 0-127. */
+    if (0 <= ch &&
+        ch <= 127)
+    {
+        return STLSOFT_API_EXTERNAL_memfns_wmemchr(
+            s
+        ,   STLSOFT_C_CAST(wchar_t, ch)
+        ,   n
+        );
+    }
+
     for (; 0 != n; --n, ++s)
     {
         if (ch == STLSOFT_C_CAST(int, *s))
