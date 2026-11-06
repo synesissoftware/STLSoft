@@ -25,6 +25,20 @@
 ## 1.12.0-alpha2 - 15th November 2026
 
 
+## 1.12.0-alpha1 - 10th November 2026
+
+
+## 1.11.6 - 6th November 2026
+
+* build:
+  * CI installs **woad** before **xTests**, which **xTests** 0.29 requires;
+* documentation and boilerplate:
+  * C++ namespace closer in **test/unit/stlsoft/string/special_string_instance/entry.cpp** is spelled `// namespace`;
+  * **INSTALL.md** archive examples name **STLSoft-1.11.6**;
+  * **Doxyfile** `PROJECT_NUMBER` is **1.11.6**;
+* version:
+  * **_STLSOFT_VER** is **1.11.6** (**_STLSOFT_VER_1_11_6** = `0x010B06FF`); **test.unit.versions** asserts it. No subproject composite version changed;
+
 
 ## 1.11.5 - 2nd November 2026
 
@@ -389,7 +403,7 @@
 * **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS (`__APPLE__`); added **test.unit.stlsoft.api.external.string**;
 
 
-## 1.11.1-rc5 - 4th August 2026
+## 1.11.1-rc5 - 9th August 2026
 
 * Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);
 * Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;
