@@ -37,6 +37,7 @@ Released 21st October 2026 (`43541c13`). Unmet items moved to **1.11.3** and **1
 * [x] ~~~ACESTL: implement `invoke_ACE_OS_snprintf` in terms of `stlsoft_C_snprintf()`~~~ - ✅;
 * [x] ~~~CI: exercise **ATLSTL** on a Windows cell~~~ - ✅;
 * [x] ~~~Unit/component tests — adopt **xTests** terse API throughout~~~ - ✅;
+* [x] ~~~bring in some essential unit-tests from interal repo~~~ - ✅;
 * [x] ~~~Bring in the Resizeable Buffer concept (**CONCEPTS.md**)~~~ - ✅;
 
 
@@ -206,6 +207,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.12
 
+* [ ] Bring in some essential unit-tests from internal repo;
 * [ ] Deeper API documentation on top of the Doxygen build that landed in **1.11.1** (**Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
 * [ ] Remove defunct compilers;
 * [ ] Remove **WTL**;

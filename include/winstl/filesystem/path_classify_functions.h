@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 28th November 2020
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        15
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    12
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,11 +80,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE
 # include <stlsoft/string/string_slice.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE */
-
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>
-#endif /* !STLSOFT_INCL_H_CTYPE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +120,7 @@ struct winstl_C_path_classification_results_m_t
     stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
     stlsoft_C_string_slice_m_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
-    size_t                          numDotsDirectoryParts;
+    size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
     stlsoft_C_string_slice_m_t      entry;
     stlsoft_C_string_slice_m_t      stem;
     stlsoft_C_string_slice_m_t      extension;
@@ -144,7 +139,7 @@ struct winstl_C_path_classification_results_w_t
     stlsoft_C_string_slice_w_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
     stlsoft_C_string_slice_w_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
-    size_t                          numDotsDirectoryParts;
+    size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
     stlsoft_C_string_slice_w_t      entry;
     stlsoft_C_string_slice_w_t      stem;
     stlsoft_C_string_slice_w_t      extension;
@@ -175,11 +170,17 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+ /* Drive letters: ASCII A–Z / a–z only (R10; not locale isalpha). */
+# define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_(c) \
+                                                            (((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
+
+
+ /* character width dependent */
+
 # define WINSTL_C_PATH_CLASSIFY_IMPL_char_t_                char
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ \
                                                             stlsoft_C_string_slice_m_t
 # define winstl_C_path_classification_results_X_t_          winstl_C_path_classification_results_m_t
-# define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_   STLSOFT_NS_GLOBAL(isalpha)
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_   stlsoft_C_strnchr
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_ stlsoft_C_strnpbrkn
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_  stlsoft_C_strnstrn
@@ -193,7 +194,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_
 # undef winstl_C_path_classification_results_X_t_
-# undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_
@@ -207,7 +207,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ \
                                                             stlsoft_C_string_slice_w_t
 # define winstl_C_path_classification_results_X_t_          winstl_C_path_classification_results_w_t
-# define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_   STLSOFT_NS_GLOBAL(iswalpha)
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_   stlsoft_C_wcsnchr
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_ stlsoft_C_wcsnpbrkn
 # define WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_  stlsoft_C_wcsnstrn
@@ -221,7 +220,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_char_t_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_
 # undef winstl_C_path_classification_results_X_t_
-# undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isalpha_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_
@@ -230,6 +228,10 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef winstl_C_path_classify_root_X_
 # undef winstl_C_path_classify_impl_X_
 # undef winstl_C_path_classify_root_impl_X_
+
+
+ /* character width independent */
+# undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_isdriveletter_X_
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -349,6 +351,16 @@ winstl_C_path_is_rooted(
     }
 }
 
+/** Absolute in the classification lattice: drive-rooted, UNC-rooted, or
+ * home-rooted — not merely slash-rooted, and not \c UncIncomplete.
+ *
+ * Distinct from the coarse string predicates
+ * \c filesystem_traits<>::is_path_absolute / \c is_path_UNC, which treat
+ * any <code>\\\\</code> prefix as UNC/absolute without validating
+ * host/share. Prefer this predicate (after \c path_classify) when
+ * incompleteness matters; complete <code>\\\\host\\share</code> forms
+ * agree on both surfaces.
+ */
 STLSOFT_INLINE
 STLSOFT_NS_QUAL(ss_truthy_t)
 winstl_C_path_is_absolute(
@@ -477,7 +489,7 @@ path_classify(
 ,   T_results*              results
 )
 {
-    WINSTL_ASSERT(0 != path.size() || ss_nullptr_k != path.data());
+    WINSTL_ASSERT(0 == path.size() || ss_nullptr_k != path.data());
 
     return winstl_C_path_classify(path.data(), path.size(), parseFlags, results);
 }
@@ -493,7 +505,7 @@ path_classify_root(
 ,   T_results*              results
 )
 {
-    WINSTL_ASSERT(0 != path.size() || ss_nullptr_k != path.data());
+    WINSTL_ASSERT(0 == path.size() || ss_nullptr_k != path.data());
 
     return winstl_C_path_classify_root(path.data(), path.size(), parseFlags, results);
 }

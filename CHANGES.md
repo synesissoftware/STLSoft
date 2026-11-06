@@ -1,6 +1,12 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.12.0-alpha2 - 15th November 2026
+
+
+## 1.12.0-alpha1 - 10th November 2026
+
+
 ## 1.11.6 - 6th November 2026
 
 * build:
@@ -376,7 +382,7 @@
 * **stlsoft/api/external/string.h** — case-insensitive aliases (`STLSOFT_API_EXTERNAL_string_stricmp` and kin) for Clang as well as GCC, and for macOS (`__APPLE__`); added **test.unit.stlsoft.api.external.string**;
 
 
-## 1.11.1-rc5 - 4th August 2026
+## 1.11.1-rc5 - 9th August 2026
 
 * Fixed `stlsoft::basic_simple_string<>#resize()` — expanding a non-empty string no longer over-reads the source buffer (MinGW unit-test segfault in **test.unit.stlsoft.string.simple_string**);
 * Converted **CHANGES.txt** to **CHANGES.md** and removed **HISTORY.md**;
