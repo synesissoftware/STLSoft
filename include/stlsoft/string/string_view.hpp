@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 4th May 2025
+ * Updated: 26th October 2026
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,9 +57,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        124
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -2195,15 +2195,11 @@ inline ss_char_w_t const* c_str_ptr_null_w(STLSOFT_NS_QUAL(basic_string_view)<ss
 } // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
- * illegally insert into the std namespace.
- */
 #if defined(STLSOFT_CF_std_NAMESPACE)
-# if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
-         defined(_MSC_VER))) && \
-     _MSC_VER < 1310
 namespace std
 {
+# ifdef STLSOFT_ALLOW_std_swap_SPECIALISATIONS
+
     template<
         ss_typename_param_k C
     ,   ss_typename_param_k T
@@ -2213,8 +2209,8 @@ namespace std
     {
         lhs.swap(rhs);
     }
+# endif
 } // namespace std
-# endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 

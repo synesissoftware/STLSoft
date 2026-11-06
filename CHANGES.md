@@ -3,6 +3,8 @@
 
 ## 1.12.0-alpha1 - 10th November 2026
 
+* fixes:
+  * `swap()` semantics clarified and standardised, to adherence to pattern `{ using std::swap; swap(x, y); }`;
 
 ## 1.11.6 - 6th November 2026
 
