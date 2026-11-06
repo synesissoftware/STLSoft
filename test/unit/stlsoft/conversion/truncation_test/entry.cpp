@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    truncation_test/entry.cpp
+ * File:    test/unit/stlsoft/conversion/truncation_test/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *
  * Created: 7th November 2008
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

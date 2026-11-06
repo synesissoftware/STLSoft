@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for memXXX() functions.
  *
  * Created: 2nd January 2021
- * Updated: 24th December 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -83,41 +83,28 @@ STLSOFT_API_INTERNAL_memfns_memcpy(
 ,   size_t      count
 )
 {
-    void* const r = dest;
-
     STLSOFT_ASSERT(0 == count || (NULL != dest && NULL != src));
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        char    dummyDest[1];
-        char    dummySrc[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-        if (NULL == src)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            src     =   &dummySrc[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, count);
     }
 
-    return r;
+    return dest;
 }
 
+/** Adaptation of memset() that, like STLSOFT_API_INTERNAL_memfns_memcpy(),
+ * permits \c nullptr \c dest when \c count is 0.
+ *
+ * \param dest Pointer to the destination. May be \c nullptr only if
+ *   \c count is 0
+ * \param value The value to set
+ * \param count The number of bytes to set
+ *
+ * \return \c dest
+ *
+ * \pre 0 == count || nullptr != dest
+ */
 STLSOFT_INLINE
 void*
 STLSOFT_API_INTERNAL_memfns_memset(
@@ -126,33 +113,27 @@ STLSOFT_API_INTERNAL_memfns_memset(
 ,   size_t      count
 )
 {
-    void* const r = dest;
-
     STLSOFT_ASSERT(0 == count || NULL != dest);
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        char    dummyDest[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_memset(dest, value, count);
     }
 
-    return r;
+    return dest;
 }
 
+/** Wide-character equivalent of STLSOFT_API_INTERNAL_memfns_memcpy().
+ *
+ * \param dest Pointer to the destination. May be \c nullptr only if
+ *   \c count is 0
+ * \param src Pointer to the source. May be \c nullptr only if \c count is 0
+ * \param count The number of wide characters to copy
+ *
+ * \return \c dest
+ *
+ * \pre 0 == count || (nullptr != dest && nullptr != src)
+ */
 STLSOFT_INLINE
 wchar_t*
 STLSOFT_API_INTERNAL_memfns_wmemcpy(
@@ -161,41 +142,27 @@ STLSOFT_API_INTERNAL_memfns_wmemcpy(
 ,   size_t          count
 )
 {
-    wchar_t* const r = dest;
-
     STLSOFT_ASSERT(0 == count || (NULL != dest && NULL != src));
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        wchar_t dummyDest[1];
-        wchar_t dummySrc[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-        if (NULL == src)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            src     =   &dummySrc[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_wmemcpy(dest, src, count);
     }
 
-    return r;
+    return dest;
 }
 
+/** Wide-character equivalent of STLSOFT_API_INTERNAL_memfns_memset().
+ *
+ * \param dest Pointer to the destination. May be \c nullptr only if
+ *   \c count is 0
+ * \param value The value to set
+ * \param count The number of wide characters to set
+ *
+ * \return \c dest
+ *
+ * \pre 0 == count || nullptr != dest
+ */
 STLSOFT_INLINE
 wchar_t*
 STLSOFT_API_INTERNAL_memfns_wmemset(
@@ -204,31 +171,14 @@ STLSOFT_API_INTERNAL_memfns_wmemset(
 ,   size_t      count
 )
 {
-    wchar_t* const r = dest;
-
     STLSOFT_ASSERT(0 == count || NULL != dest);
 
     if (0 != count)
     {
-#if 1 && \
-    defined(__GNUC__) && \
-    1
-
-        wchar_t dummyDest[1];
-
-        if (NULL == dest)
-        {
-            STLSOFT_ASSERT(0 == count);
-
-            dest    =   &dummyDest[0];
-            count   =   0;
-        }
-#endif
-
         STLSOFT_API_EXTERNAL_memfns_wmemset(dest, value, count);
     }
 
-    return r;
+    return dest;
 }
 
 

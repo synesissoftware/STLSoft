@@ -14,7 +14,8 @@ IF DEFINED SIS_CMAKE_BUILD_DIR (
 )
 
 SET ListOnly=0
-SET RunMake=1
+REM Native .cmd runners never build (see -M / --no-make, retained as a no-op)
+SET RunMake=0
 SET SkipInteractive=0
 
 SET BuildConfig=Release
@@ -77,7 +78,7 @@ IF %RunMake% NEQ 0 (
     )
 )
 
-IF %status% EQU 0 (
+IF !status! EQU 0 (
     IF NOT EXIST "%CMakeDir%\examples" (
         ECHO %ScriptPath%: examples build tree not found at '%CMakeDir%\examples' 1>&2
         ENDLOCAL
@@ -180,7 +181,8 @@ ECHO         lists the target programs but does not execute them
 ECHO.
 ECHO     -M
 ECHO     --no-make
-ECHO         does not execute CMake and make before running examples
+ECHO         accepted for compatibility with the Bash runner; this runner
+ECHO         never builds
 ECHO.
 ECHO     --skip-interactive
 ECHO         skips examples listed in .github/ci_skip_interactive_examples.txt

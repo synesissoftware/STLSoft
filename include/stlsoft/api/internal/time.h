@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for time.h constructs.
  *
  * Created: 11th January 2017
- * Updated: 30th September 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -92,7 +92,7 @@
  * \ingroup group__library__Time
  *
  * The function is implemented in terms of standard or compiler-specific or
- * platform-specific functionality in descending order of availibility:
+ * platform-specific functionality in descending order of availability:
  * - standard function `::gmtime_r()`;
  * - GCC function `::gmtime_r()`;
  * - MSVC function `::gmtime_s()`;
@@ -107,7 +107,9 @@
  * \retval 0 if the operation succeeded;
  * \retval an "errno" value if the operation failed;
  *
- * \note Unless preprocessor object-like macro STLSOFT_API_INTERNAL_
+ * \note When none of the reentrant or "safe" functions is available, the
+ *   implementation falls back to `::gmtime()`, which may not be
+ *   thread-safe; the result is copied to \c tm before returning.
  *
  * \pre nullptr != tm
  * \pre nullptr != t
@@ -124,7 +126,6 @@ STLSOFT_API_INTERNAL_Time_gmtime(
 
 #if 0
 #elif 0 ||\
-      defined(STLSOFT_LF_SUPPORT_STD_gmtime_r) ||\
       defined(STLSOFT_LF_SUPPORT_GCC_gmtime_r) ||\
       0
 
@@ -137,7 +138,7 @@ STLSOFT_API_INTERNAL_Time_gmtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
@@ -166,7 +167,7 @@ STLSOFT_API_INTERNAL_Time_gmtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
@@ -187,7 +188,7 @@ STLSOFT_API_INTERNAL_Time_gmtime(
  * \ingroup group__library__Time
  *
  * The function is implemented in terms of standard or compiler-specific or
- * platform-specific functionality in descending order of availibility:
+ * platform-specific functionality in descending order of availability:
  * - standard function `::localtime_r()`;
  * - GCC function `::localtime_r()`;
  * - MSVC function `::localtime_s()`;
@@ -202,7 +203,9 @@ STLSOFT_API_INTERNAL_Time_gmtime(
  * \retval 0 if the operation succeeded;
  * \retval an "errno" value if the operation failed;
  *
- * \note Unless preprocessor object-like macro STLSOFT_API_INTERNAL_
+ * \note When none of the reentrant or "safe" functions is available, the
+ *   implementation falls back to `::localtime()`, which may not be
+ *   thread-safe; the result is copied to \c tm before returning.
  *
  * \pre nullptr != tm
  * \pre nullptr != t
@@ -219,7 +222,6 @@ STLSOFT_API_INTERNAL_Time_localtime(
 
 #if 0
 #elif 0 ||\
-      defined(STLSOFT_LF_SUPPORT_STD_localtime_r) ||\
       defined(STLSOFT_LF_SUPPORT_GCC_localtime_r) ||\
       0
 
@@ -232,7 +234,7 @@ STLSOFT_API_INTERNAL_Time_localtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {
@@ -261,7 +263,7 @@ STLSOFT_API_INTERNAL_Time_localtime(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            return errno;
+            return (0 != errno) ? errno : EINVAL;
         }
         else
         {

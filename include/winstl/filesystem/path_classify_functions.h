@@ -4,11 +4,11 @@
  * Purpose: Path classification functions
  *
  * Created: 28th November 2020
- * Updated: 27th December 2024
+ * Updated: 18th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        14
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    5
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,27 +93,28 @@
 
 enum winstl_C_path_classification_t
 {
-        WinSTL_C_PathType_MIN_VALUE             =   -10000
+        winstl_C_PathType_MIN_VALUE             =   -10000
 
-    ,   WinSTL_C_PathType_InvalidSlashRuns      =   -3
-    ,   WinSTL_C_PathType_InvalidChars          =   -2
-    ,   WinSTL_C_PathType_Invalid               =   -1
-    ,   WinSTL_C_PathType_Unknown               =   0
-    ,   WinSTL_C_PathType_Empty
-    ,   WinSTL_C_PathType_Relative
-    ,   WinSTL_C_PathType_SlashRooted
-    ,   WinSTL_C_PathType_DriveLetterRelative
-    ,   WinSTL_C_PathType_DriveLetterRooted
-    ,   WinSTL_C_PathType_UncIncomplete
-    ,   WinSTL_C_PathType_UncRooted
-    ,   WinSTL_C_PathType_HomeRooted
+    ,   winstl_C_PathType_InvalidSlashRuns      =   -3
+    ,   winstl_C_PathType_InvalidChars          =   -2
+    ,   winstl_C_PathType_Invalid               =   -1
+    ,   winstl_C_PathType_Unknown               =   0
+    ,   winstl_C_PathType_Empty
+    ,   winstl_C_PathType_Relative
+    ,   winstl_C_PathType_SlashRooted
+    ,   winstl_C_PathType_DriveLetterRelative
+    ,   winstl_C_PathType_DriveLetterRooted
+    ,   winstl_C_PathType_UncIncomplete
+    ,   winstl_C_PathType_UncRooted
+    ,   winstl_C_PathType_HomeRooted
 
     /* no enumerator to be placed AFTER this one */
-    ,   WinSTL_C_PathType_MAX_VALUE
+    ,   winstl_C_PathType_MAX_VALUE
 };
 #ifndef __cplusplus
 typedef enum winstl_C_path_classification_t                 winstl_C_path_classification_t;
 #endif /* !__cplusplus */
+
 
 struct winstl_C_path_classification_results_m_t
 {
@@ -336,10 +337,10 @@ winstl_C_path_is_rooted(
 {
     switch (pc)
     {
-    case WinSTL_C_PathType_SlashRooted:
-    case WinSTL_C_PathType_DriveLetterRooted:
-    case WinSTL_C_PathType_UncRooted:
-    case WinSTL_C_PathType_HomeRooted:
+    case winstl_C_PathType_SlashRooted:
+    case winstl_C_PathType_DriveLetterRooted:
+    case winstl_C_PathType_UncRooted:
+    case winstl_C_PathType_HomeRooted:
 
         return ws_true_v;
     default:
@@ -356,9 +357,9 @@ winstl_C_path_is_absolute(
 {
     switch (pc)
     {
-    case WinSTL_C_PathType_DriveLetterRooted:
-    case WinSTL_C_PathType_UncRooted:
-    case WinSTL_C_PathType_HomeRooted:
+    case winstl_C_PathType_DriveLetterRooted:
+    case winstl_C_PathType_UncRooted:
+    case winstl_C_PathType_HomeRooted:
 
         return ws_true_v;
     default:
@@ -528,6 +529,33 @@ path_is_absolute(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Older mixed-case enumerator names are retained (as macros) until at
+ * least STLSoft 1.13.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# define WinSTL_C_PathType_DriveLetterRelative              winstl_C_PathType_DriveLetterRelative
+# define WinSTL_C_PathType_DriveLetterRooted                winstl_C_PathType_DriveLetterRooted
+# define WinSTL_C_PathType_Empty                            winstl_C_PathType_Empty
+# define WinSTL_C_PathType_HomeRooted                       winstl_C_PathType_HomeRooted
+# define WinSTL_C_PathType_Invalid                          winstl_C_PathType_Invalid
+# define WinSTL_C_PathType_InvalidChars                     winstl_C_PathType_InvalidChars
+# define WinSTL_C_PathType_InvalidSlashRuns                 winstl_C_PathType_InvalidSlashRuns
+# define WinSTL_C_PathType_MAX_VALUE                        winstl_C_PathType_MAX_VALUE
+# define WinSTL_C_PathType_MIN_VALUE                        winstl_C_PathType_MIN_VALUE
+# define WinSTL_C_PathType_Relative                         winstl_C_PathType_Relative
+# define WinSTL_C_PathType_SlashRooted                      winstl_C_PathType_SlashRooted
+# define WinSTL_C_PathType_UncIncomplete                    winstl_C_PathType_UncIncomplete
+# define WinSTL_C_PathType_UncRooted                        winstl_C_PathType_UncRooted
+# define WinSTL_C_PathType_Unknown                          winstl_C_PathType_Unknown
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/diagnostics/processtimes_stopwatch.cpp
+ * File:    examples/by_library/diagnostics/processtimes_stopwatch/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Diagnostics
  *          library's processtimes_stopwatch component.
  *
  * Created: 9th June 2006
- * Updated: 17th December 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

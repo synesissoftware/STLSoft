@@ -4,11 +4,11 @@
  * Purpose: string_concatenator_iterator class template.
  *
  * Created: 12th May 1998
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        62
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    10
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -190,6 +190,9 @@ private:
     public:
         deref_proxy(string_concatenator_iterator* it)
             : m_it(it)
+        {}
+        deref_proxy(class_type const& rhs)
+            : m_it(rhs.m_it)
         {}
     private:
         void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;

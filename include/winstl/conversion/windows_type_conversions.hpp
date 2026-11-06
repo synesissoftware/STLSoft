@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/windows_type_conversions.hpp (originally MWWinCmn.h, ::SynesisWin)
+ * File:    winstl/conversion/windows_type_conversions.hpp (originally MWWinCmn.h, ::SynesisWin)
  *
- * Purpose:     Type conversions for Windows.
+ * Purpose: Type conversions for Windows.
  *
- * Created:     1st June 2003
- * Updated:     20th March 2025
+ * Created: 1st June 2003
+ * Updated: 18th August 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR    1
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION 6
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     51
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,11 +201,11 @@ typedef STLSOFT_NS_QUAL(union_caster)<HICON, LRESULT, false>        LRESULT2HICO
 /** Checked conversion from <code>LPARAM</code> to <code>LPNMHDR</code>.
  * \ingroup group__library__Conversion
  */
- typedef union_caster<LPNMHDR, LPARAM, true>                        LPARAM2LPNMHDR;
+typedef union_caster<LPNMHDR, LPARAM, true>                         LPARAM2LPNMHDR;
 /** Checked conversion from <code>LONG</code> to <code>HTREEITEM</code>.
  * \ingroup group__library__Conversion
  */
- typedef union_caster<HTREEITEM, LONG, false>                       LONG2HTREEITEM;
+typedef union_caster<HTREEITEM, LONG, false>                        LONG2HTREEITEM;
 #endif /* _INC_COMMCTRL || _COMMCTRL_H */
 
 /* ////////////////////////////////////////////////////////////////////// */

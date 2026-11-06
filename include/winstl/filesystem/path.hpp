@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 15th October 2026
+ * Updated: 18th October 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
  *          doesn't work for wide-string builds).
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     330
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 12
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     331
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1602,7 +1602,7 @@ take_rhs:
                 goto take_rhs;
             }
             else
-            if (WinSTL_C_PathType_DriveLetterRelative == pcls2)
+            if (winstl_C_PathType_DriveLetterRelative == pcls2)
             {
                 // 4. if rhs is drive-letter-relative, then take rhs
 
@@ -1610,7 +1610,7 @@ take_rhs:
             }
             else
             {
-                if (WinSTL_C_PathType_DriveLetterRelative == pcls1 &&
+                if (winstl_C_PathType_DriveLetterRelative == pcls1 &&
                     0 == results1.directory.len &&
                     0 == results1.entry.len)
                 {
@@ -1967,10 +1967,10 @@ basic_path<C, T, A>::make_absolute(
 
     switch (pcls)
     {
-    case    WinSTL_C_PathType_Empty:
-    case    WinSTL_C_PathType_DriveLetterRooted:
-    case    WinSTL_C_PathType_UncRooted:
-    case    WinSTL_C_PathType_HomeRooted:
+    case    winstl_C_PathType_Empty:
+    case    winstl_C_PathType_DriveLetterRooted:
+    case    winstl_C_PathType_UncRooted:
+    case    winstl_C_PathType_HomeRooted:
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -2063,11 +2063,11 @@ basic_path<C, T, A>::canonicalise(
 
     switch (pcls)
     {
-    case    WinSTL_C_PathType_InvalidSlashRuns:
-    case    WinSTL_C_PathType_InvalidChars:
-    case    WinSTL_C_PathType_Invalid:
-    case    WinSTL_C_PathType_Unknown:
-    case    WinSTL_C_PathType_Empty:
+    case    winstl_C_PathType_InvalidSlashRuns:
+    case    winstl_C_PathType_InvalidChars:
+    case    winstl_C_PathType_Invalid:
+    case    winstl_C_PathType_Unknown:
+    case    winstl_C_PathType_Empty:
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -2076,13 +2076,13 @@ basic_path<C, T, A>::canonicalise(
 
         return true;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-    case    WinSTL_C_PathType_Relative:
-    case    WinSTL_C_PathType_SlashRooted:
-    case    WinSTL_C_PathType_DriveLetterRelative:
-    case    WinSTL_C_PathType_DriveLetterRooted:
-    case    WinSTL_C_PathType_UncIncomplete:
-    case    WinSTL_C_PathType_UncRooted:
-    case    WinSTL_C_PathType_HomeRooted:
+    case    winstl_C_PathType_Relative:
+    case    winstl_C_PathType_SlashRooted:
+    case    winstl_C_PathType_DriveLetterRelative:
+    case    winstl_C_PathType_DriveLetterRooted:
+    case    winstl_C_PathType_UncIncomplete:
+    case    winstl_C_PathType_UncRooted:
+    case    winstl_C_PathType_HomeRooted:
     default:
 
         break;

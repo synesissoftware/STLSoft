@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_insertion/entry.cpp
+ * File:    test/unit/stlsoft/util/string_insertion/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::string_insert`.
  *
  * Created: 14th November 2024
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

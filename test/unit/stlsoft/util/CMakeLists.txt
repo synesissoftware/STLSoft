@@ -1,6 +1,8 @@
 add_subdirectory(bit_functions)
 add_subdirectory(count_decimal_digits)
 add_subdirectory(count_hexadecimal_digits)
+add_subdirectory(exception_string_creator)
+add_subdirectory(resizeable_buffer_helpers)
 if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2011)
 
 	add_subdirectory(string_insertion)

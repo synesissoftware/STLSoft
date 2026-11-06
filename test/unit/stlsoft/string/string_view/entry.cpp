@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string_view/entry.cpp
+ * File:    test/unit/stlsoft/string/string_view/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -936,23 +936,23 @@ static void test_string_access_shims()
         TEST_INT_EQ(0u, stlsoft::c_str_len_a(s));
         TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-        TEST_PTR_NE(NULL, stlsoft::c_str_data_a(s));
+        TEST_PTR_NOT_NULL(stlsoft::c_str_data_a(s));
         TEST_MS_EQ("", stlsoft::c_str_data_a(s));
 
-        TEST_PTR_NE(NULL, stlsoft::c_str_data(s));
+        TEST_PTR_NOT_NULL(stlsoft::c_str_data(s));
         TEST_MS_EQ("", stlsoft::c_str_data(s));
 
 #ifdef HAS_c_str_
 
-        TEST_PTR_NE(NULL, stlsoft::c_str_ptr_a(s));
+        TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_a(s));
         TEST_MS_EQ("", stlsoft::c_str_ptr_a(s));
 
-        TEST_PTR_NE(NULL, stlsoft::c_str_ptr(s));
+        TEST_PTR_NOT_NULL(stlsoft::c_str_ptr(s));
         TEST_MS_EQ("", stlsoft::c_str_ptr(s));
 
-        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_a(s));
+        TEST_PTR_NULL(stlsoft::c_str_ptr_null_a(s));
 
-        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
+        TEST_PTR_NULL(stlsoft::c_str_ptr_null(s));
 #endif /* HAS_c_str_ */
     }
 
@@ -962,23 +962,23 @@ static void test_string_access_shims()
         TEST_INT_EQ(0u, stlsoft::c_str_len_w(s));
 //      TEST_INT_EQ(0u, stlsoft::c_str_len(s));
 
-        TEST_PTR_NE(NULL, stlsoft::c_str_data_w(s));
+        TEST_PTR_NOT_NULL(stlsoft::c_str_data_w(s));
         TEST_WS_EQ(L"", stlsoft::c_str_data_w(s));
 
-//      TEST_PTR_NE(NULL, stlsoft::c_str_data(s));
+//      TEST_PTR_NOT_NULL(stlsoft::c_str_data(s));
 //      TEST_WS_EQ(L"", stlsoft::c_str_data(s));
 
 #ifdef HAS_c_str_
 
-        TEST_PTR_NE(NULL, stlsoft::c_str_ptr_w(s));
+        TEST_PTR_NOT_NULL(stlsoft::c_str_ptr_w(s));
         TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(s));
 
-//      TEST_PTR_NE(NULL, stlsoft::c_str_ptr(s));
+//      TEST_PTR_NOT_NULL(stlsoft::c_str_ptr(s));
 //      TEST_WS_EQ(L"", stlsoft::c_str_ptr(s));
 
-        TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null_w(s));
+        TEST_PTR_NULL(stlsoft::c_str_ptr_null_w(s));
 
-//      TEST_PTR_EQ(NULL, stlsoft::c_str_ptr_null(s));
+//      TEST_PTR_NULL(stlsoft::c_str_ptr_null(s));
 #endif /* HAS_c_str_ */
     }
 

@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/std/cbase_.hpp
+ * File:    stlsoft/std/cbase_.hpp
  *
- * Purpose:     Root header for the stlsoft::std::c namespace
+ * Purpose: Root header for the stlsoft::std::c namespace
  *
- * Created:     22nd April 2005
- * Updated:     20th March 2025
+ * Created: 22nd April 2005
+ * Updated: 19th October 2026
  *
- * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
- *              for the stlsoft/std headers
+ * Thanks:  To Anton Sekeris for providing good advice on the naming scheme
+ *          for the stlsoft/std headers
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MAJOR       1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MINOR       2
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__REVISION    4
-# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        23
+# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,9 +84,9 @@ namespace stlsoft
 namespace std_impl
 {
 
-# define stlsoft_std_ns_qual(x)     ::stlsoft::std_impl::x
+# define stlsoft_std_ns_qual(x)                             ::stlsoft::std_impl::x
 #else  /* ? STLSOFT_NO_NAMESPACE */
-# define stlsoft_std_ns_qual(x)     ::x
+# define stlsoft_std_ns_qual(x)                             ::x
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

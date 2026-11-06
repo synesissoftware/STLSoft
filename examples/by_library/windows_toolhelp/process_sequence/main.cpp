@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/toolhelp/process_sequence/process_sequence.cpp
+ * File:    examples/by_library/windows_toolhelp/process_sequence/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the ToolHelp library.
  *
  * Created: 22nd May 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

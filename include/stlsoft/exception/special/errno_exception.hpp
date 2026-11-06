@@ -4,11 +4,11 @@
  * Purpose: Defines the errno_exception exception class.
  *
  * Created: 17th May 2014
- * Updated: 20th March 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MAJOR       1
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MINOR       1
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    6
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        17
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MINOR       2
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    3
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,9 +73,12 @@
 # include <stlsoft/shims/access/string/std/c_string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
 
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRDUP
+# include <stlsoft/string/c_string/strdup.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRDUP*/
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR
+# include <stlsoft/string/error/strerror.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR */
 
 #ifndef STLSOFT_INCL_NEW
 # define STLSOFT_INCL_NEW
@@ -85,6 +88,18 @@
 # define STLSOFT_INCL_STDEXCEPT
 # include <stdexcept>
 #endif /* !STLSOFT_INCL_STDEXCEPT */
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>
+#endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +130,7 @@ public: // construction
         : parent_class_type(make_message_(e))
         , ErrnoValue(e)
     {
-        free_(context_);
+        free_context_(construction_context_);
     }
     /// Constructs an instance from the given errno value and message
     errno_exception(
@@ -144,52 +159,92 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 private: // implementation
+    static
+    char const*
+    ENOMEM_stock_message_() STLSOFT_NOEXCEPT
+    {
+#if 0
+#elif defined(_MSC_VER)
+
+        return "Not enough memory";
+#else
+
+        return "Cannot allocate memory";
+#endif
+    }
+
+    char const*
+    strerror_message_(
+        int e
+    )
+    {
+        char                buff[241];
+        char const* const   text = stlsoft_C_strerror(
+            e
+        ,   sizeof(buff)
+        ,   buff
+        ,   NULL
+        );
+
+        /* buff is returned only when the worker wrote that array. The
+         * pointer dies with this frame, so the text is copied.
+         * std::runtime_error copies after this function returns. Any other
+         * result is a static string. An empty buffer stored no message.
+         */
+        if (text == buff)
+        {
+            char const* const   message =   ('\0' != text[0]) ? text : "unknown failure";
+            char* const         r       =   stlsoft_C_strdup(message);
+
+            if (NULL == r)
+            {
+                STLSOFT_THROW_X(std::bad_alloc());
+            }
+
+            construction_context_ = r;
+
+            return r;
+        }
+        else
+        {
+            return text;
+        }
+    }
+
     char const*
     make_message_(
         int e
     )
     {
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-        char        buff[1001];
-        int const   e2  =   ::strerror_s(buff, e);
-        char* const r   =   ::_strdup((0 == e2) ? buff : "unknown failure");
+        construction_context_ = NULL;
 
-        if (NULL == r)
+        switch (e)
         {
-            STLSOFT_THROW_X(std::bad_alloc());
+        case ENOMEM:
+
+            return ENOMEM_stock_message_();
+        default:
+
+            return strerror_message_(e);
         }
-
-        context_ = r;
-
-        return r;
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-        context_ = NULL;
-
-        return ::strerror(e);
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
     }
 
     static
     void
-    free_(
+    free_context_(
         void* pv
     )
     {
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-        STLSOFT_ASSERT(NULL != pv);
-
-        ::free(pv);
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-        STLSOFT_ASSERT(NULL == pv);
-
-        STLSOFT_SUPPRESS_UNUSED(pv);
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+        if (NULL != pv)
+        {
+            STLSOFT_NS_GLOBAL(free)(pv);
+        }
     }
 
 public: // fields
     int const   ErrnoValue;
 private:
-    void*       context_;
+    void*       construction_context_;
 };
 
 
