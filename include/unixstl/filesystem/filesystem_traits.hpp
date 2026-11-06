@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -1757,7 +1757,7 @@ public:
     }
 
 private:
-#if _STLSOFT_VER >= 0x010c0000
+#if _STLSOFT_VER >= 0x010C0081
 
 # error Sort get_root_len_() properly
 #endif
