@@ -4,7 +4,7 @@
  * Purpose: Root header for the STLSoft implementation of RangeLib.
  *
  * Created: 12th October 2004
- * Updated: 20th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    4
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     43
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp
@@ -135,7 +135,7 @@
 # define _RANGELIB_VER_1_1_1    0x00010101  /*!< Version 1.1.1 (with STLSoft 1.9.1) */
 # define _RANGELIB_VER_1_1_2    0x00010102  /*!< Version 1.1.2 (with STLSoft 1.9.25) */
 # define _RANGELIB_VER_1_1_3    0x010103ff  /*!< Version 1.1.3 (with STLSoft 1.9.113) */
-# define _RANGELIB_VER_1_1_4    0x010103ff  /*!< Version 1.1.4 (with STLSoft 1.11.1 alpha 8) */
+# define _RANGELIB_VER_1_1_4    0x010103ff  /*!< Version 1.1.4 (with STLSoft 1.11.1-alpha8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _RANGELIB_VER_MAJOR     1
@@ -184,8 +184,8 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a0181
-# error This version of the RangeLib libraries requires STLSoft version 1.10.1 beta 1, or later
+#if _STLSOFT_VER < 0x010B02FF
+# error This version of the RangeLib libraries requires STLSoft version 1.11.2, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////

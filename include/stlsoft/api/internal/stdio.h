@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/api/internal/stdio.h
+ * File:    stlsoft/api/internal/stdio.h
  *
- * Purpose:     Internal adaptations for stdio.h constructs.
+ * Purpose: Internal adaptations for stdio.h constructs.
  *
- * Created:     11th November 2020
- * Updated:     2nd January 2021
+ * Created: 11th November 2020
+ * Updated: 2nd November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -71,12 +71,32 @@
 # define STLSOFT_INCL_H_STDIO
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+# ifndef STLSOFT_INCL_H_WCHAR
+#  define STLSOFT_INCL_H_WCHAR
+#  include <wchar.h>
+# endif /* !STLSOFT_INCL_H_WCHAR */
+#endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * time functions
+ * stdio functions
  */
 
+/** Opens a file, via fopen_s() when STLSOFT_USING_SAFE_STR_FUNCTIONS is
+ * defined and the compiler is Visual C/C++, otherwise via fopen().
+ *
+ * \param path The path of the file to open. May not be \c nullptr
+ * \param mode The open mode. May not be \c nullptr
+ * \param ph Pointer to receive the file handle. May not be \c nullptr
+ *
+ * \retval 0 if the operation succeeded;
+ * \retval an "errno" value if the operation failed;
+ *
+ * \pre nullptr != path
+ * \pre nullptr != mode
+ * \pre nullptr != ph
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_stdio_fopen_m(
@@ -89,16 +109,42 @@ STLSOFT_API_INTERNAL_stdio_fopen_m(
     STLSOFT_ASSERT(NULL != mode);
     STLSOFT_ASSERT(NULL != ph);
 
-#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) &&\
     defined(STLSOFT_COMPILER_IS_MSVC)
 
     return STLSOFT_NS_GLOBAL_(fopen_s)(ph, path, mode);
-#else // }
+#else
     *ph = STLSOFT_NS_GLOBAL_(fopen)(path, mode);
 
     return (NULL == *ph) ? errno : 0;
 #endif
 }
+
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+
+STLSOFT_INLINE
+int
+STLSOFT_API_INTERNAL_stdio_fopen_w(
+    wchar_t const*  path
+,   wchar_t const*  mode
+,   FILE**          ph
+)
+{
+    STLSOFT_ASSERT(NULL != path);
+    STLSOFT_ASSERT(NULL != mode);
+    STLSOFT_ASSERT(NULL != ph);
+
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+
+    return STLSOFT_NS_GLOBAL_(_wfopen_s)(ph, path, mode);
+#else // }
+    *ph = STLSOFT_NS_GLOBAL_(_wfopen)(path, mode);
+
+    return (NULL == *ph) ? errno : 0;
+#endif
+}
+
+#endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th October 2026
+ * Updated: 6th November 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting

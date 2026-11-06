@@ -4,11 +4,11 @@
  * Purpose: Compiler feature discrimination for unknown compilers.
  *
  * Created: 7th February 2003
- * Updated: 28th May 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      18
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       81
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,7 +93,8 @@
 
 /*
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
-*/
+#define STLSOFT_PPF_pragma_once_SUPPORT
+ */
 
 /* Support for:
  *  - __func__

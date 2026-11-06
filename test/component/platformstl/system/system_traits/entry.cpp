@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    system_traits/entry.cpp
+ * File:    test/component/platformstl/system/system_traits/entry.cpp
  *
  * Purpose: Unit-tests for `platformstl::system_traits`.
  *
  * Created: 29th January 2013
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

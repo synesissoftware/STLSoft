@@ -1,2 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(test.performance.stlsoft.count_digits main.cpp)
+define_example_program(test.performance.stlsoft.util.count_digits main.cpp)

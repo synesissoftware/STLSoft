@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 8th October 2026
- * Updated: 15th October 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       4
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,6 +68,9 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.h>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
@@ -334,7 +337,7 @@ unixstl_C_get_current_process_path_m(
                         }
                     }
 
-                    STLSOFT_NS_GLOBAL(memcpy)(ab.ptr, resolved, cchResolved + 1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(ab.ptr, resolved, cchResolved + 1);
                     STLSOFT_NS_GLOBAL(free)(resolved);
                 }
             }
@@ -445,7 +448,7 @@ unixstl_C_get_current_process_path_m(
 
         if (0 != nCopy)
         {
-            STLSOFT_NS_GLOBAL(memcpy)(buff, ab.ptr, nCopy * sizeof(us_char_a_t));
+            STLSOFT_API_EXTERNAL_memfns_memcpy(buff, ab.ptr, nCopy * sizeof(us_char_a_t));
         }
 
         buff[nCopy] = '\0';
@@ -455,7 +458,7 @@ unixstl_C_get_current_process_path_m(
     {
         if (0 != len)
         {
-            STLSOFT_NS_GLOBAL(memcpy)(buff, ab.ptr, len * sizeof(us_char_a_t));
+            STLSOFT_API_EXTERNAL_memfns_memcpy(buff, ab.ptr, len * sizeof(us_char_a_t));
         }
 
         buff[len] = '\0';

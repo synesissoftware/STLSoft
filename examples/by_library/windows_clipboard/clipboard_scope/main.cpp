@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_clipboard/clipboard_scope/clipboard_scope.cpp
+ * File:    examples/by_library/windows_clipboard/clipboard_scope/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Clipboard
  *          library.
  *
  * Created: 6th June 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

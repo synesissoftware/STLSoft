@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnicmp.h
+ * File:    stlsoft/string/c_string/strnicmp.h
  *
- * Purpose:     Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
+ * Purpose: Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
- * Created:     25th November 2020
- * Updated:     11th March 2024
+ * Created: 25th November 2020
+ * Updated: 27th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,14 +69,57 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>
-#endif /* !STLSOFT_INCL_H_CTYPE */
 #ifndef STLSOFT_INCL_H_WCTYPE
 # define STLSOFT_INCL_H_WCTYPE
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helpers
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/* ASCII letters fold by 32. Every other byte is returned unchanged. */
+/* Duplicate of stlsoft_C_strnistrn_fold_char_m_(). */
+STLSOFT_INLINE
+int
+stlsoft_C_strnicmp_fold_char_m_(
+    unsigned char ch
+)
+{
+    if ('a' <= ch &&
+        ch <= 'z')
+    {
+        ch = (unsigned char)(ch - ('a' - 'A'));
+    }
+
+    return (int)ch;
+}
+
+/* ASCII letters fold by 32. Units outside 0-127 use towupper. */
+/* Duplicate of stlsoft_C_strnistrn_fold_char_w_(). */
+STLSOFT_INLINE
+int
+stlsoft_C_strnicmp_fold_char_w_(
+    wchar_t ch
+)
+{
+    if (L'a' <= ch &&
+        ch <= L'z')
+    {
+        return (int)ch - (L'a' - L'A');
+    }
+
+    if ((unsigned long)ch <= 127ul)
+    {
+        return (int)ch;
+    }
+
+    return (int)STLSOFT_NS_GLOBAL(towupper)(ch);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,23 +146,22 @@ stlsoft_C_strnicmp(
 {
     for (; 0 != n; --n, ++s1, ++s2)
     {
-        int d = stlsoft_static_cast(int, *s1) - stlsoft_static_cast(int, *s2);
+        unsigned char const c1 = (unsigned char)*s1;
+        unsigned char const c2 = (unsigned char)*s2;
 
-        if (0 != d)
+        if (c1 != c2)
         {
-            d = toupper(*s1) - toupper(*s2);
-        }
+            int const d = stlsoft_C_strnicmp_fold_char_m_(c1) -
+                            stlsoft_C_strnicmp_fold_char_m_(c2);
 
-        if (0 == d)
-        {
-            if ('\0' == *s1)
+            if (0 != d)
             {
-                return 0;
+                return d;
             }
         }
-        else
+        else if ('\0' == *s1)
         {
-            return d;
+            return 0;
         }
     }
 
@@ -146,23 +188,22 @@ stlsoft_C_wcsnicmp(
 {
     for (; 0 != n; --n, ++s1, ++s2)
     {
-        int d = stlsoft_static_cast(int, *s1) - stlsoft_static_cast(int, *s2);
+        wchar_t const c1 = *s1;
+        wchar_t const c2 = *s2;
 
-        if (0 != d)
+        if (c1 != c2)
         {
-            d = towupper(*s1) - towupper(*s2);
-        }
+            int const d = stlsoft_C_strnicmp_fold_char_w_(c1) -
+                            stlsoft_C_strnicmp_fold_char_w_(c2);
 
-        if (0 == d)
-        {
-            if ('\0' == *s1)
+            if (0 != d)
             {
-                return 0;
+                return d;
             }
         }
-        else
+        else if (L'\0' == c1)
         {
-            return d;
+            return 0;
         }
     }
 

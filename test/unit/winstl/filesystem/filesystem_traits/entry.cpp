@@ -5,7 +5,7 @@
  *          classify UNC coarseness).
  *
  * Created: 31st December 2008
- * Updated: 20th October 2026
+ * Updated: 25th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1286,9 +1286,9 @@ static void TEST_path_is_absolute_2()
 static void TEST_find_last_path_name_separator()
 {
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_last_path_name_separator(""));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_last_path_name_separator("abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_last_path_name_separator("abc_"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_last_path_name_separator(""));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_last_path_name_separator("abc"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_last_path_name_separator("abc_"));
 
         {
             char const input[] = "\\";
@@ -1352,9 +1352,9 @@ static void TEST_find_last_path_name_separator()
     }
 
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_last_path_name_separator(L""));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_last_path_name_separator(L"abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_last_path_name_separator(L"abc_"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_last_path_name_separator(L""));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_last_path_name_separator(L"abc"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_last_path_name_separator(L"abc_"));
 
         {
             wchar_t const input[] = L"\\";
@@ -1421,9 +1421,9 @@ static void TEST_find_last_path_name_separator()
 static void TEST_find_next_path_name_separator()
 {
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_next_path_name_separator(""));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_next_path_name_separator("abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_m_t::find_next_path_name_separator("abc_"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_next_path_name_separator(""));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_next_path_name_separator("abc"));
+        TEST_PTR_NULL(filesystem_traits_m_t::find_next_path_name_separator("abc_"));
 
         {
             char const input[] = "\\";
@@ -1487,9 +1487,9 @@ static void TEST_find_next_path_name_separator()
     }
 
     {
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_next_path_name_separator(L""));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_next_path_name_separator(L"abc"));
-        TEST_PTR_EQ(NULL, filesystem_traits_w_t::find_next_path_name_separator(L"abc_"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_next_path_name_separator(L""));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_next_path_name_separator(L"abc"));
+        TEST_PTR_NULL(filesystem_traits_w_t::find_next_path_name_separator(L"abc_"));
 
         {
             wchar_t const input[] = L"\\";
@@ -1933,14 +1933,14 @@ static void TEST_patterns_all()
             auto const pa = filesystem_traits_m_t::patterns_all();
 
             TEST_MS_EQ("*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
 
         {
             auto const pa = filesystem_traits_w_t::patterns_all();
 
             TEST_WS_EQ(L"*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
     }
 
@@ -1951,7 +1951,7 @@ static void TEST_patterns_all()
 
             TEST_INT_EQ(1, n);
             TEST_MS_EQ("*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
 
         {
@@ -1960,7 +1960,7 @@ static void TEST_patterns_all()
 
             TEST_INT_EQ(1, n);
             TEST_WS_EQ(L"*.*", pa[0]);
-            TEST_PTR_EQ(NULL, pa[1]);
+            TEST_PTR_NULL(pa[1]);
         }
     }
 }
@@ -2025,7 +2025,7 @@ static void TEST_str_fs_compare()
         }
     }
 }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 #include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>

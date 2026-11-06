@@ -4,11 +4,11 @@
  * Purpose: Error functions.
  *
  * Created: 20th October 1994
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION  6
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT      149
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION  7
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT      150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,7 @@ namespace winstl_project
 
 STLSOFT_INLINE
 ws_size_t
-winstl__get_BITMAP(
+winstl_C_get_BITMAP(
     HBITMAP hbmp
 ,   BITMAP* pbmp
 )
@@ -110,7 +110,7 @@ winstl__get_BITMAP(
 
 STLSOFT_INLINE
 ws_size_t
-winstl__get_DIBSECTION(
+winstl_C_get_DIBSECTION(
     HBITMAP     hbmp
 ,   DIBSECTION* pds
 )
@@ -120,7 +120,7 @@ winstl__get_DIBSECTION(
 
 STLSOFT_INLINE
 ws_size_t
-winstl__get_LOGPEN(
+winstl_C_get_LOGPEN(
     HPEN    hpen
 ,   LOGPEN* plp
 )
@@ -130,7 +130,7 @@ winstl__get_LOGPEN(
 
 STLSOFT_INLINE
 ws_size_t
-winstl__get_EXTLOGPEN(
+winstl_C_get_EXTLOGPEN(
     HPEN        hpen
 ,   EXTLOGPEN*  pxlp
 )
@@ -140,7 +140,7 @@ winstl__get_EXTLOGPEN(
 
 STLSOFT_INLINE
 ws_size_t
-winstl__get_LOGBRUSH(
+winstl_C_get_LOGBRUSH(
     HBRUSH      hpal
 ,   LOGBRUSH*   pbr
 )
@@ -150,7 +150,7 @@ winstl__get_LOGBRUSH(
 
 STLSOFT_INLINE
 ws_size_t
-winstl__get_LOGFONT(
+winstl_C_get_LOGFONT(
     HFONT       hpal
 ,   LOGFONT*    pfnt
 )
@@ -182,7 +182,7 @@ get_object(
 ,   BITMAP& desc
 )
 {
-    return winstl__get_BITMAP(h, &desc);
+    return winstl_C_get_BITMAP(h, &desc);
 }
 
 inline
@@ -192,7 +192,7 @@ get_object(
 ,   DIBSECTION& desc
 )
 {
-    return winstl__get_DIBSECTION(h, &desc);
+    return winstl_C_get_DIBSECTION(h, &desc);
 }
 
 inline
@@ -202,7 +202,7 @@ get_object(
 ,   EXTLOGPEN&  desc
 )
 {
-    return winstl__get_EXTLOGPEN(h, &desc);
+    return winstl_C_get_EXTLOGPEN(h, &desc);
 }
 
 inline
@@ -212,7 +212,7 @@ get_object(
 ,   LOGPEN& desc
 )
 {
-    return winstl__get_LOGPEN(h, &desc);
+    return winstl_C_get_LOGPEN(h, &desc);
 }
 
 inline
@@ -222,7 +222,7 @@ get_object(
 ,   LOGBRUSH&   desc
 )
 {
-    return winstl__get_LOGBRUSH(h, &desc);
+    return winstl_C_get_LOGBRUSH(h, &desc);
 }
 
 inline
@@ -232,7 +232,7 @@ get_object(
 ,   LOGFONT&    desc
 )
 {
-    return winstl__get_LOGFONT(h, &desc);
+    return winstl_C_get_LOGFONT(h, &desc);
 }
 
 template<   ss_typename_param_k D
@@ -290,6 +290,95 @@ get_LOGFONT(HFONT h)
 }
 #endif /* __cplusplus */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_get_BITMAP
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_BITMAP, winstl_C_get_BITMAP)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_BITMAP(
+    HBITMAP hbmp
+,   BITMAP* pbmp
+)
+{
+    return winstl_C_get_BITMAP(hbmp, pbmp);
+}
+
+/** \deprecated Use winstl_C_get_DIBSECTION
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_DIBSECTION, winstl_C_get_DIBSECTION)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_DIBSECTION(
+    HBITMAP     hbmp
+,   DIBSECTION* pds
+)
+{
+    return winstl_C_get_DIBSECTION(hbmp, pds);
+}
+
+/** \deprecated Use winstl_C_get_LOGPEN
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_LOGPEN, winstl_C_get_LOGPEN)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_LOGPEN(
+    HPEN    hpen
+,   LOGPEN* plp
+)
+{
+    return winstl_C_get_LOGPEN(hpen, plp);
+}
+
+/** \deprecated Use winstl_C_get_EXTLOGPEN
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_EXTLOGPEN, winstl_C_get_EXTLOGPEN)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_EXTLOGPEN(
+    HPEN        hpen
+,   EXTLOGPEN*  pxlp
+)
+{
+    return winstl_C_get_EXTLOGPEN(hpen, pxlp);
+}
+
+/** \deprecated Use winstl_C_get_LOGBRUSH
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_LOGBRUSH, winstl_C_get_LOGBRUSH)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_LOGBRUSH(
+    HBRUSH      hpal
+,   LOGBRUSH*   pbr
+)
+{
+    return winstl_C_get_LOGBRUSH(hpal, pbr);
+}
+
+/** \deprecated Use winstl_C_get_LOGFONT
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_LOGFONT, winstl_C_get_LOGFONT)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_LOGFONT(
+    HFONT       hpal
+,   LOGFONT*    pfnt
+)
+{
+    return winstl_C_get_LOGFONT(hpal, pfnt);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

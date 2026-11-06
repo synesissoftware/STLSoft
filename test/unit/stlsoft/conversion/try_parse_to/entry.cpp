@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    try_parse_to/entry.cpp
+ * File:    test/unit/stlsoft/conversion/try_parse_to/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::try_parse_to`.
  *
  * Created: 18th November 2008
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -679,7 +679,7 @@ static void test_try_8_uint64()
 
     XTESTS_REQUIRE(TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", 3, "", &i, &endptr)));
     TEST_INT_EQ(10, i);
-    XTESTS_REQUIRE(TEST_PTR_NE(NULL, endptr));
+    REQUIRE(TEST_PTR_NOT_NULL(endptr));
     TEST_CHAR_EQ('a', *endptr);
 }
 

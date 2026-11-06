@@ -4,7 +4,7 @@
  * Purpose: Bit count functions.
  *
  * Created: 2nd June 2010
- * Updated: 25th September 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR      3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION   3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT       23
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION   4
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,7 +107,7 @@ namespace ximpl_bit_functions
 
     static
     stlsoft_C_count_functions_table_ptr_type
-    stlsoft_C_count_functions_get_8bit_table()
+    stlsoft_C_count_functions_get_8bit_table(void)
     {
         static const ss_uint8_t s_table[256] =
         {
