@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/memory/com_memory_functions/com_memory_functions.cpp
+ * File:    examples/by_library/memory/com_memory_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the COMSTL memory
  *          functions.
  *
  * Created: 9th December 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

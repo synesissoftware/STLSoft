@@ -4,7 +4,7 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 2nd March 1996
- * Updated: 15th October 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MAJOR    3
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     82
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,6 +241,8 @@ comstl_C_is_interface_implemented(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+/** \deprecated Use comstl_C_get_object_identity
+ */
 STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__get_object_identity, comstl_C_get_object_identity)
 STLSOFT_INLINE
 HRESULT
@@ -252,6 +254,8 @@ comstl__get_object_identity(
     return comstl_C_get_object_identity(p, identity);
 }
 
+/** \deprecated Use comstl_C_is_same_object
+ */
 STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__is_same_object, comstl_C_is_same_object)
 STLSOFT_INLINE
 HRESULT
@@ -263,6 +267,8 @@ comstl__is_same_object(
     return comstl_C_is_same_object(p1, p2);
 }
 
+/** \deprecated Use comstl_C_is_interface_implemented
+ */
 STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__is_interface_implemented, comstl_C_is_interface_implemented)
 STLSOFT_INLINE
 HRESULT

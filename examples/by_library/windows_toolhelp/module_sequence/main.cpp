@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/toolhelp/module_sequence/module_sequence.cpp
+ * File:    examples/by_library/windows_toolhelp/module_sequence/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the ToolHelp library.
  *
  * Created: 22nd May 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

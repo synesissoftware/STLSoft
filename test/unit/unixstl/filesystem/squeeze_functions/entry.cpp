@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    squeeze_functions/entry.cpp
+ * File:    test/unit/unixstl/filesystem/squeeze_functions/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl::squeeze_path`.
  *
  * Created: 29th October 2016
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    scoped_handle/entry.cpp
+ * File:    test/unit/stlsoft/smartptr/scoped_handle/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::scoped_handle`.
  *
  * Created: 16th October 2008
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

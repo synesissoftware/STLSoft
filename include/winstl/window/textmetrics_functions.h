@@ -4,11 +4,11 @@
  * Purpose: TEXTMETRICS functions.
  *
  * Created: 20th October 1994
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT      50
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_REVISION  5
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -102,7 +102,7 @@ namespace winstl_project
 
 STLSOFT_INLINE
 TEXTMETRICA
-winstl__get_textmetrics_a(HDC hdc)
+winstl_C_get_textmetrics_a(HDC hdc)
 {
     static TEXTMETRICA  s_tm;
     TEXTMETRICA         tm;
@@ -112,7 +112,7 @@ winstl__get_textmetrics_a(HDC hdc)
 
 STLSOFT_INLINE
 TEXTMETRICW
-winstl__get_textmetrics_w(HDC hdc)
+winstl_C_get_textmetrics_w(HDC hdc)
 {
     static TEXTMETRICW  s_tm;
     TEXTMETRICW         tm;
@@ -122,12 +122,12 @@ winstl__get_textmetrics_w(HDC hdc)
 
 STLSOFT_INLINE
 TEXTMETRIC
-winstl__get_textmetrics(HDC hdc)
+winstl_C_get_textmetrics(HDC hdc)
 {
 # ifdef UNICODE
-    return winstl__get_textmetrics_w(hdc);
+    return winstl_C_get_textmetrics_w(hdc);
 # else /* ? UNICODE */
-    return winstl__get_textmetrics_a(hdc);
+    return winstl_C_get_textmetrics_a(hdc);
 # endif /* UNICODE */
 }
 
@@ -142,21 +142,21 @@ inline
 TEXTMETRICA
 get_textmetrics_a(HDC hdc)
 {
-    return winstl__get_textmetrics_a(hdc);
+    return winstl_C_get_textmetrics_a(hdc);
 }
 
 inline
 TEXTMETRICW
 get_textmetrics_w(HDC hdc)
 {
-    return winstl__get_textmetrics_w(hdc);
+    return winstl_C_get_textmetrics_w(hdc);
 }
 
 inline
 TEXTMETRIC
 get_textmetrics(HDC hdc)
 {
-    return winstl__get_textmetrics(hdc);
+    return winstl_C_get_textmetrics(hdc);
 }
 
 inline
@@ -165,7 +165,7 @@ get_window_textmetrics_a(HWND hwnd)
 {
     HDC_scope   hdc(::GetWindowDC(hwnd), hwnd);
 
-    return winstl__get_textmetrics_a(hdc.get_hdc());
+    return winstl_C_get_textmetrics_a(hdc.get_hdc());
 }
 
 inline
@@ -174,7 +174,7 @@ get_window_textmetrics_w(HWND hwnd)
 {
     HDC_scope   hdc(::GetWindowDC(hwnd), hwnd);
 
-    return winstl__get_textmetrics_w(hdc.get_hdc());
+    return winstl_C_get_textmetrics_w(hdc.get_hdc());
 }
 
 inline
@@ -194,7 +194,7 @@ get_client_textmetrics_a(HWND hwnd)
 {
     HDC_scope   hdc(::GetDC(hwnd), hwnd);
 
-    return winstl__get_textmetrics_a(hdc.get_hdc());
+    return winstl_C_get_textmetrics_a(hdc.get_hdc());
 }
 
 inline
@@ -203,7 +203,7 @@ get_client_textmetrics_w(HWND hwnd)
 {
     HDC_scope   hdc(::GetDC(hwnd), hwnd);
 
-    return winstl__get_textmetrics_w(hdc.get_hdc());
+    return winstl_C_get_textmetrics_w(hdc.get_hdc());
 }
 
 inline
@@ -218,6 +218,47 @@ get_client_textmetrics(HWND hwnd)
 }
 #endif /* __cplusplus */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_get_textmetrics_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_textmetrics_a, winstl_C_get_textmetrics_a)
+STLSOFT_INLINE
+TEXTMETRICA
+winstl__get_textmetrics_a(HDC hdc)
+{
+    return winstl_C_get_textmetrics_a(hdc);
+}
+
+/** \deprecated Use winstl_C_get_textmetrics_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_textmetrics_w, winstl_C_get_textmetrics_w)
+STLSOFT_INLINE
+TEXTMETRICW
+winstl__get_textmetrics_w(HDC hdc)
+{
+    return winstl_C_get_textmetrics_w(hdc);
+}
+
+/** \deprecated Use winstl_C_get_textmetrics
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__get_textmetrics, winstl_C_get_textmetrics)
+STLSOFT_INLINE
+TEXTMETRIC
+winstl__get_textmetrics(HDC hdc)
+{
+    return winstl_C_get_textmetrics(hdc);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

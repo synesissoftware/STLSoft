@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    BSTR_functions/entry.cpp
+ * File:    test/unit/comstl/string/BSTR_functions/entry.cpp
  *
  * Purpose: Unit-tests for comstl BSTR comparison.
  *
  * Created: 29th September 2026
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

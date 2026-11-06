@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/windows_registry/enum_values/enum_values.cpp
+ * File:    examples/by_library/windows_registry/enum_values/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Windows Registry
  *          library.
  *
  * Created: 22nd May 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

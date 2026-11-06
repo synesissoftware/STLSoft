@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/obsolete.h
+ * File:    stlsoft/internal/cccap/obsolete.h
  *
- * Purpose:     Obsolete
+ * Purpose: Obsolete
  *
- * Created:     11th May 2008
- * Updated:     11th March 2024
+ * Created: 11th May 2008
+ * Updated: 2nd November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

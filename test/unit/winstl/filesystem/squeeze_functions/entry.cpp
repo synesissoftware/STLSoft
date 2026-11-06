@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    squeeze_functions/entry.cpp
+ * File:    test/unit/winstl/filesystem/squeeze_functions/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::squeeze_path`.
  *
  * Created: 29th October 2016
- * Updated: 25th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

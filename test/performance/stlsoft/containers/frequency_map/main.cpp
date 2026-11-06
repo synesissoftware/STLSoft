@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    frequency_map/main.cpp
+ * File:    test/performance/stlsoft/containers/frequency_map/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::frequency_map<>`.
  *
  * Created: 5th October 2024
- * Updated: 30th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

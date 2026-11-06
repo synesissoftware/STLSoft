@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 26th October 2026
+ * Updated: 28th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 6
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     136
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -152,7 +152,6 @@
 # define _UNIXSTL_VER_1_8_1_B04 0x01080184  /*!< Version 1.8.1-beta4 (with STLSoft 1.10.1-beta26) */
 # define _UNIXSTL_VER_1_8_1     0x010801FF  /*!< Version 1.8.1 (with STLSoft 1.10.3) */
 # define _UNIXSTL_VER_1_8_2     0x010802FF  /*!< Version 1.8.2 (with STLSoft 1.10.4) */
-# define _UNIXSTL_VER_1_8_3     0x010803FF  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
 # define _UNIXSTL_VER_1_8_3     0x010803FF  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
 # define _UNIXSTL_VER_1_8_4     0x010804FF  /*!< Version 1.8.4 (with STLSoft 1.11.1-alpha8) */
 # define _UNIXSTL_VER_1_8_5     0x010805FF  /*!< Version 1.8.5 (with STLSoft 1.11.1-alpha12) */
