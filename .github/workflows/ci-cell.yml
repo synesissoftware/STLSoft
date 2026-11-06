@@ -256,20 +256,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Feature cells cap jobs at 2. ACE (and MFC) translation units
-          # are large; an unbounded --parallel is what exhausts the runner.
-          if [ "${{ inputs.execute-full-suite }}" = "true" ]; then
-            PARALLEL_FLAG="--parallel"
-          else
-            PARALLEL_FLAG="--parallel 2"
-          fi
+          # Unix hosted runners die with SIGTERM ("Terminated") when the
+          # full tree is built with an unbounded --parallel. Cap at 2,
+          # matching MinGW. MSVC keeps the default job count.
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake --build build --config "${{ inputs.build-type }}" $PARALLEL_FLAG
+            cmake --build build --config "${{ inputs.build-type }}" --parallel
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
-            cmake --build build $PARALLEL_FLAG
+            cmake --build build --parallel 2
           fi
 
       - name: Upload build tree
