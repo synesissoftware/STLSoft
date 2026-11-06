@@ -134,6 +134,14 @@ jobs:
           else
             ACE_FLAG="-DNO_ACE=ON"
           fi
+          # Feature cells run only ACE/ATL/MFC unit tests and the version
+          # reporter. Leave the full example and test tree off so the
+          # hosted runner is not asked to compile it.
+          if [ "${{ inputs.execute-full-suite }}" = "true" ]; then
+            SUITE_FLAGS="-DBUILD_EXAMPLES=ON -DBUILD_TESTING=ON -DSTLSOFT_FEATURE_TESTS_ONLY=OFF"
+          else
+            SUITE_FLAGS="-DBUILD_EXAMPLES=OFF -DBUILD_TESTING=ON -DSTLSOFT_FEATURE_TESTS_ONLY=ON"
+          fi
           # Default MSVC cells suppress ATL/MFC discovery (keeps lean cells lean).
           # **with-atl** / **with-mfc** leave the matching find enabled so
           # **ATLSTL** / **MFCSTL** can build (versions smoke; mfcstl tests).
@@ -152,8 +160,7 @@ jobs:
               $ATL_FLAG \
               $MFC_FLAG \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
+              $SUITE_FLAGS \
               $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
@@ -162,8 +169,7 @@ jobs:
               -DCMAKE_C_COMPILER=gcc \
               -DCMAKE_CXX_COMPILER=g++ \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
+              $SUITE_FLAGS \
               $ACE_FLAG
           else
             cmake -B build -S . \
@@ -171,8 +177,7 @@ jobs:
               -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
+              $SUITE_FLAGS \
               $ACE_FLAG
           fi
 
@@ -251,13 +256,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Feature cells cap jobs at 2. ACE (and MFC) translation units
+          # are large; an unbounded --parallel is what exhausts the runner.
+          if [ "${{ inputs.execute-full-suite }}" = "true" ]; then
+            PARALLEL_FLAG="--parallel"
+          else
+            PARALLEL_FLAG="--parallel 2"
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake --build build --config "${{ inputs.build-type }}" --parallel
+            cmake --build build --config "${{ inputs.build-type }}" $PARALLEL_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
-            cmake --build build --parallel
+            cmake --build build $PARALLEL_FLAG
           fi
 
       - name: Upload build tree
