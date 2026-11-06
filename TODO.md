@@ -96,6 +96,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.6
 
+* [x] ~~~**get_root_len_** (**unixstl::filesystem_traits\<char\>**) — ~~fix / promote~~ **obviated (R24)**: removed helper and `#error` tripwire; under `_WIN32`/`UNIXem` `pop` / `..` use classify; native Unix keeps cheap slash-root 0/1~~~ - ✅;
 * [ ] Existing test consistency (deep analysis);
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;

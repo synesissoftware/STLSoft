@@ -18,7 +18,7 @@
  *          ownership issues described in the article.
  *
  * Created: 15th January 2002
- * Updated: 30th April 2025
+ * Updated: 20th October 2026
  *
  * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
  *          when writing books about good design/implementation; to Florin L
@@ -26,7 +26,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        277
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        278
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1861,7 +1861,7 @@ basic_findfile_sequence_const_input_iterator<C, T, V>::operator ++()
                     buffer_type_    search(n1 + 1); // Buffer in which to prepare the search-spec for FindFirstFile()
                     size_type       cch;            // Used to make the strrchr operations faster
 
-                    if (traits_type::is_path_rooted(m_pattern0))
+                    if (traits_type::path_is_rooted(m_pattern0))
                     {
                         cch = 0;
                     }
@@ -1888,7 +1888,7 @@ basic_findfile_sequence_const_input_iterator<C, T, V>::operator ++()
                     char_type const* slash  =   traits_type::str_rchr(&search[0] + cch, '/');
                     char_type const* bslash =   traits_type::str_rchr(&search[0] + cch, '\\');
 
-                    WINSTL_ASSERT(!traits_type::is_path_rooted(m_pattern0) || ((NULL != slash) || (NULL != bslash)));
+                    WINSTL_ASSERT(!traits_type::path_is_rooted(m_pattern0) || ((NULL != slash) || (NULL != bslash)));
 
                     if (NULL != slash ||
                         NULL != bslash)

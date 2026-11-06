@@ -551,12 +551,10 @@ public:
     /// Returns \c true if the path begins with a dots directory
     static bool_type    starts_with_dots(char_type const* dir);
 
-    /// Returns \c true if path is rooted
+    /// [DEPRECATED] Coarse: leading path-name separator, or
+    /// \c is_path_absolute.
     ///
-    /// \note Only enough characters of the path pointed to by \c path as are
-    /// necessary to detect the presence or absence of the operating system's
-    /// root character sequence(s). Leading path-name separator, or absolute
-    /// (see \c is_path_absolute).
+    /// \deprecated Use \c path_is_rooted for complete (lattice) semantics.
     static bool_type    is_path_rooted(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_rooted(
@@ -564,25 +562,23 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is an absolute path (string predicate)
+    /// Complete string predicate: true when classify would report a rooted
+    /// kind (\c SlashRooted, drive-/UNC-/home-rooted). Invokes
+    /// \c path_classify_root only for <code>\\\\</code>-prefixed paths;
+    /// drive-absolute and single-separator slash-rooted forms use a fast
+    /// orthographic check.
+    static bool_type    path_is_rooted(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    path_is_rooted(
+        char_type const*    path
+    ,   size_t              len
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    /// [DEPRECATED] Coarse absolute: UNC prefix <code>\\\\</code> (length
+    /// ≥ 2) or <code>X:</code> + separator. Does not validate UNC
+    /// host/share completeness.
     ///
-    /// True when the path has a UNC prefix (<code>\\\\</code>, length ≥ 2)
-    /// or a drive letter plus path-name separator (<code>X:\\</code> /
-    /// <code>X:/</code>). Slash-rooted forms such as <code>\\foo</code> are
-    /// <b>not</b> absolute.
-    ///
-    /// \note This is a <b>coarse</b> prefix test. It does <b>not</b> validate
-    /// UNC host/share completeness. Incomplete forms such as
-    /// <code>\\\\svr</code> therefore report absolute here, while
-    /// \c path_classify yields \c UncIncomplete and
-    /// \c path_is_absolute(pc) is false. Prefer \c path_classify when
-    /// incompleteness matters. Well-formed complete UNC roots
-    /// (<code>\\\\host\\share</code> and descendants) agree on both
-    /// surfaces.
-    ///
-    /// \note Only enough characters of the path pointed to by \c path as are
-    /// necessary to detect the presence or absence of the operating system's
-    /// absolute path character sequence(s).
+    /// \deprecated Use \c path_is_absolute for complete (lattice) semantics.
     static bool_type    is_path_absolute(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_absolute(
@@ -590,18 +586,32 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path has a UNC prefix (string predicate)
+    /// Complete string predicate: absolute in the classify lattice
+    /// (drive-rooted, UNC-rooted, or home-rooted — not merely
+    /// slash-rooted). Drive-absolute forms use a fast check;
+    /// <code>\\\\</code>-prefixed paths use \c path_classify_root.
+    static bool_type    path_is_absolute(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    path_is_absolute(
+        char_type const*    path
+    ,   size_t              len
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    /// [DEPRECATED] Coarse UNC: begins with <code>\\\\</code> (length ≥ 2).
     ///
-    /// True when the path begins with <code>\\\\</code> (length ≥ 2). This
-    /// is a <b>prefix heuristic only</b> — it does not require a nonempty
-    /// host and share. Use \c path_classify for the UNC lattice
-    /// (\c UncRooted vs \c UncIncomplete). See also \c is_path_absolute.
-    ///
-    /// \note Only enough characters of the path pointed to by \c path as are
-    /// necessary to detect the presence or absence of the UNC character sequence(s).
+    /// \deprecated Use \c path_is_UNC for complete (\c UncRooted) semantics.
     static bool_type    is_path_UNC(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_UNC(
+        char_type const*    path
+    ,   size_t              len
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    /// Complete string predicate: classify kind is \c UncRooted. Fast-rejects
+    /// non-<code>\\\\</code> prefixes; otherwise uses \c path_classify_root.
+    static bool_type    path_is_UNC(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    path_is_UNC(
         char_type const*    path
     ,   size_t              len
     );
@@ -1439,24 +1449,66 @@ public: // path classification and analysis
         return false;
     }
 
-    static bool_type is_path_rooted(char_type const* path)
-    {
-        return path_is_rooted(path);
-    }
+    /* Deprecated coarse string predicates (legacy orthography). */
 
-    static bool_type path_is_rooted(char_type const* path)
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
+    static bool_type is_path_rooted(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        return is_path_name_separator(*path) || is_path_absolute(path);
+        return is_path_rooted_coarse_(path, str_len(path));
     }
 
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(
         char_type const*    path
     ,   size_t              len
     )
     {
-        return path_is_rooted(path, len);
+        return is_path_rooted_coarse_(path, len);
+    }
+
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
+    static bool_type is_path_absolute(char_type const* path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return is_path_absolute_coarse_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return is_path_absolute_coarse_(path, len);
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC for complete (UncRooted) semantics")
+    static bool_type is_path_UNC(char_type const* path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return path_has_unc_prefix_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC for complete (UncRooted) semantics")
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return path_has_unc_prefix_(path, len);
+    }
+
+    /* Complete string predicates (lattice; classify only when needed). */
+
+    static bool_type path_is_rooted(char_type const* path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return path_is_rooted(path, str_len(path));
     }
 
     static bool_type path_is_rooted(
@@ -1464,27 +1516,35 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
-        return (0 != len && is_path_name_separator(*path)) || is_path_absolute(path, len);
-    }
+        if (path_is_drive_letter_absolute_(path, len))
+        {
+            return true;
+        }
 
-    static bool_type is_path_absolute(char_type const* path)
-    {
-        return path_is_absolute(path);
+        if (0 == len ||
+            !is_path_name_separator(path[0]))
+        {
+            return false;
+        }
+
+        if (path_has_unc_prefix_(path, len))
+        {
+            path_classification_string_slice_type   root;
+            path_classification_t const             pc =
+                path_classify_root(path, len, 0, &root);
+
+            return path_is_rooted(pc);
+        }
+
+        /* Single leading separator → SlashRooted. */
+        return true;
     }
 
     static bool_type path_is_absolute(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        return is_path_absolute(path, str_len(path));
-    }
-
-    static bool_type is_path_absolute(
-        char_type const*    path
-    ,   size_t              len
-    )
-    {
-        return path_is_absolute(path, len);
+        return path_is_absolute(path, str_len(path));
     }
 
     static bool_type path_is_absolute(
@@ -1492,44 +1552,45 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
-        if (is_path_UNC(path, len))
+        if (path_is_drive_letter_absolute_(path, len))
         {
             return true;
         }
 
-        if (len >= 3)
+        if (!path_has_unc_prefix_(path, len))
         {
-            if (is_drive_letter_(path[0]) &&
-                ':' == path[1] &&
-                is_path_name_separator(path[2]))
-            {
-                return true;
-            }
+            return false;
         }
 
-        return false;
+        path_classification_string_slice_type   root;
+        path_classification_t const             pc =
+            path_classify_root(path, len, 0, &root);
+
+        return path_is_absolute(pc);
     }
 
-    static bool_type is_path_UNC(char_type const* path)
+    static bool_type path_is_UNC(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        return ('\\' == path[0] && '\\' == path[1]);
+        return path_is_UNC(path, str_len(path));
     }
 
-    static bool_type is_path_UNC(
+    static bool_type path_is_UNC(
         char_type const*    path
     ,   size_t              len
     )
     {
-        switch (len)
+        if (!path_has_unc_prefix_(path, len))
         {
-            case    0:
-            case    1:
-                return false;
-            default:
-                return '\\' == path[0] && '\\' == path[1];
+            return false;
         }
+
+        path_classification_string_slice_type   root;
+        path_classification_t const             pc =
+            path_classify_root(path, len, 0, &root);
+
+        return winstl_C_PathType_UncRooted == pc;
     }
 
 private:
@@ -1541,6 +1602,51 @@ private:
     )
     {
         return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+    }
+
+    static
+    bool_type
+    path_has_unc_prefix_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return len >= 2 && '\\' == path[0] && '\\' == path[1];
+    }
+
+    static
+    bool_type
+    path_is_drive_letter_absolute_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return len >= 3
+            && is_drive_letter_(path[0])
+            && ':' == path[1]
+            && is_path_name_separator(path[2]);
+    }
+
+    static
+    bool_type
+    is_path_absolute_coarse_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return path_has_unc_prefix_(path, len)
+            || path_is_drive_letter_absolute_(path, len);
+    }
+
+    static
+    bool_type
+    is_path_rooted_coarse_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return (0 != len && is_path_name_separator(path[0]))
+            || is_path_absolute_coarse_(path, len);
     }
 
     // Determines whether the given path is a properly-formed drive:
@@ -2345,14 +2451,14 @@ public:
         size_type const len         =   class_type::str_len(path);
         bool_type       bTryEndTest =   false;
 
-        if (is_path_absolute(path))
+        if (is_path_absolute_coarse_(path, len))
         {
             if (len > 4)
             {
                 bTryEndTest = true;
             }
         }
-        else if (is_path_rooted(path))
+        else if (is_path_rooted_coarse_(path, len))
         {
             if (len > 3)
             {
@@ -2582,7 +2688,7 @@ private:
 
             requiredLen += str_len(fileName);
 
-            if (!is_path_rooted(fileName))
+            if (!is_path_rooted_coarse_(fileName, str_len(fileName)))
             {
                 size_type cwdLen = WINSTL_API_EXTERNAL_FileManagement_GetCurrentDirectoryA(0, NULL);
 
@@ -3130,39 +3236,101 @@ public: // path classification and analysis
         return false;
     }
 
+    /* Deprecated coarse string predicates (legacy orthography). */
+
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        return is_path_name_separator(*path) || is_path_absolute(path);
+        return is_path_rooted_coarse_(path, str_len(path));
     }
 
+    STLSOFT_DEPRECATED_("is_path_rooted is deprecated; use path_is_rooted for complete (lattice) semantics")
     static bool_type is_path_rooted(
         char_type const*    path
     ,   size_t              len
     )
     {
-        return (0 != len && is_path_name_separator(*path)) || is_path_absolute(path, len);
+        return is_path_rooted_coarse_(path, len);
     }
 
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
     static bool_type is_path_absolute(char_type const* path)
     {
-        return path_is_absolute(path);
+        WINSTL_ASSERT(NULL != path);
+
+        return is_path_absolute_coarse_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_absolute is deprecated; use path_is_absolute for complete (lattice) semantics")
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return is_path_absolute_coarse_(path, len);
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC for complete (UncRooted) semantics")
+    static bool_type is_path_UNC(char_type const* path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return path_has_unc_prefix_(path, str_len(path));
+    }
+
+    STLSOFT_DEPRECATED_("is_path_UNC is deprecated; use path_is_UNC for complete (UncRooted) semantics")
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return path_has_unc_prefix_(path, len);
+    }
+
+    /* Complete string predicates (lattice; classify only when needed). */
+
+    static bool_type path_is_rooted(char_type const* path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return path_is_rooted(path, str_len(path));
+    }
+
+    static bool_type path_is_rooted(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        if (path_is_drive_letter_absolute_(path, len))
+        {
+            return true;
+        }
+
+        if (0 == len ||
+            !is_path_name_separator(path[0]))
+        {
+            return false;
+        }
+
+        if (path_has_unc_prefix_(path, len))
+        {
+            path_classification_string_slice_type   root;
+            path_classification_t const             pc =
+                path_classify_root(path, len, 0, &root);
+
+            return path_is_rooted(pc);
+        }
+
+        return true;
     }
 
     static bool_type path_is_absolute(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        return is_path_absolute(path, str_len(path));
-    }
-
-    static bool_type is_path_absolute(
-        char_type const*    path
-    ,   size_t              len
-    )
-    {
-        return path_is_absolute(path, len);
+        return path_is_absolute(path, str_len(path));
     }
 
     static bool_type path_is_absolute(
@@ -3170,45 +3338,45 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
-        if (is_path_UNC(path, len))
+        if (path_is_drive_letter_absolute_(path, len))
         {
             return true;
         }
 
-        if (len >= 3)
+        if (!path_has_unc_prefix_(path, len))
         {
-            if (is_drive_letter_(path[0]) &&
-                L':' == path[1] &&
-                is_path_name_separator(path[2]))
-            {
-                return true;
-            }
+            return false;
         }
 
-        return false;
+        path_classification_string_slice_type   root;
+        path_classification_t const             pc =
+            path_classify_root(path, len, 0, &root);
+
+        return path_is_absolute(pc);
     }
 
-    static bool_type is_path_UNC(char_type const* path)
+    static bool_type path_is_UNC(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        return (L'\\' == path[0] && L'\\' == path[1]);
+        return path_is_UNC(path, str_len(path));
     }
 
-    static bool_type is_path_UNC(
+    static bool_type path_is_UNC(
         char_type const*    path
     ,   size_t              len
     )
     {
-        switch (len)
+        if (!path_has_unc_prefix_(path, len))
         {
-            case    0:
-            case    1:
-                return false;
-            case    2:
-            default:
-                return '\\' == path[0] && '\\' == path[1];
+            return false;
         }
+
+        path_classification_string_slice_type   root;
+        path_classification_t const             pc =
+            path_classify_root(path, len, 0, &root);
+
+        return winstl_C_PathType_UncRooted == pc;
     }
 
 private:
@@ -3220,6 +3388,51 @@ private:
     )
     {
         return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
+    }
+
+    static
+    bool_type
+    path_has_unc_prefix_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return len >= 2 && L'\\' == path[0] && L'\\' == path[1];
+    }
+
+    static
+    bool_type
+    path_is_drive_letter_absolute_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return len >= 3
+            && is_drive_letter_(path[0])
+            && L':' == path[1]
+            && is_path_name_separator(path[2]);
+    }
+
+    static
+    bool_type
+    is_path_absolute_coarse_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return path_has_unc_prefix_(path, len)
+            || path_is_drive_letter_absolute_(path, len);
+    }
+
+    static
+    bool_type
+    is_path_rooted_coarse_(
+        char_type const*    path
+    ,   size_t              len
+    )
+    {
+        return (0 != len && is_path_name_separator(path[0]))
+            || is_path_absolute_coarse_(path, len);
     }
 
     // Determines whether the given path is a properly-formed drive:
@@ -3777,14 +3990,14 @@ public:
         size_type const len         =   class_type::str_len(path);
         bool_type       bTryEndTest =   false;
 
-        if (is_path_absolute(path))
+        if (is_path_absolute_coarse_(path, len))
         {
             if (len > 4)
             {
                 bTryEndTest = true;
             }
         }
-        else if (is_path_rooted(path))
+        else if (is_path_rooted_coarse_(path, len))
         {
             if (len > 3)
             {
@@ -4009,7 +4222,7 @@ private:
 
             requiredLen += str_len(fileName);
 
-            if (!is_path_rooted(fileName))
+            if (!is_path_rooted_coarse_(fileName, str_len(fileName)))
             {
                 size_type cwdLen = WINSTL_API_EXTERNAL_FileManagement_GetCurrentDirectoryA(0, NULL);
 
