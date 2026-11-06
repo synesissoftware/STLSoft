@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for special_string_instance::equal.
  *
  * Created: 29th September 2026
- * Updated: 29th October 2026
+ * Updated: 5th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,7 +34,7 @@ inline size_t c_str_len(counted_chars const& s)
 {
     return s.n;
 }
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 #include <stlsoft/string/special_string_instance.hpp>
 

@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  2nd November 2026
+# Updated:  6th November 2026
 #
 # ######################################################################## #
 
@@ -161,6 +161,10 @@ include(TargetMacros)
 option(BUILD_EXAMPLES "Build examples" ON)
 
 option(BUILD_TESTING "Build tests" ON)
+
+# CI feature cells (ACE / ATL / MFC) set this so the build is the
+# version reporter plus those libraries' unit tests, not the full tree.
+option(STLSOFT_FEATURE_TESTS_ONLY "Build only feature-library unit tests and the version reporter" OFF)
 
 
 # ######################################
