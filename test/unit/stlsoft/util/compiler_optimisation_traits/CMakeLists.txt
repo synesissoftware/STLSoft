@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.util.compiler_optimisation_traits entry.cpp)

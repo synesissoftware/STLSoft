@@ -44,6 +44,7 @@ Released 21st October 2026 (`43541c13`). Unmet items moved to **1.11.3** and **1
 
 Released 25th October 2026 (`17526622`). The planned test-coverage mission and the pre-release gate moved to **1.11.3**.
 
+* [x] Coverage of currently untested components — **bulk expansion landed in 1.11.1-rc6** (~640 new test programs);
 * [x] ~~~`auto_buffer` GCC 12+ `-Wfree-nonheap-object` on the external-buffer `delete`~~~ - ✅;
 * [x] ~~~xTests null-ptr macros~~~ - ✅;
 * [x] ~~~alpha/beta/rc nomenclature throughout the repo~~~ - ✅;
@@ -95,9 +96,15 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.6
 
-* [ ] Existing test consistency (deep analysis);
+* [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
 * [ ] Complete coverage of currently tested components (improvement / completion);
+* [ ] Complete coverage of currently untested components (improvement / completion);
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
+* [ ] WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites;
+* [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
+* [ ] Correct/ensure (and write coding guidelines for) test-function naming;
+* [ ] Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;
+* [ ] bring in some essential unit-tests from internal repo;
 * [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
 

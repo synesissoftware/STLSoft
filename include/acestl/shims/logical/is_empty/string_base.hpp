@@ -4,11 +4,11 @@
  * Purpose: Helper functions for ACE_String_Base class.
  *
  * Created: 16th December 2004
- * Updated: 20th March 2025
+ * Updated: 7th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MINOR     1
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  1
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      26
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  2
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -108,7 +108,7 @@ STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
     ss_bool_t
     is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type) STLSOFT_NOEXCEPT
     {
-        return 0 != s.length();
+        return 0 == s.length();
     }
 
     no_type
@@ -121,7 +121,7 @@ STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
     ss_bool_t
     is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type) STLSOFT_NOEXCEPT
     {
-        return 0 != s.length();
+        return 0 == s.length();
     }
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
 #else /* ? STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
@@ -135,7 +135,7 @@ inline
 int
 is_empty(ACE_String_Base<ss_char_a_t> const& s) STLSOFT_NOEXCEPT
 {
-    return 0 != s.length();
+    return 0 == s.length();
 }
 
 /** Indicates whether the string is empty
@@ -147,7 +147,7 @@ inline
 int
 is_empty(ACE_String_Base<ss_char_w_t> const& s) STLSOFT_NOEXCEPT
 {
-    return 0 != s.length();
+    return 0 == s.length();
 }
 #endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 

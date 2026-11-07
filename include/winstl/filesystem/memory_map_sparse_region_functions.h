@@ -4,11 +4,11 @@
  * Purpose:     Windows memory mapping functions.
  *
  * Created:     15th December 1996
- * Updated:     11th March 2024
+ * Updated:     7th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_EDIT     121
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_REVISION 6
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_EDIT     122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -142,7 +142,7 @@ winstl_C_sparse_region_map_view_or_close_mapping_(
 ,   ws_uint64_t     requestSize
 )
 {
-    winstl_C_SparseRegion_t sr = { 0 };
+    winstl_C_SparseRegion_t sr = { NULL, NULL, 0 };
 
     STLSOFT_SUPPRESS_UNUSED(requestSize);   /* Can pass 0 to MVOF */
 

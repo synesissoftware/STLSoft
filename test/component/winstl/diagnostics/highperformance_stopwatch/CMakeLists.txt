@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.diagnostics.highperformance_stopwatch entry.cpp)

@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.stlsoft.containers.environment_block entry.cpp)
