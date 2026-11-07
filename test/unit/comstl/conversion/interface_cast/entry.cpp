@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::interface_cast` helpers.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 8th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -80,9 +80,15 @@ namespace {
 
 static void test_interface_cast_test(void)
 {
+    mock_unknown* const p = new mock_unknown();
+
+    /* Identity cast uses the direct constructor, which Releases without
+     * AddRef, so the object must be on the heap.
+     */
+    TEST_BOOLEAN_TRUE(comstl::interface_cast_test<IUnknown*>(static_cast<IUnknown*>(p)));
+
     mock_unknown  obj;
 
-    TEST_BOOLEAN_TRUE(comstl::interface_cast_test<IUnknown*>(static_cast<IUnknown*>(&obj)));
     TEST_BOOLEAN_FALSE(comstl::interface_cast_test<IDispatch*>(static_cast<IUnknown*>(&obj)));
 }
 
