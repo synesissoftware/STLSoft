@@ -68,7 +68,7 @@ namespace {
 
 static void test_c_str_ptr_known_guid(void)
 {
-    cs_char_a_t const*  s = stlsoft::c_str_ptr_a(IID_IUnknown);
+    comstl::cs_char_a_t const*  s = stlsoft::c_str_ptr_a(IID_IUnknown);
 
     TEST_PTR_NE(NULL, s);
     TEST_INT_NE(0u, strlen(s));

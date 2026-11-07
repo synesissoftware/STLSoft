@@ -64,6 +64,9 @@ namespace {
 static void test_query(void)
 {
     winstl::processtimes_counter c;
+
+    c.start();
+    c.stop();
     TEST_BOOLEAN_TRUE(c.get_seconds() >= 0.0);
 }
 } // anonymous namespace

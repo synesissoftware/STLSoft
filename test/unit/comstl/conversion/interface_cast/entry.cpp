@@ -89,7 +89,7 @@ static void test_interface_cast_test(void)
 static void test_try_interface_cast(void)
 {
     mock_unknown  obj;
-    stlsoft::ref_ptr<IUnknown>  punk = comstl::try_interface_cast<IUnknown*>(static_cast<IUnknown*>(&obj));
+    stlsoft::ref_ptr<IUnknown>  punk = comstl::try_interface_cast<IUnknown>(static_cast<IUnknown*>(&obj));
 
     TEST_BOOLEAN_FALSE(punk.empty());
 }

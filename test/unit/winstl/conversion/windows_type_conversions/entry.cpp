@@ -65,7 +65,7 @@ namespace {
 
 static void test_WPARAM2HWND(void)
 {
-    HWND const hwnd = winstl::WPARAM2HWND()(static_cast<WPARAM>(42));
+    HWND const hwnd = winstl::WPARAM2HWND(static_cast<WPARAM>(42));
     TEST_PTR_EQ(reinterpret_cast<HWND>(42), hwnd);
 }
 } // anonymous namespace
