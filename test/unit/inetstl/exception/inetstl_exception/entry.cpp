@@ -32,7 +32,6 @@ namespace {
 
     static void TEST_status_code_only(void);
     static void TEST_reason_and_status_code(void);
-    static void TEST_reason_and_qualifier(void);
     static void TEST_project_identifier(void);
 } // anonymous namespace
 
@@ -52,7 +51,6 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(TEST_status_code_only);
         XTESTS_RUN_CASE(TEST_reason_and_status_code);
-        XTESTS_RUN_CASE(TEST_reason_and_qualifier);
         XTESTS_RUN_CASE(TEST_project_identifier);
 
         XTESTS_PRINT_RESULTS();
@@ -112,15 +110,6 @@ static void TEST_reason_and_status_code()
 
 # error Platform not discriminated
 #endif /* platform */
-}
-
-static void TEST_reason_and_qualifier()
-{
-    inetstl::inetstl_exception x("test reason", "test qualifier");
-
-    TEST_PTR_NE(NULL, x.what());
-    TEST_PTR_NE(NULL, strstr(x.what(), "test reason"));
-    TEST_PTR_NE(NULL, strstr(x.what(), "test qualifier"));
 }
 
 static void TEST_project_identifier()

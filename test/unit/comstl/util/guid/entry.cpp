@@ -91,10 +91,10 @@ static void test_equality(void)
 static void test_string_shims(void)
 {
     comstl::guid const  g(IID_IUnknown);
-    cs_char_a_t const*  s = stlsoft::c_str_ptr_a(g);
+    comstl::cs_char_a_t const*  s = stlsoft::c_str_ptr_a(g);
 
     TEST_PTR_NE(NULL, s);
-    TEST_UINT_NE(0u, stlsoft::c_str_len(g));
+    TEST_INT_NE(0u, stlsoft::c_str_len(g));
 }
 } // anonymous namespace
 

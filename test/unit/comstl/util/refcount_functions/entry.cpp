@@ -83,9 +83,9 @@ static void test_addref_release(void)
 {
     mock_unknown*   p = new mock_unknown();
 
-    TEST_UINT_EQ(2u, p->AddRef());
-    comstl__release(p);
-    TEST_UINT_EQ(1u, p->m_ref);
+    TEST_INT_EQ(2u, p->AddRef());
+    comstl::comstl_C_release(p);
+    TEST_INT_EQ(1u, p->m_ref);
     p->Release();
 }
 
@@ -93,12 +93,12 @@ static void test_safe_addref_release(void)
 {
     mock_unknown*   p = new mock_unknown();
 
-    comstl__safe_addref(NULL);
-    comstl__safe_release(NULL);
+    comstl::comstl_C_safe_addref(NULL);
+    comstl::comstl_C_safe_release(NULL);
 
-    comstl__safe_addref(p);
-    TEST_UINT_EQ(2u, p->m_ref);
-    comstl__safe_release(p);
+    comstl::comstl_C_safe_addref(p);
+    TEST_INT_EQ(2u, p->m_ref);
+    comstl::comstl_C_safe_release(p);
     p->Release();
 }
 

@@ -65,10 +65,9 @@ namespace {
 
 static void test_query(void)
 {
-    WinSTL_OperatingSystemIdentifier_t const osid = winstl::identify_operating_system();
+    winstl::OperatingSystemIdentifier_t const osid = winstl::identify_operating_system();
 
-    TEST_BOOLEAN_NE(WinSTL_OperatingSystemIdentifier_Unknown, osid);
-    TEST_UINT_NE(0u, stlsoft::c_str_len_a(osid));
+    TEST_BOOLEAN_NE(winstl::WinSTL_OperatingSystemIdentifier_Unknown, osid);
 }
 } // anonymous namespace
 

@@ -76,7 +76,7 @@ static void test_c_str_ptr_integer_variant(void)
     v.lVal = 1234;
 
     TEST_PTR_NE(NULL, stlsoft::c_str_ptr(v));
-    TEST_UINT_NE(0u, stlsoft::c_str_len(v));
+    TEST_INT_NE(0u, stlsoft::c_str_len(v));
 
     ::VariantClear(&v);
 }

@@ -65,8 +65,8 @@ namespace {
 
 static void test_current_module(void)
 {
-    winstl::module_filename mf;
-    TEST_UINT_NE(0u, mf.length());
+    winstl::module_filename mf(::GetModuleHandleA(NULL));
+    TEST_INT_NE(0u, mf.length());
 }
 } // anonymous namespace
 

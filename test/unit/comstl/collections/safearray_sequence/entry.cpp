@@ -79,7 +79,7 @@ static void test_iteration(void)
 
     comstl::safearray_sequence<LONG>  seq(psa);
 
-    TEST_UINT_EQ(3u, seq.size());
+    TEST_INT_EQ(3u, seq.size());
     TEST_BOOLEAN_FALSE(seq.empty());
 
     comstl::safearray_sequence<LONG>::const_iterator  it  = seq.begin();

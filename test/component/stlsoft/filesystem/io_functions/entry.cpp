@@ -67,6 +67,10 @@ namespace {
 static void test_io_functions_roundtrip()
 {
     char const* path = "test_stlsoft_io.tmp";
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
     FILE* fp = fopen(path, "w");
     TEST_PTR_NE(NULL, fp);
     stlsoft::write_string(fp, "line1\n", 6);
@@ -75,6 +79,9 @@ static void test_io_functions_roundtrip()
     std::string line;
     stlsoft::read_line(fp, line);
     fclose(fp);
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif
     remove(path);
     TEST_MS_EQ("line1", line);
 }

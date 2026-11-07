@@ -82,10 +82,10 @@ static void test_interface_addref_release(void)
     mock_unknown*                       p = new mock_unknown();
 
     addref_fn(p);
-    TEST_UINT_EQ(2u, p->m_ref);
+    TEST_INT_EQ(2u, p->m_ref);
 
     release_fn(p);
-    TEST_UINT_EQ(1u, p->m_ref);
+    TEST_INT_EQ(1u, p->m_ref);
 
     release_fn(NULL);
     addref_fn(NULL);

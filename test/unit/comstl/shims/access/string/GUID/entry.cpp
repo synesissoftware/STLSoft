@@ -71,12 +71,12 @@ static void test_c_str_ptr_known_guid(void)
     cs_char_a_t const*  s = stlsoft::c_str_ptr_a(IID_IUnknown);
 
     TEST_PTR_NE(NULL, s);
-    TEST_UINT_NE(0u, strlen(s));
+    TEST_INT_NE(0u, strlen(s));
 }
 
 static void test_c_str_len(void)
 {
-    TEST_UINT_EQ(stlsoft::c_str_len_a(IID_IUnknown), stlsoft::c_str_len(IID_IUnknown));
+    TEST_INT_EQ(stlsoft::c_str_len_a(IID_IUnknown), stlsoft::c_str_len(IID_IUnknown));
 }
 } // anonymous namespace
 

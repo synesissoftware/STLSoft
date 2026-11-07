@@ -64,7 +64,7 @@ namespace {
 
 static void test_open_current_user(void)
 {
-    winstl::reg_key key(HKEY_CURRENT_USER);
+    winstl::reg_key key(HKEY_CURRENT_USER, static_cast<char const*>(NULL), KEY_READ);
     TEST_PTR_NE(NULL, key.get());
 }
 } // anonymous namespace

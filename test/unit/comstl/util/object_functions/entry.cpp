@@ -84,10 +84,10 @@ static void test_get_object_identity_null_args(void)
     mock_unknown    obj;
     LPUNKNOWN       identity = NULL;
 
-    TEST_INT_EQ((int)E_POINTER, (int)comstl_C_get_object_identity(NULL, &identity));
-    TEST_INT_EQ((int)E_INVALIDARG, (int)comstl_C_get_object_identity(&obj, NULL));
+    TEST_INT_EQ((int)E_POINTER, (int)comstl::comstl_C_get_object_identity(NULL, &identity));
+    TEST_INT_EQ((int)E_INVALIDARG, (int)comstl::comstl_C_get_object_identity(&obj, NULL));
 
-    TEST_INT_EQ((int)S_OK, (int)comstl_C_get_object_identity(&obj, &identity));
+    TEST_INT_EQ((int)S_OK, (int)comstl::comstl_C_get_object_identity(&obj, &identity));
     TEST_PTR_NE(NULL, identity);
     identity->Release();
 }
@@ -99,17 +99,17 @@ static void test_is_same_object(void)
   mock_unknown*   p1 = &obj1;
   mock_unknown*   p2 = &obj2;
 
-    TEST_INT_EQ((int)S_OK, (int)comstl_C_is_same_object(p1, p1));
-    TEST_INT_EQ((int)S_FALSE, (int)comstl_C_is_same_object(p1, p2));
-    TEST_INT_EQ((int)E_POINTER, (int)comstl_C_is_same_object(NULL, p1));
+    TEST_INT_EQ((int)S_OK, (int)comstl::comstl_C_is_same_object(p1, p1));
+    TEST_INT_EQ((int)S_FALSE, (int)comstl::comstl_C_is_same_object(p1, p2));
+    TEST_INT_EQ((int)E_POINTER, (int)comstl::comstl_C_is_same_object(NULL, p1));
 }
 
 static void test_is_interface_implemented(void)
 {
     mock_unknown    obj;
 
-    TEST_INT_EQ((int)S_OK, (int)comstl_C_is_interface_implemented(&obj, IID_IUnknown));
-    TEST_INT_EQ((int)E_NOINTERFACE, (int)comstl_C_is_interface_implemented(&obj, IID_IDispatch));
+    TEST_INT_EQ((int)S_OK, (int)comstl::comstl_C_is_interface_implemented(&obj, IID_IUnknown));
+    TEST_INT_EQ((int)E_NOINTERFACE, (int)comstl::comstl_C_is_interface_implemented(&obj, IID_IDispatch));
 }
 } // anonymous namespace
 

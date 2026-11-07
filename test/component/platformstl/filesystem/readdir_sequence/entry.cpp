@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
 namespace {
 
-    typedef platformstl::filesystem_traits<char>            fs_traits_t;
+    typedef platformstl::filesystem_traits<char>            filesystem_traits_t;
     typedef platformstl::path                               path_t;
     typedef platformstl::readdir_sequence                       readdir_sequence_t;
     using ::xtests::cpp::util::temp_directory;
@@ -249,7 +249,7 @@ static void TEST_is_socket()
         }
     }
 
-    TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(td_path.c_str()));
+    TEST_BOOLEAN_FALSE(filesystem_traits_t::file_exists(td_path.c_str()));
 }
 #endif
 } // anonymous namespace

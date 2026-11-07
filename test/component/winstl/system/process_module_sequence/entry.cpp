@@ -64,14 +64,14 @@ namespace {
 
 static void test_enumeration(void)
 {
-    winstl::process_module_sequence seq;
+    winstl::process_module_sequence seq(::GetCurrentProcess());
     unsigned count = 0;
     for (winstl::process_module_sequence::const_iterator i = seq.begin(); i != seq.end(); ++i)
     {
         ++count;
         if (count > 0) break;
     }
-    TEST_UINT_NE(0u, count);
+    TEST_INT_NE(0u, count);
 }
 } // anonymous namespace
 

@@ -67,7 +67,7 @@ static void test_query(void)
 {
     winstl::host_name hn;
 
-    TEST_UINT_NE(0u, hn.length());
+    TEST_INT_NE(0u, hn.length());
 }
 } // anonymous namespace
 

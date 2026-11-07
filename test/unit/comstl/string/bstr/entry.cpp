@@ -75,7 +75,7 @@ static void test_default_construction(void)
     comstl::bstr  s;
 
     TEST_BOOLEAN_TRUE(s.empty());
-    TEST_UINT_EQ(0u, s.length());
+    TEST_INT_EQ(0u, s.length());
 }
 
 static void test_construction_from_string(void)
@@ -83,7 +83,7 @@ static void test_construction_from_string(void)
     comstl::bstr  s(L"hello");
 
     TEST_BOOLEAN_FALSE(s.empty());
-    TEST_UINT_EQ(5u, s.length());
+    TEST_INT_EQ(5u, s.length());
     TEST_INT_EQ(0, ::wcscmp(L"hello", stlsoft::c_str_ptr(s)));
 }
 

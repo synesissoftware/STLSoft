@@ -64,9 +64,14 @@ namespace {
 static void test_compile(void)
 {
     /* Exception type compiles and is catchable by std::exception. */
-    try { throw std::runtime_error("probe"); }
-    catch (std::exception const&) { TEST_PASSED(); return; }
-    XTESTS_TEST_FAIL("expected std::exception");
+    try
+    {
+        throw std::runtime_error("probe");
+    }
+    catch (std::exception const&)
+    {
+        TEST_PASSED();
+    }
 }
 } // anonymous namespace
 

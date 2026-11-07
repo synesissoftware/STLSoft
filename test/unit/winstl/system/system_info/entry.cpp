@@ -65,8 +65,8 @@ namespace {
 
 static void test_query(void)
 {
-    TEST_UINT_NE(0u, winstl::system_info::number_of_processors());
-    TEST_UINT_NE(0u, winstl::system_info::page_size());
+    TEST_INT_NE(0u, winstl::system_info::number_of_processors());
+    TEST_INT_NE(0u, winstl::system_info::page_size());
 }
 } // anonymous namespace
 

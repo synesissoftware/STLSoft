@@ -67,7 +67,7 @@ static void test_query(void)
 {
     winstl::commandline_parser parser(GetCommandLineA());
 
-    TEST_UINT_NE(0u, parser.size());
+    TEST_INT_NE(0u, parser.size());
 }
 } // anonymous namespace
 

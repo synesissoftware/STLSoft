@@ -34,7 +34,14 @@ static void test_enumeration(void)
 static void test_lookup_path(void)
 {
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
     char const* const path = ::getenv("PATH");
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif
     if (NULL != path)
     {
         platformstl::environment_map em;

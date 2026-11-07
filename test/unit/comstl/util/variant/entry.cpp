@@ -88,7 +88,7 @@ static void test_copy(void)
     comstl::variant  v1(stlsoft::sint32_t(7));
     comstl::variant  v2(v1);
 
-    TEST_BOOLEAN_TRUE(comstl::VARIANT_equal(&v1, &v2));
+    TEST_BOOLEAN_TRUE(comstl::VARIANT_equal(&v1, &v2, NULL));
 }
 } // anonymous namespace
 

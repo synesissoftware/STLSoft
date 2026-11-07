@@ -73,7 +73,7 @@ static void test_CoTaskMemGetSize(void)
     void* pv = ::CoTaskMemAlloc(16);
 
     TEST_PTR_NE(NULL, pv);
-    TEST_UINT_EQ(16u, comstl::CoTaskMemGetSize(pv));
+    TEST_INT_EQ(16u, comstl::CoTaskMemGetSize(pv));
     ::CoTaskMemFree(pv);
 }
 

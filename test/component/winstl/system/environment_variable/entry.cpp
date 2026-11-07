@@ -66,7 +66,7 @@ namespace {
 static void test_path(void)
 {
     winstl::environment_variable ev("PATH");
-    TEST_UINT_NE(0u, ev.length());
+    TEST_INT_NE(0u, ev.length());
 }
 } // anonymous namespace
 

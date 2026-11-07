@@ -66,7 +66,7 @@ namespace {
 static void test_non_empty(void)
 {
     winstl::home_directory dir;
-    TEST_UINT_NE(0u, dir.length());
+    TEST_INT_NE(0u, dir.length());
 }
 } // anonymous namespace
 

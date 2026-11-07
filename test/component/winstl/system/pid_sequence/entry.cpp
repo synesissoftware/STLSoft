@@ -71,7 +71,7 @@ static void test_enumeration(void)
         ++count;
         if (count > 0) break;
     }
-    TEST_UINT_NE(0u, count);
+    TEST_INT_NE(0u, count);
 }
 } // anonymous namespace
 

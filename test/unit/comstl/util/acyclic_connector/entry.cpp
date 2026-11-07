@@ -81,8 +81,8 @@ static void test_query_peer(void)
 {
     mock_unknown    left;
     mock_unknown    right;
-    IAcyclicSide*   leftSide  = NULL;
-    IAcyclicSide*   rightSide = NULL;
+    comstl::IAcyclicSide*   leftSide  = NULL;
+    comstl::IAcyclicSide*   rightSide = NULL;
     connector_t*    conn = new connector_t(&left, &leftSide, &right, &rightSide);
     STLSOFT_SUPPRESS_UNUSED(conn);
     IUnknown*       peer      = NULL;

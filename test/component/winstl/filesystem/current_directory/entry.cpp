@@ -66,7 +66,7 @@ namespace {
 static void test_non_empty(void)
 {
     winstl::current_directory cd;
-    TEST_UINT_NE(0u, stlsoft::c_str_len(cd));
+    TEST_INT_NE(0u, stlsoft::c_str_len(cd));
 }
 } // anonymous namespace
 

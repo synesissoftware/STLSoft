@@ -21,7 +21,14 @@ int main(int argc, char* argv[])
 
 static void test_path(void)
 {
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
     char const* const path = ::getenv("PATH");
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif
     if (NULL != path)
     {
         platformstl::environment_variable_a ev_PATH("PATH");

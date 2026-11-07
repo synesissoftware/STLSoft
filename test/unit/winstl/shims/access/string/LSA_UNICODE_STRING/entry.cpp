@@ -15,7 +15,7 @@
  * includes
  */
 
-#include <ntsecapi.h>
+#include <windows.h>
 #include <ntsecapi.h>
 #include <winstl/shims/access/string/LSA_UNICODE_STRING.hpp>
 #include <xtests/terse-api.h>

@@ -67,7 +67,7 @@ static void test_absolute(void)
 {
     winstl::absolute_path ap(".");
 
-    TEST_UINT_NE(0u, ap.length());
+    TEST_INT_NE(0u, ap.length());
 }
 } // anonymous namespace
 

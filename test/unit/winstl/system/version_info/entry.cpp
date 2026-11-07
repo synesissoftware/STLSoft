@@ -67,7 +67,7 @@ static void test_query(void)
 {
     winstl::version_info const vi("kernel32.dll");
 
-    TEST_UINT_NE(0u, vi.Length());
+    TEST_INT_NE(0u, vi.Length());
 }
 } // anonymous namespace
 

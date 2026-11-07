@@ -69,14 +69,14 @@ static void test_success(void)
 {
     winstl::error_desc ed(ERROR_SUCCESS);
     TEST_PTR_NE(NULL, ed.get_description());
-    TEST_UINT_NE(0u, stlsoft::c_str_len(ed));
+    TEST_INT_NE(0u, stlsoft::c_str_len(ed));
 }
 
 static void test_known_error(void)
 {
     winstl::error_desc ed(ERROR_FILE_NOT_FOUND);
     TEST_PTR_NE(NULL, ed.get_description());
-    TEST_UINT_NE(0u, stlsoft::c_str_len(ed));
+    TEST_INT_NE(0u, stlsoft::c_str_len(ed));
 }
 } // anonymous namespace
 

@@ -65,7 +65,7 @@ namespace {
 static void test_current_pid(void)
 {
     DWORD pid = ::GetCurrentProcessId();
-    TEST_UINT_NE(0u, static_cast<unsigned>(pid));
+    TEST_INT_NE(0u, static_cast<unsigned>(pid));
 }
 } // anonymous namespace
 

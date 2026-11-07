@@ -68,17 +68,17 @@ namespace {
 
 static void test_empty(void)
 {
-    TEST_INT_EQ(WinSTL_C_PathType_Empty, winstl_C_path_classify_m("", 0, 0, NULL));
+    TEST_INT_EQ(static_cast<int>(WinSTL_C_PathType_Empty), static_cast<int>(winstl_C_path_classify_m("", 0, 0, NULL)));
 }
 
 static void test_relative(void)
 {
-    TEST_INT_EQ(WinSTL_C_PathType_Relative, winstl_C_path_classify_m("foo/bar", 7, 0, NULL));
+    TEST_INT_EQ(static_cast<int>(WinSTL_C_PathType_Relative), static_cast<int>(winstl_C_path_classify_m("foo/bar", 7, 0, NULL)));
 }
 
 static void test_drive_rooted(void)
 {
-    TEST_INT_EQ(WinSTL_C_PathType_DriveLetterRooted, winstl_C_path_classify_m("C:/windows", 10, 0, NULL));
+    TEST_INT_EQ(static_cast<int>(WinSTL_C_PathType_DriveLetterRooted), static_cast<int>(winstl_C_path_classify_m("C:/windows", 10, 0, NULL)));
 }
 } // anonymous namespace
 

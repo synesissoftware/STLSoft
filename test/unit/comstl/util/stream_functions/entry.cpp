@@ -73,7 +73,7 @@ static void test_get_stream_size(void)
 
     TEST_INT_EQ((int)S_OK, (int)pstm->Write(data, sizeof(data), NULL));
     TEST_INT_EQ((int)S_OK, (int)comstl::get_stream_size(pstm, &size));
-    TEST_UINT_EQ((cs_uint32_t)sizeof(data), size.LowPart);
+    TEST_INT_EQ(static_cast<int>(sizeof(data)), static_cast<int>(size.LowPart));
 
     pstm->Release();
 }

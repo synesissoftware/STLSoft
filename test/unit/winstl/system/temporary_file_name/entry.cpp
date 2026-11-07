@@ -67,7 +67,7 @@ static void test_query(void)
 {
     winstl::temporary_file_name tfn;
 
-    TEST_UINT_NE(0u, tfn.length());
+    TEST_INT_NE(0u, tfn.length());
 }
 } // anonymous namespace
 
