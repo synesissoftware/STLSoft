@@ -1,0 +1,12 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(colour_constants)
+add_subdirectory(creation_functions.C)
+add_subdirectory(font_functions.C)
+add_subdirectory(functions.C)
+add_subdirectory(gdi_functions.C)
+add_subdirectory(menu_functions.C)
+add_subdirectory(message_functions.C)
+add_subdirectory(scale_functions)
+add_subdirectory(scale_functions.C)
+add_subdirectory(textmetrics_functions.C)
+add_subdirectory(window_traits)

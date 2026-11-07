@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.platformstl.exception.invalid_file_type_exception entry.cpp)

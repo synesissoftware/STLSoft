@@ -1,3 +1,10 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(error)
 add_subdirectory(reg_value)
 add_subdirectory(reg_value_sequence)
+add_subdirectory(defs)
+add_subdirectory(functions)
+add_subdirectory(reg_key)
+add_subdirectory(reg_key_sequence)
+add_subdirectory(reg_traits)
+add_subdirectory(shared_handles)

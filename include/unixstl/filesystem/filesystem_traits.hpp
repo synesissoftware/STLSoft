@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 25th October 2026
+ * Updated: 7th November 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -495,6 +495,7 @@ public:
     );
 
     static
+    bool
     path_is_rooted(
         path_classification_t               pc
     );
