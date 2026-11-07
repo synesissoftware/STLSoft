@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.winstl.performance.multimedia_counter entry.cpp)

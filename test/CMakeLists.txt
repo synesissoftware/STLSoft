@@ -47,6 +47,7 @@ add_subdirectory(fixtures)
 
 if(STLSOFT_FEATURE_TESTS_ONLY)
 
+	add_subdirectory(scratch/versions)
 	add_subdirectory(unit)
 else()
 

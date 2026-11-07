@@ -14,7 +14,3 @@ if(_BUILD_AS_WIN32)
 	add_subdirectory(windows_shell)
 	add_subdirectory(windows_toolhelp)
 endif(_BUILD_AS_WIN32)
-
-
-# ############################## end of file ############################# #
-
