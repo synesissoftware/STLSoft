@@ -96,7 +96,8 @@ static void TEST_construct_and_assign_inplace()
 
     CString const sub = traits_t::construct(src, 2, 3);
 
-    TEST_MS_EQ(_T("fst"), sub);
+    /* construct() is 0-based: "mfcstl" at position 2, length 3, is "cst". */
+    TEST_MS_EQ(_T("cst"), sub);
 
     LPCTSTR const begin = static_cast<LPCTSTR>(src);
 

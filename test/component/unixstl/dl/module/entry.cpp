@@ -27,14 +27,6 @@
  * forward declarations
  */
 
-extern "C"
-#if defined(__GNUC__)
-__attribute__((visibility("default")))
-#endif
-void
-stlsoft_test_dl_symbol()
-{}
-
 namespace {
 
     static void test_load_self_and_lookup_main(void);
@@ -81,8 +73,11 @@ static void test_load_self_and_lookup_main()
 
     XTESTS_REQUIRE(TEST(NULL != h));
 
-    /* main is not in the dynamic symbol table of a PIE binary. */
-    void* sym = unixstl::dl_module::get_symbol(h, "stlsoft_test_dl_symbol");
+    /* A PIE executable does not export its own symbols. dlopen(NULL)
+     * still searches shared objects loaded at startup, so malloc is
+     * visible.
+     */
+    void* sym = unixstl::dl_module::get_symbol(h, "malloc");
 
     TEST_PTR_NE(NULL, sym);
 
