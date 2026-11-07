@@ -25,6 +25,9 @@ struct mock_unknown
         : m_ref(1)
     {}
 
+    virtual ~mock_unknown()
+    {}
+
     STDMETHOD(QueryInterface)(REFIID riid, void** ppv)
     {
         if (NULL == ppv)
