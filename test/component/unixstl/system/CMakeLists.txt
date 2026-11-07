@@ -1,4 +1,10 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(environment_variable)
+add_subdirectory(console_functions)
+add_subdirectory(console_functions.C)
+add_subdirectory(directory_functions)
+add_subdirectory(directory_functions.C)
+add_subdirectory(home_directory)
+add_subdirectory(pid_sequence)
 add_subdirectory(process_paths)
 add_subdirectory(system_traits)

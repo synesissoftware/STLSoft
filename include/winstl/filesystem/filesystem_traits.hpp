@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    14
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        198
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -460,6 +460,14 @@ public:
     ,   path_classification_results_type*   results
     );
 
+    /// Classifies only the root of a path (R13; PlatformSTL façade parity).
+    ///
+    /// \param path
+    /// \param len
+    /// \param parseFlags
+    /// \param root Receives the root slice when rooted / home-rooted
+    ///
+    /// \pre 0 == len || nullptr != path
     static
     path_classification_t
     path_classify_root(
@@ -551,7 +559,7 @@ public:
     /// Returns \c true if the path begins with a dots directory
     static bool_type    starts_with_dots(char_type const* dir);
 
-    /// Returns \c true if path is rooted
+    /// Returns \c true if path is rooted.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
@@ -564,7 +572,7 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is an absolute path (string predicate)
+    /// Returns \c true if path is an absolute path (string predicate).
     ///
     /// True when the path has a UNC prefix (<code>\\\\</code>, length ≥ 2)
     /// or a drive letter plus path-name separator (<code>X:\\</code> /

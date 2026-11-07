@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 18th August 2025
+ * Updated: 8th November 2026
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     77
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,8 +96,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#if !defined(_PSAPI_H_) && \
+#if !defined(_PSAPI_H_) &&\
     !defined(_PSAPI_H)
+ // If PSAPI is not included, we will assume that it is not linked either,
+ // and instead will use dynamic loading.
 # ifndef WINSTL_INCL_WINSTL_DL_HPP_DL_CALL
 #  include <winstl/dl/dl_call.hpp>
 # endif /* !WINSTL_INCL_WINSTL_DL_HPP_DL_CALL */
@@ -113,7 +115,7 @@
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -313,14 +315,16 @@ inline
 pid_sequence::pid_sequence(ws_uint32_t flags)
     : m_pids(buffer_type_::internal_size())
 {
-    DWORD   cbReturned;
+    DWORD cbReturned;
 
     for (;;)
     {
-#if defined(_PSAPI_H_) || \
+#if defined(_PSAPI_H_) ||\
     defined(_PSAPI_H)
+
         if (!::EnumProcesses(&m_pids[0], sizeof(value_type) * m_pids.size(), &cbReturned))
 #else /* ? psapi */
+
         if (!dl_call<BOOL>( "PSAPI.DLL"
                         ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("EnumProcesses")
                         ,   &m_pids[0]
@@ -329,8 +333,10 @@ pid_sequence::pid_sequence(ws_uint32_t flags)
 #endif /* psapi */
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
             STLSOFT_THROW_X(winstl_exception("Failed to enumerate processes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
             m_pids.resize(0);
 
             break;
@@ -486,7 +492,7 @@ pid_sequence::size() const STLSOFT_NOEXCEPT
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace winstl
 # else

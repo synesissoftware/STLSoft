@@ -5,7 +5,7 @@
  *          (R11 long-path "\\?\" / "\\?\UNC\"; R12 device "\\.\").
  *
  * Created: 28th November 2020
- * Updated: 20th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
