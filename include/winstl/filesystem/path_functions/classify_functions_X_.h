@@ -4,11 +4,11 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 28th November 2020
- * Updated: 27th December 2024
+ * Updated: 18th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -252,7 +252,7 @@ winstl_C_path_classify_root_X_(
     {
         /* "/" */
 
-        return WinSTL_C_PathType_SlashRooted;
+        return winstl_C_PathType_SlashRooted;
     }
 
     if ('~' == s0[0])
@@ -264,7 +264,7 @@ winstl_C_path_classify_root_X_(
                 *ppS1       =   s0 + 1;
                 *pCch1      =   cch0 - 1;
 
-                return WinSTL_C_PathType_HomeRooted;
+                return winstl_C_PathType_HomeRooted;
             }
             else
             switch (s0[1])
@@ -275,7 +275,7 @@ winstl_C_path_classify_root_X_(
                 *ppS1       =   s0 + 1;
                 *pCch1      =   cch0 - 1;
 
-                return WinSTL_C_PathType_HomeRooted;
+                return winstl_C_PathType_HomeRooted;
             }
         }
     }
@@ -286,7 +286,7 @@ winstl_C_path_classify_root_X_(
         {
             /* "\" */
 
-            return WinSTL_C_PathType_SlashRooted;
+            return winstl_C_PathType_SlashRooted;
         }
         else
         {
@@ -341,7 +341,7 @@ winstl_C_path_classify_root_X_(
 
                             if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 8, cch0 - 8, &server, &share, &dir0))
                             {
-                                return WinSTL_C_PathType_UncIncomplete;
+                                return winstl_C_PathType_UncIncomplete;
                             }
                             else
                             {
@@ -374,7 +374,7 @@ winstl_C_path_classify_root_X_(
 
                             if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 4, cch0 - 4, &server, &share, &dir0))
                             {
-                                return WinSTL_C_PathType_Invalid;
+                                return winstl_C_PathType_Invalid;
                             }
                         }
 #endif
@@ -391,7 +391,7 @@ winstl_C_path_classify_root_X_(
                                 results->firstInvalid.len = 1;
                                 results->firstInvalid.ptr = s0 + 2;
 
-                                return WinSTL_C_PathType_Invalid;
+                                return winstl_C_PathType_Invalid;
                             }
                         }
                     }
@@ -400,7 +400,7 @@ winstl_C_path_classify_root_X_(
 maybe_regular_UNC:
                         if (0 != winstl_C_path_classify_find_UNC_server_and_share_X_(s0 + 2, cch0 - 2, &server, &share, &dir0))
                         {
-                            return WinSTL_C_PathType_UncIncomplete;
+                            return winstl_C_PathType_UncIncomplete;
                         }
                         else
                         {
@@ -416,22 +416,22 @@ maybe_regular_UNC:
                             *ppS1   =   dir0;
                             *pCch1  =   cch0 - (dir0 - s0);
 
-                            return WinSTL_C_PathType_UncRooted;
+                            return winstl_C_PathType_UncRooted;
                         }
                         else
                         {
-                            return WinSTL_C_PathType_UncIncomplete;
+                            return winstl_C_PathType_UncIncomplete;
                         }
                     }
                 }
                 else
                 {
-                    return WinSTL_C_PathType_Invalid;
+                    return winstl_C_PathType_Invalid;
                 }
             }
             else
             {
-                return WinSTL_C_PathType_SlashRooted;
+                return winstl_C_PathType_SlashRooted;
             }
         }
     }
@@ -448,7 +448,7 @@ drive_letter_relative:
                 *ppS1   =   s0 + 2;
                 *pCch1  =   cch0 - 2;
 
-                return WinSTL_C_PathType_DriveLetterRelative;
+                return winstl_C_PathType_DriveLetterRelative;
             }
             else
             {
@@ -458,7 +458,7 @@ drive_letter_relative:
                     *ppS1   =   s0 + 2;
                     *pCch1  =   cch0 - 2;
 
-                    return WinSTL_C_PathType_DriveLetterRooted;
+                    return winstl_C_PathType_DriveLetterRooted;
                 }
                 else
                 {
@@ -474,7 +474,7 @@ drive_letter_relative:
         }
     }
 
-    return WinSTL_C_PathType_Relative;
+    return winstl_C_PathType_Relative;
 }
 
 STLSOFT_INLINE
@@ -521,7 +521,7 @@ winstl_C_path_classify_impl_X_(
 
     if (0 == cch0)
     {
-        return WinSTL_C_PathType_Empty;
+        return winstl_C_PathType_Empty;
     }
 
     rcRoot = winstl_C_path_classify_root_X_(
@@ -537,12 +537,12 @@ winstl_C_path_classify_impl_X_(
 
     switch (rcRoot)
     {
-    case    WinSTL_C_PathType_Relative:
-    case    WinSTL_C_PathType_SlashRooted:
-    case    WinSTL_C_PathType_DriveLetterRelative:
-    case    WinSTL_C_PathType_DriveLetterRooted:
-    case    WinSTL_C_PathType_UncRooted:
-    case    WinSTL_C_PathType_HomeRooted:
+    case    winstl_C_PathType_Relative:
+    case    winstl_C_PathType_SlashRooted:
+    case    winstl_C_PathType_DriveLetterRelative:
+    case    winstl_C_PathType_DriveLetterRooted:
+    case    winstl_C_PathType_UncRooted:
+    case    winstl_C_PathType_HomeRooted:
 
         break;
     default:
@@ -559,7 +559,7 @@ winstl_C_path_classify_impl_X_(
             results->firstInvalid.len   =   1;
             results->firstInvalid.ptr   =   invalidChar;
 
-            return WinSTL_C_PathType_InvalidChars;
+            return winstl_C_PathType_InvalidChars;
         }
 
         if (ss_nullptr_k != (invalidChar = WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnchr_X_(s1, cch1, ':')))
@@ -567,7 +567,7 @@ winstl_C_path_classify_impl_X_(
             results->firstInvalid.len   =   1;
             results->firstInvalid.ptr   =   invalidChar;
 
-            return WinSTL_C_PathType_InvalidChars;
+            return winstl_C_PathType_InvalidChars;
         }
     }
 
@@ -615,7 +615,7 @@ winstl_C_path_classify_impl_X_(
                     results->firstInvalid.len   =   1;
                     results->firstInvalid.ptr   =   p0;
 
-                    return WinSTL_C_PathType_InvalidChars;
+                    return winstl_C_PathType_InvalidChars;
                 }
 
                 /* fall through */
@@ -637,7 +637,7 @@ winstl_C_path_classify_impl_X_(
                         results->firstInvalid.len    =   1;
                         results->firstInvalid.ptr    =   p0;
 
-                        return WinSTL_C_PathType_InvalidSlashRuns;
+                        return winstl_C_PathType_InvalidSlashRuns;
                     }
                 }
 
@@ -792,7 +792,7 @@ winstl_C_path_classify_root_impl_X_(
 
     if (0 == cch0)
     {
-        return WinSTL_C_PathType_Empty;
+        return winstl_C_PathType_Empty;
     }
 
     rcRoot = winstl_C_path_classify_root_X_(
@@ -810,18 +810,18 @@ winstl_C_path_classify_root_impl_X_(
 
     switch (rcRoot)
     {
-    case    WinSTL_C_PathType_SlashRooted:
-    case    WinSTL_C_PathType_DriveLetterRooted:
-    case    WinSTL_C_PathType_UncRooted:
-    case    WinSTL_C_PathType_HomeRooted:
+    case    winstl_C_PathType_SlashRooted:
+    case    winstl_C_PathType_DriveLetterRooted:
+    case    winstl_C_PathType_UncRooted:
+    case    winstl_C_PathType_HomeRooted:
 
         root->ptr   =   s0;
         break;
-    case    WinSTL_C_PathType_DriveLetterRelative:
+    case    winstl_C_PathType_DriveLetterRelative:
 
         root->ptr   =   s0;
         break;
-    case    WinSTL_C_PathType_UncIncomplete:
+    case    winstl_C_PathType_UncIncomplete:
 
         root->len   =   cch0;
         root->ptr   =   s0;

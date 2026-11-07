@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    string.snprintf/entry.cpp
+ * File:    test/unit/stlsoft/util/string.snprintf/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::snprintf`, `stlsoft::snwprintf`.
  *
  * Created: 23rd March 2025
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

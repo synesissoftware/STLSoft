@@ -4,13 +4,13 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 20th March 2025
+ * Updated: 2nd November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    16
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        85
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    17
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,6 +82,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_WCSCPY
+# include <stlsoft/string/c_string/wcscpy.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_WCSCPY */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_WCSNCPY
+# include <stlsoft/string/c_string/wcsncpy.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_WCSNCPY */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD
 # include <stlsoft/string/string_traits_fwd.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
@@ -91,9 +97,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>
@@ -531,11 +534,7 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const* s, ssize_type len /* = -1 */
 
         if (NULL != m_bstr)
         {
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-            ::wcscpy_s(m_bstr, static_cast<cs_size_t>(actualLen), s);
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-            ::wcscpy(m_bstr, s);
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+            stlsoft_C_wcscpy(m_bstr, static_cast<size_t>(actualLen), s);
         }
     }
     else
@@ -715,11 +714,7 @@ inline bstr::class_type& bstr::append(cs_char_w_t const* s, ssize_type len /* = 
             size_type   totalLen = size() + len;
             bstr        rhs(data(), static_cast<ssize_type>(totalLen));
 
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-            ::wcsncpy_s(&rhs[0] + size(), static_cast<cs_size_t>(totalLen), s, static_cast<cs_size_t>(len));
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-            ::wcsncpy(&rhs[0] + size(), s, static_cast<cs_size_t>(len));
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+            stlsoft_C_wcsncpy(&rhs[0] + size(), static_cast<size_t>(totalLen), s, static_cast<size_t>(len));
 
             rhs.swap(*this);
         }

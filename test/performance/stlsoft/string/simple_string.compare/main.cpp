@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    simple_string.compare/main.cpp
+ * File:    test/performance/stlsoft/string/simple_string.compare/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::basic_simple_string#compare()`.
  *
  * Created: 15th March 2024
- * Updated: 30th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

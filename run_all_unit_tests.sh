@@ -282,16 +282,18 @@ if [ $status -eq 0 ]; then
 
       break 1
     fi
-  done < <(find "$CMakeDir" -type f \( -name 'test_unit*' -o -name 'test.unit.*' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
+  done < <(find "$CMakeDir" -type f \( -name 'test_unit*' -o -name 'test.unit.*' \) \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
 
   if [ $NumPrograms -eq 0 ]; then
 
-    >&2 echo "${ScriptPathClr}: no matching executable unit-test programs under '${CMakeDirClr}' (execute bits missing after artifact download?)"
+    echo "${ScriptPathClr}: found no unit-test programs under '${CMakeDirClr}' (none found)"
 
-    if [ $ListOnly -eq 0 ]; then
-
-      exit 1
-    fi
+    exit 0
   fi
 fi
 

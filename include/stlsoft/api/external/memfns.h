@@ -4,11 +4,11 @@
  * Purpose: External adaptations for memXXX() functions.
  *
  * Created: 25th September 2024
- * Updated: 25th September 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2024-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,6 +76,10 @@
 #  include <string.h>
 # endif /* !STLSOFT_INCL_H_STRING */
 #endif /* compiler */
+#ifndef STLSOFT_INCL_H_STDDEF
+# define STLSOFT_INCL_H_STDDEF
+# include <stddef.h>
+#endif /* !STLSOFT_INCL_H_STDDEF */
 #ifndef STLSOFT_INCL_H_WCHAR
 # define STLSOFT_INCL_H_WCHAR
 # include <wchar.h>
@@ -85,6 +89,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * memory functions
  */
+
+#ifndef STLSOFT_API_EXTERNAL_memfns_memchr
+# define STLSOFT_API_EXTERNAL_memfns_memchr                 STLSOFT_NS_GLOBAL_(memchr)
+#endif /* !STLSOFT_API_EXTERNAL_memfns_memchr */
 
 #ifndef STLSOFT_API_EXTERNAL_memfns_memcmp
 # define STLSOFT_API_EXTERNAL_memfns_memcmp                 STLSOFT_NS_GLOBAL_(memcmp)
@@ -102,6 +110,10 @@
 # define STLSOFT_API_EXTERNAL_memfns_memset                 STLSOFT_NS_GLOBAL_(memset)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_memset */
 
+#ifndef STLSOFT_API_EXTERNAL_memfns_wmemchr
+# define STLSOFT_API_EXTERNAL_memfns_wmemchr                STLSOFT_NS_GLOBAL_(wmemchr)
+#endif /* !STLSOFT_API_EXTERNAL_memfns_wmemchr */
+
 #ifndef STLSOFT_API_EXTERNAL_memfns_wmemcmp
 # define STLSOFT_API_EXTERNAL_memfns_wmemcmp                STLSOFT_NS_GLOBAL_(wmemcmp)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_wmemcmp */
@@ -109,6 +121,10 @@
 #ifndef STLSOFT_API_EXTERNAL_memfns_wmemcpy
 # define STLSOFT_API_EXTERNAL_memfns_wmemcpy                STLSOFT_NS_GLOBAL_(wmemcpy)
 #endif /* !STLSOFT_API_EXTERNAL_memfns_wmemcpy */
+
+#ifndef STLSOFT_API_EXTERNAL_memfns_wmemmove
+# define STLSOFT_API_EXTERNAL_memfns_wmemmove               STLSOFT_NS_GLOBAL_(wmemmove)
+#endif /* !STLSOFT_API_EXTERNAL_memfns_wmemmove */
 
 #ifndef STLSOFT_API_EXTERNAL_memfns_wmemset
 # define STLSOFT_API_EXTERNAL_memfns_wmemset                STLSOFT_NS_GLOBAL_(wmemset)
@@ -119,9 +135,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 

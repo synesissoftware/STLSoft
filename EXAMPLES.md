@@ -3,6 +3,7 @@
 | Name | Source & Description | Platform | Summary |
 | ---- | -------------------- | -------- | ------- |
 | **By concept**: | | | |
+| **resizeable_buffer** | [by_concept/resizeable_buffer](./examples/by_concept/resizeable_buffer/main.cpp) | * | Probe-then-fill into `auto_buffer` / `vector` via traits `rb` overloads ([CONCEPTS.md](./CONCEPTS.md)) |
 | **time_functions** | [by_concept/string_access_shims/time_functions](./examples/by_concept/string_access_shims/time_functions/main.cpp) | * | Format time-related types via string-access shims (e.g. `struct tm`, `std::chrono`) |
 | | | | |
 | **By project**: | | | |

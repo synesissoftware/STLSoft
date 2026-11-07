@@ -5,11 +5,11 @@
  *          do or do not have a standard library.
  *
  * Created: 17th January 2002
- * Updated: 20th March 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -212,6 +212,10 @@ inline
 O
 std_copy(I first, I last, O dest)
 {
+    /* STLSOFT_USING_SAFE_STR_FUNCTIONS selects the loop because the secure
+     * CRT deprecates std::copy for character buffers and that warning is
+     * an error. This is not a *_s call.
+     */
 #if defined(STLSOFT_CF_std_NAMESPACE) && \
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
@@ -297,6 +301,8 @@ inline
 void
 std_fill_n(O dest, ss_size_t n, V const& value)
 {
+    /* Same secure-CRT avoidance as std_copy(). Not a *_s call.
+     */
 #if defined(STLSOFT_CF_std_NAMESPACE) && \
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
@@ -480,6 +486,8 @@ inline
 O
 std_transform(I first, I last, O dest, UF func)
 {
+    /* Same secure-CRT avoidance as std_copy(). Not a *_s call.
+     */
 #if defined(STLSOFT_CF_std_NAMESPACE) && \
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 

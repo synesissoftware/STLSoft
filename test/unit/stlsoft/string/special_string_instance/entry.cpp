@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    special_string_instance/entry.cpp
+ * File:    test/unit/stlsoft/string/special_string_instance/entry.cpp
  *
  * Purpose: Unit-tests for special_string_instance::equal.
  *
  * Created: 29th September 2026
- * Updated: 29th September 2026
+ * Updated: 5th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,7 +34,7 @@ inline size_t c_str_len(counted_chars const& s)
 {
     return s.n;
 }
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 #include <stlsoft/string/special_string_instance.hpp>
 
@@ -61,8 +61,7 @@ namespace
     static void TEST_equal_LENGTH_MISMATCH();
     static void TEST_equal_EMBEDDED_NUL();
     static void TEST_equal_WCHAR();
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,8 +266,7 @@ static void TEST_equal_WCHAR()
     TEST_BOOLEAN_FALSE(wabc.equal(L"ab"));
     TEST_BOOLEAN_FALSE(wabc.equal(L"abcd"));
 }
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

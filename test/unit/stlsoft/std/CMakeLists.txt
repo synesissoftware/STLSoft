@@ -2,3 +2,5 @@
 add_subdirectory(cstring)
 add_subdirectory(test.unit.stlsoft.std.cbase_)
 add_subdirectory(test.unit.stlsoft.std.cstdlib)
+add_subdirectory(exception)
+add_subdirectory(type_info)

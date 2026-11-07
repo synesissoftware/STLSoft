@@ -5,11 +5,11 @@
  *          Library Functions API.
  *
  * Created: 30th November 2020
- * Updated: 26th May 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -79,18 +79,18 @@
  * specified module (that must have been loaded by the current process).
  *
  * \param hModule A handle to the loaded module for which the path is to be
- *  obtained;
+ *   obtained;
  * \param filename A pointer to the buffer into which to write the path. May
- *  not be NULL unless \c cchFilename is 0;
+ *   not be NULL unless \c cchFilename is 0;
  * \param cchFilename Number of available bytes in \c filename;
  *
  * \return The number of characters written if cchFilename is sufficient to
- *  hold the entire string; the number of characters required (including for
- *  terminating NUL character) if not.
+ *   hold the entire string; the number of characters required (including
+ *   for terminating NUL character) if not.
  *
  * \note The number of characters required returned is 2 (not 1) more than
- *  the number of characters in the string, due to the underlying API
- *  function not providing any direct indication as to (in)sufficient size.
+ *   the number of characters in the string, due to the underlying API
+ *   function not providing any direct indication as to (in)sufficient size.
  */
 STLSOFT_INLINE
 DWORD
@@ -238,18 +238,18 @@ WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameA(
  * specified module (that must have been loaded by the current process).
  *
  * \param hModule A handle to the loaded module for which the path is to be
- *  obtained;
+ *   obtained;
  * \param filename A pointer to the buffer into which to write the path. May
- *  not be NULL unless \c cchFilename is 0;
+ *   not be NULL unless \c cchFilename is 0;
  * \param cchFilename Number of available characters in \c filename;
  *
  * \return The number of characters written if cchFilename is sufficient to
- *  hold the entire string; the number of characters required (including for
- *  terminating NUL character) if not.
+ *   hold the entire string; the number of characters required (including
+ *   for terminating NUL character) if not.
  *
  * \note The number of characters required returned is 2 (not 1) more than
- *  the number of characters in the string, due to the underlying API
- *  function not providing any direct indication as to (in)sufficient size.
+ *   the number of characters in the string, due to the underlying API
+ *   function not providing any direct indication as to (in)sufficient size.
  */
 STLSOFT_INLINE
 DWORD

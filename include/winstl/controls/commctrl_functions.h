@@ -4,11 +4,11 @@
  * Purpose: Various Windows common control functions.
  *
  * Created: 13th November 2002
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   7
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       58
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   8
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,13 +113,13 @@ namespace winstl_project
  */
 STLSOFT_INLINE
 HTREEITEM
-winstl__treeview_getnextitem(
+winstl_C_treeview_getnextitem(
     HWND        hwnd
 ,   HTREEITEM   hitem
 ,   UINT        flag
 )
 {
-    return stlsoft_reinterpret_cast(HTREEITEM, winstl__SendMessage(hwnd, TVM_GETNEXTITEM, stlsoft_static_cast(WPARAM, flag), stlsoft_reinterpret_cast(LPARAM, hitem)));
+    return stlsoft_reinterpret_cast(HTREEITEM, winstl_C_SendMessage(hwnd, TVM_GETNEXTITEM, stlsoft_static_cast(WPARAM, flag), stlsoft_reinterpret_cast(LPARAM, hitem)));
 }
 
 /** Gets the tree view child item
@@ -131,12 +131,12 @@ winstl__treeview_getnextitem(
  */
 STLSOFT_INLINE
 HTREEITEM
-winstl__treeview_getchilditem(
+winstl_C_treeview_getchilditem(
     HWND        hwnd
 ,   HTREEITEM   hitem
 )
 {
-    return winstl__treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
+    return winstl_C_treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
 }
 
 /** Gets the tree view root item
@@ -147,9 +147,9 @@ winstl__treeview_getchilditem(
  */
 STLSOFT_INLINE
 HTREEITEM
-winstl__treeview_getrootitem(HWND hwnd)
+winstl_C_treeview_getrootitem(HWND hwnd)
 {
-    return winstl__treeview_getnextitem(hwnd, 0, TVGN_ROOT);
+    return winstl_C_treeview_getnextitem(hwnd, 0, TVGN_ROOT);
 }
 
 /** Gets the tree view caret item
@@ -160,9 +160,9 @@ winstl__treeview_getrootitem(HWND hwnd)
  */
 STLSOFT_INLINE
 HTREEITEM
-winstl__treeview_getcaretitem(HWND hwnd)
+winstl_C_treeview_getcaretitem(HWND hwnd)
 {
-    return winstl__treeview_getnextitem(hwnd, 0, TVGN_CARET);
+    return winstl_C_treeview_getnextitem(hwnd, 0, TVGN_CARET);
 }
 
 
@@ -198,7 +198,7 @@ treeview_getnextitem(
 ,   UINT        flag
 )
 {
-    return winstl__treeview_getnextitem(hwnd, hitem, flag);
+    return winstl_C_treeview_getnextitem(hwnd, hitem, flag);
 }
 
 /** Gets the tree view child item
@@ -215,7 +215,7 @@ treeview_getchilditem(
 ,   HTREEITEM   hitem
 )
 {
-    return winstl__treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
+    return winstl_C_treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
 }
 
 /** Gets the tree view root item
@@ -228,7 +228,7 @@ inline
 HTREEITEM
 treeview_getrootitem(HWND hwnd)
 {
-    return winstl__treeview_getnextitem(hwnd, 0, TVGN_ROOT);
+    return winstl_C_treeview_getnextitem(hwnd, 0, TVGN_ROOT);
 }
 
 /** Gets the tree view caret item
@@ -241,10 +241,68 @@ inline
 HTREEITEM
 treeview_getcaretitem(HWND hwnd)
 {
-    return winstl__treeview_getnextitem(hwnd, 0, TVGN_CARET);
+    return winstl_C_treeview_getnextitem(hwnd, 0, TVGN_CARET);
 }
 #endif /* __cplusplus */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the winstl_C_* function that the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use winstl_C_treeview_getnextitem
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__treeview_getnextitem, winstl_C_treeview_getnextitem)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getnextitem(
+    HWND        hwnd
+,   HTREEITEM   hitem
+,   UINT        flag
+)
+{
+    return winstl_C_treeview_getnextitem(hwnd, hitem, flag);
+}
+
+/** \deprecated Use winstl_C_treeview_getchilditem
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__treeview_getchilditem, winstl_C_treeview_getchilditem)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getchilditem(
+    HWND        hwnd
+,   HTREEITEM   hitem
+)
+{
+    return winstl_C_treeview_getchilditem(hwnd, hitem);
+}
+
+/** \deprecated Use winstl_C_treeview_getrootitem
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__treeview_getrootitem, winstl_C_treeview_getrootitem)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getrootitem(HWND hwnd)
+{
+    return winstl_C_treeview_getrootitem(hwnd);
+}
+
+/** \deprecated Use winstl_C_treeview_getcaretitem
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl__treeview_getcaretitem, winstl_C_treeview_getcaretitem)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getcaretitem(HWND hwnd)
+{
+    return winstl_C_treeview_getcaretitem(hwnd);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -42,6 +42,7 @@ SisUseColours=0
 STLSoftDirGiven=
 TestingDisabled=0
 USE_UNIXem=0
+USE_woad=0
 VerboseMakefile=0
 
 
@@ -190,6 +191,10 @@ while [[ $# -gt 0 ]]; do
 
       USE_UNIXem=1
       ;;
+    --use-woad)
+
+      USE_woad=1
+      ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
@@ -260,6 +265,10 @@ Flags/options:
         exercise UNIXSTL, not WinSTL (or COMSTL, etc.). Has no effect when
         not executing on Windows
 
+    --use-woad
+        opts in to the woad library (USE_WOAD=ON), whose version is then
+        reported by the scratch versions programs
+
 
     standard flags:
 
@@ -299,6 +308,7 @@ if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z "$STLSoftDirGiven" ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
+if [ $USE_woad -ne 0 ]; then CMakeUSE_woad="ON" ; else CMakeUSE_woad="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 # NOTE: the generator is the *only* thing that may differ between the MinGW
@@ -328,6 +338,7 @@ cmake \
   -DNO_CSTRING:BOOL=$CMakeNoCstring \
   -DNO_SHWILD:BOOL=$CMakeNoShwild \
   -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
+  -DUSE_WOAD:BOOL=$CMakeUSE_woad \
   $CMakeSTLSoftVariable \
   "${CMakeGeneratorArgs[@]}" \
   -B "$CMakeDir" \

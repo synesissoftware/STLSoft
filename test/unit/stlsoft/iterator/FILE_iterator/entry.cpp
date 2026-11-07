@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    FILE_iterator/entry.cpp
+ * File:    test/unit/stlsoft/iterator/FILE_iterator/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::FILE_iterator`.
  *
  * Created: 24th March 2025
- * Updated: 29th September 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -17,7 +17,7 @@
  * test component header file include(s)
  */
 
- #include <stlsoft/iterator/FILE_iterator.hpp>
+#include <stlsoft/iterator/FILE_iterator.hpp>
 
 /* /////////////////////////////////////
  * general includes

@@ -4,7 +4,7 @@
  * Purpose: VARIANT helper functions.
  *
  * Created: 23rd August 2008
- * Updated: 11th October 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MINOR       2
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        23
+# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -351,6 +351,8 @@ VARIANT_change_type(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+/** \deprecated Use comstl_C_VARIANT_equal
+ */
 STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__VARIANT_equal, comstl_C_VARIANT_equal)
 STLSOFT_INLINE
 int
