@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl_C_CY_compare`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 8th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -44,8 +44,8 @@ int main(int argc, char **argv)
 
 static void test_compare_equal_hi_and_lo(void)
 {
-    CY lhs = { 0, 42 };
-    CY rhs = { 0, 42 };
+    CY lhs = { { 0, 42 } };
+    CY rhs = { { 0, 42 } };
 
     /* When Hi and Lo are equal, comstl_C_CY_compare returns +1 (not 0). */
     TEST_INT_GT(0, comstl_C_CY_compare(&lhs, &rhs));
@@ -53,8 +53,8 @@ static void test_compare_equal_hi_and_lo(void)
 
 static void test_compare_less(void)
 {
-    CY lhs = { 0, 1 };
-    CY rhs = { 0, 2 };
+    CY lhs = { { 0, 1 } };
+    CY rhs = { { 0, 2 } };
 
     TEST_INT_LT(0, comstl_C_CY_compare(&lhs, &rhs));
     TEST_INT_LT(0, comstl_C_CY_compare(&lhs, &rhs));
@@ -62,8 +62,8 @@ static void test_compare_less(void)
 
 static void test_compare_greater(void)
 {
-    CY lhs = { 1, 0 };
-    CY rhs = { 0, 0xffffffff };
+    CY lhs = { { 1, 0 } };
+    CY rhs = { { 0, 0xffffffff } };
 
     TEST_INT_GT(0, comstl_C_CY_compare(&lhs, &rhs));
 }
