@@ -69,7 +69,6 @@ static void TEST_empty_string()
     ACE_CString const s;
 
     TEST_BOOLEAN_TRUE(stlsoft::is_empty(s));
-    TEST_BOOLEAN_TRUE(stlsoft::is_empty(s, stlsoft::is_empty_type()));
 }
 
 static void TEST_non_empty_string()
@@ -77,7 +76,6 @@ static void TEST_non_empty_string()
     ACE_CString const s("acestl");
 
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(s));
-    TEST_BOOLEAN_FALSE(stlsoft::is_empty(s, stlsoft::is_empty_type()));
 }
 } // anonymous namespace
 

@@ -158,7 +158,7 @@ static void test_empty_directory()
 {
     temp_directory dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
-    readdir_sequence_t rds(dir);
+    readdir_sequence_t rds(dir.c_str());
 
     TEST_BOOLEAN_TRUE(rds.empty());
 }

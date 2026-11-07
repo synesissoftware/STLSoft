@@ -78,7 +78,7 @@ static void TEST_non_empty_lists()
     CObList ol;
 
     pl.AddTail(reinterpret_cast<void*>(1));
-    ol.AddTail(NULL);
+    ol.AddTail(static_cast<CObject*>(NULL));
 
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(pl));
     TEST_BOOLEAN_FALSE(stlsoft::is_empty(ol));

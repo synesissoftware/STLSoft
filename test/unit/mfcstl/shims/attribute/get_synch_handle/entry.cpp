@@ -16,6 +16,7 @@
  */
 
 #include <mfcstl/shims/attribute/get_synch_handle.hpp>
+#include <afxwin.h>
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>

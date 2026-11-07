@@ -98,7 +98,9 @@ static void TEST_construct_and_assign_inplace()
 
     TEST_MS_EQ(_T("fst"), sub);
 
-    traits_t::assign_inplace(dest, src, src + src.GetLength());
+    LPCTSTR const begin = static_cast<LPCTSTR>(src);
+
+    traits_t::assign_inplace(dest, begin, begin + src.GetLength());
 
     TEST_MS_EQ(_T("mfcstl"), dest);
 }

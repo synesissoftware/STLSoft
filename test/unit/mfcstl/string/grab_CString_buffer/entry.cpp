@@ -75,7 +75,14 @@ static void TEST_acquires_and_releases_buffer()
         TEST_INT_EQ(5, grab.length());
         TEST_INT_EQ(5, _tcslen(grab.c_str()));
 
-        _tcscpy(grab, _T("world"));
+        LPTSTR const p = grab;
+
+        p[0] = _T('w');
+        p[1] = _T('o');
+        p[2] = _T('r');
+        p[3] = _T('l');
+        p[4] = _T('d');
+        p[5] = _T('\0');
     }
 
     TEST_MS_EQ(_T("world"), s);
