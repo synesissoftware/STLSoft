@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 7th November 2026
+ * Updated: 8th November 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -61,7 +61,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      197
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      198
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -494,12 +494,20 @@ public:
     ,   path_classification_results_type*   results
     );
 
+    /// Whether a classification result is rooted. Distinct from the string
+    /// predicate \c is_path_rooted.
     static
     bool
     path_is_rooted(
         path_classification_t               pc
     );
 
+    /// Whether a classification result is absolute. Aliases
+    /// \c path_is_rooted via \c unixstl_C_path_is_absolute (native Unix
+    /// absolute ≡ rooted). Distinct from the string predicate
+    /// \c is_path_absolute, which under <code>_WIN32</code> uses
+    /// Windows-shaped coarse rules (UNC prefix or drive+separator; not
+    /// merely slash-rooted).
     static
     bool
     path_is_absolute(
