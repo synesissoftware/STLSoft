@@ -64,7 +64,7 @@ namespace {
 
 static void test_kernel32(void)
 {
-    winstl::module mod("kernel32.dll");
+    winstl::dl_module mod("kernel32.dll");
     TEST_PTR_NE(NULL, mod.get_module_handle());
 }
 } // anonymous namespace
