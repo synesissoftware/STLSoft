@@ -73,7 +73,7 @@ static void test_multibyte2wide_roundtrip(void)
 
     TEST_PTR_NE(NULL, stlsoft::c_str_ptr(conv));
     TEST_INT_EQ(5, static_cast<int>(stlsoft::c_str_len(conv)));
-    TEST_MS_EQ("hello", stlsoft::c_str_ptr_a(conv));
+    TEST_BOOLEAN_TRUE(0 == ::wcscmp(L"hello", stlsoft::c_str_ptr_w(conv)));
 }
 
 static void test_wide2multibyte_roundtrip(void)

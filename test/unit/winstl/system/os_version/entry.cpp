@@ -67,7 +67,7 @@ static void test_query(void)
 {
     winstl::OperatingSystemIdentifier_t const osid = winstl::identify_operating_system();
 
-    TEST_BOOLEAN_NE(winstl::WinSTL_OperatingSystemIdentifier_Unknown, osid);
+    TEST_INT_NE(static_cast<int>(winstl::WinSTL_OperatingSystemIdentifier_Unknown), static_cast<int>(osid));
 }
 } // anonymous namespace
 

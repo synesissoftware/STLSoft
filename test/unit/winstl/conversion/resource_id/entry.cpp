@@ -66,7 +66,7 @@ static void test_make_resource_id(void)
 {
     winstl::resource_id const rs(MAKEINTRESOURCE(1234));
     TEST_PTR_NE(NULL, rs);
-    TEST_INT_EQ(1234, static_cast<int>(reinterpret_cast<UINT_PTR>(rs)));
+    TEST_INT_EQ(1234, static_cast<int>(rs));
 }
 } // anonymous namespace
 

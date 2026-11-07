@@ -65,9 +65,7 @@ namespace {
 
 static void test_query(void)
 {
-    winstl::system_version sv;
-
-    TEST_INT_NE(0u, sv.length());
+    TEST_INT_GE(5, static_cast<int>(winstl::system_version::major()));
 }
 } // anonymous namespace
 
