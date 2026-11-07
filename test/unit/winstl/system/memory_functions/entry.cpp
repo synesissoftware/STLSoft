@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `system/memory_functions`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 8th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -63,7 +63,9 @@ namespace {
 
 static void test_memory_status(void)
 {
-    MEMORYSTATUSEX ms = { sizeof(MEMORYSTATUSEX) };
+    MEMORYSTATUSEX ms = {};
+
+    ms.dwLength = sizeof(ms);
     TEST_BOOLEAN_TRUE(::GlobalMemoryStatusEx(&ms));
 }
 } // anonymous namespace
