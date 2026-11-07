@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM stream helper functions.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 8th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -65,7 +65,7 @@ namespace {
 static void test_get_stream_size(void)
 {
     IStream*            pstm = NULL;
-    ULARGE_INTEGER      size = { 0 };
+    ULARGE_INTEGER      size = { { 0, 0 } };
     unsigned char const data[] = { 1, 2, 3, 4, 5 };
 
     TEST_INT_EQ((int)S_OK, (int)::CreateStreamOnHGlobal(NULL, TRUE, &pstm));
