@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.diagnostics.processtimes_stopwatch entry.cpp)

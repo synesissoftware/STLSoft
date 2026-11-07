@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.winstl.clipboard.clipboard_format_sequence entry.cpp)

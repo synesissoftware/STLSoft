@@ -45,11 +45,17 @@ endif()
 
 add_subdirectory(fixtures)
 
-add_subdirectory(component)
-add_subdirectory(performance)
-add_subdirectory(scratch)
-add_subdirectory(unit)
+if(STLSOFT_FEATURE_TESTS_ONLY)
 
+	add_subdirectory(scratch/versions)
+	add_subdirectory(unit)
+else()
+
+	add_subdirectory(component)
+	add_subdirectory(performance)
+	add_subdirectory(scratch)
+	add_subdirectory(unit)
+endif()
 
 # ############################## end of file ############################# #
 

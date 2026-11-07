@@ -1,0 +1,11 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(access_exception)
+add_subdirectory(entry_not_found_exception)
+add_subdirectory(file_not_found_exception)
+add_subdirectory(filesystem_exception)
+add_subdirectory(invalid_entry_type_exception)
+add_subdirectory(invalid_file_type_exception)
+add_subdirectory(operating_environment_exception)
+add_subdirectory(security_exception)
+add_subdirectory(throw_policies)
+add_subdirectory(unixstl_exception)

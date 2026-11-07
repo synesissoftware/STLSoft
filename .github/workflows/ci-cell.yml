@@ -32,8 +32,8 @@ on:
         type: boolean
         default: false
       # When false, skip examples and the shared test suites. The feature
-      # job then runs only the ACE, ATL, and MFC programs plus the version
-      # reporters. Lean cells leave the default.
+      # job then runs only the ACE, ATL, and MFC programs. Version
+      # reporters run on every cell. Lean cells leave the default.
       execute-full-suite:
         required: false
         type: boolean
@@ -113,15 +113,15 @@ jobs:
           fi
 
       # shwild supplies TEST_MS_MATCHES. STLSoft is already in the prefix
-      # from the bootstrap above, so this list does not name it. shwild
-      # precedes xTests.
+      # from the bootstrap above, so this list does not name it. woad
+      # precedes xTests (xTests 0.29 requires it); shwild precedes xTests.
       - name: Install Synesis dependencies
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ inputs.build-type }}
           c-compiler: ${{ inputs.c-compiler == 'mingw' && 'gcc' || inputs.c-compiler }}
           cpp-compiler: ${{ inputs.c-compiler == 'mingw' && 'g++' || inputs.cpp-compiler }}
-          dependencies: shwild xTests
+          dependencies: shwild woad xTests
           install-prefix: ${{ env.SIS_DEPS }}
           toolchain: ${{ inputs.c-compiler == 'mingw' && 'mingw' || '' }}
 
@@ -133,6 +133,14 @@ jobs:
             ACE_FLAG="-DNO_ACE=OFF"
           else
             ACE_FLAG="-DNO_ACE=ON"
+          fi
+          # Feature cells run ACE/ATL/MFC unit tests and the scratch
+          # version reporters. Leave the rest of the example and test
+          # tree off so the hosted runner is not asked to compile it.
+          if [ "${{ inputs.execute-full-suite }}" = "true" ]; then
+            SUITE_FLAGS="-DBUILD_EXAMPLES=ON -DBUILD_TESTING=ON -DSTLSOFT_FEATURE_TESTS_ONLY=OFF"
+          else
+            SUITE_FLAGS="-DBUILD_EXAMPLES=OFF -DBUILD_TESTING=ON -DSTLSOFT_FEATURE_TESTS_ONLY=ON"
           fi
           # Default MSVC cells suppress ATL/MFC discovery (keeps lean cells lean).
           # **with-atl** / **with-mfc** leave the matching find enabled so
@@ -152,8 +160,7 @@ jobs:
               $ATL_FLAG \
               $MFC_FLAG \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
+              $SUITE_FLAGS \
               $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
@@ -162,8 +169,7 @@ jobs:
               -DCMAKE_C_COMPILER=gcc \
               -DCMAKE_CXX_COMPILER=g++ \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
+              $SUITE_FLAGS \
               $ACE_FLAG
           else
             cmake -B build -S . \
@@ -171,8 +177,7 @@ jobs:
               -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
+              $SUITE_FLAGS \
               $ACE_FLAG
           fi
 
@@ -251,13 +256,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Unix hosted runners die with SIGTERM ("Terminated") when the
+          # full tree is built with an unbounded --parallel. Cap at 2,
+          # matching MinGW. MSVC keeps the default job count.
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake --build build --config "${{ inputs.build-type }}" --parallel
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
-            cmake --build build --parallel
+            cmake --build build --parallel 2
           fi
 
       - name: Upload build tree
@@ -656,9 +664,137 @@ jobs:
           call run_all_performance_tests.cmd --gap-groups
           if errorlevel 1 exit /b 1
 
-  # Programs that exist only when ACE, ATL, or MFC is enabled, plus the
-  # version reporters those defines change. Examples, component tests,
-  # scratch tests, and performance tests stay on the lean cell.
+  # Version reporters on every cell, including feature cells that skip
+  # the scratch suite. stdio and iostreams are required; format is
+  # optional. Failures fail the cell.
+  test-versions:
+    name: Version reporters (${{ inputs.cell-id }})
+    needs: build
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSYS2 MinGW
+        id: msys2
+        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-toolchain
+
+      - name: Download build tree
+        uses: actions/download-artifact@v4
+        with:
+          name: sis-build-${{ inputs.cell-id }}
+          path: build
+
+      - name: Restore executable bits
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              -name 'test.scratch.versions.stdio*' \
+              -o -name 'test.scratch.versions.iostreams*' \
+              -o -name 'test.scratch.versions.format*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            -exec chmod +x {} +
+
+      - name: Run version reporters (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="${GITHUB_WORKSPACE}/build"
+
+          run_matching() {
+            local pattern="$1"
+            local required="$2"
+            local n=0
+            local f
+            while IFS= read -r -d '' f; do
+              echo "executing ${f}"
+              chmod +x "$f"
+              "$f"
+              n=$((n + 1))
+            done < <(find "$ROOT" -type f -name "$pattern" \
+                ! -path '*/CMakeFiles/*' \
+                ! -name '*.a' \
+                ! -name '*.d' \
+                ! -name '*.lib' \
+                ! -name '*.o' \
+                ! -name '*.obj' \
+                -print0 | sort -z)
+            if [ "$required" = "yes" ] && [ "$n" -eq 0 ]; then
+              echo "required program not found: ${pattern}" >&2
+              exit 1
+            fi
+            if [ "$n" -eq 0 ]; then
+              echo "optional program not present: ${pattern}"
+            else
+              echo "ran ${n} program(s) matching ${pattern}"
+            fi
+          }
+
+          run_matching 'test.scratch.versions.stdio*' yes
+          run_matching 'test.scratch.versions.iostreams*' yes
+          run_matching 'test.scratch.versions.format*' no
+
+      - name: Run version reporters (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          set "ROOT=%SIS_CMAKE_BUILD_DIR%"
+          call :run_matching test.scratch.versions.stdio.exe yes
+          if errorlevel 1 exit /b 1
+          call :run_matching test.scratch.versions.iostreams.exe yes
+          if errorlevel 1 exit /b 1
+          call :run_matching test.scratch.versions.format.exe no
+          if errorlevel 1 exit /b 1
+          exit /b 0
+
+          :run_matching
+          set "PAT=%~1"
+          set "REQUIRED=%~2"
+          set "N=0"
+          rem for /r without a wildcard names the file in every directory.
+          rem dir /s lists only files that exist (multi-config Release\).
+          for /f "delims=" %%F in ('dir /a:-d /b /s "%ROOT%\%PAT%" 2^>nul') do (
+            echo %%F | findstr /i /c:"CMakeFiles" >nul
+            if errorlevel 1 (
+              echo executing %%F
+              "%%F"
+              if errorlevel 1 exit /b 1
+              set /a N+=1
+            )
+          )
+          if "%N%"=="0" (
+            if /I "%REQUIRED%"=="yes" (
+              echo required program not found: %PAT%
+              exit /b 1
+            )
+            echo optional program not present: %PAT%
+          ) else (
+            echo ran %N% for %PAT%
+          )
+          exit /b 0
+
+  # Programs that exist only when ACE, ATL, or MFC is enabled. Examples,
+  # component tests, scratch tests, and performance tests stay on the
+  # lean cell. Version reporters are test-versions, on every cell.
   test-feature:
     name: Feature tests (${{ inputs.cell-id }})
     if: ${{ inputs.execute-full-suite == false }}
@@ -696,9 +832,6 @@ jobs:
               -name 'test.unit.versions*' \
               -o -name 'test.unit.acestl.*' \
               -o -name 'test.unit.mfcstl.*' \
-              -o -name 'test.scratch.versions.stdio*' \
-              -o -name 'test.scratch.versions.iostreams*' \
-              -o -name 'test.scratch.versions.format*' \
             \) \
             ! -path '*/CMakeFiles/*' \
             ! -name '*.a' \
@@ -811,97 +944,6 @@ jobs:
               ) else (
                 "%%F"
               )
-              if errorlevel 1 exit /b 1
-              set /a N+=1
-            )
-          )
-          if "%N%"=="0" (
-            if /I "%REQUIRED%"=="yes" (
-              echo required program not found: %PAT%
-              exit /b 1
-            )
-            echo optional program not present: %PAT%
-          ) else (
-            echo ran %N% for %PAT%
-          )
-          exit /b 0
-
-      - name: Run feature version reporters (Bash)
-        if: runner.os != 'Windows'
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -euo pipefail
-          ROOT="${GITHUB_WORKSPACE}/build"
-
-          run_matching() {
-            local pattern="$1"
-            local required="$2"
-            local n=0
-            local f
-            while IFS= read -r -d '' f; do
-              echo "executing ${f}"
-              "$f"
-              n=$((n + 1))
-            done < <(find "$ROOT" -type f -name "$pattern" \
-                ! -path '*/CMakeFiles/*' \
-                ! -name '*.a' \
-                ! -name '*.cmake' \
-                ! -name '*.d' \
-                ! -name '*.filters' \
-                ! -name '*.ilk' \
-                ! -name '*.lib' \
-                ! -name '*.o' \
-                ! -name '*.obj' \
-                ! -name '*.pdb' \
-                ! -name '*.sln' \
-                ! -name '*.vcxproj' \
-                \( -perm -100 -o -name '*.exe' \) \
-                -print0 | sort -z)
-            if [ "$required" = "yes" ] && [ "$n" -eq 0 ]; then
-              echo "required program not found: ${pattern}" >&2
-              exit 1
-            fi
-            if [ "$n" -eq 0 ]; then
-              echo "optional program not present: ${pattern}"
-            else
-              echo "ran ${n} program(s) matching ${pattern}"
-            fi
-          }
-
-          run_matching 'test.scratch.versions.stdio*' yes
-          run_matching 'test.scratch.versions.iostreams*' yes
-          run_matching 'test.scratch.versions.format*' no
-
-      - name: Run feature version reporters (native cmd)
-        if: runner.os == 'Windows'
-        continue-on-error: true
-        shell: cmd
-        env:
-          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
-          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
-        run: |
-          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
-          set "ROOT=%SIS_CMAKE_BUILD_DIR%"
-          call :run_matching test.scratch.versions.stdio.exe yes
-          if errorlevel 1 exit /b 1
-          call :run_matching test.scratch.versions.iostreams.exe yes
-          if errorlevel 1 exit /b 1
-          call :run_matching test.scratch.versions.format.exe no
-          if errorlevel 1 exit /b 1
-          exit /b 0
-
-          :run_matching
-          set "PAT=%~1"
-          set "REQUIRED=%~2"
-          set "N=0"
-          rem for /r without a wildcard names the file in every directory.
-          rem dir /s lists only files that exist (multi-config Release\).
-          for /f "delims=" %%F in ('dir /a:-d /b /s "%ROOT%\%PAT%" 2^>nul') do (
-            echo %%F | findstr /i /c:"CMakeFiles" >nul
-            if errorlevel 1 (
-              echo executing %%F
-              "%%F"
               if errorlevel 1 exit /b 1
               set /a N+=1
             )
