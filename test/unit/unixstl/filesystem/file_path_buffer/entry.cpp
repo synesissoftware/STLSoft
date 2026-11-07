@@ -66,7 +66,14 @@ namespace {
 
 static void test_file_path_buffer()
 {
+#if defined(__GNUC__)
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
     unixstl::file_path_buffer_a buf;
+#if defined(__GNUC__)
+# pragma GCC diagnostic pop
+#endif
 
     ::strcpy(buf.data(), "/tmp/example.txt");
     TEST_MS_EQ("/tmp/example.txt", buf.c_str());

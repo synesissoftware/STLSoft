@@ -27,6 +27,14 @@
  * forward declarations
  */
 
+extern "C"
+#if defined(__GNUC__)
+__attribute__((visibility("default")))
+#endif
+void
+stlsoft_test_dl_symbol()
+{}
+
 namespace {
 
     static void test_load_self_and_lookup_main(void);
@@ -73,7 +81,8 @@ static void test_load_self_and_lookup_main()
 
     XTESTS_REQUIRE(TEST(NULL != h));
 
-    void* sym = unixstl::dl_module::get_symbol(h, "main");
+    /* main is not in the dynamic symbol table of a PIE binary. */
+    void* sym = unixstl::dl_module::get_symbol(h, "stlsoft_test_dl_symbol");
 
     TEST_PTR_NE(NULL, sym);
 

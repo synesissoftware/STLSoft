@@ -22,6 +22,9 @@ int main(int argc, char* argv[])
 static void test_query(void)
 {
     platformstl::processtimes_counter pc;
+
+    pc.start();
+    pc.stop();
     TEST_BOOLEAN_TRUE(pc.get_seconds() >= 0);
 }
 
