@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    14
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        198
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -460,6 +460,14 @@ public:
     ,   path_classification_results_type*   results
     );
 
+    /// Classifies only the root of a path (R13; PlatformSTL façade parity).
+    ///
+    /// \param path
+    /// \param len
+    /// \param parseFlags
+    /// \param root Receives the root slice when rooted / home-rooted
+    ///
+    /// \pre 0 == len || nullptr != path
     static
     path_classification_t
     path_classify_root(

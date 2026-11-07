@@ -8,7 +8,7 @@
  *          absolute/UNC expects follow `_WIN32` traits rules).
  *
  * Created: 15th October 2026
- * Updated: 20th October 2026
+ * Updated: 7th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,6 +58,11 @@ namespace {
     static void TEST_remove_dir_end_STRIPS_ALL_trailing_separators();
     static void TEST_remove_then_ensure_round_trip();
 
+    static void TEST_path_separators();
+    static void TEST_path_is_rooted_FROM_CLASSIFICATION();
+    static void TEST_starts_with_dots();
+    static void TEST_ensure_and_remove_dir_end_CSTRING();
+
     static void TEST_find_path_name_separators_w();
     static void TEST_path_classification_w();
     static void TEST_path_classification_m_matches_w();
@@ -83,6 +88,11 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_remove_dir_end_SHRINKS_buffer);
         XTESTS_RUN_CASE(TEST_remove_dir_end_STRIPS_ALL_trailing_separators);
         XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
+
+        XTESTS_RUN_CASE(TEST_path_separators);
+        XTESTS_RUN_CASE(TEST_path_is_rooted_FROM_CLASSIFICATION);
+        XTESTS_RUN_CASE(TEST_starts_with_dots);
+        XTESTS_RUN_CASE(TEST_ensure_and_remove_dir_end_CSTRING);
 
         XTESTS_RUN_CASE(TEST_find_path_name_separators_w);
         XTESTS_RUN_CASE(TEST_path_classification_w);
@@ -341,6 +351,54 @@ static void TEST_remove_then_ensure_round_trip()
     TEST_INT_EQ(4, n_ensure);
     TEST_INT_EQ(5, buff.size());
     TEST_MS_EQ("abc/", buff.data());
+}
+
+static unixstl::path_classification_t classify_m_(char const* path)
+{
+    unixstl::path_classification_results_m_t results = {};
+
+    return traits_m_t::path_classify(
+        path
+    ,   ::strlen(path)
+    ,   UNIXSTL_PATH_CLASSIFY_F_NONE
+    ,   &results
+    );
+}
+
+static void TEST_path_separators()
+{
+    TEST_CHAR_EQ('/', traits_m_t::path_name_separator());
+    TEST_CHAR_EQ(':', traits_m_t::path_separator());
+}
+
+static void TEST_path_is_rooted_FROM_CLASSIFICATION()
+{
+    TEST_BOOLEAN_TRUE(traits_m_t::path_is_rooted(classify_m_("/")));
+    TEST_BOOLEAN_TRUE(traits_m_t::path_is_rooted(classify_m_("/usr")));
+    TEST_BOOLEAN_FALSE(traits_m_t::path_is_rooted(classify_m_("relative")));
+}
+
+static void TEST_starts_with_dots()
+{
+    TEST_BOOLEAN_TRUE(traits_m_t::starts_with_dots("."));
+    TEST_BOOLEAN_TRUE(traits_m_t::starts_with_dots(".."));
+    TEST_BOOLEAN_FALSE(traits_m_t::starts_with_dots("file"));
+}
+
+static void TEST_ensure_and_remove_dir_end_CSTRING()
+{
+    char buf1[8] = "dir";
+
+    traits_m_t::ensure_dir_end(buf1);
+
+    TEST_CHAR_EQ('/', buf1[3]);
+    TEST_CHAR_EQ('\0', buf1[4]);
+
+    char buf2[] = "dir/";
+
+    traits_m_t::remove_dir_end(buf2);
+
+    TEST_MS_EQ("dir", buf2);
 }
 
 static void TEST_find_path_name_separators_w()

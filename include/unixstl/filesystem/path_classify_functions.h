@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 21st December 2020
- * Updated: 20th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -213,6 +213,15 @@ unixstl_C_path_classify_m(
     );
 }
 
+/** Absolute in the UNIXSTL classification lattice: slash-rooted or
+ * home-rooted. On native Unix this is identical to
+ * \c unixstl_C_path_is_rooted (absolute ≡ rooted).
+ *
+ * Distinct from the coarse string predicate
+ * \c filesystem_traits<>::is_path_absolute / \c path_is_absolute, which
+ * under <code>_WIN32</code> uses Windows-shaped rules (UNC prefix or
+ * drive+separator) rather than this lattice.
+ */
 STLSOFT_INLINE
 unixstl_C_path_classification_t
 unixstl_C_path_classify_root_m(

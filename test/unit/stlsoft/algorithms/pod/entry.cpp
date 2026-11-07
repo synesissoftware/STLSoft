@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::pod_copy(), pod_move(), and pod_fill_n().
  *
  * Created: 2nd November 2026
- * Updated: 2nd November 2026
+ * Updated: 7th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,6 +37,7 @@ namespace
     static void TEST_copy_n_COPIES();
     static void TEST_copy_EMPTY_RANGE();
     static void TEST_copy_RANGE_COPIES();
+    static void TEST_copy_INT_RANGE();
     static void TEST_copy_n_DIFFERENT_TYPE();
     static void TEST_move_n_0_NEITHER_READS_NOR_WRITES();
     static void TEST_move_n_OVERLAP();
@@ -63,6 +64,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_copy_n_COPIES);
         XTESTS_RUN_CASE(TEST_copy_EMPTY_RANGE);
         XTESTS_RUN_CASE(TEST_copy_RANGE_COPIES);
+        XTESTS_RUN_CASE(TEST_copy_INT_RANGE);
         XTESTS_RUN_CASE(TEST_copy_n_DIFFERENT_TYPE);
         XTESTS_RUN_CASE(TEST_move_n_0_NEITHER_READS_NOR_WRITES);
         XTESTS_RUN_CASE(TEST_move_n_OVERLAP);
@@ -140,6 +142,18 @@ static void TEST_copy_RANGE_COPIES()
 
     TEST_CHAR_EQ('a', dest[0]);
     TEST_CHAR_EQ('b', dest[1]);
+}
+
+static void TEST_copy_INT_RANGE()
+{
+    int const   src[] = { 10, 20, 30 };
+    int         dest[3] = { 0, 0, 0 };
+
+    stlsoft::pod_copy(&src[0], &src[3], &dest[0]);
+
+    TEST_INT_EQ(10, dest[0]);
+    TEST_INT_EQ(20, dest[1]);
+    TEST_INT_EQ(30, dest[2]);
 }
 
 static void TEST_copy_n_DIFFERENT_TYPE()

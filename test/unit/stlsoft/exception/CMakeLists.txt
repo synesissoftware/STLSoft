@@ -1,2 +1,12 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(policy)
 add_subdirectory(special)
+add_subdirectory(library_identifier_provider)
+add_subdirectory(os_exception)
+add_subdirectory(out_of_memory_exception)
+add_subdirectory(project_exception)
+add_subdirectory(project_identifier_provider)
+add_subdirectory(root_exception)
+add_subdirectory(status_code_provider)
+add_subdirectory(throw_policies)
+add_subdirectory(util)
