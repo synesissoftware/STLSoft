@@ -1,5 +1,5 @@
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.component.inetstl.network.connection)
-	add_subdirectory(test.component.inetstl.network.session)
+	add_subdirectory(connection)
+	add_subdirectory(session)
 endif(_BUILD_AS_WIN32)
