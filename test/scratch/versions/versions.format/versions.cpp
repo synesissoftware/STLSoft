@@ -85,6 +85,18 @@ int main(int /* argc */, char* /* argv */[])
 
     print_version("ACESTL", "_ACESTL_VER", _ACESTL_VER);
 #endif /* STLSOFT_HAS_ACE */
+#ifdef STLSOFT_HAS_ATL
+
+    // _ATLSTL_VER
+
+    print_version("ATLSTL", "_ATLSTL_VER", _ATLSTL_VER);
+#endif /* STLSOFT_HAS_ATL */
+#ifdef STLSOFT_HAS_COM
+
+    // _COMSTL_VER
+
+    print_version("COMSTL", "_COMSTL_VER", _COMSTL_VER);
+#endif /* STLSOFT_HAS_COM */
 
     // _PLATFORMSTL_VER
 

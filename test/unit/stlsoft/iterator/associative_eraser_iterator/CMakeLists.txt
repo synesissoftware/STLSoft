@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterator.associative_eraser_iterator entry.cpp)

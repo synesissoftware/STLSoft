@@ -1,0 +1,1 @@
+define_automated_test_program(test.component.stlsoft.exception.util.filesystem_exception_base entry.cpp)

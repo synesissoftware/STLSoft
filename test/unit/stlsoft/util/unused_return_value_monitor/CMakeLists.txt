@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.util.unused_return_value_monitor entry.cpp)

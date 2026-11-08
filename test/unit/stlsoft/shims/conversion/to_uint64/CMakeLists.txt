@@ -1,0 +1,4 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(std)
+add_subdirectory(degenerate)
+add_subdirectory(to_uint64)

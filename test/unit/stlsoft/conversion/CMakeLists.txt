@@ -1,15 +1,27 @@
-
-add_subdirectory(number)
-
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(byte_format_functions)
 add_subdirectory(char_conversions)
 add_subdirectory(integer_to_base32_string)
 add_subdirectory(integer_to_base36_string)
 add_subdirectory(integer_to_lc_string)
+add_subdirectory(integer_to_string)
+add_subdirectory(number)
 add_subdirectory(string_to_integer)
+add_subdirectory(any_cast)
+add_subdirectory(char2str)
+add_subdirectory(explicit_cast)
+add_subdirectory(itoslice.C)
+add_subdirectory(m2w)
+add_subdirectory(ptr_cast)
+add_subdirectory(sap_cast)
+add_subdirectory(sas_to_string)
+add_subdirectory(string_to_bool)
+add_subdirectory(string_to_integer_range)
+add_subdirectory(truncation_cast)
+add_subdirectory(union_cast)
+add_subdirectory(w2m)
 add_subdirectory(truncation_test)
 add_subdirectory(try_parse_to)
-
 
 # ############################## end of file ############################# #
 
