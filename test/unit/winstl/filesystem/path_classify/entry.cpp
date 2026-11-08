@@ -6,7 +6,7 @@
  *          R10 ASCII drive letters; R11 long-path; R12 device namespaces).
  *
  * Created: 20th October 2026
- * Updated: 20th October 2026
+ * Updated: 8th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.winstl.filesystem.path_classify", verbosity))
+    if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_CORE);
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_HOME);

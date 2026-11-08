@@ -4,7 +4,7 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 21st December 2020
- * Updated: 29th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -289,6 +289,7 @@ unixstl_C_path_classify_impl_X_(
     }
 
 #ifdef _WIN32 /* Windows / UNIXem: apply Windows invalid-character rules */
+
     if (0 == (UNIXSTL_PATH_CLASSIFY_F_IGNOREINVALIDCHARS & parseFlags))
     {
         char_t const* invalidChar;
@@ -359,6 +360,7 @@ unixstl_C_path_classify_impl_X_(
                 break;
             case '/':
 #ifdef _WIN32 /* Windows / UNIXem: '\\' is also a separator */
+
             case '\\':
 
                 *((*p0 == '\\') ? &lastBSlash : &lastFSlash) = p0;
@@ -420,6 +422,7 @@ unixstl_C_path_classify_impl_X_(
         }
 
 #ifdef _WIN32 /* Windows / UNIXem: '\\' is also a separator */
+
         if (ss_nullptr_k != lastBSlash)
         {
             if (ss_nullptr_k != lastFSlash)

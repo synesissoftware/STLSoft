@@ -61,7 +61,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      198
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      200
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1620,7 +1620,8 @@ private:
     ,   size_t              len
     )
     {
-        UNIXSTL_ASSERT(NULL != path);
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
 #ifdef _WIN32
 
         if (len >= 2 &&
@@ -3424,7 +3425,8 @@ private:
     ,   size_t              len
     )
     {
-        UNIXSTL_ASSERT(NULL != path);
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
 #ifdef _WIN32
 
         if (len >= 2 &&

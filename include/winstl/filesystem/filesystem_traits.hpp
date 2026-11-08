@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    14
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        199
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    15
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        200
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1538,8 +1538,7 @@ public: // path classification and analysis
         if (path_has_unc_prefix_(path, len))
         {
             path_classification_string_slice_type   root;
-            path_classification_t const             pc =
-                path_classify_root(path, len, 0, &root);
+            path_classification_t const             pc = path_classify_root(path, len, 0, &root);
 
             return path_is_rooted(pc);
         }
@@ -1571,8 +1570,7 @@ public: // path classification and analysis
         }
 
         path_classification_string_slice_type   root;
-        path_classification_t const             pc =
-            path_classify_root(path, len, 0, &root);
+        path_classification_t const             pc = path_classify_root(path, len, 0, &root);
 
         return path_is_absolute(pc);
     }
@@ -1581,7 +1579,7 @@ public: // path classification and analysis
     {
         WINSTL_ASSERT(NULL != path);
 
-        return path_is_UNC(path, str_len(path));
+        return path_is_UNC_(path);
     }
 
     static bool_type path_is_UNC(
@@ -1589,14 +1587,15 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        WINSTL_ASSERT(0 == len || NULL != path);
+
         if (!path_has_unc_prefix_(path, len))
         {
             return false;
         }
 
         path_classification_string_slice_type   root;
-        path_classification_t const             pc =
-            path_classify_root(path, len, 0, &root);
+        path_classification_t const             pc = path_classify_root(path, len, 0, &root);
 
         return winstl_C_PathType_UncRooted == pc;
     }
@@ -1616,10 +1615,29 @@ private:
     bool_type
     path_has_unc_prefix_(
         char_type const*    path
+    )
+    {
+        return '\\' == path[0] && '\\' == path[1];
+    }
+
+    static
+    bool_type
+    path_has_unc_prefix_(
+        char_type const*    path
     ,   size_t              len
     )
     {
-        return len >= 2 && '\\' == path[0] && '\\' == path[1];
+        switch (len)
+        {
+            case    0:
+            case    1:
+
+                return false;
+            case    2:
+            default:
+
+            return path_has_unc_prefix_(path);
+        }
     }
 
     static
@@ -3325,8 +3343,7 @@ public: // path classification and analysis
         if (path_has_unc_prefix_(path, len))
         {
             path_classification_string_slice_type   root;
-            path_classification_t const             pc =
-                path_classify_root(path, len, 0, &root);
+            path_classification_t const             pc = path_classify_root(path, len, 0, &root);
 
             return path_is_rooted(pc);
         }
@@ -3357,8 +3374,7 @@ public: // path classification and analysis
         }
 
         path_classification_string_slice_type   root;
-        path_classification_t const             pc =
-            path_classify_root(path, len, 0, &root);
+        path_classification_t const             pc = path_classify_root(path, len, 0, &root);
 
         return path_is_absolute(pc);
     }
@@ -3367,7 +3383,7 @@ public: // path classification and analysis
     {
         WINSTL_ASSERT(NULL != path);
 
-        return path_is_UNC(path, str_len(path));
+        return path_is_UNC_(path);
     }
 
     static bool_type path_is_UNC(
@@ -3375,14 +3391,15 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        WINSTL_ASSERT(0 == len || NULL != path);
+
         if (!path_has_unc_prefix_(path, len))
         {
             return false;
         }
 
         path_classification_string_slice_type   root;
-        path_classification_t const             pc =
-            path_classify_root(path, len, 0, &root);
+        path_classification_t const             pc = path_classify_root(path, len, 0, &root);
 
         return winstl_C_PathType_UncRooted == pc;
     }
@@ -3402,10 +3419,29 @@ private:
     bool_type
     path_has_unc_prefix_(
         char_type const*    path
+    )
+    {
+        return L'\\' == path[0] && L'\\' == path[1];
+    }
+
+    static
+    bool_type
+    path_has_unc_prefix_(
+        char_type const*    path
     ,   size_t              len
     )
     {
-        return len >= 2 && L'\\' == path[0] && L'\\' == path[1];
+        switch (len)
+        {
+            case    0:
+            case    1:
+
+                return false;
+            case    2:
+            default:
+
+                return path_has_unc_prefix_(path);
+        }
     }
 
     static
