@@ -13,6 +13,10 @@
   - [Models and non-models](#models-and-non-models)
   - [Helper: `resizeable_buffer_resize`](#helper-resizeable_buffer_resize)
   - [Contract for traits overloads that take an `rb`](#contract-for-traits-overloads-that-take-an-rb)
+- [Path classification](#path-classification)
+  - [Dual model](#dual-model)
+  - [PlatformSTL intersecting classify](#platformstl-intersecting-classify)
+  - [Where to look](#where-to-look)
 - [See also](#see-also)
 
 
@@ -20,10 +24,12 @@
 
 This document records **concepts** used across **STLSoft** — structural
 requirements that are not (necessarily) reified as language-level concepts
-or base classes, but that several APIs assume. The first entry is the
+or base classes, but that several APIs assume. Entries include the
 **Resizeable Buffer** concept used by **UnixSTL** / **WinSTL**
 `system_traits` and `filesystem_traits` overloads that accept a generic
-buffer rather than a raw pointer and length.
+buffer rather than a raw pointer and length, and **path classification**
+(coarse traits vs fine `path_classify`, plus the PlatformSTL intersecting
+façade).
 
 
 ## Classic buffer-and-length OS APIs
@@ -181,6 +187,74 @@ the string length **excluding** the `NUL`). The buffer’s `size()` remains
 the allocated demand (typically at least length + 1).
 
 
+## Path classification
+
+Path strings are analysed in two complementary layers. Prefer the
+**shortest / cheapest** API that answers the question; escalate to
+`path_classify` only when kind, root slices, or part counts are required.
+
+
+### Dual model
+
+| Layer | Surface | Role |
+| --- | --- | --- |
+| Coarse traits | `filesystem_traits::is_path_*` | Historical orthography / prefix checks; **deprecated** for new code where a complete answer is needed |
+| Complete traits | `filesystem_traits::path_is_*` | Lattice-complete predicates (incomplete UNC / truncated forms are **not** absolute / UNC / rooted as applicable) |
+| Fine classify | `*_C_path_classify` / `path_classify_*` | Kind enum, root / volume slices, directory-part counts, flags |
+
+`is_path_*` may over-accept relative to `path_is_*` (e.g. truncated UNC
+prefixes). That is intentional historical behaviour, not a defect to
+“fix” by making coarse APIs complete.
+
+
+### PlatformSTL intersecting classify
+
+`platformstl/filesystem/path_classify_functions.h` exposes only the
+**intersection** of UNIXSTL and WinSTL classify: portable kinds
+(`Invalid*`, `Empty`, `Relative`, `SlashRooted`, `HomeRooted`, …),
+portable flags, and portable predicates.
+
+Frozen intersecting rules (summary):
+
+* **Host-only inputs** (Windows drive / UNC / long-path / device forms)
+  classify as `platformstl_C_PathType_Invalid` on the portable façade —
+  use **WinSTL** for those lattices;
+* **`path_is_absolute` (portable)** is host-sensitive: slash-rooted is
+  absolute on Unix, **not** absolute on Windows;
+* **`path_is_rooted` (portable)** is leading separator **or** absolute
+  (host sense);
+* **`platformstl::filesystem_traits`** remains a **host typedef**
+  (unixstl / winstl). It is **not** a PlatformSTL classify graft; call
+  the PlatformSTL classify header for portable classify;
+
+Unit tests lock portable rows and host-only → `Invalid` in
+`test.unit.platformstl.filesystem.path_classify`.
+
+
+### Root length without `get_root_len_`
+
+Do **not** reintroduce a private root-length helper. Prefer:
+
+* **Native Unix (`!_WIN32`):** O(1) slash-root span
+  (`is_path_name_separator(path[0]) ? 1 : 0`) for `pop` / `..` —
+  classify is unnecessary for that lattice;
+* **`_WIN32` / UNIXem:** full `path_classify` for `basic_path::pop`
+  (WinSTL-shaped), and `path_classify_root` → `root.len` when only the
+  root span is required (e.g. `get_full_path_name` resolving `..`);
+
+
+### Where to look
+
+* Headers:
+  `platformstl/filesystem/path_classify_functions.h`,
+  `unixstl/filesystem/path_classify_functions.h`,
+  `winstl/filesystem/path_classify_functions.h`;
+* Traits: `unixstl::filesystem_traits` / `winstl::filesystem_traits`
+  (`is_path_*` / `path_is_*`);
+* Unit suites: `test.unit.*.filesystem.path_classify` and the matching
+  `filesystem_traits` unit programs;
+
+
 ## See also
 
 * Example:
@@ -190,6 +264,8 @@ the allocated demand (typically at least length + 1).
   (`struct resizeable_buffer` under `\name concepts`);
 * Unit tests:
   [`test/unit/stlsoft/util/resizeable_buffer_helpers/`](./test/unit/stlsoft/util/resizeable_buffer_helpers/);
+* Path classification:
+  `platformstl/filesystem/path_classify_functions.h` (intersecting façade);
 * [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md), [EXAMPLES.md](./EXAMPLES.md);
 
 

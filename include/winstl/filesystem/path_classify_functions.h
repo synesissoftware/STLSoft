@@ -44,6 +44,16 @@
  *
  * \brief [C, C++] Path classification functions
  *   (\ref group__library__FileSystem "File System" Library).
+ *
+ * Fine path classification (full Windows lattice including drive / UNC /
+ * long-path / device forms). For portable intersecting behaviour see
+ * \c platformstl/filesystem/path_classify_functions.h and
+ * <strong>CONCEPTS.md</strong> (Path classification). Coarse vs complete
+ * traits predicates live on \c winstl::filesystem_traits
+ * (\c is_path_* deprecated orthography; \c path_is_* lattice-complete).
+ *
+ * \see CONCEPTS.md
+ * \see platformstl/filesystem/path_classify_functions.h
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS

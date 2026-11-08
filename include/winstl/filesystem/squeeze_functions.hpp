@@ -4,7 +4,7 @@
  * Purpose: Path squeeze functions
  *
  * Created: 6th June 2006
- * Updated: 15th October 2026
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -160,7 +160,7 @@ path_squeeze_impl(
             {
                 if (p.is_absolute())
                 {
-                    if (traits_t::is_path_UNC(path_ptr))
+                    if (traits_t::path_is_UNC(path_ptr))
                     {
                         // 1. UNC
 

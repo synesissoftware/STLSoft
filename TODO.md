@@ -98,7 +98,9 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.6
 
-* \<none>
+* [x] ~~~**get_root_len_** (**unixstl::filesystem_traits\<char\>**) — ~~fix / promote~~ **obviated (R24)**: removed helper and `#error` tripwire; under `_WIN32`/`UNIXem` `pop` / `..` use classify; native Unix keeps cheap slash-root 0/1~~~ - ✅;
+* [x] ~~~Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, and the unit tests. Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;~~~ - ✅ (landed in full on this **1.12.x** branch; the **1.11.7** release shipped the fixes / docs / host-test subset);
+* [x] ~~~Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;~~~ - ✅ (landed on this **1.12.x** branch);
 
 
 ### 1.11.7
@@ -108,8 +110,6 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.8
 
-* [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl `path_classify_root` / `path_is_absolute` exposure (R13), and the platformstl unit tests. (The unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, `numDotsDirectoryParts`, the R9 documentation, and the unixstl/winstl host test suites landed in **1.11.7**.) Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
-* [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
 * [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Complete coverage of currently untested components (improvement / completion);

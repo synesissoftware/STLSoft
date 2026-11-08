@@ -45,9 +45,16 @@
  * \brief [C, C++] Intersecting path classification functions
  *   (\ref group__library__FileSystem "File System" Library).
  *
- * Portable kinds, flags, and predicates per the PlatformSTL path-classify
- * contract. Drive / UNC forms are host-only (use WinSTL); on Windows they
- * map to \c platformstl_C_PathType_Invalid rather than portable names.
+ * Portable kinds, flags, and predicates for the PlatformSTL intersecting
+ * path-classify contract: same answers on Unix and Windows for portable
+ * inputs. Drive / UNC / long-path / device forms are host-only — use
+ * WinSTL; on the portable façade they map to
+ * \c platformstl_C_PathType_Invalid rather than portable kind names.
+ * Slash-rooted is absolute on Unix only. See <strong>CONCEPTS.md</strong>
+ * (Path classification) for the dual \c is_path_* / \c path_is_* /
+ * classify model and the frozen intersecting rules.
+ *
+ * \see CONCEPTS.md
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS
@@ -56,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

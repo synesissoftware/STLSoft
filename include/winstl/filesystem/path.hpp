@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 18th October 2026
+ * Updated: 20th October 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
  *          doesn't work for wide-string builds).
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     331
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     332
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -2533,7 +2533,7 @@ inline
 ss_typename_type_k basic_path<C, T, A>::bool_type
 basic_path<C, T, A>::is_rooted() const STLSOFT_NOEXCEPT
 {
-    return traits_type::is_path_rooted(this->c_str());
+    return traits_type::path_is_rooted(this->c_str());
 }
 
 template<
@@ -2545,7 +2545,7 @@ inline
 ss_typename_type_k basic_path<C, T, A>::bool_type
 basic_path<C, T, A>::is_absolute() const STLSOFT_NOEXCEPT
 {
-    return traits_type::is_path_absolute(this->c_str());
+    return traits_type::path_is_absolute(this->c_str());
 }
 
 template<
