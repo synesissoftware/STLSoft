@@ -4,11 +4,11 @@
  * Purpose: Creation functions for Windows time structures.
  *
  * Created: 25th February 2017
- * Updated: 24th December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_EDIT       7
+# define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,9 +107,9 @@ namespace winstl_project
  *
  * \note No validation on values is performed
  *
- * \pre (year >= 1601 && year <= 30827)
- * \pre (month >= 1 && month <= 12)
- * \pre (day >= 1 && day <= 31)
+ * \pre year >= 1601 && year <= 30827
+ * \pre month >= 1 && month <= 12
+ * \pre day >= 1 && day <= 31
  * \pre hour < 24
  * \pre minute < 60
  * \pre second < 60
@@ -164,9 +164,9 @@ winstl_C_create_SYSTEMTIME_ms(
  * \note No validation on values is performed
  *
  * \pre nullptr != ft
- * \pre (year >= 1601 && year <= 30827)
- * \pre (month >= 1 && month <= 12)
- * \pre (day >= 1 && day <= 31)
+ * \pre year >= 1601 && year <= 30827
+ * \pre month >= 1 && month <= 12
+ * \pre day >= 1 && day <= 31
  * \pre hour < 24
  * \pre minute < 60
  * \pre second < 60

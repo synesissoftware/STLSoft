@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with BSTR strings.
  *
  * Created: 24th June 2002
- * Updated: 29th July 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 9
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     109
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 10
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -566,11 +566,16 @@ BSTR_compare(
 
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the comstl_C_BSTR_* function that the wrapper calls.
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_w, comstl_C_bstr_create_w)
+/** \deprecated Use comstl_C_BSTR_create_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_w, comstl_C_BSTR_create_w)
 STLSOFT_INLINE
 BSTR
 comstl__bstr_create_w(
@@ -579,7 +584,9 @@ comstl__bstr_create_w(
 {
     return comstl_C_BSTR_create_w(s);
 }
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_len_w, comstl_C_bstr_create_len_w)
+/** \deprecated Use comstl_C_BSTR_create_len_w
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_len_w, comstl_C_BSTR_create_len_w)
 STLSOFT_INLINE
 BSTR
 comstl__bstr_create_len_w(
@@ -589,7 +596,9 @@ comstl__bstr_create_len_w(
 {
     return comstl_C_BSTR_create_len_w(s, len);
 }
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_a, comstl_C_bstr_create_a)
+/** \deprecated Use comstl_C_BSTR_create_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_a, comstl_C_BSTR_create_a)
 STLSOFT_INLINE
 BSTR
 comstl__bstr_create_a(
@@ -598,7 +607,9 @@ comstl__bstr_create_a(
 {
     return comstl_C_BSTR_create_a(s);
 }
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_len_a, comstl_C_bstr_create_len_a)
+/** \deprecated Use comstl_C_BSTR_create_len_a
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_create_len_a, comstl_C_BSTR_create_len_a)
 STLSOFT_INLINE
 BSTR
 comstl__bstr_create_len_a(
@@ -608,7 +619,9 @@ comstl__bstr_create_len_a(
 {
     return comstl_C_BSTR_create_len_a(s, len);
 }
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_destroy, comstl_C_bstr_destroy)
+/** \deprecated Use comstl_C_BSTR_destroy
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_destroy, comstl_C_BSTR_destroy)
 STLSOFT_INLINE
 void
 comstl__bstr_destroy(
@@ -617,7 +630,9 @@ comstl__bstr_destroy(
 {
     comstl_C_BSTR_destroy(bstr);
 }
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_dup, comstl_C_bstr_dup)
+/** \deprecated Use comstl_C_BSTR_dup
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_dup, comstl_C_BSTR_dup)
 STLSOFT_INLINE
 BSTR
 comstl__bstr_dup(
@@ -626,7 +641,9 @@ comstl__bstr_dup(
 {
     return comstl_C_BSTR_dup(bstr);
 }
-STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_compare, comstl_C_bstr_compare)
+/** \deprecated Use comstl_C_BSTR_compare
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__bstr_compare, comstl_C_BSTR_compare)
 STLSOFT_INLINE
 int
 comstl__bstr_compare(

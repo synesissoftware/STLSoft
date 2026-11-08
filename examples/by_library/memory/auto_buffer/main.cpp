@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/memory/auto_buffer/auto_buffer.cpp
+ * File:    examples/by_library/memory/auto_buffer/main.cpp
  *
  * Purpose: C++ example program demonstrating use of the Memory library
  *          component auto_buffer.
  *
  * Created: 15th September 2006
- * Updated: 30th May 2025
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

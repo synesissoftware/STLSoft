@@ -4,13 +4,13 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 26th April 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      232
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      234
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,9 +144,9 @@ namespace stlsoft
 
 /** Simple string class using fixed-size static-based storage
  *
- * \tparam C TBC
- * \tparam V_internalSize TBC
- * \tparam T TBC
+ * \tparam C T.B.C.
+ * \tparam V_internalSize T.B.C.
+ * \tparam T T.B.C.
  *
  * \param C The character type
  * \param V_internalSize The number of characters in the fixed-side buffer,
@@ -1283,9 +1283,9 @@ c_str_len(STLSOFT_NS_QUAL(basic_static_string)<C, V_internalSize, T> const& s) S
  * \ingroup group__concept__Shim__stream_insertion
  *
  * \tparam T_stream The stream type
- * \tparam C TBC
- * \tparam V_internalSize TBC
- * \tparam T TBC
+ * \tparam C T.B.C.
+ * \tparam V_internalSize T.B.C.
+ * \tparam T T.B.C.
  *
  * \param stm The stream
  * \param s The string
@@ -2434,7 +2434,7 @@ inline
 ss_typename_type_ret_k basic_static_string<C, V_internalSize, T>::const_reference
 basic_static_string<C, V_internalSize, T>::operator [](ss_typename_type_k basic_static_string<C, V_internalSize, T>::size_type index) const STLSOFT_NOEXCEPT
 {
-    STLSOFT_MESSAGE_ASSERT("index access out of range in static_string", index < size() + 1); // Valid to return (const) reference to nul-terminator
+    STLSOFT_MESSAGE_ASSERT("index access out of range in static_string", index < size() + 1); // Valid to return (const) reference to NUL character
 
     STLSOFT_ASSERT(is_valid());
 

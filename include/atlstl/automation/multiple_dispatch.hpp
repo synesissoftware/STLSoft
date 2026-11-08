@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/multiple_dispatch.hpp
+ * File:    atlstl/automation/multiple_dispatch.hpp
  *
- * Purpose:     A class template that makes the methods and properties exhibited
- *              through multiple IDispatch interfaces visible to script clients.
+ * Purpose: A class template that makes the methods and properties exhibited
+ *          through multiple IDispatch interfaces visible to script clients.
  *
- * Created:     15th May 2006
- * Updated:     29th July 2026
+ * Created: 15th May 2006
+ * Updated: 15th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -214,7 +214,7 @@ protected:
      * which has thus undertaken to interpret them. This stripe is then
      * detected
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -274,7 +274,7 @@ protected:
      * from which the appropriate dispiniterface is determined. The
      * stripe is then removed, and the method invoked.
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -365,7 +365,7 @@ protected:
      * which has thus undertaken to interpret them. This stripe is then
      * detected
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -433,7 +433,7 @@ protected:
      * from which the appropriate dispiniterface is determined. The
      * stripe is then removed, and the method invoked.
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -540,7 +540,7 @@ protected:
      * which has thus undertaken to interpret them. This stripe is then
      * detected
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *
@@ -616,7 +616,7 @@ protected:
      * from which the appropriate dispiniterface is determined. The
      * stripe is then removed, and the method invoked.
      *
-     * \remarks Names are matched en bloc: they are either all matched by one
+     * \note Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
      *  some part are matched by one and the remainder by the other.
      *

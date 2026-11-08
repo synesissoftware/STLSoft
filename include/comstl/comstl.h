@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 29th July 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    9
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        134
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    10
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -68,32 +68,37 @@
 /* /////////////////////////////////////////////////////////////////////////
  * COMSTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * The major version is denoted by the _COMSTL_VER_MAJOR preprocessor symbol.
- * A change to the major version component implies that a dramatic change has
- * occurred in the libraries, such that considerable changes to source dependent
- * on previous versions would need to be effected.
+ * The major version is denoted by the _COMSTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
  *
- * The minor version is denoted by the _COMSTL_VER_MINOR preprocessor symbol.
- * Changes to the minor version component imply that a significant change has
- * occurred to the libraries, either in the addition of new functionality or in
- * the destructive change to one or more components such that recomplilation and
- * code change may be necessitated.
+ * The minor version is denoted by the _COMSTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
  *
- * The revision version is denoted by the _COMSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the changes.
+ * The patch version is denoted by the _COMSTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
  *
  * In addition to the individual version symbols - _COMSTL_VER_MAJOR,
- * _COMSTL_VER_MINOR and _COMSTL_VER_REVISION - a composite symbol _COMSTL_VER
- * is defined, where the upper 8 bits are 0, bits 16-23 represent the major
- * component,  bits 8-15 represent the minor component, and bits 0-7 represent
- * the revision component.
+ * _COMSTL_VER_MINOR and _COMSTL_VER_PATCH - a composite symbol _COMSTL_VER
+ * is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _COMSTL_VER_1_0_1.
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _COMSTL_VER_1_0_1.
  *
  * Thus the symbol _COMSTL_VER may be compared meaningfully with a specific
  * version symbol, e.g. #if _COMSTL_VER >= _COMSTL_VER_1_0_1
@@ -115,9 +120,15 @@
  * substantial as to require wholesale changes to application code.
  */
 
-/** \def _COMSTL_VER_REVISION
+/** \def _COMSTL_VER_PATCH
  *
- * The revision version number of COMSTL
+ * The patch version number of COMSTL
+ */
+
+/** \def _COMSTL_VER_RELSTATUS
+ *
+ * The release-status number of COMSTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _COMSTL_VER
@@ -153,19 +164,32 @@
 # define _COMSTL_VER_1_8_6      0x010806ff  /*!< Version 1.8.6 (with STLSoft 1.9.97) */
 # define _COMSTL_VER_1_9_1      0x010901ff  /*!< Version 1.9.1 (with STLSoft 1.9.98) */
 # define _COMSTL_VER_1_9_2      0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.9.113) */
-# define _COMSTL_VER_1_10_1_B01 0x010a0181  /*!< Version 1.10.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1 beta 2 (with STLSoft 1.10.1 beta 17) */
-# define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1 beta 3 (with STLSoft 1.10.1 beta 26) */
+# define _COMSTL_VER_1_10_1_B01 0x010a0181  /*!< Version 1.10.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1-beta2 (with STLSoft 1.10.1-beta17) */
+# define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
-# define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1 alpha 8) */
-# define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1 alpha 17) */
-# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1 rc 5) */
+# define _COMSTL_VER_1_10_2     0x010A02FF  /*!< Version 1.10.2 (with STLSoft 1.11.1-alpha8) */
+# define _COMSTL_VER_1_10_3     0x010A03FF  /*!< Version 1.10.3 (with STLSoft 1.11.1-alpha17) */
+# define _COMSTL_VER_1_10_4     0x010A04FF  /*!< Version 1.10.4 (with STLSoft 1.11.1-rc9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       10
-#define _COMSTL_VER_REVISION    4
-#define _COMSTL_VER             _COMSTL_VER_1_10_4
+#define _COMSTL_VER_PATCH       4
+#define _COMSTL_VER_RELSTATUS   0xFF
+
+#define _COMSTL_VER \
+    (0\
+        |   (   _COMSTL_VER_MAJOR       << 24   ) \
+        |   (   _COMSTL_VER_MINOR       << 16   ) \
+        |   (   _COMSTL_VER_PATCH       <<  8   ) \
+        |   (   _COMSTL_VER_RELSTATUS   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _COMSTL_VER_ALPHABETA                              _COMSTL_VER_RELSTATUS
+# define _COMSTL_VER_REVISION                               _COMSTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,9 +208,9 @@
 # include <objbase.h>
 #endif /* !STLSOFT_INCL_H_OBJBASE */
 
-#if defined(STLSOFT_COMPILER_IS_GCC) && \
-    defined(_WIN32) && \
-    (   defined(WIN32) || \
+#if defined(STLSOFT_COMPILER_IS_GCC) &&\
+    defined(_WIN32) &&\
+    (   defined(WIN32) ||\
         defined(WIN64))
 # ifndef STLSOFT_INCL_H_OLEAUTO
 #  define STLSOFT_INCL_H_OLEAUTO
@@ -203,8 +227,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0151
-# error This version of the COMSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the COMSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -338,10 +362,10 @@
 #undef __COMSTL_CF_DCOM_SUPPORT
 #endif /* __COMSTL_CF_DCOM_SUPPORT */
 
-#if !defined(_COMSTL_NO_DCOM) && \
-    (   (   defined(_WIN32_WINNT ) && \
-            (_WIN32_WINNT >= 0x0400)) || \
-        defined(_WIN32_DCOM) || \
+#if !defined(_COMSTL_NO_DCOM) &&\
+    (   (   defined(_WIN32_WINNT ) &&\
+            (_WIN32_WINNT >= 0x0400)) ||\
+        defined(_WIN32_DCOM) ||\
         defined(_COMSTL_DCOM))
 
 # define __COMSTL_CF_DCOM_SUPPORT
@@ -448,7 +472,7 @@
  */
 
 #ifndef COMSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 /* There is no stlsoft namespace, so must define ::comstl */
@@ -630,10 +654,10 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  * An alternative to the general \c _FORCENAMELESSUNION
  */
 
-#if 1 && \
-    !defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) && \
-    !defined(_FORCENAMELESSUNION) && \
-    defined(NONAMELESSUNION) && \
+#if 1 &&\
+    !defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) &&\
+    !defined(_FORCENAMELESSUNION) &&\
+    defined(NONAMELESSUNION) &&\
     1
 
 # define COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES
@@ -674,7 +698,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 
     defined(NONAMELESSUNION) ||
 
-    (  __STDC__ && \
+    (  __STDC__ &&\
         !defined(_FORCENAMELESSUNION)) ||
 
     0
@@ -728,23 +752,23 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 #  if STLSOFT_GCC_VER >= 80000 /* NOTE: this number may be wrong - too large, but still old way with 4.9 */
 
 #   if 0
-#   elif __STDC__ && \
-         !defined(__cplusplus) && \
+#   elif __STDC__ &&\
+         !defined(__cplusplus) &&\
          !defined(_FORCENAMELESSUNION)
 
 #    define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
-#   elif defined(_MSC_VER) && \
-         !defined(_MSC_EXTENSIONS) && \
+#   elif defined(_MSC_VER) &&\
+         !defined(_MSC_EXTENSIONS) &&\
          !defined(_FORCENAMELESSUNION)
 
 #    define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
 #   endif /* ? GCC version */
 #  endif
-# elif __STDC__ && \
+# elif __STDC__ &&\
        defined(_FORCENAMELESSUNION)
 
 #  define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
-# elif !defined(_MSC_EXTENSIONS) && \
+# elif !defined(_MSC_EXTENSIONS) &&\
        !defined(_FORCENAMELESSUNION)
 
 #  define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
@@ -757,7 +781,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  *
  *
  */
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 # define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)         (pvar)->mem
 # else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
@@ -788,7 +812,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  *
  */
 
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 #  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)              (pvar)->vt
 # else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
@@ -818,7 +842,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  *
  *
  */
-# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 # define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)           (pvar)->decVal
 # else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
@@ -982,7 +1006,7 @@ const cs_size_t COMSTL_CCH_GUID     =   38;
  */
 
 #ifndef COMSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace comstl */
 # else

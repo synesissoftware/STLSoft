@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/64bit_integers.hpp
+ * File:    stlsoft/util/64bit_integers.hpp
  *
- * Purpose:     Byte-order independent large integer (aggregate) classes.
+ * Purpose: Byte-order independent large integer (aggregate) classes.
  *
- * Created:     15th October 2000
- * Updated:     29th July 2026
+ * Created: 15th October 2000
+ * Updated: 8th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_64BIT_INTEGERS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MAJOR     5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_REVISION  5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      145
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MAJOR      5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MINOR      1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_REVISION   6
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT       146
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,6 +109,8 @@ public:
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
     sinteger64(long i);
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
+    sinteger64(class_type const& rhs);
 
     class_type& operator =(class_type const& rhs);
     class_type& operator =(ss_sint8_t i);
@@ -356,6 +358,11 @@ inline sinteger64::sinteger64(long i)
     , m_high(0)
 {}
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
+inline sinteger64::sinteger64(class_type const& rhs)
+    : m_low(rhs.m_low)
+    , m_high(rhs.m_high)
+{}
 
 inline sinteger64::class_type& sinteger64::operator =(class_type const& rhs)
 {

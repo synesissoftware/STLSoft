@@ -4,7 +4,7 @@
  * Purpose: Stream functions.
  *
  * Created: 22nd October 2005
- * Updated: 29th July 2026
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MAJOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 7
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     31
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 8
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -102,7 +102,7 @@ namespace comstl_project
  */
 STLSOFT_INLINE
 HRESULT
-comstl__get_stream_size(
+comstl_C_get_stream_size(
     LPSTREAM        pstm
 ,   ULARGE_INTEGER* psize
 )
@@ -146,7 +146,7 @@ get_stream_size(
 ,   ULARGE_INTEGER* psize
 )
 {
-    return comstl__get_stream_size(pstm, psize);
+    return comstl_C_get_stream_size(pstm, psize);
 }
 
 /** Gets the size of a stream
@@ -160,7 +160,7 @@ get_stream_size(
 ,   ULARGE_INTEGER& size
 )
 {
-    return comstl__get_stream_size(pstm, &size);
+    return comstl_C_get_stream_size(pstm, &size);
 }
 
 /** Gets the size of a stream
@@ -175,7 +175,7 @@ get_stream_size(
 )
 {
     ULARGE_INTEGER  uli;
-    HRESULT         hr  =   comstl__get_stream_size(pstm, &uli);
+    HRESULT         hr  =   comstl_C_get_stream_size(pstm, &uli);
 
     if (SUCCEEDED(hr))
     {
@@ -188,8 +188,30 @@ get_stream_size(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * namespace
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names comstl_C_get_stream_size, which the wrapper calls.
  */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use comstl_C_get_stream_size
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__get_stream_size, comstl_C_get_stream_size)
+STLSOFT_INLINE
+HRESULT
+comstl__get_stream_size(
+    LPSTREAM        pstm
+,   ULARGE_INTEGER* psize
+)
+{
+    return comstl_C_get_stream_size(pstm, psize);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

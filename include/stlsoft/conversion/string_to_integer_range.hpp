@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/string_to_integer_range.hpp
+ * File:    stlsoft/conversion/string_to_integer_range.hpp
  *
- * Purpose:     String to integer conversions.
+ * Purpose: String to integer conversions.
  *
- * Created:     28th October 2020
- * Updated:     21st March 2025
+ * Created: 28th October 2020
+ * Updated: 12th August 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_MINOR       0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_EDIT        5
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_REVISION    2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -176,7 +176,7 @@ struct ximpl_string_to_integer_range_util_
             return false;
         }
 
-        if (ximpl_string_to_integer_util_::try_string_to_integer_len_4_(s, len, pfrom, endptr))
+        if (ximpl_string_to_integer_util_::try_string_to_integer_4slre_(s, len, pfrom, endptr))
         {
             if (is_negative_(pfrom, T_integer_is_signed_t_()))
             {
@@ -229,7 +229,7 @@ struct ximpl_string_to_integer_range_util_
                         return true;
                     }
 
-                    if (ximpl_string_to_integer_util_::try_string_to_integer_len_4_(s, len, pto, endptr))
+                    if (ximpl_string_to_integer_util_::try_string_to_integer_4slre_(s, len, pto, endptr))
                     {
                         return true;
                     }
@@ -311,7 +311,7 @@ struct ximpl_string_to_integer_range_util_
                         return true;
                     }
 
-                    if (ximpl_string_to_integer_util_::try_string_to_integer_len_4_(s, len, pto, endptr))
+                    if (ximpl_string_to_integer_util_::try_string_to_integer_4slre_(s, len, pto, endptr))
                     {
                         return true;
                     }

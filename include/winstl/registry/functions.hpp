@@ -4,7 +4,7 @@
  * Purpose: Registry functions.
  *
  * Created: 20th November 1995
- * Updated: 29th July 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -158,7 +158,7 @@ reg_get_string_value(
  * \retval "any other value" The function failed, and the error code
  *   indicates why
  *
- * \remarks If the function fails, the value of <code>value</code> is
+ * \note If the function fails, the value of <code>value</code> is
  *   unchanged.
  */
 template <ss_typename_param_k C>

@@ -4,11 +4,11 @@
  * Purpose: Contains the exception_string_creator class.
  *
  * Created: 25th May 2010
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     32
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,6 +89,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_WCSTOMBS
+# include <stlsoft/string/encoding/wcstombs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_WCSTOMBS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
 # include <stlsoft/util/exception_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
@@ -111,7 +114,7 @@
 #endif /* !STLSOFT_INCL_H_ERRNO */
 #ifndef STLSOFT_INCL_H_STDLIB
 # define STLSOFT_INCL_H_STDLIB
-# include <stdlib.h>                     // for wcstombs()
+# include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
 
@@ -211,8 +214,8 @@ public:
     ///
     /// \param n The length to which the string's contents will be truncated
     ///
-    /// \remarks This method is a no-op if the length specified is greater
-    ///  than the current length
+    /// \note This method is a no-op if the length specified is greater than
+    ///   the current length.
     class_type& truncate(size_type n)
     {
         if (n < m_message.size())
@@ -469,33 +472,16 @@ private:
     {
         STLSOFT_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(cbDest >= cchSrc * UnicodeMaxMultiplier, "insufficient destination buffer size");
 
-        int         err;
-        ss_size_t   numConverted;
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-
-        err = ::wcstombs_s(&numConverted, dest, cbDest, src, cchSrc);
-
-        if (0 == err)
-        {
-            // wcstombs_s() always included nul-terminator in count
-            --numConverted;
-        }
-        else
-        {
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
-        numConverted = ::wcstombs(dest, src, cchSrc);
-
-        STLSOFT_SUPPRESS_UNUSED(cbDest);
+        ss_size_t const numConverted = stlsoft_C_wcstombs(dest, cbDest, src, cchSrc);
 
         if (static_cast<ss_size_t>(-1) == numConverted)
         {
-            err = errno;
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            int const err = errno;
+
             STLSOFT_THROW_X(conversion_error("failed to convert wide string to multibyte string", err));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
             return 0u;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }

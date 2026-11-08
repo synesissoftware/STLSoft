@@ -4,11 +4,11 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 25th June 2002
- * Updated: 24th December 2024
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MAJOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MINOR      1
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       74
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   7
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,11 +100,11 @@ namespace comstl_project
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be \c nullptr.
+ * \pre nullptr != punk
  */
 STLSOFT_INLINE
 void
-comstl__addref(LPUNKNOWN punk)
+comstl_C_addref(LPUNKNOWN punk)
 {
     COMSTL_MESSAGE_ASSERT("Cannot call AddRef() on NULL interface pointer", NULL != punk);
 
@@ -119,7 +119,7 @@ comstl__addref(LPUNKNOWN punk)
  */
 STLSOFT_INLINE
 void
-comstl__release(LPUNKNOWN punk)
+comstl_C_release(LPUNKNOWN punk)
 {
     COMSTL_ITF_CALL(punk)->Release(COMSTL_ITF_THIS0(punk));
 }
@@ -132,11 +132,11 @@ comstl__release(LPUNKNOWN punk)
  */
 STLSOFT_INLINE
 void
-comstl__safe_addref(LPUNKNOWN punk)
+comstl_C_safe_addref(LPUNKNOWN punk)
 {
     if (NULL != punk)
     {
-        comstl__addref(punk);
+        comstl_C_addref(punk);
     }
 }
 
@@ -148,11 +148,11 @@ comstl__safe_addref(LPUNKNOWN punk)
  */
 STLSOFT_INLINE
 void
-comstl__safe_release(LPUNKNOWN punk)
+comstl_C_safe_release(LPUNKNOWN punk)
 {
     if (NULL != punk)
     {
-        comstl__release(punk);
+        comstl_C_release(punk);
     }
 }
 
@@ -179,13 +179,13 @@ namespace comstl
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be \c nullptr.
+ * \pre nullptr != punk
  */
 inline
 void
 addref(LPUNKNOWN punk)
 {
-    comstl__addref(punk);
+    comstl_C_addref(punk);
 }
 
 /** Releases a reference on the interface pointer
@@ -198,7 +198,7 @@ inline
 void
 release(LPUNKNOWN punk)
 {
-    comstl__release(punk);
+    comstl_C_release(punk);
 }
 
 /** Adds a reference on the interface pointer
@@ -211,7 +211,7 @@ inline
 void
 safe_addref(LPUNKNOWN punk)
 {
-    comstl__safe_addref(punk);
+    comstl_C_safe_addref(punk);
 }
 
 /** Releases a reference on the interface pointer
@@ -224,7 +224,7 @@ inline
 void
 safe_release(LPUNKNOWN punk)
 {
-    comstl__safe_release(punk);
+    comstl_C_safe_release(punk);
 }
 
 /** Releases a reference on the interface pointer, and resets the pointer
@@ -245,6 +245,57 @@ release_set_null(T*& pt)
     }
 }
 #endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names the comstl_C_addref, release, or safe_* function the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use comstl_C_addref
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__addref, comstl_C_addref)
+STLSOFT_INLINE
+void
+comstl__addref(LPUNKNOWN punk)
+{
+    comstl_C_addref(punk);
+}
+
+/** \deprecated Use comstl_C_release
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__release, comstl_C_release)
+STLSOFT_INLINE
+void
+comstl__release(LPUNKNOWN punk)
+{
+    comstl_C_release(punk);
+}
+
+/** \deprecated Use comstl_C_safe_addref
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__safe_addref, comstl_C_safe_addref)
+STLSOFT_INLINE
+void
+comstl__safe_addref(LPUNKNOWN punk)
+{
+    comstl_C_safe_addref(punk);
+}
+
+/** \deprecated Use comstl_C_safe_release
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(comstl__safe_release, comstl_C_safe_release)
+STLSOFT_INLINE
+void
+comstl__safe_release(LPUNKNOWN punk)
+{
+    comstl_C_safe_release(punk);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

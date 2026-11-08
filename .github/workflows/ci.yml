@@ -4,11 +4,19 @@ on:
   push:
     branches:
       - master
-      - main
-      - ver
+      - dev
+      - boilerplate
+      - idiomatic
+      - rc1
+      - rc2
+      - rc3
       - rc4
       - rc5
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 env:
   BUILD_TYPE: Release
@@ -20,14 +28,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - id: linux-gcc
-            os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
           - id: linux-clang
             os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
+          - id: linux-gcc
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
           - id: macos-clang
             os: macos-latest
             c_compiler: clang
@@ -51,6 +59,78 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      with-ace: false
+      with-atl: false
+      with-mfc: false
+    secrets: inherit
+
+  cell-ace:
+    name: CI ACE (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: linux-gcc-ace
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      execute-full-suite: false
+      with-ace: true
+      with-atl: false
+      with-mfc: false
+    secrets: inherit
+
+  cell-atl:
+    name: CI ATL (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: windows-cl-atl
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      execute-full-suite: false
+      with-ace: false
+      with-atl: true
+      with-mfc: false
+    secrets: inherit
+
+  cell-mfc:
+    name: CI MFC (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: windows-cl-mfc
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      execute-full-suite: false
+      with-ace: false
+      with-atl: false
+      with-mfc: true
     secrets: inherit
 
   install-smoke:
@@ -100,6 +180,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
+              -DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
@@ -190,3 +271,23 @@ jobs:
             cmake --build consumer-build --parallel
             consumer-build/consumer
           fi
+
+  # File: labels and XTESTS_START_RUNNER names. Source text only, so this
+  # job is one Ubuntu runner, not a cell per platform and compiler. The
+  # script exits non-zero when either mismatch total is non-zero.
+  check-test-names:
+    name: Check test names
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Install checker dependencies
+        run: gem install highline libclimate-ruby recls-ruby xqsr3
+
+      - name: "Check File: labels and runner names"
+        run: ./.dev/bin/check_unit_test_names.rb examples test

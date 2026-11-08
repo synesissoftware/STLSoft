@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/rot_functions/rot_functions.cpp
+ * File:    examples/by_library/com_utility/rot_functions/main.cpp
  *
  * Purpose: C++ example program demonstrating use of various COMSTL
  *          components to manipulate the COM Running Object Table.
  *
  * Created: 13th December 2006
- * Updated: 9th October 2024
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

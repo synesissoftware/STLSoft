@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 29th July 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      127
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -63,32 +63,37 @@
 /* /////////////////////////////////////////////////////////////////////////
  * ATLSTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * The major version is denoted by the _ATLSTL_VER_MAJOR preprocessor symbol.
- * A change to the major version component implies that a dramatic change has
- * occurred in the libraries, such that considerable changes to source dependent
- * on previous versions would need to be effected.
+ * The major version is denoted by the _ATLSTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
  *
- * The minor version is denoted by the _ATLSTL_VER_MINOR preprocessor symbol.
- * Changes to the minor version component imply that a significant change has
- * occurred to the libraries, either in the addition of new functionality or in
- * the destructive change to one or more components such that recomplilation and
- * code change may be necessitated.
+ * The minor version is denoted by the _ATLSTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
  *
- * The revision version is denoted by the _ATLSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the changes.
+ * The patch version is denoted by the _ATLSTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
  *
  * In addition to the individual version symbols - _ATLSTL_VER_MAJOR,
- * _ATLSTL_VER_MINOR and _ATLSTL_VER_REVISION - a composite symbol _ATLSTL_VER
- * is defined, where the upper 8 bits are 0, bits 16-23 represent the major
- * component,  bits 8-15 represent the minor component, and bits 0-7 represent
- * the revision component.
+ * _ATLSTL_VER_MINOR and _ATLSTL_VER_PATCH - a composite symbol _ATLSTL_VER
+ * is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _ATLSTL_VER_1_0_1.
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _ATLSTL_VER_1_0_1.
  *
  * Thus the symbol _ATLSTL_VER may be compared meaningfully with a specific
  * version symbol, e.g. #if _ATLSTL_VER >= _ATLSTL_VER_1_0_1
@@ -102,8 +107,13 @@
  * The minor version number of ATLSTL
  */
 
-/** \def _ATLSTL_VER_REVISION
- * The revision version number of ATLSTL
+/** \def _ATLSTL_VER_PATCH
+ * The patch version number of ATLSTL
+ */
+
+/** \def _ATLSTL_VER_RELSTATUS
+ * The release-status number of ATLSTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _ATLSTL_VER
@@ -131,18 +141,31 @@
 # define _ATLSTL_VER_1_6_1      0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.1) */
 # define _ATLSTL_VER_1_6_2      0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.25) */
 # define _ATLSTL_VER_1_6_3      0x010603ff  /*!< Version 1.6.3 (with STLSoft 1.9.113) */
-# define _ATLSTL_VER_1_7_1_B01  0x01070181  /*!< Version 1.7.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _ATLSTL_VER_1_7_1_B02  0x01070182  /*!< Version 1.7.1 beta 2 (with STLSoft 1.10.1 beta 4) */
-# define _ATLSTL_VER_1_7_1_B03  0x01070183  /*!< Version 1.7.1 beta 3 (with STLSoft 1.10.1 beta 10) */
-# define _ATLSTL_VER_1_7_1_B04  0x01070184  /*!< Version 1.7.1 beta 4 (with STLSoft 1.10.1 beta 26) */
-# define _ATLSTL_VER_1_7_1      0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.11.1 alpha 8) */
-# define _ATLSTL_VER_1_7_2      0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.11.1 rc 5) */
+# define _ATLSTL_VER_1_7_1_B01  0x01070181  /*!< Version 1.7.1-beta1 (with STLSoft 1.10.1-beta1) */
+# define _ATLSTL_VER_1_7_1_B02  0x01070182  /*!< Version 1.7.1-beta2 (with STLSoft 1.10.1-beta4) */
+# define _ATLSTL_VER_1_7_1_B03  0x01070183  /*!< Version 1.7.1-beta3 (with STLSoft 1.10.1-beta10) */
+# define _ATLSTL_VER_1_7_1_B04  0x01070184  /*!< Version 1.7.1-beta4 (with STLSoft 1.10.1-beta26) */
+# define _ATLSTL_VER_1_7_1      0x010701FF  /*!< Version 1.7.1 (with STLSoft 1.11.1-alpha8) */
+# define _ATLSTL_VER_1_7_2      0x010702FF  /*!< Version 1.7.2 (with STLSoft 1.11.7) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ATLSTL_VER_MAJOR       1
 #define _ATLSTL_VER_MINOR       7
-#define _ATLSTL_VER_REVISION    2
-#define _ATLSTL_VER             _ATLSTL_VER_1_7_2
+#define _ATLSTL_VER_PATCH       2
+#define _ATLSTL_VER_RELSTATUS   0xFF
+
+#define _ATLSTL_VER \
+    (0\
+        |   (   _ATLSTL_VER_MAJOR       << 24   ) \
+        |   (   _ATLSTL_VER_MINOR       << 16   ) \
+        |   (   _ATLSTL_VER_PATCH       <<  8   ) \
+        |   (   _ATLSTL_VER_RELSTATUS   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _ATLSTL_VER_ALPHABETA                              _ATLSTL_VER_RELSTATUS
+# define _ATLSTL_VER_REVISION                               _ATLSTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -189,9 +212,10 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the ATLSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the ATLSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -392,7 +416,7 @@
  */
 
 #ifndef ATLSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::atlstl */
 /** The \c atlstl namespace contains all components
@@ -585,7 +609,7 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
  */
 
 #ifndef ATLSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace atlstl
 # else

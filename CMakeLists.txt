@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  15th July 2026
+# Updated:  6th November 2026
 #
 # ######################################################################## #
 
@@ -14,6 +14,9 @@
 # CMake
 
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.31")
+	cmake_policy(SET CMP0177 NEW)
+endif()
 
 # require out-of-source builds
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
@@ -46,8 +49,8 @@ string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MAJOR${RX_WS}+
 set(_VERSION_MAJOR ${CMAKE_MATCH_1})
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MINOR${RX_WS}+([0-9]+)" MINOR_DUMMY ${_header_file})
 set(_VERSION_MINOR ${CMAKE_MATCH_1})
-string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_PATCH${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
-set(_VERSION_PATCH ${CMAKE_MATCH_1})
+string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_(PATCH|REVISION)${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
+set(_VERSION_PATCH ${CMAKE_MATCH_2})
 
 # set project version number here
 set(PROJECT_VERSION_MAJOR ${_VERSION_MAJOR})
@@ -92,14 +95,49 @@ endif(MSVC)
 
 if(WIN32)
 
+	find_package(ATL QUIET)
 	find_package(MFC QUIET)
+endif(WIN32)
+
+if(ATL_FOUND)
+
+	message("-- using Active Template Library")
+
+	add_compile_definitions(STLSOFT_HAS_ATL)
+endif(ATL_FOUND)
+
+if(WIN32)
+
+	add_compile_definitions(STLSOFT_HAS_COM)
 endif(WIN32)
 
 if(MFC_FOUND)
 
-	add_compile_definitions(STLSOFT_HAS_MFC)
+	# Shared MFC (/MD + _AFXDLL) unless the project is configured for the
+	# static CRT (**MSVC_USE_MT**), in which case static MFC is required.
+	#
+	# **CMAKE_MFC_FLAG** / **_AFXDLL** are applied only to MFC-consuming
+	# targets (**test/unit/mfcstl**, **test/unit/versions**, and the scratch
+	# versions programs that include **mfcstl**). Setting them project-wide
+	# would force every subsequent MSVC executable to link MFC. Without them
+	# on those targets, `find_package(MFC)` can succeed while mfcstl tests
+	# fail to link — the historical GHA failure mode.
 
-	message("-- using Microsoft Foundation Classes")
+	if(MSVC_USE_MT)
+
+		set(STLSOFT_MFC_FLAG 1)
+		set(STLSOFT_MFC_SHARED OFF)
+
+		message("-- using Microsoft Foundation Classes (static; MSVC_USE_MT)")
+	else(MSVC_USE_MT)
+
+		set(STLSOFT_MFC_FLAG 2)
+		set(STLSOFT_MFC_SHARED ON)
+
+		message("-- using Microsoft Foundation Classes (shared)")
+	endif(MSVC_USE_MT)
+
+	add_compile_definitions(STLSOFT_HAS_MFC)
 endif(MFC_FOUND)
 
 
@@ -122,6 +160,12 @@ include(TargetMacros)
 
 option(BUILD_EXAMPLES "Build examples" ON)
 
+option(BUILD_TESTING "Build tests" ON)
+
+# CI feature cells (ACE / ATL / MFC) set this so the build is the
+# version reporter plus those libraries' unit tests, not the full tree.
+option(STLSOFT_FEATURE_TESTS_ONLY "Build only feature-library unit tests and the version reporter" OFF)
+
 
 # ######################################
 # features
@@ -135,9 +179,34 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # - xTests - required for testing;
 #
 # optional:
+# - ACE - enables ACESTL examples/tests when found (NO_ACE / --no-ace suppresses);
 # - cstring - facilitates some C tests;
 # - shwild - enhances xTests for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
+# - woad - opt-in (USE_WOAD / --use-woad); reported by the scratch versions programs;
+
+
+# ############################
+# ACE
+#
+# Discovery (when NO_ACE is not set): find_package(ACE) via cmake/FindACE.cmake
+# (system packages such as libace-dev, or ACE / ACE_ROOT hints).
+
+set(HAS_ACE OFF)
+
+if(NOT NO_ACE)
+
+	find_package(ACE QUIET)
+
+	if(ACE_FOUND)
+
+		set(HAS_ACE ON)
+
+		add_compile_definitions(STLSOFT_HAS_ACE)
+
+		message("-- ACE found")
+	endif()
+endif()
 
 
 # ############################
@@ -168,34 +237,13 @@ endif(BUILD_TESTING)
 
 
 # ############################
-# shwild
-
-if(NOT (NO_SHWILD))
-
-	if(BUILD_TESTING)
-
-		set(shwild_REQUIRED_VERSION_ 0.12.6)
-
-		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
-
-		if(shwild_FOUND)
-
-			message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
-
-			add_compile_definitions(XTESTS_USE_SHWILD)
-		endif(shwild_FOUND)
-	endif(BUILD_TESTING)
-endif()
-
-
-# ############################
 # cstring
 
 if(NOT (NO_CSTRING))
 
 	if(BUILD_TESTING)
 
-		set(cstring_REQUIRED_VERSION_ 4.0)
+		set(cstring_REQUIRED_VERSION_ 4.0.19)
 
 		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
 
@@ -203,8 +251,37 @@ if(NOT (NO_CSTRING))
 
 			message("-- CMake package cstring found (version ${cstring_VERSION}; ${cstring_REQUIRED_VERSION_} requested)")
 
-			add_compile_definitions(STLSOFT_HAS_CSTRING)
+			add_compile_definitions(
+				HAS_cstring
+				HAS_CSTRING
+			)
 		endif(cstring_FOUND)
+	endif(BUILD_TESTING)
+endif()
+
+
+# ############################
+# shwild
+
+if(NOT (NO_SHWILD))
+
+	if(BUILD_TESTING)
+
+		set(shwild_REQUIRED_VERSION_ 0.12.15)
+
+		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
+
+		if(shwild_FOUND)
+
+			message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
+
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
+		endif(shwild_FOUND)
 	endif(BUILD_TESTING)
 endif()
 
@@ -216,15 +293,46 @@ if((USE_UNIXEM) AND (WIN32))
 
 	if((BUILD_EXAMPLES) OR (BUILD_TESTING))
 
-		set(UNIXem_REQUIRED_VERSION_ 1.12.7)
+		set(UNIXem_REQUIRED_VERSION_ 1.14.2)
 
 		find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
 		message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
 
+		add_compile_definitions(
+			HAS_UNIXem
+			HAS_UNIXEM
+		)
+
 		add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
-		add_compile_definitions(STLSOFT_HAS_UNIXEM)
 	endif()
+endif()
+
+
+# ############################
+# woad
+#
+# Opt-in (USE_WOAD / --use-woad): used only by scratch programs.
+
+set(HAS_woad OFF)
+
+if(USE_WOAD)
+
+	if(BUILD_TESTING)
+
+		set(woad_REQUIRED_VERSION_ 0.2.1)
+
+		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
+
+		message("-- CMake package woad found (version ${woad_VERSION}; ${woad_REQUIRED_VERSION_} requested)")
+
+		set(HAS_woad ON)
+
+		add_compile_definitions(
+			HAS_woad
+			HAS_WOAD
+		)
+	endif(BUILD_TESTING)
 endif()
 
 
@@ -233,11 +341,16 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26.4)
+	set(xTests_REQUIRED_VERSION_ 0.28.2)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 

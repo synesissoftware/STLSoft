@@ -1,5 +1,5 @@
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(BEFORE ${CMAKE_SOURCE_DIR}/include)
 
 
 if(_BUILD_AS_UNIX)
@@ -45,11 +45,16 @@ endif()
 
 add_subdirectory(fixtures)
 
-add_subdirectory(component)
-add_subdirectory(performance)
-add_subdirectory(scratch)
-add_subdirectory(unit)
+if(STLSOFT_FEATURE_TESTS_ONLY)
 
+	add_subdirectory(unit)
+else()
+
+	add_subdirectory(component)
+	add_subdirectory(performance)
+	add_subdirectory(scratch)
+	add_subdirectory(unit)
+endif()
 
 # ############################## end of file ############################# #
 

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 29th July 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      58
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -62,11 +62,40 @@
 /* /////////////////////////////////////////////////////////////////////////
  * ACESTL version
  *
- * The libraries version information is comprised of major, minor and revision
+ * The libraries version information is comprised of major, minor and patch
  * components.
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _ACESTL_VER_1_0_1.
+ * The major version is denoted by the _ACESTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
+ *
+ * The minor version is denoted by the _ACESTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recompilation and code change may be necessitated.
+ *
+ * The patch version is denoted by the _ACESTL_VER_PATCH preprocessor
+ * symbol. Changes to the patch version component imply that a bug has been
+ * fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
+ *
+ * In addition to the individual version symbols - _ACESTL_VER_MAJOR,
+ * _ACESTL_VER_MINOR and _ACESTL_VER_PATCH - a composite symbol _ACESTL_VER
+ * is defined, where:
+ *  - bits 24-31: the major version
+ *  - bits 16-23: the minor version
+ *  - bits 8-15: the patch version
+ *  - bits 0-7: the alphabeta / prerelease number; if not a prerelease,
+ *    it is 0xFF
+ *
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _ACESTL_VER_1_0_1.
+ *
+ * Thus the symbol _ACESTL_VER may be compared meaningfully with a specific
+ * version symbol, e.g. #if _ACESTL_VER >= _ACESTL_VER_1_0_1
  */
 
 /** \def _ACESTL_VER_MAJOR
@@ -86,12 +115,16 @@
  * recompilation and code change may be necessitated.
  */
 
-/** \def _ACESTL_VER_REVISION
- * The revision version number of ACESTL
+/** \def _ACESTL_VER_PATCH
+ * The patch version number of ACESTL
  *
- * A change to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the
- * changes.
+ * A change to the patch version component imply that a bug has been fixed.
+ * Dependent code should be recompiled in order to pick up the changes.
+ */
+
+/** \def _ACESTL_VER_RELSTATUS
+ * The release-status number of ACESTL, in the range 1-0xFE for prerelease
+ * versions, and 0xFF for a released version
  */
 
 /** \def _ACESTL_VER
@@ -109,16 +142,29 @@
 # define _ACESTL_VER_1_0_4     0x00010004  /*!< Version 1.0.4 */
 # define _ACESTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 (STLSoft 1.9.1) */
 # define _ACESTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 (STLSoft 1.9.25) */
-# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1 beta 1 (STLSoft 1.10.1 b1) */
-# define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1 beta 2 (STLSoft 1.10.1 beta 26) */
-# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1 alpha 8) */
-# define _ACESTL_VER_1_2_2     0x010202ff  /*!< Version 1.2.2 (with STLSoft 1.11.1 rc 5) */
+# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1-beta1 (STLSoft 1.10.1-beta1) */
+# define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1-beta2 (STLSoft 1.10.1-beta26) */
+# define _ACESTL_VER_1_2_1     0x010201FF  /*!< Version 1.2.1 (with STLSoft 1.11.1-alpha8) */
+# define _ACESTL_VER_1_2_2     0x010202FF  /*!< Version 1.2.2 (with STLSoft 1.11.7) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
 #define _ACESTL_VER_MINOR      2
-#define _ACESTL_VER_REVISION   2
-#define _ACESTL_VER            _ACESTL_VER_1_2_2
+#define _ACESTL_VER_PATCH      2
+#define _ACESTL_VER_RELSTATUS  0xFF
+
+#define _ACESTL_VER \
+    (0\
+        |   (   _ACESTL_VER_MAJOR       << 24   ) \
+        |   (   _ACESTL_VER_MINOR       << 16   ) \
+        |   (   _ACESTL_VER_PATCH       <<  8   ) \
+        |   (   _ACESTL_VER_RELSTATUS   <<  0   ) \
+    )
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define _ACESTL_VER_ALPHABETA                              _ACESTL_VER_RELSTATUS
+# define _ACESTL_VER_REVISION                               _ACESTL_VER_PATCH
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,8 +199,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the ACESTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the ACESTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -332,7 +378,7 @@
  */
 
 #ifndef ACESTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::acestl */
 /** The \c acestl namespace contains all components
@@ -453,9 +499,9 @@ typedef as_int32_t          int32_t;            //!< 32-bit integer
 typedef as_sint32_t         sint32_t;           //!< 32-bit signed integer
 typedef as_uint32_t         uint32_t;           //!< 32-bit unsigned integer
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef as_int64_t         int64_t;            //!< 64-bit integer
- typedef as_sint64_t        sint64_t;           //!< 64-bit signed integer
- typedef as_uint64_t        uint64_t;           //!< 64-bit unsigned integer
+typedef as_int64_t          int64_t;            //!< 64-bit integer
+typedef as_sint64_t         sint64_t;           //!< 64-bit signed integer
+typedef as_uint64_t         uint64_t;           //!< 64-bit unsigned integer
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 //typedef as_short_t          short_t;            //!< short integer
 typedef as_int_t            int_t;              //!< integer
@@ -523,7 +569,7 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
  */
 
 #ifndef ACESTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace acestl
 # else

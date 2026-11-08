@@ -4,7 +4,7 @@
  * Purpose: Helper functions for the Windows time types.
  *
  * Created: 2nd December 2004
- * Updated: 29th July 2026
+ * Updated: 15th October 2026
  *
  * Thanks:  David Wang, for spotting an error in one of the shim functions.
  *
@@ -270,7 +270,7 @@ stream_insert(S &stm, SYSTEMTIME const& t)
             // Because it's possible for external action to change the date
             // and/or time pictures between the call to calc_sizes and the
             // two preceeding calls, we guard against an unterminated
-            // C-style string by forcibly appending the nul-terminator that
+            // C-style string by forcibly appending the NUL character that
             // GetTimeFormat() will do for us normally.
             s.data()[cchTotal] = '\0';
         }
@@ -345,7 +345,7 @@ c_str_ptr_a(
         // Because it's possible for external action to change the date
         // and/or time pictures between the call to calc_sizes and the
         // two preceeding calls, we guard against an unterminated
-        // C-style string by forcibly appending the nul-terminator that
+        // C-style string by forcibly appending the NUL character that
         // GetTimeFormat() will do for us normally.
         s.data()[cchTotal] = '\0';
     }
@@ -395,7 +395,7 @@ c_str_ptr_w(
         // Because it's possible for external action to change the date
         // and/or time pictures between the call to calc_sizes and the
         // two preceeding calls, we guard against an unterminated
-        // C-style string by forcibly appending the nul-terminator that
+        // C-style string by forcibly appending the NUL character that
         // GetTimeFormat() will do for us normally.
         s.data()[cchTotal] = '\0';
     }

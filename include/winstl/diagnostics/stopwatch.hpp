@@ -6,11 +6,11 @@
  *          otherwise using the tick-count facilities.
  *
  * Created: 31st July 2002
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      1
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       54
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -158,10 +158,10 @@ std::cout << "Number of nanoseconds:  " << static_cast<unsigned long>(sw.get_nan
 \endcode
  *
  *
- * \remarks This class attempts to use the high performance hardware
- *  stopwatch as its measurement resource, but failing that it defaults to
- *  less accurate resources in order to guarantee that meaningful
- *  measurements are always available to application code.
+ * \note This class attempts to use the high performance hardware stopwatch
+ *   as its measurement resource, but failing that it defaults to less
+ *   accurate resources in order to guarantee that meaningful measurements
+ *   are always available to application code.
  */
 class stopwatch
 {
@@ -221,8 +221,8 @@ public: // operations
     void    stop();
     /// Ends the current measurement period and start the next
     ///
-    /// \remarks This is equivalent to an atomic invocation of stop() and
-    /// start()
+    /// \note This is equivalent to an atomic invocation of stop() and
+    ///   start().
     void    restart();
 
 public: // attributes

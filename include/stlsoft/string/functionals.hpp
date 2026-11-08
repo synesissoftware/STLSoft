@@ -4,11 +4,11 @@
  * Purpose:     String function classes
  *
  * Created:     22nd April 2005
- * Updated:     20th March 2025
+ * Updated:     29th September 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    11
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        51
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    12
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,6 +73,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
+# include <stlsoft/string/char_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
@@ -160,7 +163,7 @@ struct string_begins_with_function
 #endif
 {
 public:
-    typedef char const*                                     argument_type;
+    typedef C const*                                        argument_type;
     typedef ss_bool_t                                       result_type;
 
 public:
@@ -172,7 +175,7 @@ public:
 public:
     ss_bool_t operator ()(C const* line) const
     {
-        return 0 == ::strncmp(line, m_prefix, m_prefixLen);
+        return 0 == char_traits<C>::compare_max(line, m_prefix, m_prefixLen);
     }
     template <ss_typename_param_k S>
     ss_bool_t operator ()(S const& line) const

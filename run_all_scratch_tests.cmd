@@ -1,173 +1,174 @@
-@ECHO OFF
+@echo off
 
-SETLOCAL ENABLEDELAYEDEXPANSION ENABLEEXTENSIONS
+SETLOCAL ENABLEDELAYEDEXPANSION
 
-SET ScriptPath=%~n0[%~x0]
-SET ScriptDir=%~dp0
+SET SCRIPT_DIRECTORY=%~dp0
+SET SCRIPT_PATH_DOC=%~n0[%~x0]
+SET "ALLOWED_TO_FAIL_FILE=%SCRIPT_DIRECTORY%.sis\ci_scratch_tests_allowed_to_fail.txt"
+SET "SKIP_INTERACTIVE_FILE=%SCRIPT_DIRECTORY%.sis\ci_scratch_tests_skip_interactive.txt"
+SET "PROGRAM_STATUS=0"
+SET "SKIP_INTERACTIVE=0"
 
 IF DEFINED SIS_CMAKE_BUILD_DIR (
 
-    SET CMakeDir=%SIS_CMAKE_BUILD_DIR%
+    SET CMAKE_DIR=%SIS_CMAKE_BUILD_DIR%
 ) ELSE (
 
-    SET CMakeDir=%ScriptDir%_build
+    SET CMAKE_DIR=%SCRIPT_DIRECTORY%_build
 )
 
-SET ListOnly=0
-SET RunMake=1
-SET TestVerbosityDefault=3
-SET TestVerbosity=%TEST_VERBOSITY%
+FOR %%a IN (%*) DO (
 
-IF NOT DEFINED TestVerbosity SET TestVerbosity=%TestVerbosityDefault%
-IF DEFINED XTESTS_VERBOSITY SET TestVerbosity=%XTESTS_VERBOSITY%
+	IF /I {--help}=={%%a} (
 
-SET BuildConfig=Release
-IF DEFINED CMAKE_BUILD_TYPE SET BuildConfig=%CMAKE_BUILD_TYPE%
+		IF EXIST "%SCRIPT_DIRECTORY%.sis\script_info_lines.txt" (
+
+					type "%SCRIPT_DIRECTORY%.sis\script_info_lines.txt"
+		)
+		ECHO ^
+
+Runs all ^(matching^) scratch-test programs ^
+
+^
+
+%SCRIPT_PATH_DOC% [ ... flags/options ... ] ^
+
+^
+
+Flags/options: ^
+
+    behaviour: ^
+
+^
+
+        --skip-interactive ^
+
+            skips programs listed in .sis\ci_scratch_tests_skip_interactive.txt ^
+
+            ^(GUI / speech / desktop-interactive; unsuitable for headless CI^) ^
+
+^
+
+    standard flags: ^
+
+^
+
+        --help ^
+
+            displays this help and terminates ^
+
+^
+
+    files: ^
+
+^
+
+        .sis\ci_scratch_tests_allowed_to_fail.txt ^
+
+            optional list of scratch-test programs ^(one name per line; ^
+
+            lines beginning with '#' are ignored^) that are allowed to fail; ^
+
+            such a program is still executed, but a non-zero exit is ^
+
+            reported as anticipated and does not stop the run ^
+
+^
+
+        .sis\ci_scratch_tests_skip_interactive.txt ^
+
+            list of scratch-test programs skipped when --skip-interactive ^
+
+            is given ^(one name per line; blank lines and '#' ignored^) ^
 
 
-:: #########################################################
-:: command-line handling
+		EXIT /B 0
+	) ELSE IF /I {--skip-interactive}=={%%a} (
 
-:parse_args
-IF "%~1"=="" GOTO args_done
+		SET "SKIP_INTERACTIVE=1"
+	) ELSE (
 
-IF /I "%~1"=="--help" GOTO show_help
-IF /I "%~1"=="-l" (
-    SET ListOnly=1
-    GOTO next_arg
-)
-IF /I "%~1"=="--list-only" (
-    SET ListOnly=1
-    GOTO next_arg
-)
-IF /I "%~1"=="-M" (
-    SET RunMake=0
-    GOTO next_arg
-)
-IF /I "%~1"=="--no-make" (
-    SET RunMake=0
-    GOTO next_arg
-)
-IF /I "%~1"=="--verbosity" (
-    SHIFT
-    IF "%~1"=="" (
-        ECHO %ScriptPath%: --verbosity requires an argument 1>&2
-        EXIT /B 1
-    )
-    SET TestVerbosity=%~1
-    GOTO next_arg
-)
+		ECHO "%SCRIPT_DIRECTORY%: unrecognised argument '%%a'; use --help for usage" 1>&2
 
-ECHO %ScriptPath%: unrecognised argument '%~1'; use --help for usage 1>&2
-EXIT /B 1
-
-:next_arg
-SHIFT
-GOTO parse_args
-
-:args_done
-
-
-:: #########################################################
-:: main()
-
-SET status=0
-
-IF %RunMake% NEQ 0 (
-    IF %ListOnly% EQU 0 (
-        ECHO Executing build and then running all scratch test programs
-        CALL :do_build
-        IF ERRORLEVEL 1 SET status=1
-    )
-) ELSE (
-    IF NOT EXIST "%CMakeDir%\CMakeCache.txt" (
-        ECHO %ScriptPath%: cannot run in '--no-make' mode without a previous successful build step 1>&2
-        EXIT /B 1
-    )
-)
-
-IF %status% EQU 0 (
-    IF %ListOnly% NEQ 0 (
-        ECHO Listing all scratch test programs
-    ) ELSE (
-        ECHO Running all scratch test programs
-    )
-
-    FOR /F "usebackq delims=" %%f IN (`DIR /A:-D /B /S "%CMakeDir%" 2^>NUL ^| FINDSTR /I /R "test[._]scratch[._].*\.exe$"`) DO (
-        IF !ListOnly! NEQ 0 (
-            ECHO would execute %%f:
-        ) ELSE (
-            IF !TestVerbosity! GEQ 3 ECHO.
-            IF !TestVerbosity! GEQ 2 ECHO executing %%f:
-            CALL "%%f"
-            IF ERRORLEVEL 1 SET status=1
-        )
-    )
+		EXIT /B 1
+	)
 )
 
-IF !status! NEQ 0 (
-    ENDLOCAL
+IF "%SKIP_INTERACTIVE%"=="1" IF NOT EXIST "%SKIP_INTERACTIVE_FILE%" (
+
+	ECHO %SCRIPT_PATH_DOC%: --skip-interactive: skip list not found at '%SKIP_INTERACTIVE_FILE%' 1>&2
+
+	EXIT /B 1
+)
+
+if NOT EXIST "%CMAKE_DIR%" (
+
+    ECHO "CMake build directory '%CMAKE_DIR%' does not exist"
+
     EXIT /B 1
 )
-ENDLOCAL
+
+SET "ProjectName="
+FOR /F "usebackq delims=" %%p IN ("%SCRIPT_DIRECTORY%.sis\project_name.txt") DO SET "ProjectName=%%p"
+
+IF NOT DEFINED ProjectName (
+
+    ECHO %SCRIPT_PATH_DOC%: could not read project name from .sis\project_name.txt 1>&2
+
+    EXIT /B 1
+)
+
+ECHO Running all %ProjectName% scratch-test programs
+
+FOR /F "usebackq" %%f IN (`DIR /A:-D /B /S "%CMAKE_DIR%" ^| FINDSTR /I test.*scratch.*\.exe$`) DO CALL :run_program "%%f"
+
+ENDLOCAL & EXIT /B %PROGRAM_STATUS%
+
+
+REM ##########################################################
+REM subroutines
+
+:run_program
+IF %PROGRAM_STATUS% NEQ 0 EXIT /B 0
+CALL :is_skipped_interactive "%~1"
+IF DEFINED SKIPPED_INTERACTIVE (
+
+	ECHO .
+	ECHO skipping %~1 ^(interactive; --skip-interactive^)
+	EXIT /B 0
+)
+ECHO .
+ECHO executing %~1
+"%~1"
+SET "FAILURE_STATUS=%ERRORLEVEL%"
+IF %FAILURE_STATUS% EQU 0 EXIT /B 0
+CALL :is_allowed_to_fail "%~1"
+IF NOT DEFINED ALLOWED_TO_FAIL GOTO run_program_failed
+ECHO anticipated failure: %~1 exited with status %FAILURE_STATUS%; it is listed in .sis\ci_scratch_tests_allowed_to_fail.txt
+EXIT /B 0
+:run_program_failed
+SET "PROGRAM_STATUS=%FAILURE_STATUS%"
 EXIT /B 0
 
-
-:: #########################################################
-:: helpers
-
-:do_build
-IF DEFINED SIS_CMAKE_MAKE_COMMAND (
-    PUSHd "%CMakeDir%"
-    CALL %SIS_CMAKE_MAKE_COMMAND%
-    SET build_status=!ERRORLEVEL!
-    POPD
-    EXIT /B !build_status!
-)
-IF EXIST "%CMakeDir%\Makefile" (
-    PUSHd "%CMakeDir%"
-    IF DEFINED MSYSTEM (
-        mingw32-make.exe
-    ) ELSE (
-        make
-    )
-    SET build_status=!ERRORLEVEL!
-    POPD
-    EXIT /B !build_status!
-)
-cmake --build "%CMakeDir%" --config %BuildConfig%
-EXIT /B %ERRORLEVEL%
-
-
-:show_help
-IF EXIST "%ScriptDir%.sis\script_info_lines.txt" (
-    type "%ScriptDir%.sis\script_info_lines.txt"
-)
-ECHO.
-ECHO Runs all (matching) scratch-test programs
-ECHO.
-ECHO %ScriptPath% [ ... flags/options ... ]
-ECHO.
-ECHO Flags/options:
-ECHO.
-ECHO     behaviour:
-ECHO.
-ECHO     -l
-ECHO     --list-only
-ECHO         lists the target programs but does not execute them
-ECHO.
-ECHO     -M
-ECHO     --no-make
-ECHO         does not execute CMake and make before running tests
-ECHO.
-ECHO     --verbosity ^<verbosity^>
-ECHO         reserved for output control; scratch programs are invoked without xTests verbosity flags
-ECHO.
-ECHO     standard flags:
-ECHO.
-ECHO     --help
-ECHO         displays this help and terminates
+:is_allowed_to_fail
+SET "ALLOWED_TO_FAIL="
+IF NOT EXIST "%ALLOWED_TO_FAIL_FILE%" EXIT /B 0
+FOR /F "usebackq eol=# tokens=1" %%n IN ("%ALLOWED_TO_FAIL_FILE%") DO CALL :match_allowed "%%n" "%~n1" "%~nx1"
 EXIT /B 0
 
+:match_allowed
+IF /I "%~1"=="%~2" SET "ALLOWED_TO_FAIL=1"
+IF /I "%~1"=="%~3" SET "ALLOWED_TO_FAIL=1"
+EXIT /B 0
 
-:: ############################# end of file ############################ ::
+:is_skipped_interactive
+SET "SKIPPED_INTERACTIVE="
+IF NOT "%SKIP_INTERACTIVE%"=="1" EXIT /B 0
+IF NOT EXIST "%SKIP_INTERACTIVE_FILE%" EXIT /B 0
+FOR /F "usebackq eol=# tokens=1" %%n IN ("%SKIP_INTERACTIVE_FILE%") DO CALL :match_skip "%%n" "%~n1" "%~nx1"
+EXIT /B 0
+
+:match_skip
+IF /I "%~1"=="%~2" SET "SKIPPED_INTERACTIVE=1"
+IF /I "%~1"=="%~3" SET "SKIPPED_INTERACTIVE=1"
+EXIT /B 0

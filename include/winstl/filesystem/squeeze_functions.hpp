@@ -4,11 +4,11 @@
  * Purpose: Path squeeze functions
  *
  * Created: 6th June 2006
- * Updated: 15th April 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT        39
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -299,7 +299,7 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_winstl_squeeze_functions_)
  *   the number of characters written (if buffer is non-\c nullptr). In both
  *   cases, it includes the one required for the <code>NUL</code>-terminator
  *
- * \remarks The squeeze algorithm is as follows. The path is split into
+ * \note The squeeze algorithm is as follows. The path is split into
  *   volume+directory and file+ext. If the buffer is too small to fit the
  *   file+ext, then the result will be a squeezed form of file+ext. If the
  *   buffer is too small to fit the volume+...+file+ext, then the result

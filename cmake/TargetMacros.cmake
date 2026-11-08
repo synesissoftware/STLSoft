@@ -1,9 +1,41 @@
 
 
+
+# Apply MFC link settings for targets created in the current directory
+# scope. Call before define_automated_test_program /
+# define_example_program when the target includes MFC headers.
+# **CMAKE_MFC_FLAG** is read at add_executable() time (Visual Studio
+# generators); **_AFXDLL** is required for shared MFC on Make/Ninja+cl
+# as well.
+macro(stlsoft_prepare_mfc_target)
+
+	if(NOT MFC_FOUND)
+
+		message(FATAL_ERROR "stlsoft_prepare_mfc_target() requires MFC_FOUND")
+	endif()
+
+	set(CMAKE_MFC_FLAG ${STLSOFT_MFC_FLAG})
+
+	if(STLSOFT_MFC_SHARED)
+
+		add_compile_definitions(_AFXDLL)
+	endif()
+endmacro(stlsoft_prepare_mfc_target)
+
+
 function(define_automated_test_program program_name entry_point_source_name)
 
 	add_executable(${program_name}
 		${entry_point_source_name}
+	)
+
+	# Prefer this tree's headers over any installed STLSoft. On Apple Clang,
+	# /usr/local/include is searched before -isystem paths, so includes that
+	# arrive only via imported deps (e.g. xTests) can otherwise shadow us.
+	set_property(TARGET ${program_name} PROPERTY NO_SYSTEM_FROM_IMPORTED TRUE)
+	target_include_directories(${program_name}
+		BEFORE PRIVATE
+			${CMAKE_SOURCE_DIR}/include
 	)
 
 	target_link_libraries(${program_name}
@@ -18,6 +50,20 @@ function(define_automated_test_program program_name entry_point_source_name)
 		target_link_libraries(${program_name}
 			ws2_32
 			wsock32
+		)
+	endif()
+
+	# MinGW PE images that dynamically link libgcc/libstdc++ can fail at
+	# process load (exit 127, no user code) when the runner PATH does not
+	# match the toolchain that built the binary. Static-link those runtimes
+	# on Windows GNU targets so test/example/performance exes are self-
+	# contained for the C++ runtime.
+	if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+		target_link_options(${program_name}
+			PRIVATE
+				-static-libgcc
+				-static-libstdc++
 		)
 	endif()
 
@@ -65,6 +111,15 @@ function(define_example_program program_name entry_point_source_name)
 		${entry_point_source_name}
 	)
 
+	# Prefer this tree's headers over any installed STLSoft. On Apple Clang,
+	# /usr/local/include is searched before -isystem paths, so includes that
+	# arrive only via imported deps (e.g. xTests) can otherwise shadow us.
+	set_property(TARGET ${program_name} PROPERTY NO_SYSTEM_FROM_IMPORTED TRUE)
+	target_include_directories(${program_name}
+		BEFORE PRIVATE
+			${CMAKE_SOURCE_DIR}/include
+	)
+
 	target_link_libraries(${program_name}
 		$<$<BOOL:${shwild_FOUND}>:shwild::core>
 		$<$<BOOL:${cstring_FOUND}>:cstring::core>
@@ -76,6 +131,16 @@ function(define_example_program program_name entry_point_source_name)
 		target_link_libraries(${program_name}
 			ws2_32
 			wsock32
+		)
+	endif()
+
+	# See define_automated_test_program: same MinGW PE loader mitigation.
+	if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+		target_link_options(${program_name}
+			PRIVATE
+				-static-libgcc
+				-static-libstdc++
 		)
 	endif()
 

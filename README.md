@@ -1,13 +1,15 @@
-# STLSoft 1.11 <!-- omit in toc -->
+# STLSoft <!-- omit in toc -->
 
+… robust, lightweight, cross-platform, template software …
+
+
+![C](https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/STLSoft.svg)](https://github.com/synesissoftware/STLSoft/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/STLSoft)](https://github.com/synesissoftware/STLSoft/commits/master)
+[![CI](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/STLSoft/actions/workflows/ci.yml)
 
-*... robust, lightweight, cross-platform, template software ...*
-
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -16,150 +18,563 @@
 - [Components](#components)
   - [Subprojects](#subprojects)
   - [Libraries](#libraries)
+  - [Notable components](#notable-components)
+    - [New in 1.11](#new-in-111)
+    - [New in 1.10](#new-in-110)
+    - [Notable legacy components](#notable-legacy-components)
 - [Examples](#examples)
 - [Project Information](#project-information)
   - [Where to get help](#where-to-get-help)
   - [Contribution guidelines](#contribution-guidelines)
   - [Dependencies](#dependencies)
-    - [Test-only dependencies](#test-only-dependencies)
   - [Related projects](#related-projects)
   - [License](#license)
 
 
 ## Introduction
 
-**STLSoft** is a suite of C and C++ libraries that provides:
-- STL extensions;
-- General-purpose utility components;
-- Facades over operating-system and technology-specific APIs.
+**STLSoft** is a suite of C and C++ libraries (currently the **1.11** line) that provides:
 
-The overarching characteristic of STLSoft is that it is *lightweight*. That sounds great, but what does it actually mean? Specifically, the **STLSoft** libraries share the following characteristics:
+* STL extensions;
+* general-purpose utility components;
+* facades over operating-system and technology-specific APIs;
 
-- "**100% header-only**" - all components within the libraries are entirely defined within header files, meaning that users need only `#include` the requisite files to access the functionality;
-- "**Intersecting Conformance**" -  similar, but not-identical, components from different projects (e.g. **UNIXSTL** and **WinSTL**) are _structurally conformant_ (they share compatible syntax, and corresponding semantics, without being related by type) only to the degree of the intersection of identical functionality, rather than employing significant additional functionality to achieve total structural conformance. For example, though both the `unixstl::filesystem_traits` and `winstl::filesystem_traits` traits classes provide the `stat()` and `fstat()` operations, `lstat()` is provided only by the former;
-- **Maximum Cohesion with Minimal Coupling** - achieved by extensive use of generalising mechanisms, such as "*shims*", e.g. types that manipulate character strings are able to interact with arbitrary string types, not just `char const*` and `std::string`;
-- **Very High Efficiency** - along with *Robustness*, all components in the libraries are implemented with a view to maximum _Efficiency_. This is aided by the extensive use of efficient utility classes, such as `stlsoft::auto_buffer` and `stlsoft::scoped_handle`;
+The overarching characteristic of **STLSoft** is that it is *lightweight*. Specifically, the libraries share the following characteristics:
 
-**NOTE**: It is important to understand that _**STLSoft** is not a framework_. Each library component is as "thin" as possible to provide its given function. The intent is that STLSoft components are used as building blocks for writing higher level components - applications, classes, libraries, servers. **STLSoft** has been used extensively in the development of software in all these guises.
+* **100% header-only** — all components are entirely defined within header files, so users need only `#include` the requisite files to access the functionality;
+* **Intersecting Conformance** — similar, but not identical, components from different sub-projects (e.g. **UnixSTL** and **WinSTL**) are *structurally conformant* (compatible syntax and corresponding semantics, without being related by type) only to the degree of the intersection of identical functionality, rather than employing significant additional functionality to achieve total structural conformance. For example, though both `unixstl::filesystem_traits` and `winstl::filesystem_traits` provide `stat()` and `fstat()`, `lstat()` is provided only by the former;
+* **Maximum Cohesion with Minimal Coupling** — achieved by extensive use of generalising mechanisms such as *shims*; e.g. types that manipulate character strings can interact with arbitrary string types, not just `char const*` and `std::string`;
+* **Very High Efficiency** — along with *Robustness*, components are implemented with a view to maximum *Efficiency*, aided by efficient utility classes such as `stlsoft::auto_buffer` and `stlsoft::scoped_handle`;
+
+**NOTE**: **STLSoft** is *not* a framework. Each library component is as thin as possible for its given function. The intent is that **STLSoft** components are used as building blocks for higher-level software — applications, classes, libraries, servers. **STLSoft** has been used extensively in all these guises.
+
+Further reading: [CONCEPTS.md](./CONCEPTS.md), [FAQ.md](./FAQ.md), [INSTALL.md](./INSTALL.md), [http://www.stlsoft.org/](http://www.stlsoft.org/).
 
 
 ## Installation
 
-There are three main ways to install **STLSoft**:
+Detailed instructions — via **CMake**, and via environment variables (archive or clone) — are provided in the accompanying [INSTALL.md](./INSTALL.md) file, including an explanation of the top-level build scripts.
 
-1. As downloaded archive, then using environment variables;
-2. Cloning project, then using environment variables;
-3. Cloning project, then installing via CMake;
+In short, there are three main ways to install **STLSoft**:
+
+1. As a downloaded archive, then using environment variables;
+2. Cloning the project, then using environment variables;
+3. Cloning the project, then installing via **CMake**;
 
 Option 3 is recommended.
 
-See [INSTALL.md](./INSTALL.md) for details of these options, and also for an explanation of the top-level build scripts in the project.
-
-> **IMPORTANT**: If you are installing **STLSoft** _for the first time_ you **must** do the **CMake**-based build step specifying that you do _not_ want to run tests - by specifying the flags `-E` and `-T` to **prepare_cmake.sh** - otherwise you will end up with a circular dependency on **xTests** (which depends on **STLSoft**). [INSTALL.md](./INSTALL.md) explains this in detail.
+> **IMPORTANT**: If you are installing **STLSoft** *for the first time*, you **must** do the **CMake**-based prepare step specifying that you do *not* want to run tests — by passing the flags `-E` and `-T` to **prepare_cmake.sh** — otherwise you will hit a circular dependency on **xTests** (which depends on **STLSoft**). [INSTALL.md](./INSTALL.md) explains the full first-time ordering.
 
 
 ## Components
 
-The components in **STLSoft** are provided in _sub-projects_, and in _libraries_.
+The components in **STLSoft** are organised as *sub-projects* (technology / platform facets) that share *libraries* (functional areas). Many libraries appear in more than one sub-project with *intersecting conformance* — for example **filesystem** and **dl** under **PlatformSTL**, **UnixSTL**, and **WinSTL**.
 
 
 ### Subprojects
 
 The following significant sub-projects are provided:
 
-* **STLSoft** - general-purpose components and base-level features;
-* **ACESTL** - components to do with **ACE** framework;
-* **COMSTL** - components to do with **Component Object Model (COM)**;
-* **MFCSTL** - components to do with **Microsoft Foundation Classes (MFC)**;
-* **UnixSTL** - components to do with **Unix** operating system APIs;
-* **WinSTL** - components to do with **Windows** operating system APIs;
+* **STLSoft** — general-purpose components and base-level features, such as `stlsoft::auto_buffer<>`, `stlsoft::scoped_handle<>`, and `STLSOFT_ASSERT()`;
+* **ACESTL** — components for the **ACE** framework, such as `acestl::message_queue_sequence<>`;
+* **ATLSTL** — components for the **Active Template Library (ATL)**, such as `atlstl::get_MemberValue()`;
+* **COMSTL** — components for the **Component Object Model (COM)**, such as `comstl::interface_cast` and `comstl::enumerator_sequence<>`;
+* **InetSTL** — components for internet APIs, such as `inetstl::session` and `inetstl::ftpdir_sequence`;
+* **MFCSTL** — components for the **Microsoft Foundation Classes (MFC)**, such as `mfcstl::CArray_cadaptor<>`;
+* **PlatformSTL** — platform-selected facades over **UnixSTL** or **WinSTL** (by structural conformance), such as `platformstl::readdir_sequence` and `platformstl::stopwatch`;
+* **UnixSTL** — components for **Unix** operating-system APIs, such as `unixstl::glob_sequence` and `unixstl::dl_call()`;
+* **WinSTL** — components for **Windows** operating-system APIs, such as `winstl::clipboard_scope` and `winstl::findfile_sequence`;
 
 
 ### Libraries
 
-The significant libraries include:
+The significant libraries include (examples are illustrative, not exhaustive):
 
- * **algorithms** - T.B.C.
- * **automation** - T.B.C.
- * **clipboard** - T.B.C.
- * **collections** - T.B.C.
- * **containers** - general- and special-purpose containers, such as `stlsoft::frequency_map<>`;
- * **controls** - T.B.C.
- * **conversion** - T.B.C.
- * **diagnostics** - T.B.C.
- * **dl** - dynamic-library loading and invocation (for both **Unix** and **Windows**);
- * **filesystem** - T.B.C.
- * **function_adaptors** - T.B.C.
- * **functional** - T.B.C.
- * **iterator** - T.B.C.
- * **locale** - T.B.C.
- * **memory** - T.B.C.
- * **meta** - T.B.C.
- * **network** - T.B.C.
- * **performance** - T.B.C.
- * **process** - T.B.C.
- * **quality** - T.B.C.
- * **reactor** - T.B.C.
- * **registry** - T.B.C.
- * **resource** - T.B.C.
- * **security** - T.B.C.
- * **shell** - T.B.C.
- * **shims** - T.B.C.
- * **smartptr** - T.B.C.
- * **speech** - T.B.C.
- * **string** - T.B.C.
- * **synch** - T.B.C.
- * **system** - T.B.C.
- * **time** - T.B.C.
- * **typelib** - T.B.C.
- * **view** - T.B.C.
+* **algorithms** — POD and unordered-sequence algorithms, such as `stlsoft::pod_copy_n()` and `stlsoft::find_first_duplicate()`;
+* **automation** — **ATL** Automation property and enumerator helpers, such as `atlstl::get_MemberValue()`;
+* **clipboard** — Windows clipboard RAII and enumeration, such as `winstl::clipboard_scope`;
+* **collections** — sequence and veneer adaptors (arrays, COM enumerators, ACE queues, MFC containers), such as `stlsoft::array_view<>` and `comstl::enumerator_sequence<>`;
+* **containers** — general- and special-purpose containers, such as `stlsoft::frequency_map<>` and `stlsoft::unicode_point_map`;
+* **controls** — STL sequences over Win32 common controls, such as `winstl::listview_sequence`;
+* **conversion** — casts and converters, such as `stlsoft::sap_cast<>()`, `stlsoft::format_bytes()`, and `comstl::interface_cast`;
+* **diagnostics** — stopwatches, timing histograms, and debug emitters, such as `platformstl::stopwatch` and `stlsoft::doomgram`;
+* **dl** — dynamic-library loading and invocation (**Unix** and **Windows**), such as `platformstl::dl_module` and `winstl::dl_call()`;
+* **filesystem** — directory/glob sequences, paths, and mapped files, such as `platformstl::readdir_sequence`, `unixstl::glob_sequence`, and `platformstl::memory_mapped_file`;
+* **functional** — function/method adaptors and predicates, such as `stlsoft::noop_function`;
+* **iterator** — output and transforming iterators, such as `stlsoft::FILE_iterator` and `stlsoft::string_concatenator_iterator`;
+* **locale** — scoped C locale changes, such as `stlsoft::locale_scope`;
+* **memory** — buffers and allocators, such as `stlsoft::auto_buffer<>` and `comstl::task_allocator<>`;
+* **meta** — compile-time type traits and selectors, such as `stlsoft::is_same_type<>`;
+* **network** — internet/ACE session and connection facades, such as `inetstl::session` and `inetstl::connection`;
+* **performance** — performance counters (often aliased to platform stopwatches), such as `platformstl::performance_counter`;
+* **process** — Windows process-creation helpers, such as `winstl::create_process()`;
+* **quality** — contract-enforcement and coverage macros, such as `STLSOFT_COVER_MARK_LINE()`;
+* **reactor** — **ACE** reactor custom-event handling, such as `acestl::custom_event_handler`;
+* **registry** — Windows registry keys, values, and sequences, such as `winstl::reg_key` and `winstl::reg_value_sequence`;
+* **resource** — Windows resource-loading helpers, such as `winstl::load_custom_resource()`;
+* **security** — COM/Win security initialisation and token/ACL views, such as `comstl::CoInitSecurity()` and `winstl::token_information<>`;
+* **shell** — Windows Shell helpers, such as `winstl::browse_for_folder()`;
+* **shims** — generalising access, attribute, and logical shims (overloads across sub-projects), such as `stlsoft::c_str_ptr()` and `stlsoft::get_ptr()`;
+* **smartptr** — scoped and reference-counted handles, such as `stlsoft::scoped_handle<>` and `stlsoft::ref_ptr<>`;
+* **speech** — lightweight SAPI helpers, such as `comstl::sapi_speak()`;
+* **string** — lightweight strings, views, and tokenisers, such as `stlsoft::basic_simple_string<>` and `stlsoft::string_tokeniser<>`;
+* **synch** — mutexes, spin locks, and lock scopes, such as `platformstl::thread_mutex` and `stlsoft::lock_scope<>`;
+* **system** — environment, home directory, and process-id sequences, such as `platformstl::home_directory` and `platformstl::pid_sequence`;
+* **time** — time formatting and comparison helpers, such as `stlsoft::fast_strftime()`;
+* **typelib** — COM type-library helpers, such as `comstl::TypeInfo_resource_scope`;
+* **view** — transforming views, such as `stlsoft::member_selector_view<>`;
 
-As **STLSoft** approaches an official release we will provide increasing information on the above _sub-projects_ and _libraries_.
+
+### Notable components
+
+The tables below list the significant components of **STLSoft** by *header stem* (a `.h` and `.hpp` pair counts once), each with the release in which it first appeared. Badges are coloured by era: dark grey for 1.9.118 and earlier, orange for 1.9.119+, blue for 1.10+, green for 1.11+. Tag history in this repository begins at 1.9.118, so *since* values for earlier components are estimates derived from header `Created:` dates and **CHANGES.md** (`≤1.9.1-beta1` means created before the first release recorded there). *Enhanced* is the latest tag at which the header's major or minor version changed, i.e. a significant enhancement; `-` means no such change since 1.9.118 (or since introduction).
+
+
+#### New in 1.11
+
+| Component | Sub-project | Since |
+| --- | --- | --- |
+| [`platformstl/process/functions`](include/platformstl/process/functions.h) | PlatformSTL | [![since 1.11.1-rc8](https://img.shields.io/badge/since-1.11.1--rc8-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc8) |
+| [`platformstl/system/directory_functions`](include/platformstl/system/directory_functions.h) | PlatformSTL | [![since 1.11.1-alpha8](https://img.shields.io/badge/since-1.11.1--alpha8-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha8) |
+| [`platformstl/system/environment_variable_scope`](include/platformstl/system/environment_variable_scope.hpp) | PlatformSTL | [![since 1.11.1-beta5](https://img.shields.io/badge/since-1.11.1--beta5-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta5) |
+| [`platformstl/system/pid_sequence`](include/platformstl/system/pid_sequence.hpp) | PlatformSTL | [![since 1.11.1-rc3](https://img.shields.io/badge/since-1.11.1--rc3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |
+| [`stlsoft/containers/unicode_point_map`](include/stlsoft/containers/unicode_point_map.hpp) | STLSoft | [![since 1.11.1-alpha26](https://img.shields.io/badge/since-1.11.1--alpha26-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha26) |
+| [`stlsoft/conversion/integer_to_string/integer_to_base32_string`](include/stlsoft/conversion/integer_to_string/integer_to_base32_string.hpp) | STLSoft | [![since 1.11.1-alpha1](https://img.shields.io/badge/since-1.11.1--alpha1-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha1) |
+| [`stlsoft/conversion/integer_to_string/integer_to_base36_string`](include/stlsoft/conversion/integer_to_string/integer_to_base36_string.hpp) | STLSoft | [![since 1.11.1-alpha1](https://img.shields.io/badge/since-1.11.1--alpha1-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha1) |
+| [`stlsoft/diagnostics/doomgram`](include/stlsoft/diagnostics/doomgram.hpp) | STLSoft | [![since 1.11.1-alpha27](https://img.shields.io/badge/since-1.11.1--alpha27-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha27) |
+| [`stlsoft/diagnostics/gram_scope`](include/stlsoft/diagnostics/gram_scope.hpp) | STLSoft | [![since 1.11.1-alpha27](https://img.shields.io/badge/since-1.11.1--alpha27-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha27) |
+| [`stlsoft/diagnostics/gram_utils`](include/stlsoft/diagnostics/gram_utils.hpp) | STLSoft | [![since 1.11.1-alpha27](https://img.shields.io/badge/since-1.11.1--alpha27-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha27) |
+| [`stlsoft/diagnostics/std_chrono_hrc_stopwatch`](include/stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp) | STLSoft | [![since 1.11.1-alpha4](https://img.shields.io/badge/since-1.11.1--alpha4-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha4) |
+| [`stlsoft/filesystem/io_functions/read_line`](include/stlsoft/filesystem/io_functions/read_line.hpp) | STLSoft | [![since 1.11.1-alpha2](https://img.shields.io/badge/since-1.11.1--alpha2-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha2) |
+| [`stlsoft/filesystem/io_functions/write_string`](include/stlsoft/filesystem/io_functions/write_string.hpp) | STLSoft | [![since 1.11.1-alpha2](https://img.shields.io/badge/since-1.11.1--alpha2-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha2) |
+| [`stlsoft/smartptr/scoped_handle/scoped_handle_cc`](include/stlsoft/smartptr/scoped_handle/scoped_handle_cc.hpp) | STLSoft | [![since 1.11.1-alpha16](https://img.shields.io/badge/since-1.11.1--alpha16-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha16) |
+| [`stlsoft/string/encoding/mbstowcs`](include/stlsoft/string/encoding/mbstowcs.h) | STLSoft | [![since 1.11.4](https://img.shields.io/badge/since-1.11.4-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.4) |
+| [`stlsoft/string/encoding/wcstombs`](include/stlsoft/string/encoding/wcstombs.h) | STLSoft | [![since 1.11.4](https://img.shields.io/badge/since-1.11.4-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.4) |
+| [`stlsoft/traits/integral_traits`](include/stlsoft/traits/integral_traits.hpp) | STLSoft | [![since 1.11.1-alpha26](https://img.shields.io/badge/since-1.11.1--alpha26-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha26) |
+| [`stlsoft/view/transforming/member_selector_view`](include/stlsoft/view/transforming/member_selector_view.hpp) | STLSoft | [![since 1.11.1-rc2](https://img.shields.io/badge/since-1.11.1--rc2-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc2) |
+| [`unixstl/process/functions`](include/unixstl/process/functions.h) | UnixSTL | [![since 1.11.1-rc8](https://img.shields.io/badge/since-1.11.1--rc8-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc8) |
+| [`unixstl/system/pid_sequence`](include/unixstl/system/pid_sequence.hpp) | UnixSTL | [![since 1.11.1-rc3](https://img.shields.io/badge/since-1.11.1--rc3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |
+| [`unixstl/time/comparison_functions`](include/unixstl/time/comparison_functions.h) | UnixSTL | [![since 1.11.1-alpha27](https://img.shields.io/badge/since-1.11.1--alpha27-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha27) |
+| [`winstl/diagnostics/printf_debug_string`](include/winstl/diagnostics/printf_debug_string.h) | WinSTL | [![since 1.11.1-rc3](https://img.shields.io/badge/since-1.11.1--rc3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |
+| [`winstl/filesystem/readdir_sequence`](include/winstl/filesystem/readdir_sequence.hpp) | WinSTL | [![since 1.11.1-alpha27](https://img.shields.io/badge/since-1.11.1--alpha27-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha27) |
+| [`winstl/i18n/codepage_sequence`](include/winstl/i18n/codepage_sequence.hpp) | WinSTL | [![since 1.11.1-rc3](https://img.shields.io/badge/since-1.11.1--rc3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |
+
+
+#### New in 1.10
+
+Components first written for 1.10 (files merely relocated by the 1.10 reorganisation are not listed unless they are also notable legacy components below):
+
+| Component | Sub-project | Since | Enhanced |
+| --- | --- | --- | --- |
+| [`comstl/exception/policy/HRESULT_to_string_translation_policy`](include/comstl/exception/policy/HRESULT_to_string_translation_policy.hpp) | COMSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/access_exception`](include/platformstl/exception/access_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/entry_not_found_exception`](include/platformstl/exception/entry_not_found_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/file_not_found_exception`](include/platformstl/exception/file_not_found_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/filesystem_exception`](include/platformstl/exception/filesystem_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/invalid_entry_type_exception`](include/platformstl/exception/invalid_entry_type_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/invalid_file_type_exception`](include/platformstl/exception/invalid_file_type_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/exception/security_exception`](include/platformstl/exception/security_exception.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/filesystem/handles/memory_mapped_file_view_handle`](include/platformstl/filesystem/handles/memory_mapped_file_view_handle.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/filesystem/path_buffer`](include/platformstl/filesystem/path_buffer.hpp) | PlatformSTL | [![since 1.10.1-beta26](https://img.shields.io/badge/since-1.10.1--beta26-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta26) | - |
+| [`platformstl/filesystem/readonly_memory_mapped_file`](include/platformstl/filesystem/readonly_memory_mapped_file.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`platformstl/system/environment_variable`](include/platformstl/system/environment_variable.hpp) | PlatformSTL | [![since 1.10.1-beta23](https://img.shields.io/badge/since-1.10.1--beta23-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta23) | [![enh 1.11.1-beta5](https://img.shields.io/badge/enh-1.11.1--beta5-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta5) |
+| [`platformstl/system/home_directory`](include/platformstl/system/home_directory.hpp) | PlatformSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`stlsoft/conversion/char2str`](include/stlsoft/conversion/char2str.hpp) | STLSoft | [![since 1.10.1-beta25](https://img.shields.io/badge/since-1.10.1--beta25-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta25) | - |
+| [`stlsoft/conversion/integer_to_string/integer_to_zeropadded_decimal_string`](include/stlsoft/conversion/integer_to_string/integer_to_zeropadded_decimal_string.hpp) | STLSoft | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`stlsoft/conversion/itoslice`](include/stlsoft/conversion/itoslice.h) | STLSoft | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`stlsoft/conversion/sas_to_string`](include/stlsoft/conversion/sas_to_string.hpp) | STLSoft | [![since 1.10.1-beta12](https://img.shields.io/badge/since-1.10.1--beta12-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta12) | [![enh 1.10.1-beta22](https://img.shields.io/badge/enh-1.10.1--beta22-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta22) |
+| [`stlsoft/conversion/string_to_bool`](include/stlsoft/conversion/string_to_bool.hpp) | STLSoft | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`stlsoft/conversion/string_to_integer_range`](include/stlsoft/conversion/string_to_integer_range.hpp) | STLSoft | [![since 1.10.1-beta22](https://img.shields.io/badge/since-1.10.1--beta22-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta22) | - |
+| [`stlsoft/exception/library_identifier_provider`](include/stlsoft/exception/library_identifier_provider.hpp) | STLSoft | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/exception/project_identifier_provider`](include/stlsoft/exception/project_identifier_provider.hpp) | STLSoft | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/filesystem/path_buffer`](include/stlsoft/filesystem/path_buffer.hpp) | STLSoft | [![since 1.10.1-beta23](https://img.shields.io/badge/since-1.10.1--beta23-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta23) | [![enh 1.10.1-beta26](https://img.shields.io/badge/enh-1.10.1--beta26-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta26) |
+| [`stlsoft/iterator/associative_select_iterator`](include/stlsoft/iterator/associative_select_iterator.hpp) | STLSoft | [![since 1.10.1-beta15](https://img.shields.io/badge/since-1.10.1--beta15-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta15) | - |
+| [`stlsoft/iterator/string_concatenator_iterator`](include/stlsoft/iterator/string_concatenator_iterator.hpp) | STLSoft | [![since 1.10.1-beta15](https://img.shields.io/badge/since-1.10.1--beta15-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta15) | - |
+| [`stlsoft/locale/exception/locale_exception`](include/stlsoft/locale/exception/locale_exception.hpp) | STLSoft | [![since 1.10.1-beta12](https://img.shields.io/badge/since-1.10.1--beta12-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta12) | - |
+| [`stlsoft/locale/locale_scope`](include/stlsoft/locale/locale_scope.hpp) | STLSoft | [![since 1.10.1-beta12](https://img.shields.io/badge/since-1.10.1--beta12-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta12) | - |
+| [`stlsoft/meta/detector/has_sentry`](include/stlsoft/meta/detector/has_sentry.hpp) | STLSoft | [![since 1.10.10](https://img.shields.io/badge/since-1.10.10-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.10) | - |
+| [`stlsoft/shims/attribute/get_top`](include/stlsoft/shims/attribute/get_top.hpp) | STLSoft | [![since 1.10.1-beta15](https://img.shields.io/badge/since-1.10.1--beta15-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta15) | - |
+| [`stlsoft/smartptr/scoped_lambda`](include/stlsoft/smartptr/scoped_lambda.hpp) | STLSoft | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`stlsoft/string/c_string/strnchr`](include/stlsoft/string/c_string/strnchr.h) | STLSoft | [![since 1.10.1-beta22](https://img.shields.io/badge/since-1.10.1--beta22-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta22) | - |
+| [`stlsoft/string/c_string/strnicmp`](include/stlsoft/string/c_string/strnicmp.h) | STLSoft | [![since 1.10.1-beta26](https://img.shields.io/badge/since-1.10.1--beta26-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta26) | - |
+| [`stlsoft/string/c_string/strnistrn`](include/stlsoft/string/c_string/strnistrn.h) | STLSoft | [![since 1.10.1-beta22](https://img.shields.io/badge/since-1.10.1--beta22-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta22) | - |
+| [`stlsoft/string/c_string/strnpbrkn`](include/stlsoft/string/c_string/strnpbrkn.h) | STLSoft | [![since 1.10.1-beta25](https://img.shields.io/badge/since-1.10.1--beta25-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta25) | - |
+| [`stlsoft/string/c_string/strnrchr`](include/stlsoft/string/c_string/strnrchr.h) | STLSoft | [![since 1.10.1-beta26](https://img.shields.io/badge/since-1.10.1--beta26-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta26) | - |
+| [`stlsoft/string/c_string/strnstrn`](include/stlsoft/string/c_string/strnstrn.h) | STLSoft | [![since 1.10.1-beta22](https://img.shields.io/badge/since-1.10.1--beta22-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta22) | - |
+| [`stlsoft/system/environment/functions`](include/stlsoft/system/environment/functions.hpp) | STLSoft | [![since 1.10.1-beta16](https://img.shields.io/badge/since-1.10.1--beta16-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta16) | - |
+| [`stlsoft/time/fast_strftime`](include/stlsoft/time/fast_strftime.hpp) | STLSoft | [![since 1.10.1-beta15](https://img.shields.io/badge/since-1.10.1--beta15-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta15) | [![enh 1.10.1-beta28](https://img.shields.io/badge/enh-1.10.1--beta28-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta28) |
+| [`unixstl/exception/access_exception`](include/unixstl/exception/access_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/exception/entry_not_found_exception`](include/unixstl/exception/entry_not_found_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/exception/file_not_found_exception`](include/unixstl/exception/file_not_found_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/exception/filesystem_exception`](include/unixstl/exception/filesystem_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/exception/invalid_entry_type_exception`](include/unixstl/exception/invalid_entry_type_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/exception/invalid_file_type_exception`](include/unixstl/exception/invalid_file_type_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/exception/security_exception`](include/unixstl/exception/security_exception.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/filesystem/handles/memory_mapped_file_view_handle`](include/unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/filesystem/path_buffer`](include/unixstl/filesystem/path_buffer.hpp) | UnixSTL | [![since 1.10.1-beta24](https://img.shields.io/badge/since-1.10.1--beta24-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta24) | - |
+| [`unixstl/filesystem/path_classify_functions`](include/unixstl/filesystem/path_classify_functions.h) | UnixSTL | [![since 1.10.1-beta26](https://img.shields.io/badge/since-1.10.1--beta26-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta26) | - |
+| [`unixstl/synch/common`](include/unixstl/synch/common.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`unixstl/system/directory_functions`](include/unixstl/system/directory_functions.h) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | [![enh 1.11.1-rc9](https://img.shields.io/badge/enh-1.11.1--rc9-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc9) |
+| [`unixstl/system/home_directory`](include/unixstl/system/home_directory.hpp) | UnixSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | [![enh 1.10.1-beta10](https://img.shields.io/badge/enh-1.10.1--beta10-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta10) |
+| [`winstl/control_panel/control_panel.fwd`](include/winstl/control_panel/control_panel.fwd.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/conversion/a2w`](include/winstl/conversion/a2w.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/conversion/w2a`](include/winstl/conversion/w2a.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/exception/entry_not_found_exception`](include/winstl/exception/entry_not_found_exception.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/exception/file_not_found_exception`](include/winstl/exception/file_not_found_exception.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/exception/filesystem_exception`](include/winstl/exception/filesystem_exception.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/exception/invalid_entry_type_exception`](include/winstl/exception/invalid_entry_type_exception.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/exception/invalid_file_type_exception`](include/winstl/exception/invalid_file_type_exception.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/exception/security_exception`](include/winstl/exception/security_exception.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/filesystem/file_information_functions`](include/winstl/filesystem/file_information_functions.h) | WinSTL | [![since 1.10.1-beta14](https://img.shields.io/badge/since-1.10.1--beta14-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta14) | [![enh 1.10.1-beta15](https://img.shields.io/badge/enh-1.10.1--beta15-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta15) |
+| [`winstl/filesystem/path_buffer`](include/winstl/filesystem/path_buffer.hpp) | WinSTL | [![since 1.10.1-beta23](https://img.shields.io/badge/since-1.10.1--beta23-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta23) | - |
+| [`winstl/filesystem/path_classify_functions`](include/winstl/filesystem/path_classify_functions.h) | WinSTL | [![since 1.10.1-beta26](https://img.shields.io/badge/since-1.10.1--beta26-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta26) | - |
+| [`winstl/security/functions`](include/winstl/security/functions.h) | WinSTL | [![since 1.10.1-beta16](https://img.shields.io/badge/since-1.10.1--beta16-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta16) | - |
+| [`winstl/synch/common`](include/winstl/synch/common.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/synch/diagnostics/failure_handling`](include/winstl/synch/diagnostics/failure_handling.h) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/system/host_name`](include/winstl/system/host_name.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | [![enh 1.10.1-beta10](https://img.shields.io/badge/enh-1.10.1--beta10-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta10) |
+| [`winstl/system/memory_functions`](include/winstl/system/memory_functions.h) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/system/system_information_functions`](include/winstl/system/system_information_functions.h) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/system/user_name`](include/winstl/system/user_name.hpp) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | [![enh 1.10.1-beta10](https://img.shields.io/badge/enh-1.10.1--beta10-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta10) |
+| [`winstl/time/creation_functions`](include/winstl/time/creation_functions.h) | WinSTL | [![since 1.10.1-beta9](https://img.shields.io/badge/since-1.10.1--beta9-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta9) | - |
+| [`winstl/time/localisation_functions`](include/winstl/time/localisation_functions.h) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+| [`winstl/time/validation_functions`](include/winstl/time/validation_functions.h) | WinSTL | [![since 1.10.1-beta1](https://img.shields.io/badge/since-1.10.1--beta1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1-beta1) | - |
+
+
+#### Notable legacy components
+
+Legacy (1.9 and earlier) components that are used by other **STLSoft** components, used by other Synesis projects, or otherwise important:
+
+| Component | Sub-project | Since | Enhanced |
+| --- | --- | --- | --- |
+| [`acestl/collections/message_queue_sequence`](include/acestl/collections/message_queue_sequence.hpp) | ACESTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`atlstl/shims/access/string`](include/atlstl/shims/access/string.hpp) | ATLSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`atlstl/window/window`](include/atlstl/window/window.hpp) | ATLSTL | [![since 1.9.1-beta29](https://img.shields.io/badge/since-1.9.1--beta29-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/collections/collection_sequence`](include/comstl/collections/collection_sequence.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/collections/enumerator_sequence`](include/comstl/collections/enumerator_sequence.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/collections/safearray_sequence`](include/comstl/collections/safearray_sequence.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/conversion/interface_cast`](include/comstl/conversion/interface_cast.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`comstl/error/errorinfo_desc`](include/comstl/error/errorinfo_desc.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`comstl/error/errorinfo_functions`](include/comstl/error/errorinfo_functions.h) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/error/excepinfo_functions`](include/comstl/error/excepinfo_functions.h) | COMSTL | [![since 1.9.6](https://img.shields.io/badge/since-1.9.6-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/functional/interface_functionals`](include/comstl/functional/interface_functionals.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/memory/functions`](include/comstl/memory/functions.h) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/memory/task_allocator`](include/comstl/memory/task_allocator.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/security/security_initialisers`](include/comstl/security/security_initialisers.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/shims/access/string`](include/comstl/shims/access/string.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/smartptr/interface_ptr`](include/comstl/smartptr/interface_ptr.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`comstl/speech/sapi_util`](include/comstl/speech/sapi_util.hpp) | COMSTL | [![since 1.9.1-beta20](https://img.shields.io/badge/since-1.9.1--beta20-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/string/BSTR_functions`](include/comstl/string/BSTR_functions.h) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`comstl/string/bstr`](include/comstl/string/bstr.hpp) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`comstl/string/olestring_functions`](include/comstl/string/olestring_functions.h) | COMSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`inetstl/filesystem/filesystem_traits`](include/inetstl/filesystem/filesystem_traits.hpp) | InetSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`inetstl/filesystem/findfile_sequence`](include/inetstl/filesystem/findfile_sequence.hpp) | InetSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`inetstl/filesystem/ftpdir_sequence`](include/inetstl/filesystem/ftpdir_sequence.hpp) | InetSTL | [![since 1.9.1-beta3](https://img.shields.io/badge/since-1.9.1--beta3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`inetstl/network/connection`](include/inetstl/network/connection.hpp) | InetSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`inetstl/network/session`](include/inetstl/network/session.hpp) | InetSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`mfcstl/collections/CArray_adaptors`](include/mfcstl/collections/CArray_adaptors.hpp) | MFCSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`mfcstl/collections/CList_adaptors`](include/mfcstl/collections/CList_adaptors.hpp) | MFCSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`mfcstl/memory/afx_allocator`](include/mfcstl/memory/afx_allocator.hpp) | MFCSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`mfcstl/shims/access/string`](include/mfcstl/shims/access/string.hpp) | MFCSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`mfcstl/shims/access/string/CException`](include/mfcstl/shims/access/string/CException.hpp) | MFCSTL | [![since 1.9.101](https://img.shields.io/badge/since-1.9.101-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/dl/module`](include/platformstl/dl/module.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`platformstl/filesystem/current_directory_scope`](include/platformstl/filesystem/current_directory_scope.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/cwd_stack`](include/platformstl/filesystem/cwd_stack.hpp) | PlatformSTL | [![since 1.9.1-beta15](https://img.shields.io/badge/since-1.9.1--beta15-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`platformstl/filesystem/directory_functions`](include/platformstl/filesystem/directory_functions.hpp) | PlatformSTL | [![since 1.9.1-beta7](https://img.shields.io/badge/since-1.9.1--beta7-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/file_lines`](include/platformstl/filesystem/file_lines.hpp) | PlatformSTL | [![since 1.9.7](https://img.shields.io/badge/since-1.9.7-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`platformstl/filesystem/file_path_buffer`](include/platformstl/filesystem/file_path_buffer.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/filesystem_traits`](include/platformstl/filesystem/filesystem_traits.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/memory_mapped_file`](include/platformstl/filesystem/memory_mapped_file.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/path`](include/platformstl/filesystem/path.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/pipe`](include/platformstl/filesystem/pipe.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/filesystem/readdir_sequence`](include/platformstl/filesystem/readdir_sequence.hpp) | PlatformSTL | [![since 1.9.1-beta6](https://img.shields.io/badge/since-1.9.1--beta6-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/performance/performance_counter`](include/platformstl/performance/performance_counter.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/synch/atomic_functions`](include/platformstl/synch/atomic_functions.h) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/synch/process_mutex`](include/platformstl/synch/process_mutex.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/synch/semaphore`](include/platformstl/synch/semaphore.hpp) | PlatformSTL | [![since 1.9.1-beta7](https://img.shields.io/badge/since-1.9.1--beta7-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/synch/sleep_functions`](include/platformstl/synch/sleep_functions.h) | PlatformSTL | [![since 1.9.1-beta9](https://img.shields.io/badge/since-1.9.1--beta9-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/synch/spin_mutex`](include/platformstl/synch/spin_mutex.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`platformstl/synch/thread_mutex`](include/platformstl/synch/thread_mutex.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/synch/tss_index`](include/platformstl/synch/tss_index.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/system/console_functions`](include/platformstl/system/console_functions.h) | PlatformSTL | [![since 1.9.120](https://img.shields.io/badge/since-1.9.120-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.120) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`platformstl/system/environment_map`](include/platformstl/system/environment_map.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`platformstl/system/environment_variable_traits`](include/platformstl/system/environment_variable_traits.hpp) | PlatformSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`platformstl/system/system_traits`](include/platformstl/system/system_traits.hpp) | PlatformSTL | [![since 1.9.1-beta12](https://img.shields.io/badge/since-1.9.1--beta12-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/associative_range`](include/rangelib/associative_range.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/filtered_range`](include/rangelib/filtered_range.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/indexed_range`](include/rangelib/indexed_range.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/integral_range`](include/rangelib/integral_range.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/iterator_range`](include/rangelib/iterator_range.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/operator_adaptors`](include/rangelib/operator_adaptors.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/range_categories`](include/rangelib/range_categories.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/rangelib`](include/rangelib/rangelib.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`rangelib/sequence_range`](include/rangelib/sequence_range.hpp) | RangeLib | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/algorithms/bounded`](include/stlsoft/algorithms/bounded.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/algorithms/debug`](include/stlsoft/algorithms/debug.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/algorithms/pod`](include/stlsoft/algorithms/pod.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`stlsoft/algorithms/unordered`](include/stlsoft/algorithms/unordered.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/collections/array_view`](include/stlsoft/collections/array_view.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/containers/fixed_array`](include/stlsoft/containers/fixed_array.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/containers/frequency_map`](include/stlsoft/containers/frequency_map.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/containers/pod_vector`](include/stlsoft/containers/pod_vector.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.5](https://img.shields.io/badge/enh-1.10.5-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.5) |
+| [`stlsoft/containers/static_array`](include/stlsoft/containers/static_array.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/containers/unsorted_map`](include/stlsoft/containers/unsorted_map.hpp) | STLSoft | [![since 1.9.1-beta5](https://img.shields.io/badge/since-1.9.1--beta5-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/any_cast`](include/stlsoft/conversion/any_cast.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/byte_format_functions`](include/stlsoft/conversion/byte_format_functions.hpp) | STLSoft | [![since 1.9.1-beta16](https://img.shields.io/badge/since-1.9.1--beta16-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.122](https://img.shields.io/badge/enh-1.9.122-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.122) |
+| [`stlsoft/conversion/char_conversions`](include/stlsoft/conversion/char_conversions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.134](https://img.shields.io/badge/enh-1.9.134-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.134) |
+| [`stlsoft/conversion/explicit_cast`](include/stlsoft/conversion/explicit_cast.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/integer_to_string`](include/stlsoft/conversion/integer_to_string.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/conversion/m2w`](include/stlsoft/conversion/m2w.hpp) | STLSoft | [![since 1.9.60](https://img.shields.io/badge/since-1.9.60-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/number/grouping_functions`](include/stlsoft/conversion/number/grouping_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/ptr_cast`](include/stlsoft/conversion/ptr_cast.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/sap_cast`](include/stlsoft/conversion/sap_cast.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/truncation_cast`](include/stlsoft/conversion/truncation_cast.hpp) | STLSoft | [![since 1.9.1-beta20](https://img.shields.io/badge/since-1.9.1--beta20-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/conversion/truncation_test`](include/stlsoft/conversion/truncation_test.hpp) | STLSoft | [![since 1.9.1-beta20](https://img.shields.io/badge/since-1.9.1--beta20-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.122](https://img.shields.io/badge/enh-1.9.122-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.122) |
+| [`stlsoft/conversion/union_cast`](include/stlsoft/conversion/union_cast.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/conversion/w2m`](include/stlsoft/conversion/w2m.hpp) | STLSoft | [![since 1.9.50](https://img.shields.io/badge/since-1.9.50-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/error/conversion_error`](include/stlsoft/error/conversion_error.hpp) | STLSoft | [![since 1.9.1-beta34](https://img.shields.io/badge/since-1.9.1--beta34-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/error/errno_scope`](include/stlsoft/error/errno_scope.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/error/error_desc`](include/stlsoft/error/error_desc.hpp) | STLSoft | [![since 1.9.1-beta15](https://img.shields.io/badge/since-1.9.1--beta15-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`stlsoft/error/external_iterator_invalidation`](include/stlsoft/error/external_iterator_invalidation.hpp) | STLSoft | [![since 1.9.1-beta3](https://img.shields.io/badge/since-1.9.1--beta3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/error/iteration_interruption`](include/stlsoft/error/iteration_interruption.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/error/unrecoverable`](include/stlsoft/error/unrecoverable.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/filesystem/searchspec_sequence`](include/stlsoft/filesystem/searchspec_sequence.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/functional/composite_predicates`](include/stlsoft/functional/composite_predicates.hpp) | STLSoft | [![since 1.9.1-beta47](https://img.shields.io/badge/since-1.9.1--beta47-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/functional/function_adaptors`](include/stlsoft/functional/function_adaptors.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/functional/method_adaptors`](include/stlsoft/functional/method_adaptors.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/functional/noop`](include/stlsoft/functional/noop.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/adapted_iterator_traits`](include/stlsoft/iterators/adapted_iterator_traits.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/associative_select_iterator`](include/stlsoft/iterators/associative_select_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/c_str_inserter`](include/stlsoft/iterators/c_str_inserter.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/cstring_concatenator_iterator`](include/stlsoft/iterators/cstring_concatenator_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/filter_iterator`](include/stlsoft/iterators/filter_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/filter_transform_iterator`](include/stlsoft/iterators/filter_transform_iterator.hpp) | STLSoft | [![since 1.9.1-beta3](https://img.shields.io/badge/since-1.9.1--beta3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/index_iterator`](include/stlsoft/iterators/index_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/member_selector_iterator`](include/stlsoft/iterators/member_selector_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/null_output_iterator`](include/stlsoft/iterators/null_output_iterator.hpp) | STLSoft | [![since 1.9.1-beta5](https://img.shields.io/badge/since-1.9.1--beta5-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/ostream_iterator`](include/stlsoft/iterators/ostream_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/string_concatenator_iterator`](include/stlsoft/iterators/string_concatenator_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/iterators/transform_iterator`](include/stlsoft/iterators/transform_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/memory/allocator_base`](include/stlsoft/memory/allocator_base.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/memory/auto_destructor`](include/stlsoft/memory/auto_destructor.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`stlsoft/memory/malloc_allocator`](include/stlsoft/memory/malloc_allocator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/memory/new_allocator`](include/stlsoft/memory/new_allocator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/memory/null_allocator`](include/stlsoft/memory/null_allocator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/base_type_traits`](include/stlsoft/meta/base_type_traits.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/capabilities`](include/stlsoft/meta/capabilities.hpp) | STLSoft | [![since 1.9.1-beta5](https://img.shields.io/badge/since-1.9.1--beta5-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/detector/has_const_iterator`](include/stlsoft/meta/detector/has_const_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/detector/has_iterator`](include/stlsoft/meta/detector/has_iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/detectors`](include/stlsoft/meta/detectors.hpp) | STLSoft | [![since 1.9.1-beta14](https://img.shields.io/badge/since-1.9.1--beta14-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.10](https://img.shields.io/badge/enh-1.10.10-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.10) |
+| [`stlsoft/meta/is_bool_type`](include/stlsoft/meta/is_bool_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_character_type`](include/stlsoft/meta/is_character_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_const_type`](include/stlsoft/meta/is_const_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_floating_point_type`](include/stlsoft/meta/is_floating_point_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_function_pointer_type`](include/stlsoft/meta/is_function_pointer_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.119](https://img.shields.io/badge/enh-1.9.119-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.119) |
+| [`stlsoft/meta/is_fundamental_type`](include/stlsoft/meta/is_fundamental_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.119](https://img.shields.io/badge/enh-1.9.119-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.119) |
+| [`stlsoft/meta/is_integral_type`](include/stlsoft/meta/is_integral_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_numeric_type`](include/stlsoft/meta/is_numeric_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_pointer_type`](include/stlsoft/meta/is_pointer_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.119](https://img.shields.io/badge/enh-1.9.119-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.119) |
+| [`stlsoft/meta/is_same_type`](include/stlsoft/meta/is_same_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_signed_type`](include/stlsoft/meta/is_signed_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/is_void_type`](include/stlsoft/meta/is_void_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/meta/member_traits`](include/stlsoft/meta/member_traits.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/n_types`](include/stlsoft/meta/n_types.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/select_first_type_if`](include/stlsoft/meta/select_first_type_if.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/size_of`](include/stlsoft/meta/size_of.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/typefixer/difference_type`](include/stlsoft/meta/typefixer/difference_type.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/typefixer/iterator`](include/stlsoft/meta/typefixer/iterator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/typefixer/pointer`](include/stlsoft/meta/typefixer/pointer.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/typefixer/reference`](include/stlsoft/meta/typefixer/reference.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/typefixers`](include/stlsoft/meta/typefixers.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/meta/yesno`](include/stlsoft/meta/yesno.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/performance/performance_counter_scope`](include/stlsoft/performance/performance_counter_scope.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/properties/field_properties`](include/stlsoft/properties/field_properties.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/properties/method_properties`](include/stlsoft/properties/method_properties.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/shims/access/string`](include/stlsoft/shims/access/string.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/shims/attribute/get_ptr`](include/stlsoft/shims/attribute/get_ptr.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/shims/conversion/to_uint64`](include/stlsoft/shims/conversion/to_uint64.hpp) | STLSoft | [![since 1.9.3](https://img.shields.io/badge/since-1.9.3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/shims/conversion/to_uint64/degenerate`](include/stlsoft/shims/conversion/to_uint64/degenerate.hpp) | STLSoft | [![since 1.9.3](https://img.shields.io/badge/since-1.9.3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/smartptr/proxy_ptr`](include/stlsoft/smartptr/proxy_ptr.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/smartptr/ref_ptr`](include/stlsoft/smartptr/ref_ptr.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/smartptr/scoped_handle`](include/stlsoft/smartptr/scoped_handle.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/smartptr/shared_ptr`](include/stlsoft/smartptr/shared_ptr.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/stlsoft`](include/stlsoft/stlsoft.h) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/case_functions`](include/stlsoft/string/case_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/char_traits`](include/stlsoft/string/char_traits.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/string/charset_tokeniser`](include/stlsoft/string/charset_tokeniser.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/container_slice_functions`](include/stlsoft/string/container_slice_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/cstring_functions`](include/stlsoft/string/cstring_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/cstring_maker`](include/stlsoft/string/cstring_maker.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/string/ctype_traits`](include/stlsoft/string/ctype_traits.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/fast_string_concatenator`](include/stlsoft/string/fast_string_concatenator.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/shim_string`](include/stlsoft/string/shim_string.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.7](https://img.shields.io/badge/enh-1.10.7-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.7) |
+| [`stlsoft/string/simple_string`](include/stlsoft/string/simple_string.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc7](https://img.shields.io/badge/enh-1.11.1--rc7-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc7) |
+| [`stlsoft/string/slice_functions`](include/stlsoft/string/slice_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/special_string_instance`](include/stlsoft/string/special_string_instance.hpp) | STLSoft | [![since 1.9.1-beta8](https://img.shields.io/badge/since-1.9.1--beta8-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/string/split_functions`](include/stlsoft/string/split_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/string/static_string`](include/stlsoft/string/static_string.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`stlsoft/string/string_tokeniser`](include/stlsoft/string/string_tokeniser.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/string_traits`](include/stlsoft/string/string_traits.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/string/string_view`](include/stlsoft/string/string_view.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-beta3](https://img.shields.io/badge/enh-1.11.1--beta3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta3) |
+| [`stlsoft/string/tokeniser_functions`](include/stlsoft/string/tokeniser_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/string/trim_functions`](include/stlsoft/string/trim_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`stlsoft/string/view_slice_functions`](include/stlsoft/string/view_slice_functions.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/synch/concepts`](include/stlsoft/synch/concepts.hpp) | STLSoft | [![since 1.9.1-beta3](https://img.shields.io/badge/since-1.9.1--beta3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/synch/lock_scope`](include/stlsoft/synch/lock_scope.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/synch/null_mutex`](include/stlsoft/synch/null_mutex.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`stlsoft/system/cmdargs`](include/stlsoft/system/cmdargs.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-beta1](https://img.shields.io/badge/enh-1.11.1--beta1-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta1) |
+| [`stlsoft/system/commandline_parser`](include/stlsoft/system/commandline_parser.hpp) | STLSoft | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-beta1](https://img.shields.io/badge/enh-1.11.1--beta1-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta1) |
+| [`unixstl/dl/dl_call`](include/unixstl/dl/dl_call.hpp) | UnixSTL | [![since 1.9.118](https://img.shields.io/badge/since-%E2%89%A41.9.118-404040.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.118) | - |
+| [`unixstl/filesystem/directory_functions`](include/unixstl/filesystem/directory_functions.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`unixstl/filesystem/filesystem_traits`](include/unixstl/filesystem/filesystem_traits.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc9](https://img.shields.io/badge/enh-1.11.1--rc9-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc9) |
+| [`unixstl/filesystem/glob_sequence`](include/unixstl/filesystem/glob_sequence.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-beta8](https://img.shields.io/badge/enh-1.11.1--beta8-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta8) |
+| [`unixstl/filesystem/path_functions`](include/unixstl/filesystem/path_functions.hpp) | UnixSTL | [![since 1.9.1-beta10](https://img.shields.io/badge/since-1.9.1--beta10-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`unixstl/filesystem/readdir_sequence`](include/unixstl/filesystem/readdir_sequence.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-beta8](https://img.shields.io/badge/enh-1.11.1--beta8-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta8) |
+| [`unixstl/shims/access/string`](include/unixstl/shims/access/string.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`unixstl/shims/conversion/to_uint64/stat`](include/unixstl/shims/conversion/to_uint64/stat.hpp) | UnixSTL | [![since 1.9.97](https://img.shields.io/badge/since-1.9.97-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`unixstl/synch/atomic_functions`](include/unixstl/synch/atomic_functions.h) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`unixstl/synch/atomic_types`](include/unixstl/synch/atomic_types.h) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`unixstl/synch/spin_mutex`](include/unixstl/synch/spin_mutex.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`unixstl/synch/thread_mutex`](include/unixstl/synch/thread_mutex.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`unixstl/synch/tss_index`](include/unixstl/synch/tss_index.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`unixstl/system/system_traits`](include/unixstl/system/system_traits.hpp) | UnixSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc9](https://img.shields.io/badge/enh-1.11.1--rc9-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc9) |
+| [`winstl/clipboard/clipboard_format_sequence`](include/winstl/clipboard/clipboard_format_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/clipboard/clipboard_scope`](include/winstl/clipboard/clipboard_scope.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/controls/combobox_sequence`](include/winstl/controls/combobox_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/controls/functions`](include/winstl/controls/functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/controls/listbox_sequence`](include/winstl/controls/listbox_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/controls/listview_sequence`](include/winstl/controls/listview_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/controls/treeview_sequence`](include/winstl/controls/treeview_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/conversion/char_conversions`](include/winstl/conversion/char_conversions.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/conversion/int_to_string`](include/winstl/conversion/int_to_string.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/conversion/w2m`](include/winstl/conversion/w2m.hpp) | WinSTL | [![since 1.9.49](https://img.shields.io/badge/since-1.9.49-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/dl/dl_call`](include/winstl/dl/dl_call.hpp) | WinSTL | [![since 1.9.118](https://img.shields.io/badge/since-%E2%89%A41.9.118-404040.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.118) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/dl/module`](include/winstl/dl/module.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha24](https://img.shields.io/badge/enh-1.11.1--alpha24-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha24) |
+| [`winstl/error/conversion_error`](include/winstl/error/conversion_error.hpp) | WinSTL | [![since 1.9.1-beta34](https://img.shields.io/badge/since-1.9.1--beta34-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/error/error_desc`](include/winstl/error/error_desc.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`winstl/error/error_functions`](include/winstl/error/error_functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/error/last_error_scope`](include/winstl/error/last_error_scope.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/filesystem/absolute_path`](include/winstl/filesystem/absolute_path.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/filesystem/file_path_buffer`](include/winstl/filesystem/file_path_buffer.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.130](https://img.shields.io/badge/enh-1.9.130-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.130) |
+| [`winstl/filesystem/filesystem_traits`](include/winstl/filesystem/filesystem_traits.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc2](https://img.shields.io/badge/enh-1.11.1--rc2-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc2) |
+| [`winstl/filesystem/findfile_sequence`](include/winstl/filesystem/findfile_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-beta7](https://img.shields.io/badge/enh-1.11.1--beta7-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-beta7) |
+| [`winstl/filesystem/findvolume_sequence`](include/winstl/filesystem/findvolume_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha28](https://img.shields.io/badge/enh-1.11.1--alpha28-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha28) |
+| [`winstl/filesystem/memory_mapped_file`](include/winstl/filesystem/memory_mapped_file.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/filesystem/path`](include/winstl/filesystem/path.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/memory/global_allocator`](include/winstl/memory/global_allocator.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/memory/processheap_allocator`](include/winstl/memory/processheap_allocator.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/memory/shell_allocator`](include/winstl/memory/shell_allocator.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/performance/performance_counter`](include/winstl/performance/performance_counter.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/process/functions`](include/winstl/process/functions.h) | WinSTL | [![since 1.9.1-beta5](https://img.shields.io/badge/since-1.9.1--beta5-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc8](https://img.shields.io/badge/enh-1.11.1--rc8-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc8) |
+| [`winstl/registry/error/exceptions`](include/winstl/registry/error/exceptions.hpp) | WinSTL | [![since 1.9.1-beta5](https://img.shields.io/badge/since-1.9.1--beta5-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/registry/reg_key`](include/winstl/registry/reg_key.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.130](https://img.shields.io/badge/enh-1.9.130-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.130) |
+| [`winstl/registry/reg_key_sequence`](include/winstl/registry/reg_key_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/registry/reg_traits`](include/winstl/registry/reg_traits.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/registry/reg_value`](include/winstl/registry/reg_value.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.123](https://img.shields.io/badge/enh-1.9.123-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.123) |
+| [`winstl/registry/reg_value_sequence`](include/winstl/registry/reg_value_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/registry/regfwd`](include/winstl/registry/regfwd.hpp) | WinSTL | [![since 1.9.1-beta5](https://img.shields.io/badge/since-1.9.1--beta5-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/registry/registry`](include/winstl/registry/registry.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/security/acl_sequence`](include/winstl/security/acl_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/security/token_information`](include/winstl/security/token_information.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/shell/browse_for_folder`](include/winstl/shell/browse_for_folder.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shell/file_operations`](include/winstl/shell/file_operations.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/access/string`](include/winstl/shims/access/string.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/access/string/HWND`](include/winstl/shims/access/string/HWND.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/access/string/time`](include/winstl/shims/access/string/time.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/attribute/get_HWND`](include/winstl/shims/attribute/get_HWND.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/conversion/to_DATE/SYSTEMTIME`](include/winstl/shims/conversion/to_DATE/SYSTEMTIME.hpp) | WinSTL | [![since 1.9.7](https://img.shields.io/badge/since-1.9.7-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/conversion/to_FILETIME`](include/winstl/shims/conversion/to_FILETIME.hpp) | WinSTL | [![since 1.9.1-beta34](https://img.shields.io/badge/since-1.9.1--beta34-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/conversion/to_FILETIME/SYSTEMTIME`](include/winstl/shims/conversion/to_FILETIME/SYSTEMTIME.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/shims/conversion/to_SYSTEMTIME`](include/winstl/shims/conversion/to_SYSTEMTIME.hpp) | WinSTL | [![since 1.9.1-beta34](https://img.shields.io/badge/since-1.9.1--beta34-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/shims/conversion/to_SYSTEMTIME/FILETIME`](include/winstl/shims/conversion/to_SYSTEMTIME/FILETIME.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/shims/conversion/to_uint64/WIN32_FIND_DATA`](include/winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp) | WinSTL | [![since 1.9.3](https://img.shields.io/badge/since-1.9.3-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/string/resource_string`](include/winstl/string/resource_string.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/synch/atomic_functions`](include/winstl/synch/atomic_functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/synch/atomic_types`](include/winstl/synch/atomic_types.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/synch/event`](include/winstl/synch/event.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/synch/process_mutex`](include/winstl/synch/process_mutex.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/synch/spin_mutex`](include/winstl/synch/spin_mutex.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/synch/thread_mutex`](include/winstl/synch/thread_mutex.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/synch/wait_functions`](include/winstl/synch/wait_functions.hpp) | WinSTL | [![since 1.9.1-beta7](https://img.shields.io/badge/since-1.9.1--beta7-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/system/console_colour_scope`](include/winstl/system/console_colour_scope.hpp) | WinSTL | [![since 1.9.1-beta16](https://img.shields.io/badge/since-1.9.1--beta16-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/system/console_functions`](include/winstl/system/console_functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc3](https://img.shields.io/badge/enh-1.11.1--rc3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |
+| [`winstl/system/environment_variable`](include/winstl/system/environment_variable.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/system/module_filename`](include/winstl/system/module_filename.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/system/pid_sequence`](include/winstl/system/pid_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc3](https://img.shields.io/badge/enh-1.11.1--rc3-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc3) |
+| [`winstl/system/searchpath_sequence`](include/winstl/system/searchpath_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/system/system_info`](include/winstl/system/system_info.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.10.1](https://img.shields.io/badge/enh-1.10.1-0969da.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.10.1) |
+| [`winstl/system/system_traits`](include/winstl/system/system_traits.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-rc9](https://img.shields.io/badge/enh-1.11.1--rc9-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-rc9) |
+| [`winstl/system/system_version`](include/winstl/system/system_version.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/system/version_info`](include/winstl/system/version_info.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.9.122](https://img.shields.io/badge/enh-1.9.122-d97706.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.9.122) |
+| [`winstl/time/comparison_functions`](include/winstl/time/comparison_functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | [![enh 1.11.1-alpha27](https://img.shields.io/badge/enh-1.11.1--alpha27-1a7f37.svg)](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.1-alpha27) |
+| [`winstl/time/conversion_functions`](include/winstl/time/conversion_functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/time/functions`](include/winstl/time/functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/toolhelp/module_sequence`](include/winstl/toolhelp/module_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/toolhelp/process_sequence`](include/winstl/toolhelp/process_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/toolhelp/sequence_base`](include/winstl/toolhelp/sequence_base.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/toolhelp/sequence_value_traits`](include/winstl/toolhelp/sequence_value_traits.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/toolhelp/thread_sequence`](include/winstl/toolhelp/thread_sequence.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/window/functions`](include/winstl/window/functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/window/hdc_scope`](include/winstl/window/hdc_scope.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/window/message_functions`](include/winstl/window/message_functions.h) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
+| [`winstl/window/window_text_scope`](include/winstl/window/window_text_scope.hpp) | WinSTL | [![since ≤1.9.1-beta1](https://img.shields.io/badge/since-%E2%89%A41.9.1--beta1-404040.svg)](https://github.com/synesissoftware/STLSoft/blob/master/CHANGES.md) | - |
 
 
 ## Examples
 
-Examples are provided in the ```examples``` directory, along with a markdown description for each. A detailed list TOC of them is provided in [EXAMPLES.md](./EXAMPLES.md).
+Examples are provided in the `examples` directory, along with a markdown description for each. A detailed catalogue is in [EXAMPLES.md](./EXAMPLES.md). After a **CMake** build, `./run_all_examples.sh` exercises matching example programs (see [INSTALL.md](./INSTALL.md)).
 
 
 ## Project Information
 
+
 ### Where to get help
 
-[GitHub Page](https://github.com/synesissoftware/STLSoft "GitHub Page")
+* [GitHub Page](https://github.com/synesissoftware/STLSoft);
+* [GitHub Issues](https://github.com/synesissoftware/STLSoft/issues);
+* [FAQ.md](./FAQ.md);
+* [HOW_YOU_CAN_HELP.md](./HOW_YOU_CAN_HELP.md);
+* [KNOWN_ISSUES.md](./KNOWN_ISSUES.md);
+* [http://www.stlsoft.org/](http://www.stlsoft.org/);
+
 
 ### Contribution guidelines
 
 Defect reports, feature requests, and pull requests are welcome on https://github.com/synesissoftware/STLSoft.
 
-If you'd like to help out with the project, please raise an issue via [GitHub Issues Page](https://github.com/synesissoftware/STLSoft/issues "GitHub Issues Page") - you'll be very welcome!
+If you'd like to help out with the project, please raise an issue via [GitHub Issues](https://github.com/synesissoftware/STLSoft/issues) — you'll be very welcome! See also [HOW_YOU_CAN_HELP.md](./HOW_YOU_CAN_HELP.md).
+
 
 ### Dependencies
 
-There are no dependencies for installation and use of **STLSoft**.
-
-#### Test-only dependencies
-
-The component-/unit-tests depend on the **xTests** project:
-
-* [xTests](http://github.com/synesissoftware/xTests/)
-
+| Dependency | Role | Required? |
+| ---------- | ---- | --------- |
+| — | Installation and use of **STLSoft** (100% header-only) | ✅ None |
+| **ACE** | **ACESTL** examples / tests | ⚪ Optional (`NO_ACE` / **`--no-ace`**; `ACE` / `ACE_ROOT` or system package) |
+| [**xTests**](https://github.com/synesissoftware/xTests) | Component- / unit-tests (`BUILD_TESTING`) | ⚪ Tests only |
 
 
 ### Related projects
 
-Projects that depend on **STLSoft** - though for some it is only for test - include:
+Projects that depend on **STLSoft** — though for some it is only for tests — include:
 
-* [**b64**](https://github.com/synesissoftware/b64)
-* [**cstring**](https://github.com/synesissoftware/cstring)
-* [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism)
-* [**FastFormat**](https://github.com/synesissoftware/FastFormat)
-* [**libpath**](https://github.com/synesissoftware/libpath)
-* [**Pantheios**](https://github.com/synesissoftware/Pantheios)
-* [**recls**](https://github.com/synesissoftware/recls)
-* [**shwild**](https://github.com/synesissoftware/shwild)
-* [**UNIXem**](https://github.com/synesissoftware/UNIXem)
-* [**xTests**](https://github.com/synesissoftware/xTests)
+* [**2be**](https://github.com/synesissoftware/2be) (tests only);
+* [**b64**](https://github.com/synesissoftware/b64) (C++ API only);
+* [**CLASP**](https://github.com/synesissoftware/CLASP) (C++ API, tests only);
+* [**cstring**](https://github.com/synesissoftware/cstring) (tests only);
+* [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) (tests only);
+* [**FastFormat**](https://github.com/synesissoftware/FastFormat);
+* [**libCLImate**](https://github.com/synesissoftware/libCLImate);
+* [**libpath**](https://github.com/synesissoftware/libpath) (tests only);
+* [**Pantheios**](https://github.com/synesissoftware/Pantheios);
+* [**Pantheios.Extras.AtExit**](https://github.com/synesissoftware/Pantheios.Extras.AtExit);
+* [**Pantheios.Extras.DiagUtil**](https://github.com/synesissoftware/Pantheios.Extras.DiagUtil);
+* [**Pantheios.Extras.Main**](https://github.com/synesissoftware/Pantheios.Extras.Main);
+* [**Pantheios.Extras.xHelpers**](https://github.com/synesissoftware/Pantheios.Extras.xHelpers);
+* [**recls**](https://github.com/synesissoftware/recls);
+* [**shwild**](https://github.com/synesissoftware/shwild) (C++ API only);
+* [**UNIXem**](https://github.com/synesissoftware/UNIXem) (tests only);
+* [**VOLE**](https://github.com/synesissoftware/VOLE) (tests only);
+* [**xTests**](https://github.com/synesissoftware/xTests);
 
 
 ### License
@@ -168,4 +583,3 @@ Projects that depend on **STLSoft** - though for some it is only for test - incl
 
 
 <!-- ########################### end of file ########################### -->
-

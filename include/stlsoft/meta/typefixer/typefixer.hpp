@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixer/typefixer.hpp
+ * File:    stlsoft/meta/typefixer/typefixer.hpp
  *
- * Purpose:     Root header file for STLSoft's TypeFixer utility components.
+ * Purpose: Root header file for STLSoft's TypeFixer utility components.
  *
- * Created:     9th February 2004
- * Updated:     29th July 2026
+ * Created: 9th February 2004
+ * Updated: 19th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -104,10 +104,10 @@ namespace typefixer
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-# define stlsoft_typefixer_ns_qual(x)          ::stlsoft::typefixer::x
-# define stlsoft_typefixer_ns_using(x)         using ::stlsoft::typefixer::x;
+# define stlsoft_typefixer_ns_qual(x)                       ::stlsoft::typefixer::x
+# define stlsoft_typefixer_ns_using(x)                      using ::stlsoft::typefixer::x;
 #else /* ? STLSOFT_NO_NAMESPACE */
-# define stlsoft_typefixer_ns_qual(x)          x
+# define stlsoft_typefixer_ns_qual(x)                       x
 # define stlsoft_typefixer_ns_using(x)
 #endif /* !STLSOFT_NO_NAMESPACE */
 

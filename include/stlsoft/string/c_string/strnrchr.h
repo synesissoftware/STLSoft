@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/c_string/strnrchr.h
+ * File:    stlsoft/string/c_string/strnrchr.h
  *
- * Purpose:     Definition of stlsoft_C_strnrchr() and stlsoft_C_wcsnrchr()
+ * Purpose: Definition of stlsoft_C_strnrchr() and stlsoft_C_wcsnrchr()
  *
- * Created:     19th December 2020
- * Updated:     11th March 2024
+ * Created: 19th December 2020
+ * Updated: 26th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_EDIT        3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -19,6 +19,25 @@ on:
         required: false
         type: string
         default: Release
+      with-ace:
+        required: false
+        type: boolean
+        default: false
+      with-atl:
+        required: false
+        type: boolean
+        default: false
+      with-mfc:
+        required: false
+        type: boolean
+        default: false
+      # When false, skip examples and the shared test suites. The feature
+      # job then runs only the ACE, ATL, and MFC programs plus the version
+      # reporters. Lean cells leave the default.
+      execute-full-suite:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
@@ -32,7 +51,12 @@ jobs:
         if: runner.os == 'Linux' && inputs.c-compiler == 'clang'
         run: sudo apt-get update && sudo apt-get install -y clang
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -43,25 +67,26 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install test dependencies (STLSoft bootstrap + xTests)
+      - name: Bootstrap STLSoft into the dependencies prefix
         shell: bash
         run: |
           set -euxo pipefail
 
           DEPS="${RUNNER_TEMP}/sis-deps"
+          echo "SIS_DEPS=$DEPS" >> "$GITHUB_ENV"
           STLSRC="${{ github.workspace }}"
-          XTSRC="${RUNNER_TEMP}/xtests-src"
-          XTBUILD="${RUNNER_TEMP}/xtests-build"
           STLINSTALL="${RUNNER_TEMP}/stlsoft-install-build"
 
           mkdir -p "$DEPS"
 
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -S "$STLSRC" -B "$STLINSTALL" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --config "${{ inputs.build-type }}" --parallel
             cmake --install "$STLINSTALL" --config "${{ inputs.build-type }}"
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
@@ -70,7 +95,8 @@ jobs:
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --parallel 2
             cmake --install "$STLINSTALL"
           else
@@ -80,94 +106,166 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
             cmake --build "$STLINSTALL" --parallel
             cmake --install "$STLINSTALL"
           fi
 
-          git clone --depth 1 https://github.com/synesissoftware/xTests "$XTSRC"
-
-          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake -S "$XTSRC" -B "$XTBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF \
-              -DNO_SHWILD=TRUE \
-              -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --config "${{ inputs.build-type }}" --parallel
-            cmake --install "$XTBUILD" --config "${{ inputs.build-type }}"
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$XTSRC" -B "$XTBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF \
-              -DNO_SHWILD=TRUE \
-              -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --parallel 2
-            cmake --install "$XTBUILD"
-          else
-            cmake -S "$XTSRC" -B "$XTBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF \
-              -DNO_SHWILD=TRUE \
-              -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --parallel
-            cmake --install "$XTBUILD"
-          fi
+      # shwild supplies TEST_MS_MATCHES. STLSoft is already in the prefix
+      # from the bootstrap above, so this list does not name it. woad
+      # precedes xTests (xTests 0.29 requires it); shwild precedes xTests.
+      - name: Install Synesis dependencies
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ inputs.build-type }}
+          c-compiler: ${{ inputs.c-compiler == 'mingw' && 'gcc' || inputs.c-compiler }}
+          cpp-compiler: ${{ inputs.c-compiler == 'mingw' && 'g++' || inputs.cpp-compiler }}
+          dependencies: shwild woad xTests
+          install-prefix: ${{ env.SIS_DEPS }}
+          toolchain: ${{ inputs.c-compiler == 'mingw' && 'mingw' || '' }}
 
       - name: Configure
         shell: bash
         run: |
           set -euo pipefail
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            ACE_FLAG="-DNO_ACE=OFF"
+          else
+            ACE_FLAG="-DNO_ACE=ON"
+          fi
+          # Feature cells run only ACE/ATL/MFC unit tests and the version
+          # reporter. Leave the full example and test tree off so the
+          # hosted runner is not asked to compile it.
+          if [ "${{ inputs.execute-full-suite }}" = "true" ]; then
+            SUITE_FLAGS="-DBUILD_EXAMPLES=ON -DBUILD_TESTING=ON -DSTLSOFT_FEATURE_TESTS_ONLY=OFF"
+          else
+            SUITE_FLAGS="-DBUILD_EXAMPLES=OFF -DBUILD_TESTING=ON -DSTLSOFT_FEATURE_TESTS_ONLY=ON"
+          fi
+          # Default MSVC cells suppress ATL/MFC discovery (keeps lean cells lean).
+          # **with-atl** / **with-mfc** leave the matching find enabled so
+          # **ATLSTL** / **MFCSTL** can build (versions smoke; mfcstl tests).
+          if [ "${{ inputs.c-compiler }}" = "cl" ] && [ "${{ inputs.with-atl }}" != "true" ]; then
+            ATL_FLAG="-DCMAKE_DISABLE_FIND_PACKAGE_ATL=TRUE"
+          else
+            ATL_FLAG=""
+          fi
+          if [ "${{ inputs.c-compiler }}" = "cl" ] && [ "${{ inputs.with-mfc }}" != "true" ]; then
+            MFC_FLAG="-DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE"
+          else
+            MFC_FLAG=""
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              $ATL_FLAG \
+              $MFC_FLAG \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
+              $SUITE_FLAGS \
+              $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_C_COMPILER=gcc \
               -DCMAKE_CXX_COMPILER=g++ \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
+              $SUITE_FLAGS \
+              $ACE_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
-              -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON \
-              -DNO_SHWILD=TRUE
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
+              $SUITE_FLAGS \
+              $ACE_FLAG
           fi
+
+      - name: Verify ACE discovered
+        if: inputs.with-ace
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_LIB="$(grep -E '^ACE_LIBRARY:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          ACE_INC="$(grep -E '^ACE_INCLUDE_DIR:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          if [ -z "${ACE_LIB}" ] || [[ "${ACE_LIB}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_LIBRARY was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          if [ -z "${ACE_INC}" ] || [[ "${ACE_INC}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_INCLUDE_DIR was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ACE_LIBRARY=${ACE_LIB}"
+          echo "ACE_INCLUDE_DIR=${ACE_INC}"
+
+      - name: Verify ATL discovered
+        if: inputs.with-atl
+        shell: bash
+        run: |
+          set -euo pipefail
+          ATL_HAVE="$(grep -E '^ATL_HAVE_ATL:(BOOL|INTERNAL)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          ATL_FOUND="$(grep -E '^ATL_FOUND:(BOOL|INTERNAL|STRING)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          if [ "${ATL_HAVE}" != "1" ] && [ "${ATL_HAVE}" != "TRUE" ] && [ "${ATL_HAVE}" != "ON" ] && [ "${ATL_FOUND}" != "YES" ] && [ "${ATL_FOUND}" != "TRUE" ] && [ "${ATL_FOUND}" != "ON" ]; then
+            echo "with-atl requested but ATL was not found:" >&2
+            grep -i '^ATL_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ATL_HAVE_ATL=${ATL_HAVE}"
+          echo "ATL_FOUND=${ATL_FOUND}"
+
+      - name: Verify MFC discovered
+        if: inputs.with-mfc
+        shell: bash
+        run: |
+          set -euo pipefail
+          MFC_HAVE="$(grep -E '^MFC_HAVE_MFC:INTERNAL=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          MFC_FOUND="$(grep -E '^MFC_FOUND:(BOOL|INTERNAL|STRING)=' build/CMakeCache.txt | head -1 | cut -d= -f2- || true)"
+          if [ "${MFC_HAVE}" != "1" ] && [ "${MFC_FOUND}" != "YES" ] && [ "${MFC_FOUND}" != "TRUE" ] && [ "${MFC_FOUND}" != "ON" ]; then
+            echo "with-mfc requested but MFC was not found:" >&2
+            grep -i '^MFC_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "MFC_HAVE_MFC=${MFC_HAVE}"
+          echo "MFC_FOUND=${MFC_FOUND}"
+          grep -E '^CMAKE_MFC_FLAG:' build/CMakeCache.txt || true
+
+      - name: Verify ACE discovered
+        if: inputs.with-ace
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_LIB="$(grep -E '^ACE_LIBRARY:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          ACE_INC="$(grep -E '^ACE_INCLUDE_DIR:(FILEPATH|PATH)=' build/CMakeCache.txt | head -1 | cut -d= -f2-)"
+          if [ -z "${ACE_LIB}" ] || [[ "${ACE_LIB}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_LIBRARY was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          if [ -z "${ACE_INC}" ] || [[ "${ACE_INC}" == *NOTFOUND* ]]; then
+            echo "with-ace requested but ACE_INCLUDE_DIR was not found:" >&2
+            grep -i '^ACE_' build/CMakeCache.txt || true
+            exit 1
+          fi
+          echo "ACE_LIBRARY=${ACE_LIB}"
+          echo "ACE_INCLUDE_DIR=${ACE_INC}"
 
       - name: Build
         shell: bash
         run: |
           set -euo pipefail
+          # Unix hosted runners die with SIGTERM ("Terminated") when the
+          # full tree is built with an unbounded --parallel. Cap at 2,
+          # matching MinGW. MSVC keeps the default job count.
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake --build build --config "${{ inputs.build-type }}" --parallel
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
-            cmake --build build --parallel
+            cmake --build build --parallel 2
           fi
 
       - name: Upload build tree
@@ -179,13 +277,19 @@ jobs:
 
   run-examples:
     name: Examples (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     runs-on: ${{ inputs.os }}
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -199,7 +303,36 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run examples
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
+      - name: Run examples (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -208,15 +341,32 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M --skip-interactive
 
+      - name: Run examples (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_examples.cmd --skip-interactive
+          if errorlevel 1 exit /b 1
+
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     runs-on: ${{ inputs.os }}
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -230,7 +380,36 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run unit tests
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
+      - name: Run unit tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -239,15 +418,32 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
 
+      - name: Run unit tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_unit_tests.cmd --unit-only
+          if errorlevel 1 exit /b 1
+
   test-component:
     name: Component tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     runs-on: ${{ inputs.os }}
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -261,17 +457,58 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run component tests
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
+      - name: Run component tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
+
+      - name: Run component tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_component_tests.cmd
+          if errorlevel 1 exit /b 1
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     continue-on-error: true
     runs-on: ${{ inputs.os }}
@@ -279,7 +516,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -293,7 +535,36 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run scratch tests
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
+      - name: Run scratch tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -302,8 +573,20 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
 
+      - name: Run scratch tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_scratch_tests.cmd
+          if errorlevel 1 exit /b 1
+
   test-performance:
     name: Performance tests (${{ inputs.cell-id }})
+    if: inputs.execute-full-suite
     needs: build
     continue-on-error: true
     runs-on: ${{ inputs.os }}
@@ -311,7 +594,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -325,11 +613,314 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Run performance tests
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              \( -path '*/examples/*' \
+                 ! -name '*.cmake' \
+                 ! -name 'CMakeLists.txt' \
+                 ! -name 'CTestTestfile.cmake' \
+                 ! -name 'Makefile' \
+                 ! -name 'cmake_install.cmake' \
+              \) \
+              -o -name 'test.unit.*' -o -name 'test_unit*' \
+              -o -name 'test.component.*' -o -name 'test_component*' \
+              -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+              -o -name 'test.performance.*' -o -name 'test_performance*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
+      - name: Run performance tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M
+          # --gap-groups sets SIS_PERFTESTS_GROUPGAPS=1 for blank lines
+          # between pattern / scenario groups in performance output.
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./execute_performance_tests.sh -M --gap-groups
+
+      - name: Run performance tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_performance_tests.cmd --gap-groups
+          if errorlevel 1 exit /b 1
+
+  # Programs that exist only when ACE, ATL, or MFC is enabled, plus the
+  # version reporters those defines change. Examples, component tests,
+  # scratch tests, and performance tests stay on the lean cell.
+  test-feature:
+    name: Feature tests (${{ inputs.cell-id }})
+    if: ${{ inputs.execute-full-suite == false }}
+    needs: build
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
+      - name: Setup MSYS2 MinGW
+        id: msys2
+        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-toolchain
+
+      - name: Download build tree
+        uses: actions/download-artifact@v4
+        with:
+          name: sis-build-${{ inputs.cell-id }}
+          path: build
+
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( \
+              -name 'test.unit.versions*' \
+              -o -name 'test.unit.acestl.*' \
+              -o -name 'test.unit.mfcstl.*' \
+              -o -name 'test.scratch.versions.stdio*' \
+              -o -name 'test.scratch.versions.iostreams*' \
+              -o -name 'test.scratch.versions.format*' \
+            \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.cmake' \
+            ! -name '*.d' \
+            ! -name '*.filters' \
+            ! -name '*.ilk' \
+            ! -name '*.lib' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            ! -name '*.sln' \
+            ! -name '*.vcxproj' \
+            -exec chmod +x {} +
+
+      - name: Run feature unit tests (Bash)
+        if: runner.os != 'Windows'
+        shell: bash
+        env:
+          WITH_ACE: ${{ inputs.with-ace }}
+          WITH_MFC: ${{ inputs.with-mfc }}
+        run: |
+          set -euo pipefail
+          ROOT="${GITHUB_WORKSPACE}/build"
+
+          run_matching() {
+            local pattern="$1"
+            local required="$2"
+            local mode="$3"
+            local n=0
+            local f
+            while IFS= read -r -d '' f; do
+              echo "executing ${f}"
+              if [ "$mode" = "unit" ]; then
+                "$f" --verbosity=3
+              else
+                "$f"
+              fi
+              n=$((n + 1))
+            done < <(find "$ROOT" -type f -name "$pattern" \
+                ! -path '*/CMakeFiles/*' \
+                ! -name '*.a' \
+                ! -name '*.cmake' \
+                ! -name '*.d' \
+                ! -name '*.filters' \
+                ! -name '*.ilk' \
+                ! -name '*.lib' \
+                ! -name '*.o' \
+                ! -name '*.obj' \
+                ! -name '*.pdb' \
+                ! -name '*.sln' \
+                ! -name '*.vcxproj' \
+                \( -perm -100 -o -name '*.exe' \) \
+                -print0 | sort -z)
+            if [ "$required" = "yes" ] && [ "$n" -eq 0 ]; then
+              echo "required program not found: ${pattern}" >&2
+              exit 1
+            fi
+            if [ "$n" -eq 0 ]; then
+              echo "optional program not present: ${pattern}"
+            else
+              echo "ran ${n} program(s) matching ${pattern}"
+            fi
+          }
+
+          run_matching 'test.unit.versions*' yes unit
+          if [ "${WITH_ACE}" = "true" ]; then
+            run_matching 'test.unit.acestl.*' yes unit
+          fi
+          if [ "${WITH_MFC}" = "true" ]; then
+            run_matching 'test.unit.mfcstl.*' yes unit
+          fi
+
+      - name: Run feature unit tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+          WITH_ACE: ${{ inputs.with-ace }}
+          WITH_MFC: ${{ inputs.with-mfc }}
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          set "ROOT=%SIS_CMAKE_BUILD_DIR%"
+          call :run_matching test.unit.versions.exe yes unit
+          if errorlevel 1 exit /b 1
+          if /I "%WITH_ACE%"=="true" (
+            call :run_matching test.unit.acestl.*.exe yes unit
+            if errorlevel 1 exit /b 1
+          )
+          if /I "%WITH_MFC%"=="true" (
+            call :run_matching test.unit.mfcstl.*.exe yes unit
+            if errorlevel 1 exit /b 1
+          )
+          exit /b 0
+
+          :run_matching
+          set "PAT=%~1"
+          set "REQUIRED=%~2"
+          set "MODE=%~3"
+          set "N=0"
+          rem for /r without a wildcard names the file in every directory.
+          rem dir /s lists only files that exist (multi-config Release\).
+          for /f "delims=" %%F in ('dir /a:-d /b /s "%ROOT%\%PAT%" 2^>nul') do (
+            echo %%F | findstr /i /c:"CMakeFiles" >nul
+            if errorlevel 1 (
+              echo executing %%F
+              if /I "%MODE%"=="unit" (
+                "%%F" --verbosity=3
+              ) else (
+                "%%F"
+              )
+              if errorlevel 1 exit /b 1
+              set /a N+=1
+            )
+          )
+          if "%N%"=="0" (
+            if /I "%REQUIRED%"=="yes" (
+              echo required program not found: %PAT%
+              exit /b 1
+            )
+            echo optional program not present: %PAT%
+          ) else (
+            echo ran %N% for %PAT%
+          )
+          exit /b 0
+
+      - name: Run feature version reporters (Bash)
+        if: runner.os != 'Windows'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="${GITHUB_WORKSPACE}/build"
+
+          run_matching() {
+            local pattern="$1"
+            local required="$2"
+            local n=0
+            local f
+            while IFS= read -r -d '' f; do
+              echo "executing ${f}"
+              "$f"
+              n=$((n + 1))
+            done < <(find "$ROOT" -type f -name "$pattern" \
+                ! -path '*/CMakeFiles/*' \
+                ! -name '*.a' \
+                ! -name '*.cmake' \
+                ! -name '*.d' \
+                ! -name '*.filters' \
+                ! -name '*.ilk' \
+                ! -name '*.lib' \
+                ! -name '*.o' \
+                ! -name '*.obj' \
+                ! -name '*.pdb' \
+                ! -name '*.sln' \
+                ! -name '*.vcxproj' \
+                \( -perm -100 -o -name '*.exe' \) \
+                -print0 | sort -z)
+            if [ "$required" = "yes" ] && [ "$n" -eq 0 ]; then
+              echo "required program not found: ${pattern}" >&2
+              exit 1
+            fi
+            if [ "$n" -eq 0 ]; then
+              echo "optional program not present: ${pattern}"
+            else
+              echo "ran ${n} program(s) matching ${pattern}"
+            fi
+          }
+
+          run_matching 'test.scratch.versions.stdio*' yes
+          run_matching 'test.scratch.versions.iostreams*' yes
+          run_matching 'test.scratch.versions.format*' no
+
+      - name: Run feature version reporters (native cmd)
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.c-compiler }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          set "ROOT=%SIS_CMAKE_BUILD_DIR%"
+          call :run_matching test.scratch.versions.stdio.exe yes
+          if errorlevel 1 exit /b 1
+          call :run_matching test.scratch.versions.iostreams.exe yes
+          if errorlevel 1 exit /b 1
+          call :run_matching test.scratch.versions.format.exe no
+          if errorlevel 1 exit /b 1
+          exit /b 0
+
+          :run_matching
+          set "PAT=%~1"
+          set "REQUIRED=%~2"
+          set "N=0"
+          rem for /r without a wildcard names the file in every directory.
+          rem dir /s lists only files that exist (multi-config Release\).
+          for /f "delims=" %%F in ('dir /a:-d /b /s "%ROOT%\%PAT%" 2^>nul') do (
+            echo %%F | findstr /i /c:"CMakeFiles" >nul
+            if errorlevel 1 (
+              echo executing %%F
+              "%%F"
+              if errorlevel 1 exit /b 1
+              set /a N+=1
+            )
+          )
+          if "%N%"=="0" (
+            if /I "%REQUIRED%"=="yes" (
+              echo required program not found: %PAT%
+              exit /b 1
+            )
+            echo optional program not present: %PAT%
+          ) else (
+            echo ran %N% for %PAT%
+          )
+          exit /b 0

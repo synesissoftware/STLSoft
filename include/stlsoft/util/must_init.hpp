@@ -9,11 +9,11 @@
  *          coverage.
  *
  * Created: 18th June 2006
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        32
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -192,7 +192,7 @@ public:
 public:
     /// The underlying value
     ///
-    ///  \remarks Since the purpose of must_init is to guard against a
+    ///  \note Since the purpose of must_init is to guard against a
     ///   forgotten initialisation in composition involving fundamental
     ///   types, rather than encapsulation in any wider sense, the member
     ///   value is public, to simplify manipulation of the actual value by
@@ -274,7 +274,7 @@ public:
 public:
     /// The underlying value
     ///
-    ///  \remarks Since the purpose of must_init is to guard against a
+    ///  \note Since the purpose of must_init is to guard against a
     ///   forgotten initialisation in composition involving fundamental
     ///   types, rather than encapsulation in any wider sense, the member
     ///   value is public, to simplify manipulation of the actual value by

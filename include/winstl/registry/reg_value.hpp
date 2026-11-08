@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 21st March 2025
+ * Updated: 15th October 2026
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -23,7 +23,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -70,7 +70,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  14
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      136
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -654,7 +654,7 @@ basic_reg_value<C, T, A>::value_sz() const
         {
             WINSTL_ASSERT(0 != data_size);
 
-            --data_size; // This is required since the size contains space for the nul-terminator
+            --data_size; // This is required since the size contains space for the NUL character
 
             buffer[data_size / sizeof(char_type)] = 0; // The site of a former bug. Thanks to Diego Chanoux for spotting this
 

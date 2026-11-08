@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 29th July 2026
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      53
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS
 # include <stlsoft/string/cstring_functions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR
+# include <stlsoft/string/error/strerror.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
@@ -88,7 +94,7 @@
 
 #ifndef STLSOFT_INCL_H_STDLIB
 # define STLSOFT_INCL_H_STDLIB
-# include <stdlib.h>                    // for mbstowcs()
+# include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
 #ifndef STLSOFT_INCL_H_ERRNO
@@ -163,21 +169,40 @@ struct error_desc_traits;
 STLSOFT_TEMPLATE_SPECIALISATION
 struct error_desc_traits<ss_char_a_t>
 {
-# ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-
-    static int invoke_strerror_s_(ss_char_a_t* buff, size_t n, int code)
+    /* stlsoft_C_strerror() hides the CRT split. A capacity of 241 holds the
+     * stock errno texts. A longer secure message is fetched again into a
+     * buffer of the reported length.
+     */
+    template <ss_typename_param_k A>
+    static ss_char_a_t* duplicate_message_(int code, A& ator, size_t* plen)
     {
-        return ::strerror_s(buff, n, code);
+        ss_char_a_t         buff[241];
+        size_t              cch     =   0;
+        ss_char_a_t const*  text    =   stlsoft_C_strerror(
+                                            code
+                                        ,   STLSOFT_NUM_ELEMENTS(buff)
+                                        ,   buff
+                                        ,   &cch
+                                        );
+
+        if (text == buff &&
+            cch + 1 > STLSOFT_NUM_ELEMENTS(buff))
+        {
+            auto_buffer<ss_char_a_t, 256> bigger(cch + 1u);
+
+            if (bigger.size() >= cch + 1u)
+            {
+                text = stlsoft_C_strerror(
+                    code
+                ,   bigger.size()
+                ,   &bigger[0]
+                ,   &cch
+                );
+            }
+        }
+
+        return string_dup(text, ator, plen);
     }
-
-# else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-
-    static ss_char_a_t const* invoke_strerror_(int code, ss_char_a_t const*)
-    {
-        return ::strerror(code);
-    }
-
-# endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 };
 
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
@@ -191,15 +216,58 @@ struct error_desc_traits<ss_char_w_t>
     {
         return STLSOFT_ERROR_DESC_wcserror_s(buff, n, code);
     }
-};
 
+    template <ss_typename_param_k A>
+    static ss_char_w_t* duplicate_message_(int code, A& ator, size_t* plen)
+    {
+        auto_buffer<ss_char_w_t, 128, A> buff(128);
+        size_t cch = 0;
+
+        for (;;)
+        {
+            // If you get compiler errors on the following line, it may be
+            // because you are trying to use a wide char specialisation of
+            // basic_error_desc with a compiler for which a definition for
+            // STLSOFT_ERROR_DESC_wcserror_s does not exist. If your
+            // platform has an equivalental function, as does Microsoft's
+            // with _wcserror_s(), then define STLSOFT_ERROR_DESC_wcserror_s
+            // to the name of your function
+            int n = invoke_strerror_s_(&buff[0], buff.size() - 1, code);
+
+            buff[buff.size() - 1u] = '\0';
+
+            if (0 == n)
+            {
+                cch = c_str_len(buff.data());
+
+                if (cch < buff.size() - 2u)
+                {
+                    buff.resize(cch + 1u);
+
+                    break;
+                }
+            }
+
+            if (!buff.resize(1u + buff.size() * 2u))
+            {
+                buff.resize(1u);
+                cch = 0;
+
+                break;
+            }
+        }
+
+        *plen = cch;
+
+        return string_dup(buff.data(), cch, ator);
+    }
+};
 #  else /* ? STLSOFT_ERROR_DESC_wcserror_s */
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct error_desc_traits<ss_char_w_t>;
 
 #  endif /* STLSOFT_ERROR_DESC_wcserror_s */
-
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
 #  ifdef STLSOFT_ERROR_DESC_wcserror
@@ -211,8 +279,20 @@ struct error_desc_traits<ss_char_w_t>
     {
         return STLSOFT_ERROR_DESC_wcserror(code);
     }
-};
 
+    template <ss_typename_param_k A>
+    static ss_char_w_t* duplicate_message_(int code, A& ator, size_t* plen)
+    {
+        // If you get compiler errors on the following line, it may be
+        // because you are trying to use a wide char specialisation of
+        // basic_error_desc with a compiler for which a definition for
+        // STLSOFT_ERROR_DESC_wcserror does not exist. If your platform has
+        // an equivalental function, as does Microsoft's with _wcserror(),
+        // then define STLSOFT_ERROR_DESC_wcserror to the name of your
+        // function
+        return string_dup(invoke_strerror_(code, static_cast<ss_char_w_t const*>(0)), ator, plen);
+    }
+};
 #  else /* ? STLSOFT_ERROR_DESC_wcserror_s */
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -222,9 +302,16 @@ struct error_desc_traits<ss_char_w_t>
     {
         typedef basic_shim_string<ss_char_w_t, 64>          return_t;
 
-        std::string const   s(::strerror(code));
+        char                nbuff[241];
+        char const* const   ntext = stlsoft_C_strerror(
+                                    code
+                                ,   STLSOFT_NUM_ELEMENTS(nbuff)
+                                ,   nbuff
+                                ,   NULL
+                                );
+        std::string const   s(ntext);
         return_t            ss(s.size());
-        size_t const        n = ::mbstowcs(ss.data(), s.data(), s.size());
+        size_t const        n = stlsoft_C_mbstowcs(ss.data(), ss.size(), s.data(), s.size());
 
         if (size_t(-1) == n)
         {
@@ -233,10 +320,14 @@ struct error_desc_traits<ss_char_w_t>
 
         return ss;
     }
+
+    template <ss_typename_param_k A>
+    static ss_char_w_t* duplicate_message_(int code, A& ator, size_t* plen)
+    {
+        return string_dup(static_cast<ss_char_w_t const*>(invoke_strerror_(code, static_cast<ss_char_w_t const*>(0))), ator, plen);
+    }
 };
-
 #  endif /* STLSOFT_ERROR_DESC_wcserror */
-
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_error_desc_)
@@ -322,7 +413,8 @@ public: // construction
      defined(STLSOFT_COMPILER_IS_GCC) || \
      0
     basic_error_desc(class_type const& rhs)
-        : m_str(string_dup(rhs.m_str, rhs.m_length, get_allocator_()))
+        : parent_class_type()
+        , m_str(string_dup(rhs.m_str, rhs.m_length, get_allocator_()))
         , m_length(rhs.m_length)
     {}
 # endif /* compiler */
@@ -401,54 +493,9 @@ inline
 basic_error_desc<C>::basic_error_desc(
     ss_typename_type_k basic_error_desc<C>::error_type error /* = errno */
 )
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-    : m_length(0)
-{
-    stlsoft::auto_buffer<char_type, 128, allocator_type>    buff(128);
-
-    for (;;)
-    {
-        // If you get compiler errors on the following line, it may be because
-        // you are trying to use a wide char specialisation of basic_error_desc
-        // with a compiler for which a definition for
-        // STLSOFT_ERROR_DESC_wcserror_s does not exist. If your platform has an
-        // equivalental function, as does Microsoft's with _wcserror_s(), then
-        // define STLSOFT_ERROR_DESC_wcserror_s to the name of your function
-        int n = traits_type::invoke_strerror_s_(&buff[0], buff.size() - 1, error);
-
-        buff[buff.size() - 1u] = '\0';
-
-        if (0 == n)
-        {
-            size_t cch = c_str_len(buff.data());
-
-            if (cch < buff.size() - 2u)
-            {
-                m_length = cch;
-                buff.resize(cch + 1u);
-                break;
-            }
-        }
-
-        if (!buff.resize(1u + buff.size() * 2u))
-        {
-            buff.resize(1u);
-            break;
-        }
-    }
-
-    m_str = string_dup(buff.data(), m_length, get_allocator_());
-}
-#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-    // If you get compiler errors on the following line, it may be because
-    // you are trying to use a wide char specialisation of basic_error_desc
-    // with a compiler for which a definition for
-    // STLSOFT_ERROR_DESC_wcserror does not exist. If your platform has an
-    // equivalental function, as does Microsoft's with _wcserror(), then
-    // define STLSOFT_ERROR_DESC_wcserror to the name of your function
-    : m_str(string_dup(static_cast<char_type const*>(traits_type::invoke_strerror_(error, static_cast<char_type const*>(0))), get_allocator_(), &m_length))
+    : parent_class_type()
+    , m_str(traits_type::duplicate_message_(error, get_allocator_(), &m_length))
 {}
-#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
 template <ss_typename_param_k C>
 inline
@@ -505,7 +552,6 @@ basic_error_desc<C>::size() const STLSOFT_NOEXCEPT
 {
     return length();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -727,8 +773,8 @@ operator <<(
 
     return s;
 }
-
 #endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -766,7 +812,6 @@ operator <<(
     return stm << desc.c_str();
 }
 #endif /* 0 */
-
 #endif /* library */
 
 

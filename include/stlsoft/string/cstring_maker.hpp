@@ -4,7 +4,7 @@
  * Purpose: Simple utility class for creating (constant) C-strings.
  *
  * Created: 14th May 2004
- * Updated: 29th July 2026
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -194,7 +194,7 @@ private: // constants
 public:
     /// Allocates storage for writing into a string, optionally initialising
     ///
-    /// \note Includes space for a nul-terminator character
+    /// \note Includes space for a NUL character character.
     ///
     /// \param s The optional string to be copied into the block. May be
     ///   \c null; if not, must be of at least \c cch characters long
@@ -254,7 +254,7 @@ public:
     /// Allocates storage for writing into a string, optionally
     /// initialising, or returns \c nullptr if \c cch is 0
     ///
-    /// \note Includes space for a nul-terminator character
+    /// \note Includes space for a NUL character character.
     ///
     /// \param s The optional string to be copied into the block. May be
     ///   \c null; if not, must be of at least \c cch characters long

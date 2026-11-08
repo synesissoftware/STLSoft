@@ -4,14 +4,14 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 31st May 2025
+ * Updated: 20th September 2026
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -110,6 +110,15 @@
 # define STLSOFT_INTERNAL_GCC_PATCHLEVEL_                   (0)
 #endif /* __GNUC_PATCHLEVEL__ */
 
+/** \def STLSOFT_GCC_VER A composite version object-like macro comprising
+ *  the major*10000 + minor*100 + patch, e.g. 30401 (3.4.1).
+ *
+ * \note Because several compilers (e.g. Clang) may offer GCC compatibility,
+ *  the presence of this symbol does NOT, in and of itself, mean that the
+ *  compiler is actually GCC. Rather, code must first check for definition
+ *  of STLSOFT_COMPILER_IS_GCC.
+ *
+ */
 #define STLSOFT_GCC_VER                                     \
                                                             \
     (                                                       \
@@ -271,12 +280,17 @@
 #ifndef __cplusplus
 
 # if defined(__STDC_VERSION__) &&\
-     __STDC_VERSION__ >= 201112L
+     __STDC_VERSION__ >= 199901L
 
 #  define STLSOFT_CUSTOM_C_INLINE                           static inline
 # else /* ? C version */
 
-#  define STLSOFT_CUSTOM_C_INLINE                           extern inline
+ /* ISO C90 has no `inline`; GNU `extern inline` is rejected under
+  * pedantic -Werror. Plain `static` in headers then trips
+  * -Wunused-function; GCC/Clang `__attribute__((unused))` is accepted
+  * under -std=c90 -pedantic.
+  */
+#  define STLSOFT_CUSTOM_C_INLINE                           static __attribute__((unused))
 # endif /* C version */
 #endif
 

@@ -4,11 +4,11 @@
  * Purpose: Algorithms for Plain-Old Data types.
  *
  * Created: 17th January 2002
- * Updated: 20th March 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       6
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        108
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    2
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,6 +112,9 @@ struct ximpl_stlsoft_algorithm_pod_helper_
 {
 
     // Same-type operations
+    //
+    // An empty range touches nothing. A CRT count of 0 still requires valid
+    // pointers, so the call is skipped and null is legal.
 
     template <ss_typename_param_k T>
     static void pod_copy_n_(
@@ -121,7 +124,10 @@ struct ximpl_stlsoft_algorithm_pod_helper_
     ,   yes_type
     )
     {
-        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
+        if (0 != n)
+        {
+            STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
+        }
     }
 
     template <ss_typename_param_k T>
@@ -132,7 +138,10 @@ struct ximpl_stlsoft_algorithm_pod_helper_
     ,   yes_type
     )
     {
-        STLSOFT_API_EXTERNAL_memfns_memmove(dest, src, n * sizeof(*dest));
+        if (0 != n)
+        {
+            STLSOFT_API_EXTERNAL_memfns_memmove(dest, src, n * sizeof(*dest));
+        }
     }
 
 
@@ -161,7 +170,10 @@ struct ximpl_stlsoft_algorithm_pod_helper_
         STLSOFT_STATIC_ASSERT(int(O_IS_INTEGRAL_TYPE) == int(I_IS_INTEGRAL_TYPE));
         STLSOFT_STATIC_ASSERT(int(O_IS_POINTER_TYPE) == int(I_IS_POINTER_TYPE));
 
-        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
+        if (0 != n)
+        {
+            STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
+        }
     }
 
     template<
@@ -184,7 +196,10 @@ struct ximpl_stlsoft_algorithm_pod_helper_
         STLSOFT_STATIC_ASSERT(int(O_IS_INTEGRAL_TYPE) == int(I_IS_INTEGRAL_TYPE));
         STLSOFT_STATIC_ASSERT(int(O_IS_POINTER_TYPE) == int(I_IS_POINTER_TYPE));
 
-        STLSOFT_API_EXTERNAL_memfns_memmove(dest, src, n * sizeof(*dest));
+        if (0 != n)
+        {
+            STLSOFT_API_EXTERNAL_memfns_memmove(dest, src, n * sizeof(*dest));
+        }
     }
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -210,11 +225,14 @@ struct ximpl_stlsoft_algorithm_pod_helper_
   assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
 \endcode
  *
- * \note The implementation uses static assertions to ensure that the source and
- * destination element types are the same size.
+ * \note The implementation uses static assertions to ensure that the source
+ *   and destination element types are the same size.
  *
  * \note The implementation uses constraints ensure sure that the source and
- * destination element types are POD
+ *   destination element types are POD.
+ *
+ * \note An empty range copies nothing. Neither pointer is read, so either
+ *   may be null
  *
  * \param first Contiguous Iterator marking the start of the source range
  * \param last Contiguous Iterator marking the one-past-the-end of the source range
@@ -264,11 +282,14 @@ pod_copy(I* first, I* last, O* dest)
   assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
 \endcode
  *
- * \note The implementation uses static assertions to ensure that the source and
- * destination element types are the same size.
+ * \note The implementation uses static assertions to ensure that the source
+ *   and destination element types are the same size.
  *
  * \note The implementation uses constraints ensure sure that the source and
- * destination element types are POD
+ *   destination element types are POD.
+ *
+ * \note A count of 0 copies nothing. Neither pointer is read, so either
+ *   may be null.
  *
  * \param dest Contiguous Iterator marking the start of the source range
  * \param src Contiguous Iterator marking the start of the source range
@@ -310,11 +331,14 @@ pod_copy_n(O* dest, I* src, ss_size_t n)
  * ::<code>memmove()</code> to copy elements en bloc, rather than copy
  * assignment of one element at a time.
  *
- * \note The implementation uses static assertions to ensure that the source and
- * destination element types are the same size.
+ * \note The implementation uses static assertions to ensure that the source
+ *   and destination element types are the same size.
  *
  * \note The implementation uses constraints ensure sure that the source and
- * destination element types are POD
+ *   destination element types are POD.
+ *
+ * \note An empty range moves nothing. Neither pointer is read, so either
+ *   may be null.
  *
  * \param first Contiguous Iterator marking the start of the source range
  * \param last Contiguous Iterator marking the one-past-the-end of the source range
@@ -355,13 +379,16 @@ pod_move(I* first, I* last, O* dest)
  * \ingroup group__library__Algorithm
  *
  * \note This algorithm uses ::<code>memmove()</code> to copy elements en
- * bloc, rather than copy assignment of one element at a time.
+ *   bloc, rather than copy assignment of one element at a time.
  *
- * \note The implementation uses static assertions to ensure that the source and
- * destination element types are the same size.
+ * \note The implementation uses static assertions to ensure that the source
+ *   and destination element types are the same size.
  *
  * \note The implementation uses constraints ensure sure that the source and
- * destination element types are POD
+ *   destination element types are POD.
+ *
+ * \note A count of 0 moves nothing. Neither pointer is read, so either
+ *   may be null.
  *
  * \param dest Contiguous Iterator marking the start of the source range
  * \param src Contiguous Iterator marking the start of the source range
@@ -416,6 +443,9 @@ pod_move_n(O* dest, I* src, ss_size_t n)
  * to use ::<code>memset()</code> on \c char, \c signed \c char
  * and \c unsigned \c char types, for which performance gains are likely.
  *
+ * \note A count of 0 fills nothing and does not write, in which case dest
+*    may be nullptr.
+ *
  * \param dest Contiguous Iterator marking the start of the source range
  * \param n Number of elements in the range
  * \param value Value to which each element in dest[0, n) will be set
@@ -442,21 +472,30 @@ inline
 void
 pod_fill_n(char* dest, ss_size_t n, int value)
 {
-    STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
+    if (0 != n)
+    {
+        STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
+    }
 }
 // [[synesis:function:algorithm: pod_fill_n(signed char *dest, int value)]]
 inline
 void
 pod_fill_n(signed char* dest, ss_size_t n, int value)
 {
-    STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
+    if (0 != n)
+    {
+        STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
+    }
 }
 // [[synesis:function:algorithm: pod_fill_n(unsigned char *dest, int value)]]
 inline
 void
 pod_fill_n(unsigned char* dest, ss_size_t n, int value)
 {
-    STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
+    if (0 != n)
+    {
+        STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
+    }
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

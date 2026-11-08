@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/printf_traits.hpp
+ * File:    stlsoft/util/printf_traits.hpp
  *
- * Purpose:     printf_traits classes.
+ * Purpose: printf_traits classes.
  *
- * Created:     16th January 2002
- * Updated:     29th July 2026
+ * Created: 16th January 2002
+ * Updated: 8th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     76
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR       5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR       0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION    5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -162,7 +162,7 @@ namespace stlsoft
  * printf_traits is a traits class for acquiring enum values representing the
  * lengths, when expressed in string form, of the minimum and maximum values of
  * the type, and the maximum of the two. The lengths are inclusive of the
- * null terminator.
+ * NUL character.
  *
 \code
   assert(stlsoft::printf_traits<ss_sint16_t>::size_min == 6);

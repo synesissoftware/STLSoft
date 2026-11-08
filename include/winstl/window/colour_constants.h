@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/colour_constants.h (originally MWWinDef.h, ::SynesisWin)
+ * File:    winstl/window/colour_constants.h (originally MWWinDef.h, ::SynesisWin)
  *
- * Purpose:     Colour constants.
+ * Purpose: Colour constants.
  *
- * Created:     20th February 1999
- * Updated:     29th July 2026
+ * Created: 20th February 1999
+ * Updated: 19th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software

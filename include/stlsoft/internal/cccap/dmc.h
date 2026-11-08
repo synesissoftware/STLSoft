@@ -4,11 +4,11 @@
  * Purpose: Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created: 7th February 2003
- * Updated: 25th November 2024
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,9 +61,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      21
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       107
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      22
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,6 +114,7 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#define STLSOFT_PPF_pragma_once_SUPPORT
 
 /* Support for:
  *  - __func__

@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/api/external/time.h
  *
- * Purpose: External preprocessor aliases and support discrimination for
- *          time functions.
+ * Purpose: External preprocessor support discrimination for time functions.
  *
  * Created: 30th September 2024
- * Updated: 29th May 2025
+ * Updated: 2nd November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* WARNING: this file contains undocumented internal features that are
+/* WARNING: this file contains undocumented external features that are
  * subject to change at any time, so if you use them it is at your own risk.
  */
 
@@ -88,9 +87,7 @@
  *
  * - STLSOFT_LF_SUPPORT_STD_asctime_s
  * - STLSOFT_LF_SUPPORT_STD_ctime_s
- * - STLSOFT_LF_SUPPORT_STD_gmtime_r
  * - STLSOFT_LF_SUPPORT_STD_gmtime_s
- * - STLSOFT_LF_SUPPORT_STD_localtime_r
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
@@ -110,8 +107,10 @@
       0
 
 # if 1 &&\
+     !defined(__MINGW32__) &&\
      !defined(__MINGW64__) &&\
      1
+
 #  define STLSOFT_LF_SUPPORT_GCC_asctime_r
 #  define STLSOFT_LF_SUPPORT_GCC_ctime_r
 #  define STLSOFT_LF_SUPPORT_GCC_gmtime_r
@@ -126,9 +125,11 @@
  * - STLSOFT_LF_SUPPORT_MSVCRT_localtime_s
  */
 #if 0
-#elif defined(_WIN32) &&\
+#elif 1 &&\
+      defined(_WIN32) &&\
       defined(_MSC_VER) &&\
-      defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+      defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) &&\
+      1
 
 # define STLSOFT_LF_SUPPORT_MSVCRT_asctime_s
 # define STLSOFT_LF_SUPPORT_MSVCRT_ctime_s
@@ -139,15 +140,20 @@
 /*
  * - STLSOFT_LF_SUPPORT_STD_asctime_s
  * - STLSOFT_LF_SUPPORT_STD_ctime_s
- * - STLSOFT_LF_SUPPORT_STD_gmtime_r
  * - STLSOFT_LF_SUPPORT_STD_gmtime_s
- * - STLSOFT_LF_SUPPORT_STD_localtime_r
  * - STLSOFT_LF_SUPPORT_STD_localtime_s
  */
 
+/* The *_s functions are C11 Annex K, which is optional (and is not part of
+ * C++): the implementation signals support by defining __STDC_LIB_EXT1__,
+ * and the user must request it by defining __STDC_WANT_LIB_EXT1__ before
+ * <time.h> is first included. Applies to both C and C++.
+ */
 #if 0
-#elif defined(__cplusplus) &&\
-      __cplusplus >= 201103L
+#elif 1 &&\
+      defined(__STDC_LIB_EXT1__) &&\
+      defined(__STDC_WANT_LIB_EXT1__) &&\
+      1
 
 # define STLSOFT_LF_SUPPORT_STD_asctime_s
 # define STLSOFT_LF_SUPPORT_STD_ctime_s
@@ -155,30 +161,14 @@
 # define STLSOFT_LF_SUPPORT_STD_localtime_s
 #endif
 
-#if 0
-#elif defined(__cplusplus) &&\
-      __cplusplus >= 202302L
-
-# ifndef _MSC_VER
-#  define STLSOFT_LF_SUPPORT_STD_gmtime_r
-#  define STLSOFT_LF_SUPPORT_STD_localtime_r
-# endif
-#endif
-
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * time functions
- */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_time */
 

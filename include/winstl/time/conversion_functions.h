@@ -4,11 +4,11 @@
  * Purpose: Comparison functions for Windows time structures.
  *
  * Created: 21st November 2003
- * Updated: 21st December 2024
+ * Updated: 11th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 8
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     69
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,7 +105,7 @@ namespace winstl_project
  *
  * \note This follows the algorithm provided in MSDN Q167296
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 void
@@ -128,7 +128,7 @@ winstl_C_UNIXTimeToFILETIME(
  *
  * \note This follows the algorithm provided in MSDN Q167296
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 void
@@ -152,7 +152,7 @@ winstl_C_UNIXTimeToFILETIME_us(
  *
  * \note This follows the algorithm provided in MSDN Q167296
  *
- * \pre (NULL != ft)
+ * \pre nullptr != ft
  */
 STLSOFT_INLINE
 time_t

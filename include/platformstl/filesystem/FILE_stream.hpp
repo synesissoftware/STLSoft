@@ -4,11 +4,11 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 20th March 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    5
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        28
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    7
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,6 +133,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_stdio
+# include <stlsoft/api/internal/stdio.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_stdio */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -270,12 +273,31 @@ public: // Operations
         return write_text_(ps, cch);
     }
 
-    /// Writes \c cb bytes from the memory block pointed to by \c pv to the
-    /// underlying file stream.
+    /// [DEPRECATED] Writes \c cb bytes from the memory block pointed to by
+    /// \c pv to the underlying file stream.
+    ///
+    /// \deprecated Use write_binary() instead
     ///
     /// \exception X Thrown in \c cb bytes cannot be written to the
     ///   underlying stream
+    STLSOFT_DEPRECATED_("write(void const*, size_t) is deprecated and will be removed from a future version of STLSoft; use write_binary() instead")
     class_type& write(void const* pv, size_type cb)
+    {
+        return write_binary(pv, cb);
+    }
+
+    /// Writes \c cb bytes from the memory block pointed to by \c pv to the
+    /// underlying file stream.
+    ///
+    /// \note Every byte is written, including embedded NULs. Character
+    ///   overloads of <code>write()</code> stop at the first NUL. Newline
+    ///   translation follows the stream's open mode, so open with
+    ///   <code>"wb"</code> when the stored bytes must match the memory
+    ///   block.
+    ///
+    /// \exception X Thrown in \c cb bytes cannot be written to the
+    ///   underlying stream
+    class_type& write_binary(void const* pv, size_type cb)
     {
         return write_bytes_(pv, cb);
     }
@@ -364,22 +386,11 @@ private: // Implementation
     ,   char const* mode
     )
     {
-#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
-    defined(STLSOFT_COMPILER_IS_MSVC)
-
-        FILE* handle;
-        int   e = ::fopen_s(&handle, path, mode);
+        FILE* handle = NULL;
+        int   e = STLSOFT_API_INTERNAL_stdio_fopen_m(path, mode, &handle);
 
         if (0 != e)
         {
-#else // }
-        FILE* handle = ::fopen(path, mode);
-
-        if (NULL == handle)
-        {
-            int e = errno;
-#endif
-
             e = validate_errno_(handle, e);
 
             STLSOFT_MESSAGE_ASSERT("errno should not be 0 when file could not be opened. If it is, the FILE_stream component is not correctly implemented for your compiler. Please contact Synesis Software for assistance", 0 != e);
@@ -408,21 +419,11 @@ private: // Implementation
     ,   wchar_t const*  mode
     )
     {
-# if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
-     defined(STLSOFT_COMPILER_IS_MSVC)
-        FILE* handle;
-        int   e = ::_wfopen_s(&handle, path, mode);
+        FILE* handle = NULL;
+        int   e = STLSOFT_API_INTERNAL_stdio_fopen_w(path, mode, &handle);
 
         if (0 != e)
         {
-# else // }
-        FILE* handle = ::_wfopen(path, mode);
-
-        if (NULL == handle)
-        {
-            int e = errno;
-# endif
-
             e = validate_errno_(handle, e);
 
             STLSOFT_MESSAGE_ASSERT("errno should not be 0 when file could not be opened. If it is, the FILE_stream component is not correctly implemented for your compiler. Please contact Synesis Software for assistance", 0 != e);

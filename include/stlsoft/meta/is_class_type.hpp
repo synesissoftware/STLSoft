@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_class_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/is_class_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     is_class_type meta class.
+ * Purpose: is_class_type meta class.
  *
- * Created:     19th November 1998
- * Updated:     29th July 2026
+ * Created: 19th November 1998
+ * Updated: 15th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -128,15 +128,15 @@ two_t is_class_type_func(...);
 /** Traits type used to determine whether the given type is
  *    of class type.
  *
- * \remarks Compatibility:
- * - Borland C/C++ 5.6 compiles but thinks everything is a class type
- * - CodePlay compiles but thinks that nothing is a class type
- * - Comeau works with most things (not references)
- * - CodeWarrior 3.0+ compiles and works from version 8 onwards
- * - Digital Mars 8.40+ compiles and works with most things (not references)
- * - GCC works with most things (not references)
- * - Intel works with most things (not references)
- * - Visual C++ compiles and works from version 7.1 onwards with most things (not references)
+ * \note Compatibility:
+ * - Borland C/C++ 5.6 compiles but thinks everything is a class type;
+ * - CodePlay compiles but thinks that nothing is a class type;
+ * - Comeau works with most things (not references);
+ * - CodeWarrior 3.0+ compiles and works from version 8 onwards;
+ * - Digital Mars 8.40+ compiles and works with most things (not references);
+ * - GCC works with most things (not references);
+ * - Intel works with most things (not references);
+ * - Visual C++ compiles and works from version 7.1 onwards with most things (not references);
  *
  * \ingroup group__library__Metaprogramming
  */

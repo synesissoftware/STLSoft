@@ -5,11 +5,11 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 28th May 2025
+ * Updated: 19th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        194
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    12
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,7 +149,7 @@
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -299,7 +299,7 @@ public:
     /// \pre nullptr != dir
     ///
     /// \note \c dir is assumed to contain space for an additional
-    ///   character (if required) and NUL-terminator
+    ///   character (if required) and NUL character.
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -803,13 +803,13 @@ public:
     static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
     /// Gets the file attributes for the given path
     ///
-    /// \pre (nullptr != path);
-    /// \pre (nullptr != attr);
+    /// \pre nullptr != path
+    /// \pre nullptr != attr
     static bool_type    get_file_attributes(char_type const* path, file_attributes_type* attr);
     /// Sets the file attributes for the given path
     ///
-    /// \pre (nullptr != path);
-    /// \pre (INVALID_FILE_ATTRIBUTES != attr);
+    /// \pre nullptr != path
+    /// \pre INVALID_FILE_ATTRIBUTES != attr
     static bool_type    set_file_attributes(char_type const* path, file_attributes_type const attr);
 
     /// Returns whether the given stat info represents a file
@@ -868,7 +868,7 @@ public:
     static large_size_type  get_file_size(stat_data_type const& sd);
     /// Gets the size of the file
     ///
-    /// \pre (nullptr != psd)
+    /// \pre nullptr != psd
     static large_size_type  get_file_size(stat_data_type const* psd);
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
@@ -973,7 +973,7 @@ public: // types
     typedef DWORD                                           error_type;
     typedef DWORD                                           file_attributes_type;
 private:
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
     typedef STLSOFT_NS_QUAL(auto_buffer)<char_type>         buffer_type_;
 #endif /* compiler */
@@ -1010,6 +1010,15 @@ public: // directory-end
         WINSTL_ASSERT(NULL != dir);
 
         size_type const len = str_len(dir);
+
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
 
         return ensure_dir_end(dir, len, 0, NULL);
     }
@@ -1082,6 +1091,8 @@ public: // directory-end
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ERROR_OUTOFMEMORY);
+
                     return 0;
                 }
 
@@ -1222,20 +1233,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        size_type len = rb.size();
+        size_type const n = rb.size();
 
-        if (0 == len)
+        if (0 == n)
         {
             return 0;
         }
-        else
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
         {
-            size_type lenToDecrease = len - 1;
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
 
-            remove_dir_end(rb.data(), len - 1, &lenToDecrease);
-
-            return lenToDecrease;
+                return 0;
+            }
         }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -1696,9 +1717,10 @@ public:
     {
         return WINSTL_CONST_MAX_PATH;
     }
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
+      _MSC_VER < 1200
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
     static
     size_type
     get_full_path_name(
@@ -1833,7 +1855,8 @@ private:
 
         if ('\0' != fileName[len])
         {
-            buffer_type_    fileName_(1 + (len - 1));
+            // len characters of payload + trailing NUL
+            buffer_type_    fileName_(1 + len);
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -1848,10 +1871,11 @@ private:
             }
             else
             {
+                STLSOFT_API_EXTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len);
                 fileName_[len] = '\0';
 
                 return get_full_path_name_impl(
-                    static_cast<char_type*>(STLSOFT_API_EXTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
+                    fileName_.data()
                 ,   len
                 ,   buffer
                 ,   cchBuffer
@@ -1946,7 +1970,7 @@ public:
 
                             if (r + 2 < cchBuffer)
                             {
-                                // There's enough space for the result and the closing quote and the nul-terminator
+                                // There's enough space for the result and the closing quote and the NUL character
                                 buffer[r + 2] = '\0';
 
                                 n = r + 2;
@@ -2014,11 +2038,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -2066,11 +2104,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_short_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_short_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_short_path_name(fileName, &rb[0], rb.size());
@@ -2150,11 +2202,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());
@@ -2236,7 +2301,7 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
 
         size_type const len         =   class_type::str_len(path);
@@ -2315,8 +2380,8 @@ public:
     }
 
 #if 0
-    /// \pre (nullptr != path);
-    /// \pre (INVALID_FILE_ATTRIBUTES != attr);
+    /// \pre nullptr != path
+    /// \pre INVALID_FILE_ATTRIBUTES != attr
 #endif
 
     static bool_type is_file(stat_data_type const* stat_data)
@@ -2594,7 +2659,7 @@ public: // types
     typedef DWORD                                           error_type;
     typedef DWORD                                           file_attributes_type;
 private:
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
     typedef STLSOFT_NS_QUAL(auto_buffer)<char_type>         buffer_type_;
 #endif /* compiler */
@@ -2626,6 +2691,15 @@ public: // directory-end
         WINSTL_ASSERT(NULL != dir);
 
         size_type const len = str_len(dir);
+
+        /* Empty string: leave unchanged (and avoid the capacity-0 append
+         * path, which GCC -Warray-bounds may flag when inlined into a
+         * tiny stack buffer).
+         */
+        if (0 == len)
+        {
+            return dir;
+        }
 
         return ensure_dir_end(dir, len, 0, NULL);
     }
@@ -2698,6 +2772,8 @@ public: // directory-end
             {
                 if (!resizeable_buffer_resize(rb, n + 1))
                 {
+                    set_last_error(ERROR_OUTOFMEMORY);
+
                     return 0;
                 }
 
@@ -2838,20 +2914,30 @@ public: // directory-end
         T_resizeableBuffer& rb
     )
     {
-        size_type len = rb.size();
+        size_type const n = rb.size();
 
-        if (0 == len)
+        if (0 == n)
         {
             return 0;
         }
-        else
+
+        size_type lenToDecrease = n - 1;
+
+        remove_dir_end(rb.data(), n - 1, &lenToDecrease);
+
+        size_type const cchRequired = lenToDecrease + 1;
+
+        if (rb.size() != cchRequired)
         {
-            size_type lenToDecrease = len - 1;
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
 
-            remove_dir_end(rb.data(), len - 1, &lenToDecrease);
-
-            return lenToDecrease;
+                return 0;
+            }
         }
+
+        return lenToDecrease;
     }
 
 public: // path classification and analysis
@@ -3373,11 +3459,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_full_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_full_path_name(fileName, &rb[0], rb.size());
@@ -3425,11 +3525,25 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_short_path_name(fileName, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_short_path_name(
+                                          fileName
+                                      ,   static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_short_path_name(fileName, &rb[0], rb.size());
@@ -3510,11 +3624,24 @@ public: // file-system control
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_current_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = get_current_directory(
+                                          static_cast<char_type*>(NULL)
+                                      ,   0
+                                      );
 
-        if (!resizeable_buffer_resize(rb, cchRequired))
+        if (0 == cchRequired)
         {
             return 0;
+        }
+
+        if (rb.size() < cchRequired)
+        {
+            if (!resizeable_buffer_resize(rb, cchRequired))
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
         }
 
         return get_current_directory(&rb[0], rb.size());
@@ -3596,7 +3723,7 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+#if !defined(STLSOFT_COMPILER_IS_MSVC) ||\
     _MSC_VER >= 1200
 
         size_type const len         =   class_type::str_len(path);
@@ -3933,7 +4060,7 @@ private:
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-# if defined(STLSOFT_NO_NAMESPACE) || \
+# if defined(STLSOFT_NO_NAMESPACE) ||\
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace winstl
 # else

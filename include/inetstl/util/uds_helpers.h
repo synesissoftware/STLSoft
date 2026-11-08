@@ -4,11 +4,11 @@
  * Purpose: Unix Domain Sockets helper functions
  *
  * Created: 21st February 2025
- * Updated: 29th May 2025
+ * Updated: 1st November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MAJOR       1
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MINOR       0
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    2
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        4
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    3
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,8 +138,9 @@
  *  -# `EINVAL` — cb_sa_un is smaller than 1 + offsetof(struct sockaddr_un, sun_path);
  *  -# `EINVAL` — path cannot fit into given storage size;
  */
+STLSOFT_INLINE
 int
-inetstl_c_sockaddr_un_init_from_path(
+inetstl_C_sockaddr_un_init_from_path(
     struct sockaddr_un* sa_un
 ,   size_t              cb_sa_un
 ,   char const*         path
@@ -159,7 +160,7 @@ inetstl_c_sockaddr_un_init_from_path(
          * - on macOS, `sockaddr_un` has field `sun_len`, which is not
          *   present on Linux;
          * - the field `sun_path` has a fixed size (of 104, or 108, or ...),
-         *   and there are some differences in whether a NUL-terminator is
+         *   and there are some differences in whether a NUL character is
          *   required, hence if the path length is exactly the same as the
          *   available fixed space then there is an issue;
          *
@@ -222,6 +223,32 @@ inetstl_c_sockaddr_un_init_from_path(
         }
     }
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ *
+ * Retained, deprecated, until at least STLSoft 1.13. The compiler message
+ * names inetstl_C_sockaddr_un_init_from_path, which the wrapper calls.
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+/** \deprecated Use inetstl_C_sockaddr_un_init_from_path
+ */
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(inetstl_c_sockaddr_un_init_from_path, inetstl_C_sockaddr_un_init_from_path)
+STLSOFT_INLINE
+int
+inetstl_c_sockaddr_un_init_from_path(
+    struct sockaddr_un* sa_un
+,   size_t              cb_sa_un
+,   char const*         path
+,   size_t*             pcb_actual
+)
+{
+    return inetstl_C_sockaddr_un_init_from_path(sa_un, cb_sa_un, path, pcb_actual);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

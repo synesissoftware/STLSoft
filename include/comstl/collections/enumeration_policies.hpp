@@ -4,11 +4,11 @@
  * Purpose: Policies for enumerator interface handling.
  *
  * Created: 20th December 2003
- * Updated: 21st March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    16
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        76
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -205,7 +205,7 @@ public:
 public:
     /// Gets a working "copy" of the given enumerator root
     ///
-    /// \remarks For this policy, this simply calls AddRef()
+    /// \note For this policy, this simply calls AddRef().
     static interface_type *get_working_instance(interface_type *root)
     {
         COMSTL_ASSERT(NULL != root);
@@ -254,7 +254,7 @@ public:
 public:
     /// Gets a working "copy" of the given enumerator root
     ///
-    /// \remarks For this policy, this calls Clone(), and returns \c nullptr
+    /// \note For this policy, this calls Clone(), and returns \c nullptr
     ///   if that fails.
     static interface_type *get_working_instance(interface_type *root)
     {
@@ -324,7 +324,7 @@ public:
 public:
     /// Gets a working "copy" of the given enumerator root
     ///
-    /// \remarks For this policy, this calls Clone(), and throws an
+    /// \note For this policy, this calls Clone(), and throws an
     ///   instance of comstl::clone_failure if that fails (or returns
     ///   \c nullptr if exception support is disabled).
     static interface_type *get_working_instance(interface_type *root)
@@ -443,7 +443,7 @@ public:
  *
  * \ingroup group__library__Collection
  *
- * \remarks Invokes the the get__NewEnum() method
+ * \note Invokes the the get__NewEnum() method.
  */
 template <ss_typename_param_k CI>
 struct new_enum_property_policy
@@ -475,7 +475,7 @@ public:
  *
  * \ingroup group__library__Collection
  *
- * \remarks Invokes the the _NewEnum() method
+ * \note Invokes the the _NewEnum() method.
  */
 template <ss_typename_param_k CI>
 struct new_enum_method_policy
@@ -497,7 +497,7 @@ public:
  *
  * \ingroup group__library__Collection
  *
- * \remarks Calls IDispatch::Invoke(DISPID_NEWENUM, . . . , DISPATCH_METHOD | DISPATCH_PROPERTYGET, . . . );
+ * \note Calls IDispatch::Invoke(DISPID_NEWENUM, . . . , DISPATCH_METHOD | DISPATCH_PROPERTYGET, . . . );
  */
 template <ss_typename_param_k CI>
 struct new_enum_by_dispid_policy

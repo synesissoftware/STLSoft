@@ -4,7 +4,7 @@
  * Purpose: Mappings to std string functions
  *
  * Created: 2nd December 2004
- * Updated: 29th July 2026
+ * Updated: 8th November 2026
  *
  * Thanks:  To Anton Sekeris for providing good advice on the naming scheme
  *          for the stlsoft/std headers
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   11
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       51
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   12
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,6 +110,8 @@ namespace stlsoft
 /// @{
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+#include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
 
 #ifndef STLSOFT_NO_NAMESPACE
 namespace std_impl
@@ -186,6 +188,8 @@ namespace std_impl
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace std_impl
 #endif /* STLSOFT_NO_NAMESPACE */
+
+#include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -440,6 +444,8 @@ char *  __cdecl strpbrk(char const*, char const*);
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+#include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
 #ifndef STLSOFT_NO_NAMESPACE
 namespace std_impl
 {
@@ -480,6 +486,8 @@ namespace std_impl
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace std_impl
 #endif /* STLSOFT_NO_NAMESPACE */
+
+#include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

@@ -4,7 +4,7 @@
  * Purpose: Directory functions.
  *
  * Created: 1st October 2016
- * Updated: 29th July 2026
+ * Updated: 29th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    13
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        24
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR     1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,11 +75,18 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_H_COPY_FUNCTIONS
 # include <stlsoft/string/copy_functions.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_COPY_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS
+# include <stlsoft/string/encoding/mbstowcs.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_ENCODING_H_MBSTOWCS */
 
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
@@ -172,18 +179,18 @@ unixstl_C_get_home_directory_invoke_getenv_a_(
                     us_size_t   s   =   buff.size;
                     us_size_t   n;
 
-                    n = STLSoft_C_string_copy_a(p, s, s_szHomeUnique, cchHomeUnique);
+                    n = stlsoft_C_string_copy_a(p, s, s_szHomeUnique, cchHomeUnique);
                     p += n;
                     s -= n;
 
                     *p++ = '=';
                     --s;
 
-                    n = STLSoft_C_string_copy_a(p, s, homeDrive, cchHomeDrive);
+                    n = stlsoft_C_string_copy_a(p, s, homeDrive, cchHomeDrive);
                     p += n;
                     s -= n;
 
-                    n = STLSoft_C_string_copy_a(p, s, homePath, cchHomePath);
+                    n = stlsoft_C_string_copy_a(p, s, homePath, cchHomePath);
                     p += n;
                     s -= n;
 
@@ -233,18 +240,62 @@ unixstl_C_get_home_directory_a(
             return cchHome + 1;
         }
 
-        return STLSoft_C_string_copy_with_nul_a(buffer, cchBuffer, home, cchHome);
+        return stlsoft_C_string_copy_with_nul_a(buffer, cchBuffer, home, cchHome);
     }
 }
 
-#if 0 /* TODO: implement this */
+/* Policy: read HOME via getenv() (multibyte) and convert to wide with
+ * stlsoft_C_mbstowcs() using the locale multibyte encoding.
+ */
 STLSOFT_INLINE
-#endif
 us_size_t
 unixstl_C_get_home_directory_w(
     us_char_w_t buffer[]
 ,   us_size_t   cchBuffer
-);
+)
+{
+    us_char_a_t const* const home = unixstl_C_get_home_directory_invoke_getenv_a_("HOME");
+
+    if (NULL == home)
+    {
+        return 0;
+    }
+    else
+    {
+        size_t const cchHome = stlsoft_C_mbstowcs(NULL, 0, home, 0);
+
+        if ((size_t)-1 == cchHome)
+        {
+            return 0;
+        }
+
+        if (0 == cchBuffer)
+        {
+            return cchHome + 1;
+        }
+
+        {
+            size_t const n = stlsoft_C_mbstowcs(buffer, cchBuffer, home, cchHome + 1);
+
+            if ((size_t)-1 == n)
+            {
+                return 0;
+            }
+
+            if (cchHome < cchBuffer)
+            {
+                return n;
+            }
+
+            /* Insufficient space: match narrow string_copy_with_nul —
+             * leave a NUL in the last slot and return cchBuffer - 1.
+             */
+            buffer[cchBuffer - 1] = L'\0';
+
+            return cchBuffer - 1;
+        }
+    }
+}
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     24th December 2006
- * Updated:     20th March 2025
+ * Updated:     15th October 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_MAJOR      1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_MINOR      1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_REVISION   7
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_EDIT       25
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,11 +112,6 @@ namespace winstl_project
  * \param ev The event instance
  *
  * \retval The handle \c h
- *
- * \remarks We cannot simply define the shim overload in terms of
- *    <code>CEvent</code> for two reasons. First, the template
- *    mechanism requires a precise shim when the
- *
  */
 inline HANDLE get_kernel_handle(CEvent &ev)
 {
@@ -131,11 +126,6 @@ inline HANDLE get_kernel_handle(CEvent &ev)
  * \param mx The mutex instance
  *
  * \retval The handle \c h
- *
- * \remarks We cannot simply define the shim overload in terms of
- *    <code>CMutex</code> for two reasons. First, the template
- *    mechanism requires a precise shim when the
- *
  */
 inline HANDLE get_kernel_handle(CMutex &mx)
 {
@@ -150,11 +140,6 @@ inline HANDLE get_kernel_handle(CMutex &mx)
  * \param sem The semaphore instance
  *
  * \retval The handle \c h
- *
- * \remarks We cannot simply define the shim overload in terms of
- *    <code>CSemaphore</code> for two reasons. First, the template
- *    mechanism requires a precise shim when the
- *
  */
 inline HANDLE get_kernel_handle(CSemaphore &sem)
 {

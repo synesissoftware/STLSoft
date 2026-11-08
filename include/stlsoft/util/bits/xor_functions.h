@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/bits/xor_functions.h
+ * File:    stlsoft/util/bits/xor_functions.h
  *
- * Purpose:     Bit XOR functions
+ * Purpose: Bit XOR functions
  *
- * Created:     2nd June 2010
- * Updated:     29th July 2026
+ * Created: 2nd June 2010
+ * Updated: 24th September 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -253,9 +253,8 @@ calculate_xor_over_range(
 {
     return stlsoft_C_calculate_xor_over_8bit_unsigned_range(p, n);
 }
-
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -273,8 +272,6 @@ calculate_xor_over_range(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS */
 

@@ -5,11 +5,11 @@
  *          hexadecimal representation.
  *
  * Created: 7th April 2002
- * Updated: 20th March 2025
+ * Updated: 15th October 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_HEXADECIMAL_STRING_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_HEXADECIMAL_STRING_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_HEXADECIMAL_STRING_REVISION    22
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_HEXADECIMAL_STRING_EDIT        101
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_HEXADECIMAL_STRING_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -209,8 +209,7 @@ unsigned_integer_to_hexadecimal_string(
 
     C* end = buf + (cchBuf - 1);
 
-    // Whichever we do it, we write the nul-terminator (and move down
-    // one)
+    // Whichever we do it, we write the NUL character (and move down one)
     *end-- = '\0';
 
     STLSOFT_COVER_MARK_LINE();
@@ -613,13 +612,13 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_I2S)
 
 /** Converts an integer value into a hexadecimal string representation in the
  * given character buffer, assigning the number of characters (excluding
- * the nul-terminator) written into the given size variable.
+ * the NUL character) written into the given size variable.
  *
  * \param buf Pointer to the buffer
  * \param cchBuf Number of character available in \c buf
  * \param i The value to be converted to octal string
  * \param numWritten Pointer to a variable to receive the number of
- *   characters written (excluding nul-terminator)
+ *   characters written (excluding NUL character);
  *
  * \pre nullptr != buf
  * \pre cchBuf > integral_format_width_limits<I>::maxHexadecimalWidth
