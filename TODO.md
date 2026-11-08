@@ -97,12 +97,18 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.6
 
-* [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, and the unit tests. Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
-* [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
+* \<none>
 
 
 ### 1.11.7
 
+* [x] ~~~Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;~~~ - ✅;
+
+
+### 1.11.8
+
+* [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl `path_classify_root` / `path_is_absolute` exposure (R13), and the platformstl unit tests. (The unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, `numDotsDirectoryParts`, the R9 documentation, and the unixstl/winstl host test suites landed in **1.11.7**.) Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
+* [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
 * [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
 * [ ] Complete coverage of currently tested components (improvement / completion);
 * [ ] Complete coverage of currently untested components (improvement / completion);
@@ -110,13 +116,8 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites;
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
-* [x] ~~~Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;~~~ - ✅;
 * [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
-
-
-### 1.11.8
-
 * [ ] **include/stlsoft/conversion/byte_format_functions.hpp** known / suspected issues in `format_bytes()` (unit tests landed in **test.unit.stlsoft.conversion.byte_format_functions**; none of these is pinned by a test yet):
   * [x] ~~~the line-separator copy uses `STLSOFT_API_EXTERNAL_memfns_memcpy()` rather than `STLSOFT_API_INTERNAL_memfns_memcpy()`, so a `nullptr` `lineSeparator` with `groupsPerLine > 0` calls `memcpy(buff, nullptr, 0)` (the case the internal adaptation exists for)~~~ - ✅;
   * a `nullptr` `lineSeparator` with `groupsPerLine > 0` drops the group separator at each wrap point, so the last group of a line runs into the first of the next; the documented "no line separation is done" does not state this, so decide the intended behaviour, document it, and add tests;
