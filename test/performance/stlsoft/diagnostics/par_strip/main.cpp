@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.par_strip/main.cpp
+ * File:    test/performance/stlsoft/diagnostics/par_strip/main.cpp
  *
  * Purpose: Perf-test for `stlsoft::par_strip`.
  *

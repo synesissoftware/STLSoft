@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.diagnostics.par_strip/entry.cpp
+ * File:    test/unit/stlsoft/diagnostics/par_strip/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::par_strip`.
  *

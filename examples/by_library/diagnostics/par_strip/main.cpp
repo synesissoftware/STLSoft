@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    by_library/diagnostics/par_strip/main.cpp
+ * File:    examples/by_library/diagnostics/par_strip/main.cpp
  *
  * Purpose: C++ example program demonstrating `stlsoft::par_strip`.
  *
