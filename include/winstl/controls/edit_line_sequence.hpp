@@ -4,7 +4,7 @@
  * Purpose:     Contains the edit_line_sequence class.
  *
  * Created:     23rd March 2006
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 12
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     34
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 13
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -315,9 +315,9 @@ inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_reverse_iter
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE */
 

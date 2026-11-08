@@ -4,11 +4,11 @@
  * Purpose:     Contains the comstl::com_SUCCEEDED and comstl::com_S_OK.
  *
  * Created:     3rd April 2007
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://comstl.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef COMSTL_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MAJOR    1
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MINOR    0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 6
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     18
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 7
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     19
 #endif /* !COMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -487,9 +487,9 @@ inline com_S_OK_tester_2_cdecl<A0, A1> com_S_OK(HRESULT (STLSOFT_CDECL *pfn)(A0,
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS */
 

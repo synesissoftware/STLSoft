@@ -5,7 +5,7 @@
  *          fixed_array_4d template classes.
  *
  * Created: 4th August 1998
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  Neal Becker for suggesting the uninitialised mode, requesting
  *          the function call operator, and for requesting the
@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   14
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       211
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   15
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       212
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -2464,9 +2464,9 @@ inline ss_size_t array_size(fixed_array_5d<T, A, P, R> const& ar)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY */
 

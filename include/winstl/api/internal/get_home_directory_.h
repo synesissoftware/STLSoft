@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for obtaining home directory.
  *
  * Created: 27th April 2025
- * Updated: 25th May 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -241,9 +241,9 @@ int WINSTL_API_INTERNAL_System_get_home_directory_w_(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 #pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* WINSTL_API_INTERNAL_H_get_home_directory_ */
 

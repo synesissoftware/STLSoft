@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_data_sequence class.
  *
  * Created:     16th March 2008
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MAJOR     1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MINOR     2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_REVISION  8
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_EDIT      25
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_REVISION  9
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -264,9 +264,9 @@ private:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE */
 

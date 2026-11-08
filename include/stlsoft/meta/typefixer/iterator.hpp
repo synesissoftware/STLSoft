@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_iterator type.
  *
  * Created:     9th February 2004
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_REVISION   4
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_EDIT       33
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_REVISION   5
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,9 +171,9 @@ struct fixer_const_iterator<T, false>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_ITERATOR */
 

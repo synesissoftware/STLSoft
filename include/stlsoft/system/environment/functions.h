@@ -4,7 +4,7 @@
  * Purpose: Environment functions.
  *
  * Created: 4th March 2011
- * Updated: 11th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    0
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        20
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    1
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -374,9 +374,9 @@ environment_variable_strtoll(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS */
 

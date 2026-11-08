@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL process-time performance counter class.
  *
  * Created:     9th June 2006
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      26
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,9 +120,9 @@ typedef processtimes_stopwatch          processtimes_counter;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -5,11 +5,11 @@
  *          Internet-related types.
  *
  * Created: 21st October 2006
- * Updated: 27th November 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__MAJOR      2
 # define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__MINOR      0
-# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__REVISION   3
-# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__EDIT       17
+# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__REVISION   4
+# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,9 +89,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !INETSTL_INCL_INETSTL_INTERNAL_STD_H_IN_ADDR_ */
 

@@ -4,7 +4,7 @@
  * Purpose: Control creation functions.
  *
  * Created: 7th May 2000
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    11
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        38
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    12
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -881,9 +881,9 @@ winstl__CreateCheckbox(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_CONTROL_H_CREATION_FUNCTIONS */
 

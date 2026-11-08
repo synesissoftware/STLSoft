@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with BSTR strings.
  *
  * Created: 24th June 2002
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 10
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     110
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 11
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -771,9 +771,9 @@ bstr_compare(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS */
 

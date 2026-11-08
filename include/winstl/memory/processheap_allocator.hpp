@@ -4,7 +4,7 @@
  * Purpose:     processheap_allocator class.
  *
  * Created:     25th February 2002
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MINOR       1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_REVISION    10
-# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        103
+# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_REVISION    11
+# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -261,9 +261,9 @@ inline ws_bool_t operator !=(processheap_allocator<T> const& /* lhs */, processh
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 

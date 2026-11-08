@@ -4,7 +4,7 @@
  * Purpose: stopwatch class based on std::chrono::high_resolution_clock.
  *
  * Created: 17th March 2024
- * Updated: 15th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MAJOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      6
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  2
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -457,9 +457,9 @@ std_chrono_hrc_stopwatch::stop_get_nanoseconds_and_restart()
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH */
 

@@ -4,11 +4,11 @@
  * Purpose: String-switch functions.
  *
  * Created: 10th May 2010
- * Updated: 28th May 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR      3
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   7
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       37
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   8
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1419,9 +1419,9 @@ string_switch_(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH */
 

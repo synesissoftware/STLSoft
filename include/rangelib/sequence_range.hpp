@@ -4,14 +4,14 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     21st March 2025
+ * Updated:     9th November 2026
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 6
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     78
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 7
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -497,9 +497,9 @@ inline sequence_range<S> make_sequence_range(S const& s)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
 

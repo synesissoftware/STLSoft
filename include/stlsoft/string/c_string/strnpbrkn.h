@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnpbrkn() and stlsoft_C_wcsnpbrkn()
  *
  * Created: 11th December 2020
- * Updated: 26th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_EDIT       5
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_REVISION   3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -192,9 +192,9 @@ wcsnpbrkn(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRNPBRKN */
 

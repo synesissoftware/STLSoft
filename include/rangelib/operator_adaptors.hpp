@@ -5,11 +5,11 @@
  *              non_mutating_operator_adaptor classes.
  *
  * Created:     4th November 2003
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       5
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    8
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        46
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    9
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -343,9 +343,9 @@ public:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
 

@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      57
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -819,9 +819,9 @@ operator <<(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_ERROR_DESC */
 

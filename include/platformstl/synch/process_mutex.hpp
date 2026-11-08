@@ -4,7 +4,7 @@
  * Purpose:     Definition of the process_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       31
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   5
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,9 +201,9 @@ public:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX */
 

@@ -4,7 +4,7 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MAJOR      3
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MINOR      0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   7
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       62
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   8
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,9 +125,9 @@ public:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_NOOP */
 

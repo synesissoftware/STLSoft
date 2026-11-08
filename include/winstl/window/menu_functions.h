@@ -4,7 +4,7 @@
  * Purpose: Menu functions.
  *
  * Created: 20th October 1994
- * Updated: 8th November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_MENU_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_WINDOW_H_MENU_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_MENU_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_WINDOW_H_MENU_FUNCTIONS_EDIT     140
+# define WINSTL_VER_WINSTL_WINDOW_H_MENU_FUNCTIONS_REVISION 6
+# define WINSTL_VER_WINSTL_WINDOW_H_MENU_FUNCTIONS_EDIT     141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -263,9 +263,9 @@ winstl__SetMenuItemStateById(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_WINDOW_H_MENU_FUNCTIONS */
 

@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        105
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1180,9 +1180,9 @@ stlsoft_char_traits<wchar_t>::length_max(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 
