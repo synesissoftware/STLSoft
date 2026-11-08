@@ -4,11 +4,11 @@
  * Purpose: Contains the basic_connection class.
  *
  * Created: 30th April 1999
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       1
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    12
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        89
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -469,7 +469,9 @@ get_handle(basic_connection<C, X, T> &s)
     return s;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef INETSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

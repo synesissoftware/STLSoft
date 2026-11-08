@@ -4,11 +4,11 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   11
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       66
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -513,7 +513,9 @@ inline void guid::swap(guid::class_type& rhs) STLSOFT_NOEXCEPT
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

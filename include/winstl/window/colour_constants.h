@@ -117,7 +117,9 @@ const COLORREF  bluegreen       =   RGB(  0, 128, 128); /*!< Colour constant */
 const COLORREF  darkgrey        =   RGB(128, 128, 128); /*!< Colour constant */
 const COLORREF  lightgrey       =   RGB(192, 192, 192); /*!< Colour constant */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

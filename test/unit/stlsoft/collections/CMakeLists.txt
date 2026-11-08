@@ -1,0 +1,10 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(array_proxy)
+add_subdirectory(array_view)
+add_subdirectory(associative_adaptor_sequences)
+add_subdirectory(associative_container_veneer)
+add_subdirectory(associative_key_sequence)
+add_subdirectory(associative_value_sequence)
+add_subdirectory(functions)
+add_subdirectory(sequence_container_veneer)
+add_subdirectory(util)

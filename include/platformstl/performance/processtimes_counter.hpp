@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the processtimes_counter components.
  *
  * Created:     9th June 2006
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  4
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      19
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/processtimes_counter.hpp
@@ -146,7 +146,9 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

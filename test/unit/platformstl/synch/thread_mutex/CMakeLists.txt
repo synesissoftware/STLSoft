@@ -1,0 +1,6 @@
+define_automated_test_program(test.unit.platformstl.synch.thread_mutex entry.cpp)
+if(UNIX)
+	target_compile_options(test.unit.platformstl.synch.thread_mutex PRIVATE -pthread)
+	target_compile_definitions(test.unit.platformstl.synch.thread_mutex PRIVATE _REENTRANT)
+	target_link_options(test.unit.platformstl.synch.thread_mutex PRIVATE -pthread)
+endif()

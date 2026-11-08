@@ -5,11 +5,11 @@
  *              identifiers.
  *
  * Created:     11th April 2005
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MAJOR     2
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MINOR     0
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_REVISION  4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      28
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -162,7 +162,9 @@ typedef basic_resource_id<ws_char_w_t>  resource_id_w;
  */
 typedef basic_resource_id<TCHAR>        resource_id;
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

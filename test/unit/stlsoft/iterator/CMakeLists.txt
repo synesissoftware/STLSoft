@@ -1,2 +1,12 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(FILE_iterator)
+add_subdirectory(associative_eraser_iterator)
+add_subdirectory(associative_select_iterator)
+add_subdirectory(eraser_iterator)
+add_subdirectory(member_selector)
+add_subdirectory(push_insert_iterator)
+add_subdirectory(push_inserter)
+add_subdirectory(string_concatenator)
+add_subdirectory(string_concatenator_iterator)
+add_subdirectory(string_insert_iterator)
+add_subdirectory(transformer)

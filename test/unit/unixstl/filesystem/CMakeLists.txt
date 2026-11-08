@@ -1,4 +1,13 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(filesystem_traits)
 add_subdirectory(path)
+add_subdirectory(path_classify)
 add_subdirectory(squeeze_functions)
+add_subdirectory(file_path_buffer)
+add_subdirectory(functionals)
+add_subdirectory(path_buffer)
+add_subdirectory(path_classify_functions)
+add_subdirectory(path_classify_functions.C)
+add_subdirectory(path_functions)
+add_subdirectory(path_parse_functions)
+add_subdirectory(path_parse_functions.C)

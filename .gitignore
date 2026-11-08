@@ -74,6 +74,10 @@ Debug Multithreaded pseudoUnix/
 Debug Multithreaded pseudoUNIX/
 Debug Multithreaded/
 Debug/
+# The algorithms unit test is named debug, matching debug.hpp. Debug/
+# above also matches that directory when core.ignorecase is set.
+!test/unit/stlsoft/algorithms/debug/
+!test/unit/stlsoft/algorithms/debug/**
 DebugDll/
 DebugDLL/
 DebugDLLUNIX/
