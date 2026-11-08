@@ -107,6 +107,15 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.8
 
+* [x] ~~~Replace the duplicated ASCII case-fold helpers with one shared pair: `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()`, and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`~~~ - ✅;
+* [X] ~~~Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only)~~~ - ❌ (it's deprecated and going to be removed in future version);
+* [X] ~~~Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed)~~~ - ❌ (no need, because these are all internal);
+* [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
+* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
+
+
+### 1.11.9
+
 * [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl `path_classify_root` / `path_is_absolute` exposure (R13), and the platformstl unit tests. (The unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, `numDotsDirectoryParts`, the R9 documentation, and the unixstl/winstl host test suites landed in **1.11.7**.) Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
 * [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
 * [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
@@ -128,7 +137,6 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [x] ~~~the exact-fit case (`size == cchBuff`) writes no terminating NUL, so the size-query idiom (query with `nullptr`, allocate `n`, call again) yields an unterminated string; decide and document the contract (document that a C string needs `size + 1`, or make success strict), then update the exact-fit test accordingly;~~~ - ✅ (contract documented — NUL written only when `size < cchBuff`; tests **test_format_bytes_BUFFER_EXACT_PLUS_NUL** / **test_format_bytes_BUFFER_EXACT_NO_NUL**);
   * [x] ~~~**suspected one-byte overflow** in the `STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF` path: each `stlsoft_C_snprintf()` is passed `cchBuff` rather than the remaining capacity, so for the last group the terminating NUL is written at `buff[size]`, which is `buff[cchBuff]` on an exact fit. Found by reading, not yet reproduced; confirm with an AddressSanitizer run of **test.unit.stlsoft.conversion.byte_format_functions.sprintf** (the exact-fit test should trip it), then pass the remaining capacity;~~~ - ✅ (obviated: `snprintf` now formats into a local `hex_[65]` scratch and the digits are copied into the caller buffer, so no NUL is ever written into it);
   * the `size` arithmetic mixes `int` `groupsPerLine` with `ss_size_t` operands (safe as written, since every use is guarded by `groupsPerLine >= 1` and `-1` deliberately never matches `groupIndex`; comment the convention), and `numGroups * (…)` can overflow on 32-bit for very large `cb`; add an overflow guard;
-* [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
 * [ ] C-API prefix follow-ups noticed while checking retained wrappers:
   * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
   * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
@@ -180,7 +188,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] bring in some essential unit-tests from internal repo;
 
 
-### 1.11.9
+### 1.11.10
 
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
@@ -189,14 +197,14 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] All \pre => precondition enforcements;
 
 
-### 1.11.10
+### 1.11.11
 
 * [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
 * [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
 * [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
 
 
-### 1.11.11
+### 1.11.12
 
 * [ ] Resizeable Buffer — follow-ups deferred from the **1.11.1** concept/implementation lock (do **not** reopen C1–C5, D1–D4, G2, G3, G5–G7 without cause; gold contract is **CONCEPTS.md** — *The Resizeable Buffer concept* and *Contract for traits overloads that take an `rb`*; helper **stlsoft/util/resizeable_buffer_helpers.hpp**; exemplar `rb` overloads include `get_current_process_path(rb)` and winstl `get_module_directory(rb)`):
   * [ ] **G1** — unixstl `system_traits::expand_environment_strings` is **declare-only** (ANSI + wide; both the C-string `(src, buffer, cch)` and `rb` overloads have no definitions in **include/unixstl/system/system_traits.hpp**); WinSTL already implements both (incl. an `rb` overload); callers such as **include/platformstl/filesystem/cwd_stack.hpp** invoke it and will fail to link on UNIX if used — **either** implement (gold probe-then-fill; env/expansion demand must account for trailing NUL; resize failure → `ENOMEM`; unit/component tests) **or** undeclare/remove the stubs and fix/guard callers; same gap is noted under **1.11.6**;
@@ -208,25 +216,15 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
 
 
-### 1.11.12
-
-* [ ] ~~~Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only)~~~ - ❌ (it's deprecated and going to be removed in future version);
-* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
-* [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
-
-
 ### 1.11.13
 
 * [ ] Deeper API documentation on top of the Doxygen build that landed in **1.11.1** (**Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
-* [ ] Remove defunct compilers;
-* [ ] Remove **WTL**;
 
 
 ### 1.11.14
 
 Misc:
 * [x] ~~~Bring in the `memchr` / `memcmp` and ASCII case-fold performance work for `strnchr`, `strnicmp`, `strnistrn`, and `strnstrn`, plus **test.performance.stlsoft.string.c_string**~~~ - ✅;
-* [ ] Replace the duplicated ASCII case-fold helpers with one shared pair: `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()`, and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`;
 
 Normalise C API (and related C-facing) identifier prefixes. **House rule**
 (documented in **c-cpp-standards** → *STLSoft C API identifier prefixes*):
@@ -305,6 +303,8 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 
 * [ ] Remove deprecated mixed-case C API wrappers and enumerator aliases (`STLSoft_C_*`, `WinSTL_C_*`, `UNIXSTL_C_PathType_*`, and any later-deprecated forms);
 * [ ] Recognise the Tiny C Compiler for C translation units (**include/stlsoft/internal/cccap/tinycc.h**). Cherry the recognition from `ss/tcc`; the rest of that branch predates **1.11.1**;
+* [ ] Remove **WTL**;
+* [ ] Remove defunct compilers;
 
 
 ## Requires clarification by project maintainers

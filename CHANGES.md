@@ -1,6 +1,10 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.8 - 10th November 2026
+
+
+
 ## 1.11.7 - 8th November 2026
 
 * fixes and refactoring:
