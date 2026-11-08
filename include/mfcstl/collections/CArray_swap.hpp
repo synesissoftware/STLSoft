@@ -4,11 +4,11 @@
  * Purpose:     Contains the CArray_swap utility function.
  *
  * Created:     4th August 2005
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_MAJOR     2
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_REVISION  6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_EDIT      28
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -163,7 +163,9 @@ void CArray_swap(A& lhs, A& rhs)
 
 #endif /* MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

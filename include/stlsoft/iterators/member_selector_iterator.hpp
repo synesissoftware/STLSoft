@@ -4,14 +4,14 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     21st March 2025
+ * Updated:     29th July 2026
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        76
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -740,7 +740,9 @@ inline bool operator >=(member_selector_iterator<I, C, M> const& lhs, member_sel
     return lhs.distance(rhs) >= 0;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

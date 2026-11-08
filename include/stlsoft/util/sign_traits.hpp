@@ -4,11 +4,11 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_REVISION   7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_EDIT       61
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -357,7 +357,9 @@ struct sign_traits<unsigned long>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

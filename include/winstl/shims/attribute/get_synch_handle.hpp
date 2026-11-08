@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    5
-# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        34
+# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,7 +109,9 @@ inline HANDLE get_synch_handle(HANDLE h)
     return h;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

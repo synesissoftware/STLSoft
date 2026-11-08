@@ -5,11 +5,11 @@
  *          libraries.
  *
  * Created: 12th May 2004
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       49
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -205,7 +205,9 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

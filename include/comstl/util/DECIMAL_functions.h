@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MINOR       0
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_REVISION    7
-# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        21
+# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -299,7 +299,9 @@ DECIMAL_compare(
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_MAJOR      1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_MINOR      3
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_REVISION   6
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_EDIT       33
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -304,7 +304,9 @@ inline associative_eraser_iterator<T_container> assoc_eraser(
     return associative_eraser_iterator<T_container>(container, hits, misses);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

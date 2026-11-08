@@ -4,11 +4,11 @@
  * Purpose:     Contains the pod_veneer template class.
  *
  * Created:     19th January 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_REVISION   5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_EDIT       64
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -190,7 +190,9 @@ public:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

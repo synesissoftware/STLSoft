@@ -4,11 +4,11 @@
  * Purpose:     Type assistor classes.
  *
  * Created:     5th December 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MAKE_VALUE_TYPE_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_MAKE_VALUE_TYPE_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_HPP_MAKE_VALUE_TYPE_REVISION  4
-# define STLSOFT_VER_STLSOFT_META_HPP_MAKE_VALUE_TYPE_EDIT      35
+# define STLSOFT_VER_STLSOFT_META_HPP_MAKE_VALUE_TYPE_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,7 +97,9 @@ struct make_value_type
     typedef T   value_type;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
