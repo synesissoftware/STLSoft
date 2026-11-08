@@ -573,12 +573,16 @@
 #define STLSOFT_CF_ASSERT_SUPPORT
 #if STLSOFT_HEAD_VER >= 0x010c0081
 # ifdef __cplusplus
-#  define STLSOFT_STOCK_ASSERT_INCLUDE_                     <cassert>
+
+#  define __STLSOFT_CF_ASSERT_INCLUDE_NAME                  <cassert>
 # else /* ? __cplusplus */
-#  define STLSOFT_STOCK_ASSERT_INCLUDE_                     <assert.h>
+
+#  define __STLSOFT_CF_ASSERT_INCLUDE_NAME                  <assert.h>
 # endif /* __cplusplus */
-# define STLSOFT_STOCK_ASSERT_(expr)                        assert(expr)
+
+# define STLSOFT_ASSERT(expr)                               assert(expr)
 #else
+
 # define __STLSOFT_CF_USE_cassert
 #endif
 

@@ -206,6 +206,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.12
 
+* [ ] Bring in some essential unit-tests from internal repo;
 * [ ] Deeper API documentation on top of the Doxygen build that landed in **1.11.1** (**Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
 * [ ] Remove defunct compilers;
 * [ ] Remove **WTL**;
