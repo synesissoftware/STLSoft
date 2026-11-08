@@ -4,7 +4,7 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 28th November 2020
- * Updated: 18th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -114,10 +114,16 @@ winstl_C_path_classify_alwaysInvalidChars_X_()
 }
 
 /*
+ * Parse a UNC path body (characters after the leading "\\\\", or after
+ * "\\\\?\\UNC\\").
  *
- * \param s Points to the first character of the potential server-name
+ * \param s Points to the first character of the potential server name
  *
- * \retval 0 found
+ * \retval 0 Host and share are both nonempty. *ppServer / *ppShare point at
+ *   the first character of each. *ppDir0 points at the separator before any
+ *   further path (trailing sep or directory), or is null when the input ends
+ *   exactly at the share (complete root with no trailing separator).
+ * \retval 1 Incomplete or malformed (empty host/share, bare ":", etc.)
  */
 STLSOFT_INLINE
 int
