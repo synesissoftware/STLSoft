@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        198
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1507,7 +1507,7 @@ public: // path classification and analysis
 
         if (len >= 3)
         {
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -1522,7 +1522,7 @@ public: // path classification and analysis
     {
         WINSTL_ASSERT(NULL != path);
 
-        return ('\\' == path[0] && '\\' == path[1]);
+        return '\\' == path[0] && '\\' == path[1];
     }
 
     static bool_type is_path_UNC(
@@ -1530,17 +1530,32 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        WINSTL_ASSERT(0 == len || NULL != path);
+
         switch (len)
         {
             case    0:
             case    1:
+
                 return false;
+            case    2:
             default:
+
                 return '\\' == path[0] && '\\' == path[1];
         }
     }
 
 private:
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale isalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+    }
+
     // Determines whether the given path is a properly-formed drive:
     //
     //  "X:\"
@@ -1554,7 +1569,7 @@ private:
     {
         if (3 == len)
         {
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3175,7 +3190,7 @@ public: // path classification and analysis
 
         if (len >= 3)
         {
-            if (iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3190,7 +3205,7 @@ public: // path classification and analysis
     {
         WINSTL_ASSERT(NULL != path);
 
-        return (L'\\' == path[0] && L'\\' == path[1]);
+        return L'\\' == path[0] && L'\\' == path[1];
     }
 
     static bool_type is_path_UNC(
@@ -3198,18 +3213,32 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        WINSTL_ASSERT(0 == len || NULL != path);
+
         switch (len)
         {
             case    0:
             case    1:
+
                 return false;
             case    2:
             default:
-                return '\\' == path[0] && '\\' == path[1];
+
+                return L'\\' == path[0] && L'\\' == path[1];
         }
     }
 
 private:
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale iswalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
+    }
+
     // Determines whether the given path is a properly-formed drive:
     //
     //  "X:\"
@@ -3223,7 +3252,7 @@ private:
     {
         if (3 == len)
         {
-            if (iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3276,7 +3305,7 @@ private:
             {
                 if (7 == len)
                 {
-                    if (iswalpha(path[4]) &&
+                    if (is_drive_letter_(path[4]) &&
                         L':' == path[5] &&
                         is_path_name_separator(path[6]))
                     {

@@ -111,7 +111,6 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
 * [x] ~~~Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;~~~ - ✅;
-* [ ] bring in some essential unit-tests from internal repo;
 * [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
 
@@ -177,6 +176,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] `winstl_C_get_textmetrics_a()` and `winstl_C_get_textmetrics_w()` return a zero `TEXTMETRIC` when `GetTextMetrics` fails. The contract does not say so;
   * [ ] `winstl_C_calc_RECT_width()` and `winstl_C_calc_RECT_height()` return `right - left` and `bottom - top`, which are negative when the rectangle is inverted;
   * [ ] The C++ `treeview_getchilditem`, `treeview_getrootitem`, and `treeview_getcaretitem` call `winstl_C_treeview_getnextitem` directly, rather than the C functions of the same role;
+* [ ] bring in some essential unit-tests from internal repo;
 
 
 ### 1.11.9

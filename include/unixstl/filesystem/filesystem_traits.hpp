@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      198
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -576,7 +576,9 @@ public:
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
-    /// root character sequence(s).
+    /// root character sequence(s). On native Unix, absolute ≡ rooted. On
+    /// Win-hosted builds (<code>_WIN32</code>), leading separator or
+    /// absolute (see \c is_path_absolute).
     static bool_type    is_path_rooted(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_rooted(
@@ -584,7 +586,14 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is an absolute path
+    /// Returns \c true if path is an absolute path (string predicate)
+    ///
+    /// Native Unix: same as \c is_path_rooted (leading <code>/</code>).
+    /// Win-hosted (<code>_WIN32</code>): same coarse rules as WinSTL —
+    /// UNC prefix <code>\\\\</code> or <code>X:</code> + separator; not
+    /// merely slash-rooted. Incomplete UNC prefixes may report absolute
+    /// here while \c path_classify reports \c UncIncomplete; prefer
+    /// \c path_classify when completeness matters.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
@@ -596,7 +605,11 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is a UNC path
+    /// Returns \c true if path is a UNC path (string predicate)
+    ///
+    /// Native Unix: always false. Win-hosted (<code>_WIN32</code>): true
+    /// when the path begins with <code>\\\\</code> (length ≥ 2) — a prefix
+    /// heuristic only; use \c path_classify for host/share completeness.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).
@@ -1414,7 +1427,7 @@ public: // path classification and analysis
         }
 
         // If it's really on Windows, then we need to skip the drive, if present
-        if (isalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             ':' == path[1])
         {
             path += 2;
@@ -1451,7 +1464,7 @@ public: // path classification and analysis
         if (len >= 2)
         {
             // If it's really on Windows, then we need to skip the drive, if present
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1])
             {
                 path += 2;
@@ -1480,7 +1493,7 @@ public: // path classification and analysis
             return true;
         }
         // ... it's got drive + root slash, or
-        if (isalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             ':' == path[1] &&
             is_path_name_separator(path[2]))
         {
@@ -1515,7 +1528,7 @@ public: // path classification and analysis
         if (len >= 3)
         {
             // ... it's got drive + root slash, or
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -1551,6 +1564,8 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
 #ifdef _WIN32
 
         switch (len)
@@ -1575,6 +1590,16 @@ public: // path classification and analysis
 private:
 #ifdef _WIN32
 
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale isalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+    }
+
     static
     bool_type
     is_root_drive_(
@@ -1584,8 +1609,8 @@ private:
     {
         if (3 == len)
         {
-            if (iswalpha(path[0]) &&
-                L':' == path[1] &&
+            if (is_drive_letter_(path[0]) &&
+                ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
                 return true;
@@ -1787,7 +1812,7 @@ public:
 #ifdef _WIN32
 
         // If it's really on Windows, then we need to check for drive designator
-        if (iswalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             ':' == path[1] &&
             is_path_name_separator(path[2]))
         {
@@ -3104,6 +3129,19 @@ public: // directory-end
         return lenToDecrease;
     }
 
+private:
+#ifdef _WIN32
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale iswalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
+    }
+#endif /* _WIN32 */
+
 public: // path classification and analysis
     static
     char_type const*
@@ -3226,7 +3264,7 @@ public: // path classification and analysis
             return true;
         }
 
-        if (0 != ::iswalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             L':' == path[1])
         {
             path += 2;
@@ -3255,7 +3293,7 @@ public: // path classification and analysis
 
         if (len >= 2)
         {
-            if (0 != ::iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1])
             {
                 path += 2;
@@ -3276,7 +3314,7 @@ public: // path classification and analysis
         {
             return true;
         }
-        if (0 != ::iswalpha(path[0]) &&
+        if (is_drive_letter_(path[0]) &&
             L':' == path[1] &&
             is_path_name_separator(path[2]))
         {
@@ -3307,7 +3345,7 @@ public: // path classification and analysis
         }
         if (len >= 3)
         {
-            if (0 != ::iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3343,6 +3381,8 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
 #ifdef _WIN32
 
         switch (len)

@@ -44,6 +44,11 @@
  *
  * \brief [C, C++] Path classification functions
  *   (\ref group__library__FileSystem "File System" Library).
+ *
+ * Fine path classification (kind, root slices, part counts). Coarse string
+ * predicates live on \c unixstl::filesystem_traits (\c is_path_rooted,
+ * \c is_path_absolute, \c is_path_UNC); prefer \c unixstl_C_path_classify
+ * when completeness (e.g. of a UNC root) matters.
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS
@@ -52,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      12
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  9
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +125,7 @@ struct unixstl_C_path_classification_results_m_t
     stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
     stlsoft_C_string_slice_m_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
-    size_t                          numDotsDirectoryParts;
+    size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
     stlsoft_C_string_slice_m_t      entry;
     stlsoft_C_string_slice_m_t      stem;
     stlsoft_C_string_slice_m_t      extension;
