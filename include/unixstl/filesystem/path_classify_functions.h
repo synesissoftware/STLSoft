@@ -44,6 +44,16 @@
  *
  * \brief [C, C++] Path classification functions
  *   (\ref group__library__FileSystem "File System" Library).
+ *
+ * Fine path classification (kind, root slices, part counts). For portable
+ * intersecting behaviour see
+ * \c platformstl/filesystem/path_classify_functions.h and
+ * <strong>CONCEPTS.md</strong> (Path classification). Coarse vs complete
+ * traits predicates live on \c unixstl::filesystem_traits
+ * (\c is_path_* deprecated orthography; \c path_is_* lattice-complete).
+ *
+ * \see CONCEPTS.md
+ * \see platformstl/filesystem/path_classify_functions.h
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS

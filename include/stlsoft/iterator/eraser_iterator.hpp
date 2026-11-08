@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_REVISION  9
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_EDIT      17
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -255,7 +255,9 @@ inline erase_iterator<C> eraser(C& container)
     return erase_iterator<C>(container);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

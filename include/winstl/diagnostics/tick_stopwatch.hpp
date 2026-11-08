@@ -4,11 +4,11 @@
  * Purpose:     WinSTL tick-count stopwatch class.
  *
  * Created:     19th October 1998
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_MAJOR     5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_MINOR     0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_REVISION  2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_EDIT      58
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -238,7 +238,7 @@ tick_stopwatch::get_nanoseconds() const
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
+ * namespace
  */
 
 #ifndef WINSTL_NO_NAMESPACE

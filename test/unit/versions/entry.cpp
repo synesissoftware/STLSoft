@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 7th November 2026
+ * Updated: 8th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -77,6 +77,7 @@ namespace {
     static void TEST__WINSTL_VER();
 #endif
 #ifdef STLSOFT_HAS_MFC
+
     static void TEST__MFCSTL_VER();
 #endif
 } // anonymous namespace
@@ -139,14 +140,14 @@ static void TEST__STLSOFT_VER()
 
 static void TEST__ACESTL_VER()
 {
-    TEST_INT_EQ(_ACESTL_VER_1_2_1, _ACESTL_VER);
+    TEST_INT_EQ(_ACESTL_VER_1_2_2, _ACESTL_VER);
 }
 #endif
 #ifdef STLSOFT_HAS_ATL
 
 static void TEST__ATLSTL_VER()
 {
-    TEST_INT_EQ(_ATLSTL_VER_1_7_1, _ATLSTL_VER);
+    TEST_INT_EQ(_ATLSTL_VER_1_7_2, _ATLSTL_VER);
 }
 #endif
 
@@ -178,7 +179,7 @@ static void TEST__WINSTL_VER()
 
 static void TEST__MFCSTL_VER()
 {
-    TEST_INT_EQ(_MFCSTL_VER_1_6_1, _MFCSTL_VER);
+    TEST_INT_EQ(_MFCSTL_VER_1_6_2, _MFCSTL_VER);
 }
 #endif
 

@@ -139,7 +139,9 @@ environment_variable_exists(
     return ximpl_stlsoft_environment_functions_hpp_::env_var_exists_(STLSOFT_NS_QUAL(c_str_ptr)(name));
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
