@@ -41,6 +41,7 @@
 
 #ifdef HAS_woad
 # include <woad/woad.h>
+# include <woad/iostreams.hpp>
 #endif
 
 #ifdef HAS_xTests
@@ -55,11 +56,11 @@
 
 #ifdef HAS_woad
 
-# define VERSIONS_CLR_NAME_                                 WOAD_FG_BLUE_FOR(stdout)
-# define VERSIONS_CLR_VERSION_                              WOAD_FG_GREEN_FOR(stdout)
-# define VERSIONS_CLR_HEADING_                              WOAD_FG_MAGENTA_FOR(stdout)
-# define VERSIONS_CLR_MACRO_                                WOAD_FG_CYAN_FOR(stdout)
-# define VERSIONS_CLR_RESET_                                WOAD_RESET_FOR(stdout)
+# define VERSIONS_CLR_NAME_                                 woad::blue
+# define VERSIONS_CLR_VERSION_                              woad::green
+# define VERSIONS_CLR_HEADING_                              woad::magenta
+# define VERSIONS_CLR_MACRO_                                woad::cyan
+# define VERSIONS_CLR_RESET_                                woad::reset
 #else /* ? HAS_woad */
 
 # define VERSIONS_CLR_NAME_                                 ""
@@ -186,6 +187,7 @@ print_subproject_(
         << VERSIONS_CLR_RESET_
         << " = "
         << VERSIONS_CLR_VERSION_
+        << 'v'
         << ((libver >> 24) & 0xff)
         << "."
         << ((libver >> 16) & 0xff)

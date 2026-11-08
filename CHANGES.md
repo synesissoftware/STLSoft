@@ -1,6 +1,9 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.12.0-alpha2 - 15th November 2026
+
+
 ## 1.12.0-alpha1 - 10th November 2026
 
 

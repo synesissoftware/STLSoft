@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 29th October 2026
+ * Updated: 7th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -333,7 +333,6 @@ static void TEST_string_concatenation_2()
         TEST_MS_EQ("b" + s, xs5);
     }}
 }
-
 #if _STLSOFT_VER >= 0x010D0000
 
 static void TEST_swap_1()

@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_variable_traits class.
  *
  * Created: 9th December 2005
- * Updated: 28th May 2025
+ * Updated: 20th October 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS_REVISION    15
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS_EDIT        47
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS_REVISION    16
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -175,7 +175,14 @@
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
+/* Native UNIX owns `environ`. UNIXem / Windows-hosted UNIX (_WIN32) uses
+ * UCRT `_environ` / `__p__environ` — declaring `environ` here causes C4273.
+ */
+# if !defined(_WIN32)
+
 extern "C" char **environ;
+
+# endif /* !_WIN32 */
 
 # if 0
 # elif defined(UNIXSTL_OS_IS_LINUX)
@@ -435,17 +442,11 @@ environment_variable_traits::get_variable(environment_variable_traits::char_type
     STLSOFT_ASSERT(NULL != name);
     STLSOFT_MESSAGE_ASSERT("Name may not contain '='", NULL == ::strchr(name, '='));
 
-# if _STLSOFT_VER < 0x01100000
-
-#  include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
-# endif
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
 
     return const_cast<char_type const*>(::getenv(name));
 
-# if _STLSOFT_VER < 0x01100000
-
-#  include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
-# endif
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
 # ifdef PLATFORMSTL_ENVVAR_SET_SUPPORTED

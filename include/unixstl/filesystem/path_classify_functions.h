@@ -45,10 +45,15 @@
  * \brief [C, C++] Path classification functions
  *   (\ref group__library__FileSystem "File System" Library).
  *
- * Fine path classification (kind, root slices, part counts). Coarse string
- * predicates live on \c unixstl::filesystem_traits (\c is_path_rooted,
- * \c is_path_absolute, \c is_path_UNC); prefer \c unixstl_C_path_classify
- * when completeness (e.g. of a UNC root) matters.
+ * Fine path classification (kind, root slices, part counts). For portable
+ * intersecting behaviour see
+ * \c platformstl/filesystem/path_classify_functions.h and
+ * <strong>CONCEPTS.md</strong> (Path classification). Coarse vs complete
+ * traits predicates live on \c unixstl::filesystem_traits
+ * (\c is_path_* deprecated orthography; \c path_is_* lattice-complete).
+ *
+ * \see CONCEPTS.md
+ * \see platformstl/filesystem/path_classify_functions.h
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS
@@ -56,9 +61,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  9
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      13
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -166,6 +171,7 @@ typedef struct unixstl_C_path_classification_results_m_t    unixstl_C_path_class
 # define unixstl_C_path_classify_alwaysInvalidChars_X_      unixstl_C_path_classify_alwaysInvalidChars_m_
 # define unixstl_C_path_classify_root_X_                    unixstl_C_path_classify_root_m_
 # define unixstl_C_path_classify_impl_X_                    unixstl_C_path_classify_impl_m_
+# define unixstl_C_path_classify_root_impl_X_               unixstl_C_path_classify_root_impl_m_
 # include <unixstl/filesystem/path_functions/classify_functions_X_.h>
 # undef UNIXSTL_C_PATH_CLASSIFY_IMPL_char_t_
 # undef UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_
@@ -176,6 +182,7 @@ typedef struct unixstl_C_path_classification_results_m_t    unixstl_C_path_class
 # undef unixstl_C_path_classify_alwaysInvalidChars_X_
 # undef unixstl_C_path_classify_root_X_
 # undef unixstl_C_path_classify_impl_X_
+# undef unixstl_C_path_classify_root_impl_X_
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,6 +223,29 @@ unixstl_C_path_classify_m(
  * drive+separator) rather than this lattice.
  */
 STLSOFT_INLINE
+unixstl_C_path_classification_t
+unixstl_C_path_classify_root_m(
+    char const*                                 s
+,   size_t                                      cch
+,   int                                         parseFlags
+,   stlsoft_C_string_slice_m_t*                 root
+)
+{
+    stlsoft_C_string_slice_m_t  dummy;
+
+    if (ss_nullptr_k == root)
+    {
+        root = &dummy;
+    }
+
+    return unixstl_C_path_classify_root_impl_m_(
+        s, cch
+    ,   parseFlags
+    ,   root
+    );
+}
+
+STLSOFT_INLINE
 STLSOFT_NS_QUAL(ss_truthy_t)
 unixstl_C_path_is_rooted(
     unixstl_C_path_classification_t pc
@@ -233,6 +263,24 @@ unixstl_C_path_is_rooted(
     }
 }
 
+/** Absolute in the UNIXSTL classification lattice: slash-rooted or
+ * home-rooted. On native Unix this is identical to
+ * \c unixstl_C_path_is_rooted (absolute ≡ rooted).
+ *
+ * Distinct from the coarse string predicate
+ * \c filesystem_traits<>::is_path_absolute / \c path_is_absolute, which
+ * under <code>_WIN32</code> uses Windows-shaped rules (UNC prefix or
+ * drive+separator) rather than this lattice.
+ */
+STLSOFT_INLINE
+STLSOFT_NS_QUAL(ss_truthy_t)
+unixstl_C_path_is_absolute(
+    unixstl_C_path_classification_t pc
+)
+{
+    return unixstl_C_path_is_rooted(pc);
+}
+
 #ifdef __cplusplus
 
 inline
@@ -245,6 +293,18 @@ unixstl_C_path_classify(
 )
 {
     return unixstl_C_path_classify_m(s, cch, parseFlags, results);
+}
+
+inline
+unixstl_C_path_classification_t
+unixstl_C_path_classify_root(
+    char const*                                 s
+,   size_t                                      cch
+,   int                                         parseFlags
+,   stlsoft_C_string_slice_m_t*                 root
+)
+{
+    return unixstl_C_path_classify_root_m(s, cch, parseFlags, root);
 }
 #endif /* __cplusplus */
 
@@ -310,6 +370,22 @@ path_classify(
     return unixstl_C_path_classify(path.data(), path.size(), parseFlags, results);
 }
 
+template<
+    ss_typename_param_k T_string
+,   ss_typename_param_k T_results
+>
+path_classification_t
+path_classify_root(
+    T_string const&         path
+,   int                     parseFlags
+,   T_results*              results
+)
+{
+    UNIXSTL_ASSERT(0 == path.size() || ss_nullptr_k != path.data());
+
+    return unixstl_C_path_classify_root(path.data(), path.size(), parseFlags, results);
+}
+
 inline
 bool
 path_is_rooted(
@@ -317,6 +393,15 @@ path_is_rooted(
 )
 {
     return 0 != unixstl_C_path_is_rooted(pc);
+}
+
+inline
+bool
+path_is_absolute(
+    path_classification_t   pc
+)
+{
+    return 0 != unixstl_C_path_is_absolute(pc);
 }
 
 

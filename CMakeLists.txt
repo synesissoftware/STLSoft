@@ -243,7 +243,7 @@ if(NOT (NO_CSTRING))
 
 	if(BUILD_TESTING)
 
-		set(cstring_REQUIRED_VERSION_ 4.0.19)
+		set(cstring_REQUIRED_VERSION_ 4.1)
 
 		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
 
@@ -267,7 +267,7 @@ if(NOT (NO_SHWILD))
 
 	if(BUILD_TESTING)
 
-		set(shwild_REQUIRED_VERSION_ 0.12.15)
+		set(shwild_REQUIRED_VERSION_ 0.12.16)
 
 		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
 
@@ -293,7 +293,7 @@ if((USE_UNIXEM) AND (WIN32))
 
 	if((BUILD_EXAMPLES) OR (BUILD_TESTING))
 
-		set(UNIXem_REQUIRED_VERSION_ 1.14.2)
+		set(UNIXem_REQUIRED_VERSION_ 1.15)
 
 		find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
 
@@ -320,7 +320,7 @@ if(USE_WOAD)
 
 	if(BUILD_TESTING)
 
-		set(woad_REQUIRED_VERSION_ 0.2.1)
+		set(woad_REQUIRED_VERSION_ 0.3)
 
 		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
@@ -341,7 +341,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28.2)
+	set(xTests_REQUIRED_VERSION_ 0.29)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

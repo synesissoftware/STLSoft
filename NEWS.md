@@ -3,6 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
+| 15th November 2026  | Release of [STLSoft 1.12.0-alpha2](https://github.com/synesissoftware/STLSoft/releases/tag/1.12.0-alpha2) | |
 | 10th November 2026  | Release of [STLSoft 1.12.0-alpha1](https://github.com/synesissoftware/STLSoft/releases/tag/1.12.0-alpha1) | |
 | 8th November 2026   | Release of [STLSoft 1.11.7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.7) | substantial test-coverage expansion; path-classification fixes (UNC roots, long-path prefixes, ASCII drive letters) |
 | 6th November 2026   | Release of [STLSoft 1.11.6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.6) | CI installs **woad** before **xTests**; `// namespace` closer in **test/unit/stlsoft/string/special_string_instance/entry.cpp** |
