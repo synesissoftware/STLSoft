@@ -79,6 +79,10 @@
 # error winstl_C_path_classify_find_UNC_server_and_share_X_ must be defined
 #endif
 
+#ifndef winstl_C_path_classify_is_long_UNC_prefix_X_
+# error winstl_C_path_classify_is_long_UNC_prefix_X_ must be defined
+#endif
+
 #ifndef winstl_C_path_classify_root_X_
 # error winstl_C_path_classify_root_X_ must be defined
 #endif

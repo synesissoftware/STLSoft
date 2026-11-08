@@ -197,6 +197,8 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # define winstl_C_path_classify_alwaysInvalidChars_X_       winstl_C_path_classify_alwaysInvalidChars_m_
 # define winstl_C_path_classify_find_UNC_server_and_share_X_ \
                                                             winstl_C_path_classify_find_UNC_server_and_share_m_
+# define winstl_C_path_classify_is_long_UNC_prefix_X_ \
+                                                            winstl_C_path_classify_is_long_UNC_prefix_m_
 # define winstl_C_path_classify_root_X_                     winstl_C_path_classify_root_m_
 # define winstl_C_path_classify_impl_X_                     winstl_C_path_classify_impl_m_
 # define winstl_C_path_classify_root_impl_X_                winstl_C_path_classify_root_impl_m_
@@ -209,6 +211,7 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_
 # undef winstl_C_path_classify_alwaysInvalidChars_X_
 # undef winstl_C_path_classify_find_UNC_server_and_share_X_
+# undef winstl_C_path_classify_is_long_UNC_prefix_X_
 # undef winstl_C_path_classify_root_X_
 # undef winstl_C_path_classify_impl_X_
 # undef winstl_C_path_classify_root_impl_X_
@@ -223,6 +226,8 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # define winstl_C_path_classify_alwaysInvalidChars_X_       winstl_C_path_classify_alwaysInvalidChars_w_
 # define winstl_C_path_classify_find_UNC_server_and_share_X_ \
                                                             winstl_C_path_classify_find_UNC_server_and_share_w_
+# define winstl_C_path_classify_is_long_UNC_prefix_X_ \
+                                                            winstl_C_path_classify_is_long_UNC_prefix_w_
 # define winstl_C_path_classify_root_X_                     winstl_C_path_classify_root_w_
 # define winstl_C_path_classify_impl_X_                     winstl_C_path_classify_impl_w_
 # define winstl_C_path_classify_root_impl_X_                winstl_C_path_classify_root_impl_w_
@@ -235,6 +240,7 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef WINSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnstrn_X_
 # undef winstl_C_path_classify_alwaysInvalidChars_X_
 # undef winstl_C_path_classify_find_UNC_server_and_share_X_
+# undef winstl_C_path_classify_is_long_UNC_prefix_X_
 # undef winstl_C_path_classify_root_X_
 # undef winstl_C_path_classify_impl_X_
 # undef winstl_C_path_classify_root_impl_X_
