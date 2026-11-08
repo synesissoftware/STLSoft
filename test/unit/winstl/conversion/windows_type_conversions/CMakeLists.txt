@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.winstl.conversion.windows_type_conversions entry.cpp)

@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.unixstl.exception.operating_environment_exception entry.cpp)

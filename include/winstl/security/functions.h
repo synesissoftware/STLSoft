@@ -4,11 +4,11 @@
  * Purpose:     Security functions.
  *
  * Created:     7th November 2014
- * Updated:     11th March 2024
+ * Updated:     8th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR       1
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        7
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR       1
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION    1
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -245,7 +245,92 @@ winstl_C_Security_lookup_account_SID_info_w(
 ,   ws_size_t*          pcchDomainName
 ,   SID_NAME_USE*       pNameUse
 )
-;
+{
+    DWORD           accountNameLen  =   0;
+    DWORD           domainNameLen   =   0;
+    SID_NAME_USE    nameUseDummy_;
+    ws_char_w_t*    account;
+    ws_char_w_t*    domain;
+
+    if (NULL == pNameUse)
+    {
+        pNameUse = &nameUseDummy_;
+    }
+
+    STLSOFT_NS_GLOBAL_(LookupAccountSidW)(
+        systemName
+    ,   psid
+    ,   NULL
+    ,   &accountNameLen
+    ,   NULL
+    ,   &domainNameLen
+    ,   pNameUse
+    );
+
+    switch (STLSOFT_NS_GLOBAL(GetLastError)())
+    {
+        default:
+            return FALSE;
+        case    ERROR_INSUFFICIENT_BUFFER:
+            break;
+    }
+
+    if (NULL == (account = STLSOFT_STATIC_CAST(ws_char_w_t*, winstl_C_Security_alloc_(sizeof(ws_char_w_t) * accountNameLen))))
+    {
+        return FALSE;
+    }
+
+    if (NULL == (domain = STLSOFT_STATIC_CAST(ws_char_w_t*, winstl_C_Security_alloc_(sizeof(ws_char_w_t) * domainNameLen))))
+    {
+        winstl_C_Security_free_(account);
+
+        return FALSE;
+    }
+
+    if (!STLSOFT_NS_GLOBAL_(LookupAccountSidW)(
+            systemName
+        ,   psid
+        ,   &account[0]
+        ,   &accountNameLen
+        ,   &domain[0]
+        ,   &domainNameLen
+        ,   pNameUse
+        )
+    )
+    {
+        winstl_C_Security_free_(account);
+        winstl_C_Security_free_(domain);
+
+        return FALSE;
+    }
+
+    if (NULL != pAccountName)
+    {
+        *pAccountName   =   account;
+        account         =   NULL;
+    }
+
+    if (NULL != pcchAccountName)
+    {
+        *pcchAccountName    =   accountNameLen;
+    }
+
+    if (NULL != pDomainName)
+    {
+        *pDomainName    =   domain;
+        domain          =   NULL;
+    }
+
+    if (NULL != pcchDomainName)
+    {
+        *pcchDomainName =   domainNameLen;
+    }
+
+    winstl_C_Security_free_(account);
+    winstl_C_Security_free_(domain);
+
+    return TRUE;
+}
 
 
 /* /////////////////////////////////////////////////////////////////////////
