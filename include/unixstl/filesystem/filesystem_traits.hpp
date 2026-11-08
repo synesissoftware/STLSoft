@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      198
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1593,6 +1593,8 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
 #ifdef _WIN32
 
         switch (len)
@@ -3408,6 +3410,8 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        UNIXSTL_ASSERT(0 == len || NULL != path);
+
 #ifdef _WIN32
 
         switch (len)

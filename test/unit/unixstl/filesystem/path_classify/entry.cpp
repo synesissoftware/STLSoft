@@ -2,10 +2,10 @@
  * File:    test/unit/unixstl/filesystem/path_classify/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl_C_path_classify` (Remediation-4 matrix
- *          rows: portable core, dots/parts, flags; R13 root / absolute).
+ *          rows: portable core, dots/parts, flags).
  *
  * Created: 20th October 2026
- * Updated: 20th October 2026
+ * Updated: 8th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.unixstl.filesystem.path_classify", verbosity))
+    if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_CORE);
         XTESTS_RUN_CASE(TEST_matrix_PORTABLE_HOME);
