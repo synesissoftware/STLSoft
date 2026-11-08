@@ -66,13 +66,11 @@ namespace {
 
     static void TEST_string_concatenation_1();
     static void TEST_string_concatenation_2();
-#if _STLSOFT_VER >= 0x010D0000
 
     static void TEST_swap_1();
     static void TEST_swap_2();
-    static void TEST_swap_3();
+    static void TEST_swap_4();
     static void TEST_ctor_16();
-#endif
 } // anonymous namespace
 
 
@@ -105,13 +103,11 @@ int main(int argc, char *argv[])
 
         XTESTS_RUN_CASE(TEST_string_concatenation_1);
         XTESTS_RUN_CASE(TEST_string_concatenation_2);
-#if _STLSOFT_VER >= 0x010D0000
 
         XTESTS_RUN_CASE(TEST_swap_1);
         XTESTS_RUN_CASE(TEST_swap_2);
-        XTESTS_RUN_CASE(TEST_swap_3);
+        XTESTS_RUN_CASE(TEST_swap_4);
         XTESTS_RUN_CASE(TEST_ctor_16);
-#endif
 
         XTESTS_PRINT_RESULTS();
 
@@ -334,8 +330,6 @@ static void TEST_string_concatenation_2()
     }}
 }
 
-#if _STLSOFT_VER >= 0x010D0000
-
 static void TEST_swap_1()
 {
     { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
@@ -391,7 +385,7 @@ static void TEST_swap_2()
         TEST_MS_EQ(s1, xs2);
 }
 
-static void TEST_swap_3()
+static void TEST_swap_4()
 {
         std::string s1("abc");
         std::string s2(2000, '~');
@@ -407,7 +401,9 @@ static void TEST_swap_3()
         TEST_INT_EQ(s2.size(), xs2.size());
         TEST_MS_EQ(s2, xs2);
 
-        std::swap(xs1, xs2);
+        using std::swap;
+
+        swap(xs1, xs2);
 
         TEST_BOOLEAN_FALSE(xs1.empty());
         TEST_INT_EQ(s2.size(), xs1.size());
@@ -434,7 +430,6 @@ static void TEST_ctor_16()
     TEST_MS_EQ("abcdefghijklmnopqrstuvwxyz", xs2);
 # endif /* 0 */
 }
-#endif
 } // anonymous namespace
 
 

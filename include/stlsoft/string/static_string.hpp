@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 15th October 2026
+ * Updated: 26th October 2026
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      234
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -3080,15 +3080,11 @@ basic_static_string<C, V_internalSize, T>::rend() STLSOFT_NOEXCEPT
 } // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
- * illegally insert into the std namespace.
- */
 #if defined(STLSOFT_CF_std_NAMESPACE)
-# if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
-         defined(_MSC_VER))) && \
-     _MSC_VER < 1310
 namespace std
 {
+# ifdef STLSOFT_ALLOW_std_swap_SPECIALISATIONS
+
     template <
         ss_typename_param_k         C
     ,   STLSOFT_NS_QUAL(ss_size_t)  V_internalSize
@@ -3103,8 +3099,8 @@ namespace std
     {
         lhs.swap(rhs);
     }
+# endif
 } // namespace std
-# endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 
