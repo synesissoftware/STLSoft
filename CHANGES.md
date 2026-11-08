@@ -8,6 +8,13 @@
 
 ## 1.11.7 - 8th November 2026
 
+* fixes and refactoring:
+  * path classification (defect fixes from **path-classify**; new functionality withheld for a later release):
+    * **WinSTL** — a complete UNC root without a trailing separator (e.g. `"\\\\server\share"`) now classifies as `UncRooted` (was `UncIncomplete`); `"\\?\"` / `"\\?\UNC\"` long-path prefixes hardened (non-UNC, non-drive forms classify as `Invalid`); the `"\\.\"` device namespace classifies as `Invalid`; UNC server/share parsing rewritten; invalid-character rules now applied to the UNC root;
+    * **STLSoft / UnixSTL / WinSTL** — Windows drive letters are recognised as ASCII `A`–`Z` / `a`–`z` only, replacing locale-dependent `isalpha()` / `iswalpha()`;
+    * **UnixSTL** — Windows invalid-character rules and backslash-as-separator now apply only under `_WIN32` (incl. **UNIXem**); on native UNIX, `\` is an ordinary name character and only NUL is invalid;
+    * **STLSoft** — path-classification results now populate `numDotsDirectoryParts` (exact `"."` / `".."` directory parts; entry excluded);
+    * documentation — coarse traits string predicates vs `path_classify` completeness documented (**unixstl/filesystem/filesystem_traits.hpp**, **unixstl/filesystem/path_classify_functions.h**);
 * boilerplate:
   * consistent descriptive namespace comment separators;
 * testing:
