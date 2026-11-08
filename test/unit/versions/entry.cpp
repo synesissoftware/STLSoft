@@ -147,7 +147,7 @@ static void TEST__ACESTL_VER()
 
 static void TEST__ATLSTL_VER()
 {
-    TEST_INT_EQ(_ATLSTL_VER_1_7_1, _ATLSTL_VER);
+    TEST_INT_EQ(_ATLSTL_VER_1_7_2, _ATLSTL_VER);
 }
 #endif
 
