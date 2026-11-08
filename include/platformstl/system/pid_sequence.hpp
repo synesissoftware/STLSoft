@@ -4,11 +4,11 @@
  * Purpose: Platform header for the pid_sequence components.
  *
  * Created: 18th August 2025
- * Updated: 18th August 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -137,7 +137,9 @@ typedef WINSTL_NS_QUAL(pid_sequence)                        pid_sequence;
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

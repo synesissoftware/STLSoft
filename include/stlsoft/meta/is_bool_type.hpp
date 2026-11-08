@@ -4,11 +4,11 @@
  * Purpose:     is_bool_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_REVISION 6
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_EDIT     21
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,7 +111,9 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_bool_type, ss_bool_t, 1, yes_type)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

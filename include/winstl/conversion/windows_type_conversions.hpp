@@ -79,7 +79,9 @@
 # include <shellapi.h>
 #endif /* !STLSOFT_INCL_H_SHELLAPI */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -208,7 +210,9 @@ typedef union_caster<LPNMHDR, LPARAM, true>                         LPARAM2LPNMH
 typedef union_caster<HTREEITEM, LONG, false>                        LONG2HTREEITEM;
 #endif /* _INC_COMMCTRL || _COMMCTRL_H */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

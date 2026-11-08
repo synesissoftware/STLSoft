@@ -4,11 +4,11 @@
  * Purpose:     is_printf_type meta class.
  *
  * Created:     27th May 2009
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_EDIT       15
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,7 +140,9 @@ struct is_printf_type
 #endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

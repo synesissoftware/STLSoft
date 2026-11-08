@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/multiple_dispatch.hpp
+ * File:    atlstl/automation/multiple_dispatch.hpp
  *
- * Purpose:     A class template that makes the methods and properties exhibited
- *              through multiple IDispatch interfaces visible to script clients.
+ * Purpose: A class template that makes the methods and properties exhibited
+ *          through multiple IDispatch interfaces visible to script clients.
  *
- * Created:     15th May 2006
- * Updated:     15th October 2026
+ * Created: 15th May 2006
+ * Updated: 15th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -686,7 +686,9 @@ protected:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
