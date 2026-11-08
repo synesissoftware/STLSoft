@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT     20
+# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -215,7 +215,9 @@ CY_compare(
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

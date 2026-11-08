@@ -294,8 +294,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the WinSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the WinSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
 
 

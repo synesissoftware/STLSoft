@@ -1,6 +1,34 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.7 - 8th November 2026
+
+* boilerplate:
+  * consistent descriptive namespace comment separators;
+* testing:
+  * **Test coverage expansion (1.11.2 increment)** — comprehensive unit- and component-test suites across all sub-projects; **~640 new** test programs (from **86** to **~708** buildable on Unix/macOS);
+  * **ACESTL** — full unit + component coverage (`shims`, `memory/message_block_functions`, `collections/message_queue_sequence`, `network/socket_functions`, `reactor/custom_event_handler`, …); gated on **`HAS_ACE`**;
+  * **ATLSTL** — **11** unit tests; **`DEFERRED.md`** documents skipped GUI/`module_scope` components;
+  * **MFCSTL** — **21** new unit tests (collections, shims, string, util);
+  * **COMSTL** — **27** unit + **1** component (`rot_functions`); **`SKIPPED.md`** for SAPI/typelib/cross-apartment cases;
+  * **INETSTL** — exception, filesystem traits/functionals, network session/connection (WinInet sequences intentionally excluded);
+  * **UnixSTL** — **56** tests (full public API);
+  * **PlatformSTL** — **53** tests (full public API);
+  * **WinSTL** — **~200** tests (unit + component; GUI/interactive scopes excluded);
+  * **STLSoft** — **~300** unit + **~13** component tests for substantive components (`meta/`, `obsolete/`, `internal/` excluded);
+  * Test infrastructure scripts under **`test/scripts/`** (`scaffold_missing_tests.py`, `generate_*_tests.py`, `fix_failed_tests.py`, …);
+  * **`test.unit.versions`** — aligned with **1.11.1-rc6** (**`_STLSOFT_VER_1_11_1_RC6`**);
+  * new suites **test.unit.unixstl.filesystem.path_classify** and **test.unit.winstl.filesystem.path_classify**; R9/R10 cases added to both **`filesystem_traits`** unit suites;
+* path classification (defect fixes from **path-classify**; new functionality withheld for a later release):
+  * **WinSTL** — a complete UNC root without a trailing separator (e.g. `"\\\\server\share"`) now classifies as `UncRooted` (was `UncIncomplete`); `"\\?\"` / `"\\?\UNC\"` long-path prefixes hardened (non-UNC, non-drive forms classify as `Invalid`); the `"\\.\"` device namespace classifies as `Invalid`; UNC server/share parsing rewritten; invalid-character rules now applied to the UNC root;
+  * **STLSoft / UnixSTL / WinSTL** — Windows drive letters are recognised as ASCII `A`–`Z` / `a`–`z` only, replacing locale-dependent `isalpha()` / `iswalpha()`;
+  * **UnixSTL** — Windows invalid-character rules and backslash-as-separator now apply only under `_WIN32` (incl. **UNIXem**); on native UNIX, `\` is an ordinary name character and only NUL is invalid;
+  * **STLSoft** — path-classification results now populate `numDotsDirectoryParts` (exact `"."` / `".."` directory parts; entry excluded);
+  * documentation — coarse traits string predicates vs `path_classify` completeness documented (**unixstl/filesystem/filesystem_traits.hpp**, **unixstl/filesystem/path_classify_functions.h**);
+* version:
+  * **_STLSOFT_VER** is **1.11.7** (**_STLSOFT_VER_1_11_7** = `0x010B07FF`); **test.unit.versions** asserts it. No subproject composite version changed;
+
+
 ## 1.11.6 - 6th November 2026
 
 * build:

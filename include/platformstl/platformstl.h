@@ -143,8 +143,8 @@
 # define _PLATFORMSTL_VER_1_9_1_B03     0x01090183  /*!< Version 1.9.1-beta3 (with STLSoft 1.10.1-beta23) */
 # define _PLATFORMSTL_VER_1_9_1_B04     0x01090184  /*!< Version 1.9.1-beta4 (with STLSoft 1.10.1-beta26) */
 # define _PLATFORMSTL_VER_1_9_2         0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.10.5) */
-# define _PLATFORMSTL_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1-alpha8) */
-# define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0-alpha1 (with STLSoft 1.11.1-alpha15) */
+# define _PLATFORMSTL_VER_1_9_3         0x010903FF  /*!< Version 1.9.3 (with STLSoft 1.11.1-alpha8) */
+# define _PLATFORMSTL_VER_1_10_0_A01    0x010A0041  /*!< Version 1.10.0-alpha1 (with STLSoft 1.11.1-alpha15) */
 # define _PLATFORMSTL_VER_1_10_0_B01    0x010A0081  /*!< Version 1.10.0-beta1 (with STLSoft 1.11.1-rc3) */
 # define _PLATFORMSTL_VER_1_10_0_B02    0x010A0082  /*!< Version 1.10.0-beta2 (with STLSoft 1.11.1-rc8) */
 # define _PLATFORMSTL_VER_1_10_0_B03    0x010A0083  /*!< Version 1.10.0-beta3 (with STLSoft 1.11.1-rc9) */
@@ -186,8 +186,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the PlatformSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the PlatformSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -535,7 +535,9 @@ typedef WINSTL_NS_QUAL(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION && __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if !defined(__cplusplus)
  /* Nothing defined in C */

@@ -4,11 +4,11 @@
  * Purpose:     Definition of the macro dimensionof().
  *
  * Created:     10th February 2010
- * Updated:     11th March 2024
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_REVISION    7
-# define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_EDIT        18
+# define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,7 +114,9 @@ size_t            s_vi  = dimensionof(vi);   // Error
  */
 #define dimensionof(ar)             STLSOFT_NUM_ELEMENTS(ar)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

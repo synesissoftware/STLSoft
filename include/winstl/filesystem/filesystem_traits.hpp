@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 19th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        196
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -460,6 +460,14 @@ public:
     ,   path_classification_results_type*   results
     );
 
+    /// Classifies only the root of a path (R13; PlatformSTL façade parity).
+    ///
+    /// \param path
+    /// \param len
+    /// \param parseFlags
+    /// \param root Receives the root slice when rooted / home-rooted
+    ///
+    /// \pre 0 == len || nullptr != path
     static
     path_classification_t
     path_classify_root(
@@ -469,12 +477,20 @@ public:
     ,   path_classification_string_slice_type*  root
     );
 
+    /// Whether a classification result is rooted (slash-, drive-, UNC-, or
+    /// home-rooted). Distinct from the string predicate
+    /// \c is_path_rooted / \c path_is_rooted.
     static
     bool
     path_is_rooted(
         path_classification_t               pc
     );
 
+    /// Whether a classification result is absolute in the WinSTL lattice
+    /// sense (drive-rooted, UNC-rooted, or home-rooted — not merely
+    /// slash-rooted). Distinct from the coarse string predicate
+    /// \c is_path_absolute / \c path_is_absolute, which treats any
+    /// <code>\\\\</code> prefix as absolute (see those members).
     static
     bool
     path_is_absolute(
@@ -543,11 +559,12 @@ public:
     /// Returns \c true if the path begins with a dots directory
     static bool_type    starts_with_dots(char_type const* dir);
 
-    /// Returns \c true if path is rooted
+    /// Returns \c true if path is rooted.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
-    /// root character sequence(s).
+    /// root character sequence(s). Leading path-name separator, or absolute
+    /// (see \c is_path_absolute).
     static bool_type    is_path_rooted(char_type const* path);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static bool_type    is_path_rooted(
@@ -555,7 +572,21 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is an absolute path
+    /// Returns \c true if path is an absolute path (string predicate).
+    ///
+    /// True when the path has a UNC prefix (<code>\\\\</code>, length ≥ 2)
+    /// or a drive letter plus path-name separator (<code>X:\\</code> /
+    /// <code>X:/</code>). Slash-rooted forms such as <code>\\foo</code> are
+    /// <b>not</b> absolute.
+    ///
+    /// \note This is a <b>coarse</b> prefix test. It does <b>not</b> validate
+    /// UNC host/share completeness. Incomplete forms such as
+    /// <code>\\\\svr</code> therefore report absolute here, while
+    /// \c path_classify yields \c UncIncomplete and
+    /// \c path_is_absolute(pc) is false. Prefer \c path_classify when
+    /// incompleteness matters. Well-formed complete UNC roots
+    /// (<code>\\\\host\\share</code> and descendants) agree on both
+    /// surfaces.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
@@ -567,7 +598,12 @@ public:
     ,   size_t              len
     );
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// Returns \c true if path is a UNC path
+    /// Returns \c true if path has a UNC prefix (string predicate)
+    ///
+    /// True when the path begins with <code>\\\\</code> (length ≥ 2). This
+    /// is a <b>prefix heuristic only</b> — it does not require a nonempty
+    /// host and share. Use \c path_classify for the UNC lattice
+    /// (\c UncRooted vs \c UncIncomplete). See also \c is_path_absolute.
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).
@@ -1471,7 +1507,7 @@ public: // path classification and analysis
 
         if (len >= 3)
         {
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -1486,7 +1522,7 @@ public: // path classification and analysis
     {
         WINSTL_ASSERT(NULL != path);
 
-        return ('\\' == path[0] && '\\' == path[1]);
+        return '\\' == path[0] && '\\' == path[1];
     }
 
     static bool_type is_path_UNC(
@@ -1494,17 +1530,32 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        WINSTL_ASSERT(0 == len || NULL != path);
+
         switch (len)
         {
             case    0:
             case    1:
+
                 return false;
+            case    2:
             default:
+
                 return '\\' == path[0] && '\\' == path[1];
         }
     }
 
 private:
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale isalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+    }
+
     // Determines whether the given path is a properly-formed drive:
     //
     //  "X:\"
@@ -1518,7 +1569,7 @@ private:
     {
         if (3 == len)
         {
-            if (isalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 ':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3139,7 +3190,7 @@ public: // path classification and analysis
 
         if (len >= 3)
         {
-            if (iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3154,7 +3205,7 @@ public: // path classification and analysis
     {
         WINSTL_ASSERT(NULL != path);
 
-        return (L'\\' == path[0] && L'\\' == path[1]);
+        return L'\\' == path[0] && L'\\' == path[1];
     }
 
     static bool_type is_path_UNC(
@@ -3162,18 +3213,32 @@ public: // path classification and analysis
     ,   size_t              len
     )
     {
+        WINSTL_ASSERT(0 == len || NULL != path);
+
         switch (len)
         {
             case    0:
             case    1:
+
                 return false;
             case    2:
             default:
-                return '\\' == path[0] && '\\' == path[1];
+
+                return L'\\' == path[0] && L'\\' == path[1];
         }
     }
 
 private:
+    /* Windows drive letters are ASCII A–Z / a–z only (not locale iswalpha). */
+    static
+    bool_type
+    is_drive_letter_(
+        char_type   ch
+    )
+    {
+        return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
+    }
+
     // Determines whether the given path is a properly-formed drive:
     //
     //  "X:\"
@@ -3187,7 +3252,7 @@ private:
     {
         if (3 == len)
         {
-            if (iswalpha(path[0]) &&
+            if (is_drive_letter_(path[0]) &&
                 L':' == path[1] &&
                 is_path_name_separator(path[2]))
             {
@@ -3240,7 +3305,7 @@ private:
             {
                 if (7 == len)
                 {
-                    if (iswalpha(path[4]) &&
+                    if (is_drive_letter_(path[4]) &&
                         L':' == path[5] &&
                         is_path_name_separator(path[6]))
                     {

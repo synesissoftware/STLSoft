@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.iterators.indirect_reverse_iterator entry.cpp)

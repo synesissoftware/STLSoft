@@ -5,7 +5,7 @@
  *          CArray_iadaptor class templates.
  *
  * Created: 1st December 2002
- * Updated: 20th March 2025
+ * Updated: 8th November 2026
  *
  * Thanks:  Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *          requiring that I implement the full complement of standard
@@ -13,7 +13,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    3
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 13
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     107
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 14
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -341,7 +341,13 @@ protected:
         public:
             size_type grow_increment() const
             {
+#if defined(_MSC_VER) && \
+    _MSC_VER >= 1950
+                /* VS 2026 CArray no longer publishes m_nGrowBy. */
+                return 0;
+#else /* ? _MSC_VER */
                 return m_nGrowBy;
+#endif /* _MSC_VER */
             }
         };
 
@@ -355,7 +361,13 @@ protected:
         public:
             size_type capacity() const
             {
+#if defined(_MSC_VER) && \
+    _MSC_VER >= 1950
+                /* VS 2026 CArray no longer publishes m_nMaxSize. */
+                return static_cast<size_type>(array_type::GetSize());
+#else /* ? _MSC_VER */
                 return m_nMaxSize;
+#endif /* _MSC_VER */
             }
         };
 
@@ -1670,7 +1682,9 @@ inline ms_bool_t operator >=(A const& lhs, CArray_adaptor_base<A, I, T> const& r
     return !rhs.greater_than(lhs);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  6
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      114
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  7
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -139,15 +139,16 @@
 # define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
 # define _MFCSTL_VER_1_5_2      0x00010502  /*!< Version 1.5.2 (with STLSoft 1.9.10) */
 # define _MFCSTL_VER_1_5_3      0x00010503  /*!< Version 1.5.3 (with STLSoft 1.9.25) */
-# define _MFCSTL_VER_1_5_4      0x010504ff  /*!< Version 1.5.4 (with STLSoft 1.9.113) */
+# define _MFCSTL_VER_1_5_4      0x010504FF  /*!< Version 1.5.4 (with STLSoft 1.9.113) */
 # define _MFCSTL_VER_1_6_1_B01  0x01060181  /*!< Version 1.6.1-beta1 (with STLSoft 1.10.1-beta1) */
 # define _MFCSTL_VER_1_6_1_B02  0x01060182  /*!< Version 1.6.1-beta2 (with STLSoft 1.10.1-beta26) */
-# define _MFCSTL_VER_1_6_1      0x010601ff  /*!< Version 1.6.1 (with STLSoft 1.11.1-alpha8) */
+# define _MFCSTL_VER_1_6_1      0x010601FF  /*!< Version 1.6.1 (with STLSoft 1.11.1-alpha8) */
+# define _MFCSTL_VER_1_6_2      0x010602FF  /*!< Version 1.6.2 (with STLSoft 1.11.7) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _MFCSTL_VER_MAJOR       1
 #define _MFCSTL_VER_MINOR       6
-#define _MFCSTL_VER_PATCH       1
+#define _MFCSTL_VER_PATCH       2
 #define _MFCSTL_VER_RELSTATUS   0xFF
 
 #define _MFCSTL_VER \
@@ -199,9 +200,10 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the MFCSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the MFCSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -553,7 +555,9 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
  */
 #define mfcstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\

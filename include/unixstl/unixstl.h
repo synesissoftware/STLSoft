@@ -203,8 +203,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the UNIXSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -872,7 +872,9 @@ typedef us_streamoff_t                                      streamoff_t;    /*!<
  */
 #define unixstl_gen_opaque(htype)                           STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\

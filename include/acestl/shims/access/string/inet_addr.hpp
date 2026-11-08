@@ -4,11 +4,11 @@
  * Purpose: Helper functions for ACE strings.
  *
  * Created: 23rd September 2004
- * Updated: 20th March 2025
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   13
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       62
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   14
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -234,8 +234,10 @@ namespace acestl_inet_addr_access_string_util
         ACE_INET_Addr const& addr
     )
     {
-        typedef C                                                   char_t;
-        typedef ::stlsoft::basic_shim_string<char_t>::buffer_type   buffer_t;
+        typedef C                                           char_t;
+        typedef ss_typename_type_k ::stlsoft::basic_shim_string<
+            char_t
+        >::buffer_type                                      buffer_t;
 
         ::stlsoft::basic_shim_string<char_t>    retVal(buffer_t::internal_size());
 #if _STLSOFT_VER >= 0x010a0181
@@ -438,7 +440,9 @@ operator <<(
     return s;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
