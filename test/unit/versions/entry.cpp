@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for versions
  *
  * Created: 23rd August 2025
- * Updated: 6th November 2026
+ * Updated: 8th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -140,7 +140,7 @@ static void TEST__STLSOFT_VER()
 
 static void TEST__ACESTL_VER()
 {
-    TEST_INT_EQ(_ACESTL_VER_1_2_1, _ACESTL_VER);
+    TEST_INT_EQ(_ACESTL_VER_1_2_2, _ACESTL_VER);
 }
 #endif
 #ifdef STLSOFT_HAS_ATL
