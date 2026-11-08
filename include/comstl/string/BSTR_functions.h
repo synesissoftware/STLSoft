@@ -296,7 +296,7 @@ comstl_C_BSTR_dup(
  *
  * \return An integer value representing the relationship between the strings
  * \retval <0 s1 is lexicographically less than s2
- * \retval 0 s1 is lexicographically equal than s2
+ * \retval 0 s1 is lexicographically equal to s2
  * \retval >0 s1 is lexicographically greater than s2
  */
 STLSOFT_INLINE
@@ -548,7 +548,7 @@ BSTR_dup(
  *
  * \return An integer value representing the relationship between the strings
  * \retval <0 s1 is lexicographically less than s2
- * \retval 0 s1 is lexicographically equal than s2
+ * \retval 0 s1 is lexicographically equal to s2
  * \retval >0 s1 is lexicographically greater than s2
  */
 inline
@@ -560,7 +560,6 @@ BSTR_compare(
 {
     return comstl_C_BSTR_compare(s1, s2);
 }
-
 #endif /* __cplusplus */
 
 
@@ -749,8 +748,8 @@ bstr_compare(
     return BSTR_compare(s1, s2);
 }
 # endif /* __cplusplus */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
