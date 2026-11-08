@@ -5,11 +5,11 @@
  *              automatically the strong NULL.
  *
  * Created:     8th September 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_REVISION  6
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      66
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -261,7 +261,9 @@ inline ss_bool_t operator !=(T const& lhs, NULL_v const& rhs)
 
 #endif /* _STLSOFT_NULL_v_DEFINED */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

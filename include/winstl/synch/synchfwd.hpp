@@ -5,11 +5,11 @@
  *              Synchronisation library.
  *
  * Created:     9th June 2006
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MAJOR     1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MINOR     1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      18
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,7 +116,9 @@ class spin_mutex_base;
 class thread_mutex;
 class tss_index;
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

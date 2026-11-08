@@ -4,11 +4,11 @@
  * Purpose:     File creation functions.
  *
  * Created:     12th September 2005
- * Updated:     11th March 2024
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MAJOR      3
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       28
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1180,7 +1180,9 @@ file_truncate_existing(
 }
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

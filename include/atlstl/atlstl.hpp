@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 26th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      129
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -145,12 +145,13 @@
 # define _ATLSTL_VER_1_7_1_B02  0x01070182  /*!< Version 1.7.1-beta2 (with STLSoft 1.10.1-beta4) */
 # define _ATLSTL_VER_1_7_1_B03  0x01070183  /*!< Version 1.7.1-beta3 (with STLSoft 1.10.1-beta10) */
 # define _ATLSTL_VER_1_7_1_B04  0x01070184  /*!< Version 1.7.1-beta4 (with STLSoft 1.10.1-beta26) */
-# define _ATLSTL_VER_1_7_1      0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.11.1-alpha8) */
+# define _ATLSTL_VER_1_7_1      0x010701FF  /*!< Version 1.7.1 (with STLSoft 1.11.1-alpha8) */
+# define _ATLSTL_VER_1_7_2      0x010702FF  /*!< Version 1.7.2 (with STLSoft 1.11.7) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ATLSTL_VER_MAJOR       1
 #define _ATLSTL_VER_MINOR       7
-#define _ATLSTL_VER_PATCH       1
+#define _ATLSTL_VER_PATCH       2
 #define _ATLSTL_VER_RELSTATUS   0xFF
 
 #define _ATLSTL_VER \
@@ -211,9 +212,10 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the ATLSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the ATLSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -602,7 +604,9 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 }
 #endif /* _ATL_VER < 0x0700 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\

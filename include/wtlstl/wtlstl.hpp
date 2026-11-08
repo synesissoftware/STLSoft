@@ -219,9 +219,10 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the WTLSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the WTLSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -599,7 +600,9 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
  */
 #define wtlstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WTLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

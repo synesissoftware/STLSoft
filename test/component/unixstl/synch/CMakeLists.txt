@@ -1,0 +1,10 @@
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(atomic_functions)
+add_subdirectory(atomic_functions.C)
+add_subdirectory(process_mutex)
+add_subdirectory(semaphore)
+add_subdirectory(sleep_functions)
+add_subdirectory(sleep_functions.C)
+add_subdirectory(spin_mutex)
+add_subdirectory(thread_mutex)
+add_subdirectory(tss_index)

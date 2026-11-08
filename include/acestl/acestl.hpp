@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      60
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -142,14 +142,15 @@
 # define _ACESTL_VER_1_0_4     0x00010004  /*!< Version 1.0.4 */
 # define _ACESTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 (STLSoft 1.9.1) */
 # define _ACESTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 (STLSoft 1.9.25) */
-# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1-beta1 (STLSoft 1.10.1 b1) */
+# define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1-beta1 (STLSoft 1.10.1-beta1) */
 # define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1-beta2 (STLSoft 1.10.1-beta26) */
-# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1-alpha8) */
+# define _ACESTL_VER_1_2_1     0x010201FF  /*!< Version 1.2.1 (with STLSoft 1.11.1-alpha8) */
+# define _ACESTL_VER_1_2_2     0x010202FF  /*!< Version 1.2.2 (with STLSoft 1.11.7) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
 #define _ACESTL_VER_MINOR      2
-#define _ACESTL_VER_PATCH      1
+#define _ACESTL_VER_PATCH      2
 #define _ACESTL_VER_RELSTATUS  0xFF
 
 #define _ACESTL_VER \
@@ -198,8 +199,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the ACESTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the ACESTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -563,7 +564,9 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
  */
 #define acestl_gen_opaque(htype)                       STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\

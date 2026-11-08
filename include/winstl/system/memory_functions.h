@@ -4,11 +4,11 @@
  * Purpose: Memory functions.
  *
  * Created: 5th November 2014
- * Updated: 15th October 2024
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_REVISION   7
-# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_EDIT       14
+# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -211,7 +211,9 @@ get_physical_memory_size()
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

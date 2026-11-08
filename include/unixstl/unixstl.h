@@ -138,24 +138,23 @@
 # define _UNIXSTL_VER_1_6_4     0x00010604  /*!< Version 1.6.4 (with STLSoft 1.9.17) */
 # define _UNIXSTL_VER_1_6_5     0x00010605  /*!< Version 1.6.5 (with STLSoft 1.9.25) */
 # define _UNIXSTL_VER_1_6_6     0x00010606  /*!< Version 1.6.6 (with STLSoft 1.9.29) */
-# define _UNIXSTL_VER_1_6_7     0x010607ff  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
-# define _UNIXSTL_VER_1_6_8     0x010608ff  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
-# define _UNIXSTL_VER_1_7_1     0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.9.33) */
-# define _UNIXSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.37) */
-# define _UNIXSTL_VER_1_7_3     0x010703ff  /*!< Version 1.7.3 (with STLSoft 1.9.92) */
-# define _UNIXSTL_VER_1_7_4     0x010704ff  /*!< Version 1.7.4 (with STLSoft 1.9.108) */
-# define _UNIXSTL_VER_1_7_5     0x010705ff  /*!< Version 1.7.5 (with STLSoft 1.9.113) */
-# define _UNIXSTL_VER_1_7_6     0x010706ff  /*!< Version 1.7.6 (with STLSoft 1.9.119) */
+# define _UNIXSTL_VER_1_6_7     0x010607FF  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
+# define _UNIXSTL_VER_1_6_8     0x010608FF  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
+# define _UNIXSTL_VER_1_7_1     0x010701FF  /*!< Version 1.7.1 (with STLSoft 1.9.33) */
+# define _UNIXSTL_VER_1_7_2     0x010702FF  /*!< Version 1.7.2 (with STLSoft 1.9.37) */
+# define _UNIXSTL_VER_1_7_3     0x010703FF  /*!< Version 1.7.3 (with STLSoft 1.9.92) */
+# define _UNIXSTL_VER_1_7_4     0x010704FF  /*!< Version 1.7.4 (with STLSoft 1.9.108) */
+# define _UNIXSTL_VER_1_7_5     0x010705FF  /*!< Version 1.7.5 (with STLSoft 1.9.113) */
+# define _UNIXSTL_VER_1_7_6     0x010706FF  /*!< Version 1.7.6 (with STLSoft 1.9.119) */
 # define _UNIXSTL_VER_1_8_1_B01 0x01080181  /*!< Version 1.8.1-beta1 (with STLSoft 1.10.1-beta1) */
 # define _UNIXSTL_VER_1_8_1_B02 0x01080182  /*!< Version 1.8.1-beta2 (with STLSoft 1.10.1-beta23) */
 # define _UNIXSTL_VER_1_8_1_B03 0x01080183  /*!< Version 1.8.1-beta3 (with STLSoft 1.10.1-beta25) */
 # define _UNIXSTL_VER_1_8_1_B04 0x01080184  /*!< Version 1.8.1-beta4 (with STLSoft 1.10.1-beta26) */
-# define _UNIXSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.10.3) */
-# define _UNIXSTL_VER_1_8_2     0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.10.4) */
-# define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
-# define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
-# define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1-alpha8) */
-# define _UNIXSTL_VER_1_8_5     0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.11.1-alpha12) */
+# define _UNIXSTL_VER_1_8_1     0x010801FF  /*!< Version 1.8.1 (with STLSoft 1.10.3) */
+# define _UNIXSTL_VER_1_8_2     0x010802FF  /*!< Version 1.8.2 (with STLSoft 1.10.4) */
+# define _UNIXSTL_VER_1_8_3     0x010803FF  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
+# define _UNIXSTL_VER_1_8_4     0x010804FF  /*!< Version 1.8.4 (with STLSoft 1.11.1-alpha8) */
+# define _UNIXSTL_VER_1_8_5     0x010805FF  /*!< Version 1.8.5 (with STLSoft 1.11.1-alpha12) */
 # define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.6-alpha1 (with STLSoft 1.11.1-alpha17) */
 # define _UNIXSTL_VER_1_8_6_B01 0x01080681  /*!< Version 1.8.6-beta1 (with STLSoft 1.11.1-beta2) */
 # define _UNIXSTL_VER_1_8_6_B02 0x01080682  /*!< Version 1.8.6-beta2 (with STLSoft 1.11.1-beta3) */
@@ -203,8 +202,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the UNIXSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -872,7 +871,9 @@ typedef us_streamoff_t                                      streamoff_t;    /*!<
  */
 #define unixstl_gen_opaque(htype)                           STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\

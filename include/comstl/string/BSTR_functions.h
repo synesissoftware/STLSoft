@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 10
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     109
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -752,7 +752,9 @@ bstr_compare(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

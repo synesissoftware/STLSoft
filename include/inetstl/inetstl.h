@@ -142,7 +142,7 @@
 # define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1-beta2 (with STLSoft 1.10.1-beta10) */
 # define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
-# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1-alpha8) */
+# define _INETSTL_VER_1_4_2      0x010402FF  /*!< Version 1.4.2 (with STLSoft 1.11.1-alpha8) */
 # define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0-alpha1 (with STLSoft 1.11.1-beta2) */
 # define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0-alpha2 (with STLSoft 1.11.1-rc2) */
 # define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0-alpha3 (with STLSoft 1.11.1-rc8) */
@@ -198,8 +198,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the InetSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010C0041
+# error This version of the InetSTL libraries requires STLSoft version 1.12.0-alpha1, or later
 #endif /* _STLSOFT_VER */
 
 

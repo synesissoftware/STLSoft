@@ -1,0 +1,1 @@
+define_automated_test_program(test.unit.stlsoft.conversion.integer_to_string.integer_to_hexadecimal_string entry.cpp)

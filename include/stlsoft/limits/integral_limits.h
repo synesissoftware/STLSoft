@@ -4,13 +4,13 @@
  * Purpose: Integral constants.
  *
  * Created: 16th January 2002
- * Updated: 21st December 2024
+ * Updated: 29th July 2026
  *
  * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_REVISION  7
-# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      74
+# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,7 +241,9 @@ namespace stlsoft
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
