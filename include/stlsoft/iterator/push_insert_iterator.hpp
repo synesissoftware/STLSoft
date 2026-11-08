@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_REVISION   9
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_EDIT       35
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -256,7 +256,9 @@ push_insert_iterator<T_class> push_inserter(
     return make_push_insert_iterator(container);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

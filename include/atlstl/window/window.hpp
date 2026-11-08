@@ -5,11 +5,11 @@
  *          operations.
  *
  * Created: 25th November 2006
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   11
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       26
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -242,7 +242,9 @@ public:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

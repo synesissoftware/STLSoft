@@ -4,11 +4,11 @@
  * Purpose: Control Panel Library exception classes.
  *
  * Created: 1st April 2006
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_REVISION  9
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_EDIT      34
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -168,7 +168,9 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -535,7 +535,9 @@ typedef WINSTL_NS_QUAL(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION && __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if !defined(__cplusplus)
  /* Nothing defined in C */

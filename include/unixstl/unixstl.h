@@ -871,7 +871,9 @@ typedef us_streamoff_t                                      streamoff_t;    /*!<
  */
 #define unixstl_gen_opaque(htype)                           STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\

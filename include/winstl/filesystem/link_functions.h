@@ -4,11 +4,11 @@
  * Purpose: Link functions.
  *
  * Created: 14th February 2011
- * Updated: 15th October 2024
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_MINOR       2
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_EDIT        27
+# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -506,7 +506,9 @@ hard_link_count_links(
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

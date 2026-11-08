@@ -4,11 +4,11 @@
  * Purpose:     Thread marshalling functions.
  *
  * Created:     25th May 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MAJOR    4
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MINOR    0
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_REVISION 7
-# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     71
+# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,7 +141,9 @@ inline HRESULT GetInterfaceAndReleaseStream(LPSTREAM pstm, I **ppitf)
     return ::CoGetInterfaceAndReleaseStream(pstm, IID_traits<I>().iid(), reinterpret_cast<void**>(ppitf));
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -5,11 +5,11 @@
  *          treated as 1st-class types.
  *
  * Created: 8th September 2002
- * Updated: 21st March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  10
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      68
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -315,7 +315,9 @@ private:
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

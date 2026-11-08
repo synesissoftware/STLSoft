@@ -4,11 +4,11 @@
  * Purpose:     Explicit inheritance veneer class.
  *
  * Created:     13th January 2003
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION   5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       49
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,7 +128,9 @@ protected:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

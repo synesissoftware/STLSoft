@@ -4,11 +4,11 @@
  * Purpose:     Time functions.
  *
  * Created:     10th June 2006
- * Updated:     11th March 2024
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   6
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       18
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,7 +131,9 @@ namespace platformstl_project
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef PLATFORMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

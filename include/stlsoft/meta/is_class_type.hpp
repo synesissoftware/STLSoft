@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_class_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/is_class_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     is_class_type meta class.
+ * Purpose: is_class_type meta class.
  *
- * Created:     19th November 1998
- * Updated:     15th October 2026
+ * Created: 19th November 1998
+ * Updated: 15th October 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -154,7 +154,9 @@ struct is_class_type
 
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

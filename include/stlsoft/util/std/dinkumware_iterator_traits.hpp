@@ -4,11 +4,11 @@
  * Purpose:     "Old" Dinkumware library iterator capability discrimination.
  *
  * Created:     31st December 2005
- * Updated:     21st March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_REVISION   10
-# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       33
+# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -219,7 +219,9 @@ struct Dinkumware_iterator_traits<T const volatile*>
 
 #endif /* partial-specialisation && old-dinkumware */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

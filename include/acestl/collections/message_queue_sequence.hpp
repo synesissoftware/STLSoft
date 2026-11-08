@@ -4,11 +4,11 @@
  * Purpose: Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created: 15th September 2004
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  19
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      82
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -708,7 +708,9 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
