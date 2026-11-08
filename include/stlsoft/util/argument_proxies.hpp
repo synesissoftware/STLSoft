@@ -4,11 +4,11 @@
  * Purpose:  Const and non-const reference and pointer proxy classes.
  *
  * Created:  28th April 2000
- * Updated:  20th March 2025
+ * Updated:  29th July 2026
  *
  * Home:     http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      146
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      147
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -334,7 +334,9 @@ inline value_proxy<A> val_proxy(A a)
     return value_proxy<A>(a);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

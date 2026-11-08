@@ -4,11 +4,11 @@
  * Purpose: Definition of the \c contract_violation exception class.
  *
  * Created: 17th October 2004
- * Updated: 20th March 2025
+ * Updated: 29th July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_REVISION  10
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_EDIT      38
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,7 +201,9 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

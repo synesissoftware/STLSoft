@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      1
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   6
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       58
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,7 +134,9 @@ inline HWND get_HWND(CWindow const& w)
     return w.m_hWnd;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

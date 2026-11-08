@@ -4,11 +4,11 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MAJOR     4
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MINOR     0
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  8
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      84
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -178,7 +178,9 @@ public:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

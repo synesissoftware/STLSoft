@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 26th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -168,9 +168,9 @@
 # define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1-beta2 (with STLSoft 1.10.1-beta17) */
 # define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
-# define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1-alpha8) */
-# define _COMSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.11.1-alpha17) */
-# define _COMSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.11.1-rc9) */
+# define _COMSTL_VER_1_10_2     0x010A02FF  /*!< Version 1.10.2 (with STLSoft 1.11.1-alpha8) */
+# define _COMSTL_VER_1_10_3     0x010A03FF  /*!< Version 1.10.3 (with STLSoft 1.11.1-alpha17) */
+# define _COMSTL_VER_1_10_4     0x010A04FF  /*!< Version 1.10.4 (with STLSoft 1.11.1-rc9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
@@ -227,8 +227,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B02FF
-# error This version of the COMSTL libraries requires STLSoft version 1.11.2, or later
+#if _STLSOFT_VER < 0x010B07FF
+# error This version of the COMSTL libraries requires STLSoft version 1.11.7, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -314,7 +314,7 @@
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
-#define COMSTL_ASSERT(expr)                 STLSOFT_ASSERT(expr)
+#define COMSTL_ASSERT(expr)                                 STLSOFT_ASSERT(expr)
 
 /** Defines a runtime assertion, with message
  *
@@ -323,7 +323,7 @@
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
-#define COMSTL_MESSAGE_ASSERT(msg, expr)    STLSOFT_MESSAGE_ASSERT(msg, expr)
+#define COMSTL_MESSAGE_ASSERT(msg, expr)                    STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /** Defines a compile-time assertion
  *
@@ -331,14 +331,14 @@
  *
  * \param expr Must be non-zero, or compilation will fail
  */
-#define COMSTL_STATIC_ASSERT(expr)          STLSOFT_STATIC_ASSERT(expr)
-
+#define COMSTL_STATIC_ASSERT(expr)                          STLSOFT_STATIC_ASSERT(expr)
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define comstl_assert(expr)                COMSTL_ASSERT(expr)
-# define comstl_message_assert(msg, expr)   COMSTL_MESSAGE_ASSERT(msg, expr)
-# define comstl_static_assert(expr)         COMSTL_STATIC_ASSERT(expr)
+
+# define comstl_assert(expr)                                COMSTL_ASSERT(expr)
+# define comstl_message_assert(msg, expr)                   COMSTL_MESSAGE_ASSERT(msg, expr)
+# define comstl_static_assert(expr)                         COMSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -528,10 +528,10 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  */
 
 #ifndef COMSTL_NO_NAMESPACE
-# define COMSTL_NS_QUAL(x)          ::comstl::x
-# define COMSTL_NS_USING(x)         using ::comstl::x;
+# define COMSTL_NS_QUAL(x)                                  ::comstl::x
+# define COMSTL_NS_USING(x)                                 using ::comstl::x;
 #else /* ? COMSTL_NO_NAMESPACE */
-# define COMSTL_NS_QUAL(x)          x
+# define COMSTL_NS_QUAL(x)                                  x
 # define COMSTL_NS_USING(x)
 #endif /* !COMSTL_NO_NAMESPACE */
 
@@ -972,33 +972,33 @@ const cs_size_t COMSTL_CCH_GUID     =   38;
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /* Exception signatures. */
-#define comstl_throw_0()                                stlsoft_throw_0()
-#define comstl_throw_1(x1)                              stlsoft_throw_1(x1)
-#define comstl_throw_2(x1, x2)                          stlsoft_throw_2(x1, x2)
-#define comstl_throw_3(x1, x2, x3)                      stlsoft_throw_3(x1, x2, x3)
-#define comstl_throw_4(x1, x2, x3, x4)                  stlsoft_throw_4(x1, x2, x3, x4)
-#define comstl_throw_5(x1, x2, x3, x4, x5)              stlsoft_throw_5(x1, x2, x3, x4, x5)
-#define comstl_throw_6(x1, x2, x3, x4, x5, x6)          stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
-#define comstl_throw_7(x1, x2, x3, x4, x5, x6, x7)      stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
-#define comstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
+#define comstl_throw_0()                                    stlsoft_throw_0()
+#define comstl_throw_1(x1)                                  stlsoft_throw_1(x1)
+#define comstl_throw_2(x1, x2)                              stlsoft_throw_2(x1, x2)
+#define comstl_throw_3(x1, x2, x3)                          stlsoft_throw_3(x1, x2, x3)
+#define comstl_throw_4(x1, x2, x3, x4)                      stlsoft_throw_4(x1, x2, x3, x4)
+#define comstl_throw_5(x1, x2, x3, x4, x5)                  stlsoft_throw_5(x1, x2, x3, x4, x5)
+#define comstl_throw_6(x1, x2, x3, x4, x5, x6)              stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
+#define comstl_throw_7(x1, x2, x3, x4, x5, x6, x7)          stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
+#define comstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)      stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define COMSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
-# define comstl_num_elements(ar)                        COMSTL_NUM_ELEMENTS(ar)
+# define COMSTL_NUM_ELEMENTS(ar)                            STLSOFT_NUM_ELEMENTS(ar)
+# define comstl_num_elements(ar)                            COMSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define comstl_destroy_instance(t, type, p)             STLSOFT_DESTROY_INSTANCE(t, type, p)
+#define comstl_destroy_instance(t, type, p)                 STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define comstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
+#define comstl_gen_opaque(htype)                            STLSOFT_GEN_OPAQUE(htype)
 
 
 /* /////////////////////////////////////////////////////////////////////////

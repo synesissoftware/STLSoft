@@ -230,7 +230,9 @@ inline ws_bool_t operator !=(const netapi_allocator<T> &/* lhs */, const netapi_
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

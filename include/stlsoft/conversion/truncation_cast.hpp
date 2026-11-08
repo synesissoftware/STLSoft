@@ -4,11 +4,11 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MAJOR      2
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_EDIT       59
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -129,7 +129,9 @@ truncation_cast(
     return static_cast<TO>(from);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft

@@ -5,11 +5,11 @@
  *              c_str_ptr_null, c_str_data, c_str_len, c_str_size.
  *
  * Created:     11th April 2005
- * Updated:     11th March 2024
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_MINOR    0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_REVISION 8
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_EDIT     29
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -227,7 +227,9 @@ c_str_size(
 );
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

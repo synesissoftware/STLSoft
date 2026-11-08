@@ -4,11 +4,11 @@
  * Purpose:     Contains the CList_swap utility function.
  *
  * Created:     15th September 2006
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_MAJOR      1
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_MINOR      0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_REVISION   6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_EDIT       24
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -164,7 +164,9 @@ void CList_swap(A& lhs, A& rhs)
 
 #endif /* MFCSTL_CLIST_SWAP_MEMBERS_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

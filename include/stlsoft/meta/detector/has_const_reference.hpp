@@ -4,11 +4,11 @@
  * Purpose:     Definition of the has_const_reference member type detector.
  *
  * Created:     19th November 1998
- * Updated:     20th March 2025
+ * Updated:     29th July 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE_REVISION 5
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE_EDIT     142
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE_EDIT     143
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,7 +126,9 @@ struct has_const_reference<void>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
