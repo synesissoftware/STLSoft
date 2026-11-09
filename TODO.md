@@ -103,20 +103,35 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 ### 1.11.7
 
 * [x] ~~~Canonicalise C-language test/example program names to **`subject.C`** (suffix, not infix `.C.`); update inventories after the rename;~~~ - ✅;
+* [x] ~~~WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites~~~ - ✅;
 
 
 ### 1.11.8
 
-* [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl `path_classify_root` / `path_is_absolute` exposure (R13), and the platformstl unit tests. (The unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, `numDotsDirectoryParts`, the R9 documentation, and the unixstl/winstl host test suites landed in **1.11.7**.) Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
-* [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
-* [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
-* [ ] Complete coverage of currently tested components (improvement / completion);
-* [ ] Complete coverage of currently untested components (improvement / completion);
-* [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
-* [ ] WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites;
-* [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
+* [x] ~~~Replace the duplicated ASCII case-fold helpers with one shared pair: `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()`, and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`~~~ - ✅;
+* [X] ~~~Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only)~~~ - ❌ (it's deprecated and going to be removed in future version);
+* [X] ~~~Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed)~~~ - ❌ (no need, because these are all internal);
+* [x] ~~~`STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`~~~ - ✅;
+* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
+* [x] ~~~Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers~~~ - ✅;
+* [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**~~~ - ✅;
+
+
+### 1.11.9
+
+* [ ] Exception messages (consistency):
+  * [ ] Identify those that pertain to programmer error (invalid use) vs runtime conditions, as the former should be more "precise" (e.g. include construct names) and the latter should be more "readable";
+  * [ ] Punctuation;
+  * [ ] Case;
+  * [ ] " : " clausing;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
+* [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
+* [ ] All precondition enforcements => \pre;
+* [ ] All \pre => precondition enforcements;
+
+
+### 1.11.10
+
 * [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
 * [ ] **include/stlsoft/conversion/byte_format_functions.hpp** known / suspected issues in `format_bytes()` (unit tests landed in **test.unit.stlsoft.conversion.byte_format_functions**; none of these is pinned by a test yet):
   * [x] ~~~the line-separator copy uses `STLSOFT_API_EXTERNAL_memfns_memcpy()` rather than `STLSOFT_API_INTERNAL_memfns_memcpy()`, so a `nullptr` `lineSeparator` with `groupsPerLine > 0` calls `memcpy(buff, nullptr, 0)` (the case the internal adaptation exists for)~~~ - ✅;
@@ -128,10 +143,9 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [x] ~~~the exact-fit case (`size == cchBuff`) writes no terminating NUL, so the size-query idiom (query with `nullptr`, allocate `n`, call again) yields an unterminated string; decide and document the contract (document that a C string needs `size + 1`, or make success strict), then update the exact-fit test accordingly;~~~ - ✅ (contract documented — NUL written only when `size < cchBuff`; tests **test_format_bytes_BUFFER_EXACT_PLUS_NUL** / **test_format_bytes_BUFFER_EXACT_NO_NUL**);
   * [x] ~~~**suspected one-byte overflow** in the `STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF` path: each `stlsoft_C_snprintf()` is passed `cchBuff` rather than the remaining capacity, so for the last group the terminating NUL is written at `buff[size]`, which is `buff[cchBuff]` on an exact fit. Found by reading, not yet reproduced; confirm with an AddressSanitizer run of **test.unit.stlsoft.conversion.byte_format_functions.sprintf** (the exact-fit test should trip it), then pass the remaining capacity;~~~ - ✅ (obviated: `snprintf` now formats into a local `hex_[65]` scratch and the digits are copied into the caller buffer, so no NUL is ever written into it);
   * the `size` arithmetic mixes `int` `groupsPerLine` with `ss_size_t` operands (safe as written, since every use is guarded by `groupsPerLine >= 1` and `-1` deliberately never matches `groupIndex`; comment the convention), and `numGroups * (…)` can overflow on 32-bit for very large `cb`; add an overflow guard;
-* [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
 * [ ] C-API prefix follow-ups noticed while checking retained wrappers:
   * [ ] Generated docs omit the retained `comstl__*` / `winstl__*` function wrappers because they sit in `STLSOFT_DOCUMENTATION_SKIP_SECTION`. The compiler message names the `*_C_*` successor. Decide whether a documentation-only `\deprecated` declaration should appear in the generated API;
-  * [ ] `BSTR_compare()` documents equality as "lexicographically equal than";
+  * [x] ~~~`BSTR_compare()` documents equality as "lexicographically equal than"~~~ - ✅;
   * [x] ~~~Search the other Synesis projects for calls to the deprecated STLSoft C API spellings (`comstl__*`, `winstl__*`, `inetstl_c_*`, and the other `<subproject>__` / `<subproject>_c_` function names retained until 1.13) and retarget them to the `*_C_*` successors. Record any obsolete `#define` aliases separately; those stay until their own pass~~~ - ✅ (no other project uses the obsolete macros; **cstring** calls `comstl_C_CoTaskMemGetSize`, **recls** calls `inetstl_C_sockaddr_un_init_from_path`);
 * [ ] OLE-string C API, noticed while renaming `comstl_C_olestring_*`:
   * [ ] `comstl_C_olestring_create_a()` sizes the buffer as `cch + 1` after `MultiByteToWideChar` has already included the NUL in `cch`, so it allocates one extra character compared with `comstl_C_olestring_create_w()`. If the second conversion returns 0 it still returns that buffer with a leading NUL rather than freeing it and returning NULL;
@@ -180,23 +194,11 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] bring in some essential unit-tests from internal repo;
 
 
-### 1.11.9
-
-* [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
-* [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
-* [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
-* [ ] All precondition enforcements => \pre;
-* [ ] All \pre => precondition enforcements;
-
-
-### 1.11.10
-
-* [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
-* [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
-* [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
-
-
 ### 1.11.11
+
+
+
+### 1.11.12
 
 * [ ] Resizeable Buffer — follow-ups deferred from the **1.11.1** concept/implementation lock (do **not** reopen C1–C5, D1–D4, G2, G3, G5–G7 without cause; gold contract is **CONCEPTS.md** — *The Resizeable Buffer concept* and *Contract for traits overloads that take an `rb`*; helper **stlsoft/util/resizeable_buffer_helpers.hpp**; exemplar `rb` overloads include `get_current_process_path(rb)` and winstl `get_module_directory(rb)`):
   * [ ] **G1** — unixstl `system_traits::expand_environment_strings` is **declare-only** (ANSI + wide; both the C-string `(src, buffer, cch)` and `rb` overloads have no definitions in **include/unixstl/system/system_traits.hpp**); WinSTL already implements both (incl. an `rb` overload); callers such as **include/platformstl/filesystem/cwd_stack.hpp** invoke it and will fail to link on UNIX if used — **either** implement (gold probe-then-fill; env/expansion demand must account for trailing NUL; resize failure → `ENOMEM`; unit/component tests) **or** undeclare/remove the stubs and fix/guard callers; same gap is noted under **1.11.6**;
@@ -208,25 +210,15 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] **P3** — `ensure_dir_end(rb)` grows by exactly **+1**, which forces a heap realloc when an `auto_buffer` is already on its internal array boundary; internal callers often avoid the `rb` form for this reason — consider amortized growth or document that pointer/`&sz[0]` forms remain preferred for hot paths; cover with unit tests if behaviour changes;
 
 
-### 1.11.12
-
-* [ ] ~~~Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only)~~~ - ❌ (it's deprecated and going to be removed in future version);
-* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
-* [ ] Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed);
-
-
 ### 1.11.13
 
 * [ ] Deeper API documentation on top of the Doxygen build that landed in **1.11.1** (**Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md);
-* [ ] Remove defunct compilers;
-* [ ] Remove **WTL**;
 
 
 ### 1.11.14
 
 Misc:
 * [x] ~~~Bring in the `memchr` / `memcmp` and ASCII case-fold performance work for `strnchr`, `strnicmp`, `strnistrn`, and `strnstrn`, plus **test.performance.stlsoft.string.c_string**~~~ - ✅;
-* [ ] Replace the duplicated ASCII case-fold helpers with one shared pair: `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()`, and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`;
 
 Normalise C API (and related C-facing) identifier prefixes. **House rule**
 (documented in **c-cpp-standards** → *STLSoft C API identifier prefixes*):
@@ -260,6 +252,10 @@ The **`prospective-msvc`** branch is absent from both the **STLSoft** and **STLS
 ## 1.12
 
 From **1.12** onwards, every new component or feature must ship with an **example**, **unit tests**, and a **blog entry** on the new Website (website work is contemporaneous with 1.12). See **oss-library-modernisation** (STLSoft 1.12+ feature completeness).
+
+* [ ] Land **path-classify**: **include/platformstl/filesystem/path_classify_functions.h**, the unixstl `path_classify_root` / `path_is_absolute` exposure (R13), and the platformstl unit tests. (The unixstl/winstl UNC / `\\?\` / `\\.\` / ASCII drive-letter fixes, `numDotsDirectoryParts`, the R9 documentation, and the unixstl/winstl host test suites landed in **1.11.7**.) Cherry onto this line from the **STLSoft.b** local `path-classify` tip (`18035dbe`); the `ss/path-classify` tip predates **1.11.2**;
+* [ ] Land **path-classify.full** after **path-classify**: callers prefer `path_is_*`, deprecation-warning suppression, and removal of `get_root_len_` (R24, already done on that branch). Same tip on both clones (`4d907dcd`), and that tip also predates **1.11.2**;
+
 
 * [ ] Take down https://github.com/synesissoftware/STLSoft-1.10-delta;
 * [ ] Bring in **include/stlsoft/string/trim_functions.h** and **test/unit/stlsoft/string/trim_functions** from `mwsis/trim_functions` (on the **STLSoft** clone);
@@ -299,12 +295,24 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 * [ ] Flesh out declared-but-undefined `unixstl::system_traits` methods (Linux system calls; emulations/workarounds elsewhere) — see also [**KNOWN_ISSUES.md**](./KNOWN_ISSUES.md):
   * [ ] `expand_environment_strings` (ANSI + wide; C-string and `rb` overloads) — implement or undeclare; full pickup brief under **1.11.4** Resizeable Buffer **G1**;
 
+* [ ] **Build helper scripts:** Thorough review of the build helper scripts (especially the run scripts) and the means by which executable files are identified; separate those aspects correctly and clearly. Same concern applies across other SIS freelib projects. Scope includes discovery globs, execute-bit / artifact restore, zero-match failure, verbosity, and CI wiring for **run_all_unit_tests.sh**, **run_all_scratch_tests.sh**, **run_all_examples.sh**, **execute_performance_tests.sh**, and Windows `.cmd` counterparts;
+* [ ] **CMake scripts:** Diff all CMake script files (**CMakeLists.txt**, **\*.cmake**) since **1.11.1-rc4**; discuss each change — likely adding comments in the scripts and/or notes in the project documentation guidelines — so the newer techniques are clearly explained;
+* [ ] **CI configuration:** Thorough review of **ci.yml** and **ci-cell.yml** — identify and separate the various aspects correctly and clearly. Same concern applies across other SIS freelib projects;
+
+* [ ] Existing test consistency (deep analysis) — many new tests are compile-verified or smoke-level; behavioural depth still to be improved;
+* [ ] Complete coverage of currently tested components (improvement / completion);
+* [ ] Complete coverage of currently untested components (improvement / completion);
+* [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
+* [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 
 
 ## 1.13
 
 * [ ] Remove deprecated mixed-case C API wrappers and enumerator aliases (`STLSoft_C_*`, `WinSTL_C_*`, `UNIXSTL_C_PathType_*`, and any later-deprecated forms);
 * [ ] Recognise the Tiny C Compiler for C translation units (**include/stlsoft/internal/cccap/tinycc.h**). Cherry the recognition from `ss/tcc`; the rest of that branch predates **1.11.1**;
+* [ ] Remove **WTL**;
+* [ ] Remove defunct compilers;
+* [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
 
 
 ## Requires clarification by project maintainers

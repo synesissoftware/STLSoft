@@ -4,7 +4,7 @@
  * Purpose:     is_printf_type meta class.
  *
  * Created:     27th May 2009
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_EDIT       16
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_REVISION   2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,9 +153,9 @@ struct is_printf_type
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,11 +4,11 @@
  * Purpose: Functions to manipulate bit patterns.
  *
  * Created: 2nd June 2010
- * Updated: 21st December 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS_EDIT     13
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,9 +84,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_INCL_H_BIT_FUNCTIONS */
 

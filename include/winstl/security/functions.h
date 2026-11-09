@@ -4,7 +4,7 @@
  * Purpose:     Security functions.
  *
  * Created:     7th November 2014
- * Updated:     8th November 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR       1
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        8
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -403,9 +403,9 @@ lookup_account_SID_info(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* WINSTL_INCL_WINSTL_H_FUNCTIONS */
 

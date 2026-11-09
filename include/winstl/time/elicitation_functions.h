@@ -4,7 +4,7 @@
  * Purpose:     Elicitation functions for Windows time structures.
  *
  * Created:     26th May 2014
- * Updated:     11th October 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        14
+# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -370,9 +370,9 @@ get_time(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

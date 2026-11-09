@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for path parsing.
  *
  * Created:     7th February 2002
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_EDIT     63
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -316,9 +316,9 @@ find_last_path_name_separator(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS */
 

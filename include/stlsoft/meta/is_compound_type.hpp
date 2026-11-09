@@ -4,7 +4,7 @@
  * Purpose:     is_compound_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MINOR    0
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_REVISION 7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     23
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_REVISION 8
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,9 +131,9 @@ struct is_compound_type
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_COMPOUND_TYPE */
 

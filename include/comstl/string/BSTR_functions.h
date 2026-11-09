@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with BSTR strings.
  *
  * Created: 24th June 2002
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 10
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     110
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 11
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -296,7 +296,7 @@ comstl_C_BSTR_dup(
  *
  * \return An integer value representing the relationship between the strings
  * \retval <0 s1 is lexicographically less than s2
- * \retval 0 s1 is lexicographically equal than s2
+ * \retval 0 s1 is lexicographically equal to s2
  * \retval >0 s1 is lexicographically greater than s2
  */
 STLSOFT_INLINE
@@ -548,7 +548,7 @@ BSTR_dup(
  *
  * \return An integer value representing the relationship between the strings
  * \retval <0 s1 is lexicographically less than s2
- * \retval 0 s1 is lexicographically equal than s2
+ * \retval 0 s1 is lexicographically equal to s2
  * \retval >0 s1 is lexicographically greater than s2
  */
 inline
@@ -560,7 +560,6 @@ BSTR_compare(
 {
     return comstl_C_BSTR_compare(s1, s2);
 }
-
 #endif /* __cplusplus */
 
 
@@ -749,8 +748,8 @@ bstr_compare(
     return BSTR_compare(s1, s2);
 }
 # endif /* __cplusplus */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -771,9 +770,9 @@ bstr_compare(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS */
 

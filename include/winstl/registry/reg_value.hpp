@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 15th October 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -69,8 +69,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  14
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      137
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  15
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -993,9 +993,9 @@ reg_blob<A>::rend() const
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE */
 

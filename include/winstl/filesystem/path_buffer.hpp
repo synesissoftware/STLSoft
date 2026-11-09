@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_path_buffer template class.
  *
  * Created:     27th May 2020
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_MAJOR     1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT      3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION  2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -175,9 +175,9 @@ typedef path_buffer_generator<
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PATH_BUFFER */
 

@@ -4,11 +4,11 @@
  * Purpose: WinSTL Synchronisation library diagnostics facilities.
  *
  * Created: 18th December 2016
- * Updated: 27th December 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_MAJOR       1
 # define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_MINOR       0
-# define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_REVISION    3
-# define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_EDIT        9
+# define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_REVISION    4
+# define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -283,9 +283,9 @@ namespace winstl_project
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING */
 
