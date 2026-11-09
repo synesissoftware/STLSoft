@@ -4,11 +4,11 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     3rd January 2017
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__MAJOR    1
 # define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__MINOR    2
-# define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__REVISION 3
-# define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__EDIT     10
+# define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__REVISION 4
+# define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -321,9 +321,9 @@ Sleep(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_UTIL_H_WINDOWS_API_ */
 

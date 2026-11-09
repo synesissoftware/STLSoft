@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     1st February 1998
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_MAJOR      4
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_MINOR      1
-# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_REVISION   7
-# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_EDIT       63
+# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_REVISION   8
+# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -229,9 +229,9 @@ inline HRESULT CoInitSecurity(  SECURITY_DESCRIPTOR         *psd,
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS */
 

@@ -4,7 +4,7 @@
  * Purpose: Utility functions for working with resizeable-buffers.
  *
  * Created: 24th December 2020
- * Updated: 16th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_EDIT        9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_REVISION    2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -380,9 +380,9 @@ resizeable_buffer_resize(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
 

@@ -4,7 +4,7 @@
  * Purpose:     A combination of the transform_iterator and the filter_iterator.
  *
  * Created:     2nd January 2006
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_REVISION  8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_EDIT      28
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_REVISION  9
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -157,9 +157,9 @@ inline transform_iterator<filter_iterator<I, FP>, TF> transform_filter(I from, I
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR */
 

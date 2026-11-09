@@ -4,7 +4,7 @@
  * Purpose: Mutual exclusion model class.
  *
  * Created: 19th December 1997
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  9
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      60
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  10
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -168,9 +168,9 @@ inline void unlock_instance(STLSOFT_NS_QUAL(null_mutex) &mx)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_NULL_MUTEX */
 

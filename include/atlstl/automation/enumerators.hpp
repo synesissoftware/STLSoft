@@ -4,11 +4,11 @@
  * Purpose: Enumerator classes.
  *
  * Created: 11th November 1998
- * Updated: 21st March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 12
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     88
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 13
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -647,9 +647,9 @@ inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::itera
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_ENUMERATORS */
 

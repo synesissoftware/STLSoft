@@ -4,7 +4,7 @@
  * Purpose: Stream functions.
  *
  * Created: 22nd October 2005
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MAJOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 8
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     32
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 9
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,9 +228,9 @@ comstl__get_stream_size(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_H_STREAM_FUNCTIONS */
 

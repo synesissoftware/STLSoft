@@ -4,7 +4,7 @@
  * Purpose:     Conversion from character(s) to string.
  *
  * Created:     12th November 2020
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_MAJOR     1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_MINOR     0
-# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_REVISION  1
-# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_EDIT      3
+# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_REVISION  2
+# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,9 +160,9 @@ char2str(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR */
 

@@ -5,11 +5,11 @@
  *          enumerator interfaces.
  *
  * Created: 17th September 1998
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 8
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     182
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 9
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     183
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -546,9 +546,9 @@ public:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_VALUE_POLICIES */
 

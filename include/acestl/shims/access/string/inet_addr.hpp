@@ -4,7 +4,7 @@
  * Purpose: Helper functions for ACE strings.
  *
  * Created: 23rd September 2004
- * Updated: 8th November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   14
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       64
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   15
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -500,9 +500,9 @@ namespace stlsoft
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !ACESTL_INCL_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR */
 

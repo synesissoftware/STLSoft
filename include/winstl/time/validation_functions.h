@@ -4,11 +4,11 @@
  * Purpose:     Validation functions for Windows time structures.
  *
  * Created:     1st June 2014
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_EDIT     14
+# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -362,9 +362,9 @@ time_validate(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     56
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 9
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -418,9 +418,9 @@ inline ss_bool_t operator !=(filter_iterator<I, P, T> const& lhs, filter_iterato
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR */
 

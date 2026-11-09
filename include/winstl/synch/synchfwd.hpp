@@ -5,7 +5,7 @@
  *              Synchronisation library.
  *
  * Created:     9th June 2006
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MAJOR     1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MINOR     1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      19
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_REVISION  3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,9 +135,9 @@ class tss_index;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_SYNCHFWD */
 

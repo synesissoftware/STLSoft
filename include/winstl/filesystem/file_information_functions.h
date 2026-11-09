@@ -4,7 +4,7 @@
  * Purpose: File functions.
  *
  * Created: 7th November 2014
- * Updated: 13th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        12
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    7
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -391,9 +391,9 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* WINSTL_INCL_WINSTL_H_FILE_INFORMATION_FUNCTIONS */
 

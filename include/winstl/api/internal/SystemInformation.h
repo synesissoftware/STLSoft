@@ -5,7 +5,7 @@
  *          Information Functions API.
  *
  * Created: 25th May 2025
- * Updated: 25th May 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -281,9 +281,9 @@ WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryW(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_SystemInformation */
 

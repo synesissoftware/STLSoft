@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the system_traits components.
  *
  * Created:     2nd July 2006
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  6
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      22
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  7
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -209,9 +209,9 @@ namespace platformstl_project
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 

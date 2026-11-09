@@ -4,11 +4,11 @@
  * Purpose: Contains the module class.
  *
  * Created: 30th October 1997
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    7
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     244
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     245
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -512,9 +512,9 @@ dl_module::get() const
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE */
 

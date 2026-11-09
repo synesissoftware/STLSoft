@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the home_directory components.
  *
  * Created:     9th January 2017
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT     11
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_REVISION 3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -155,9 +155,9 @@ typedef WINSTL_NS_QUAL(home_directory)                      home_directory;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY */
 

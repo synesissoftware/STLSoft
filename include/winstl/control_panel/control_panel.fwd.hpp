@@ -4,11 +4,11 @@
  * Purpose:     Forward declarations.
  *
  * Created:     18th December 2016
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_MINOR    0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_REVISION 3
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_EDIT     9
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_REVISION 4
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,9 +118,9 @@ class applet_module;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD */
 

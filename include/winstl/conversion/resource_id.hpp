@@ -5,7 +5,7 @@
  *              identifiers.
  *
  * Created:     11th April 2005
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MAJOR     2
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MINOR     0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_REVISION  4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      29
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_REVISION  5
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -181,9 +181,9 @@ typedef basic_resource_id<TCHAR>        resource_id;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_CONVERSION_HPP_RESOURCE_ID */
 

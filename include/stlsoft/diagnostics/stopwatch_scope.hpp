@@ -4,7 +4,7 @@
  * Purpose: Stopwatch scope class.
  *
  * Created: 20th July 2002
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MAJOR      5
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   4
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       58
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   5
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,9 +165,9 @@ private: // Fields
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

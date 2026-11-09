@@ -4,7 +4,7 @@
  * Purpose: COM memory functions.
  *
  * Created: 2nd March 1996
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     1
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  10
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      65
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  11
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -340,9 +340,9 @@ comstl__CoTaskMemHeapMinimise(void)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_MEMORY_H_FUNCTIONS */
 

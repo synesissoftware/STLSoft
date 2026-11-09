@@ -4,7 +4,7 @@
  * Purpose: integral_printf_traits classes.
  *
  * Created: 16th January 2002
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MAJOR      6
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       89
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   10
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -325,9 +325,9 @@ struct integral_printf_traits<char>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS */
 

@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 12th March 2006
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    2
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     38
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -466,9 +466,9 @@ CreateProcess(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_PROCESS_H_FUNCTIONS */
 

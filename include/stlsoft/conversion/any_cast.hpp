@@ -5,7 +5,7 @@
  *          libraries.
  *
  * Created: 12th May 2004
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       50
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   9
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -218,9 +218,9 @@ private:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST */
 

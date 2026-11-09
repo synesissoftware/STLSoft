@@ -4,14 +4,14 @@
  * Purpose: stlsoft::spin_mutex_base class template.
  *
  * Created: 27th August 1997
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Thanks:  To Rupert Kittinger, for pointing out that the prior
  *          implementation that always yielded was not really "spinning".
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MAJOR    6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MINOR    0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION 5
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT     82
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION 6
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -341,9 +341,9 @@ public:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE */
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_console_ctrl_handler_scope class.
  *
  * Created: 8th August 2004
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE_REVISION   11
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE_EDIT       47
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE_REVISION   12
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -163,9 +163,9 @@ private:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_CONSOLE_CTRL_HANDLER_SCOPE */
 
