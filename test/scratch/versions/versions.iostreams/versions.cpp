@@ -98,9 +98,10 @@
  * helper functions
  */
 
-static
+namespace {
+
 void
-print_efferent_dependency_(
+print_version(
     std::ostream&   stm
 ,   char const*     name
 ,   char const*     macroname
@@ -198,48 +199,7 @@ print_efferent_dependency_(
     stm.flags(flags);
     stm.fill(fill);
 }
-
-void
-print_subproject_(
-    std::ostream&   stm
-,   char const*     name
-,   char const*     macroName
-,   unsigned long   libver
-)
-{
-    stm
-        << "\t"
-        << VERSIONS_CLR_NAME_(stm)
-        << name
-        << VERSIONS_CLR_RESET_(stm)
-        << " = "
-        << VERSIONS_CLR_VERSION_(stm)
-        << VER_MAJOR_(int, libver)
-        << '.'
-        << VER_MINOR_(int, libver)
-        << '.'
-        << VER_PATCH_(int, libver)
-        << '.'
-        << VER_RELST_(int, libver)
-        << VERSIONS_CLR_RESET_(stm)
-        << std::endl
-        ;
-    stm
-        << "\t"
-        << VERSIONS_CLR_MACRO_(stm)
-        << macroName
-        << VERSIONS_CLR_RESET_(stm)
-        << " = "
-        << VERSIONS_CLR_VERSION_(stm)
-        << "0x"
-        << std::hex << std::setfill('0') << std::setw(8) << libver
-        << std::dec
-        << VERSIONS_CLR_RESET_(stm)
-        << std::endl
-        ;
-
-    stm << std::endl;
-}
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -319,48 +279,49 @@ int main(int /* argc */, char* /* argv */[])
 
 
         // _STLSOFT_VER
-        print_subproject_(stm, "STLSoft", "_STLSOFT_VER", _STLSOFT_VER);
+        print_version(stm, "STLSoft", "_STLSOFT_VER", _STLSOFT_VER);
 #ifdef STLSOFT_HAS_ACE
 
         /* _ACESTL_VER */
-        print_subproject_(stm, "ACESTL", "_ACESTL_VER", _ACESTL_VER);
+        print_version(stm, "ACESTL", "_ACESTL_VER", _ACESTL_VER);
 #endif
 #ifdef STLSOFT_HAS_ATL
 
         /* _ATLSTL_VER */
-        print_subproject_(stm, "ATLSTL", "_ATLSTL_VER", _ATLSTL_VER);
+        print_version(stm, "ATLSTL", "_ATLSTL_VER", _ATLSTL_VER);
 #endif
 #ifdef STLSOFT_HAS_COM
 
         /* _COMSTL_VER */
-        print_subproject_(stm, "COMSTL", "_COMSTL_VER", _COMSTL_VER);
+        print_version(stm, "COMSTL", "_COMSTL_VER", _COMSTL_VER);
 #endif
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX) ||\
       defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         /* _INETSTL_VER */
-        print_subproject_(stm, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
+        print_version(stm, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
 #endif
 
         /* _PLATFORMSTL_VER */
-        print_subproject_(stm, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
+        print_version(stm, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
         /* _UNIXSTL_VER */
-        print_subproject_(stm, "UNIXSTL", "_UNIXSTL_VER", _UNIXSTL_VER);
+        print_version(stm, "UNIXSTL", "_UNIXSTL_VER", _UNIXSTL_VER);
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         /* _WINSTL_VER */
-        print_subproject_(stm, "WinSTL", "_WINSTL_VER", _WINSTL_VER);
+        print_version(stm, "WinSTL", "_WINSTL_VER", _WINSTL_VER);
 #endif
+
+        stm << std::endl;
     }
 
 
     {
         stm
-            << std::endl
             << VERSIONS_CLR_HEADING_(stm)
             << "Efferent dependencies"
             << VERSIONS_CLR_RESET_(stm)
@@ -372,34 +333,30 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_cstring
 
-        print_efferent_dependency_(stm, "cstring", "CSTRING_VER", CSTRING_VER);
+        print_version(stm, "cstring", "CSTRING_VER", CSTRING_VER);
 #endif
-
 #ifdef HAS_Diagnosticism
 
-        print_efferent_dependency_(stm, "Diagnosticism", "DIAGNOSTICISM_VER", DIAGNOSTICISM_VER);
+        print_version(stm, "Diagnosticism", "DIAGNOSTICISM_VER", DIAGNOSTICISM_VER);
 #endif
-
-
 #ifdef HAS_shwild
 
-        print_efferent_dependency_(stm, "shwild", "SHWILD_VER", SHWILD_VER);
+        print_version(stm, "shwild", "SHWILD_VER", SHWILD_VER);
 #endif
-
 #ifdef HAS_UNIXem
 
-        print_efferent_dependency_(stm, "UNIXem", "UNIXEM_VER", UNIXEM_VER);
+        print_version(stm, "UNIXem", "UNIXEM_VER", UNIXEM_VER);
 #endif
-
 #ifdef HAS_woad
 
-        print_efferent_dependency_(stm, "woad", "WOAD_VER", WOAD_VER);
+        print_version(stm, "woad", "WOAD_VER", WOAD_VER);
 #endif
-
 #ifdef HAS_xTests
 
-        print_efferent_dependency_(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
+        print_version(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
 #endif
+
+        stm << std::endl;
     }
 
 
