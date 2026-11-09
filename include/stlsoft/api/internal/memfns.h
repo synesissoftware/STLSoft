@@ -4,11 +4,11 @@
  * Purpose: Internal adaptations for memXXX() functions.
  *
  * Created: 2nd January 2021
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2021-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2021-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -186,9 +186,9 @@ STLSOFT_API_INTERNAL_memfns_wmemset(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 

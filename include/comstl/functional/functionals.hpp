@@ -4,11 +4,11 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_MAJOR     4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_MINOR     0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_REVISION  3
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_EDIT      74
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_REVISION  4
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,9 +93,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS */
 

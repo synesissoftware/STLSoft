@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created: 2nd March 1996
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    13
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        178
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    14
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        179
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -382,9 +382,9 @@ comstl__olestring_dup(LPCOLESTR posz)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_STRING_H_OLESTRING_FUNCTIONS */
 

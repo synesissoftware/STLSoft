@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 26th October 2026
+ * Updated: 10th November 2026
  *
  * Thanks:  To Cláudio Albuquerque for suggesting the inclusion of atlstr.h.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  7
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      115
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  9
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -143,7 +143,7 @@
 # define _MFCSTL_VER_1_6_1_B01  0x01060181  /*!< Version 1.6.1-beta1 (with STLSoft 1.10.1-beta1) */
 # define _MFCSTL_VER_1_6_1_B02  0x01060182  /*!< Version 1.6.1-beta2 (with STLSoft 1.10.1-beta26) */
 # define _MFCSTL_VER_1_6_1      0x010601FF  /*!< Version 1.6.1 (with STLSoft 1.11.1-alpha8) */
-# define _MFCSTL_VER_1_6_2      0x010602FF  /*!< Version 1.6.2 (with STLSoft 1.11.7) */
+# define _MFCSTL_VER_1_6_2      0x010602FF  /*!< Version 1.6.2 (with STLSoft 1.11.8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _MFCSTL_VER_MAJOR       1
@@ -575,9 +575,9 @@ namespace mfcstl = ::stlsoft::mfcstl_project;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

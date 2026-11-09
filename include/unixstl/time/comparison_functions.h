@@ -4,7 +4,7 @@
  * Purpose: Comparison functions for UNIX time structures.
  *
  * Created: 19th November 2024
- * Updated: 19th November 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT       2
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,9 +216,9 @@ compare(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS */
 

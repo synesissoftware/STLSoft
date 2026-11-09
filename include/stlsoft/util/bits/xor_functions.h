@@ -4,7 +4,7 @@
  * Purpose: Bit XOR functions
  *
  * Created: 2nd June 2010
- * Updated: 24th September 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_EDIT     15
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_REVISION 2
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -269,9 +269,9 @@ calculate_xor_over_range(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS */
 

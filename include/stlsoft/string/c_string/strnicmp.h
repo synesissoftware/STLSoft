@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
  * Created: 25th November 2020
- * Updated: 27th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        6
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    4
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -74,52 +74,9 @@
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * helpers
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-/* ASCII letters fold by 32. Every other byte is returned unchanged. */
-/* Duplicate of stlsoft_C_strnistrn_fold_char_m_(). */
-STLSOFT_INLINE
-int
-stlsoft_C_strnicmp_fold_char_m_(
-    unsigned char ch
-)
-{
-    if ('a' <= ch &&
-        ch <= 'z')
-    {
-        ch = (unsigned char)(ch - ('a' - 'A'));
-    }
-
-    return (int)ch;
-}
-
-/* ASCII letters fold by 32. Units outside 0-127 use towupper. */
-/* Duplicate of stlsoft_C_strnistrn_fold_char_w_(). */
-STLSOFT_INLINE
-int
-stlsoft_C_strnicmp_fold_char_w_(
-    wchar_t ch
-)
-{
-    if (L'a' <= ch &&
-        ch <= L'z')
-    {
-        return (int)ch - (L'a' - L'A');
-    }
-
-    if ((unsigned long)ch <= 127ul)
-    {
-        return (int)ch;
-    }
-
-    return (int)STLSOFT_NS_GLOBAL(towupper)(ch);
-}
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_ctype
+# include <stlsoft/api/internal/ctype.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_ctype */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,8 +108,8 @@ stlsoft_C_strnicmp(
 
         if (c1 != c2)
         {
-            int const d = stlsoft_C_strnicmp_fold_char_m_(c1) -
-                            stlsoft_C_strnicmp_fold_char_m_(c2);
+            int const d = STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(c1) -
+                            STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(c2);
 
             if (0 != d)
             {
@@ -193,8 +150,8 @@ stlsoft_C_wcsnicmp(
 
         if (c1 != c2)
         {
-            int const d = stlsoft_C_strnicmp_fold_char_w_(c1) -
-                            stlsoft_C_strnicmp_fold_char_w_(c2);
+            int const d = STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(c1) -
+                            STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(c2);
 
             if (0 != d)
             {
@@ -273,9 +230,9 @@ wcsnicmp(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRNICMP */
 

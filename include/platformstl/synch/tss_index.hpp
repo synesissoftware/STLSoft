@@ -4,7 +4,7 @@
  * Purpose:     Definition of the tss_index type.
  *
  * Created:     20th March 2005
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_REVISION   4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       31
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_REVISION   5
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/tss_index.hpp
@@ -169,9 +169,9 @@ namespace platformstl_project
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_TSS_INDEX */
 

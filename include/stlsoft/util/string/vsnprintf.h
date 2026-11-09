@@ -4,11 +4,11 @@
  * Purpose: vsn(w)printf() variants.
  *
  * Created: 15th July 2012
- * Updated: 23rd March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_REVISION   4
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_EDIT       11
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_REVISION   6
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,7 +69,6 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-
 #ifndef STLSOFT_INCL_H_STDARG
 # define STLSOFT_INCL_H_STDARG
 # include <stdarg.h>
@@ -78,6 +77,10 @@
 # define STLSOFT_INCL_H_STDIO
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_stdio
+# include <stlsoft/api/internal/stdio.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_stdio */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,25 +91,6 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * feature support detection
- */
-
-#ifndef STLSOFT_vsnwprintf_SUPPORT
-# if 0
-# elif defined(STLSOFT_COMPILER_IS_MSVC)
-
-#  if _MSC_VER >= 1400
-
-#   define STLSOFT_vsnwprintf_SUPPORT(b, n, f, a)           STLSOFT_NS_GLOBAL(_vsnwprintf_s)((b), (n), _TRUNCATE, (f), a);
-#  else /* ? _MSC_VER */
-
-#   define STLSOFT_vsnwprintf_SUPPORT(b, n, f, a)           STLSOFT_NS_GLOBAL(_vsnwprintf)((b), (n), (f), a);
-#  endif /* _MSC_VER */
-# endif /* compiler */
-#endif /* !STLSOFT_vsnwprintf_SUPPORT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,18 +108,9 @@ stlsoft_C_vsnprintf(
 ,   va_list             args
 )
 {
-#if 0
-#elif defined(STLSOFT_COMPILER_IS_MSVC)
-# if _MSC_VER >= 1400
-    return STLSOFT_NS_GLOBAL(_vsnprintf_s)(buf, cchBuf, _TRUNCATE, fmt, args);
-# else /* _MSC_VER */
-    return STLSOFT_NS_GLOBAL(_vsnprintf)(buf, cchBuf, fmt, args);
-# endif /* _MSC_VER */
-#else /* ? compiler */
-    return STLSOFT_NS_GLOBAL(vsnprintf)(buf, cchBuf, fmt, args);
-#endif /* compiler */
+    return STLSOFT_API_INTERNAL_stdio_vsnprintf(buf, cchBuf, fmt, args);
 }
-#if defined(__cplusplus) && \
+#if defined(__cplusplus) &&\
     defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 
 /* buffer-overload */
@@ -148,7 +123,7 @@ stlsoft_C_vsnprintf(
 ,   va_list             args
 )
 {
-    return stlsoft_C_vsnprintf(&buf[0], N, fmt, args);
+    return STLSOFT_API_INTERNAL_stdio_vsnprintf(&buf[0], N, fmt, args);
 }
 #endif /* C++ && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #ifdef STLSOFT_vsnwprintf_SUPPORT
@@ -164,9 +139,9 @@ stlsoft_C_vsnwprintf(
 ,   va_list             args
 )
 {
-    return STLSOFT_vsnwprintf_SUPPORT(buf, cchBuf, fmt, args);
+    return STLSOFT_API_INTERNAL_stdio_vsnwprintf(buf, cchBuf, fmt, args);
 }
-# if defined(__cplusplus) && \
+# if defined(__cplusplus) &&\
      defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 
 /* buffer-overload */
@@ -179,7 +154,7 @@ stlsoft_C_vsnwprintf(
 ,   va_list             args
 )
 {
-    return stlsoft_C_vsnwprintf(&buf[0], N, fmt, args);
+    return STLSOFT_API_INTERNAL_stdio_vsnwprintf(&buf[0], N, fmt, args);
 }
 # endif /* C++ && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* STLSOFT_vsnwprintf_SUPPORT */
@@ -260,9 +235,9 @@ vsnwprintf(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_VSNPRINTF */
 

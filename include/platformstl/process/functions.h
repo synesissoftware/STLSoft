@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 8th October 2026
- * Updated: 8th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef PLATFORMSTL_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_PROCESS_H_FUNCTIONS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_PROCESS_H_FUNCTIONS_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_PROCESS_H_FUNCTIONS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_PROCESS_H_FUNCTIONS_EDIT       1
+# define PLATFORMSTL_VER_PLATFORMSTL_PROCESS_H_FUNCTIONS_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_PROCESS_H_FUNCTIONS_EDIT       2
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -145,9 +145,9 @@ platformstl_C_get_current_process_id(void)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_PROCESS_H_FUNCTIONS */
 

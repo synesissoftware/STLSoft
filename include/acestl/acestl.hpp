@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th September 2004
- * Updated: 26th October 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      61
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  5
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -145,7 +145,7 @@
 # define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1-beta1 (STLSoft 1.10.1-beta1) */
 # define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1-beta2 (STLSoft 1.10.1-beta26) */
 # define _ACESTL_VER_1_2_1     0x010201FF  /*!< Version 1.2.1 (with STLSoft 1.11.1-alpha8) */
-# define _ACESTL_VER_1_2_2     0x010202FF  /*!< Version 1.2.2 (with STLSoft 1.11.7) */
+# define _ACESTL_VER_1_2_2     0x010202FF  /*!< Version 1.2.2 (with STLSoft 1.11.8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
@@ -584,9 +584,9 @@ namespace acestl = ::stlsoft::acestl_project;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

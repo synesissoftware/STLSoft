@@ -4,7 +4,7 @@
  * Purpose: Functions for comparing Windows API structures.
  *
  * Created: 9th October 2024
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MAJOR      1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MINOR      0
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   5
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       7
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   6
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -950,9 +950,9 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(SHQUERYRBINFO, is::comparable_by_bytes);
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_UTIL_HPP_STRUCT_COMPARERS */
 

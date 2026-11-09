@@ -4,11 +4,11 @@
  * Purpose: winstl::resource_exception class
  *
  * Created: 19th June 2004
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_MAJOR       5
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_MINOR       0
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_REVISION    4
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_EDIT        79
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_REVISION    5
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -187,9 +187,9 @@ private:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

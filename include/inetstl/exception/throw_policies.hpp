@@ -4,11 +4,11 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR     4
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR     2
-# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION  7
-# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      57
+# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION  8
+# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -182,9 +182,9 @@ public:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !INETSTL_INCL_INETSTL_EXCEPTION_HPP_THROW_POLICIES */
 

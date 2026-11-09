@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 8th October 2026
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   4
-# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       5
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_REVISION   5
+# define UNIXSTL_VER_UNIXSTL_PROCESS_H_FUNCTIONS_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -492,9 +492,9 @@ done:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_PROCESS_H_FUNCTIONS */
 

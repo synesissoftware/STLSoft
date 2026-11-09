@@ -4,7 +4,7 @@
  * Purpose: Console functions.
  *
  * Created: 7th July 2024
- * Updated: 9th July 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef PLATFORMSTL_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR     0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT      1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT      2
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -196,9 +196,9 @@ get_home_directory(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

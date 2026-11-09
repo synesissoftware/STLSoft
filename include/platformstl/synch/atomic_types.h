@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic types.
  *
  * Created:     22nd March 2005
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_MAJOR     3
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_MINOR     0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_REVISION  7
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_EDIT      41
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_REVISION  8
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,9 +165,9 @@ namespace platformstl_project
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES */
 

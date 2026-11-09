@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   11
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       67
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   12
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -577,9 +577,9 @@ using ::comstl::c_str_ptr_null_o;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_COMSTL_GUID */
 

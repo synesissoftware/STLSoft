@@ -4,7 +4,7 @@
  * Purpose: Reference-counting helper functions.
  *
  * Created: 25th June 2002
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MAJOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MINOR      1
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   7
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       76
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   8
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -317,9 +317,9 @@ comstl__safe_release(LPUNKNOWN punk)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS */
 

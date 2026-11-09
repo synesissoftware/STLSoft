@@ -4,11 +4,11 @@
  * Purpose:     Include for defining ZERO to be the ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_REVISION 8
-# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_EDIT     39
+# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_REVISION 9
+# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,9 +118,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_ZERODEF */
 

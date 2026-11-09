@@ -4,7 +4,7 @@
  * Purpose: Contains the true_typedef class template.
  *
  * Created: 16th January 2002
- * Updated: 15th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR    3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     98
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION 2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1605,9 +1605,9 @@ operator |=(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_TRUE_TYPEDEF */
 
