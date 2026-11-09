@@ -74,52 +74,9 @@
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * helpers
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-/* ASCII letters fold by 32. Every other byte is returned unchanged. */
-/* Duplicate of stlsoft_C_strnistrn_fold_char_m_(). */
-STLSOFT_INLINE
-int
-stlsoft_C_strnicmp_fold_char_m_(
-    unsigned char ch
-)
-{
-    if ('a' <= ch &&
-        ch <= 'z')
-    {
-        ch = (unsigned char)(ch - ('a' - 'A'));
-    }
-
-    return (int)ch;
-}
-
-/* ASCII letters fold by 32. Units outside 0-127 use towupper. */
-/* Duplicate of stlsoft_C_strnistrn_fold_char_w_(). */
-STLSOFT_INLINE
-int
-stlsoft_C_strnicmp_fold_char_w_(
-    wchar_t ch
-)
-{
-    if (L'a' <= ch &&
-        ch <= L'z')
-    {
-        return (int)ch - (L'a' - L'A');
-    }
-
-    if ((unsigned long)ch <= 127ul)
-    {
-        return (int)ch;
-    }
-
-    return (int)STLSOFT_NS_GLOBAL(towupper)(ch);
-}
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_ctype
+# include <stlsoft/api/internal/ctype.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_ctype */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,8 +108,8 @@ stlsoft_C_strnicmp(
 
         if (c1 != c2)
         {
-            int const d = stlsoft_C_strnicmp_fold_char_m_(c1) -
-                            stlsoft_C_strnicmp_fold_char_m_(c2);
+            int const d = STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(c1) -
+                            STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(c2);
 
             if (0 != d)
             {
@@ -193,8 +150,8 @@ stlsoft_C_wcsnicmp(
 
         if (c1 != c2)
         {
-            int const d = stlsoft_C_strnicmp_fold_char_w_(c1) -
-                            stlsoft_C_strnicmp_fold_char_w_(c2);
+            int const d = STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(c1) -
+                            STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(c2);
 
             if (0 != d)
             {
