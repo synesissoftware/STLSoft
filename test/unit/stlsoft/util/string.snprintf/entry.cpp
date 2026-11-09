@@ -380,10 +380,10 @@ static void TEST_stlsoft_C_snwprintf()
         int const   r = stlsoft_C_snwprintf(buff, 8, L"%d", 123);
 
         XTESTS_REQUIRE(TEST_INT_EQ(3, r));
-        TEST_INT_EQ(L'1', buff[0]);
-        TEST_INT_EQ(L'2', buff[1]);
-        TEST_INT_EQ(L'3', buff[2]);
-        TEST_INT_EQ(L'\0', buff[3]);
+        TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+        TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+        TEST_INT_EQ(static_cast<int>(L'3'), static_cast<int>(buff[2]));
+        TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[3]));
     }
 
     {
@@ -391,10 +391,10 @@ static void TEST_stlsoft_C_snwprintf()
         int const   r = stlsoft_C_snwprintf(buff, 4, L"%s", L"123");
 
         XTESTS_REQUIRE(TEST_INT_EQ(3, r));
-        TEST_INT_EQ(L'1', buff[0]);
-        TEST_INT_EQ(L'2', buff[1]);
-        TEST_INT_EQ(L'3', buff[2]);
-        TEST_INT_EQ(L'\0', buff[3]);
+        TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+        TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+        TEST_INT_EQ(static_cast<int>(L'3'), static_cast<int>(buff[2]));
+        TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[3]));
     }
 
     {
@@ -403,9 +403,9 @@ static void TEST_stlsoft_C_snwprintf()
 
         XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
 #if _MSC_VER >= 1400
-        TEST_INT_EQ(L'1', buff[0]);
-        TEST_INT_EQ(L'2', buff[1]);
-        TEST_INT_EQ(L'\0', buff[2]);
+        TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+        TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+        TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[2]));
 #endif
     }
 
@@ -415,7 +415,7 @@ static void TEST_stlsoft_C_snwprintf()
 
         XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
 #if _MSC_VER >= 1400
-        TEST_INT_EQ(L'\0', buff[0]);
+        TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[0]));
 #endif
     }
 
@@ -435,10 +435,10 @@ static void TEST_snwprintf()
         int const   r = stlsoft::snwprintf(buff, 8, L"%s", L"123");
 
         XTESTS_REQUIRE(TEST_INT_EQ(3, r));
-        TEST_INT_EQ(L'1', buff[0]);
-        TEST_INT_EQ(L'2', buff[1]);
-        TEST_INT_EQ(L'3', buff[2]);
-        TEST_INT_EQ(L'\0', buff[3]);
+        TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+        TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+        TEST_INT_EQ(static_cast<int>(L'3'), static_cast<int>(buff[2]));
+        TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[3]));
     }
 
     {
@@ -447,9 +447,9 @@ static void TEST_snwprintf()
 
         XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
 #if _MSC_VER >= 1400
-        TEST_INT_EQ(L'1', buff[0]);
-        TEST_INT_EQ(L'2', buff[1]);
-        TEST_INT_EQ(L'\0', buff[2]);
+        TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+        TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+        TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[2]));
 #endif
     }
 }
@@ -462,10 +462,10 @@ static void TEST_stlsoft_C_snwprintf_array()
     int const   r = stlsoft_C_snwprintf(buff, L"%d", 123);
 
     XTESTS_REQUIRE(TEST_INT_EQ(3, r));
-    TEST_INT_EQ(L'1', buff[0]);
-    TEST_INT_EQ(L'2', buff[1]);
-    TEST_INT_EQ(L'3', buff[2]);
-    TEST_INT_EQ(L'\0', buff[3]);
+    TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+    TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+    TEST_INT_EQ(static_cast<int>(L'3'), static_cast<int>(buff[2]));
+    TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[3]));
 }
 
 static void TEST_snwprintf_array()
@@ -474,10 +474,10 @@ static void TEST_snwprintf_array()
     int const   r = stlsoft::snwprintf(buff, L"%s", L"123");
 
     XTESTS_REQUIRE(TEST_INT_EQ(3, r));
-    TEST_INT_EQ(L'1', buff[0]);
-    TEST_INT_EQ(L'2', buff[1]);
-    TEST_INT_EQ(L'3', buff[2]);
-    TEST_INT_EQ(L'\0', buff[3]);
+    TEST_INT_EQ(static_cast<int>(L'1'), static_cast<int>(buff[0]));
+    TEST_INT_EQ(static_cast<int>(L'2'), static_cast<int>(buff[1]));
+    TEST_INT_EQ(static_cast<int>(L'3'), static_cast<int>(buff[2]));
+    TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[3]));
 }
 # endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* STLSOFT_vsnwprintf_SUPPORT */
