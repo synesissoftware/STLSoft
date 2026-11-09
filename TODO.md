@@ -112,7 +112,8 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [X] ~~~Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed)~~~ - ❌ (no need, because these are all internal);
 * [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
+* [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
+* [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**~~~ - ✅;
 
 
 ### 1.11.9
@@ -192,7 +193,6 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] Rename `include/*stl*/error` → `include/*stl*/diagnostics` (with deprecation aliases as needed);
-* [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
 * [ ] All precondition enforcements => \pre;
 * [ ] All \pre => precondition enforcements;
 
