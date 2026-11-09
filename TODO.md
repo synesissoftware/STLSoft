@@ -113,7 +113,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [X] ~~~Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed)~~~ - ❌ (no need, because these are all internal);
 * [x] ~~~`STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`~~~ - ✅;
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
-* [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
+* [x] ~~~Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers~~~ - ✅;
 * [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**~~~ - ✅;
 
 

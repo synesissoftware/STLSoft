@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_REVISION    6
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_EDIT        14
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,7 +133,7 @@ stlsoft_C_snprintf(
 
     return r;
 }
-#if defined(__cplusplus) && \
+#if defined(__cplusplus) &&\
     defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 
 /* buffer-overload */
@@ -194,7 +194,7 @@ stlsoft_C_snwprintf(
 
     return r;
 }
-# if defined(__cplusplus) && \
+# if defined(__cplusplus) &&\
      defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 
 /* buffer-overload */
