@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   4
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       6
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   5
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -74,52 +74,9 @@
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * helpers
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-/* ASCII letters fold by 32. Every other byte is returned unchanged. */
-/* Duplicate of stlsoft_C_strnicmp_fold_char_m_(). */
-STLSOFT_INLINE
-int
-stlsoft_C_strnistrn_fold_char_m_(
-    unsigned char ch
-)
-{
-    if ('a' <= ch &&
-        ch <= 'z')
-    {
-        ch = (unsigned char)(ch - ('a' - 'A'));
-    }
-
-    return (int)ch;
-}
-
-/* ASCII letters fold by 32. Units outside 0-127 use towupper. */
-/* Duplicate of stlsoft_C_strnicmp_fold_char_w_(). */
-STLSOFT_INLINE
-int
-stlsoft_C_strnistrn_fold_char_w_(
-    wchar_t ch
-)
-{
-    if (L'a' <= ch &&
-        ch <= L'z')
-    {
-        return (int)ch - (L'a' - L'A');
-    }
-
-    if ((unsigned long)ch <= 127ul)
-    {
-        return (int)ch;
-    }
-
-    return (int)STLSOFT_NS_GLOBAL(towupper)(ch);
-}
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_ctype
+# include <stlsoft/api/internal/ctype.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_ctype */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -152,14 +109,14 @@ stlsoft_C_strnistrn(
     else
     {
         unsigned char const ch0 =   (unsigned char)s2[0];
-        int const           fc0 =   stlsoft_C_strnistrn_fold_char_m_(ch0);
+        int const           fc0 =   STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(ch0);
 
         for (; n1 >= n2; --n1, ++s1)
         {
             unsigned char const h0 = (unsigned char)s1[0];
 
             if (h0 == ch0 ||
-                stlsoft_C_strnistrn_fold_char_m_(h0) == fc0)
+                STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(h0) == fc0)
             {
                 size_t i;
 
@@ -168,8 +125,8 @@ stlsoft_C_strnistrn(
                     unsigned char const h = (unsigned char)s1[i];
                     unsigned char const n = (unsigned char)s2[i];
 
-                    if (stlsoft_C_strnistrn_fold_char_m_(h) !=
-                        stlsoft_C_strnistrn_fold_char_m_(n))
+                    if (STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(h) !=
+                        STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_m(n))
                     {
                         break;
                     }
@@ -212,21 +169,21 @@ stlsoft_C_wcsnistrn(
     else
     {
         wchar_t const   ch0 =   s2[0];
-        int const       fc0 =   stlsoft_C_strnistrn_fold_char_w_(ch0);
+        int const       fc0 =   STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(ch0);
 
         for (; n1 >= n2; --n1, ++s1)
         {
             wchar_t const h0 = s1[0];
 
             if (h0 == ch0 ||
-                stlsoft_C_strnistrn_fold_char_w_(h0) == fc0)
+                STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(h0) == fc0)
             {
                 size_t i;
 
                 for (i = 1; i != n2; ++i)
                 {
-                    if (stlsoft_C_strnistrn_fold_char_w_(s1[i]) !=
-                        stlsoft_C_strnistrn_fold_char_w_(s2[i]))
+                    if (STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(s1[i]) !=
+                        STLSOFT_API_INTERNAL_ctype_ASCII_fold_char_toupper_w(s2[i]))
                     {
                         break;
                     }
