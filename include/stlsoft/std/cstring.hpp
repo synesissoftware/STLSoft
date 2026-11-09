@@ -4,7 +4,7 @@
  * Purpose: Mappings to std string functions
  *
  * Created: 2nd December 2004
- * Updated: 8th November 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  To Anton Sekeris for providing good advice on the naming scheme
  *          for the stlsoft/std headers
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   12
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       52
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   13
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -540,9 +540,9 @@ inline ss_char_w_t* strdup(ss_char_w_t const* s)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STD_HPP_CSTRING */
 

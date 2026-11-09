@@ -4,11 +4,11 @@
  * Purpose:     Combined header file for STLSoft's TypeFixer utility components.
  *
  * Created:     15th July 2006
- * Updated:     16th February 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_DETECTORS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_DETECTORS_MINOR       1
-# define STLSOFT_VER_STLSOFT_META_HPP_DETECTORS_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_DETECTORS_EDIT        15
+# define STLSOFT_VER_STLSOFT_META_HPP_DETECTORS_REVISION    2
+# define STLSOFT_VER_STLSOFT_META_HPP_DETECTORS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,9 +151,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_DETECTORS */
 

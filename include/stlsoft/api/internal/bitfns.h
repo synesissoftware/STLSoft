@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for bit functions.
  *
  * Created: 24th September 2026
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -187,9 +187,9 @@ STLSOFT_API_INTERNAL_bitfns_popcount_uint64(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_bitfns */
 

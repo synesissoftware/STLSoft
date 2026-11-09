@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
  *
  * Created: 1st October 2020
- * Updated: 27th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -266,9 +266,9 @@ wcsnistrn(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRNISTRN */
 

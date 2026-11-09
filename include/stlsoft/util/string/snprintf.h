@@ -4,11 +4,11 @@
  * Purpose: sn(w)printf() variants.
  *
  * Created: 15th July 2012
- * Updated: 24th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_EDIT        13
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_REVISION    6
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -361,9 +361,9 @@ snwprintf(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF */
 

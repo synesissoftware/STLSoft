@@ -4,7 +4,7 @@
  * Purpose:     size_traits classes.
  *
  * Created:     24th August 2003
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_REVISION   4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       35
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_REVISION   5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,9 +147,9 @@ struct int_size_traits<8>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS */
 

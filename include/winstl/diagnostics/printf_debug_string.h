@@ -4,7 +4,7 @@
  * Purpose: Functions to write lines to the Windows debugger.
  *
  * Created: 18th August 2025
- * Updated: 1st July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_MAJOR    1
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_MINOR    0
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_REVISION 1
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_EDIT     2
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_REVISION 2
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -186,9 +186,9 @@ winstl_C_printf_debug_string(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE */
 

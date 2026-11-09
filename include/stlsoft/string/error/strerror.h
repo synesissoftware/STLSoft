@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strerror()
  *
  * Created: 2nd November 2026
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_ERROR_H_STRERROR_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_ERROR_H_STRERROR_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_ERROR_H_STRERROR_REVISION   1
-# define STLSOFT_VER_STLSOFT_STRING_ERROR_H_STRERROR_EDIT       1
+# define STLSOFT_VER_STLSOFT_STRING_ERROR_H_STRERROR_REVISION   2
+# define STLSOFT_VER_STLSOFT_STRING_ERROR_H_STRERROR_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -251,9 +251,9 @@ stlsoft_C_strerror(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_ERROR_H_STRERROR */
 
