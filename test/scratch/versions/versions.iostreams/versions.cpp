@@ -74,20 +74,20 @@
 
 #ifdef HAS_woad
 
-# define VERSIONS_CLR_NAME_(stm)                            WOAD_FG_BLUE_FOR(stm)
-# define VERSIONS_CLR_VERSION_(stm)                         WOAD_FG_GREEN_FOR(stm)
-# define VERSIONS_CLR_HEADING_(stm)                         WOAD_FG_MAGENTA_FOR(stm)
-# define VERSIONS_CLR_MACRO_(stm)                           WOAD_FG_CYAN_FOR(stm)
-# define VERSIONS_CLR_FRAMEWORK_(stm)                       WOAD_FG_YELLOW_FOR(stm)
-# define VERSIONS_CLR_RESET_(stm)                           WOAD_RESET_FOR(stm)
+# define VERSIONS_CLR_NAME                                  woad::blue
+# define VERSIONS_CLR_VERSION                               woad::green
+# define VERSIONS_CLR_HEADING                               woad::magenta
+# define VERSIONS_CLR_MACRO                                 woad::cyan
+# define VERSIONS_CLR_FRAMEWORK                             woad::yellow
+# define VERSIONS_CLR_RESET                                 woad::reset
 #else /* ? HAS_woad */
 
-# define VERSIONS_CLR_NAME_(stm)                            ""
-# define VERSIONS_CLR_VERSION_(stm)                         ""
-# define VERSIONS_CLR_HEADING_(stm)                         ""
-# define VERSIONS_CLR_MACRO_(stm)                           ""
-# define VERSIONS_CLR_FRAMEWORK_(stm)                       ""
-# define VERSIONS_CLR_RESET_(stm)                           ""
+# define VERSIONS_CLR_NAME                                  ""
+# define VERSIONS_CLR_VERSION                               ""
+# define VERSIONS_CLR_HEADING                               ""
+# define VERSIONS_CLR_MACRO                                 ""
+# define VERSIONS_CLR_FRAMEWORK                             ""
+# define VERSIONS_CLR_RESET                                 ""
 #endif /* HAS_woad */
 
 #define VER_MAJOR_(t, v)                                    ((t) (((v) >> 24) & 0xFF))
@@ -133,25 +133,25 @@ print_version(
 
         stm
             << "\t"
-            << VERSIONS_CLR_NAME_(stm)
+            << VERSIONS_CLR_NAME
             << name
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << ": "
-            << VERSIONS_CLR_VERSION_(stm)
+            << VERSIONS_CLR_VERSION
             << buffer
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << " ("
-            << VERSIONS_CLR_MACRO_(stm)
+            << VERSIONS_CLR_MACRO
             << macroname
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << " = "
-            << VERSIONS_CLR_VERSION_(stm)
+            << VERSIONS_CLR_VERSION
             << "0x"
             << std::hex
             << std::setfill('0')
             << std::setw(8)
             << libver
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << ")"
             << std::endl
             ;
@@ -168,11 +168,11 @@ print_version(
 
     stm
         << "\t"
-        << VERSIONS_CLR_NAME_(stm)
+        << VERSIONS_CLR_NAME
         << name
-        << VERSIONS_CLR_RESET_(stm)
+        << VERSIONS_CLR_RESET
         << ": "
-        << VERSIONS_CLR_VERSION_(stm)
+        << VERSIONS_CLR_VERSION
         << 'v'
         << VER_MAJOR_(int, libver)
         << '.'
@@ -181,19 +181,19 @@ print_version(
         << VER_PATCH_(int, libver)
         << '.'
         << VER_RELST_(int, libver)
-        << VERSIONS_CLR_RESET_(stm)
+        << VERSIONS_CLR_RESET
         << " ("
-        << VERSIONS_CLR_MACRO_(stm)
+        << VERSIONS_CLR_MACRO
         << macroname
-        << VERSIONS_CLR_RESET_(stm)
+        << VERSIONS_CLR_RESET
         << " = "
-        << VERSIONS_CLR_VERSION_(stm)
+        << VERSIONS_CLR_VERSION
         << "0x"
         << std::hex
         << std::setfill('0')
         << std::setw(8)
         << libver
-        << VERSIONS_CLR_RESET_(stm)
+        << VERSIONS_CLR_RESET
         << ")"
         << std::endl
         ;
@@ -214,13 +214,13 @@ int main(int /* argc */, char* /* argv */[])
 
     {
         stm
-            << VERSIONS_CLR_HEADING_(stm)
+            << VERSIONS_CLR_HEADING
             << "STLSoft libraries"
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << " (C++, using "
-            << VERSIONS_CLR_FRAMEWORK_(stm)
+            << VERSIONS_CLR_FRAMEWORK
             << "IOStreams"
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << "):"
             << std::endl
             ;
@@ -231,13 +231,13 @@ int main(int /* argc */, char* /* argv */[])
         {
             stm
                 << "\t"
-                << VERSIONS_CLR_MACRO_(stm)
+                << VERSIONS_CLR_MACRO
                 << "__cplusplus"
-                << VERSIONS_CLR_RESET_(stm)
+                << VERSIONS_CLR_RESET
                 << " = "
-                << VERSIONS_CLR_VERSION_(stm)
+                << VERSIONS_CLR_VERSION
                 << __cplusplus
-                << VERSIONS_CLR_RESET_(stm)
+                << VERSIONS_CLR_RESET
                 << std::endl
                 ;
             stm << std::endl;
@@ -247,25 +247,25 @@ int main(int /* argc */, char* /* argv */[])
         {
             stm
                 << "\t"
-                << VERSIONS_CLR_MACRO_(stm)
+                << VERSIONS_CLR_MACRO
                 << "STLSOFT_COMPILER_LABEL_STRING"
-                << VERSIONS_CLR_RESET_(stm)
+                << VERSIONS_CLR_RESET
                 << " = "
-                << VERSIONS_CLR_VERSION_(stm)
+                << VERSIONS_CLR_VERSION
                 << STLSOFT_COMPILER_LABEL_STRING
-                << VERSIONS_CLR_RESET_(stm)
+                << VERSIONS_CLR_RESET
                 << std::endl
                 ;
 
             stm
                 << "\t"
-                << VERSIONS_CLR_MACRO_(stm)
+                << VERSIONS_CLR_MACRO
                 << "STLSOFT_COMPILER_VERSION_STRING"
-                << VERSIONS_CLR_RESET_(stm)
+                << VERSIONS_CLR_RESET
                 << " = "
-                << VERSIONS_CLR_VERSION_(stm)
+                << VERSIONS_CLR_VERSION
                 << STLSOFT_COMPILER_VERSION_STRING
-                << VERSIONS_CLR_RESET_(stm)
+                << VERSIONS_CLR_RESET
                 << std::endl
                 ;
         }
@@ -275,9 +275,9 @@ int main(int /* argc */, char* /* argv */[])
     {
         stm
             << std::endl
-            << VERSIONS_CLR_HEADING_(stm)
+            << VERSIONS_CLR_HEADING
             << "Subprojects"
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << ":"
             << std::endl
             ;
@@ -333,9 +333,9 @@ int main(int /* argc */, char* /* argv */[])
 
     {
         stm
-            << VERSIONS_CLR_HEADING_(stm)
+            << VERSIONS_CLR_HEADING
             << "Efferent dependencies"
-            << VERSIONS_CLR_RESET_(stm)
+            << VERSIONS_CLR_RESET
             << ":"
             << std::endl
         ;
