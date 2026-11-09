@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for stdio.h constructs.
  *
  * Created: 11th November 2020
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -83,6 +83,10 @@
  * stdio functions
  */
 
+/* /////////////////////////////////////////////////////////
+ * file stream (FILE*) functions
+ */
+
 /** Opens a file, via fopen_s() when STLSOFT_USING_SAFE_STR_FUNCTIONS is
  * defined and the compiler is Visual C/C++, otherwise via fopen().
  *
@@ -143,7 +147,6 @@ STLSOFT_API_INTERNAL_stdio_fopen_w(
     return (NULL == *ph) ? errno : 0;
 #endif
 }
-
 #endif /* STLSOFT_COMPILER_IS_MSVC */
 
 
