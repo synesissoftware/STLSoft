@@ -114,7 +114,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [x] ~~~`STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`~~~ - ✅;
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
 * [ ] Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
+* [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**~~~ - ✅;
 
 
 ### 1.11.9
