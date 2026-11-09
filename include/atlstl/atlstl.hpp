@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  4
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      131
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  5
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -146,7 +146,7 @@
 # define _ATLSTL_VER_1_7_1_B03  0x01070183  /*!< Version 1.7.1-beta3 (with STLSoft 1.10.1-beta10) */
 # define _ATLSTL_VER_1_7_1_B04  0x01070184  /*!< Version 1.7.1-beta4 (with STLSoft 1.10.1-beta26) */
 # define _ATLSTL_VER_1_7_1      0x010701FF  /*!< Version 1.7.1 (with STLSoft 1.11.1-alpha8) */
-# define _ATLSTL_VER_1_7_2      0x010702FF  /*!< Version 1.7.2 (with STLSoft 1.11.7) */
+# define _ATLSTL_VER_1_7_2      0x010702FF  /*!< Version 1.7.2 (with STLSoft 1.11.8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ATLSTL_VER_MAJOR       1
@@ -212,8 +212,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B07FF
-# error This version of the ATLSTL libraries requires STLSoft version 1.11.7, or later
+#if _STLSOFT_VER < 0x010B08FF
+# error This version of the ATLSTL libraries requires STLSoft version 1.11.8, or later
 #endif /* _STLSOFT_VER */
 
 

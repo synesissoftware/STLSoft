@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 10th November 2026
  *
  * Thanks:  To Cláudio Albuquerque for suggesting the inclusion of atlstr.h.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  8
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      116
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  9
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -143,7 +143,7 @@
 # define _MFCSTL_VER_1_6_1_B01  0x01060181  /*!< Version 1.6.1-beta1 (with STLSoft 1.10.1-beta1) */
 # define _MFCSTL_VER_1_6_1_B02  0x01060182  /*!< Version 1.6.1-beta2 (with STLSoft 1.10.1-beta26) */
 # define _MFCSTL_VER_1_6_1      0x010601FF  /*!< Version 1.6.1 (with STLSoft 1.11.1-alpha8) */
-# define _MFCSTL_VER_1_6_2      0x010602FF  /*!< Version 1.6.2 (with STLSoft 1.11.7) */
+# define _MFCSTL_VER_1_6_2      0x010602FF  /*!< Version 1.6.2 (with STLSoft 1.11.8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _MFCSTL_VER_MAJOR       1
@@ -200,8 +200,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010B07FF
-# error This version of the MFCSTL libraries requires STLSoft version 1.11.7, or later
+#if _STLSOFT_VER < 0x010B08FF
+# error This version of the MFCSTL libraries requires STLSoft version 1.11.8, or later
 #endif /* _STLSOFT_VER */
 
 

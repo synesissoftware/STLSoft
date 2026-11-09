@@ -3,6 +3,19 @@
 
 ## 1.11.8 - 10th November 2026
 
+* refactoring:
+  * **include/stlsoft/api/internal/ctype.h** — shared ASCII case-fold helpers `stlsoft_C_strnicmp_fold_char_m_()` / `stlsoft_C_strnistrn_fold_char_m_()` and `stlsoft_C_strnicmp_fold_char_w_()` / `stlsoft_C_strnistrn_fold_char_w_()`; **include/stlsoft/string/c_string/strnicmp.h** and **include/stlsoft/string/c_string/strnistrn.h** call them;
+  * `#pragma once` is gated on `STLSOFT_PPF_pragma_once_SUPPORT` (the obsolete `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` guard is gone);
+  * **include/stlsoft/api/internal/stdio.h** — `STLSOFT_API_INTERNAL_stdio_vsnprintf()` and `STLSOFT_API_INTERNAL_stdio_vsnwprintf()`, with `STLSOFT_vsnprintf_SUPPORT` / `STLSOFT_vsnwprintf_SUPPORT` (Visual C++ `_vsnprintf_s` / `_vsnwprintf_s` with `_TRUNCATE` from `_MSC_VER` 1400, otherwise `_vsnprintf` / `_vsnwprintf`; other compilers `vsnprintf`). **include/stlsoft/util/string/vsnprintf.h** calls those internal functions; the public **snprintf.h** / **vsnprintf.h** headers stay;
+* documentation:
+  * documentation tweak for `comstl_C_BSTR_compare()` and `BSTR_compare()`;
+* testing:
+  * **test.scratch.versions.format** uses **woad** colours, as **test.scratch.versions.iostreams** does;
+  * **test.unit.stlsoft.util.string.snprintf** and **test.unit.stlsoft.util.string.vsnprintf** (C and C++) cover truncation and the `vsnprintf` entry points;
+* compatibility:
+  * subproject root headers require **STLSoft** 1.11.8 (**ACESTL**, **ATLSTL**, **COMSTL**, **InetSTL**, **MFCSTL**, **PlatformSTL**, **RangeLib**, **UNIXSTL**, **WinSTL**, **WTLSTL**);
+* version:
+  * **_STLSOFT_VER** is **1.11.8** (**_STLSOFT_VER_1_11_8** = `0x010B08FF`); **test.unit.versions** asserts it. No subproject composite version changed;
 
 
 ## 1.11.7 - 8th November 2026
