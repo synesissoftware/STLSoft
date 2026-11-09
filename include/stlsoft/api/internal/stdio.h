@@ -67,6 +67,10 @@
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_STDARG
+# define STLSOFT_INCL_H_STDARG
+# include <stdarg.h>
+#endif /* !STLSOFT_INCL_H_STDARG */
 #ifndef STLSOFT_INCL_H_STDIO
 # define STLSOFT_INCL_H_STDIO
 # include <stdio.h>
@@ -77,6 +81,42 @@
 #  include <wchar.h>
 # endif /* !STLSOFT_INCL_H_WCHAR */
 #endif /* STLSOFT_COMPILER_IS_MSVC */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * feature support detection
+ */
+
+#ifndef STLSOFT_vsnprintf_SUPPORT
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_MSVC)
+
+#  if _MSC_VER >= 1400
+
+#   define STLSOFT_vsnprintf_SUPPORT(b, n, f, a)            STLSOFT_NS_GLOBAL(_vsnprintf_s)((b), (n), _TRUNCATE, (f), a);
+#  else /* ? _MSC_VER */
+
+#   define STLSOFT_vsnprintf_SUPPORT(b, n, f, a)            STLSOFT_NS_GLOBAL(_vsnprintf)((b), (n), (f), a);
+#  endif /* _MSC_VER */
+# else /* ? compiler */
+
+#  define STLSOFT_vsnprintf_SUPPORT(b, n, f, a)             STLSOFT_NS_GLOBAL(vsnprintf)((b), (n), (f), a);
+# endif /* compiler */
+#endif /* !STLSOFT_vsnprintf_SUPPORT */
+
+#ifndef STLSOFT_vsnwprintf_SUPPORT
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_MSVC)
+
+#  if _MSC_VER >= 1400
+
+#   define STLSOFT_vsnwprintf_SUPPORT(b, n, f, a)           STLSOFT_NS_GLOBAL(_vsnwprintf_s)((b), (n), _TRUNCATE, (f), a);
+#  else /* ? _MSC_VER */
+
+#   define STLSOFT_vsnwprintf_SUPPORT(b, n, f, a)           STLSOFT_NS_GLOBAL(_vsnwprintf)((b), (n), (f), a);
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* !STLSOFT_vsnwprintf_SUPPORT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,6 +188,43 @@ STLSOFT_API_INTERNAL_stdio_fopen_w(
 #endif
 }
 #endif /* STLSOFT_COMPILER_IS_MSVC */
+
+
+/* /////////////////////////////////////////////////////////
+ * formatting functions
+ */
+
+STLSOFT_INLINE
+int
+STLSOFT_API_INTERNAL_stdio_vsnprintf(
+    char            buf[]
+,   size_t          cchBuf
+,   char const*     fmt
+,   va_list         args
+)
+{
+    STLSOFT_ASSERT(0 == cchBuf || NULL != buf);
+    STLSOFT_ASSERT(NULL != fmt);
+
+    return STLSOFT_vsnprintf_SUPPORT(buf, cchBuf, fmt, args);
+}
+#ifdef STLSOFT_vsnwprintf_SUPPORT
+
+STLSOFT_INLINE
+int
+STLSOFT_API_INTERNAL_stdio_vsnwprintf(
+    wchar_t         buf[]
+,   size_t          cchBuf
+,   wchar_t const*  fmt
+,   va_list         args
+)
+{
+    STLSOFT_ASSERT(0 == cchBuf || NULL != buf);
+    STLSOFT_ASSERT(NULL != fmt);
+
+    return STLSOFT_vsnwprintf_SUPPORT(buf, cchBuf, fmt, args);
+}
+#endif /* STLSOFT_vsnwprintf_SUPPORT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
