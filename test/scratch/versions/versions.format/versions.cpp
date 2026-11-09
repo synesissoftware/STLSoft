@@ -1,4 +1,8 @@
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <stlsoft/stlsoft.h>
 #ifdef STLSOFT_HAS_ACE
 # include <acestl/acestl.hpp>
@@ -21,6 +25,11 @@
 #ifdef STLSOFT_HAS_MFC
 # include <mfcstl/mfcstl.hpp>
 #endif
+
+
+/* /////////////////////////////////////////////////////////
+ * standard
+ */
 
 #include <cstdint>
 #include <iostream>
@@ -62,6 +71,10 @@ print_version(
 }
 } // anonymous namespace
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main
+ */
 
 int main(int /* argc */, char* /* argv */[])
 {
@@ -134,4 +147,6 @@ int main(int /* argc */, char* /* argv */[])
     return EXIT_FAILURE;
 }
 #endif /* VERSIONS_FORMAT_HAS_STD_FORMAT_ */
+
+/* ///////////////////////////// end of file //////////////////////////// */
 

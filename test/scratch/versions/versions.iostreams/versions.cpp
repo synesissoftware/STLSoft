@@ -1,4 +1,8 @@
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
 #include <stlsoft/stlsoft.h>
 #ifdef STLSOFT_HAS_ACE
 # include <acestl/acestl.hpp>
@@ -22,6 +26,11 @@
 # include <winstl/winstl.h>
 #endif
 
+
+/* /////////////////////////////////////////////////////////
+ * Third-party
+ */
+
 #ifdef HAS_cstring
 # include <cstring/cstring.h>
 #endif
@@ -41,11 +50,17 @@
 
 #ifdef HAS_woad
 # include <woad/woad.h>
+# include <woad/iostreams.hpp>
 #endif
 
 #ifdef HAS_xTests
 # include <xtests/xtests.h>
 #endif
+
+
+/* /////////////////////////////////////////////////////////
+ * standard
+ */
 
 #include <iomanip>
 #include <iostream>
@@ -53,22 +68,35 @@
 #include <stdio.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
 #ifdef HAS_woad
 
-# define VERSIONS_CLR_NAME_                                 WOAD_FG_BLUE_FOR(stdout)
-# define VERSIONS_CLR_VERSION_                              WOAD_FG_GREEN_FOR(stdout)
-# define VERSIONS_CLR_HEADING_                              WOAD_FG_MAGENTA_FOR(stdout)
-# define VERSIONS_CLR_MACRO_                                WOAD_FG_CYAN_FOR(stdout)
-# define VERSIONS_CLR_RESET_                                WOAD_RESET_FOR(stdout)
+# define VERSIONS_CLR_NAME_(stm)                            WOAD_FG_BLUE_FOR(stm)
+# define VERSIONS_CLR_VERSION_(stm)                         WOAD_FG_GREEN_FOR(stm)
+# define VERSIONS_CLR_HEADING_(stm)                         WOAD_FG_MAGENTA_FOR(stm)
+# define VERSIONS_CLR_MACRO_(stm)                           WOAD_FG_CYAN_FOR(stm)
+# define VERSIONS_CLR_RESET_(stm)                           WOAD_RESET_FOR(stm)
 #else /* ? HAS_woad */
 
-# define VERSIONS_CLR_NAME_                                 ""
-# define VERSIONS_CLR_VERSION_                              ""
-# define VERSIONS_CLR_HEADING_                              ""
-# define VERSIONS_CLR_MACRO_                                ""
-# define VERSIONS_CLR_RESET_                                ""
+# define VERSIONS_CLR_NAME_(stm)                            ""
+# define VERSIONS_CLR_VERSION_(stm)                         ""
+# define VERSIONS_CLR_HEADING_(stm)                         ""
+# define VERSIONS_CLR_MACRO_(stm)                           ""
+# define VERSIONS_CLR_RESET_(stm)                           ""
 #endif /* HAS_woad */
 
+#define VER_MAJOR_(t, v)                                    ((t) (((v) >> 24) & 0xFF))
+#define VER_MINOR_(t, v)                                    ((t) (((v) >> 16) & 0xFF))
+#define VER_PATCH_(t, v)                                    ((t) (((v) >>  8) & 0xFF))
+#define VER_RELST_(t, v)                                    ((t) (((v) >>  0) & 0xFF))
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
 
 static
 void
@@ -86,10 +114,10 @@ print_efferent_dependency_(
     int const   r = diagnosticism_calc_version_string(
         buffer
     ,   sizeof(buffer) / sizeof(buffer[0])
-    ,   (int)((libver >> 24) & 0xff)
-    ,   (int)((libver >> 16) & 0xff)
-    ,   (int)((libver >> 8) & 0xff)
-    ,   (int)((libver >> 0) & 0xff)
+    ,   VER_MAJOR_(int, libver)
+    ,   VER_MINOR_(int, libver)
+    ,   VER_PATCH_(int, libver)
+    ,   VER_RELST_(int, libver)
     ,   &n
     );
 
@@ -102,25 +130,25 @@ print_efferent_dependency_(
 
         stm
             << "\t"
-            << VERSIONS_CLR_NAME_
+            << VERSIONS_CLR_NAME_(stm)
             << name
-            << VERSIONS_CLR_RESET_
+            << VERSIONS_CLR_RESET_(stm)
             << ": "
-            << VERSIONS_CLR_VERSION_
+            << VERSIONS_CLR_VERSION_(stm)
             << buffer
-            << VERSIONS_CLR_RESET_
+            << VERSIONS_CLR_RESET_(stm)
             << " ("
-            << VERSIONS_CLR_MACRO_
+            << VERSIONS_CLR_MACRO_(stm)
             << macroname
-            << VERSIONS_CLR_RESET_
+            << VERSIONS_CLR_RESET_(stm)
             << " = "
-            << VERSIONS_CLR_VERSION_
+            << VERSIONS_CLR_VERSION_(stm)
             << "0x"
             << std::hex
             << std::setfill('0')
             << std::setw(8)
             << libver
-            << VERSIONS_CLR_RESET_
+            << VERSIONS_CLR_RESET_(stm)
             << ")"
             << std::endl
             ;
@@ -137,32 +165,32 @@ print_efferent_dependency_(
 
     stm
         << "\t"
-        << VERSIONS_CLR_NAME_
+        << VERSIONS_CLR_NAME_(stm)
         << name
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_RESET_(stm)
         << ": "
-        << VERSIONS_CLR_VERSION_
+        << VERSIONS_CLR_VERSION_(stm)
         << 'v'
-        << ((libver >> 24) & 0xff)
+        << VER_MAJOR_(int, libver)
         << '.'
-        << ((libver >> 16) & 0xff)
+        << VER_MINOR_(int, libver)
         << '.'
-        << ((libver >> 8) & 0xff)
+        << VER_PATCH_(int, libver)
         << '.'
-        << ((libver >> 0) & 0xff)
-        << VERSIONS_CLR_RESET_
+        << VER_RELST_(int, libver)
+        << VERSIONS_CLR_RESET_(stm)
         << " ("
-        << VERSIONS_CLR_MACRO_
+        << VERSIONS_CLR_MACRO_(stm)
         << macroname
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_RESET_(stm)
         << " = "
-        << VERSIONS_CLR_VERSION_
+        << VERSIONS_CLR_VERSION_(stm)
         << "0x"
         << std::hex
         << std::setfill('0')
         << std::setw(8)
         << libver
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_RESET_(stm)
         << ")"
         << std::endl
         ;
@@ -181,32 +209,32 @@ print_subproject_(
 {
     stm
         << "\t"
-        << VERSIONS_CLR_NAME_
+        << VERSIONS_CLR_NAME_(stm)
         << name
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_RESET_(stm)
         << " = "
-        << VERSIONS_CLR_VERSION_
-        << ((libver >> 24) & 0xff)
-        << "."
-        << ((libver >> 16) & 0xff)
-        << "."
-        << ((libver >> 8) & 0xff)
-        << "."
-        << ((libver >> 0) & 0xff)
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_VERSION_(stm)
+        << VER_MAJOR_(int, libver)
+        << '.'
+        << VER_MINOR_(int, libver)
+        << '.'
+        << VER_PATCH_(int, libver)
+        << '.'
+        << VER_RELST_(int, libver)
+        << VERSIONS_CLR_RESET_(stm)
         << std::endl
         ;
     stm
         << "\t"
-        << VERSIONS_CLR_MACRO_
+        << VERSIONS_CLR_MACRO_(stm)
         << macroName
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_RESET_(stm)
         << " = "
-        << VERSIONS_CLR_VERSION_
+        << VERSIONS_CLR_VERSION_(stm)
         << "0x"
         << std::hex << std::setfill('0') << std::setw(8) << libver
         << std::dec
-        << VERSIONS_CLR_RESET_
+        << VERSIONS_CLR_RESET_(stm)
         << std::endl
         ;
 
@@ -214,152 +242,169 @@ print_subproject_(
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * main
+ */
+
 int main(int /* argc */, char* /* argv */[])
 {
-    std::cout << std::endl;
-    std::cout << VERSIONS_CLR_HEADING_ << "STLSoft libraries" << VERSIONS_CLR_RESET_ << ":" << std::endl;
-
-
-    // __cplusplus
+    std::ostream &stm = std::cout;
 
     {
-        std::cout
-            << "\t"
-            << VERSIONS_CLR_MACRO_
-            << "__cplusplus"
-            << VERSIONS_CLR_RESET_
-            << " = "
-            << VERSIONS_CLR_VERSION_
-            << __cplusplus
-            << VERSIONS_CLR_RESET_
+        stm
+            << VERSIONS_CLR_HEADING_(stm)
+            << "STLSoft libraries"
+            << VERSIONS_CLR_RESET_(stm)
+            << " (C++, using IOStreams):"
             << std::endl
             ;
+        stm << std::endl;
 
-        std::cout << std::endl;
+
+        // __cplusplus
+        {
+            stm
+                << "\t"
+                << VERSIONS_CLR_MACRO_(stm)
+                << "__cplusplus"
+                << VERSIONS_CLR_RESET_(stm)
+                << " = "
+                << VERSIONS_CLR_VERSION_(stm)
+                << __cplusplus
+                << VERSIONS_CLR_RESET_(stm)
+                << std::endl
+                ;
+            stm << std::endl;
+        }
+
+        /* compiler strings */
+        {
+            stm
+                << "\t"
+                << VERSIONS_CLR_MACRO_(stm)
+                << "STLSOFT_COMPILER_LABEL_STRING"
+                << VERSIONS_CLR_RESET_(stm)
+                << " = "
+                << VERSIONS_CLR_VERSION_(stm)
+                << STLSOFT_COMPILER_LABEL_STRING
+                << VERSIONS_CLR_RESET_(stm)
+                << std::endl
+                ;
+
+            stm
+                << "\t"
+                << VERSIONS_CLR_MACRO_(stm)
+                << "STLSOFT_COMPILER_VERSION_STRING"
+                << VERSIONS_CLR_RESET_(stm)
+                << " = "
+                << VERSIONS_CLR_VERSION_(stm)
+                << STLSOFT_COMPILER_VERSION_STRING
+                << VERSIONS_CLR_RESET_(stm)
+                << std::endl
+                ;
+        }
     }
 
-    {
-        std::cout
-            << "\t"
-            << VERSIONS_CLR_MACRO_
-            << "STLSOFT_COMPILER_LABEL_STRING"
-            << VERSIONS_CLR_RESET_
-            << " = "
-            << VERSIONS_CLR_VERSION_
-            << STLSOFT_COMPILER_LABEL_STRING
-            << VERSIONS_CLR_RESET_
-            << std::endl
-            ;
-
-        std::cout
-            << "\t"
-            << VERSIONS_CLR_MACRO_
-            << "STLSOFT_COMPILER_VERSION_STRING"
-            << VERSIONS_CLR_RESET_
-            << " = "
-            << VERSIONS_CLR_VERSION_
-            << STLSOFT_COMPILER_VERSION_STRING
-            << VERSIONS_CLR_RESET_
-            << std::endl
-            ;
-    }
-
 
     {
-        std::cout << std::endl;
-        std::cout << VERSIONS_CLR_HEADING_ << "Subprojects" << VERSIONS_CLR_RESET_ << ":" << std::endl;
-        std::cout << std::endl;
+        stm
+            << std::endl
+            << VERSIONS_CLR_HEADING_(stm)
+            << "Subprojects"
+            << VERSIONS_CLR_RESET_(stm)
+            << ":"
+            << std::endl
+            ;
+        stm << std::endl;
 
 
         // _STLSOFT_VER
-        print_subproject_(std::cout, "STLSoft", "_STLSOFT_VER", _STLSOFT_VER);
-
-
+        print_subproject_(stm, "STLSoft", "_STLSOFT_VER", _STLSOFT_VER);
 #ifdef STLSOFT_HAS_ACE
 
         /* _ACESTL_VER */
-        print_subproject_(std::cout, "ACESTL", "_ACESTL_VER", _ACESTL_VER);
+        print_subproject_(stm, "ACESTL", "_ACESTL_VER", _ACESTL_VER);
 #endif
-
-
 #ifdef STLSOFT_HAS_ATL
 
         /* _ATLSTL_VER */
-        print_subproject_(std::cout, "ATLSTL", "_ATLSTL_VER", _ATLSTL_VER);
+        print_subproject_(stm, "ATLSTL", "_ATLSTL_VER", _ATLSTL_VER);
 #endif
-
-
 #ifdef STLSOFT_HAS_COM
 
         /* _COMSTL_VER */
-        print_subproject_(std::cout, "COMSTL", "_COMSTL_VER", _COMSTL_VER);
+        print_subproject_(stm, "COMSTL", "_COMSTL_VER", _COMSTL_VER);
 #endif
-
-
-        /* _PLATFORMSTL_VER */
-        print_subproject_(std::cout, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
-
-
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX) || \
+#elif defined(PLATFORMSTL_OS_IS_UNIX) ||\
       defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         /* _INETSTL_VER */
-        print_subproject_(std::cout, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
+        print_subproject_(stm, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
 #endif
 
-
+        /* _PLATFORMSTL_VER */
+        print_subproject_(stm, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
         /* _UNIXSTL_VER */
-        print_subproject_(std::cout, "UNIXSTL", "_UNIXSTL_VER", _UNIXSTL_VER);
+        print_subproject_(stm, "UNIXSTL", "_UNIXSTL_VER", _UNIXSTL_VER);
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         /* _WINSTL_VER */
-        print_subproject_(std::cout, "WinSTL", "_WINSTL_VER", _WINSTL_VER);
+        print_subproject_(stm, "WinSTL", "_WINSTL_VER", _WINSTL_VER);
 #endif
     }
 
 
     {
-        std::cout << std::endl;
-        std::cout << VERSIONS_CLR_HEADING_ << "Efferent dependencies" << VERSIONS_CLR_RESET_ << ":" << std::endl;
-        std::cout << std::endl;
+        stm
+            << std::endl
+            << VERSIONS_CLR_HEADING_(stm)
+            << "Efferent dependencies"
+            << VERSIONS_CLR_RESET_(stm)
+            << ":"
+            << std::endl
+        ;
+        stm << std::endl;
 
 
 #ifdef HAS_cstring
 
-        print_efferent_dependency_(std::cout, "cstring", "CSTRING_VER", CSTRING_VER);
+        print_efferent_dependency_(stm, "cstring", "CSTRING_VER", CSTRING_VER);
 #endif
 
 #ifdef HAS_Diagnosticism
 
-        print_efferent_dependency_(std::cout, "Diagnosticism", "DIAGNOSTICISM_VER", DIAGNOSTICISM_VER);
+        print_efferent_dependency_(stm, "Diagnosticism", "DIAGNOSTICISM_VER", DIAGNOSTICISM_VER);
 #endif
 
 
 #ifdef HAS_shwild
 
-        print_efferent_dependency_(std::cout, "shwild", "SHWILD_VER", SHWILD_VER);
+        print_efferent_dependency_(stm, "shwild", "SHWILD_VER", SHWILD_VER);
 #endif
 
 #ifdef HAS_UNIXem
 
-        print_efferent_dependency_(std::cout, "UNIXem", "UNIXEM_VER", UNIXEM_VER);
+        print_efferent_dependency_(stm, "UNIXem", "UNIXEM_VER", UNIXEM_VER);
 #endif
 
 #ifdef HAS_woad
 
-        print_efferent_dependency_(std::cout, "woad", "WOAD_VER", WOAD_VER);
+        print_efferent_dependency_(stm, "woad", "WOAD_VER", WOAD_VER);
 #endif
 
 #ifdef HAS_xTests
 
-        print_efferent_dependency_(std::cout, "xTests", "XTESTS_VER", _XTESTS_VER);
+        print_efferent_dependency_(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
 #endif
     }
 
+
     return 0;
 }
+
+/* ///////////////////////////// end of file //////////////////////////// */
 

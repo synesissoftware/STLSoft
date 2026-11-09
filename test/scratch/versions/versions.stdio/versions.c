@@ -1,4 +1,12 @@
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////////////////////////
+ * STLSoft
+ */
+
 #include <stlsoft/stlsoft.h>
 #ifdef STLSOFT_HAS_COM
 # include <comstl/comstl.h>
@@ -38,25 +46,48 @@
 # include <xtests/xtests.h>
 #endif
 
+
+/* /////////////////////////////////////////////////////////
+ * Third-party
+ */
+
+
+/* /////////////////////////////////////////////////////////
+ * standard
+ */
+
 #include <stdio.h>
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
 #ifdef HAS_woad
 
-# define VERSIONS_CLR_NAME_                                 WOAD_FG_BLUE_FOR(stdout)
-# define VERSIONS_CLR_VERSION_                              WOAD_FG_GREEN_FOR(stdout)
-# define VERSIONS_CLR_HEADING_                              WOAD_FG_MAGENTA_FOR(stdout)
-# define VERSIONS_CLR_MACRO_                                WOAD_FG_CYAN_FOR(stdout)
-# define VERSIONS_CLR_RESET_                                WOAD_RESET_FOR(stdout)
+# define VERSIONS_CLR_NAME_(stm)                            WOAD_FG_BLUE_FOR(stm)
+# define VERSIONS_CLR_VERSION_(stm)                         WOAD_FG_GREEN_FOR(stm)
+# define VERSIONS_CLR_HEADING_(stm)                         WOAD_FG_MAGENTA_FOR(stm)
+# define VERSIONS_CLR_MACRO_(stm)                           WOAD_FG_CYAN_FOR(stm)
+# define VERSIONS_CLR_RESET_(stm)                           WOAD_RESET_FOR(stm)
 #else /* ? HAS_woad */
 
-# define VERSIONS_CLR_NAME_                                 ""
-# define VERSIONS_CLR_VERSION_                              ""
-# define VERSIONS_CLR_HEADING_                              ""
-# define VERSIONS_CLR_MACRO_                                ""
-# define VERSIONS_CLR_RESET_                                ""
+# define VERSIONS_CLR_NAME_(stm)                            ""
+# define VERSIONS_CLR_VERSION_(stm)                         ""
+# define VERSIONS_CLR_HEADING_(stm)                         ""
+# define VERSIONS_CLR_MACRO_(stm)                           ""
+# define VERSIONS_CLR_RESET_(stm)                           ""
 #endif /* HAS_woad */
 
+#define VER_MAJOR_(t, v)                                    ((t) (((v) >> 24) & 0xFF))
+#define VER_MINOR_(t, v)                                    ((t) (((v) >> 16) & 0xFF))
+#define VER_PATCH_(t, v)                                    ((t) (((v) >>  8) & 0xFF))
+#define VER_RELST_(t, v)                                    ((t) (((v) >>  0) & 0xFF))
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
 
 static
 void
@@ -74,10 +105,10 @@ print_efferent_dependency_(
     int const   r = diagnosticism_calc_version_string(
         buffer
     ,   sizeof(buffer) / sizeof(buffer[0])
-    ,   (int)((libver >> 24) & 0xff)
-    ,   (int)((libver >> 16) & 0xff)
-    ,   (int)((libver >> 8) & 0xff)
-    ,   (int)((libver >> 0) & 0xff)
+    ,   VER_MAJOR_(int, libver)
+    ,   VER_MINOR_(int, libver)
+    ,   VER_PATCH_(int, libver)
+    ,   VER_RELST_(int, libver)
     ,   &n
     );
 
@@ -89,18 +120,18 @@ print_efferent_dependency_(
             stm
         ,   "\t"
             "%s%s%s: %s%s%s (%s%s%s = %s0x%08x%s)\n"
-        ,   VERSIONS_CLR_NAME_
+        ,   VERSIONS_CLR_NAME_(stm)
         ,   name
-        ,   VERSIONS_CLR_RESET_
-        ,   VERSIONS_CLR_VERSION_
+        ,   VERSIONS_CLR_RESET_(stm)
+        ,   VERSIONS_CLR_VERSION_(stm)
         ,   buffer
-        ,   VERSIONS_CLR_RESET_
-        ,   VERSIONS_CLR_MACRO_
+        ,   VERSIONS_CLR_RESET_(stm)
+        ,   VERSIONS_CLR_MACRO_(stm)
         ,   macroname
-        ,   VERSIONS_CLR_RESET_
-        ,   VERSIONS_CLR_VERSION_
+        ,   VERSIONS_CLR_RESET_(stm)
+        ,   VERSIONS_CLR_VERSION_(stm)
         ,   libver
-        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_RESET_(stm)
         );
 
         return;
@@ -111,21 +142,21 @@ print_efferent_dependency_(
         stm
     ,   "\t"
         "%s%s%s: %sv%u.%u.%u.%u%s (%s%s%s = %s0x%08x%s)\n"
-    ,   VERSIONS_CLR_NAME_
+    ,   VERSIONS_CLR_NAME_(stm)
     ,   name
-    ,   VERSIONS_CLR_RESET_
-    ,   VERSIONS_CLR_VERSION_
-    ,   (libver >> 24) & 0xff
-    ,   (libver >> 16) & 0xff
-    ,   (libver >> 8) & 0xff
-    ,   (libver >> 0) & 0xff
-    ,   VERSIONS_CLR_RESET_
-    ,   VERSIONS_CLR_MACRO_
+    ,   VERSIONS_CLR_RESET_(stm)
+    ,   VERSIONS_CLR_VERSION_(stm)
+    ,   VER_MAJOR_(int, libver)
+    ,   VER_MINOR_(int, libver)
+    ,   VER_PATCH_(int, libver)
+    ,   VER_RELST_(int, libver)
+    ,   VERSIONS_CLR_RESET_(stm)
+    ,   VERSIONS_CLR_MACRO_(stm)
     ,   macroname
-    ,   VERSIONS_CLR_RESET_
-    ,   VERSIONS_CLR_VERSION_
+    ,   VERSIONS_CLR_RESET_(stm)
+    ,   VERSIONS_CLR_VERSION_(stm)
     ,   libver
-    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_RESET_(stm)
     );
 }
 
@@ -143,9 +174,9 @@ print_subproject_(
         "%s%s%s"
         ":\n"
         "\n"
-    ,   VERSIONS_CLR_NAME_
+    ,   VERSIONS_CLR_NAME_(stm)
     ,   name
-    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_RESET_(stm)
     );
 
     fprintf(
@@ -153,28 +184,28 @@ print_subproject_(
     ,   "\t\t"
         "%s%s%s = %s%d.%d.%d.%d%s"
         "\n"
-    ,   VERSIONS_CLR_NAME_
+    ,   VERSIONS_CLR_NAME_(stm)
     ,   name
-    ,   VERSIONS_CLR_RESET_
-    ,   VERSIONS_CLR_VERSION_
-    ,   (int)((libver >> 24) & 0xff)
-    ,   (int)((libver >> 16) & 0xff)
-    ,   (int)((libver >> 8) & 0xff)
-    ,   (int)((libver >> 0) & 0xff)
-    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_RESET_(stm)
+    ,   VERSIONS_CLR_VERSION_(stm)
+    ,   VER_MAJOR_(int, libver)
+    ,   VER_MINOR_(int, libver)
+    ,   VER_PATCH_(int, libver)
+    ,   VER_RELST_(int, libver)
+    ,   VERSIONS_CLR_RESET_(stm)
     );
 
     fprintf(
         stm
     ,   "\t\t"
         "%s%s%s = %s0x%04x%04x%s\n"
-    ,   VERSIONS_CLR_MACRO_
+    ,   VERSIONS_CLR_MACRO_(stm)
     ,   macroName
-    ,   VERSIONS_CLR_RESET_
-    ,   VERSIONS_CLR_VERSION_
+    ,   VERSIONS_CLR_RESET_(stm)
+    ,   VERSIONS_CLR_VERSION_(stm)
     ,   (unsigned int)((libver >> 16) & 0xffff)
     ,   (unsigned int)((libver >> 0) & 0xffff)
-    ,   VERSIONS_CLR_RESET_
+    ,   VERSIONS_CLR_RESET_(stm)
     );
 
     fprintf(
@@ -184,160 +215,166 @@ print_subproject_(
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * main
+ */
+
 int main(int argc, char* argv[])
 {
+    FILE* const stm = stdout;
+
     STLSOFT_SUPPRESS_UNUSED(argc);
     STLSOFT_SUPPRESS_UNUSED(argv);
 
-    fprintf(stdout, "\n");
-    fprintf(
-        stdout
-    ,   "%s"
-        "STLSoft libraries"
-        "%s:\n"
-    ,   VERSIONS_CLR_HEADING_
-    ,   VERSIONS_CLR_RESET_
-    );
-
-
-    /* __STDC__ */
     {
+
+        fprintf(
+            stm
+        ,   "%s"
+            "STLSoft libraries"
+            "%s (C):\n"
+        ,   VERSIONS_CLR_HEADING_(stm)
+        ,   VERSIONS_CLR_RESET_(stm)
+        );
+        fprintf(stm, "\n");
+
+
+        /* __STDC__ */
+        {
 
 #ifdef __STDC__
 
-        fprintf(
-            stdout
-        ,   "\t"
-            "%s__STDC__%s = %s%d%s\n"
-        ,   VERSIONS_CLR_MACRO_
-        ,   VERSIONS_CLR_RESET_
-        ,   VERSIONS_CLR_VERSION_
-        ,   __STDC__
-        ,   VERSIONS_CLR_RESET_
-        );
-        fprintf(stdout, "\n");
+            fprintf(
+                stm
+            ,   "\t"
+                "%s__STDC__%s = %s%d%s\n"
+            ,   VERSIONS_CLR_MACRO_(stm)
+            ,   VERSIONS_CLR_RESET_(stm)
+            ,   VERSIONS_CLR_VERSION_(stm)
+            ,   __STDC__
+            ,   VERSIONS_CLR_RESET_(stm)
+            );
+            fprintf(stm, "\n");
 #endif
+        }
+
+        /* compiler strings */
+        {
+            fprintf(
+                stm
+            ,   "\t"
+                "%sSTLSOFT_COMPILER_LABEL_STRING%s = %s%s%s\n"
+            ,   VERSIONS_CLR_MACRO_(stm)
+            ,   VERSIONS_CLR_RESET_(stm)
+            ,   VERSIONS_CLR_VERSION_(stm)
+            ,   STLSOFT_COMPILER_LABEL_STRING
+            ,   VERSIONS_CLR_RESET_(stm)
+            );
+
+            fprintf(
+                stm
+            ,   "\t"
+                "%sSTLSOFT_COMPILER_VERSION_STRING%s = %s%s%s\n"
+            ,   VERSIONS_CLR_MACRO_(stm)
+            ,   VERSIONS_CLR_RESET_(stm)
+            ,   VERSIONS_CLR_VERSION_(stm)
+            ,   STLSOFT_COMPILER_VERSION_STRING
+            ,   VERSIONS_CLR_RESET_(stm)
+            );
+        }
     }
 
-    {
-        fprintf(
-            stdout
-        ,   "\t"
-            "%sSTLSOFT_COMPILER_LABEL_STRING%s = %s%s%s\n"
-        ,   VERSIONS_CLR_MACRO_
-        ,   VERSIONS_CLR_RESET_
-        ,   VERSIONS_CLR_VERSION_
-        ,   STLSOFT_COMPILER_LABEL_STRING
-        ,   VERSIONS_CLR_RESET_
-        );
-
-        fprintf(
-            stdout
-        ,   "\t"
-            "%sSTLSOFT_COMPILER_VERSION_STRING%s = %s%s%s\n"
-        ,   VERSIONS_CLR_MACRO_
-        ,   VERSIONS_CLR_RESET_
-        ,   VERSIONS_CLR_VERSION_
-        ,   STLSOFT_COMPILER_VERSION_STRING
-        ,   VERSIONS_CLR_RESET_
-        );
-    }
-
 
     {
-        fprintf(stdout, "\n");
+        fprintf(stm, "\n");
         fprintf(
-            stdout
+            stm
         ,   "%s"
             "Subprojects"
             "%s:\n"
-        ,   VERSIONS_CLR_HEADING_
-        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_HEADING_(stm)
+        ,   VERSIONS_CLR_RESET_(stm)
         );
-        fprintf(stdout, "\n");
+        fprintf(stm, "\n");
 
 
         /* _STLSOFT_VER */
-        print_subproject_(stdout, "STLSoft", "_STLSOFT_VER", _STLSOFT_VER);
-
-
+        print_subproject_(stm, "STLSoft", "_STLSOFT_VER", _STLSOFT_VER);
 #ifdef STLSOFT_HAS_COM
 
         /* _COMSTL_VER */
-        print_subproject_(stdout, "COMSTL", "_COMSTL_VER", _COMSTL_VER);
+        print_subproject_(stm, "COMSTL", "_COMSTL_VER", _COMSTL_VER);
 #endif
-
-
-        /* _PLATFORMSTL_VER */
-        print_subproject_(stdout, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
-
-
 #if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX) || \
+#elif defined(PLATFORMSTL_OS_IS_UNIX) ||\
       defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         /* _INETSTL_VER */
-        print_subproject_(stdout, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
+        print_subproject_(stm, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
 #endif
 
-
+        /* _PLATFORMSTL_VER */
+        print_subproject_(stm, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
         /* _UNIXSTL_VER */
-        print_subproject_(stdout, "UNIXSTL", "_UNIXSTL_VER", _UNIXSTL_VER);
+        print_subproject_(stm, "UNIXSTL", "_UNIXSTL_VER", _UNIXSTL_VER);
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         /* _WINSTL_VER */
-        print_subproject_(stdout, "WinSTL", "_WINSTL_VER", _WINSTL_VER);
+        print_subproject_(stm, "WinSTL", "_WINSTL_VER", _WINSTL_VER);
 #endif
     }
 
 
     {
         fprintf(
-            stdout
+            stm
         ,   "%s"
             "Efferent dependencies"
             "%s:\n"
-        ,   VERSIONS_CLR_HEADING_
-        ,   VERSIONS_CLR_RESET_
+        ,   VERSIONS_CLR_HEADING_(stm)
+        ,   VERSIONS_CLR_RESET_(stm)
         );
-        fprintf(stdout, "\n");
+        fprintf(stm, "\n");
 
 
 #ifdef HAS_cstring
 
-        print_efferent_dependency_(stdout, "cstring", "CSTRING_VER", CSTRING_VER);
+        print_efferent_dependency_(stm, "cstring", "CSTRING_VER", CSTRING_VER);
 #endif
 
 #ifdef HAS_Diagnosticism
 
-        print_efferent_dependency_(stdout, "Diagnosticism", "DIAGNOSTICISM_VER", DIAGNOSTICISM_VER);
+        print_efferent_dependency_(stm, "Diagnosticism", "DIAGNOSTICISM_VER", DIAGNOSTICISM_VER);
 #endif
 
 
 #ifdef HAS_shwild
 
-        print_efferent_dependency_(stdout, "shwild", "SHWILD_VER", SHWILD_VER);
+        print_efferent_dependency_(stm, "shwild", "SHWILD_VER", SHWILD_VER);
 #endif
 
 #ifdef HAS_UNIXem
 
-        print_efferent_dependency_(stdout, "UNIXem", "UNIXEM_VER", UNIXEM_VER);
+        print_efferent_dependency_(stm, "UNIXem", "UNIXEM_VER", UNIXEM_VER);
 #endif
 
 #ifdef HAS_woad
 
-        print_efferent_dependency_(stdout, "woad", "WOAD_VER", WOAD_VER);
+        print_efferent_dependency_(stm, "woad", "WOAD_VER", WOAD_VER);
 #endif
 
 #ifdef HAS_xTests
 
-        print_efferent_dependency_(stdout, "xTests", "XTESTS_VER", _XTESTS_VER);
+        print_efferent_dependency_(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
 #endif
     }
 
+
     return 0;
 }
+
+/* ///////////////////////////// end of file //////////////////////////// */
 
