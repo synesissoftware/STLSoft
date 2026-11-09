@@ -141,7 +141,7 @@ print_version(
     fprintf(
         stm
     ,   "\t"
-        "%s%s%s: %sv%u.%u.%u.%u%s (%s%s%s = %s0x%08x%s)\n"
+        "%s%s%s: %sv%d.%d.%d.%d%s (%s%s%s = %s0x%08x%s)\n"
     ,   VERSIONS_CLR_NAME_(stm)
     ,   name
     ,   VERSIONS_CLR_RESET_(stm)
@@ -310,7 +310,7 @@ int main(int argc, char* argv[])
 #endif
 #ifdef HAS_xTests
 
-        print_version(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
+        print_version(stm, "xTests", "_XTESTS_VER", _XTESTS_VER);
 #endif
 
         fprintf(stm, "\n");

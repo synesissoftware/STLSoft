@@ -308,6 +308,11 @@ int main(int /* argc */, char* /* argv */[])
         /* _INETSTL_VER */
         print_version(stm, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
 #endif
+#ifdef STLSOFT_HAS_MFC
+
+        /* _MFCSTL_VER */
+        print_version(stm, "MFCSTL", "_MFCSTL_VER", _MFCSTL_VER);
+#endif
 
         /* _PLATFORMSTL_VER */
         print_version(stm, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
@@ -359,7 +364,7 @@ int main(int /* argc */, char* /* argv */[])
 #endif
 #ifdef HAS_xTests
 
-        print_version(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
+        print_version(stm, "xTests", "_XTESTS_VER", _XTESTS_VER);
 #endif
 
         stm << std::endl;

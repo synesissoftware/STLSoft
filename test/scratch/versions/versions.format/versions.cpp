@@ -62,11 +62,15 @@
  * standard
  */
 
+#include <version> // required before doing feature tests
+
 #include <cstdint>
 #include <format>
+#ifdef __cpp_lib_print
+# include <print>
+#endif
 #include <iostream>
 #include <string>
-#include <version>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,7 +123,7 @@ print_version(
 #ifdef __cpp_lib_print
 
     std::println(
-        "\t{8}{0}{7} = {9}v{1}.{2}.{3}.{4}{7} ({10}{5}{7} = {9}0x{6:08x}{7})"
+        "\t{8}{0}{7}: {9}v{1}.{2}.{3}.{4}{7} ({10}{5}{7} = {9}0x{6:08x}{7})"
     ,   name
     ,   VER_MAJOR_(int, ver)
     ,   VER_MINOR_(int, ver)
@@ -138,7 +142,7 @@ print_version(
 
     stm
         << std::format(
-            "\t{8}{0}{7} = {9}v{1}.{2}.{3}.{4}{7} ({10}{5}{7} = {9}0x{6:08x}{7})"
+            "\t{8}{0}{7}: {9}v{1}.{2}.{3}.{4}{7} ({10}{5}{7} = {9}0x{6:08x}{7})"
         ,   name
         ,   VER_MAJOR_(int, ver)
         ,   VER_MINOR_(int, ver)
@@ -174,7 +178,7 @@ int main(int /* argc */, char* /* argv */[])
 #ifdef __cpp_lib_print
 
         std::println(
-            "{1}STLSoft libraries{0}: (C++, using {2}std::format{0}):"
+            "{1}STLSoft libraries{0} (C++, using {2}std::format{0}):"
         ,   clr_reset
         ,   clr_heading
         ,   clr_framework
@@ -183,7 +187,7 @@ int main(int /* argc */, char* /* argv */[])
 
         stm <<
             std::format(
-                "{1}STLSoft libraries{0}: (C++, using {2}std::format{0}):"
+                "{1}STLSoft libraries{0} (C++, using {2}std::format{0}):"
             ,   clr_reset
             ,   clr_heading
             ,   clr_framework
@@ -323,6 +327,11 @@ int main(int /* argc */, char* /* argv */[])
         // _INETSTL_VER
         print_version(stm, "InetSTL", "_INETSTL_VER", _INETSTL_VER);
 #endif
+#ifdef STLSOFT_HAS_MFC
+
+        /* _MFCSTL_VER */
+        print_version(stm, "MFCSTL", "_MFCSTL_VER", _MFCSTL_VER);
+#endif
 
         // _PLATFORMSTL_VER
         print_version(stm, "PlatformSTL", "_PLATFORMSTL_VER", _PLATFORMSTL_VER);
@@ -388,7 +397,7 @@ int main(int /* argc */, char* /* argv */[])
 #endif
 #ifdef HAS_xTests
 
-        print_version(stm, "xTests", "XTESTS_VER", _XTESTS_VER);
+        print_version(stm, "xTests", "_XTESTS_VER", _XTESTS_VER);
 #endif
 
         stm << std::endl;
