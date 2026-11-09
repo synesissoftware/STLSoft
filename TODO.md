@@ -112,6 +112,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [X] ~~~Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed)~~~ - ❌ (no need, because these are all internal);
 * [ ] `STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`;
 * [ ] Canonicalise exception messages (consistency, lower-case, etc.);
+* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 
 
 ### 1.11.9
@@ -125,7 +126,6 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] WinSTL / COMSTL / ATLSTL / MFCSTL — Windows CI verification of new suites;
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
-* [ ] Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**;
 * [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
 * [ ] **include/stlsoft/conversion/byte_format_functions.hpp** known / suspected issues in `format_bytes()` (unit tests landed in **test.unit.stlsoft.conversion.byte_format_functions**; none of these is pinned by a test yet):
   * [x] ~~~the line-separator copy uses `STLSOFT_API_EXTERNAL_memfns_memcpy()` rather than `STLSOFT_API_INTERNAL_memfns_memcpy()`, so a `nullptr` `lineSeparator` with `groupsPerLine > 0` calls `memcpy(buff, nullptr, 0)` (the case the internal adaptation exists for)~~~ - ✅;
