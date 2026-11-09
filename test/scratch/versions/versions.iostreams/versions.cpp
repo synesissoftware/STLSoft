@@ -78,6 +78,7 @@
 # define VERSIONS_CLR_VERSION_(stm)                         WOAD_FG_GREEN_FOR(stm)
 # define VERSIONS_CLR_HEADING_(stm)                         WOAD_FG_MAGENTA_FOR(stm)
 # define VERSIONS_CLR_MACRO_(stm)                           WOAD_FG_CYAN_FOR(stm)
+# define VERSIONS_CLR_FRAMEWORK_(stm)                       WOAD_FG_YELLOW_FOR(stm)
 # define VERSIONS_CLR_RESET_(stm)                           WOAD_RESET_FOR(stm)
 #else /* ? HAS_woad */
 
@@ -85,6 +86,7 @@
 # define VERSIONS_CLR_VERSION_(stm)                         ""
 # define VERSIONS_CLR_HEADING_(stm)                         ""
 # define VERSIONS_CLR_MACRO_(stm)                           ""
+# define VERSIONS_CLR_FRAMEWORK_(stm)                       ""
 # define VERSIONS_CLR_RESET_(stm)                           ""
 #endif /* HAS_woad */
 
@@ -215,7 +217,11 @@ int main(int /* argc */, char* /* argv */[])
             << VERSIONS_CLR_HEADING_(stm)
             << "STLSoft libraries"
             << VERSIONS_CLR_RESET_(stm)
-            << " (C++, using IOStreams):"
+            << " (C++, using "
+            << VERSIONS_CLR_FRAMEWORK_(stm)
+            << "IOStreams"
+            << VERSIONS_CLR_RESET_(stm)
+            << "):"
             << std::endl
             ;
         stm << std::endl;
