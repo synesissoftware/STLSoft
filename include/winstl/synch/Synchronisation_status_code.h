@@ -4,7 +4,7 @@
  * Purpose:     Definition of the Synchronisation_status_code enumeration.
  *
  * Created:     13th May 2014
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE_MINOR    2
-# define WINSTL_VER_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE_EDIT     12
+# define WINSTL_VER_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE_REVISION 3
+# define WINSTL_VER_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,9 +159,9 @@ enum Synchronisation_status_code_t
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE */
 

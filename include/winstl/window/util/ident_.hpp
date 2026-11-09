@@ -4,11 +4,11 @@
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MINOR      1
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION   3
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       61
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION   4
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -190,9 +190,9 @@ GetWindowIdent(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_WINDOW_UTIL_HPP_IDENT_ */
 

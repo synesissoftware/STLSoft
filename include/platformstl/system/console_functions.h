@@ -4,11 +4,11 @@
  * Purpose: Console functions.
  *
  * Created: 6th August 2015
- * Updated: 4th August 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef PLATFORMSTL_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT        11
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION    2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT        12
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,9 +216,9 @@ isatty(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_H_CONSOLE_FUNCTIONS */
 

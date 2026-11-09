@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_connection class.
  *
  * Created: 30th April 1999
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    12
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        90
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    13
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -488,9 +488,9 @@ get_handle(basic_connection<C, X, T> &s)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !INETSTL_INCL_INETSTL_NETWORK_HPP_CONNECTION */
 

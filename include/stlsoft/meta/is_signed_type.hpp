@@ -4,11 +4,11 @@
  * Purpose: is_signed_type meta class.
  *
  * Created: 19th November 1998
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_MINOR      1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_REVISION   7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_EDIT       24
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_REVISION   8
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,9 +149,9 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, long double, 1, yes_t
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE */
 

@@ -4,7 +4,7 @@
  * Purpose: Tests whether a type is integral.
  *
  * Created: 19th November 1998
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MINOR    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 6
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     142
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 7
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     143
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -161,9 +161,9 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_w_t, 1, yes
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
 

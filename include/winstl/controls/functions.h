@@ -4,7 +4,7 @@
  * Purpose: Various Windows control functions.
  *
  * Created: 13th November 2002
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       2
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    9
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        68
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    10
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1465,9 +1465,9 @@ winstl__edit_getline_w(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS */
 

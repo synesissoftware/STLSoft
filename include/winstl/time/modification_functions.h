@@ -4,7 +4,7 @@
  * Purpose: Modification functions for Windows time structures.
  *
  * Created: 2nd February 2011
- * Updated: 11th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       16
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   2
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -379,9 +379,9 @@ increment_SYSTEMTIME(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_TIME_H_MODIFICATION_FUNCTIONS */
 

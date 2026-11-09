@@ -4,7 +4,7 @@
  * Purpose: Platform header for the pid_sequence components.
  *
  * Created: 18th August 2025
- * Updated: 29th July 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,9 +154,9 @@ typedef WINSTL_NS_QUAL(pid_sequence)                        pid_sequence;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_PID_SEQUENCE */
 

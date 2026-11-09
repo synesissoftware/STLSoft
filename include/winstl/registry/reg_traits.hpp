@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Thanks to:   Sam Fisher for requesting reg_delete_tree().
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 8
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     96
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 9
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -652,9 +652,9 @@ private:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 

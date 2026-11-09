@@ -4,7 +4,7 @@
  * Purpose:     Localisation functions for Windows time structures.
  *
  * Created:     9th October 2014
- * Updated:     11th October 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_EDIT       15
+# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -423,9 +423,9 @@ localise_local_time_to_UTC_time(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
