@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 29th October 2026
+ * Updated: 4th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  6th November 2026
+# Updated:  10th November 2026
 #
 # ######################################################################## #
 
@@ -187,29 +187,6 @@ option(STLSOFT_FEATURE_TESTS_ONLY "Build only feature-library unit tests and the
 
 
 # ############################
-# ACE
-#
-# Discovery (when NO_ACE is not set): find_package(ACE) via cmake/FindACE.cmake
-# (system packages such as libace-dev, or ACE / ACE_ROOT hints).
-
-set(HAS_ACE OFF)
-
-if(NOT NO_ACE)
-
-	find_package(ACE QUIET)
-
-	if(ACE_FOUND)
-
-		set(HAS_ACE ON)
-
-		add_compile_definitions(STLSOFT_HAS_ACE)
-
-		message("-- ACE found")
-	endif()
-endif()
-
-
-# ############################
 # STLSoft
 #
 # Since we use xTests for testing, and it relies in turn on STLSoft, we must
@@ -237,13 +214,36 @@ endif(BUILD_TESTING)
 
 
 # ############################
+# ACE
+#
+# Discovery (when NO_ACE is not set): find_package(ACE) via cmake/FindACE.cmake
+# (system packages such as libace-dev, or ACE / ACE_ROOT hints).
+
+set(HAS_ACE OFF)
+
+if(NOT NO_ACE)
+
+	find_package(ACE QUIET)
+
+	if(ACE_FOUND)
+
+		set(HAS_ACE ON)
+
+		add_compile_definitions(STLSOFT_HAS_ACE)
+
+		message("-- ACE found")
+	endif()
+endif()
+
+
+# ############################
 # cstring
 
 if(NOT (NO_CSTRING))
 
 	if(BUILD_TESTING)
 
-		set(cstring_REQUIRED_VERSION_ 4.0.19)
+		set(cstring_REQUIRED_VERSION_ 4.1)
 
 		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
 
@@ -320,7 +320,7 @@ if(USE_WOAD)
 
 	if(BUILD_TESTING)
 
-		set(woad_REQUIRED_VERSION_ 0.2.1)
+		set(woad_REQUIRED_VERSION_ 0.3)
 
 		find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
@@ -341,7 +341,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28.2)
+	set(xTests_REQUIRED_VERSION_ 0.29)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

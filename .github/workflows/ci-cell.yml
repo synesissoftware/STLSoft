@@ -112,9 +112,10 @@ jobs:
             cmake --install "$STLINSTALL"
           fi
 
-      # shwild supplies TEST_MS_MATCHES. STLSoft is already in the prefix
-      # from the bootstrap above, so this list does not name it. woad
-      # precedes xTests (xTests 0.29 requires it); shwild precedes xTests.
+      # shwild supplies TEST_MS_MATCHES. woad is required by xTests 0.29+
+      # (PRIVATE link; find_dependency in xtests-config). STLSoft is already
+      # in the prefix from the bootstrap above, so this list does not name
+      # it. Order: shwild, woad, xTests.
       - name: Install Synesis dependencies
         uses: ./.github/actions/install-sis-deps
         with:
