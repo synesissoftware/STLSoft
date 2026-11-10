@@ -66,5 +66,12 @@ if(_has_std_format)
 			woad::woad
 		)
 	endif()
+
+	if(xTests_FOUND)
+
+		target_link_libraries(test.scratch.versions.format
+			xTests::core
+		)
+	endif()
 endif()
 

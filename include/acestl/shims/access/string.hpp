@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE classes.
  *
  * Created:     2nd December 2004
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_MAJOR      2
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_MINOR      0
-# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_REVISION   3
-# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_EDIT       21
+# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_REVISION   4
+# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -85,9 +85,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !ACESTL_INCL_SHIMS_ACCESS_HPP_STRING */
 

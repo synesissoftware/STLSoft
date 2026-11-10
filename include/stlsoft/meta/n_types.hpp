@@ -4,7 +4,7 @@
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  8
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      133
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  9
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,9 +165,9 @@ struct size_type
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
 

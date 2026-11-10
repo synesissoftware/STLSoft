@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 15th October 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      234
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -3112,9 +3112,9 @@ namespace std
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING */
 

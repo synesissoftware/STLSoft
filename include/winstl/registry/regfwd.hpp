@@ -4,7 +4,7 @@
  * Purpose:     Contains forward declarations for components in the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MINOR    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_REVISION 4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     23
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_REVISION 5
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -168,9 +168,9 @@ class wrong_value_type_exception;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD */
 

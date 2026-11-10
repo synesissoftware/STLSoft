@@ -4,11 +4,11 @@
  * Purpose:     access_exception class
  *
  * Created:     2nd January 2017
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_EDIT        6
+# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,9 +125,9 @@ typedef STLSOFT_NS_QUAL(status_code_propagating_exception_base)<
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

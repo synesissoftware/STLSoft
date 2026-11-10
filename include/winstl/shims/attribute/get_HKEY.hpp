@@ -4,7 +4,7 @@
  * Purpose:     get_HKEY attribute shim.
  *
  * Created:     1st June 2007
- * Updated:     29th July 2026
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_MAJOR     1
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_MINOR     0
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_REVISION  5
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_EDIT      17
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_REVISION  6
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,9 +133,9 @@ inline HKEY get_HKEY(HKEY h)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HKEY */
 

@@ -4,7 +4,7 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 2nd November 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    17
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        86
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    18
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -978,9 +978,9 @@ struct string_traits< ::comstl::bstr>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_STRING_HPP_BSTR */
 
