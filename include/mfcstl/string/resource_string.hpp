@@ -4,11 +4,11 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     21st March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MAJOR      4
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MINOR      0
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   8
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       96
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   9
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -376,7 +376,7 @@ resource_string::data() const
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
+ * namespace
  */
 
 #ifndef MFCSTL_NO_NAMESPACE
@@ -443,9 +443,9 @@ using ::mfcstl::c_str_len;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !MFCSTL_INCL_MFCSTL_STRING_HPP_RESOURCE_STRING */
 

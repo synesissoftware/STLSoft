@@ -4,11 +4,11 @@
  * Purpose: Discrimination of the platformstl::platformstl_exception class.
  *
  * Created: 20th March 2005
- * Updated: 3rd May 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION_MAJOR      3
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION_EDIT       31
+# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION_REVISION   3
+# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/exception/platformstl_exception.hpp
@@ -134,9 +134,9 @@ typedef platformstl_exception                               platform_exception;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_EXCEPTION_HPP_PLATFORMSTL_EXCEPTION */
 

@@ -4,7 +4,7 @@
  * Purpose: Compile-time template constraints templates.
  *
  * Created: 19th November 1998
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Thanks:  To Peter Bannister for having the clear thinking to see the
  *          obvious (but only in hindsight) tactic of overloading the
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       116
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -700,7 +700,9 @@ inline ss_bool_t operator ==(T2 const& lhs, not_implicitly_comparable const& rhs
 #endif /* 0 */
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -711,9 +713,9 @@ inline ss_bool_t operator ==(T2 const& lhs, not_implicitly_comparable const& rhs
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/proxy_iterator.hpp
+ * File:    stlsoft/obsolete/proxy_iterator.hpp
  *
- * Purpose:     proxy_iterator template class.
+ * Purpose: proxy_iterator template class.
  *
- * Created:     28th June 2004
- * Updated:     15th October 2026
+ * Created: 28th June 2004
+ * Updated: 9th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_REVISION   6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       67
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_REVISION   7
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -490,7 +490,9 @@ inline ss_ptrdiff_t operator >=(proxy_iterator<E, V, T, C, R, P> const& lhs, pro
 # endif /* _MSC_VER */
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -501,9 +503,9 @@ inline ss_ptrdiff_t operator >=(proxy_iterator<E, V, T, C, R, P> const& lhs, pro
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR */
 

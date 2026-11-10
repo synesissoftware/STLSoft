@@ -4,7 +4,7 @@
  * Purpose: Window font functions.
  *
  * Created: 20th October 1994
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT     152
+# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_REVISION 6
+# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT     153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,10 +201,12 @@ winstl__set_window_font(
 {
     winstl_C_set_window_font(hwnd, hfont, bRedraw);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -221,9 +223,9 @@ winstl__set_window_font(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_WINDOW_H_FONT_FUNCTIONS */
 

@@ -4,14 +4,14 @@
  * Purpose: Comparison functions for Windows time structures.
  *
  * Created: 21st November 2003
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Thanks:  Mikael Pahmp, for spotting the failure to handle 24-hour time
  *          pictures.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   11
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       80
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   12
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -527,9 +527,9 @@ STLSOFT_STDCALL GetTimeFormat_msExW(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -7,13 +7,13 @@
  *              well-behaved in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     71
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -162,7 +162,9 @@ struct limit_traits
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
@@ -173,9 +175,9 @@ struct limit_traits
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
 

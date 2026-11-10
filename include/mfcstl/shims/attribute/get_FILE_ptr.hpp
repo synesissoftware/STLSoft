@@ -4,11 +4,11 @@
  * Purpose:     Contains the get_FILE_ptr attribute shim.
  *
  * Created:     22nd May 2008
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_REVISION    5
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_EDIT        14
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_REVISION    6
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -164,9 +164,9 @@ namespace stlsoft
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

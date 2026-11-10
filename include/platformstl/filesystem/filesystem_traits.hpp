@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     20th March 2005
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  6
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      33
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  7
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -194,7 +194,9 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -209,9 +211,9 @@ namespace platformstl_project
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 

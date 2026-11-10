@@ -4,11 +4,11 @@
  * Purpose: Restartable tokenising functions.
  *
  * Created: 6th January 2001
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       37
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   7
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -222,7 +222,9 @@ find_next_token(
     return true;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -233,9 +235,9 @@ find_next_token(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS */
 

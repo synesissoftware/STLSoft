@@ -5,11 +5,11 @@
  *          libraries.
  *
  * Created: 13th October 2008
- * Updated: 19th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://www.stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_QUALITY_H_COVER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_QUALITY_H_COVER_MINOR       0
-# define STLSOFT_VER_STLSOFT_QUALITY_H_COVER_REVISION    4
-# define STLSOFT_VER_STLSOFT_QUALITY_H_COVER_EDIT        11
+# define STLSOFT_VER_STLSOFT_QUALITY_H_COVER_REVISION    5
+# define STLSOFT_VER_STLSOFT_QUALITY_H_COVER_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,9 +100,9 @@
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 

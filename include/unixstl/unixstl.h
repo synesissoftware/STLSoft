@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 28th October 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    11
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 6
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     137
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 8
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -871,7 +871,9 @@ typedef us_streamoff_t                                      streamoff_t;    /*!<
  */
 #define unixstl_gen_opaque(htype)                           STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) ||\
@@ -889,9 +891,9 @@ namespace unixstl = ::stlsoft::unixstl_project;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 

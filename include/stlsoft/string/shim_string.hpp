@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_shim_string template class.
  *
  * Created: 9th July 2004
- * Updated: 15th October 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  Dimitri Kaparis, for spotting a typo in the string access shims.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        76
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -831,7 +831,9 @@ operator <<(
 #endif /* compiler */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -872,9 +874,9 @@ operator <<(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,11 +4,11 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     6th June 2008
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_MINOR      0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_REVISION   6
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_EDIT       14
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_REVISION   7
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,9 @@ inline STLSOFT_NS_QUAL(ss_uint64_t) to_uint64(ULARGE_INTEGER const* puli)
     return (NULL == puli) ? 0 : to_uint64(*puli);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 } // namespace stlsoft
@@ -117,9 +119,9 @@ inline STLSOFT_NS_QUAL(ss_uint64_t) to_uint64(ULARGE_INTEGER const* puli)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER */
 

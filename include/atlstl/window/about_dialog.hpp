@@ -4,11 +4,11 @@
  * Purpose: Simple 'about' dialog, that shell-executes hyperlinks.
  *
  * Created: 30th January 2000
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR    0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION 9
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT     72
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION 10
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -264,7 +264,9 @@ class AboutDialogId
 {
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -281,9 +283,9 @@ class AboutDialogId
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !ATLSTL_INCL_ATLSTL_WINDOW_HPP_ABOUT_DIALOG */
 

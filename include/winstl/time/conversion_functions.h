@@ -4,7 +4,7 @@
  * Purpose: Comparison functions for Windows time structures.
  *
  * Created: 21st November 2003
- * Updated: 11th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 8
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     71
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 9
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -371,9 +371,9 @@ FILETIMEToUNIXTime(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

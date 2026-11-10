@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 26th October 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 10
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     68
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 12
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -535,7 +535,9 @@ typedef WINSTL_NS_QUAL(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION && __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if !defined(__cplusplus)
  /* Nothing defined in C */
@@ -553,9 +555,9 @@ namespace platformstl = ::stlsoft::platformstl_project;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 

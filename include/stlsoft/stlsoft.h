@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 15th November 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 27
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     620
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 29
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     622
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -432,6 +432,7 @@
 # define _STLSOFT_VER_1_11_5        0x010B05FF  /*!< Version 1.11.5 (2nd November 2026) */
 # define _STLSOFT_VER_1_11_6        0x010B06FF  /*!< Version 1.11.6 (6th November 2026) */
 # define _STLSOFT_VER_1_11_7        0x010B07FF  /*!< Version 1.11.7 (8th November 2026) */
+# define _STLSOFT_VER_1_11_8        0x010B08FF  /*!< Version 1.11.8 (10th November 2026) */
 # define _STLSOFT_VER_1_12_0_A01    0x010C0041  /*!< Version 1.12.0-alpha1 (10th November 2026) */
 # define _STLSOFT_VER_1_12_0_A02    0x010C0042  /*!< Version 1.12.0-alpha2 (15th November 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -4191,9 +4192,9 @@ operator new(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 

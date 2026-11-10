@@ -4,11 +4,11 @@
  * Purpose: Windows version discrimination.
  *
  * Created: 4th August 2015
- * Updated: 20th October 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__MAJOR     1
 #define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__MINOR     0
-#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__REVISION  4
-#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__EDIT      16
+#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__REVISION  5
+#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -349,7 +349,9 @@ winstl_C_internal_GetVersionEx(
     return FALSE;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -366,9 +368,9 @@ winstl_C_internal_GetVersionEx(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_INTERNAL_H_WINDOWS_VERSION_ */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/printf_traits.hpp
+ * File:    stlsoft/util/printf_traits.hpp
  *
- * Purpose:     printf_traits classes.
+ * Purpose: printf_traits classes.
  *
- * Created:     16th January 2002
- * Updated:     15th October 2026
+ * Created: 16th January 2002
+ * Updated: 9th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     76
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR       5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR       0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION    6
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT        78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -275,7 +275,9 @@ struct printf_traits<unsigned long>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -286,9 +288,9 @@ struct printf_traits<unsigned long>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS */
 

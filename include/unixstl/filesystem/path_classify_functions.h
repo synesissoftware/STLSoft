@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 21st December 2020
- * Updated: 18th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,6 +44,11 @@
  *
  * \brief [C, C++] Path classification functions
  *   (\ref group__library__FileSystem "File System" Library).
+ *
+ * Fine path classification (kind, root slices, part counts). Coarse string
+ * predicates live on \c unixstl::filesystem_traits (\c is_path_rooted,
+ * \c is_path_absolute, \c is_path_UNC); prefer \c unixstl_C_path_classify
+ * when completeness (e.g. of a UNC root) matters.
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS
@@ -52,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      10
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  10
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +125,7 @@ struct unixstl_C_path_classification_results_m_t
     stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
     stlsoft_C_string_slice_m_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
-    size_t                          numDotsDirectoryParts;
+    size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
     stlsoft_C_string_slice_m_t      entry;
     stlsoft_C_string_slice_m_t      stem;
     stlsoft_C_string_slice_m_t      extension;
@@ -201,6 +206,15 @@ unixstl_C_path_classify_m(
     );
 }
 
+/** Absolute in the UNIXSTL classification lattice: slash-rooted or
+ * home-rooted. On native Unix this is identical to
+ * \c unixstl_C_path_is_rooted (absolute ≡ rooted).
+ *
+ * Distinct from the coarse string predicate
+ * \c filesystem_traits<>::is_path_absolute / \c path_is_absolute, which
+ * under <code>_WIN32</code> uses Windows-shaped rules (UNC prefix or
+ * drive+separator) rather than this lattice.
+ */
 STLSOFT_INLINE
 STLSOFT_NS_QUAL(ss_truthy_t)
 unixstl_C_path_is_rooted(
@@ -291,7 +305,7 @@ path_classify(
 ,   T_results*              results
 )
 {
-    UNIXSTL_ASSERT(0 != path.size() || ss_nullptr_k != path.data());
+    UNIXSTL_ASSERT(0 == path.size() || ss_nullptr_k != path.data());
 
     return unixstl_C_path_classify(path.data(), path.size(), parseFlags, results);
 }
@@ -351,9 +365,9 @@ path_is_rooted(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS */
 

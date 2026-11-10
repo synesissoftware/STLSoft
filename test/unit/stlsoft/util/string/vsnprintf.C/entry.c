@@ -1,11 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/unit/stlsoft/util/string/vsnprintf.C/entry.c
  *
- * Purpose: C validation for `util/string/vsnprintf` (compiles header in a C translation unit).
+ * Purpose: C unit-tests for `stlsoft_C_vsnprintf` and `stlsoft_C_vsnwprintf`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
- * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
+ * Updated: 9th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,6 +18,8 @@
 #include <xtests/xtests.h>
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
+
+#include <stdarg.h>
 #include <stdlib.h>
 
 
@@ -26,7 +27,10 @@
  * forward declarations
  */
 
-static void TEST_compile_and_link(void);
+static void TEST_stlsoft_C_vsnprintf(void);
+#ifdef STLSOFT_vsnwprintf_SUPPORT
+static void TEST_stlsoft_C_vsnwprintf(void);
+#endif /* STLSOFT_vsnwprintf_SUPPORT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -42,7 +46,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_compile_and_link);
+        XTESTS_RUN_CASE(TEST_stlsoft_C_vsnprintf);
+#ifdef STLSOFT_vsnwprintf_SUPPORT
+        XTESTS_RUN_CASE(TEST_stlsoft_C_vsnwprintf);
+#endif /* STLSOFT_vsnwprintf_SUPPORT */
 
         XTESTS_PRINT_RESULTS();
 
@@ -57,10 +64,168 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-static void TEST_compile_and_link(void)
+#if defined(STLSOFT_COMPILER_IS_MSVC) && _MSC_VER >= 1400
+
+# define EXPECT_TRUNC_RETURN_(would_be, r)  TEST_INT_EQ(-1, (r))
+# define EXPECT_TRUNC_NUL_(buf, n)          TEST_CHAR_EQ('\0', (buf)[(n) - 1])
+
+#elif defined(STLSOFT_COMPILER_IS_MSVC)
+
+# define EXPECT_TRUNC_RETURN_(would_be, r)  TEST_INT_LT(0, (r))
+# define EXPECT_TRUNC_NUL_(buf, n)          ((void)(0))
+
+#else /* ? compiler */
+
+# define EXPECT_TRUNC_RETURN_(would_be, r)  TEST_INT_EQ((would_be), (r))
+# define EXPECT_TRUNC_NUL_(buf, n)          TEST_CHAR_EQ('\0', (buf)[(n) - 1])
+
+#endif /* compiler */
+
+
+static int call_vsnprintf(char* buf, size_t n, char const* fmt, ...)
 {
-    TEST_PASSED();
+    va_list args;
+    int     r;
+
+    va_start(args, fmt);
+
+    r = stlsoft_C_vsnprintf(buf, n, fmt, args);
+
+    va_end(args);
+
+    return r;
 }
+
+#ifdef STLSOFT_vsnwprintf_SUPPORT
+
+static int call_vsnwprintf(wchar_t* buf, size_t n, wchar_t const* fmt, ...)
+{
+    va_list args;
+    int     r;
+
+    va_start(args, fmt);
+
+    r = stlsoft_C_vsnwprintf(buf, n, fmt, args);
+
+    va_end(args);
+
+    return r;
+}
+#endif /* STLSOFT_vsnwprintf_SUPPORT */
+
+
+static void TEST_stlsoft_C_vsnprintf(void)
+{
+    {
+        char        buff[8] = { '~', '~', '~', '~', };
+        int const   r = call_vsnprintf(buff, 8, "%d", 123);
+
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+        TEST_CHAR_EQ('1', buff[0]);
+        TEST_CHAR_EQ('2', buff[1]);
+        TEST_CHAR_EQ('3', buff[2]);
+        TEST_CHAR_EQ('\0', buff[3]);
+    }
+
+    {
+        char        buff[4] = { '~', '~', '~', '~', };
+        int const   r = call_vsnprintf(buff, 4, "%s", "123");
+
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+        TEST_CHAR_EQ('\0', buff[3]);
+    }
+
+    {
+        char        buff[3] = { '~', '~', '~', };
+        int const   r = call_vsnprintf(buff, 3, "%s", "123");
+
+        XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
+        EXPECT_TRUNC_NUL_(buff, 3);
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || _MSC_VER >= 1400
+        TEST_CHAR_EQ('1', buff[0]);
+        TEST_CHAR_EQ('2', buff[1]);
+#endif
+    }
+
+    {
+        char        buff[1] = { '~', };
+        int const   r = call_vsnprintf(buff, 1, "%s", "123");
+
+        XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
+        EXPECT_TRUNC_NUL_(buff, 1);
+    }
+
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || _MSC_VER >= 1400
+    {
+        int const   r = call_vsnprintf(NULL, 0, "%s", "123");
+
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+    }
+#else
+    {
+        char        buff[1] = { '~', };
+        int const   r = call_vsnprintf(buff, 0, "%s", "123");
+
+        XTESTS_REQUIRE(TEST_INT_LT(0, r));
+        TEST_CHAR_EQ('~', buff[0]);
+    }
+#endif
+}
+
+#ifdef STLSOFT_vsnwprintf_SUPPORT
+
+static void TEST_stlsoft_C_vsnwprintf(void)
+{
+    {
+        wchar_t     buff[8] = { L'~', L'~', L'~', L'~', };
+        int const   r = call_vsnwprintf(buff, 8, L"%d", 123);
+
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+        TEST_INT_EQ(L'1', buff[0]);
+        TEST_INT_EQ(L'2', buff[1]);
+        TEST_INT_EQ(L'3', buff[2]);
+        TEST_INT_EQ(L'\0', buff[3]);
+    }
+
+    {
+        wchar_t     buff[4] = { L'~', L'~', L'~', L'~', };
+        int const   r = call_vsnwprintf(buff, 4, L"%s", L"123");
+
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+        TEST_INT_EQ(L'\0', buff[3]);
+    }
+
+    {
+        wchar_t     buff[3] = { L'~', L'~', L'~', };
+        int const   r = call_vsnwprintf(buff, 3, L"%s", L"123");
+
+        XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
+#if _MSC_VER >= 1400
+        TEST_INT_EQ(L'1', buff[0]);
+        TEST_INT_EQ(L'2', buff[1]);
+        TEST_INT_EQ(L'\0', buff[2]);
+#endif
+    }
+
+    {
+        wchar_t     buff[1] = { L'~', };
+        int const   r = call_vsnwprintf(buff, 1, L"%d", 123);
+
+        XTESTS_REQUIRE(EXPECT_TRUNC_RETURN_(3, r));
+#if _MSC_VER >= 1400
+        TEST_INT_EQ(L'\0', buff[0]);
+#endif
+    }
+
+#if _MSC_VER >= 1400
+    {
+        int const   r = call_vsnwprintf(NULL, 0, L"%s", L"123");
+
+        XTESTS_REQUIRE(TEST_INT_EQ(3, r));
+    }
+#endif
+}
+#endif /* STLSOFT_vsnwprintf_SUPPORT */
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -4,14 +4,14 @@
  * Purpose: Fast string concatenator.
  *
  * Created: 4th November 2003 (the time added to STLSoft libraries)
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Thanks:  Sean Kelly for picking up on my gratuitous use of pointers in
  *          the first implementation.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    11
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        156
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    12
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -688,7 +688,9 @@ inline fast_string_concatenator<S, C, T> operator +(C const lhs, fast_string_con
     return fast_string_concatenator<S, C, T>(lhs, rhs);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -699,9 +701,9 @@ inline fast_string_concatenator<S, C, T> operator +(C const lhs, fast_string_con
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR */
 

@@ -4,11 +4,11 @@
  * Purpose:     WinSTL multimedia stopwatch class.
  *
  * Created:     31st July 2002
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_MAJOR       5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_MINOR       0
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_REVISION    2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_EDIT        56
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_REVISION    3
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -236,7 +236,7 @@ multimedia_stopwatch::get_nanoseconds() const
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
+ * namespace
  */
 
 #ifndef WINSTL_NO_NAMESPACE
@@ -254,9 +254,9 @@ multimedia_stopwatch::get_nanoseconds() const
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH */
 

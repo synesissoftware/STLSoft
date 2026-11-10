@@ -4,7 +4,7 @@
  * Purpose: DECIMAL helper functions.
  *
  * Created: 23rd August 2008
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_REVISION    7
-# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        21
+# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_REVISION    8
+# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -299,7 +299,9 @@ DECIMAL_compare(
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -316,9 +318,9 @@ DECIMAL_compare(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_H_DECIMAL_FUNCTIONS */
 

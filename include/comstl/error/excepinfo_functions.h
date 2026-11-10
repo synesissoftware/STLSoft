@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/error/excepinfo_functions.h
+ * File:    comstl/error/excepinfo_functions.h
  *
- * Purpose:     EXCEPINFO functions.
+ * Purpose: EXCEPINFO functions.
  *
- * Created:     11th August 2007
- * Updated:     1st November 2026
+ * Created: 11th August 2007
+ * Updated: 9th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MINOR    0
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 9
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     16
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 10
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,7 +147,6 @@ EXCEPINFO_free(
 {
     comstl_C_EXCEPINFO_free(pxi);
 }
-
 #endif /* __cplusplus */
 
 
@@ -175,7 +174,9 @@ comstl_c_EXCEPINFO_free(
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -192,9 +193,9 @@ comstl_c_EXCEPINFO_free(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS */
 

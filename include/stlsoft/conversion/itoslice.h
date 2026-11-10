@@ -4,11 +4,11 @@
  * Purpose:     integer to string slice conversions.
  *
  * Created:     18th December 2016
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_EDIT     8
+# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_REVISION 3
+# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,7 +241,9 @@ stlsoft_C_lutoslice21_a(
     return stlsoft_C_lutoslice_a(value, &(*ar)[0], 21);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
@@ -252,9 +254,9 @@ stlsoft_C_lutoslice21_a(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

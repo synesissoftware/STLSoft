@@ -4,7 +4,7 @@
  * Purpose: Registry functions.
  *
  * Created: 20th November 1995
- * Updated: 15th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      66
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -177,7 +177,9 @@ reg_get_dword_value(
     return res;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -194,9 +196,9 @@ reg_get_dword_value(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_FUNCTIONS */
 

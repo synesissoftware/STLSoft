@@ -5,7 +5,7 @@
  *          form via string access shims.
  *
  * Created: 6th April 2005
- * Updated: 29th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   11
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       36
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   12
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -220,7 +220,9 @@ string_inserter(
     return make_string_insert_iterator(container);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -231,9 +233,9 @@ string_inserter(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR */
 

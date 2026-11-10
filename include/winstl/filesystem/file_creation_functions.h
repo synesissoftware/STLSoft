@@ -4,11 +4,11 @@
  * Purpose:     File creation functions.
  *
  * Created:     12th September 2005
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MAJOR      3
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       28
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1180,7 +1180,9 @@ file_truncate_existing(
 }
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -1197,9 +1199,9 @@ file_truncate_existing(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_H_FILE_CREATION_FUNCTIONS */
 

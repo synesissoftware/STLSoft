@@ -4,11 +4,11 @@
  * Purpose:     Definition of the has_const_iterator member type detector.
  *
  * Created:     19th November 1998
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR_REVISION  5
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR_EDIT      142
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR_REVISION  6
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR_EDIT      144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -132,7 +132,9 @@ struct has_const_iterator<void>
 
 # endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -143,9 +145,9 @@ struct has_const_iterator<void>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR */
 

@@ -5,7 +5,7 @@
  *          Registry Library.
  *
  * Created: 19th January 2002
- * Updated: 18th August 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MAJOR     4
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MINOR     0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_REVISION  6
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      74
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_REVISION  7
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -268,7 +268,9 @@ namespace registry_util
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -285,9 +287,9 @@ namespace registry_util
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
 

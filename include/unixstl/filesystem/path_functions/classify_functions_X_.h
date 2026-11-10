@@ -4,7 +4,7 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 21st December 2020
- * Updated: 29th October 2026
+ * Updated: 8th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -93,6 +93,20 @@ unixstl_C_path_classify_alwaysInvalidChars_X_(void)
 {
     typedef UNIXSTL_C_PATH_CLASSIFY_IMPL_char_t_             char_t;
 
+#ifdef _WIN32 /* Windows / UNIXem: Windows filename restrictions */
+    /*
+     * < (less than)
+     * > (greater than)
+     * | (vertical bar or pipe)
+     * ? (question mark)
+     * * (asterisk)
+     * " (double quote)
+     * NUL
+     *
+     * Also rejected separately (see classify_impl): :
+     *
+     * Not rejected here: / (separator); \ (also a separator under UNIXem)
+     */
     static char_t s_invalidCards[] =
     {
         '<'
@@ -104,23 +118,26 @@ unixstl_C_path_classify_alwaysInvalidChars_X_(void)
     ,   '\0'
     };
 
-    UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_  r = { STLSOFT_NUM_ELEMENTS(s_invalidCards), s_invalidCards };
+    UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_  r =
+    {
+        STLSOFT_NUM_ELEMENTS(s_invalidCards)
+    ,   s_invalidCards
+    };
+#else /* ? _WIN32 */
+    /* Native UNIX: only NUL is forbidden in a path component; '/' is the
+     * separator. Characters such as < > | ? * " : are legal in names.
+     */
+    static char_t s_invalidCards[] =
+    {
+        '\0'
+    };
 
-#if 0
-/*
-    < (less than)
-    > (greater than)
-    | (vertical bar or pipe)
-    ? (question mark)
-    * (asterisk)
-    " (double quote)
-    NUL
-
-    : (colon)
-    / (forward slash)
-    \ (backslash)
-*/
-#endif
+    UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_  r =
+    {
+        0
+    ,   s_invalidCards
+    };
+#endif /* _WIN32 */
 
     return r;
 }
@@ -159,9 +176,13 @@ unixstl_C_path_classify_root_X_(
 
     *pCchPrefix     =   0;
 
-    if ('/' == s0[0])
+    if ('/' == s0[0]
+#ifdef _WIN32 /* Windows / UNIXem: '\\' is also a root separator */
+    ||  '\\' == s0[0]
+#endif /* _WIN32 */
+        )
     {
-        /* "/" */
+        /* "/" (or "\\" under UNIXem) */
 
         return unixstl_C_PathType_SlashRooted;
     }
@@ -181,6 +202,9 @@ unixstl_C_path_classify_root_X_(
             switch (s0[1])
             {
             case '/':
+#ifdef _WIN32 /* Windows / UNIXem: '\\' after '~' */
+            case '\\':
+#endif /* _WIN32 */
 
                 *ppS1       =   s0 + 1;
                 *pCch1      =   cch0 - 1;
@@ -207,7 +231,6 @@ unixstl_C_path_classify_impl_X_(
     char_t const*                               s1;
     size_t                                      cch1;
     size_t                                      cchPrefix;
-    char_t const*                               invalidChar;
     unixstl_C_path_classification_t             rcRoot;
 #if 0
 #elif defined(STLSOFT_CF_gcc_pragma_diagnostic_pop)
@@ -261,8 +284,11 @@ unixstl_C_path_classify_impl_X_(
         return rcRoot;
     }
 
+#ifdef _WIN32 /* Windows / UNIXem: apply Windows invalid-character rules */
+
     if (0 == (UNIXSTL_PATH_CLASSIFY_F_IGNOREINVALIDCHARS & parseFlags))
     {
+        char_t const* invalidChar;
         UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_string_slice_X_t_ const alwaysInvalidChars = unixstl_C_path_classify_alwaysInvalidChars_X_();
 
         if (ss_nullptr_k != (invalidChar = UNIXSTL_C_PATH_CLASSIFY_IMPL_stlsoft_C_strnpbrkn_X_(s1, cch1, alwaysInvalidChars.ptr, alwaysInvalidChars.len)))
@@ -281,6 +307,7 @@ unixstl_C_path_classify_impl_X_(
             return unixstl_C_PathType_InvalidChars;
         }
     }
+#endif /* _WIN32 */
 
     {
         char_t const* const last    =   s1 + cch1;
@@ -288,7 +315,9 @@ unixstl_C_path_classify_impl_X_(
         char_t const*       p0;
         size_t              i;
 
+#ifdef _WIN32 /* Windows / UNIXem: '\\' is also a separator */
         char_t const*       lastBSlash  =   ss_nullptr_k;
+#endif /* _WIN32 */
         char_t const*       lastFSlash  =   ss_nullptr_k;
         char_t const*       lastSlash   =   ss_nullptr_k;
 
@@ -306,7 +335,9 @@ unixstl_C_path_classify_impl_X_(
         int const           checkRuns   =   0 == (UNIXSTL_PATH_CLASSIFY_F_IGNORESLASHRUNS & parseFlags);
         int                 runLength   =   0;
 
-        size_t              numParts    =   0;
+        size_t              numParts        =   0;
+        size_t              numDotsParts    =   0;
+        char_t const*       partStart       =   s1;
 
         for (i = 0, p0 = s1; i != cch1; ++i, ++p0)
         {
@@ -314,19 +345,49 @@ unixstl_C_path_classify_impl_X_(
             {
             case '.':
 
+                if (0 != runLength)
+                {
+                    partStart = p0;
+                }
+
                 lastDot = p0;
 
                 runLength = 0;
                 break;
             case '/':
+#ifdef _WIN32 /* Windows / UNIXem: '\\' is also a separator */
+
             case '\\':
 
                 *((*p0 == '\\') ? &lastBSlash : &lastFSlash) = p0;
+
+#else /* ? _WIN32 */
+
+                lastFSlash = p0;
+#endif /* _WIN32 */
 
                 lastDot = ss_nullptr_k;
 
                 if (0 == runLength)
                 {
+                    /* Completed a directory part (entry is not counted).
+                     * Count only exact "." / ".." components.
+                     */
+                    size_t const partLen = (size_t)(p0 - partStart);
+
+                    if (1 == partLen &&
+                        '.' == partStart[0])
+                    {
+                        ++numDotsParts;
+                    }
+                    else
+                    if (2 == partLen &&
+                        '.' == partStart[0] &&
+                        '.' == partStart[1])
+                    {
+                        ++numDotsParts;
+                    }
+
                     ++numParts;
                 }
                 else
@@ -344,12 +405,19 @@ unixstl_C_path_classify_impl_X_(
                 break;
             default:
 
+                if (0 != runLength)
+                {
+                    partStart = p0;
+                }
+
                 runLength = 0;
                 break;
             }
 
             prev = p0;
         }
+
+#ifdef _WIN32 /* Windows / UNIXem: '\\' is also a separator */
 
         if (ss_nullptr_k != lastBSlash)
         {
@@ -370,6 +438,7 @@ unixstl_C_path_classify_impl_X_(
             }
         }
         else
+#endif /* _WIN32 */
         {
             if (ss_nullptr_k != lastFSlash)
             {
@@ -435,7 +504,8 @@ unixstl_C_path_classify_impl_X_(
             }
         }
 
-        results->numDirectoryParts  =   numParts;
+        results->numDirectoryParts      =   numParts;
+        results->numDotsDirectoryParts  =   numDotsParts;
     }
 
     results->prefix.len =   cchPrefix;

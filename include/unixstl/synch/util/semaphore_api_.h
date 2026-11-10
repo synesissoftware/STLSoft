@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     16th January 2024
- * Updated:     11th March 2024
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__MINOR    0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__EDIT     3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__REVISION 2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -230,9 +230,9 @@ UNIXSTL_INTERNAL_SYNCH_POSIX_sem_wait(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API_ */
 

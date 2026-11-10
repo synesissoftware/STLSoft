@@ -4,11 +4,11 @@
  * Purpose:     Size determination.
  *
  * Created:     19th November 1998
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MINOR     0
-# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_REVISION  4
-# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      136
+# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_REVISION  5
+# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,9 @@ struct size_of<void>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -117,9 +119,9 @@ struct size_of<void>
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF */
 

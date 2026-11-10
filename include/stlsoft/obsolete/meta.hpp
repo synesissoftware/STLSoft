@@ -4,11 +4,11 @@
  * Purpose: Meta programming primitives.
  *
  * Created: 19th November 1998
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MAJOR    4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MINOR    0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 7
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     146
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 8
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     148
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -347,7 +347,9 @@ struct is_void
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -358,9 +360,9 @@ struct is_void
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_META */
 

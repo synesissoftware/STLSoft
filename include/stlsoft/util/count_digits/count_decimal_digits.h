@@ -4,11 +4,11 @@
  * Purpose: Functions for efficient counting of decimal digits in integers
  *
  * Created: 7th June 2011
- * Updated: 19th December 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_EDIT     16
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -379,9 +379,9 @@ count_decimal_digits(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

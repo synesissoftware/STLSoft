@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/sap_cast.hpp
+ * File:    stlsoft/conversion/sap_cast.hpp
  *
- * Purpose:     A cast operator function that casts between non void pointers of
- *              the same cv-qualification.
+ * Purpose: A cast operator function that casts between non void pointers of
+ *          the same cv-qualification.
  *
- * Created:     25th February 2004
- * Updated:     15th October 2026
+ * Created: 25th February 2004
+ * Updated: 9th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       62
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   9
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -183,7 +183,9 @@ inline TO sap_cast(FROM from)
 }
 #endif /* STLSOFT_NO_SAP_CAST */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -194,9 +196,9 @@ inline TO sap_cast(FROM from)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 

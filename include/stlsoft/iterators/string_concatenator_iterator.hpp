@@ -4,7 +4,7 @@
  * Purpose: string_concatenator_iterator class template.
  *
  * Created: 12th May 1998
- * Updated: 29th October 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    10
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        63
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    11
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -399,7 +399,9 @@ string_concatenator(
 #endif /* compiler */
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -410,9 +412,9 @@ string_concatenator(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR */
 

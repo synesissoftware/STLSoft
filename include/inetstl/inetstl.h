@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 26th October 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     585
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 7
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     587
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -142,7 +142,7 @@
 # define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1-beta2 (with STLSoft 1.10.1-beta10) */
 # define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1-beta3 (with STLSoft 1.10.1-beta26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
-# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1-alpha8) */
+# define _INETSTL_VER_1_4_2      0x010402FF  /*!< Version 1.4.2 (with STLSoft 1.11.1-alpha8) */
 # define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0-alpha1 (with STLSoft 1.11.1-beta2) */
 # define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0-alpha2 (with STLSoft 1.11.1-rc2) */
 # define _INETSTL_VER_1_5_0_A03  0x01050043  /*!< Version 1.5.0-alpha3 (with STLSoft 1.11.1-rc8) */
@@ -997,9 +997,9 @@ namespace inetstl = ::stlsoft::inetstl_project;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 

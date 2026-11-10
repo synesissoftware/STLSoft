@@ -4,11 +4,11 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 24th December 2024
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR    5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION 7
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT     91
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION 8
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1523,7 +1523,9 @@ format_message_free_buff(
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -1540,9 +1542,9 @@ format_message_free_buff(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS */
 

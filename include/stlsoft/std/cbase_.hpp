@@ -4,7 +4,7 @@
  * Purpose: Root header for the stlsoft::std::c namespace
  *
  * Created: 22nd April 2005
- * Updated: 19th October 2026
+ * Updated: 9th November 2026
  *
  * Thanks:  To Anton Sekeris for providing good advice on the naming scheme
  *          for the stlsoft/std headers
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MAJOR       1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MINOR       2
-# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__REVISION    4
-# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        24
+# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__REVISION    5
+# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,7 +94,9 @@ namespace std_impl
  * functions
  */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace std_impl
@@ -107,9 +109,9 @@ namespace std_impl
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STD_HPP_CBASE_ */
 

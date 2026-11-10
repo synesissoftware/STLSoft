@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/multiple_dispatch.hpp
+ * File:    atlstl/automation/multiple_dispatch.hpp
  *
- * Purpose:     A class template that makes the methods and properties exhibited
- *              through multiple IDispatch interfaces visible to script clients.
+ * Purpose: A class template that makes the methods and properties exhibited
+ *          through multiple IDispatch interfaces visible to script clients.
  *
- * Created:     15th May 2006
- * Updated:     15th October 2026
+ * Created: 15th May 2006
+ * Updated: 9th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   5
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       31
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   6
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -686,7 +686,9 @@ protected:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -703,9 +705,9 @@ protected:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH */
 

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 12th May 2003
- * Updated: 26th October 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    4
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     65
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 5
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -600,7 +600,9 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
  */
 #define wtlstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WTLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -618,9 +620,9 @@ namespace wtlstl = ::stlsoft::wtlstl_project;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

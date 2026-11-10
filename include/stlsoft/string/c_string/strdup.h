@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strdup() and stlsoft_C_wcsdup()
  *
  * Created: 1st November 2026
- * Updated: 1st November 2026
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRDUP_MAJOR     1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRDUP_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRDUP_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRDUP_EDIT      1
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRDUP_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRDUP_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -192,9 +192,9 @@ stlsoft_C_wcsdup(
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRDUP */
 

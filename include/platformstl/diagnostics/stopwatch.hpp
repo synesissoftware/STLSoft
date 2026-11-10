@@ -4,11 +4,11 @@
  * Purpose: Platform header for the stopwatch components.
  *
  * Created: 20th March 2005
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    3
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     29
+# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 3
+# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/diagnostics/stopwatch.hpp
@@ -165,9 +165,9 @@ namespace platformstl_project
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH */
 

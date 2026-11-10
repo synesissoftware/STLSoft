@@ -4,11 +4,11 @@
  * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    9
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        23
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    10
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -277,7 +277,9 @@ sapi_create(
     return comstl::co_create_instance(CLSID_SpVoice, voice);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -311,9 +313,9 @@ using ::comstl::SPF_UNUSED_FLAGS;
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !COMSTL_INCL_COMSTL_SPEECH_HPP_SAPI_UTIL */
 

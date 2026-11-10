@@ -4,11 +4,11 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     20th March 2025
+ * Updated:     9th November 2026
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_REVISION    5
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        18
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_REVISION    6
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,7 +124,9 @@ inline ss_uint64_t to_uint64(ss_uint64_t i)
     return i;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -135,9 +137,9 @@ inline ss_uint64_t to_uint64(ss_uint64_t i)
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL */
 

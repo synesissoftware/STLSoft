@@ -4,11 +4,11 @@
  * Purpose: Window function classes and predicates.
  *
  * Created: 19th January 2001
- * Updated: 20th March 2025
+ * Updated: 9th November 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   9
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       60
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   10
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -272,7 +272,9 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -289,9 +291,9 @@ private:
  * inclusion control
  */
 
-#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
-#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_FUNCTIONAL_HPP_WINDOW */
 
