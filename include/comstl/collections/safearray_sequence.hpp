@@ -4,7 +4,7 @@
  * Purpose: STL sequence for COM collection interfaces.
  *
  * Created: 17th April 2004
- * Updated: 9th November 2026
+ * Updated: 10th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     2
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  12
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      84
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -268,15 +268,19 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline /* static */ bool safearray_sequence<T>::type_is_compatible_(LPCSAFEARRAY array)
+inline
+/* static */ bool
+safearray_sequence<T>::type_is_compatible_(LPCSAFEARRAY array)
 {
     return sizeof(value_type) == array->cbElements;
 }
 
 template <ss_typename_param_k T>
-inline /* static */ DWORD safearray_sequence<T>::calc_size_(LPCSAFEARRAY array)
+inline
+/* static */ DWORD
+safearray_sequence<T>::calc_size_(LPCSAFEARRAY array)
 {
-    DWORD   cItems  =   1;
+    DWORD cItems = 1;
 
     for (USHORT dim = 0; dim < array->cDims; ++dim)
     {
@@ -301,65 +305,85 @@ safearray_sequence<T>::safearray_sequence(
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::const_iterator safearray_sequence<T>::begin() const
+inline
+ss_typename_type_ret_k safearray_sequence<T>::const_iterator
+safearray_sequence<T>::begin() const
 {
     return static_cast<pointer>(m_sa->pvData);
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::const_iterator safearray_sequence<T>::end() const
+inline
+ss_typename_type_ret_k safearray_sequence<T>::const_iterator
+safearray_sequence<T>::end() const
 {
     return static_cast<pointer>(m_sa->pvData) + size();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rbegin() const
+inline
+ss_typename_type_ret_k safearray_sequence<T>::const_reverse_iterator
+safearray_sequence<T>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rend() const
+inline
+ss_typename_type_ret_k safearray_sequence<T>::const_reverse_iterator
+safearray_sequence<T>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::iterator safearray_sequence<T>::begin()
+inline
+ss_typename_type_ret_k safearray_sequence<T>::iterator
+safearray_sequence<T>::begin()
 {
     return static_cast<pointer>(m_sa->pvData);
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::iterator safearray_sequence<T>::end()
+inline
+ss_typename_type_ret_k safearray_sequence<T>::iterator
+safearray_sequence<T>::end()
 {
     return static_cast<pointer>(m_sa->pvData) + size();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rbegin()
+inline
+ss_typename_type_ret_k safearray_sequence<T>::reverse_iterator
+safearray_sequence<T>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rend()
+inline
+ss_typename_type_ret_k safearray_sequence<T>::reverse_iterator
+safearray_sequence<T>::rend()
 {
     return reverse_iterator(begin());
 }
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k safearray_sequence<T>::size_type safearray_sequence<T>::size() const
+inline
+ss_typename_type_ret_k safearray_sequence<T>::size_type
+safearray_sequence<T>::size() const
 {
     return m_cItems;
 }
 
 template <ss_typename_param_k T>
-inline bool safearray_sequence<T>::empty() const
+inline
+bool
+safearray_sequence<T>::empty() const
 {
     return 0 == size();
 }
