@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/temporary_directory.hpp
+ * File:    winstl/system/temporary_directory.hpp
  *
- * Purpose:     Simple class that gets, and makes accessible, the Windows
- *              temporary directory.
+ * Purpose: Simple class that gets, and makes accessible, the Windows
+ *          temporary directory.
  *
- * Created:     27th July 2010
- * Updated:     9th November 2026
+ * Created: 27th July 2010
+ * Updated: 11th November 2026
  *
  * Thanks to:   Pablo Aguilar for requesting this component.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_DIRECTORY_MAJOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_DIRECTORY_MINOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_DIRECTORY_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_DIRECTORY_EDIT      19
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_DIRECTORY_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

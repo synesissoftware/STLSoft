@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/treeview_sequence.hpp
+ * File:    winstl/controls/treeview_sequence.hpp
  *
- * Purpose:     Contains the treeview sequence classes.
+ * Purpose: Contains the treeview sequence classes.
  *
- * Created:     1st December 2002
- * Updated:     9th November 2026
+ * Created: 1st December 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MINOR     0
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_REVISION  13
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      92
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

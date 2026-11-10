@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/path_functions.hpp
+ * File:    platformstl/filesystem/path_functions.hpp
  *
- * Purpose:     Path manipulation functions.
+ * Purpose: Path manipulation functions.
  *
- * Created:     12th June 2006
- * Updated:     9th November 2026
+ * Created: 12th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     23
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

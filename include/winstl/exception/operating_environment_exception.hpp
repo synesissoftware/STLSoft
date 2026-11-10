@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/exception/operating_environment_exception.hpp (formerly in stlsoft/exception/exceptions.hpp)
+ * File:    winstl/exception/operating_environment_exception.hpp (formerly in stlsoft/exception/exceptions.hpp)
  *
- * Purpose:     winstl::operating_environment_exception class
+ * Purpose: winstl::operating_environment_exception class
  *
- * Created:     13th May 2010
- * Updated:     9th November 2026
+ * Created: 13th May 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_MAJOR     2
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_MINOR     0
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_REVISION  2
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_EDIT      83
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

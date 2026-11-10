@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_DATE/FILETIME.hpp
+ * File:    winstl/shims/conversion/to_DATE/FILETIME.hpp
  *
- * Purpose:     winstl::to_DATE(FILETIME const&) overload.
+ * Purpose: winstl::to_DATE(FILETIME const&) overload.
  *
- * Created:     12th March 2007
- * Updated:     9th November 2026
+ * Created: 12th March 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_REVISION   8
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_EDIT       18
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

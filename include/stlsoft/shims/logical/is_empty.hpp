@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/logical/is_empty.hpp
+ * File:    stlsoft/shims/logical/is_empty.hpp
  *
- * Purpose:     Contains the is_empty attribute shim.
+ * Purpose: Contains the is_empty attribute shim.
  *
- * Created:     18th December 2006
- * Updated:     9th November 2026
+ * Created: 18th December 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR       2
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION    4
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT        16
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/home_directory.hpp
+ * File:    winstl/system/home_directory.hpp
  *
- * Purpose:     Simple class that gets, and makes accessible, the user's
- *              home directory.
+ * Purpose: Simple class that gets, and makes accessible, the user's
+ *          home directory.
  *
- * Created:     29th January 2013
- * Updated:     9th November 2026
+ * Created: 29th January 2013
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2013-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_HOME_DIRECTORY_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_HOME_DIRECTORY_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_HOME_DIRECTORY_REVISION   2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT       16
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/shims/conversion/to_uint64/stat.hpp
+ * File:    unixstl/shims/conversion/to_uint64/stat.hpp
  *
- * Purpose:     Contains the to_uint64 access shim overload for (struct stat).
+ * Purpose: Contains the to_uint64 access shim overload for (struct stat).
  *
- * Created:     1st April 2010
- * Updated:     9th November 2026
+ * Created: 1st April 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_CONVERSION_TO_UINT64_HPP_STAT_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_SHIMS_CONVERSION_TO_UINT64_HPP_STAT_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SHIMS_CONVERSION_TO_UINT64_HPP_STAT_REVISION   7
-# define UNIXSTL_VER_UNIXSTL_SHIMS_CONVERSION_TO_UINT64_HPP_STAT_EDIT       15
+# define UNIXSTL_VER_UNIXSTL_SHIMS_CONVERSION_TO_UINT64_HPP_STAT_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

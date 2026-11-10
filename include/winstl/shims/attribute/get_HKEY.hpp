@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/attribute/get_HKEY.hpp
+ * File:    winstl/shims/attribute/get_HKEY.hpp
  *
- * Purpose:     get_HKEY attribute shim.
+ * Purpose: get_HKEY attribute shim.
  *
- * Created:     1st June 2007
- * Updated:     9th November 2026
+ * Created: 1st June 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_MAJOR     1
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_MINOR     0
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_REVISION  6
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_EDIT      18
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HKEY_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

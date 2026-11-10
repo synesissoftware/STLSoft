@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/thread_mutex.hpp
+ * File:    platformstl/synch/thread_mutex.hpp
  *
- * Purpose:     Definition of the thread_mutex type.
+ * Purpose: Definition of the thread_mutex type.
  *
- * Created:     20th March 2005
- * Updated:     9th November 2026
+ * Created: 20th March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    5
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        31
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/thread_mutex.hpp

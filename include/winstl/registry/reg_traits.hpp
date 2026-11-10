@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_traits.hpp
+ * File:    winstl/registry/reg_traits.hpp
  *
- * Purpose:     Contains the reg_traits class template, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the reg_traits class template, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Created:     19th January 2002
- * Updated:     9th November 2026
+ * Created: 19th January 2002
+ * Updated: 11th November 2026
  *
  * Thanks to:   Sam Fisher for requesting reg_delete_tree().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     97
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

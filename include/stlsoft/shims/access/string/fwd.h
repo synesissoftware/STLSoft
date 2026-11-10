@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/fwd.h
+ * File:    stlsoft/shims/access/string/fwd.h
  *
- * Purpose:     Forward declarations for (C-string) string access shims c_str_ptr,
- *              c_str_ptr_null, c_str_data, c_str_len, c_str_size.
+ * Purpose: Forward declarations for (C-string) string access shims c_str_ptr,
+ *          c_str_ptr_null, c_str_data, c_str_len, c_str_size.
  *
- * Created:     11th April 2005
- * Updated:     9th November 2026
+ * Created: 11th April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_MINOR    0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_REVISION 9
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_EDIT     31
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

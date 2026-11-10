@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/path_parse_functions.h
+ * File:    winstl/filesystem/path_parse_functions.h
  *
- * Purpose:     Utility functions for path parsing.
+ * Purpose: Utility functions for path parsing.
  *
- * Created:     7th February 2002
- * Updated:     9th November 2026
+ * Created: 7th February 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_MAJOR      6
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_EDIT       74
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_EDIT       75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

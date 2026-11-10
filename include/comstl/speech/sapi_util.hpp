@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/speech/sapi_util.hpp (derived from Pantheios)
+ * File:    comstl/speech/sapi_util.hpp (derived from Pantheios)
  *
- * Purpose:     Definition of SAPI types and constants.
+ * Purpose: Definition of SAPI types and constants.
  *
- * Created:     31st August 2006
- * Updated:     9th November 2026
+ * Created: 31st August 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    10
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        25
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

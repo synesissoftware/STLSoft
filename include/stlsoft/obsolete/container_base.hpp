@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/container_base.hpp
+ * File:    stlsoft/obsolete/container_base.hpp
  *
- * Purpose:     Allocator commmon features.
+ * Purpose: Allocator commmon features.
  *
- * Created:     17th February 2004
- * Updated:     9th November 2026
+ * Created: 17th February 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_REVISION   5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       32
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

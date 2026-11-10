@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/performance/performance_counter_init.hpp
+ * File:    stlsoft/performance/performance_counter_init.hpp
  *
- * Purpose:     Performance counter initialising class.
+ * Purpose: Performance counter initialising class.
  *
- * Created:     30th July 2002
- * Updated:     9th November 2026
+ * Created: 30th July 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_MAJOR     5
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_MINOR     0
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_EDIT      50
+# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

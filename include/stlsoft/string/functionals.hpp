@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/functionals.hpp
+ * File:    stlsoft/string/functionals.hpp
  *
- * Purpose:     String function classes
+ * Purpose: String function classes
  *
- * Created:     22nd April 2005
- * Updated:     9th November 2026
+ * Created: 22nd April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    13
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        53
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_SYSTEMTIME.hpp
+ * File:    winstl/shims/conversion/to_SYSTEMTIME.hpp
  *
- * Purpose:     Includes all winstl::to_SYSTEMTIME conversion shims.
+ * Purpose: Includes all winstl::to_SYSTEMTIME conversion shims.
  *
- * Created:     15th December 2006
- * Updated:     9th November 2026
+ * Created: 15th December 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_SYSTEMTIME_MAJOR     1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_SYSTEMTIME_MINOR     1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_SYSTEMTIME_REVISION  6
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_SYSTEMTIME_EDIT      15
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_SYSTEMTIME_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

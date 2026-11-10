@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/std/utility.hpp (derived in part from stlsoft_simple_algorithms.h)
+ * File:    stlsoft/util/std/utility.hpp (derived in part from stlsoft_simple_algorithms.h)
  *
- * Purpose:     Contains equivalents to contents of std's <utility>.
+ * Purpose: Contains equivalents to contents of std's <utility>.
  *
- * Created:     17th January 2002
- * Updated:     9th November 2026
+ * Created: 17th January 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MAJOR     3
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MINOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_REVISION  5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      84
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

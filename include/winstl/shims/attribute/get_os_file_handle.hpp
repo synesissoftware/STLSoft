@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/attribute/get_os_file_handle.hpp
+ * File:    winstl/shims/attribute/get_os_file_handle.hpp
  *
- * Purpose:     Contains classes and functions for dealing with (Windows)
- *              operating system-specific file handles.
+ * Purpose: Contains classes and functions for dealing with (Windows)
+ *          operating system-specific file handles.
  *
- * Created:     27th August 2010
- * Updated:     9th November 2026
+ * Created: 27th August 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_OS_FILE_HANDLE_MAJOR     1
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_OS_FILE_HANDLE_MINOR     0
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_OS_FILE_HANDLE_REVISION  5
-# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_OS_FILE_HANDLE_EDIT      11
+# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_OS_FILE_HANDLE_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

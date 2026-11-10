@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/resource_id.hpp
+ * File:    winstl/conversion/resource_id.hpp
  *
- * Purpose:     Shim type for conversion between integer and c-string resource
- *              identifiers.
+ * Purpose: Shim type for conversion between integer and c-string resource
+ *          identifiers.
  *
- * Created:     11th April 2005
- * Updated:     9th November 2026
+ * Created: 11th April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MAJOR     2
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MINOR     0
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_REVISION  5
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      30
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

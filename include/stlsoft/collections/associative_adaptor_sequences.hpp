@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/associative_adaptor_sequences.hpp
+ * File:    stlsoft/collections/associative_adaptor_sequences.hpp
  *
- * Purpose:     Include file for all associative sequences.
+ * Purpose: Include file for all associative sequences.
  *
- * Created:     28th January 2005
- * Updated:     9th November 2026
+ * Created: 28th January 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MAJOR    2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_REVISION 5
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     27
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,23 +1,23 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/filesystem/searchspec_sequence.hpp
+ * File:    inetstl/filesystem/searchspec_sequence.hpp
  *
- * Purpose:     Contains the searchspec_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the searchspec_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Notes:       1. The original implementation of the class had the const_iterator
- *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
- *              6 both had either compilation or linking problems so these are
- *              regretably now implemented as independent classes.
+ * Notes:   1. The original implementation of the class had the const_iterator
+ *          and value_type as nested classes. Unfortunately, Visual C++ 5 &
+ *          6 both had either compilation or linking problems so these are
+ *          regretably now implemented as independent classes.
  *
  *              2. This class was described in detail in the article
  *              "Adapting Windows Enumeration Models to STL Iterator Concepts"
  *              (http://www.windevnet.com/documents/win0303a/), in the March
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
- * Created:     1st May 2004
- * Updated:     9th November 2026
+ * Created: 1st May 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -66,7 +66,7 @@
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR      5
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR      1
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION   13
-# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       75
+# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

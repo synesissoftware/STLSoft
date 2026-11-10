@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/functional/equal_ptr.hpp
+ * File:    stlsoft/functional/equal_ptr.hpp
  *
- * Purpose:     Definition of stlsoft::equal_ptr predicate class.
+ * Purpose: Definition of stlsoft::equal_ptr predicate class.
  *
- * Created:     7th November 2004
- * Updated:     9th November 2026
+ * Created: 7th November 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_MAJOR     3
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_MINOR     0
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_REVISION  7
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_EDIT      38
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/error/throw_policies.hpp (formerly platformstl/error/exceptions.hpp)
+ * File:    platformstl/error/throw_policies.hpp (formerly platformstl/error/exceptions.hpp)
  *
- * Purpose:     Exception throwing policy classes.
+ * Purpose: Exception throwing policy classes.
  *
- * Created:     20th March 2005
- * Updated:     9th November 2026
+ * Created: 20th March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR     3
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR     0
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION  4
-# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      32
+# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/exception/throw_policies.hpp

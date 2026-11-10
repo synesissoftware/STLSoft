@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/diagnostics/threadtimes_stopwatch.hpp (formerly winstl::threadtimes_counter, winstl/performance/threadtimes_counter.hpp)
+ * File:    winstl/diagnostics/threadtimes_stopwatch.hpp (formerly winstl::threadtimes_counter, winstl/performance/threadtimes_counter.hpp)
  *
- * Purpose:     WinSTL thread-time stopwatch class.
+ * Purpose: WinSTL thread-time stopwatch class.
  *
- * Created:     22nd March 2002
- * Updated:     9th November 2026
+ * Created: 22nd March 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_MINOR      0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_REVISION   3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_EDIT       65
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_EDIT       66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

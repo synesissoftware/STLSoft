@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/elicitation_functions.h
+ * File:    winstl/time/elicitation_functions.h
  *
- * Purpose:     Elicitation functions for Windows time structures.
+ * Purpose: Elicitation functions for Windows time structures.
  *
- * Created:     26th May 2014
- * Updated:     9th November 2026
+ * Created: 26th May 2014
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        15
+# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/get_synch_handle.hpp
+ * File:    mfcstl/shims/attribute/get_synch_handle.hpp
  *
- * Purpose:     Contains classes and functions for dealing with Win32 handles.
+ * Purpose: Contains classes and functions for dealing with Win32 handles.
  *
- * Created:     24th December 2006
- * Updated:     9th November 2026
+ * Created: 24th December 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       2
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    5
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        24
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

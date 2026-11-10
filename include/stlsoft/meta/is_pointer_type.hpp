@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_pointer_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/is_pointer_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Tests whether a type is a pointer.
+ * Purpose: Tests whether a type is a pointer.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_REVISION    5
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_EDIT        134
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_EDIT        135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -3,6 +3,8 @@
 
 ## 1.11.9 - 12th November 2026
 
+* layout:
+  * wholesale canonicalisation of header-block indents;
 
 
 ## 1.11.8 - 10th November 2026

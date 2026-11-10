@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/external_iterator_invalidation.hpp
+ * File:    stlsoft/error/external_iterator_invalidation.hpp
  *
- * Purpose:     An exception thrown when an active end iterator is exhausted.
+ * Purpose: An exception thrown when an active end iterator is exhausted.
  *
- * Created:     13th January 2006
- * Updated:     9th November 2026
+ * Created: 13th January 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_REVISION  6
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_EDIT      24
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/exception/winstl_exception.hpp (formerly in winstl/error/exceptions.hpp)
+ * File:    winstl/exception/winstl_exception.hpp (formerly in winstl/error/exceptions.hpp)
  *
- * Purpose:     winstl::winstl_exception class
+ * Purpose: winstl::winstl_exception class
  *
- * Created:     19th June 2004
- * Updated:     9th November 2026
+ * Created: 19th June 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION_MAJOR     5
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION_MINOR     3
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION_REVISION  2
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION_EDIT      83
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

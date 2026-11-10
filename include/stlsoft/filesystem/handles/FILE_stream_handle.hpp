@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/filesystem/handles/FILE_stream_handle.hpp
+ * File:    stlsoft/filesystem/handles/FILE_stream_handle.hpp
  *
- * Purpose:     Handle::Ref+Wrapper handle-adapter class template for FILE
- *              streams.
+ * Purpose: Handle::Ref+Wrapper handle-adapter class template for FILE
+ *          streams.
  *
- * Created:     31st May 2009
- * Updated:     9th November 2026
+ * Created: 31st May 2009
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HANDLES_HPP_FILE_STREAM_HANDLE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HANDLES_HPP_FILE_STREAM_HANDLE_MINOR    0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HANDLES_HPP_FILE_STREAM_HANDLE_REVISION 11
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HANDLES_HPP_FILE_STREAM_HANDLE_EDIT     26
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HANDLES_HPP_FILE_STREAM_HANDLE_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

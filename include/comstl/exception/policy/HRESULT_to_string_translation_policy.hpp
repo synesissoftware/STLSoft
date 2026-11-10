@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/exception/policy/HRESULT_to_string_translation_policy.hpp
+ * File:    comstl/exception/policy/HRESULT_to_string_translation_policy.hpp
  *
- * Purpose:     comstl::HRESULT_to_string_translation_policy
- *              policy class
+ * Purpose: comstl::HRESULT_to_string_translation_policy
+ *          policy class
  *
- * Created:     8th January 2017
- * Updated:     9th November 2026
+ * Created: 8th January 2017
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_MAJOR      1
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_MINOR      0
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_REVISION   2
-# define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_EDIT       7
+# define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/warnings/pop/nothrow_throws_.h
+ * File:    stlsoft/internal/warnings/pop/nothrow_throws_.h
  *
- * Purpose:     Pops warning suppression for "throwing an exception from a
- *              function marked nothrow()".
+ * Purpose: Pops warning suppression for "throwing an exception from a
+ *          function marked nothrow()".
  *
- * Created:     18th November 2008
- * Updated:     26th December 2020
+ * Created: 18th November 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/util/features.h
+ * File:    platformstl/synch/util/features.h
  *
- * Purpose:     Discrimination of synchronisation features.
+ * Purpose: Discrimination of synchronisation features.
  *
- * Created:     15th January 2007
- * Updated:     9th November 2026
+ * Created: 15th January 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_REVISION 5
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_EDIT     16
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

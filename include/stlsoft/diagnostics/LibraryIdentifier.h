@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/diagnostics/LibraryIdentifier.h
+ * File:    stlsoft/diagnostics/LibraryIdentifier.h
  *
- * Purpose:     Definition of the LibraryIdentifier enumeration.
+ * Purpose: Definition of the LibraryIdentifier enumeration.
  *
- * Created:     12th May 2012
- * Updated:     9th November 2026
+ * Created: 12th May 2012
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_LIBRARYIDENTIFIER_MAJOR      1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_LIBRARYIDENTIFIER_MINOR      0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_LIBRARYIDENTIFIER_REVISION   3
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_LIBRARYIDENTIFIER_EDIT       8
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_LIBRARYIDENTIFIER_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/detector/has_iterator.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/detector/has_iterator.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Definition of the has_iterator member type detector.
+ * Purpose: Definition of the has_iterator member type detector.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_REVISION    6
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_EDIT        143
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_EDIT        144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

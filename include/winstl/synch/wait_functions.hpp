@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/wait_functions.hpp
+ * File:    winstl/synch/wait_functions.hpp
  *
- * Purpose:     Definition of the winstl::wait_for_multiple_objects()
- *              function template suite
+ * Purpose: Definition of the winstl::wait_for_multiple_objects()
+ *          function template suite
  *
- * Created:     30th May 2006
- * Updated:     9th November 2026
+ * Created: 30th May 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    11
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        30
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

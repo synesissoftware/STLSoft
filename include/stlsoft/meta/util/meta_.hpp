@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/util/meta_.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/util/meta_.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Basic meta programming constructs.
+ * Purpose: Basic meta programming constructs.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MAJOR      4
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MINOR      1
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__REVISION   5
-# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       142
+# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       143
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

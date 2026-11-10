@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/exception/throw_policies.hpp (formerly comstl/error/exceptions.hpp)
+ * File:    comstl/exception/throw_policies.hpp (formerly comstl/error/exceptions.hpp)
  *
- * Purpose:     COM-related exception classes, and their policy classes
+ * Purpose: COM-related exception classes, and their policy classes
  *
- * Created:     8th December 2004
- * Updated:     9th November 2026
+ * Created: 8th December 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR       3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR       0
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION    4
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT        60
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

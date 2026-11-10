@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/add_qualifier.hpp
+ * File:    stlsoft/meta/add_qualifier.hpp
  *
- * Purpose:     Adds a const or volatile qualifier to a type.
+ * Purpose: Adds a const or volatile qualifier to a type.
  *
- * Created:     30th December 2005
- * Updated:     9th November 2026
+ * Created: 30th December 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_REVISION    6
-# define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_EDIT        25
+# define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

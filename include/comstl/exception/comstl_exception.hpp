@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/exception/comstl_exception.hpp (formerly comstl/error/exceptions.hpp)
+ * File:    comstl/exception/comstl_exception.hpp (formerly comstl/error/exceptions.hpp)
  *
- * Purpose:     comstl::comstl_exception class
+ * Purpose: comstl::comstl_exception class
  *
- * Created:     8th December 2004
- * Updated:     9th November 2026
+ * Created: 8th December 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_MAJOR     3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_MINOR     2
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_REVISION  3
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_EDIT      62
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

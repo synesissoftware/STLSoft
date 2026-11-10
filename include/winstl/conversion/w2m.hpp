@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/w2m.hpp
+ * File:    winstl/conversion/w2m.hpp
  *
- * Purpose:     Type conversions for Windows.
+ * Purpose: Type conversions for Windows.
  *
- * Created:     2nd September 2008
- * Updated:     9th November 2026
+ * Created: 2nd September 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_MAJOR    1
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_MINOR    0
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_REVISION 4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_EDIT     15
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

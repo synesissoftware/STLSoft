@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/detector/has_sentry.hpp
+ * File:    stlsoft/meta/detector/has_sentry.hpp
  *
- * Purpose:     Definition of the has_sentry member type detector.
+ * Purpose: Definition of the has_sentry member type detector.
  *
- * Created:     16th February 2024
- * Updated:     9th November 2026
+ * Created: 16th February 2024
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_MAJOR     1
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_REVISION  2
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_EDIT      4
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

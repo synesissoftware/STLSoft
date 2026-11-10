@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_creation_functions.h
+ * File:    winstl/filesystem/file_creation_functions.h
  *
- * Purpose:     File creation functions.
+ * Purpose: File creation functions.
  *
- * Created:     12th September 2005
- * Updated:     9th November 2026
+ * Created: 12th September 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MAJOR      3
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       30
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

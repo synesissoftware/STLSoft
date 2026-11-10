@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/outer_initialiser.hpp
+ * File:    stlsoft/obsolete/outer_initialiser.hpp
  *
- * Purpose:     Contains the outer_initialiser template class.
+ * Purpose: Contains the outer_initialiser template class.
  *
- * Created:     9th July 2004
- * Updated:     9th November 2026
+ * Created: 9th July 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MAJOR       3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MINOR       2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_REVISION    5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_EDIT        39
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
