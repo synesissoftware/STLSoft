@@ -5,7 +5,7 @@
  *          fixed_array_4d template classes.
  *
  * Created: 4th August 1998
- * Updated: 9th November 2026
+ * Updated: 11th November 2026
  *
  * Thanks:  Neal Becker for suggesting the uninitialised mode, requesting
  *          the function call operator, and for requesting the
@@ -61,10 +61,10 @@
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   15
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       212
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR       4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR       9
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION    15
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT        213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
