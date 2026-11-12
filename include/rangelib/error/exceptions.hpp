@@ -190,17 +190,19 @@ private:
 };
 
 /** Indicates that an operation requiring non-empty range was invoked on an
- *  empty range.
+ * empty range.
+ *
+ * \note This exception type represents a Programmer Error (as opposed to a
+ *   valid Runtime Condition).
  *
  * \ingroup group__library__Exception
- *
  */
 class empty_range_exception
     : public range_exception
 {
 public:
-    typedef range_exception         parent_class_type;
-    typedef empty_range_exception  class_type;
+    typedef range_exception                                 parent_class_type;
+    typedef empty_range_exception                           class_type;
 
 /// \name Construction
 /// @{

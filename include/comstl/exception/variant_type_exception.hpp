@@ -101,10 +101,13 @@ namespace comstl_project
 
 /** Indicates variant type mismatches.
  *
- * \ingroup group__library__Exception
+ * \note This exception type represents a Programmer Error (as opposed to a
+ *   valid Runtime Condition).
  *
  * \note This is thrown by comstl::safearray_sequence on variant type
  *   mismatches.
+ *
+ * \ingroup group__library__Exception
  */
 class variant_type_exception
     : public comstl_exception

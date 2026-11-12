@@ -239,6 +239,9 @@ private:
 
 /** Indicates an invalid calling convention specifier.
  *
+ * \note This exception type represents a Programmer Error (as opposed to a
+ *   valid Runtime Condition).
+ *
  * \ingroup group__library__DL
  */
 class invalid_calling_convention_exception

@@ -130,6 +130,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] Terminology:
   * [ ] "file-system" => "filesystem";
   * [ ] . . .;
+* [ ] `cbegin()` / `cend()` / `crbegin()` / `crend()` wherever missing;
 
 
 ### 1.11.10
