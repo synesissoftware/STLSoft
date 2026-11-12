@@ -4,7 +4,7 @@
  * Purpose: Helper for accessing version information.
  *
  * Created: 16th February 1998
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 21
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     161
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     162
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -729,7 +729,7 @@ public: // accessors
     /// The StringFileInfo part of the block
     VsStringFileInfo    StringFileInfo() const;
 
-private: // implemementation
+private: // implementation
     static mem_block_type_ const        retrieve_module_info_block_(ws_char_a_t const* moduleName);
 
     static mem_block_type_ const        retrieve_module_info_block_(ws_char_w_t const* moduleName);
@@ -742,7 +742,6 @@ private: // implemementation
 
     static WORD const*                  calc_children_(VS_FIXEDFILEINFO const* ffi);
 
-private: // implementation
     void init_();
 
 private: // fields

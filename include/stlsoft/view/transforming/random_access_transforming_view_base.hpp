@@ -4,7 +4,7 @@
  * Purpose: Contains the random_access_transforming_view_base class template.
  *
  * Created: 4th January 2010
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_MINOR       1
 # define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_REVISION    5
-# define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_EDIT        21
+# define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,7 +118,7 @@ template<
 >
 class random_access_transforming_view_base
 {
-public: // Member Types
+public: // types
     typedef T_derived                                       derived_type;
     typedef T_value                                         value_type;
     typedef T_randomAccessSourceIterator                    source_iterator_type;
@@ -267,12 +267,11 @@ public: // Member Types
             return distance(rhs);
         }
 
-    // Members
-    private:
+    private: // fields
         source_iterator_type    m_iterator;
     };
 
-public: // Construction
+public: // construction
     random_access_transforming_view_base(source_iterator_type from, source_iterator_type to)
         : m_from(from)
         , m_to(to)
@@ -284,7 +283,7 @@ public: // Construction
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-public: // Iteration
+public: // iteration
     const_iterator  begin() const
     {
         return const_iterator(m_from);
@@ -294,7 +293,7 @@ public: // Iteration
         return const_iterator(m_to);
     }
 
-public: // Size
+public: // size
     size_type size() const
     {
         return m_to - m_from;
@@ -313,7 +312,7 @@ public: // Size
         return sequence_type::create_value(m_from + index);
     }
 
-public: // Utility
+public: // utility
     static value_type create_value(source_iterator_type iterator)
     {
         return derived_type::create_value(*iterator);

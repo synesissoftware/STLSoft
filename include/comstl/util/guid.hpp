@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/guid.hpp (originally MOGuidGn.h/.cpp, ::SynesisCom)
+ * File:    comstl/util/guid.hpp (originally MOGuidGn.h/.cpp, ::SynesisCom)
  *
- * Purpose:     guid class.
+ * Purpose: guid class.
  *
- * Created:     10th May 2000
- * Updated:     9th November 2026
+ * Created: 10th May 2000
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   12
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       68
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ namespace comstl_project
  */
 class guid
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef guid            class_type;
@@ -226,7 +226,7 @@ public:
     void swap(class_type& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     GUID    m_guid;

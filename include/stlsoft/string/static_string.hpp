@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      235
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      236
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -176,7 +176,7 @@ class basic_static_string
 private:
     enum { internalSize = V_internalSize };
 
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -727,7 +727,7 @@ private:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_buffer[internalSize + 1];

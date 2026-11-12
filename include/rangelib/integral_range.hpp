@@ -4,7 +4,7 @@
  * Purpose: Integral range class.
  *
  * Created: 4th November 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 13
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     75
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -258,7 +258,7 @@ template<   ss_typename_param_k T
 class integral_range
     : public notional_range_tag
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef T                                               value_type;

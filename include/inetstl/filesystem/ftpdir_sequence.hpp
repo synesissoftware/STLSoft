@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/filesystem/ftpdir_sequence.hpp
+ * File:    inetstl/filesystem/ftpdir_sequence.hpp
  *
- * Purpose:     Contains the basic_ftpdir_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_ftpdir_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Created:     18th January 2006
- * Updated:     9th November 2026
+ * Created: 18th January 2006
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MAJOR      2
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MINOR      1
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_REVISION   10
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       46
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -226,7 +226,7 @@ public:
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
-/// \name Element access
+/// \name Element Access
 /// @{
 public:
     const_reference operator [](size_type index) const
@@ -271,7 +271,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     values_type_    m_values;

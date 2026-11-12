@@ -4,7 +4,7 @@
  * Purpose: pipe class, based on Windows anonymous pipe.
  *
  * Created: 19th June 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  iceboy for reporting a defect in close_write()
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     60
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -210,7 +210,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HANDLE  m_hReadHandle;

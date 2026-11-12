@@ -128,6 +128,9 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] All precondition enforcements => \pre;
 * [ ] All \pre => precondition enforcements;
+* [ ] Terminology:
+  * [ ] "file-system" => "filesystem";
+  * [ ] . . .;
 
 
 ### 1.11.10

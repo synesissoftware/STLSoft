@@ -4,7 +4,7 @@
  * Purpose: Random number range class.
  *
  * Created: 31st May 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   11
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       47
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -132,7 +132,7 @@ namespace rangelib_project
 class random_range
     : public notional_range_tag
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef int                 value_type;

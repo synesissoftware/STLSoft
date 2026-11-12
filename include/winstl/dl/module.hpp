@@ -4,7 +4,7 @@
  * Purpose: Contains the dl_module class.
  *
  * Created: 30th October 1997
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      7
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   3
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       259
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       260
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -245,7 +245,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Static operations
+/// \name Static Operations
 /// @{
 public:
     /// Loads the named module, returning its handle, which the
@@ -332,7 +332,7 @@ public:
     module_handle_type detach();
 /// @}
 
-/// \name Lookup Operations
+/// \name Lookup
 /// @{
 public:
     /// Looks up a named symbol.
@@ -417,7 +417,7 @@ private:
     ) /* STLSOFT_NOEXCEPT */;
 /// @}
 
-/// \name Member Variables
+/// \name Fields
 /// @{
 private:
     module_handle_type                  m_hmodule;

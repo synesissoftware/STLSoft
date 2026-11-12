@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/transform_iterator.hpp
+ * File:    stlsoft/iterators/transform_iterator.hpp
  *
- * Purpose:     An iterator adaptor that uses a unary function object to
- *              transform the values from the iterator's underlying
- *              sequence.
+ * Purpose: An iterator adaptor that uses a unary function object to
+ *          transform the values from the iterator's underlying
+ *          sequence.
  *
- * Created:     6th February 1999
- * Updated:     9th November 2026
+ * Created: 6th February 1999
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  7
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      139
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -376,7 +376,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     typedef shared_ptr<value_type>    value_type_ptr_type_;

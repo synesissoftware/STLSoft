@@ -4,7 +4,7 @@
  * Purpose: Contains classes for initialising COM/OLE.
  *
  * Created: 8th February 1999
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -57,7 +57,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   13
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       103
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -285,7 +285,7 @@ public:
     HRESULT get_HRESULT() const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HRESULT const   m_hr;

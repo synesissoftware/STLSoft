@@ -4,7 +4,7 @@
  * Purpose: Z-order iteration.
  *
  * Created: 11th July 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  14
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      64
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,7 +201,7 @@ class zorder_iterator_tmpl
 ,   HWND    // By-Value Temporary reference: This has to be non-void, otherwise reverse_iterator::operator *() will return void
 >
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef T                                               traits_type;
@@ -273,7 +273,7 @@ private:
     ) /* throw(stlsoft::external_iterator_invalidation) */;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND    m_hwndRoot;

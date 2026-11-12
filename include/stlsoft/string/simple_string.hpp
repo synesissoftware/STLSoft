@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      289
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      290
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -631,7 +631,7 @@ private:
     static void                 destroy_buffer_(string_buffer*) STLSOFT_NOEXCEPT;
     static void                 destroy_buffer_(char_type*) STLSOFT_NOEXCEPT;
 
-    // Iteration
+    // iteration
     pointer                     begin_() STLSOFT_NOEXCEPT;
     pointer                     end_() STLSOFT_NOEXCEPT;
 
@@ -748,7 +748,7 @@ private:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     member_pointer  m_buffer;

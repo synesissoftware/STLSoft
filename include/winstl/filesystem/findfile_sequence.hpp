@@ -18,7 +18,7 @@
  *          ownership issues described in the article.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
  *          when writing books about good design/implementation; to Florin L
@@ -73,7 +73,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       12
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        278
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        279
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -363,7 +363,7 @@ public:
     static size_type    max_size();
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     char_type const         m_delim;
@@ -541,7 +541,7 @@ public:
     ws_bool_t               equal(class_type const& rhs) const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     friend class basic_findfile_sequence_const_input_iterator<C, T, class_type>;
@@ -603,7 +603,7 @@ private:
     >                                                       buffer_type_;
 /// @}
 
-/// \name Utility classes
+/// \name Utility Classes
 /// @{
 private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -616,7 +616,7 @@ private:
         typedef HANDLE                                      handle_type;
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     public:
         handle_type     hSrch;
@@ -720,7 +720,7 @@ private:
     );
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     friend class basic_findfile_sequence<C, T>;

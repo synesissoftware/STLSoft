@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -70,7 +70,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  15
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      138
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -249,7 +249,7 @@ public:
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     buffer_type m_buffer;
@@ -409,7 +409,7 @@ private:
     static hkey_type    dup_key_(hkey_type hkey, REGSAM accessMask/* , result_type *res */);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type             m_name;             // The name of the value
