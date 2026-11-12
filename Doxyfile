@@ -25,6 +25,11 @@ FILE_PATTERNS          = *.h \
                          *.md
 RECURSIVE              = YES
 
+# Source is written in Simplified Group Form (SGF); the filter presents
+# Full Group Form (FGF) to Doxygen, preserving line numbers. Paths are
+# relative to the project root, from which generate_doxygen.sh runs.
+INPUT_FILTER           = "ruby .dev/bin/convert-doxy-groups.rb --to-fgf --mode line-preserving --warn-only"
+
 USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
 
 EXAMPLE_PATH           = examples

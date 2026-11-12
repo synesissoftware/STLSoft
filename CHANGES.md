@@ -3,6 +3,12 @@
 
 ## 1.11.9 - 12th November 2026
 
+* documentation:
+  * **strategy/DOXYGEN_GROUPS.md** defines the Full Group Form (FGF) and Simplified Group Form (SGF) of member groups in aggregate types;
+  * **.dev/bin/convert-doxy-groups.rb** converts between FGF and SGF (`--to-sgf` / `--to-fgf`, with `expansive` and `line-preserving` modes) and validates SGF group names (`--validate`, with optional `--fix`), with `--allow-sgf-triple-exemptions` for unmapped labels written as `/// Title`, and is the **Doxyfile** `INPUT_FILTER` so that Doxygen processes FGF while the source is written in SGF;
+  * **.dev/config/doc/group-section-mappings.PSV** maps FGF titles to a canonical SGF name and any SGF aliases;
+* testing:
+  * **.dev/test/unit/test_convert-doxy-groups.rb** covers **convert-doxy-groups.rb**;
 
 
 ## 1.11.8 - 10th November 2026
