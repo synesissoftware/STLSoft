@@ -14,7 +14,7 @@
  *          basic_reg_value_sequence).
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -65,7 +65,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 17
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     154
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -352,7 +352,7 @@ private:
     static hkey_type                dup_key_(hkey_type hkey, REGSAM accessMask/* , result_type *result */);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     hkey_type       m_hkey;
@@ -519,7 +519,7 @@ private:
     static index_type sentinel_() STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     registry_util::shared_handle*   m_handle;       // Shared context for registry key and event object

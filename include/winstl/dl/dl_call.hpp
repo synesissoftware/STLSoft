@@ -4,7 +4,7 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  12
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      80
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -179,7 +179,7 @@ namespace winstl_project
 class missing_entry_point_exception
     : public winstl_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent class type
@@ -244,7 +244,7 @@ private:
 class invalid_calling_convention_exception
     : public winstl_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent class type
@@ -303,7 +303,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type const   m_ccs;
@@ -550,7 +550,7 @@ public:
     {};
 /// @}
 
-/// \name Implementation functions
+/// \name Implementation
 /// @{
 public:
     template <ss_typename_param_k T_function>

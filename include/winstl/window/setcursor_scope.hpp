@@ -4,7 +4,7 @@
  * Purpose: Cursor scoping class.
  *
  * Created: 12th May 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_REVISION   10
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_EDIT       64
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -172,7 +172,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HCURSOR m_hcurLast;

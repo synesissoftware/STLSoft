@@ -4,7 +4,7 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     44
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -230,7 +230,7 @@ private:
     static flags_type   translate_flags_(flags_type flags);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     underlying_sequence_type const  m_ffs;
@@ -251,7 +251,7 @@ class readdir_sequence::const_iterator
                                         ,   readdir_sequence::value_type
                                         >
 {
-/// \name Members
+/// \name Fields
 /// @{
 public:
     /// The class type
@@ -342,7 +342,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     underlying_sequence_const_iterator_type m_it;

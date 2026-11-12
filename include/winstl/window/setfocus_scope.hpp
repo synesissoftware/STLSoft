@@ -4,7 +4,7 @@
  * Purpose: Cursor scoping class.
  *
  * Created: 4th May 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_REVISION   9
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_EDIT       60
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,7 +144,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND    m_hwndFocus;

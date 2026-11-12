@@ -4,7 +4,7 @@
  * Purpose: STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created: 17th September 1998
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Eduardo Bezerra and Vivi Orunitia for reporting
  *          incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -59,7 +59,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 16
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     282
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     283
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -670,7 +670,7 @@ public:
             }
         /// @}
 
-        /// \name Members
+        /// \name Fields
         /// @{
         private:
             interface_type* m_enumerator;
@@ -863,7 +863,7 @@ public:
         }
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     private:
         enumeration_context *m_ctxt;

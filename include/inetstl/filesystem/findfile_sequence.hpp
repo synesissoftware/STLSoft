@@ -5,7 +5,7 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  29
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      174
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      175
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -295,7 +295,7 @@ public:
     static size_type    max_size();
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     friend class basic_findfile_sequence_value_type<C, T, X>;
@@ -476,7 +476,7 @@ public:
     is_bool_t               equal(class_type const& rhs) const;
 // @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     friend class basic_findfile_sequence_const_input_iterator<C, T, X, class_type>;
@@ -533,7 +533,7 @@ private:
     typedef ss_typename_type_k sequence_type::string_type               string_type;
 /// @}
 
-/// \name Utility classes
+/// \name Utility Classes
 /// @{
 private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -546,7 +546,7 @@ private:
         typedef HINTERNET           handle_type;
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     public:
         handle_type     hSrch;
@@ -646,7 +646,7 @@ private:
     static HINTERNET    find_first_file_(HINTERNET hconn, char_type const* spec, flags_type flags, find_data_type *findData);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     friend class basic_findfile_sequence<C, T, X>;

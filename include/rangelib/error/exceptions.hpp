@@ -4,7 +4,7 @@
  * Purpose: Range exceptions.
  *
  * Created: 30th December 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  15
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      40
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -132,7 +132,7 @@ class range_exception
     : public STLSOFT_NS_QUAL_STD(exception)
 #endif /* compiler */
 {
-/// \name Types
+/// \name Member Types
 /// @{
 private:
     typedef STLSOFT_NS_QUAL(exception_string)   string_type;
@@ -181,7 +181,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     const string_type   m_reason;

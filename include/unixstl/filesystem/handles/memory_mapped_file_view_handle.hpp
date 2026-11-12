@@ -5,7 +5,7 @@
  *          memory mapped file view handles.
  *
  * Created: 1st January 2017
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION 10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     20
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,7 +151,7 @@ private:
 template <ss_typename_param_k R>
 struct memory_mapped_file_view_handle
 {
-public: // Member Types
+public: // types
     /// The handle type
     typedef memory_mapped_file_view_state_t                 handle_type;
     /// The reference count policy type
@@ -171,8 +171,7 @@ public: // Member Types
     typedef HRW_Handle_type                                 Handle;
     typedef HRW_Ref_type                                    Ref;
 
-public: // Construction
-
+public: // construction
     /// Creates an instance of the ref from the underlying state types.
     static Ref create(handle_type h)
     {
@@ -223,7 +222,7 @@ public: // Reference-counting Operations
         }
     }
 
-public: // Member Variables
+public: // fields
     /// The handle value
     handle_type     handle;
 private:

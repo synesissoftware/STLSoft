@@ -4,7 +4,7 @@
  * Purpose: guid class.
  *
  * Created: 10th May 2000
- * Updated: 10th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -119,7 +119,7 @@ namespace comstl_project
  */
 class guid
 {
-/// \name types
+/// \name Member Types
 /// @{
 public:
     typedef guid                                            class_type;
@@ -226,7 +226,7 @@ public:
     void swap(class_type& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name fields
+/// \name Fields
 /// @{
 private:
     GUID    m_guid;

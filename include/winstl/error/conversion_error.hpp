@@ -4,7 +4,7 @@
  * Purpose: Definition of the winstl::conversion_error exception class.
  *
  * Created: 16th December 2006
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_MAJOR     1
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_MINOR     0
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_REVISION  10
-# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_EDIT      27
+# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_EDIT      28
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,7 @@ namespace winstl_project
 class conversion_error
     : public STLSOFT_NS_QUAL(conversion_error_base)
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent type
@@ -163,7 +163,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     status_code_type const  m_statusCode;

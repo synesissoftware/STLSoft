@@ -4,7 +4,7 @@
  * Purpose: Scopes the console colour (and intensity).
  *
  * Created: 20th July 2006
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 17
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     33
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -190,7 +190,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HANDLE      m_hBuffer;

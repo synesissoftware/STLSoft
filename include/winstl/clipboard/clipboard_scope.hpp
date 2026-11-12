@@ -4,7 +4,7 @@
  * Purpose: Clipboard scoping and facade class.
  *
  * Created: 26th May 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Martin Moene for reporting the problem with the data type in
  *          set_data_or_deallocate_and_throw_(), and for calling for
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       61
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -202,7 +202,7 @@ class clipboard_scope
     : private global_allocator<void>
 #endif /* compiler */
 {
-/// \name Types
+/// \name Member Types
 /// @{
 private:
     typedef global_allocator<void>  parent_class_type;
@@ -338,7 +338,7 @@ public:
 #endif
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     template<
@@ -378,7 +378,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     clipboard_scope(class_type const&);

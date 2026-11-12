@@ -4,7 +4,7 @@
  * Purpose: Enumerates clipboard formats.
  *
  * Created: 11th May 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Martin Moene for reporting the lack of iterator traits of the
  *          const_iterator nested class; wiluite for a defect report.
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 13
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     55
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -267,8 +267,7 @@ public:
             return !operator ==(rhs);
         }
 
-    /// Members
-    private:
+    private: // fields
         UINT    m_nextFmt;
     };
 
@@ -308,7 +307,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     ws_bool_t   m_bOpen;

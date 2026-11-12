@@ -4,7 +4,7 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 10th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
@@ -317,7 +317,7 @@ public:
     void swap(BSTR& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name fields
+/// \name Fields
 /// @{
 private:
     BSTR    m_bstr;

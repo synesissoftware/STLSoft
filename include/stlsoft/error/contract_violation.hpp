@@ -4,7 +4,7 @@
  * Purpose: Definition of the \c contract_violation exception class.
  *
  * Created: 17th October 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_REVISION  11
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_EDIT      40
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,7 +104,7 @@ namespace stlsoft
 class contract_violation
     : public unrecoverable
 {
-/// \name Types
+/// \name Member Types
 /// @{
 private:
 #ifdef STLSOFT_CF_std_NAMESPACE
@@ -194,7 +194,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     const string_type   m_error;

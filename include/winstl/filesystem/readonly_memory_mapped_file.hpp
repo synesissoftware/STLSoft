@@ -4,7 +4,7 @@
  * Purpose: Windows readonly (shareable) memory mapped file.
  *
  * Created: 30th August 2010
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION  6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      24
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -143,7 +143,7 @@ namespace winstl_project
 template <ss_typename_param_k R>
 class readonly_memory_mapped_file_base
 {
-private: // Member Types
+private: // types
     typedef R                                               refcount_policy_type_;
 public:
     /// This type
@@ -187,7 +187,7 @@ public:
     typedef HRW_Ref_type                                    Ref;
     typedef HRW_Wrapper_type                                Wrapper;
 
-public: // Construction
+public: // construction
     /// Maps an entire file into memory
     ///
     /// \param fileName The name of the file to map into memory
@@ -292,7 +292,7 @@ public:
         m_ref.swap(rhs.m_ref);
     }
 
-public: // Accessors
+public: // accessors
     /// Non-mutating (const) pointer to the start of the mapped region
     void const* memory() const STLSOFT_NOEXCEPT
     {
@@ -305,7 +305,7 @@ public: // Accessors
         return m_ref->handle.size;
     }
 
-private: // Implementation
+private: // implementation
     static
     void
     throw_(
@@ -452,7 +452,7 @@ private: // Implementation
         }
     }
 
-private: // Members
+private: // fields
     HRW_Ref_type    m_ref;
 };
 

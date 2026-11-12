@@ -4,7 +4,7 @@
  * Purpose: pipe class, based on UNIX pipe.
  *
  * Created: 19th June 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   14
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       63
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -234,7 +234,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     int m_handles[2];

@@ -4,7 +4,7 @@
  * Purpose: Event handler class for custom event notifications.
  *
  * Created: 1st October 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR       2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR       1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION    14
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        49
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -294,7 +294,7 @@ class custom_event_handler
     , public ceh_root
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 {
-/// \name Types
+/// \name Member Types
 /// @{
 private:
     struct event_id_ {};

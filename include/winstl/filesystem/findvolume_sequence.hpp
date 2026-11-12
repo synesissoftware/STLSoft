@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      144
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      145
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -330,22 +330,21 @@ public:
     ,   V
     >                                                       class_type;
 
-/// \name Utility classes
+/// \name Utility Classes
 /// @{
 private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     struct shared_handle
     {
-    public:
+    public: // types
         typedef shared_handle                                   class_type;
 
-    // Members
-    public:
+    public: // fields
         HANDLE      hSrch;
     private:
         ss_sint32_t cRefs;
 
-    public:
+    public: // construction
         ss_explicit_k shared_handle(HANDLE h)
             : hSrch(h)
             , cRefs(1)

@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which doesn't
  *          work for wide-string builds).
@@ -57,7 +57,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   9
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       284
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       285
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -180,7 +180,7 @@ template<
 >
 class basic_path
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The char type

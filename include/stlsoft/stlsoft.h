@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 10th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 29
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     622
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 30
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     623
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -433,11 +433,12 @@
 # define _STLSOFT_VER_1_11_6        0x010B06FF  /*!< Version 1.11.6 (6th November 2026) */
 # define _STLSOFT_VER_1_11_7        0x010B07FF  /*!< Version 1.11.7 (8th November 2026) */
 # define _STLSOFT_VER_1_11_8        0x010B08FF  /*!< Version 1.11.8 (10th November 2026) */
+# define _STLSOFT_VER_1_11_9        0x010B09FF  /*!< Version 1.11.9 (14th November 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
-#define _STLSOFT_VER_PATCH          8
+#define _STLSOFT_VER_PATCH          9
 #define _STLSOFT_VER_RELSTATUS      0xFF
 
 #define _STLSOFT_VER \

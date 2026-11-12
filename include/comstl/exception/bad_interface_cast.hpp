@@ -202,7 +202,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     IID const               m_iid;

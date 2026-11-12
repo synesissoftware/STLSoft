@@ -4,7 +4,7 @@
  * Purpose: Contains the listbox_const_iterator class.
  *
  * Created: 10th November 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Pablo Aguilar for some patches.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 8
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     95
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -418,7 +418,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND                    m_hwnd;

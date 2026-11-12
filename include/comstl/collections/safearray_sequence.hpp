@@ -4,7 +4,7 @@
  * Purpose: STL sequence for COM collection interfaces.
  *
  * Created: 17th April 2004
- * Updated: 10th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -252,7 +252,7 @@ private:
     static DWORD    calc_size_(LPCSAFEARRAY array);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     LPCSAFEARRAY    m_sa;

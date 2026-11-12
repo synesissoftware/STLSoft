@@ -4,7 +4,7 @@
  * Purpose: Interface management helper classes.
  *
  * Created: 2nd November 1994
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR     7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR     4
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION  2
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      518
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      519
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,7 +116,7 @@ template <ss_typename_param_k T>
 class interface_ptr
     : public STLSOFT_NS_QUAL(ref_ptr)<T>
 {
-/// \name Types
+/// \name Member Types
 /// @{
 private:
     typedef STLSOFT_NS_QUAL(ref_ptr)<T>                     parent_class_type;

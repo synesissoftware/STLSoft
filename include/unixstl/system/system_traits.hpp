@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     7
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      148
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -205,7 +205,7 @@ template <ss_typename_param_k C>
 struct system_traits
     : public stlsoft::c_string_traits<C>
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The character type
@@ -230,7 +230,7 @@ public:
     typedef int                                             error_type;
 /// @}
 
-/// \name Path string handling
+/// \name Path String Handling
 /// @{
 public:
     /// Performs a semantic string comparison with specific handling for
@@ -379,7 +379,7 @@ public:
     );
 /// @}
 
-/// \name Dynamic Loading
+/// \name Dynamic Library Functions
 /// @{
 public:
     /// Loads the given executable module

@@ -4,7 +4,7 @@
  * Purpose: Wrapper class for Win32 TSS key.
  *
  * Created: 20th January 1999
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 19
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     62
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,7 +115,7 @@ namespace winstl_project
 class tss_exception
     : public synchronisation_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef synchronisation_exception                       parent_class_type;
@@ -160,7 +160,7 @@ public:
  */
 class tss_index
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This class
@@ -255,7 +255,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     key_type    m_index;

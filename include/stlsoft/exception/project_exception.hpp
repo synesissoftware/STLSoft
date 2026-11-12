@@ -4,7 +4,7 @@
  * Purpose: Basic exception classes.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_MAJOR      6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_MINOR      0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_REVISION   7
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_EDIT       67
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_EDIT       68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,7 @@ class project_exception
     : public stlsoft_root_exception
     , public project_identifier_provider
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This class type
