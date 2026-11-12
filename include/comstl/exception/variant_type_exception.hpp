@@ -4,7 +4,7 @@
  * Purpose: COM-related exception classes, and their policy classes
  *
  * Created: 8th December 2004
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MAJOR       3
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       0
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    6
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        63
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       1
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    1
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,18 +101,21 @@ namespace comstl_project
 
 /** Indicates variant type mismatches.
  *
- * \ingroup group__library__Exception
+ * \note This exception type represents a Programmer Error (as opposed to a
+ *   valid Runtime Condition).
  *
  * \note This is thrown by comstl::safearray_sequence on variant type
  *   mismatches.
+ *
+ * \ingroup group__library__Exception
  */
 class variant_type_exception
     : public comstl_exception
 {
 public:
-    /// The parent class type
+    /// The parent class type.
     typedef comstl_exception                                parent_class_type;
-    /// The class type
+    /// The class type.
     typedef variant_type_exception                          class_type;
 
 /// \name Construction
@@ -120,16 +123,17 @@ public:
 public:
     ss_explicit_k
     variant_type_exception(HRESULT hr)
-        : parent_class_type("VARIANT type exception", hr)
+        : parent_class_type(hr)
     {}
     variant_type_exception(char const* reason, HRESULT hr)
         : parent_class_type(reason, hr)
     {}
-    /// Destructor
+    /// Destructor.
     ///
-    /// \note This does not do have any implementation, but is required to placate
-    /// the Comeau and GCC compilers, which otherwise complain about mismatched
-    /// exception specifications between this class and its parent
+    /// \note This does not do have any implementation, but is required to
+    ///   placate the Comeau and GCC compilers, which otherwise complain
+    ///   about mismatched exception specifications between this class and
+    ///   its parent.
     virtual ~variant_type_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 private:

@@ -4,7 +4,7 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    18
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        88
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       9
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,60 +144,75 @@ namespace comstl_project
  */
 class bstr
 {
-/// \name Member Types
+/// \name types
 /// @{
 public:
-    typedef bstr                                    class_type;
-    typedef cs_char_o_t                             char_type;
-    typedef char_type                               value_type;
-    typedef char_type*                              pointer;
-    typedef char_type const*                        const_pointer;
-    typedef char_type&                              reference;
-    typedef char_type const&                        const_reference;
-    typedef cs_ptrdiff_t                            difference_type;
-    typedef cs_size_t                               size_type;
-    typedef cs_ptrdiff_t                            ssize_type;
-    typedef cs_bool_t                               bool_type;
-    typedef pointer                                 iterator;
-    typedef const_pointer                           const_iterator;
+    typedef bstr                                            class_type;
+    typedef cs_char_o_t                                     char_type;
+    typedef char_type                                       value_type;
+    typedef char_type*                                      pointer;
+    typedef char_type const*                                const_pointer;
+    typedef char_type&                                      reference;
+    typedef char_type const&                                const_reference;
+    typedef cs_ptrdiff_t                                    difference_type;
+    typedef cs_size_t                                       size_type;
+    typedef cs_ptrdiff_t                                    ssize_type;
+    typedef cs_bool_t                                       bool_type;
+    typedef pointer                                         iterator;
+    typedef const_pointer                                   const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
     typedef STLSOFT_NS_QUAL(reverse_iterator_base)<
         iterator
     ,   value_type
     ,   reference
     ,   pointer
     ,   difference_type
-    >                                               reverse_iterator;
-
+    >                                                       reverse_iterator;
     typedef STLSOFT_NS_QUAL(const_reverse_iterator_base)<
         const_iterator
     ,   value_type const
     ,   const_reference
     ,   const_pointer
     ,   difference_type
-    >                                               const_reverse_iterator;
+    >                                                       const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-
-    typedef BSTR                                    resource_type;
+    typedef BSTR                                            resource_type;
 /// @}
 
-/// \name Construction
+/// \name construction
 /// @{
 public:
     bstr();
-    ss_explicit_k bstr(cs_char_a_t const* s, ssize_type len = -1);
-    ss_explicit_k bstr(cs_char_w_t const* s, ssize_type len = -1);
+    ss_explicit_k bstr(
+        cs_char_a_t const*  s
+    ,   ssize_type          len = -1
+    );
+    ss_explicit_k bstr(
+        cs_char_w_t const*  s
+    ,   ssize_type          len = -1
+    );
     bstr(size_type n, char_type ch);
     /// Copy constructor
     bstr(class_type const& rhs);
-    bstr(class_type const& rhs, size_type pos, size_type len);
+    bstr(
+        class_type const&   rhs
+    ,   size_type           pos
+    ,   size_type           len
+    );
     ~bstr() STLSOFT_NOEXCEPT;
 
     /// Copies the given instance
     class_type& operator =(class_type const& rhs);
 
-    class_type& assign(cs_char_a_t const* s, ssize_type len = -1);
-    class_type& assign(cs_char_w_t const* s, ssize_type len = -1);
+    class_type& assign(
+        cs_char_a_t const*  s
+    ,   ssize_type          len = -1
+    );
+    class_type& assign(
+        cs_char_w_t const*  s
+    ,   ssize_type          len = -1
+    );
 
     class_type& assign(const_iterator from, const_iterator to);
 
@@ -211,17 +226,23 @@ public:
     void        clear();
 /// @}
 
-/// \name Operations
+/// \name operations
 /// @{
 public:
-    class_type& append(class_type const& s, ssize_type len = -1);
-    class_type& append(cs_char_w_t const* s, ssize_type len = -1);
+    class_type& append(
+        class_type const&   s
+    ,   ssize_type          len = -1
+    );
+    class_type& append(
+        cs_char_w_t const*  s
+    ,   ssize_type          len = -1
+    );
 
     class_type& operator +=(class_type const& s);
     class_type& operator +=(cs_char_w_t const* s);
 /// @}
 
-/// \name Accessors
+/// \name accessors
 /// @{
 public:
     const_pointer   data() const;
@@ -233,12 +254,12 @@ public:
     reference       operator [](size_type);
     const_reference operator [](size_type) const;
 
-    const_pointer   *NonDestructiveAddress() const;
-    BSTR            *NonDestructiveAddress();
-    BSTR            *DestructiveAddress();
+    const_pointer*  NonDestructiveAddress() const;
+    BSTR*           NonDestructiveAddress();
+    BSTR*           DestructiveAddress();
 /// @}
 
-/// \name Iteration
+/// \name iteration
 /// @{
 public:
     /// Begins the iteration
@@ -278,7 +299,7 @@ public:
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
-/// \name Comparison
+/// \name comparison
 /// @{
 public:
     /// Evaluates whether the value is equivalent to the given argument
@@ -287,7 +308,7 @@ public:
     bool_type equal(BSTR const& rhs) const;
 /// @}
 
-/// \name Operations
+/// \name operations
 /// @{
 public:
     /// Swaps the contents with the given instance
@@ -312,88 +333,97 @@ private:
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline bstr::const_pointer c_str_data(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_data(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.data();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline bstr::const_pointer c_str_data_w(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_data_w(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.data();
 }
 
-inline bstr::const_pointer c_str_data_o(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_data_o(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.data();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_len for comstl::bstr
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline cs_size_t c_str_len(COMSTL_NS_QUAL(bstr) const& b)
+ inline
+ cs_size_t c_str_len(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.length();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline cs_size_t c_str_len_w(COMSTL_NS_QUAL(bstr) const& b)
+inline
+cs_size_t c_str_len_w(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.length();
 }
 
-inline cs_size_t c_str_len_o(COMSTL_NS_QUAL(bstr) const& b)
+inline
+cs_size_t c_str_len_o(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.length();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr for comstl::bstr
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline bstr::const_pointer c_str_ptr(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_ptr(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.c_str();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline bstr::const_pointer c_str_ptr_w(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_ptr_w(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.c_str();
 }
 
-inline bstr::const_pointer c_str_ptr_o(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_ptr_o(COMSTL_NS_QUAL(bstr) const& b)
 {
     return b.c_str();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr_null for comstl::bstr
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline bstr::const_pointer c_str_ptr_null(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_ptr_null(COMSTL_NS_QUAL(bstr) const& b)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null)(b.c_str());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline bstr::const_pointer c_str_ptr_null_w(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_ptr_null_w(COMSTL_NS_QUAL(bstr) const& b)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_w)(b.c_str());
 }
 
-inline bstr::const_pointer c_str_ptr_null_o(COMSTL_NS_QUAL(bstr) const& b)
+inline
+bstr::const_pointer c_str_ptr_null_o(COMSTL_NS_QUAL(bstr) const& b)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null)(b.c_str());
 }
@@ -404,7 +434,12 @@ inline bstr::const_pointer c_str_ptr_null_o(COMSTL_NS_QUAL(bstr) const& b)
  */
 template<   ss_typename_param_k S
         >
-inline S& operator <<(S& stm, COMSTL_NS_QUAL(bstr) const& str)
+inline
+S&
+operator <<(
+    S&                          stm
+,   COMSTL_NS_QUAL(bstr) const& str
+)
 {
     STLSOFT_STATIC_ASSERT(sizeof(OLECHAR) == sizeof(ss_typename_type_k S::char_type));
 
@@ -412,7 +447,6 @@ inline S& operator <<(S& stm, COMSTL_NS_QUAL(bstr) const& str)
 
     return stm;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -420,32 +454,44 @@ inline S& operator <<(S& stm, COMSTL_NS_QUAL(bstr) const& str)
  * operators
  */
 
-inline cs_bool_t operator ==(bstr const& lhs, bstr const& rhs)
+inline
+cs_bool_t
+operator ==(bstr const& lhs, bstr const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-inline cs_bool_t operator !=(bstr const& lhs, bstr const& rhs)
+inline
+cs_bool_t
+operator !=(bstr const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
-inline cs_bool_t operator ==(bstr const& lhs, BSTR const& rhs)
+inline
+cs_bool_t
+operator ==(bstr const& lhs, BSTR const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-inline cs_bool_t operator !=(bstr const& lhs, BSTR const& rhs)
+inline
+cs_bool_t
+operator !=(bstr const& lhs, BSTR const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
-inline cs_bool_t operator ==(BSTR const& lhs, bstr const& rhs)
+inline
+cs_bool_t
+operator ==(BSTR const& lhs, bstr const& rhs)
 {
     return rhs.equal(lhs);
 }
 
-inline cs_bool_t operator !=(BSTR const& lhs, bstr const& rhs)
+inline
+cs_bool_t
+operator !=(BSTR const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
@@ -458,11 +504,17 @@ inline cs_bool_t operator !=(BSTR const& lhs, bstr const& rhs)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 // Construction
-inline bstr::bstr()
+inline
+bstr::bstr()
     : m_bstr(NULL)
 {}
 
-inline /* explicit */ bstr::bstr(cs_char_a_t const* s, ssize_type len /* = -1 */)
+inline
+/* explicit */
+bstr::bstr(
+    cs_char_a_t const*  s
+,   ssize_type          len /* = -1 */
+)
 {
     // Precondition tests
     COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", (len >= 0 || len == -1));
@@ -484,8 +536,10 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, ssize_type len /* = -1 */
         if (NULL != m_bstr)
         {
 # ifdef _WIN64
+
             int buffLen = static_cast<int>(actualLen + 1);
 # else /* ? _WIN64 */
+
             int buffLen = actualLen + 1;
 # endif /* _WIN64 */
 
@@ -513,7 +567,12 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, ssize_type len /* = -1 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline /* explicit */ bstr::bstr(cs_char_w_t const* s, ssize_type len /* = -1 */)
+inline
+/* explicit */
+bstr::bstr(
+    cs_char_w_t const*  s
+,   ssize_type          len /* = -1 */
+)
 {
     // Precondition tests
     COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", (len >= 0 || len == -1));
@@ -546,8 +605,8 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const* s, ssize_type len /* = -1 */
 
         m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
     }
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
     if (NULL == m_bstr &&
         NULL != s &&
         0 != len &&
@@ -558,7 +617,11 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const* s, ssize_type len /* = -1 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline bstr::bstr(bstr::size_type n, bstr::char_type ch)
+inline
+bstr::bstr(
+    bstr::size_type n
+,   bstr::char_type ch
+)
     : m_bstr(bstr_create_w(NULL, n))
 {
     if (NULL == m_bstr)
@@ -566,6 +629,7 @@ inline bstr::bstr(bstr::size_type n, bstr::char_type ch)
         if (0 != n)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
             STLSOFT_THROW_X(comstl_exception("failed to allocate string", HRESULT_FROM_WIN32(WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
@@ -579,7 +643,8 @@ inline bstr::bstr(bstr::size_type n, bstr::char_type ch)
     }
 }
 
-inline bstr::bstr(bstr::class_type const& rhs)
+inline
+bstr::bstr(bstr::class_type const& rhs)
     : m_bstr(bstr_dup(rhs.m_bstr))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -591,16 +656,21 @@ inline bstr::bstr(bstr::class_type const& rhs)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline bstr::bstr(bstr::class_type const& rhs, bstr::size_type pos, bstr::size_type len)
+inline
+bstr::bstr(
+    bstr::class_type const& rhs
+,   bstr::size_type         pos
+,   bstr::size_type         len
+)
     : m_bstr(NULL)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (pos > rhs.size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("Position out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("position out of range"));
     }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-    COMSTL_MESSAGE_ASSERT("Position out of range", pos <= rhs.size());
+    COMSTL_MESSAGE_ASSERT("position out of range", pos <= rhs.size());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     if (pos + len > rhs.size())
@@ -619,86 +689,118 @@ inline bstr::bstr(bstr::class_type const& rhs, bstr::size_type pos, bstr::size_t
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline bstr::~bstr() STLSOFT_NOEXCEPT
+inline
+bstr::~bstr() STLSOFT_NOEXCEPT
 {
     ::SysFreeString(m_bstr);
 }
 
-inline bstr::class_type& bstr::operator =(bstr::class_type const& rhs)
+inline
+bstr::class_type&
+bstr::operator =(bstr::class_type const& rhs)
 {
-    class_type  t(rhs);
+    class_type t(rhs);
 
     t.swap(*this);
 
     return *this;
 }
 
-inline bstr::class_type& bstr::assign(cs_char_a_t const* s, ssize_type len /* = -1 */)
+inline
+bstr::class_type&
+bstr::assign(
+    cs_char_a_t const*  s
+,   ssize_type          len /* = -1 */
+)
 {
-    class_type  t(s, len);
+    class_type t(s, len);
 
     t.swap(*this);
 
     return *this;
 }
 
-inline bstr::class_type& bstr::assign(cs_char_w_t const* s, ssize_type len /* = -1 */)
+inline
+bstr::class_type&
+bstr::assign(
+    cs_char_w_t const*  s
+,   ssize_type          len /* = -1 */
+)
 {
-    class_type  t(s, len);
+    class_type t(s, len);
 
     t.swap(*this);
 
     return *this;
 }
 
-inline bstr::class_type& bstr::assign(bstr::const_iterator from, bstr::const_iterator to)
+inline
+bstr::class_type&
+bstr::assign(
+    bstr::const_iterator    from
+,   bstr::const_iterator    to
+)
 {
     return assign(from, to - from);
 }
 
-inline bstr::class_type& bstr::operator =(cs_char_a_t const* s)
+inline
+bstr::class_type&
+bstr::operator =(cs_char_a_t const* s)
 {
     return assign(s);
 }
 
-inline bstr::class_type& bstr::operator =(cs_char_w_t const* s)
+inline
+bstr::class_type&
+bstr::operator =(cs_char_w_t const* s)
 {
     return assign(s);
 }
 
-inline bstr::class_type& bstr::attach(BSTR bstr)
+inline
+bstr::class_type&
+bstr::attach(BSTR bstr)
 {
     *DestructiveAddress() = bstr;
 
     return *this;
 }
 
-inline BSTR bstr::detach()
+inline
+BSTR
+bstr::detach()
 {
-    BSTR    str =   m_bstr;
+    BSTR str = m_bstr;
 
     m_bstr = NULL;
 
     return str;
 }
 
-inline void bstr::clear()
+inline
+void
+bstr::clear()
 {
     ::SysFreeString(m_bstr);
 
     m_bstr = NULL;
 }
 
-inline bstr::class_type& bstr::append(bstr::class_type const& s, ssize_type len /* = -1 */)
+inline
+bstr::class_type&
+bstr::append(bstr::class_type const& s, ssize_type len /* = -1 */)
 {
     return append(s.data(), len);
 }
 
-inline bstr::class_type& bstr::append(cs_char_w_t const* s, ssize_type len /* = -1 */)
+inline
+bstr::class_type&
+bstr::append(cs_char_w_t const* s, ssize_type len /* = -1 */)
 {
     if (empty())
     {
-        bstr    rhs(s, len);
+        bstr rhs(s, len);
 
         rhs.swap(*this);
     }
@@ -723,12 +825,16 @@ inline bstr::class_type& bstr::append(cs_char_w_t const* s, ssize_type len /* = 
     return *this;
 }
 
-inline bstr::class_type& bstr::operator +=(bstr::class_type const& s)
+inline
+bstr::class_type&
+bstr::operator +=(bstr::class_type const& s)
 {
     return append(s);
 }
 
-inline bstr::class_type& bstr::operator +=(cs_char_w_t const* s)
+inline
+bstr::class_type&
+bstr::operator +=(cs_char_w_t const* s)
 {
     return append(s);
 }
@@ -736,131 +842,176 @@ inline bstr::class_type& bstr::operator +=(cs_char_w_t const* s)
 // Operations
 
 // Accessors
-inline bstr::const_pointer bstr::data() const
+inline
+bstr::const_pointer
+bstr::data() const
 {
     return this->c_str();
 }
 
-inline bstr::const_pointer bstr::c_str() const
+inline
+bstr::const_pointer
+bstr::c_str() const
 {
     return (NULL == m_bstr) ? L"" : m_bstr;
 }
 
-inline bstr::size_type bstr::length() const
+inline
+bstr::size_type
+bstr::length() const
 {
     return static_cast<size_type>(::SysStringLen(m_bstr));
 }
 
-inline bstr::size_type bstr::size() const
+inline
+bstr::size_type
+bstr::size() const
 {
     return this->length();
 }
 
-inline bstr::bool_type bstr::empty() const
+inline
+bstr::bool_type
+bstr::empty() const
 {
     return 0 == this->size();
 }
 
-inline BSTR bstr::get() const
+inline
+BSTR
+bstr::get() const
 {
     return m_bstr;
 }
 
-inline bstr::reference bstr::operator [](bstr::size_type index)
+inline
+bstr::reference
+bstr::operator [](bstr::size_type index)
 {
     COMSTL_MESSAGE_ASSERT("invalid index", index < size());
 
     return index[m_bstr];
 }
 
-inline bstr::const_reference bstr::operator [](bstr::size_type index) const
+inline
+bstr::const_reference
+bstr::operator [](bstr::size_type index) const
 {
     COMSTL_MESSAGE_ASSERT("invalid index", index <= size());
 
     return index[data()];
 }
 
-inline bstr::const_pointer *bstr::NonDestructiveAddress() const
+inline
+bstr::const_pointer*
+bstr::NonDestructiveAddress() const
 {
     return const_cast<const_pointer*>(&m_bstr);
 }
 
-inline BSTR* bstr::NonDestructiveAddress()
+inline
+BSTR*
+bstr::NonDestructiveAddress()
 {
     return &m_bstr;
 }
 
-inline BSTR* bstr::DestructiveAddress()
+inline
+BSTR*
+bstr::DestructiveAddress()
 {
     clear();
 
     return &m_bstr;
 }
 
-inline bstr::iterator bstr::begin()
+inline
+bstr::iterator
+bstr::begin()
 {
     return get();
 }
 
-inline bstr::iterator bstr::end()
+inline
+bstr::iterator
+bstr::end()
 {
     return get() + size();
 }
 
-inline bstr::const_iterator bstr::begin() const
+inline
+bstr::const_iterator
+bstr::begin() const
 {
     return get();
 }
 
-inline bstr::const_iterator bstr::end() const
+inline
+bstr::const_iterator
+bstr::end() const
 {
     return get() + size();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-inline bstr::const_reverse_iterator bstr::rbegin() const
+inline
+bstr::const_reverse_iterator
+bstr::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
-inline bstr::const_reverse_iterator bstr::rend() const
+inline
+bstr::const_reverse_iterator
+bstr::rend() const
 {
     return const_reverse_iterator(begin());
 }
 
-inline bstr::reverse_iterator bstr::rbegin()
+inline
+bstr::reverse_iterator
+bstr::rbegin()
 {
     return reverse_iterator(end());
 }
 
-inline bstr::reverse_iterator bstr::rend()
+inline
+bstr::reverse_iterator
+bstr::rend()
 {
     return reverse_iterator(begin());
 }
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
-inline bstr::bool_type bstr::equal(bstr::class_type const& rhs) const
+inline
+bstr::bool_type
+bstr::equal(bstr::class_type const& rhs) const
 {
     return 0 == bstr_compare(this->get(), rhs.get());
 }
 
-inline bstr::bool_type bstr::equal(BSTR const& rhs) const
+inline
+bstr::bool_type
+bstr::equal(BSTR const& rhs) const
 {
     return 0 == bstr_compare(this->get(), rhs);
 }
 
 // Operations
 
-inline void bstr::swap(bstr::class_type& rhs) STLSOFT_NOEXCEPT
+inline
+void
+bstr::swap(bstr::class_type& rhs) STLSOFT_NOEXCEPT
 {
     std_swap(m_bstr, rhs.m_bstr);
 }
 
-inline void bstr::swap(BSTR& rhs) STLSOFT_NOEXCEPT
+inline
+void
+bstr::swap(BSTR& rhs) STLSOFT_NOEXCEPT
 {
     std_swap(m_bstr, rhs);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

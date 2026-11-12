@@ -4,7 +4,7 @@
  * Purpose: Memory mapped file class.
  *
  * Created: 15th December 1996
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Pablo Aguilar for requesting multibyte / wide string
  *          ambivalence. To Joe Mariadassou for requesting swap().
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      134
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -253,7 +253,7 @@ private:
     {
         if (INVALID_HANDLE_VALUE == hFile)
         {
-            if (on_failure_("Failed to open file for mapping"))
+            if (on_failure_("failed to open file for mapping"))
             {
                 return;
             }
@@ -267,7 +267,7 @@ private:
             if (INVALID_FILE_SIZE == fileSizeLow &&
                 ERROR_SUCCESS != scode)
             {
-                if (on_failure_("Failed to determine mapped file size", scode))
+                if (on_failure_("failed to determine mapped file size", scode))
                 {
                     return;
                 }
@@ -279,7 +279,7 @@ private:
 
                 if (mapSize < offset) // Overflow?
                 {
-                    if (on_failure_("Requested region exceeds the available address space", ERROR_INVALID_PARAMETER))
+                    if (on_failure_("requested region exceeds the available address space", ERROR_INVALID_PARAMETER))
                     {
                         return;
                     }
@@ -289,7 +289,7 @@ private:
                 {
                     if (0 == requestSize)
                     {
-                        if (on_failure_("Region out of range", ERROR_INVALID_PARAMETER))
+                        if (on_failure_("region out of range", ERROR_INVALID_PARAMETER))
                         {
                             return;
                         }
@@ -315,7 +315,7 @@ private:
 
                     if (requestSize2 > stlsoft_static_cast(ws_uint64_t, 0xffffffff))
                     {
-                        if (on_failure_("Region size too large", ERROR_NOT_ENOUGH_MEMORY))
+                        if (on_failure_("region size too large", ERROR_NOT_ENOUGH_MEMORY))
                         {
                             return;
                         }
@@ -370,7 +370,7 @@ private:
 
                     if (NULL == hMap)
                     {
-                        if (on_failure_("Failed to open file mapping"))
+                        if (on_failure_("failed to open file mapping"))
                         {
                             return;
                         }
@@ -415,13 +415,13 @@ private:
                                 }
                             }
 
-                            on_failure_("Failed to map view of file", scode2);
+                            on_failure_("failed to map view of file", scode2);
 
 #else /* ? WINSTL_MEMORY_MAPPED_FILE_TRANSLATE_SC_EINVAL_2_EMEM */
 
                             STLSOFT_SUPPRESS_UNUSED(scode2);
 
-                            on_failure_("Failed to map view of file");
+                            on_failure_("failed to map view of file");
 
 #endif /* WINSTL_MEMORY_MAPPED_FILE_TRANSLATE_SC_EINVAL_2_EMEM */
 

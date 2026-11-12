@@ -4,7 +4,7 @@
  * Purpose: UNIX readonly (shareable) memory mapped file.
  *
  * Created: 15th December 1996
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR       2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION    5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT        25
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR       1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION    1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -343,11 +343,11 @@ private: // implementation
 
         if (0 == fnl)
         {
-            xsc.append("could not map file");
+            xsc.append("failed to map file");
         }
         else
         {
-            xsc.append("could not map file '");
+            xsc.append("failed to map file '");
             xsc.append(fileName, fnl);
             xsc.append('\'');
         }
@@ -412,7 +412,7 @@ private: // implementation
         {
             int const e = errno;
 
-            on_failure_("Failed to open file for mapping", e);
+            on_failure_("failed to open file for mapping", e);
         }
         else
         {
@@ -422,7 +422,7 @@ private: // implementation
             {
                 int const e = errno;
 
-                on_failure_("Failed to determine mapped file size", e);
+                on_failure_("failed to determine mapped file size", e);
             }
             else if (0 == st.st_size)
             {
@@ -446,7 +446,7 @@ private: // implementation
                 {
                     int const e = errno;
 
-                    on_failure_("Failed to map view of file", e);
+                    on_failure_("failed to map view of file", e);
                 }
                 else
                 {

@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which doesn't
  *          work for wide-string builds).
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   9
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       285
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       286
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1729,7 +1729,7 @@ basic_path<C, T, A>::make_absolute(
         if (0 == cch)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(unixstl_exception("could not determine the absolute path", errno));
+            STLSOFT_THROW_X(unixstl_exception("failed to determine the absolute path", errno));
 #else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
             return false;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

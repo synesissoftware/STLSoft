@@ -4,7 +4,7 @@
  * Purpose: Range exceptions.
  *
  * Created: 30th December 2005
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,10 +53,10 @@
 #define RANGELIB_INCL_RANGELIB_ERROR_HPP_EXCEPTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  15
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      41
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR       2
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR       0
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION    15
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,13 +135,13 @@ class range_exception
 /// \name Member Types
 /// @{
 private:
-    typedef STLSOFT_NS_QUAL(exception_string)   string_type;
+    typedef STLSOFT_NS_QUAL(exception_string)               string_type;
 public:
-    typedef range_exception                     class_type;
+    typedef range_exception                                 class_type;
 #if defined(STLSOFT_COMPILER_IS_DMC)
-    typedef std::exception                      parent_class_type;
+    typedef std::exception                                  parent_class_type;
 #else /* ? compiler */
-    typedef STLSOFT_NS_QUAL_STD(exception)      parent_class_type;
+    typedef STLSOFT_NS_QUAL_STD(exception)                  parent_class_type;
 #endif /* compiler */
 /// @}
 
@@ -152,11 +152,12 @@ public:
     range_exception(char const* reason = NULL)
         : m_reason((NULL == reason) ? "" : reason)
     {}
-    /// Destructor
+    /// Destructor.
     ///
-    /// \note This does not do have any implementation, but is required to placate
-    /// the Comeau and GCC compilers, which otherwise complain about mismatched
-    /// exception specifications between this class and its parent
+    /// \note This does not do have any implementation, but is required to
+    ///   placate the Comeau and GCC compilers, which otherwise complain
+    ///   about mismatched exception specifications between this class and
+    ///   its parent.
     virtual ~range_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 private:
@@ -188,18 +189,20 @@ private:
 /// @}
 };
 
-/** Indicates that an operation requiring non-empty range was invoked
- *    on an empty range.
+/** Indicates that an operation requiring non-empty range was invoked on an
+ * empty range.
+ *
+ * \note This exception type represents a Programmer Error (as opposed to a
+ *   valid Runtime Condition).
  *
  * \ingroup group__library__Exception
- *
  */
 class empty_range_exception
     : public range_exception
 {
 public:
-    typedef range_exception         parent_class_type;
-    typedef empty_range_exception  class_type;
+    typedef range_exception                                 parent_class_type;
+    typedef empty_range_exception                           class_type;
 
 /// \name Construction
 /// @{
@@ -207,11 +210,12 @@ public:
     ss_explicit_k empty_range_exception(char const* reason = NULL)
         : parent_class_type(reason)
     {}
-    /// Destructor
+    /// Destructor.
     ///
-    /// \note This does not do have any implementation, but is required to placate
-    /// the Comeau and GCC compilers, which otherwise complain about mismatched
-    /// exception specifications between this class and its parent
+    /// \note This does not do have any implementation, but is required to
+    ///   placate the Comeau and GCC compilers, which otherwise complain
+    ///   about mismatched exception specifications between this class and
+    ///   its parent.
     virtual ~empty_range_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 /// @}
@@ -225,6 +229,7 @@ private:
     }
 /// @}
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -14,7 +14,7 @@
  *          basic_reg_value_sequence).
  *
  * Created: 19th January 2002
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -63,9 +63,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 17
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     155
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     156
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -555,7 +555,7 @@ basic_reg_value_sequence<C, T, A>::create_shared_handle_(
     if (NULL == hkey2)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not duplicate key";
+        static const char message[] = "failed to duplicate key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -579,7 +579,7 @@ basic_reg_value_sequence<C, T, A>::create_shared_handle_(
         if (NULL == handle)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            static const char   message[]   =   "could not create shared enumeration context";
+            static const char   message[]   =   "failed to create shared enumeration context";
             DWORD const         err         =   WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
             if (ERROR_ACCESS_DENIED == err)
@@ -637,7 +637,7 @@ basic_reg_value_sequence<C, T, A>::dup_key_(
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not duplicate key";
+        static const char message[] = "failed to duplicate key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -671,7 +671,7 @@ basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence(
     if (ERROR_SUCCESS != (res = traits_type::reg_open_key(hkey, subKeyName, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not open key";
+        static const char message[] = "failed to open key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -704,7 +704,7 @@ basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence(
     if (ERROR_SUCCESS != (res = traits_type::reg_open_key(hkey, subKeyName, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not open key";
+        static const char message[] = "failed to open key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -806,7 +806,7 @@ basic_reg_value_sequence<C, T, A>::begin()
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit value information";
+        static const char message[] = "failed to elicit value information";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -831,7 +831,7 @@ basic_reg_value_sequence<C, T, A>::begin()
             if (NULL == handle)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char message[] = "could not create shared enumeration context";
+                static const char message[] = "failed to create shared enumeration context";
 
                 if (ERROR_ACCESS_DENIED == res)
                 {
@@ -872,7 +872,7 @@ basic_reg_value_sequence<C, T, A>::begin()
                     else if (ERROR_SUCCESS != res)
                     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                        static const char message[] = "could not enumerate values";
+                        static const char message[] = "failed to enumerate values";
 
                         if (ERROR_ACCESS_DENIED == res)
                         {
@@ -962,7 +962,7 @@ basic_reg_value_sequence<C, T, A>::current_size() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit number of values";
+        static const char message[] = "failed to elicit number of values";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1098,7 +1098,7 @@ basic_reg_value_sequence_iterator<C, T, V, A>::operator ++()
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit value information";
+        static const char message[] = "failed to elicit value information";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1134,7 +1134,7 @@ basic_reg_value_sequence_iterator<C, T, V, A>::operator ++()
             else if (ERROR_SUCCESS != res)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char message[] = "could not enumerate values";
+                static const char message[] = "failed to enumerate values";
 
                 if (ERROR_ACCESS_DENIED == res)
                 {
@@ -1180,7 +1180,7 @@ basic_reg_value_sequence_iterator<C, T, V, A>::operator --()
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit value information";
+        static const char message[] = "failed to elicit value information";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1224,7 +1224,7 @@ basic_reg_value_sequence_iterator<C, T, V, A>::operator --()
             else if (ERROR_SUCCESS != res)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char message[] = "could not elicit value information";
+                static const char message[] = "failed to elicit value information";
 
                 if (ERROR_ACCESS_DENIED == res)
                 {

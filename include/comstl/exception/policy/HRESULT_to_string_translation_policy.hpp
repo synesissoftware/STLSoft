@@ -1,13 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/exception/policy/HRESULT_to_string_translation_policy.hpp
+ * File:    comstl/exception/policy/HRESULT_to_string_translation_policy.hpp
  *
- * Purpose:     comstl::HRESULT_to_string_translation_policy
- *              policy class
+ * Purpose: comstl::HRESULT_to_string_translation_policy policy class
  *
- * Created:     8th January 2017
- * Updated:     9th November 2026
+ * Created: 8th January 2017
+ * Updated: 13th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
@@ -56,7 +55,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_MAJOR      1
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_MINOR      0
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_REVISION   2
-# define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_EDIT       7
+# define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,22 +99,22 @@ namespace comstl_project
  * classes
  */
 
-/** Policy class for Window status code to string translation
+/** Policy class for Window status code to string translation.
  *
  * \ingroup group__library__Exception
  */
 struct HRESULT_to_string_translation_policy
 {
 public:
-    /// The status code type
+    /// The status code type.
     typedef HRESULT                                         status_code_type;
-    /// The string type
+    /// The string type.
     typedef STLSOFT_NS_QUAL(exception_string)               string_type;
-    /// The size type
+    /// The size type.
     typedef ss_size_t                                       size_type;
 
 public:
-    /// Creates a message from the given status code and message
+    /// Creates a message from the given status code and message.
     static
     string_type
     create_message(
@@ -152,8 +151,6 @@ public:
 #ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_message_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !COMSTL_INCL_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY */
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_connection class.
  *
  * Created: 30th April 1999
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    13
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        91
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       2
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    1
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -311,7 +311,7 @@ basic_connection<C, X, T>::basic_connection(
 {
     if (NULL == m_hConn)
     {
-        exception_policy_type()("Failed to open connection", m_lastError);
+        exception_policy_type()("failed to open connection", m_lastError);
     }
 }
 
@@ -360,7 +360,7 @@ basic_connection<C, X, T>::connect(
 
         if (NULL == m_hConn)
         {
-            exception_policy_type()("Failed to open connection", m_lastError);
+            exception_policy_type()("failed to open connection", m_lastError);
 
             bRet = false;
         }

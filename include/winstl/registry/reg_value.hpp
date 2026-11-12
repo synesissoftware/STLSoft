@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -68,9 +68,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  15
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      139
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -564,7 +564,7 @@ basic_reg_value<C, T, A>::dup_key_(
         if (ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            static const char message[] = "could not duplicate key";
+            static const char message[] = "failed to duplicate key";
 
             if (ERROR_ACCESS_DENIED == res)
             {
@@ -615,7 +615,7 @@ basic_reg_value<C, T, A>::value_sz() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not determine the data size";
+        static const char message[] = "failed to determine the data size";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -638,7 +638,7 @@ basic_reg_value<C, T, A>::value_sz() const
         if (ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            static const char message[] = "could not elicit string value";
+            static const char message[] = "failed to elicit string value";
 
             if (ERROR_ACCESS_DENIED == res)
             {
@@ -685,7 +685,7 @@ basic_reg_value<C, T, A>::value_expand_sz() const
             if (0 == traits_type::expand_environment_strings(ret.c_str(), &buffer[0], size))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char   message[]   =   "could not expand environment strings";
+                static const char   message[]   =   "failed to expand environment strings";
                 DWORD const         res         =   WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
                 if (ERROR_ACCESS_DENIED == res)
@@ -721,7 +721,7 @@ basic_reg_value<C, T, A>::value_dword() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not query value";
+        static const char message[] = "failed to query value";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -769,7 +769,7 @@ basic_reg_value<C, T, A>::value_binary() const
 
 query_failed:
 
-        static const char message[] = "could not elicit binary value";
+        static const char message[] = "failed to elicit binary value";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -821,7 +821,7 @@ basic_reg_value<C, T, A>::value_multi_sz() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not determine the data size";
+        static const char message[] = "failed to determine the data size";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -844,7 +844,7 @@ basic_reg_value<C, T, A>::value_multi_sz() const
         if (ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            static const char message[] = "could not elicit string values";
+            static const char message[] = "failed to elicit string values";
 
             if (ERROR_ACCESS_DENIED == res)
             {

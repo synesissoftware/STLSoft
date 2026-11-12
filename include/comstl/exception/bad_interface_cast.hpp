@@ -4,7 +4,7 @@
  * Purpose: Exception thrown when interface casts fail.
  *
  * Created: 22nd December 2003
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -129,11 +129,11 @@ class bad_interface_cast
 /// \name Member Types
 /// @{
 public:
-    /// The parent class type
+    /// The parent class type.
     typedef STLSOFT_NS_QUAL_STD(bad_cast)                   parent_class_type;
-    /// The status code type
+    /// The status code type.
     typedef HRESULT                                         status_code_type;
-    /// The class type
+    /// The class type.
     typedef bad_interface_cast                              class_type;
 /// @}
 
@@ -159,20 +159,20 @@ private:
 /// \name Accessors
 /// @{
 public:
-    /// Returns a human-readable description of the exceptional condition
+    /// Returns a human-readable description of the exceptional condition.
     /* virtual */ char const*
     what() const STLSOFT_NOEXCEPT ss_override_k
     {
         return "Failed to acquire requested interface";
     }
 
-    /// The interface identifier that is associated with the exception
+    /// The interface identifier that is associated with the exception.
     REFIID      iid() const STLSOFT_NOEXCEPT
     {
         return m_iid;
     }
 
-    /// [DEPRECATED] Equivalent to status_code()
+    /// [DEPRECATED] Equivalent to status_code().
     ///
     /// \deprecated
     HRESULT     hresult() const STLSOFT_NOEXCEPT
@@ -180,7 +180,7 @@ public:
         return hr();
     }
 
-    /// [DEPRECATED] Equivalent to status_code()
+    /// [DEPRECATED] Equivalent to status_code().
     ///
     /// \deprecated
     HRESULT     hr() const STLSOFT_NOEXCEPT
@@ -188,7 +188,7 @@ public:
         return m_sc;
     }
 
-    /// The status code that is associated with the exception
+    /// The status code that is associated with the exception.
     /* virtual */ status_code_type
     status_code() const ss_override_k
     {

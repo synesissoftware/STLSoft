@@ -4,7 +4,7 @@
  * Purpose: Scopes the console colour (and intensity).
  *
  * Created: 20th July 2006
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MAJOR    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 17
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     34
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MINOR    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,7 +169,7 @@ private:
         if (!WINSTL_API_EXTERNAL_Console_GetConsoleScreenBufferInfo(hBuffer, &bufferInfo))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("Could not retrieve console buffer information", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+            STLSOFT_THROW_X(winstl_exception("failed to retrieve console buffer information", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
@@ -177,7 +177,7 @@ private:
             if (!WINSTL_API_EXTERNAL_Console_SetConsoleTextAttribute(hBuffer, textAttributes))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(winstl_exception("Could not set console text attributes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+                STLSOFT_THROW_X(winstl_exception("failed to set console text attributes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
             else

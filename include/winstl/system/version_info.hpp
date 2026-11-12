@@ -4,7 +4,7 @@
  * Purpose: Helper for accessing version information.
  *
  * Created: 16th February 1998
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 21
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     162
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     163
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1333,7 +1333,7 @@ version_info::retrieve_module_info_block_(
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-            STLSOFT_THROW_X(version_info_exception("Could not obtain executing module path", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+            STLSOFT_THROW_X(version_info_exception("failed to obtain executing module path", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             return mem_block_type_();
@@ -1354,7 +1354,7 @@ version_info::retrieve_module_info_block_(
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-            STLSOFT_THROW_X(version_info_exception("Could not elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+            STLSOFT_THROW_X(version_info_exception("failed to elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             return mem_block_type_();
@@ -1390,7 +1390,7 @@ version_info::retrieve_module_info_block_(
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(version_info_exception("Could not elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+        STLSOFT_THROW_X(version_info_exception("failed to elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return version_info::mem_block_type_();
@@ -1444,7 +1444,7 @@ version_info::retrieve_module_info_block_(
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-            STLSOFT_THROW_X(version_info_exception("Could not elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+            STLSOFT_THROW_X(version_info_exception("failed to elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             return mem_block_type_();
@@ -1476,7 +1476,7 @@ version_info::retrieve_module_info_block_(
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X((version_info_exception("Could not elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())));
+        STLSOFT_THROW_X((version_info_exception("failed to elicit version information from module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return version_info::mem_block_type_();

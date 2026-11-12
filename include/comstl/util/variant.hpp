@@ -4,7 +4,7 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR       2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    16
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        182
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,13 +138,13 @@ namespace comstl_project
 class variant
     : public VARIANT
 {
-/// Member Types
+/// types
 public:
-    typedef variant         class_type;
-    typedef cs_bool_t       bool_type;
-    typedef cs_size_t       size_type;
+    typedef variant                                         class_type;
+    typedef cs_bool_t                                       bool_type;
+    typedef cs_size_t                                       size_type;
 
-/// Conversion
+/// conversion
 public:
     /** Default constructor
      *
@@ -263,8 +263,8 @@ public:
 //  variant(stlsoft::sint64_t i);
 //  variant(stlsoft::uint64_t i);
 //#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
 #ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+
     /** Conversion constructor
      *
      * Initialises the instance with the given \c short value
@@ -288,8 +288,8 @@ public:
      */
     variant(unsigned short i);
 #endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
-
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+
     /** Conversion constructor
      *
      * Initialises the instance with the given \c int value
@@ -313,8 +313,8 @@ public:
      */
     variant(unsigned int i);
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
-
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+
     /** Conversion constructor
      *
      * Initialises the instance with the given \c long value
@@ -406,9 +406,12 @@ public:
      */
     void clear();
 
-/// Operations
+/// operations
 public:
-    HRESULT     try_conversion_copy(VARIANT const& var, VARTYPE vType);
+    HRESULT     try_conversion_copy(
+                    VARIANT const& var
+                ,   VARTYPE vType
+                );
     HRESULT     try_convert(VARTYPE vType);
     class_type& convert(VARTYPE vType);
 
@@ -424,7 +427,10 @@ public:
      *
      * \pre nullptr != ppv
      */
-    HRESULT     QueryInterface(REFIID riid, void** ppv) const;
+    HRESULT QueryInterface(
+        REFIID  riid
+    ,   void**  ppv
+    ) const;
 
     /** Returns a pointer to a specified interface on an object to which a
      * client currently holds an interface pointer.
@@ -449,12 +455,12 @@ public:
      */
     void swap(class_type& rhs);
 
-/// Comparison
+/// comparison
 public:
     bool_type   equal(class_type const& rhs) const;
     bool_type   equal(VARIANT const& rhs) const;
 
-/// Operators
+/// operators
 public:
 
 private:
@@ -476,32 +482,44 @@ private:
  * operators
  */
 
-inline cs_bool_t operator ==(variant const& lhs, variant const& rhs)
+inline
+cs_bool_t
+operator ==(variant const& lhs, variant const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-inline cs_bool_t operator !=(variant const& lhs, variant const& rhs)
+inline
+cs_bool_t
+operator !=(variant const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
-inline cs_bool_t operator ==(variant const& lhs, VARIANT const& rhs)
+inline
+cs_bool_t
+operator ==(variant const& lhs, VARIANT const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-inline cs_bool_t operator !=(variant const& lhs, VARIANT const& rhs)
+inline
+cs_bool_t
+operator !=(variant const& lhs, VARIANT const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
-inline cs_bool_t operator ==(VARIANT const& lhs, variant const& rhs)
+inline
+cs_bool_t
+operator ==(VARIANT const& lhs, variant const& rhs)
 {
     return rhs.equal(lhs);
 }
 
-inline cs_bool_t operator !=(VARIANT const& lhs, variant const& rhs)
+inline
+cs_bool_t
+operator !=(VARIANT const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
@@ -513,12 +531,16 @@ inline cs_bool_t operator !=(VARIANT const& lhs, variant const& rhs)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline void variant::handle_error_(char const* message, HRESULT hr)
+inline
+void
+variant::handle_error_(
+    char const* message
+,   HRESULT     hr
+)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
     STLSOFT_THROW_X(comstl_exception(message, hr));
-
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
     STLSOFT_SUPPRESS_UNUSED(message);
@@ -527,11 +549,12 @@ inline void variant::handle_error_(char const* message, HRESULT hr)
 
     this->vt    =   VT_ERROR;
     this->scode =   hr;
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline /* static */ void variant::swap_(VARIANT& lhs, VARIANT& rhs)
+inline
+/* static */ void
+variant::swap_(VARIANT& lhs, VARIANT& rhs)
 {
     VARIANT t;
 
@@ -540,15 +563,14 @@ inline /* static */ void variant::swap_(VARIANT& lhs, VARIANT& rhs)
     STLSOFT_API_EXTERNAL_memfns_memcpy(&rhs, &t, sizeof(VARIANT));
 }
 
-
-
-
-inline variant::variant()
+inline
+variant::variant()
 {
     ::VariantInit(this);
 }
 
-inline variant::variant(class_type const& rhs)
+inline
+variant::variant(class_type const& rhs)
 {
     ::VariantInit(this);
 
@@ -561,7 +583,8 @@ inline variant::variant(class_type const& rhs)
     }
 }
 
-inline variant::variant(VARIANT const& rhs)
+inline
+variant::variant(VARIANT const& rhs)
 {
     ::VariantInit(this);
 
@@ -573,7 +596,9 @@ inline variant::variant(VARIANT const& rhs)
     }
 }
 
-inline variant::class_type& variant::operator =(variant::class_type const& rhs)
+inline
+variant::class_type&
+variant::operator =(variant::class_type const& rhs)
 {
     class_type r(rhs);
 
@@ -582,7 +607,8 @@ inline variant::class_type& variant::operator =(variant::class_type const& rhs)
     return *this;
 }
 
-inline variant::variant(bool b)
+inline
+variant::variant(bool b)
 {
     ::VariantInit(this);
 
@@ -590,7 +616,8 @@ inline variant::variant(bool b)
     this->boolVal   =   b ? VARIANT_TRUE : VARIANT_FALSE;
 }
 
-inline variant::variant(stlsoft::sint8_t i)
+inline
+variant::variant(stlsoft::sint8_t i)
 {
     ::VariantInit(this);
 
@@ -598,7 +625,8 @@ inline variant::variant(stlsoft::sint8_t i)
     this->cVal  =   static_cast<CHAR>(i);
 }
 
-inline variant::variant(stlsoft::uint8_t i)
+inline
+variant::variant(stlsoft::uint8_t i)
 {
     ::VariantInit(this);
 
@@ -606,7 +634,8 @@ inline variant::variant(stlsoft::uint8_t i)
     this->bVal  =   static_cast<BYTE>(i);
 }
 
-inline variant::variant(stlsoft::sint16_t i)
+inline
+variant::variant(stlsoft::sint16_t i)
 {
     ::VariantInit(this);
 
@@ -614,7 +643,8 @@ inline variant::variant(stlsoft::sint16_t i)
     this->iVal  =   static_cast<SHORT>(i);
 }
 
-inline variant::variant(stlsoft::uint16_t i)
+inline
+variant::variant(stlsoft::uint16_t i)
 {
     ::VariantInit(this);
 
@@ -622,7 +652,8 @@ inline variant::variant(stlsoft::uint16_t i)
     this->uiVal =   static_cast<USHORT>(i);
 }
 
-inline variant::variant(stlsoft::sint32_t i)
+inline
+variant::variant(stlsoft::sint32_t i)
 {
     ::VariantInit(this);
 
@@ -630,23 +661,26 @@ inline variant::variant(stlsoft::sint32_t i)
     this->lVal  =   static_cast<LONG>(i);
 }
 
-inline variant::variant(stlsoft::uint32_t i)
+inline
+variant::variant(stlsoft::uint32_t i)
 {
     ::VariantInit(this);
 
     this->vt    =   VT_UI4;
     this->ulVal =   static_cast<ULONG>(i);
 }
-
 #ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
-inline variant::variant(short i)
+
+inline
+variant::variant(short i)
 {
     ::VariantInit(this);
 
     this->vt    =   VT_I2;
     this->iVal  =   i;
 }
-inline variant::variant(unsigned short i)
+inline
+variant::variant(unsigned short i)
 {
     ::VariantInit(this);
 
@@ -654,16 +688,18 @@ inline variant::variant(unsigned short i)
     this->uiVal =   i;
 }
 #endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
-
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline variant::variant(int i)
+
+inline
+variant::variant(int i)
 {
     ::VariantInit(this);
 
     this->vt    =   VT_I4;
     this->lVal  =   i;
 }
-inline variant::variant(unsigned int i)
+inline
+variant::variant(unsigned int i)
 {
     ::VariantInit(this);
 
@@ -671,16 +707,18 @@ inline variant::variant(unsigned int i)
     this->ulVal =   i;
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
-
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline variant::variant(long i)
+
+inline
+variant::variant(long i)
 {
     ::VariantInit(this);
 
     this->vt    =   VT_I4;
     this->lVal  =   i;
 }
-inline variant::variant(unsigned long i)
+inline
+variant::variant(unsigned long i)
 {
     ::VariantInit(this);
 
@@ -689,8 +727,8 @@ inline variant::variant(unsigned long i)
 }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-
-inline variant::variant(float r)
+inline
+variant::variant(float r)
 {
     ::VariantInit(this);
 
@@ -698,7 +736,8 @@ inline variant::variant(float r)
     this->fltVal    =   r;
 }
 
-inline variant::variant(double r)
+inline
+variant::variant(double r)
 {
     ::VariantInit(this);
 
@@ -706,7 +745,8 @@ inline variant::variant(double r)
     this->dblVal    =   r;
 }
 
-inline variant::variant(CY cy)
+inline
+variant::variant(CY cy)
 {
     ::VariantInit(this);
 
@@ -714,7 +754,8 @@ inline variant::variant(CY cy)
     this->cyVal =   cy;
 }
 
-inline variant::variant(DECIMAL const& dec)
+inline
+variant::variant(DECIMAL const& dec)
 {
     ::VariantInit(this);
 
@@ -726,7 +767,11 @@ inline variant::variant(DECIMAL const& dec)
     this->decVal.Lo32   =   dec.Lo32;
 }
 
-inline variant::variant(LPUNKNOWN punk, bool_type bAddRef)
+inline
+variant::variant(
+    LPUNKNOWN   punk
+,   bool_type   bAddRef
+)
 {
     ::VariantInit(this);
 
@@ -740,7 +785,11 @@ inline variant::variant(LPUNKNOWN punk, bool_type bAddRef)
     }
 }
 
-inline variant::variant(LPDISPATCH pdisp, bool_type bAddRef)
+inline
+variant::variant(
+    LPDISPATCH  pdisp
+,   bool_type   bAddRef
+)
 {
     ::VariantInit(this);
 
@@ -754,7 +803,11 @@ inline variant::variant(LPDISPATCH pdisp, bool_type bAddRef)
     }
 }
 
-inline variant::variant(cs_char_a_t const* s, int len /* = -1 */)
+inline
+variant::variant(
+    cs_char_a_t const*  s
+,   int                 len /* = -1 */
+)
 {
     ::VariantInit(this);
 
@@ -766,12 +819,16 @@ inline variant::variant(cs_char_a_t const* s, int len /* = -1 */)
         if (NULL != s &&
             '\0' != 0[s])
         {
-            handle_error_("could not initialise from string", E_OUTOFMEMORY);
+            handle_error_("failed to initialise from string", E_OUTOFMEMORY);
         }
     }
 }
 
-inline variant::variant(cs_char_w_t const* s, int len /* = -1 */)
+inline
+variant::variant(
+    cs_char_w_t const*  s
+,   int                 len /* = -1 */
+)
 {
     ::VariantInit(this);
 
@@ -783,12 +840,16 @@ inline variant::variant(cs_char_w_t const* s, int len /* = -1 */)
         if (NULL != s &&
             '\0' != 0[s])
         {
-            handle_error_("could not initialise from string", E_OUTOFMEMORY);
+            handle_error_("failed to initialise from string", E_OUTOFMEMORY);
         }
     }
 }
 
-inline variant::variant(VARIANT const& var, VARTYPE vType)
+inline
+variant::variant(
+    VARIANT const&  var
+,   VARTYPE         vType
+)
 {
     ::VariantInit(this);
 
@@ -797,7 +858,7 @@ inline variant::variant(VARIANT const& var, VARTYPE vType)
 
     if (FAILED(hr))
     {
-        handle_error_("could not convert variant to requested type", hr);
+        handle_error_("failed to convert variant to requested type", hr);
     }
     else
     {
@@ -805,12 +866,19 @@ inline variant::variant(VARIANT const& var, VARTYPE vType)
     }
 }
 
-inline void variant::clear()
+inline
+void
+variant::clear()
 {
     ::VariantClear(this);
 }
 
-inline HRESULT variant::try_conversion_copy(VARIANT const& var, VARTYPE vType)
+inline
+HRESULT
+variant::try_conversion_copy(
+    VARIANT const&  var
+,   VARTYPE         vType
+)
 {
     HRESULT hr;
 
@@ -833,25 +901,34 @@ inline HRESULT variant::try_conversion_copy(VARIANT const& var, VARTYPE vType)
     return hr;
 }
 
-inline HRESULT variant::try_convert(VARTYPE vType)
+inline
+HRESULT
+variant::try_convert(VARTYPE vType)
 {
     return try_conversion_copy(*this, vType);
 }
 
-inline variant::class_type& variant::convert(VARTYPE vType)
+inline
+variant::class_type&
+variant::convert(VARTYPE vType)
 {
     HRESULT hr  =   try_convert(vType);
 
     if (FAILED(hr))
     {
-        handle_error_("could not convert variant to requested type", hr);
+        handle_error_("failed to convert variant to requested type", hr);
     }
 
     return *this;
 }
 
 
-inline HRESULT variant::QueryInterface(REFIID riid, void** ppv) const
+inline
+HRESULT
+variant::QueryInterface(
+    REFIID  riid
+,   void**  ppv
+) const
 {
     COMSTL_ASSERT(NULL != ppv);
 
@@ -865,17 +942,23 @@ inline HRESULT variant::QueryInterface(REFIID riid, void** ppv) const
 }
 
 
-inline void variant::swap(variant::class_type& rhs)
+inline
+void
+variant::swap(variant::class_type& rhs)
 {
     swap_(*this, rhs);
 }
 
-inline variant::bool_type variant::equal(variant::class_type const& rhs) const
+inline
+variant::bool_type
+variant::equal(variant::class_type const& rhs) const
 {
     return equal(static_cast<VARIANT const&>(rhs));
 }
 
-inline variant::bool_type variant::equal(VARIANT const& rhs) const
+inline
+variant::bool_type
+variant::equal(VARIANT const& rhs) const
 {
     HRESULT comparisonSucceeded;
     int     areEqual = VARIANT_equal(*this, rhs, &comparisonSucceeded);
@@ -883,9 +966,11 @@ inline variant::bool_type variant::equal(VARIANT const& rhs) const
     if (FAILED(comparisonSucceeded))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(comstl_exception("support for comparison of variant type not currently supported", comparisonSucceeded));
+
+        STLSOFT_THROW_X(comstl_exception("failed to compare VARIANTs (likely due to unsupported vt)", comparisonSucceeded));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("support for comparison of variant type not currently supported\n");
+
+        WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("failed to compare VARIANTs (likely due to unsupported vt)\n");
 
         return false;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -893,8 +978,8 @@ inline variant::bool_type variant::equal(VARIANT const& rhs) const
 
     return 0 != areEqual;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -909,6 +994,7 @@ inline variant::bool_type variant::equal(VARIANT const& rhs) const
 } // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

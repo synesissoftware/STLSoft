@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     79
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -329,8 +329,10 @@ pid_sequence::pid_sequence(ws_uint32_t flags)
 #endif /* psapi */
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("Failed to enumerate processes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+
+            STLSOFT_THROW_X(winstl_exception("failed to enumerate processes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
             m_pids.resize(0);
 
             break;

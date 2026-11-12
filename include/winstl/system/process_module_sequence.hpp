@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thank:   Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -57,9 +57,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MAJOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MINOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  15
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      74
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MINOR     3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -265,8 +265,10 @@ process_module_sequence::process_module_sequence(HANDLE hProcess)
 #endif /* psapi */
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("Failed to enumerate processes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+
+            STLSOFT_THROW_X(winstl_exception("failed to enumerate process modules", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
             m_modules.resize(0);
 
             break;

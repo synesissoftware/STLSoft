@@ -112,18 +112,17 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [X] ~~~Have `basic_path_buffer` use pre and post eye-catchers (`STLSOFT_DEBUG`-only)~~~ - ❌ (it's deprecated and going to be removed in future version);
 * [X] ~~~Rename HAS files under **include/stlsoft/internal/std/has/** to remove the trailing `_` (and disambiguate further if needed)~~~ - ❌ (no need, because these are all internal);
 * [x] ~~~`STLSOFT_CF_PRAGMA_ONCE_SUPPORT` => `STLSOFT_PPF_pragma_once_SUPPORT`~~~ - ✅;
-* [ ] Canonicalise exception messages (consistency, lower-case, etc.);
 * [x] ~~~Move **include/stlsoft/util/string/**\***printf.h** into **api/internal** and deprecate the old headers~~~ - ✅;
 * [x] ~~~Apply **woad** colours (as in **test.scratch.versions.iostreams**) to **test.scratch.versions.format**~~~ - ✅;
 
 
 ### 1.11.9
 
-* [ ] Exception messages (consistency):
-  * [ ] Identify those that pertain to programmer error (invalid use) vs runtime conditions, as the former should be more "precise" (e.g. include construct names) and the latter should be more "readable";
-  * [ ] Punctuation;
-  * [ ] Case;
-  * [ ] " : " clausing;
+* [x] ~~~Exception messages (consistency)~~~ - ✅;
+  * [x] ~~~Identify those that pertain to programmer error (invalid use) vs runtime conditions, as the former should be more "precise" (e.g. include construct names) and the latter should be more "readable"~~~ - ✅;
+  * [x] ~~~punctuation~~~ - ✅;
+  * [x] ~~~case~~~ - ✅;
+  * [x] ~~~" : " clausing~~~ - ✅;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] All precondition enforcements => \pre;
@@ -131,6 +130,7 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] Terminology:
   * [ ] "file-system" => "filesystem";
   * [ ] . . .;
+* [ ] `cbegin()` / `cend()` / `crbegin()` / `crend()` wherever missing;
 
 
 ### 1.11.10
@@ -307,6 +307,11 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 * [ ] Complete coverage of currently untested components (improvement / completion);
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
+
+* [ ] Exception invocations:
+  * [ ] `comstl::comstl_exception` should be a root exception:
+    * [ ] add `comstl::unsupported_interface_exception`;
+  * [ ]
 
 
 ## 1.13

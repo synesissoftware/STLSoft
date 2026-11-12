@@ -4,7 +4,7 @@
  * Purpose: Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created: 30th May 2006
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 18
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     48
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    4
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -220,7 +220,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(wait_failed_logic_exception(e, "semaphore wait failed"));
+            STLSOFT_THROW_X(wait_failed_logic_exception(e, "failed to wait for semaphore"));
 #else
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_WaitFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -239,7 +239,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(wait_failed_logic_exception(e, "semaphore wait failed"));
+            STLSOFT_THROW_X(wait_failed_logic_exception(e, "failed to wait for semaphore"));
 #else
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_WaitFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -267,7 +267,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "semaphore release failed", Synchronisation_SemaphoreReleaseFailed));
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "failed to release semaphore", Synchronisation_SemaphoreReleaseFailed));
 #else
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_SemaphoreReleaseFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -298,7 +298,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "semaphore release failed", Synchronisation_SemaphoreReleaseFailed));
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "failed to release semaphore", Synchronisation_SemaphoreReleaseFailed));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_SemaphoreReleaseFailed, e);
 
