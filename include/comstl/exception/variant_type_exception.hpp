@@ -4,7 +4,7 @@
  * Purpose: COM-related exception classes, and their policy classes
  *
  * Created: 8th December 2004
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MAJOR       3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       0
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    6
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        63
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,9 +110,9 @@ class variant_type_exception
     : public comstl_exception
 {
 public:
-    /// The parent class type
+    /// The parent class type.
     typedef comstl_exception                                parent_class_type;
-    /// The class type
+    /// The class type.
     typedef variant_type_exception                          class_type;
 
 /// \name Construction
