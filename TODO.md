@@ -118,11 +118,11 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 
 ### 1.11.9
 
-* [ ] Exception messages (consistency):
-  * [ ] Identify those that pertain to programmer error (invalid use) vs runtime conditions, as the former should be more "precise" (e.g. include construct names) and the latter should be more "readable";
-  * [ ] Punctuation;
-  * [ ] Case;
-  * [ ] " : " clausing;
+* [x] ~~~Exception messages (consistency)~~~ - ✅;
+  * [x] ~~~Identify those that pertain to programmer error (invalid use) vs runtime conditions, as the former should be more "precise" (e.g. include construct names) and the latter should be more "readable"~~~ - ✅;
+  * [x] ~~~punctuation~~~ - ✅;
+  * [x] ~~~case~~~ - ✅;
+  * [x] ~~~" : " clausing~~~ - ✅;
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] All precondition enforcements => \pre;
