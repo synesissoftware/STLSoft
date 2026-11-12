@@ -535,7 +535,6 @@ variant::handle_error_(
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
     STLSOFT_THROW_X(comstl_exception(message, hr));
-
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
     STLSOFT_SUPPRESS_UNUSED(message);
@@ -544,7 +543,6 @@ variant::handle_error_(
 
     this->vt    =   VT_ERROR;
     this->scode =   hr;
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -974,8 +972,8 @@ variant::equal(VARIANT const& rhs) const
 
     return 0 != areEqual;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -990,6 +988,7 @@ variant::equal(VARIANT const& rhs) const
 } // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
