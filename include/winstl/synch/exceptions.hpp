@@ -124,7 +124,7 @@ namespace winstl_project
 
         <-  synchronisation_exception [A]
 
-                /* should not happen (in a well-designed program) */
+                // should not happen (in a well-designed program)
             <-  synchronisation_logic_exception [A]
 
                 <-  wait_failed_logic_exception [A]
@@ -139,10 +139,10 @@ namespace winstl_project
 
                     <-  invalid_state_exception
 
-                /* may happen (in a well-designed program) */
+                // may happen (in a well-designed program)
             <-  synchronisation_runtime_exception [A]
 
-                    /* (likely to be) unrecoverable */
+                    // (likely to be) unrecoverable
                 <-  synchronisation_runtime_failure_exception [A]
 
                     <-  synchronisation_procurement_exception [A]
@@ -159,11 +159,10 @@ namespace winstl_project
 
                         <-  wait_abandoned_exception
 
-                    /* (may be) recoverable */
+                    // (may be) recoverable
                 <-  wait_operation_interrupted_exception [A]
 
                     <-  wait_operation_priority_preemption_exception
-
 #endif /* 0 */
 
 
@@ -178,13 +177,13 @@ class synchronisation_exception
     : public winstl_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef winstl_exception                                parent_class_type;
-    /// This type
+    /// This type.
     typedef synchronisation_exception                       class_type;
-    /// The system condition code type
+    /// The system condition code type.
     typedef parent_class_type::status_code_type             system_status_code_type;
-    /// The subsystem-specific status code type
+    /// The subsystem-specific status code type.
     typedef Synchronisation_status_code_t                   subsystem_status_code_type;
 
 protected: // construction
@@ -216,13 +215,13 @@ class synchronisation_logic_exception
     : public synchronisation_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef synchronisation_exception                       parent_class_type;
-    /// This type
+    /// This type.
     typedef synchronisation_logic_exception                 class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::status_code_type             system_status_code_type;
-    /// The subsystem-specific status code type
+    /// The subsystem-specific status code type.
     typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
 
 protected: // construction
@@ -241,19 +240,19 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
-/** Root exception for classes of synchronisation runtime conditions
+/** Root exception for classes of synchronisation runtime conditions.
  */
 class synchronisation_runtime_exception
     : public synchronisation_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef synchronisation_exception                       parent_class_type;
-    /// This type
+    /// This type.
     typedef synchronisation_runtime_exception               class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::status_code_type             system_status_code_type;
-    /// The subsystem-specific status code type
+    /// The subsystem-specific status code type.
     typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
 
 protected: // construction
@@ -272,17 +271,17 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
-/** Exception thrown to indicate that a wait operation has failed
+/** Exception thrown to indicate that a wait operation has failed.
  */
 class wait_failed_logic_exception
     : public synchronisation_logic_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef synchronisation_logic_exception             parent_class_type;
-    /// This type
+    /// This type.
     typedef wait_failed_logic_exception                 class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::system_status_code_type  system_status_code_type;
 
 public: // construction
@@ -308,19 +307,19 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
-/** Root exception for classes of synchronisation runtime failures
+/** Root exception for classes of synchronisation runtime failures.
  */
 class synchronisation_runtime_failure_exception
     : public synchronisation_runtime_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef synchronisation_runtime_exception               parent_class_type;
-    /// This type
+    /// This type.
     typedef synchronisation_runtime_failure_exception       class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::status_code_type             system_status_code_type;
-    /// The subsystem-specific status code type
+    /// The subsystem-specific status code type.
     typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
 
 protected: // construction
@@ -345,11 +344,11 @@ class wait_failed_runtime_exception
     : public synchronisation_runtime_failure_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef synchronisation_runtime_failure_exception   parent_class_type;
-    /// This type
+    /// This type.
     typedef wait_failed_runtime_exception               class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::system_status_code_type  system_status_code_type;
 
 protected: // construction
@@ -381,13 +380,13 @@ class wait_operation_interrupted_exception
     : public synchronisation_runtime_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef synchronisation_runtime_exception               parent_class_type;
-    /// This type
+    /// This type.
     typedef wait_operation_interrupted_exception            class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::status_code_type             system_status_code_type;
-    /// The subsystem-specific status code type
+    /// The subsystem-specific status code type.
     typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
 
 protected: // construction
@@ -410,26 +409,26 @@ private:
  * concrete classes - logic
  */
 
-/** Exception thrown to indicate invalid wait handle(s)
+/** Exception thrown to indicate invalid wait handle(s).
  */
 class invalid_wait_handle_exception
     : public wait_failed_logic_exception
 {
 public: // types
-    /// The parent exception type
+    /// The parent exception type.
     typedef wait_failed_logic_exception                 parent_class_type;
-    /// This type
+    /// This type.
     typedef invalid_wait_handle_exception               class_type;
-    /// The condition code type
+    /// The condition code type.
     typedef parent_class_type::system_status_code_type  system_status_code_type;
 
 public: // construction
-    /// Constructs an instance
+    /// Constructs an instance.
     ///
     /// \param sc The system condition code associated with the condition
-    ///   that resulted in the exception being thrown
+    ///   that resulted in the exception being thrown;
     /// \param waitIndex The index of the handle in a vector wait
-    ///   operation. Specify -1 if scalar wait
+    ///   operation. Specify -1 if scalar wait;
     invalid_wait_handle_exception(
         system_status_code_type sc
     ,   int                     waitIndex
@@ -446,11 +445,11 @@ private:
 
 public: // fields
     /// The index of the handle in a vector wait operation. -1 if scalar
-    /// wait operation
+    /// wait operation.
     const int WaitIndex;
 };
 
-/** Exception thrown to indicate one or more NULL wait handles
+/** Exception thrown to indicate one or more NULL wait handles.
  */
 class null_wait_handle_exception
     : public invalid_wait_handle_exception
@@ -484,7 +483,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
-/** Exception thrown to indicate duplicate wait handles
+/** Exception thrown to indicate duplicate wait handles.
  */
 class duplicate_wait_handle_exception
     : public wait_failed_logic_exception

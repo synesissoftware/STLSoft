@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MAJOR       3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       0
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    6
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        64
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,11 +125,12 @@ public:
     variant_type_exception(char const* reason, HRESULT hr)
         : parent_class_type(reason, hr)
     {}
-    /// Destructor
+    /// Destructor.
     ///
-    /// \note This does not do have any implementation, but is required to placate
-    /// the Comeau and GCC compilers, which otherwise complain about mismatched
-    /// exception specifications between this class and its parent
+    /// \note This does not do have any implementation, but is required to
+    ///   placate the Comeau and GCC compilers, which otherwise complain
+    ///   about mismatched exception specifications between this class and
+    ///   its parent.
     virtual ~variant_type_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 private:
