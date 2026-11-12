@@ -4,7 +4,7 @@
  * Purpose: guid class.
  *
  * Created: 10th May 2000
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   12
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       69
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -368,37 +368,43 @@ c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(COMSTL_NS_QUAL(guid) const& g
  */
 
 inline
-cs_bool_t operator ==(guid const& lhs, guid const& rhs)
+cs_bool_t
+operator ==(guid const& lhs, guid const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(guid const& lhs, guid const& rhs)
+cs_bool_t
+operator !=(guid const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(guid const& lhs, GUID const& rhs)
+cs_bool_t
+operator ==(guid const& lhs, GUID const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(guid const& lhs, GUID const& rhs)
+cs_bool_t
+operator !=(guid const& lhs, GUID const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(GUID const& lhs, guid const& rhs)
+cs_bool_t
+operator ==(GUID const& lhs, guid const& rhs)
 {
     return rhs.equal(lhs);
 }
 
 inline
-cs_bool_t operator !=(GUID const& lhs, guid const& rhs)
+cs_bool_t
+operator !=(GUID const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }

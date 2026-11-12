@@ -4,7 +4,7 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 10th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR       2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    16
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        183
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -483,37 +483,43 @@ private:
  */
 
 inline
-cs_bool_t operator ==(variant const& lhs, variant const& rhs)
+cs_bool_t
+operator ==(variant const& lhs, variant const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(variant const& lhs, variant const& rhs)
+cs_bool_t
+operator !=(variant const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(variant const& lhs, VARIANT const& rhs)
+cs_bool_t
+operator ==(variant const& lhs, VARIANT const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(variant const& lhs, VARIANT const& rhs)
+cs_bool_t
+operator !=(variant const& lhs, VARIANT const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(VARIANT const& lhs, variant const& rhs)
+cs_bool_t
+operator ==(VARIANT const& lhs, variant const& rhs)
 {
     return rhs.equal(lhs);
 }
 
 inline
-cs_bool_t operator !=(VARIANT const& lhs, variant const& rhs)
+cs_bool_t
+operator !=(VARIANT const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }

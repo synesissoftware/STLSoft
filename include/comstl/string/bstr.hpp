@@ -4,7 +4,7 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
@@ -56,7 +56,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    18
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        88
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -455,37 +455,43 @@ operator <<(
  */
 
 inline
-cs_bool_t operator ==(bstr const& lhs, bstr const& rhs)
+cs_bool_t
+operator ==(bstr const& lhs, bstr const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(bstr const& lhs, bstr const& rhs)
+cs_bool_t
+operator !=(bstr const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(bstr const& lhs, BSTR const& rhs)
+cs_bool_t
+operator ==(bstr const& lhs, BSTR const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(bstr const& lhs, BSTR const& rhs)
+cs_bool_t
+operator !=(bstr const& lhs, BSTR const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(BSTR const& lhs, bstr const& rhs)
+cs_bool_t
+operator ==(BSTR const& lhs, bstr const& rhs)
 {
     return rhs.equal(lhs);
 }
 
 inline
-cs_bool_t operator !=(BSTR const& lhs, bstr const& rhs)
+cs_bool_t
+operator !=(BSTR const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
