@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      101
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,7 +154,7 @@ public:
     typedef DWORD                                           error_type;
 /// @}
 
-/// \name File-system entry names
+/// \name Filesystem Entry Names
 /// @{
 public:
     /// Appends a path name separator to \c dir if one does not exist
@@ -211,7 +211,7 @@ public:
     static void         close_connection(HINTERNET hconn);
 /// @}
 
-/// \name File-system enumeration
+/// \name Filesystem Enumeration
 /// @{
 public:
     /// Initiate a file-system search
@@ -222,7 +222,7 @@ public:
     static void         find_close(HINTERNET hfind);
 /// @}
 
-/// \name File-system state
+/// \name Filesystem State
 /// @{
 public:
     /// Sets the current directory to \c dir
@@ -249,7 +249,7 @@ public:
     static bool_type    is_readonly(stat_data_type const* stat_data);
 /// @}
 
-/// \name File-system control
+/// \name Filesystem Control
 /// @{
 public:
     /// Creates a directory
@@ -285,7 +285,7 @@ public:
     typedef DWORD                                           error_type;
 
 public:
-    // File-system entry names
+    // filesystem entry names
     static char_type* ensure_dir_end(char_type* dir)
     {
         char_type       *end;
@@ -564,8 +564,7 @@ public:
     typedef DWORD                                           error_type;
 
 public:
-
-    // File-system entry names
+    // filesystem entry names
     static char_type* ensure_dir_end(char_type* dir)
     {
         char_type       *end;

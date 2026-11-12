@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 15th August 2025
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_MAJOR     1
-# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_MINOR     0
-# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_REVISION  3
-# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_EDIT      4
+# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_MINOR     1
+# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_REVISION  1
+# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -250,7 +250,7 @@ public:
     size_type   size() const STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     buffer_type_    m_cpids;
@@ -283,7 +283,7 @@ codepage_sequence::codepage_sequence()
     {
         char    msg[201];
 
-        stlsoft_C_snprintf(msg, STLSOFT_NUM_ELEMENTS(msg), "could not open registry key 'HKLM\\%s'", keyPath);
+        stlsoft_C_snprintf(msg, STLSOFT_NUM_ELEMENTS(msg), "failed to open registry key 'HKLM\\%s'", keyPath);
 
         if (ERROR_ACCESS_DENIED == r1)
         {

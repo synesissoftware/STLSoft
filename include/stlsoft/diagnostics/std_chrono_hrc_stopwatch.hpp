@@ -4,7 +4,7 @@
  * Purpose: stopwatch class based on std::chrono::high_resolution_clock.
  *
  * Created: 17th March 2024
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MAJOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  2
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      7
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ public: // construction
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-public: // Operations
+public: // operations
     /// Starts measurement
     ///
     /// Begins the measurement period

@@ -4,7 +4,7 @@
  * Purpose: Iterator range adaptor.
  *
  * Created: 4th November 2003
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -436,7 +436,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     iterator  m_position;

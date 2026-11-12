@@ -4,7 +4,7 @@
  * Purpose: Enumerator classes.
  *
  * Created: 11th November 1998
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -347,7 +347,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     values_type     m_values;

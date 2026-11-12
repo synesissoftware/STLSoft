@@ -6,7 +6,7 @@
  *          sequence.
  *
  * Created: 6th February 1999
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -376,7 +376,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     typedef shared_ptr<value_type>    value_type_ptr_type_;

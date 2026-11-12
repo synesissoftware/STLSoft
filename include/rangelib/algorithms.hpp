@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    rangelib/algorithms.hpp
+ * File:        rangelib/algorithms.hpp
  *
- * Purpose: Range algorithms.
+ * Purpose:     Range algorithms.
  *
- * Created: 4th November 2003
- * Updated: 11th November 2026
+ * Created:     4th November 2003
+ * Updated:     13th November 2026
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
  *              Yakov Markovitch for spotting a bug in r_exists_if_1_impl().
  *
- * Home:    http://stlsoft.org/
+ * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -78,11 +78,10 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR     2
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR     3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION  11
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR     4
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION  1
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,7 +146,9 @@ namespace rangelib_project
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline T r_accumulate_2_impl(R r, T val, notional_range_tag const&)
+inline
+T
+r_accumulate_2_impl(R r, T val, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -160,7 +161,9 @@ inline T r_accumulate_2_impl(R r, T val, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline T r_accumulate_2_impl(R r, T val, iterable_range_tag const&)
+inline
+T
+r_accumulate_2_impl(R r, T val, iterable_range_tag const&)
 {
     return std::accumulate(r.begin(), r.end(), val);
 }
@@ -168,7 +171,9 @@ inline T r_accumulate_2_impl(R r, T val, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline T r_accumulate_2_impl(R r, T val, basic_indirect_range_tag const&)
+inline
+T
+r_accumulate_2_impl(R r, T val, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).accumulate(val);
 }
@@ -176,7 +181,9 @@ inline T r_accumulate_2_impl(R r, T val, basic_indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline T r_accumulate_2_impl(R r, T val, indirect_range_tag const&)
+inline
+T
+r_accumulate_2_impl(R r, T val, indirect_range_tag const&)
 {
     return r.accumulate(val);
 }
@@ -194,7 +201,9 @@ inline T r_accumulate_2_impl(R r, T val, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline T r_accumulate(R r, T val)
+inline
+T
+r_accumulate(R r, T val)
 {
     return r_accumulate_2_impl(r, val, r);
 }
@@ -207,7 +216,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P
         >
-inline T r_accumulate_3_impl(R r, T val, P pred, notional_range_tag const&)
+inline
+T
+r_accumulate_3_impl(R r, T val, P pred, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -221,7 +232,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P
         >
-inline T r_accumulate_3_impl(R r, T val, P pred, iterable_range_tag const&)
+inline
+T
+r_accumulate_3_impl(R r, T val, P pred, iterable_range_tag const&)
 {
     return std::accumulate(r.begin(), r.end(), val, pred);
 }
@@ -230,7 +243,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P
         >
-inline T r_accumulate_2_impl(R r, T val, P pred, basic_indirect_range_tag const&)
+inline
+T
+r_accumulate_2_impl(R r, T val, P pred, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).accumulate(val, pred);
 }
@@ -239,7 +254,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P
         >
-inline T r_accumulate_3_impl(R r, T val, P pred, indirect_range_tag const&)
+inline
+T
+r_accumulate_3_impl(R r, T val, P pred, indirect_range_tag const&)
 {
     return r.accumulate(val, pred);
 }
@@ -259,7 +276,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P
         >
-inline T r_accumulate(R r, T val, P pred)
+inline
+T
+r_accumulate(R r, T val, P pred)
 {
     return r_accumulate_3_impl(r, val, pred, r);
 }
@@ -272,7 +291,9 @@ inline T r_accumulate(R r, T val, P pred)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         >
-inline O r_copy_impl(R r, O o, notional_range_tag const&)
+inline
+O
+r_copy_impl(R r, O o, notional_range_tag const&)
 {
     for (; r; ++r, ++o)
     {
@@ -285,7 +306,9 @@ inline O r_copy_impl(R r, O o, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         >
-inline O r_copy_impl(R r, O o, iterable_range_tag const&)
+inline
+O
+r_copy_impl(R r, O o, iterable_range_tag const&)
 {
     return std::copy(r.begin(), r.end(), o);
 }
@@ -293,7 +316,9 @@ inline O r_copy_impl(R r, O o, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         >
-inline O r_copy_impl(R r, O o, indirect_range_tag const&)
+inline
+O
+r_copy_impl(R r, O o, indirect_range_tag const&)
 {
     return r.copy(o);
 }
@@ -301,7 +326,9 @@ inline O r_copy_impl(R r, O o, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         >
-inline O r_copy_impl(R r, O o, basic_indirect_range_tag const&)
+inline
+O
+r_copy_impl(R r, O o, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).copy(o);
 }
@@ -318,7 +345,9 @@ inline O r_copy_impl(R r, O o, basic_indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         >
-inline O r_copy(R r, O o)
+inline
+O
+r_copy(R r, O o)
 {
     return r_copy_impl(r, o, r);
 }
@@ -332,7 +361,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         ,   ss_typename_param_k P
         >
-inline O r_copy_if_impl(R r, O o, P pred, notional_range_tag const&)
+inline
+O
+r_copy_if_impl(R r, O o, P pred, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -352,7 +383,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         ,   ss_typename_param_k P
         >
-inline O r_copy_if_impl(R r, O o, P pred, iterable_range_tag const&)
+inline
+O
+r_copy_if_impl(R r, O o, P pred, iterable_range_tag const&)
 {
     return std::copy_if(r.begin(), r.end(), o);
 }
@@ -362,7 +395,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         ,   ss_typename_param_k P
         >
-inline O r_copy_if_impl(R r, O o, P pred, indirect_range_tag const&)
+inline
+O
+r_copy_if_impl(R r, O o, P pred, indirect_range_tag const&)
 {
     return r.copy_if(o);
 }
@@ -371,7 +406,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         ,   ss_typename_param_k P
         >
-inline O r_copy_if_impl(R r, O o, P pred, basic_indirect_range_tag const&)
+inline
+O
+r_copy_if_impl(R r, O o, P pred, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).copy_if(o);
 }
@@ -390,7 +427,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k O
         ,   ss_typename_param_k P
         >
-inline O r_copy_if(R r, O o, P pred)
+inline
+O
+r_copy_if(R r, O o, P pred)
 {
     return r_copy_if_impl(r, o, pred, r);
 }
@@ -403,7 +442,9 @@ inline O r_copy_if(R r, O o, P pred)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_size_t r_count_impl(R r, T const& val, notional_range_tag const&)
+inline
+ss_size_t
+r_count_impl(R r, T const& val, notional_range_tag const&)
 {
     ss_size_t n;
 
@@ -421,7 +462,9 @@ inline ss_size_t r_count_impl(R r, T const& val, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_size_t r_count_impl(R r, T const& val, iterable_range_tag const&)
+inline
+ss_size_t
+r_count_impl(R r, T const& val, iterable_range_tag const&)
 {
     return std::count(r.begin(), r.end(), val);
 }
@@ -429,7 +472,9 @@ inline ss_size_t r_count_impl(R r, T const& val, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_size_t r_count_impl(R r, T const& val, basic_indirect_range_tag const&)
+inline
+ss_size_t
+r_count_impl(R r, T const& val, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).count(val);
 }
@@ -437,7 +482,9 @@ inline ss_size_t r_count_impl(R r, T const& val, basic_indirect_range_tag const&
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_size_t r_count_impl(R r, T const& val, indirect_range_tag const&)
+inline
+ss_size_t
+r_count_impl(R r, T const& val, indirect_range_tag const&)
 {
     return r.count(val);
 }
@@ -455,7 +502,9 @@ inline ss_size_t r_count_impl(R r, T const& val, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_size_t r_count(R r, T const& val)
+inline
+ss_size_t
+r_count(R r, T const& val)
 {
     return r_count_impl(r, val, r);
 }
@@ -468,7 +517,9 @@ inline ss_size_t r_count(R r, T const& val)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_size_t r_count_if_impl(R r, P pred, notional_range_tag const&)
+inline
+ss_size_t
+r_count_if_impl(R r, P pred, notional_range_tag const&)
 {
     ss_size_t n;
 
@@ -486,7 +537,9 @@ inline ss_size_t r_count_if_impl(R r, P pred, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_size_t r_count_if_impl(R r, P pred, iterable_range_tag const&)
+inline
+ss_size_t
+r_count_if_impl(R r, P pred, iterable_range_tag const&)
 {
     return std::count_if(r.begin(), r.end(), pred);
 }
@@ -494,7 +547,9 @@ inline ss_size_t r_count_if_impl(R r, P pred, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_size_t r_count_if_impl(R r, P pred, basic_indirect_range_tag const&)
+inline
+ss_size_t
+r_count_if_impl(R r, P pred, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).count_if(pred);
 }
@@ -502,7 +557,9 @@ inline ss_size_t r_count_if_impl(R r, P pred, basic_indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_size_t r_count_if_impl(R r, P pred, indirect_range_tag const&)
+inline
+ss_size_t
+r_count_if_impl(R r, P pred, indirect_range_tag const&)
 {
     return r.count_if(pred);
 }
@@ -520,7 +577,9 @@ inline ss_size_t r_count_if_impl(R r, P pred, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_size_t r_count_if(R r, P pred)
+inline
+ss_size_t
+r_count_if(R r, P pred)
 {
     return r_count_if_impl(r, pred, r);
 }
@@ -531,7 +590,9 @@ inline ss_size_t r_count_if(R r, P pred)
  */
 
 template <ss_typename_param_k R>
-inline ss_ptrdiff_t r_distance_1_impl(R r, notional_range_tag const&)
+inline
+ss_ptrdiff_t
+r_distance_1_impl(R r, notional_range_tag const&)
 {
     ss_ptrdiff_t    d = 0;
 
@@ -542,19 +603,25 @@ inline ss_ptrdiff_t r_distance_1_impl(R r, notional_range_tag const&)
 }
 
 template <ss_typename_param_k R>
-inline ss_ptrdiff_t r_distance_1_impl(R r, iterable_range_tag const&)
+inline
+ss_ptrdiff_t
+r_distance_1_impl(R r, iterable_range_tag const&)
 {
     return std::distance(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
-inline ss_ptrdiff_t r_distance_1_impl(R r, indirect_range_tag const&)
+inline
+ss_ptrdiff_t
+r_distance_1_impl(R r, indirect_range_tag const&)
 {
     return r.distance();
 }
 
 template <ss_typename_param_k R>
-inline ss_ptrdiff_t r_distance_1_impl(R r, basic_indirect_range_tag const&)
+inline
+ss_ptrdiff_t
+r_distance_1_impl(R r, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).distance();
 }
@@ -569,7 +636,9 @@ inline ss_ptrdiff_t r_distance_1_impl(R r, basic_indirect_range_tag const&)
  * \note: Supports Notional, Iterable and Indirect Range types
  */
 template <ss_typename_param_k R>
-inline ss_ptrdiff_t r_distance(R r)
+inline
+ss_ptrdiff_t
+r_distance(R r)
 {
     return r_distance_1_impl(r, r);
 }
@@ -581,7 +650,9 @@ inline ss_ptrdiff_t r_distance(R r)
 template<   ss_typename_param_k R1
         ,   ss_typename_param_k R2
         >
-inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, notional_range_tag const&, notional_range_tag const&)
+inline
+ss_bool_t
+r_equal_1_impl(R1 r1, R2 r2, notional_range_tag const&, notional_range_tag const&)
 {
     for (; r1 && r2; ++r1, ++r2)
     {
@@ -597,7 +668,9 @@ inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, notional_range_tag const&, notiona
 template<   ss_typename_param_k R1
         ,   ss_typename_param_k R2
         >
-inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, iterable_range_tag const&, iterable_range_tag const&)
+inline
+ss_bool_t
+r_equal_1_impl(R1 r1, R2 r2, iterable_range_tag const&, iterable_range_tag const&)
 {
     return std::equal(r1.begin(), r1.end(), r2.begin());
 }
@@ -617,7 +690,9 @@ inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, iterable_range_tag const&, iterabl
 template<   ss_typename_param_k R1
         ,   ss_typename_param_k R2
         >
-inline ss_bool_t r_equal(R1 r1, R2 r2)
+inline
+ss_bool_t
+r_equal(R1 r1, R2 r2)
 {
     if (r_distance(r1) > r_distance(r2))
     {
@@ -635,7 +710,9 @@ template<   ss_typename_param_k R1
         ,   ss_typename_param_k R2
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, P pred, notional_range_tag const&, notional_range_tag const&)
+inline
+ss_bool_t
+r_equal_1_impl(R1 r1, R2 r2, P pred, notional_range_tag const&, notional_range_tag const&)
 {
     for (; r1 && r2; ++r1, ++r2)
     {
@@ -652,7 +729,9 @@ template<   ss_typename_param_k R1
         ,   ss_typename_param_k R2
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, P pred, iterable_range_tag const&, iterable_range_tag const&)
+inline
+ss_bool_t
+r_equal_1_impl(R1 r1, R2 r2, P pred, iterable_range_tag const&, iterable_range_tag const&)
 {
     return std::equal(r1.begin(), r1.end(), r2.begin(), pred);
 }
@@ -672,7 +751,9 @@ template<   ss_typename_param_k R1
         ,   ss_typename_param_k R2
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_equal(R1 r1, R2 r2, P pred)
+inline
+ss_bool_t
+r_equal(R1 r1, R2 r2, P pred)
 {
     STLSOFT_ASSERT(r_distance(r1) <= r_distance(r2));
 
@@ -686,7 +767,9 @@ inline ss_bool_t r_equal(R1 r1, R2 r2, P pred)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_impl(R r, T const& val, notional_range_tag const&)
+inline
+ss_bool_t
+r_exists_impl(R r, T const& val, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -702,7 +785,9 @@ inline ss_bool_t r_exists_impl(R r, T const& val, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_impl(R r, T const& val, iterable_range_tag const&)
+inline
+ss_bool_t
+r_exists_impl(R r, T const& val, iterable_range_tag const&)
 {
     return std::find(r.begin(), r.end(), val) != r.end();
 }
@@ -710,7 +795,9 @@ inline ss_bool_t r_exists_impl(R r, T const& val, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_impl(R r, T const& val, basic_indirect_range_tag const&)
+inline
+ss_bool_t
+r_exists_impl(R r, T const& val, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).exists(val);
 }
@@ -718,7 +805,9 @@ inline ss_bool_t r_exists_impl(R r, T const& val, basic_indirect_range_tag const
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_impl(R r, T const& val, indirect_range_tag const&)
+inline
+ss_bool_t
+r_exists_impl(R r, T const& val, indirect_range_tag const&)
 {
     return r.exists(val);
 }
@@ -735,7 +824,9 @@ inline ss_bool_t r_exists_impl(R r, T const& val, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists(R r, T const& val)
+inline
+ss_bool_t
+r_exists(R r, T const& val)
 {
     return r_exists_impl(r, val, r);
 }
@@ -747,7 +838,9 @@ inline ss_bool_t r_exists(R r, T const& val)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_exists_if_1_impl(R r, P pred, notional_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_1_impl(R r, P pred, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -763,7 +856,9 @@ inline ss_bool_t r_exists_if_1_impl(R r, P pred, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_exists_if_1_impl(R r, P pred, iterable_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_1_impl(R r, P pred, iterable_range_tag const&)
 {
     return std::find_if(r.begin(), r.end(), pred) != r.end();
 }
@@ -771,7 +866,9 @@ inline ss_bool_t r_exists_if_1_impl(R r, P pred, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_exists_if_1_impl(R r, P pred, basic_indirect_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_1_impl(R r, P pred, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).exists_if(pred);
 }
@@ -779,7 +876,9 @@ inline ss_bool_t r_exists_if_1_impl(R r, P pred, basic_indirect_range_tag const&
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_exists_if_1_impl(R r, P pred, indirect_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_1_impl(R r, P pred, indirect_range_tag const&)
 {
     return r.exists_if(pred);
 }
@@ -796,7 +895,9 @@ inline ss_bool_t r_exists_if_1_impl(R r, P pred, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline ss_bool_t r_exists_if(R r, P pred)
+inline
+ss_bool_t
+r_exists_if(R r, P pred)
 {
     return r_exists_if_1_impl(r, pred, r);
 }
@@ -809,7 +910,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, notional_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_2_impl(R r, P pred, T &result, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -827,7 +930,9 @@ inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, notional_range_tag c
 template<   ss_typename_param_k I
         ,   ss_typename_param_k V
         >
-inline ss_bool_t r_exists_if_2_impl_helper_(I from, I to, V &val)
+inline
+ss_bool_t
+r_exists_if_2_impl_helper_(I from, I to, V &val)
 {
     if (from == to)
     {
@@ -845,7 +950,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, iterable_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_2_impl(R r, P pred, T &result, iterable_range_tag const&)
 {
     return r_exists_if_2_impl_helper_(std::find_if(r.begin(), r.end(), pred), r.end());
 }
@@ -854,7 +961,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, basic_indirect_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_2_impl(R r, P pred, T &result, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).exists_if(pred, result);
 }
@@ -863,7 +972,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, indirect_range_tag const&)
+inline
+ss_bool_t
+r_exists_if_2_impl(R r, P pred, T &result, indirect_range_tag const&)
 {
     return r.exists_if(pred, result);
 }
@@ -882,7 +993,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline R r_exists_if(R r, P pred, T &result)
+inline
+R
+r_exists_if(R r, P pred, T &result)
 {
     return r_exists_if_2_impl(r, pred, result, r);
 }
@@ -894,7 +1007,9 @@ inline R r_exists_if(R r, P pred, T &result)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline void r_fill_impl(R r, T const& val, iterable_range_tag const&)
+inline
+void
+r_fill_impl(R r, T const& val, iterable_range_tag const&)
 {
     std::fill(r.begin(), r.end(), val);
 }
@@ -911,7 +1026,9 @@ inline void r_fill_impl(R r, T const& val, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline void r_fill(R r, T const& val)
+inline
+void
+r_fill(R r, T const& val)
 {
     r_fill_impl(r, val, r);
 }
@@ -924,7 +1041,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k S
         ,   ss_typename_param_k T
         >
-inline void r_fill_n_impl(R r, S n, T const& val, iterable_range_tag const&)
+inline
+void
+r_fill_n_impl(R r, S n, T const& val, iterable_range_tag const&)
 {
     std::fill(r.begin(), n, val);
 }
@@ -943,7 +1062,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k S
         ,   ss_typename_param_k T
         >
-inline void r_fill_n(R r, S n, T const& val)
+inline
+void
+r_fill_n(R r, S n, T const& val)
 {
     STLSOFT_ASSERT(n <= r_distance(r));
 
@@ -957,7 +1078,9 @@ inline void r_fill_n(R r, S n, T const& val)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline R r_find_impl(R r, T const& val, notional_range_tag const&)
+inline
+R
+r_find_impl(R r, T const& val, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -973,7 +1096,9 @@ inline R r_find_impl(R r, T const& val, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline R r_find_impl(R r, T const& val, iterable_range_tag const&)
+inline
+R
+r_find_impl(R r, T const& val, iterable_range_tag const&)
 {
     return R(std::find(r.begin(), r.end(), val), r.end());
 }
@@ -990,7 +1115,9 @@ inline R r_find_impl(R r, T const& val, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline R r_find(R r, T const& val)
+inline
+R
+r_find(R r, T const& val)
 {
     return r_find_impl(r, val, r);
 }
@@ -1004,7 +1131,9 @@ inline R r_find(R r, T const& val)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline R r_find_if_impl(R r, P pred, notional_range_tag const&)
+inline
+R
+r_find_if_impl(R r, P pred, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -1020,7 +1149,9 @@ inline R r_find_if_impl(R r, P pred, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline R r_find_if_impl(R r, P pred, iterable_range_tag const&)
+inline
+R
+r_find_if_impl(R r, P pred, iterable_range_tag const&)
 {
     return R(std::find_if(r.begin(), r.end(), pred), r.end());
 }
@@ -1037,7 +1168,9 @@ inline R r_find_if_impl(R r, P pred, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
-inline R r_find_if(R r, P pred)
+inline
+R
+r_find_if(R r, P pred)
 {
     return r_find_if_impl(r, pred, r);
 }
@@ -1049,7 +1182,9 @@ inline R r_find_if(R r, P pred)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline F r_for_each_impl(R r, F f, notional_range_tag const&)
+inline
+F
+r_for_each_impl(R r, F f, notional_range_tag const&)
 {
     for (; r; ++r)
     {
@@ -1062,7 +1197,9 @@ inline F r_for_each_impl(R r, F f, notional_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline F r_for_each_impl(R r, F f, iterable_range_tag const&)
+inline
+F
+r_for_each_impl(R r, F f, iterable_range_tag const&)
 {
     return std::for_each(r.begin(), r.end(), f);
 }
@@ -1070,7 +1207,9 @@ inline F r_for_each_impl(R r, F f, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline F r_for_each_impl(R r, F f, basic_indirect_range_tag const&)
+inline
+F
+r_for_each_impl(R r, F f, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).for_each(f);
 }
@@ -1078,7 +1217,9 @@ inline F r_for_each_impl(R r, F f, basic_indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline F r_for_each_impl(R r, F f, indirect_range_tag const&)
+inline
+F
+r_for_each_impl(R r, F f, indirect_range_tag const&)
 {
     return r.for_each(f);
 }
@@ -1095,7 +1236,9 @@ inline F r_for_each_impl(R r, F f, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline F r_for_each(R r, F f)
+inline
+F
+r_for_each(R r, F f)
 {
     return r_for_each_impl(r, f, r);
 }
@@ -1107,7 +1250,9 @@ inline F r_for_each(R r, F f)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline void r_generate_impl(R r, F f, iterable_range_tag const&)
+inline
+void
+r_generate_impl(R r, F f, iterable_range_tag const&)
 {
     std::generate(r.begin(), r.end(), f);
 }
@@ -1124,7 +1269,9 @@ inline void r_generate_impl(R r, F f, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline void r_generate(R r, F f)
+inline
+void
+r_generate(R r, F f)
 {
     r_generate_impl(r, f, r);
 }
@@ -1134,7 +1281,9 @@ inline void r_generate(R r, F f)
  */
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, notional_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_1_impl(R r, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1152,30 +1301,38 @@ inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, notional_r
 }
 
 template <ss_typename_param_k I>
-inline I r_max_element_1_impl_iterable(I from, I to)
+inline
+I
+r_max_element_1_impl_iterable(I from, I to)
 {
     if (from == to)
     {
-        STLSOFT_THROW_X(empty_range_exception("Cannot determine maximum element of empty range"));
+        STLSOFT_THROW_X(empty_range_exception("failed to determine maximum element of empty range"));
     }
 
     return std::max_element(from, to);
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, iterable_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_1_impl(R r, iterable_range_tag const&)
 {
     return *r_max_element_1_impl_iterable(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, basic_indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_1_impl(R r, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).max_element();
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_1_impl(R r, indirect_range_tag const&)
 {
     return r.max_element();
 }
@@ -1190,7 +1347,9 @@ inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, indirect_r
  * \note: The behaviour is undefined if the range is closed
  */
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_max_element(R r)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element(R r)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1204,11 +1363,13 @@ inline ss_typename_type_ret_k R::value_type r_max_element(R r)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
-inline I r_max_element_2_impl_iterable(I from, I to, F f)
+inline
+I
+r_max_element_2_impl_iterable(I from, I to, F f)
 {
     if (from == to)
     {
-        STLSOFT_THROW_X(empty_range_exception("Cannot determine maximum element of empty range"));
+        STLSOFT_THROW_X(empty_range_exception("failed to determine maximum element of empty range"));
     }
 
     return std::max_element(from, to, f);
@@ -1217,7 +1378,9 @@ inline I r_max_element_2_impl_iterable(I from, I to, F f)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, iterable_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_2_impl(R r, F f, iterable_range_tag const&)
 {
     return *r_max_element_2_impl_iterable(r.begin(), r.end(), f);
 }
@@ -1225,7 +1388,9 @@ inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, itera
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, notional_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_2_impl(R r, F f, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1245,7 +1410,9 @@ inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, notio
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, basic_indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_2_impl(R r, F f, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).max_element(f);
 }
@@ -1253,7 +1420,9 @@ inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, basic
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element_2_impl(R r, F f, indirect_range_tag const&)
 {
     return r.max_element(f);
 }
@@ -1271,7 +1440,9 @@ inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, indir
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_max_element(R r, F f)
+inline
+ss_typename_type_ret_k R::value_type
+r_max_element(R r, F f)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1283,7 +1454,9 @@ inline ss_typename_type_ret_k R::value_type r_max_element(R r, F f)
  */
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, notional_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_1_impl(R r, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1308,30 +1481,38 @@ inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, notional_r
 }
 
 template <ss_typename_param_k I>
-inline I r_min_element_1_impl_iterable(I from, I to)
+inline
+I
+r_min_element_1_impl_iterable(I from, I to)
 {
     if (from == to)
     {
-        STLSOFT_THROW_X(empty_range_exception("Cannot determine minimum element of empty range"));
+        STLSOFT_THROW_X(empty_range_exception("failed to determine minimum element of empty range"));
     }
 
     return std::min_element(from, to);
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, iterable_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_1_impl(R r, iterable_range_tag const&)
 {
     return *r_min_element_1_impl_iterable(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, basic_indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_1_impl(R r, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).min_element();
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_1_impl(R r, indirect_range_tag const&)
 {
     return r.min_element();
 }
@@ -1346,7 +1527,9 @@ inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, indirect_r
  * \note: The behaviour is undefined if the range is closed
  */
 template <ss_typename_param_k R>
-inline ss_typename_type_ret_k R::value_type r_min_element(R r)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element(R r)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1360,11 +1543,13 @@ inline ss_typename_type_ret_k R::value_type r_min_element(R r)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
-inline I r_min_element_2_impl_iterable(I from, I to, F f)
+inline
+I
+r_min_element_2_impl_iterable(I from, I to, F f)
 {
     if (from == to)
     {
-        STLSOFT_THROW_X(empty_range_exception("Cannot determine minimum element of empty range"));
+        STLSOFT_THROW_X(empty_range_exception("failed to determine minimum element of empty range"));
     }
 
     return std::min_element(from, to, f);
@@ -1373,7 +1558,9 @@ inline I r_min_element_2_impl_iterable(I from, I to, F f)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, iterable_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_2_impl(R r, F f, iterable_range_tag const&)
 {
     return *r_min_element_2_impl_iterable(r.begin(), r.end(), f);
 }
@@ -1381,7 +1568,9 @@ inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, itera
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, notional_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_2_impl(R r, F f, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1401,7 +1590,9 @@ inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, notio
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, basic_indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_2_impl(R r, F f, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).min_element(f);
 }
@@ -1409,7 +1600,9 @@ inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, basic
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, indirect_range_tag const&)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element_2_impl(R r, F f, indirect_range_tag const&)
 {
     return r.min_element(f);
 }
@@ -1427,7 +1620,9 @@ inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, indir
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_ret_k R::value_type r_min_element(R r, F f)
+inline
+ss_typename_type_ret_k R::value_type
+r_min_element(R r, F f)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1441,7 +1636,9 @@ inline ss_typename_type_ret_k R::value_type r_min_element(R r, F f)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline void r_replace_impl(R r, T oldVal, T newVal, iterable_range_tag const&)
+inline
+void
+r_replace_impl(R r, T oldVal, T newVal, iterable_range_tag const&)
 {
     std::replace(r.begin(), r.end(), oldVal, newVal);
 }
@@ -1449,7 +1646,9 @@ inline void r_replace_impl(R r, T oldVal, T newVal, iterable_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline void r_replace_impl(R r, T oldVal, T newVal, indirect_range_tag const&)
+inline
+void
+r_replace_impl(R r, T oldVal, T newVal, indirect_range_tag const&)
 {
     r.replace(r, oldVal, newVal);
 }
@@ -1468,7 +1667,9 @@ inline void r_replace_impl(R r, T oldVal, T newVal, indirect_range_tag const&)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
-inline void r_replace(R r, T oldVal, T newVal)
+inline
+void
+r_replace(R r, T oldVal, T newVal)
 {
     r_replace_impl(r, oldVal, newVal, r);
 }
@@ -1483,7 +1684,9 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k RO
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy_impl(RI ri, RO ro, T oldVal, T newVal, iterable_range_tag const&, iterable_range_tag const&)
+inline
+void
+r_replace_copy_impl(RI ri, RO ro, T oldVal, T newVal, iterable_range_tag const&, iterable_range_tag const&)
 {
     std::replace_copy(ri.begin(), ri.end(), ro.begin(), oldVal, newVal);
 }
@@ -1492,7 +1695,9 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k RO
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy_impl(RI ri, RO ro, T oldVal, T newVal, indirect_range_tag const&, indirect_range_tag const&)
+inline
+void
+r_replace_copy_impl(RI ri, RO ro, T oldVal, T newVal, indirect_range_tag const&, indirect_range_tag const&)
 {
     ri.replace_copy(ro, oldVal, newVal);
 }
@@ -1511,7 +1716,9 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k RO
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy(RI ri, RO ro, T oldVal, T newVal)
+inline
+void
+r_replace_copy(RI ri, RO ro, T oldVal, T newVal)
 {
     r_replace_copy_impl(ri, ro, oldVal, newVal, ri, ro);
 }
@@ -1525,7 +1732,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_if_impl(R r, P pred, T newVal, iterable_range_tag const&)
+inline
+void
+r_replace_if_impl(R r, P pred, T newVal, iterable_range_tag const&)
 {
     std::replace_if(r.begin(), r.end(), pred, newVal);
 }
@@ -1534,7 +1743,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_if_impl(R r, P pred, T newVal, indirect_range_tag const&)
+inline
+void
+r_replace_if_impl(R r, P pred, T newVal, indirect_range_tag const&)
 {
     r.replace_if(r, pred, newVal);
 }
@@ -1553,7 +1764,9 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_if(R r, P pred, T newVal)
+inline
+void
+r_replace_if(R r, P pred, T newVal)
 {
     r_replace_if_impl(r, pred, newVal, r);
 }
@@ -1569,7 +1782,9 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy_if_impl(RI ri, RO ro, P pred, T newVal, iterable_range_tag const&, iterable_range_tag const&)
+inline
+void
+r_replace_copy_if_impl(RI ri, RO ro, P pred, T newVal, iterable_range_tag const&, iterable_range_tag const&)
 {
     std::replace_copy_if(ri.begin(), ri.end(), ro.begin(), pred, newVal);
 }
@@ -1579,7 +1794,9 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy_if_impl(RI ri, RO ro, P pred, T newVal, notional_range_tag const&, notional_range_tag const&)
+inline
+void
+r_replace_copy_if_impl(RI ri, RO ro, P pred, T newVal, notional_range_tag const&, notional_range_tag const&)
 {
     for (; ri; ++ri, ++ro)
     {
@@ -1597,7 +1814,9 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy_if_impl(RI ri, RO ro, P pred, T newVal, indirect_range_tag const&, indirect_range_tag const&)
+inline
+void
+r_replace_copy_if_impl(RI ri, RO ro, P pred, T newVal, indirect_range_tag const&, indirect_range_tag const&)
 {
     ri.replace_copy_if(ro, pred, newVal);
 }
@@ -1607,11 +1826,14 @@ template<   ss_typename_param_k RI
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T
         >
-inline void r_replace_copy_if(RI ri, RO ro, P pred, T newVal)
+inline
+void
+r_replace_copy_if(RI ri, RO ro, P pred, T newVal)
 {
     r_replace_copy_if_impl(ri, ro, pe, newVal, ri, ro);
 }
 #endif /* 0 */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the listview_sequence class template.
  *
  * Created: 8th May 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Pablo Aguilar for making the requisite feature requests.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  11
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      97
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -421,8 +421,7 @@ public:
             return distance(rhs);
         }
 
-    // Members
-    private:
+    private: // fields
         HWND    m_hwndListView;
         int     m_index;
     };

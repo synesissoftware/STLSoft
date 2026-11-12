@@ -5,7 +5,7 @@
  *          classes.
  *
  * Created: 1st November 1994
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        96
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,7 +201,7 @@ struct move_proxy
 template <ss_typename_param_k T>
 class auto_destructor
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -286,7 +286,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type* m_value;
@@ -318,7 +318,7 @@ private:
 template <ss_typename_param_k T>
 class auto_array_destructor
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -431,7 +431,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type* m_value;
@@ -452,7 +452,7 @@ private:
 template <ss_typename_param_k T>
 class return_value_destructor
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -533,7 +533,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type* m_value;
@@ -553,7 +553,7 @@ private:
 template <ss_typename_param_k T>
 class return_value_array_destructor
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -636,7 +636,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type* m_value;

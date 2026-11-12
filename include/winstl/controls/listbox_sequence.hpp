@@ -4,7 +4,7 @@
  * Purpose: Contains the listbox_sequence class.
  *
  * Created: 10th November 2002
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Pablo Aguilar for some patches.
  *
@@ -252,7 +252,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND    m_hwnd;

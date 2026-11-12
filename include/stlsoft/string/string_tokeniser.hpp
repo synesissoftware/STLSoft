@@ -4,7 +4,7 @@
  * Purpose: String token parsing class.
  *
  * Created: 6th January 2001
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -1016,7 +1016,7 @@ public:
         }
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     private:
         underlying_iterator_type    m_find0;        // the start of the current item
@@ -1069,7 +1069,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type const       m_str;

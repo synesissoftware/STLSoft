@@ -4,7 +4,7 @@
  * Purpose: Mixin class providing enhanced functions for ATL windows.
  *
  * Created: 30th November 2000
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -108,7 +108,7 @@ namespace atlstl_project
 template <ss_typename_param_k D>
 class EnhancedWindow
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef D                   dialog_window_type;

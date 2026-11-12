@@ -4,7 +4,7 @@
  * Purpose: Random number range class.
  *
  * Created: 31st May 2004
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -132,7 +132,7 @@ namespace rangelib_project
 class random_range
     : public notional_range_tag
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef int                 value_type;

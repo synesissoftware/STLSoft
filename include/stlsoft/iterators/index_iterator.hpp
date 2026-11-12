@@ -4,7 +4,7 @@
  * Purpose: index_iterator class template.
  *
  * Created: 5th April 2005
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -379,7 +379,7 @@ private:
 #endif /* STLSOFT_INDEX_ITERATOR_MEM_SEL_OP_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     base_iterator_type  m_it;

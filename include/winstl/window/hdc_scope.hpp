@@ -4,7 +4,7 @@
  * Purpose: GDI scope class.
  *
  * Created: 20th October 1994
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -100,7 +100,7 @@ namespace winstl_project
  */
 class HDC_scope
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef HDC_scope   class_type;
@@ -158,7 +158,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HDC     m_hdc;

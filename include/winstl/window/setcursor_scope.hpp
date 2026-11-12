@@ -4,7 +4,7 @@
  * Purpose: Cursor scoping class.
  *
  * Created: 12th May 2003
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -172,7 +172,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HCURSOR m_hcurLast;

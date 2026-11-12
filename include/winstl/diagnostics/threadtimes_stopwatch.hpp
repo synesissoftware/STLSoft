@@ -4,7 +4,7 @@
  * Purpose: WinSTL thread-time stopwatch class.
  *
  * Created: 22nd March 2002
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -209,11 +209,10 @@ public:
     /// This represents the extent, in whole nanoseconds, of the measurement period
     interval_type   get_nanoseconds() const;
 
-private: // Implementation
+private: // implementation
     static epoch_type convert_(FILETIME const& ft);
 
-// Members
-private:
+private: // fields
     epoch_type  m_kernelStart;
     epoch_type  m_kernelEnd;
     epoch_type  m_userStart;

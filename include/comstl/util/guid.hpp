@@ -4,7 +4,7 @@
  * Purpose: guid class.
  *
  * Created: 10th May 2000
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   12
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       69
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,15 +119,15 @@ namespace comstl_project
  */
 class guid
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
-    typedef guid            class_type;
+    typedef guid                                            class_type;
 
-    typedef GUID const&     resource_type;
+    typedef GUID const&                                     resource_type;
 /// @}
 
-/// \name Construction
+/// \name construction
 /// @{
 public:
     /// Constructs with a new, unique, GUID value
@@ -204,13 +204,13 @@ public:
     guid& operator =(GUID const& g);
 /// @}
 
-/// \name Accessors
+/// \name accessors
 /// @{
 public:
     GUID const& get() const;
 /// @}
 
-/// \name Comparison
+/// \name comparison
 /// @{
 public:
     /// Evaluates whether the value is equivalent to the given argument
@@ -219,14 +219,14 @@ public:
     cs_bool_t equal(GUID const& rhs) const;
 /// @}
 
-/// \name Operations
+/// \name operations
 /// @{
 public:
     /// Swaps the contents with the given instance
     void swap(class_type& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     GUID    m_guid;
@@ -242,112 +242,124 @@ private:
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<TCHAR> c_str_data(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_data)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_data_a(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_a_t> c_str_data_a(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_data_a)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_data_w(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_w_t> c_str_data_w(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_data_w)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_data_o)(g.get());
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_len for comstl::guid
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline cs_size_t c_str_len(COMSTL_NS_QUAL(guid) const& g)
+inline
+cs_size_t c_str_len(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_len)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline cs_size_t c_str_len_a(COMSTL_NS_QUAL(guid) const& g)
+inline
+cs_size_t c_str_len_a(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_len_a)(g.get());
 }
 
-inline cs_size_t c_str_len_w(COMSTL_NS_QUAL(guid) const& g)
+inline
+cs_size_t c_str_len_w(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_len_w)(g.get());
 }
 
-inline cs_size_t c_str_len_o(COMSTL_NS_QUAL(guid) const& g)
+inline
+cs_size_t c_str_len_o(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_len_o)(g.get());
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr for comstl::guid
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_a(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_a(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_a)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_w(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_w(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_w)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_o)(g.get());
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr_null for comstl::guid
  *
  * \ingroup group__concept__Shim__string_access
  */
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_null_a(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_null_a(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_a)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_null_w(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_null_w(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_w)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(COMSTL_NS_QUAL(guid) const& g)
+inline
+c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(COMSTL_NS_QUAL(guid) const& g)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_o)(g.get());
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -355,32 +367,44 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(COMSTL_NS_QUAL(guid) c
  * operators
  */
 
-inline cs_bool_t operator ==(guid const& lhs, guid const& rhs)
+inline
+cs_bool_t
+operator ==(guid const& lhs, guid const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-inline cs_bool_t operator !=(guid const& lhs, guid const& rhs)
+inline
+cs_bool_t
+operator !=(guid const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
-inline cs_bool_t operator ==(guid const& lhs, GUID const& rhs)
+inline
+cs_bool_t
+operator ==(guid const& lhs, GUID const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-inline cs_bool_t operator !=(guid const& lhs, GUID const& rhs)
+inline
+cs_bool_t
+operator !=(guid const& lhs, GUID const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
-inline cs_bool_t operator ==(GUID const& lhs, guid const& rhs)
+inline
+cs_bool_t
+operator ==(GUID const& lhs, guid const& rhs)
 {
     return rhs.equal(lhs);
 }
 
-inline cs_bool_t operator !=(GUID const& lhs, guid const& rhs)
+inline
+cs_bool_t
+operator !=(GUID const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
@@ -392,21 +416,26 @@ inline cs_bool_t operator !=(GUID const& lhs, guid const& rhs)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline guid::guid()
+inline
+guid::guid()
 {
-    HRESULT hr  =   ::CoCreateGuid(&m_guid);
+    HRESULT hr = ::CoCreateGuid(&m_guid);
 
     if (FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(comstl_exception("Could not allocate GUID", hr));
+
+        STLSOFT_THROW_X(comstl_exception("failed to allocate GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
         m_guid = GUID_NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 
-inline /* ss_explicit_k */ guid::guid(cs_char_a_t const* s)
+inline
+/* ss_explicit_k */
+guid::guid(cs_char_a_t const* s)
 {
     OLECHAR     osz[1 + COMSTL_CCH_GUID];
     HRESULT     hr  =   S_OK;
@@ -414,10 +443,12 @@ inline /* ss_explicit_k */ guid::guid(cs_char_a_t const* s)
     switch (WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_MultiByteToWideChar(0, 0, s, -1, &osz[0], 1 + COMSTL_CCH_GUID))
     {
         case    1 + COMSTL_CCH_GUID:
+
             osz[COMSTL_CCH_GUID] = L'\0';
             hr = ::CLSIDFromString(osz, &m_guid);
             break;
         default:
+
             if (S_OK == (hr = HRESULT_FROM_WIN32(WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())))
             {
                 hr = E_INVALIDARG;
@@ -428,43 +459,55 @@ inline /* ss_explicit_k */ guid::guid(cs_char_a_t const* s)
     if (FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(comstl_exception("Could not convert string to valid GUID", hr));
+
+        STLSOFT_THROW_X(comstl_exception("failed to convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
         m_guid = GUID_NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 
-inline /* ss_explicit_k */ guid::guid(cs_char_w_t const* s)
+inline
+/* ss_explicit_k */
+guid::guid(cs_char_w_t const* s)
 {
-    HRESULT hr  =   ::CLSIDFromString(const_cast<LPOLESTR>(s), &m_guid);
+    HRESULT hr = ::CLSIDFromString(const_cast<LPOLESTR>(s), &m_guid);
 
     if (FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(comstl_exception("Could not convert string to valid GUID", hr));
+
+        STLSOFT_THROW_X(comstl_exception("failed to convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
         m_guid = GUID_NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 
-inline guid::guid(GUID const& g)
+inline
+guid::guid(GUID const& g)
     : m_guid(g)
 {}
 
-inline guid::guid(guid const& rhs)
+inline
+guid::guid(guid const& rhs)
     : m_guid(rhs.m_guid)
 {}
 
-inline guid &guid::operator =(guid const& rhs)
+inline
+guid&
+guid::operator =(guid const& rhs)
 {
     m_guid = rhs.m_guid;
 
     return *this;
 }
 
-inline guid &guid::operator =(cs_char_a_t const* s)
+inline
+guid&
+guid::operator =(cs_char_a_t const* s)
 {
     guid    t(s);
 
@@ -473,7 +516,9 @@ inline guid &guid::operator =(cs_char_a_t const* s)
     return *this;
 }
 
-inline guid &guid::operator =(cs_char_w_t const* s)
+inline
+guid&
+guid::operator =(cs_char_w_t const* s)
 {
     guid    t(s);
 
@@ -482,7 +527,9 @@ inline guid &guid::operator =(cs_char_w_t const* s)
     return *this;
 }
 
-inline guid &guid::operator =(GUID const& g)
+inline
+guid&
+guid::operator =(GUID const& g)
 {
     guid    t(g);
 
@@ -491,27 +538,35 @@ inline guid &guid::operator =(GUID const& g)
     return *this;
 }
 
-inline GUID const& guid::get() const
+inline
+GUID const&
+guid::get() const
 {
     return m_guid;
 }
 
-inline cs_bool_t guid::equal(class_type const& rhs) const
+inline
+cs_bool_t
+guid::equal(class_type const& rhs) const
 {
     return 0 != IsEqualGUID(m_guid, rhs.m_guid);
 }
 
-inline cs_bool_t guid::equal(GUID const& rhs) const
+inline
+cs_bool_t
+guid::equal(GUID const& rhs) const
 {
     return 0 != IsEqualGUID(m_guid, rhs);
 }
 
-inline void guid::swap(guid::class_type& rhs) STLSOFT_NOEXCEPT
+inline
+void
+guid::swap(guid::class_type& rhs) STLSOFT_NOEXCEPT
 {
     STLSOFT_NS_QUAL(std_swap)(m_guid, rhs.m_guid);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

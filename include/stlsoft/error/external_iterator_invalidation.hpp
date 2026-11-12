@@ -4,7 +4,7 @@
  * Purpose: An exception thrown when an active end iterator is exhausted.
  *
  * Created: 13th January 2006
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,11 +60,6 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
@@ -94,7 +89,7 @@ namespace stlsoft
  * classes
  */
 
-/** An exception thrown when an active end iterator is exhausted
+/** An exception thrown when an active end iterator is exhausted.
  *
  * \ingroup group__library__Exception
  */
@@ -104,8 +99,8 @@ class external_iterator_invalidation
 /// \name Member Types
 /// @{
 public:
-    typedef iteration_interruption          parent_class_type;
-    typedef external_iterator_invalidation  class_type;
+    typedef iteration_interruption                          parent_class_type;
+    typedef external_iterator_invalidation                  class_type;
 /// @}
 
 /// \name Construction
@@ -133,6 +128,7 @@ private:
     }
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

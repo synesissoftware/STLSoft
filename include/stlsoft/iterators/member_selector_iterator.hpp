@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    stlsoft/iterators/member_selector_iterator.hpp
+ * File:        stlsoft/iterators/member_selector_iterator.hpp
  *
- * Purpose: member_selector_iterator class.
+ * Purpose:     member_selector_iterator class.
  *
- * Created: 7th April 2005
- * Updated: 11th November 2026
+ * Created:     7th April 2005
+ * Updated:     13th November 2026
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
  *
- * Home:    http://stlsoft.org/
+ * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    13
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        79
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -395,7 +395,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     base_iterator_type  m_it;
@@ -476,11 +476,12 @@ template<   ss_typename_param_k I
 struct msi_traits
 {
 private:
-    typedef member_selector_iterator<I, C, const M>             const_msi_type;
-    typedef member_selector_iterator<I, C, M>                   non_const_msi_type;
+    typedef member_selector_iterator<I, C, const M>         const_msi_type;
+    typedef member_selector_iterator<I, C, M>               non_const_msi_type;
 #if !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
-    typedef ss_typename_type_k std::iterator_traits<I>::pointer tested_member_type;
+    typedef ss_typename_type_k std::iterator_traits<I>::pointer
+                                                            tested_member_type;
 
     enum
     {
@@ -494,7 +495,7 @@ public:
     typedef ss_typename_type_k select_first_type_if<    const_msi_type
                                                     ,   non_const_msi_type
                                                     ,   msi_iterator_traits<I>::is_const
-                                                    >::type             type;
+                                                    >::type type;
 #else /* ? dinkumware */
     typedef ss_typename_type_k select_first_type_if<    const_msi_type
                                                     ,   non_const_msi_type
@@ -506,7 +507,7 @@ public:
                                                     ,   is_const
 #endif /* 0 */
 
-                                                    >::type             type;
+                                                    >::type type;
 #endif /* dinkumware */
 };
 
@@ -583,7 +584,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_iterator<I, C, M> member_selector(I it, M C::*member)
+inline
+member_selector_iterator<I, C, M>
+member_selector(I it, M C::*member)
 {
     return member_selector_iterator<I, C, M>(it, member);
 }
@@ -598,7 +601,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_iterator<I, C, const M> member_selector(I it, const M C::*member)
+inline
+member_selector_iterator<I, C, const M>
+member_selector(I it, const M C::*member)
 {
     return member_selector_iterator<I, C, const M>(it, member);
 }
@@ -611,7 +616,9 @@ inline member_selector_iterator<I, C, const M> member_selector(I it, const M C::
 template<   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_iterator<C*, C, M> member_selector(C *it, M C::*member)
+inline
+member_selector_iterator<C*, C, M>
+member_selector(C *it, M C::*member)
 {
     return member_selector_iterator<C*, C, M>(it, member);
 }
@@ -624,7 +631,9 @@ inline member_selector_iterator<C*, C, M> member_selector(C *it, M C::*member)
 template<   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_iterator<C const*, C, const M> member_selector(C const* it, M C::*member)
+inline
+member_selector_iterator<C const*, C, const M>
+member_selector(C const* it, M C::*member)
 {
     return member_selector_iterator<C const*, C, const M>(it, member);
 }
@@ -644,12 +653,13 @@ inline member_selector_iterator<C const*, C, const M> member_selector(C const* i
 template<   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_const_iterator<C const*, C, const M> member_selector(C const* it, const M C::*member)
+inline
+member_selector_const_iterator<C const*, C, const M>
+member_selector(C const* it, const M C::*member)
 {
     return member_selector_const_iterator<C const*, C, const M>(it, member);
 }
 #endif /* 0 */
-
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 
@@ -661,7 +671,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline bool operator ==(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+bool
+operator ==(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return lhs.equal(rhs);
 }
@@ -670,7 +682,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline bool operator !=(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+bool
+operator !=(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return !lhs.equal(rhs);
 }
@@ -680,7 +694,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_iterator<I, C, M> operator +(member_selector_iterator<I, C, M> const& lhs, ss_ptrdiff_t delta)
+inline
+member_selector_iterator<I, C, M>
+operator +(member_selector_iterator<I, C, M> const& lhs, ss_ptrdiff_t delta)
 {
     return member_selector_iterator<I, C, M>(lhs.current() + delta, lhs.member());
 }
@@ -689,7 +705,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline member_selector_iterator<I, C, M> operator -(member_selector_iterator<I, C, M> const& lhs, ss_ptrdiff_t delta)
+inline
+member_selector_iterator<I, C, M>
+operator -(member_selector_iterator<I, C, M> const& lhs, ss_ptrdiff_t delta)
 {
     return member_selector_iterator<I, C, M>(lhs.current() - delta, lhs.member());
 }
@@ -698,7 +716,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline ss_ptrdiff_t operator -(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+ss_ptrdiff_t
+operator -(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return lhs.distance(rhs);
 }
@@ -708,7 +728,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline bool operator <(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+bool
+operator <(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return lhs.distance(rhs) < 0;
 }
@@ -717,7 +739,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline bool operator <=(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+bool
+operator <=(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return lhs.distance(rhs) <= 0;
 }
@@ -726,7 +750,9 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline bool operator >(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+bool
+operator >(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return lhs.distance(rhs) > 0;
 }
@@ -735,10 +761,13 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline bool operator >=(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
+inline
+bool
+operator >=(member_selector_iterator<I, C, M> const& lhs, member_selector_iterator<I, C, M> const& rhs)
 {
     return lhs.distance(rhs) >= 0;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

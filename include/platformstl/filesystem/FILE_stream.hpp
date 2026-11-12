@@ -4,7 +4,7 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    8
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        31
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -170,7 +170,7 @@ template<
 >
 class FILE_stream_base
 {
-private: // Member Types
+private: // types
     typedef R                                                   refcount_policy_type_;
     typedef I                                                   refcount_counter_type_;
 public:
@@ -194,7 +194,7 @@ public:
     /// The size type
     typedef size_t                                              size_type;
 
-public: // Construction
+public: // construction
     /// Creates an instance of the class opened over a file stream for the
     /// given \c path, according to the given \c mode.
     template <typename S1, typename S2>
@@ -213,7 +213,7 @@ public: // Construction
         return m_ref;
     }
 
-public: // Operations
+public: // operations
     /// Writes the given string and the end-of-line character
     /// <code>'\n'</code> to the underlying file stream.
     ///
@@ -349,7 +349,7 @@ public: // Operations
         return pos;
     }
 
-private: // Implementation
+private: // implementation
     static
     int
     validate_errno_(
@@ -654,7 +654,7 @@ private: // Implementation
         }
     }
 
-private: // Member Variables
+private: // fields
     Ref m_ref;
 };
 

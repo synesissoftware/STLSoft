@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  5
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      58
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -315,7 +315,7 @@ struct error_desc_traits<ss_char_w_t>
 
         if (size_t(-1) == n)
         {
-            return return_t(L"could not determine error");
+            return return_t(L"failed to determine error");
         }
 
         return ss;
@@ -451,7 +451,7 @@ public: // accessors
 private: // implementation
     allocator_type& get_allocator_();
 
-private: // members
+private: // fields
     char_type*  m_str;
     size_type   m_length;
 };

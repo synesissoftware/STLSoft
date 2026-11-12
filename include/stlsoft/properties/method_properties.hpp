@@ -4,7 +4,7 @@
  * Purpose: Method-based properties.
  *
  * Created: 6th October 2003
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -601,7 +601,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -708,7 +708,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -823,7 +823,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -1123,7 +1123,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -1184,7 +1184,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -1242,7 +1242,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;

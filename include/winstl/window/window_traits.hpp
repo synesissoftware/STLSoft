@@ -5,7 +5,7 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 24th August 2003
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -129,7 +129,7 @@ public:
     typedef ws_ptrdiff_t    difference_type;
 /// @}
 
-/// \name Window functions
+/// \name Window Functions
 /// @{
 public:
     /// Gets the number of characters of text for the given window

@@ -5,7 +5,7 @@
  *          class templates.
  *
  * Created: 1st December 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MAJOR     3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_REVISION  19
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      88
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -271,8 +271,7 @@ public:
         typedef stlsoft_define_move_rhs_type(class_type)    rhs_type;
 # endif /* !_MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR */
 
-    // Construction
-    private:
+    private: // construction
         /// Constructor
         const_iterator(list_type const* list, POSITION pos)
             : m_list(list)
@@ -390,8 +389,7 @@ public:
             return !operator ==(rhs);
         }
 
-    // Members
-    private:
+    private: // fields
         list_type const*    m_list;
         POSITION            m_pos;
         value_type          m_value;
@@ -453,7 +451,7 @@ public:
     }
 /// @}
 
-/// \name Element access
+/// \name Element Access
 /// @{
 public:
 /// @}
@@ -612,7 +610,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     list_type  *m_pList;

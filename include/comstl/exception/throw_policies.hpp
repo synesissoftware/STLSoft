@@ -4,7 +4,7 @@
  * Purpose: COM-related exception classes, and their policy classes
  *
  * Created: 8th December 2004
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -125,17 +125,17 @@ public:
 /// \name Operators
 /// @{
 public:
-    /// Function call operator, taking no parameters
+    /// Function call operator, taking no parameters.
     void operator ()() const
     {
         STLSOFT_THROW_X(thrown_type(WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
     }
-    /// Function call operator, taking one parameter
+    /// Function call operator, taking one parameter.
     void operator ()(HRESULT hr) const
     {
         STLSOFT_THROW_X(thrown_type(hr));
     }
-    /// Function call operator, taking two parameters
+    /// Function call operator, taking two parameters.
     void operator ()(char const* reason, HRESULT hr) const
     {
         STLSOFT_THROW_X(thrown_type(reason, hr));
@@ -148,14 +148,14 @@ public:
  * \ingroup group__library__Exception
  *
  */
-typedef exception_policy_base<comstl_exception>         com_exception_policy;
+typedef exception_policy_base<comstl_exception>             com_exception_policy;
 
 /** The policy class, which throws a variant_type_exception class.
  *
  * \ingroup group__library__Exception
  *
  */
-typedef exception_policy_base<variant_type_exception>   variant_type_exception_policy;
+typedef exception_policy_base<variant_type_exception>       variant_type_exception_policy;
 
 
 /* /////////////////////////////////////////////////////////////////////////

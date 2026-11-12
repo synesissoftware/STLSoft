@@ -5,7 +5,7 @@
  *          values from the iterator's underlying sequence.
  *
  * Created: 9th July 2004
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -325,7 +325,7 @@ private:
 #endif /* STLSOFT_FILTER_ITERATOR_MEM_SEL_OP_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     base_iterator_type      m_it;

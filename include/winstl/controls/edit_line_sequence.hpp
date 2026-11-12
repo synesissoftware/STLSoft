@@ -4,7 +4,7 @@
  * Purpose: Contains the edit_line_sequence class.
  *
  * Created: 23rd March 2006
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -177,7 +177,7 @@ public:
     const_reverse_iterator  rend() const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND        m_hwndEdit;

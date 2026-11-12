@@ -4,7 +4,7 @@
  * Purpose: Safe interface casting functions.
  *
  * Created: 25th June 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -64,7 +64,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      4
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       146
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       147
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -434,7 +434,7 @@ protected:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     interface_pointer_type const    m_pi;
@@ -469,7 +469,7 @@ template<   ss_typename_param_k I
 class interface_cast_noaddref
     : protected interface_cast_base<I, noaddref_release<I>, X>
 {
-private: // Member Types
+private: // types
     typedef interface_cast_base<I, noaddref_release<I>, X>  parent_class_type;
 public:
     /// The current specialisation of the type
@@ -486,7 +486,7 @@ public:
     typedef interface_pointer_type                          protected_interface_pointer_type;
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-public: // Construction
+public: // construction
     /// Constructor that attempts the speculative cast
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -558,7 +558,7 @@ template<   ss_typename_param_k I
 class interface_cast_addref
     : protected interface_cast_base<I, addref_release<I>, X>
 {
-private: // Member Types
+private: // types
     typedef interface_cast_base<
         I
     ,   addref_release<I>
@@ -571,7 +571,7 @@ public:
     typedef ss_typename_type_k parent_class_type::interface_pointer_type
                                                             interface_pointer_type;
 
-public: // Construction
+public: // construction
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -626,7 +626,7 @@ template<   ss_typename_param_k I
 class interface_cast_tester
     : protected interface_cast_base<I, noaddref_release<I>, ignore_interface_cast_exception>
 {
-private: // Member Types
+private: // types
     typedef interface_cast_base<
         I
     ,   noaddref_release<I>
@@ -647,7 +647,7 @@ public:
     typedef interface_pointer_type                          protected_interface_pointer_type;
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-public: // Construction
+public: // construction
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>

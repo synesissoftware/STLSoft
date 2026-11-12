@@ -5,7 +5,7 @@
  *          through multiple IDispatch interfaces visible to script clients.
  *
  * Created: 15th May 2006
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -200,7 +200,7 @@ public:
     typedef IDispatchImpl<I1, IID1, LibID>  dispatch_parent_1_type; //!< The type of the second dispinterface
 /// @}
 
-/// \name IDispatch methods
+/// \name IDispatch Methods
 /// @{
 protected:
     /** Provides the required behaviour of
@@ -351,7 +351,7 @@ public:
     typedef IDispatchImpl<I2, IID2, LibID>  dispatch_parent_2_type; //!< The type of the third dispinterface
 /// @}
 
-/// \name IDispatch methods
+/// \name IDispatch Methods
 /// @{
 protected:
     /** Provides the required behaviour of
@@ -526,7 +526,7 @@ public:
     typedef IDispatchImpl<I3, IID3, LibID>  dispatch_parent_3_type; //!< The type of the fourth dispinterface
 /// @}
 
-/// \name IDispatch methods
+/// \name IDispatch Methods
 /// @{
 protected:
     /** Provides the required behaviour of

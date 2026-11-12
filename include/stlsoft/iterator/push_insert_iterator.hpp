@@ -4,7 +4,7 @@
  * Purpose: Push insert iterator for sequence containers.
  *
  * Created: 6th April 2005
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -136,7 +136,7 @@ template <ss_typename_param_k T_class>
 class push_insert_iterator
     : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
 {
-/// \name member types
+/// \name Member Types
 /// @{
 public:
     /// The container type
@@ -150,7 +150,7 @@ private:
     friend class deref_proxy;
 /// @}
 
-/// \name construction
+/// \name Construction
 /// @{
 public:
     ss_explicit_k
@@ -161,7 +161,7 @@ public:
     {}
 /// @}
 
-/// \name implementation
+/// \name Implementation
 /// @{
 private:
     class deref_proxy
@@ -217,7 +217,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     // sadly, this can't be a reference, because Dinkumware's library does

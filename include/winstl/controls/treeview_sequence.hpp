@@ -4,7 +4,7 @@
  * Purpose: Contains the treeview sequence classes.
  *
  * Created: 1st December 2002
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -168,7 +168,7 @@ public:
     ws_bool_t operator !=(class_type const& rhs) const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND        m_hwnd;
@@ -224,7 +224,7 @@ public:
     const_iterator end() const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND        m_hwnd;

@@ -5,7 +5,7 @@
  *          identifiers.
  *
  * Created: 11th April 2005
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -136,7 +136,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     int                 m_id;

@@ -4,7 +4,7 @@
  * Purpose: Window text scoping class.
  *
  * Created: 21st August 2003
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -230,7 +230,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND        m_hwnd;

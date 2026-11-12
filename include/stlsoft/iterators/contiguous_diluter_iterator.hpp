@@ -4,7 +4,7 @@
  * Purpose: Enhanced ostream iterator.
  *
  * Created: 16th December 2005
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -189,7 +189,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     pointer m_p;

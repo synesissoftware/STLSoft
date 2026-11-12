@@ -4,7 +4,7 @@
  * Purpose: Definition of the \c unrecoverable exception class.
  *
  * Created: 14th October 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MINOR      0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   13
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       50
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ namespace stlsoft
 class unrecoverable
     : public STLSOFT_NS_QUAL_STD(exception)
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent type
@@ -206,7 +206,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     long *const m_refcnt;

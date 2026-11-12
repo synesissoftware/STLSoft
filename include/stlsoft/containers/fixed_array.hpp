@@ -5,7 +5,7 @@
  *          fixed_array_4d template classes.
  *
  * Created: 4th August 1998
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Neal Becker for suggesting the uninitialised mode, requesting
  *          the function call operator, and for requesting the
@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR       4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR       9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION    15
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT        213
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR       10
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION    1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT        214
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -877,7 +877,7 @@ inline void fixed_array_1d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (!(i0 < m_d0))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
@@ -1216,7 +1216,7 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
     if (!(i0 < m_d0) ||
         !(i1 < m_d1))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1));
@@ -1235,7 +1235,7 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (!(i0 < m_d0))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
@@ -1614,7 +1614,7 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
         !(i1 < m_d1) ||
         !(i2 < m_d2))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2));
@@ -1633,7 +1633,7 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (!(i0 < m_d0))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
@@ -2017,7 +2017,7 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
         !(i2 < m_d2) ||
         !(i3 < m_d3))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3));
@@ -2036,7 +2036,7 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (!(i0 < m_d0))
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("fixed array index out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);

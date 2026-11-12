@@ -4,7 +4,7 @@
  * Purpose: Selects the most appropriate allocator.
  *
  * Created: 20th August 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_REVISION    6
-# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_EDIT        39
+# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -195,7 +195,7 @@ template< typename T
         >
 class my_buffer
 {
-public: // Member types
+public: // types
   typedef T   value_type;
   typedef A   allocator_type;
 

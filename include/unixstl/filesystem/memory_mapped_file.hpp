@@ -4,7 +4,7 @@
  * Purpose: Memory mapped file class.
  *
  * Created: 15th December 1996
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     117
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,7 +188,7 @@ private:
 
         if (hfile.empty())
         {
-            if (on_failure_("Failed to open file for mapping"))
+            if (on_failure_("failed to open file for mapping"))
             {
                 return;
             }
@@ -199,7 +199,7 @@ private:
 
             if (0 != ::fstat(hfile.get(), &st))
             {
-                if (on_failure_("Failed to determine mapped file size"))
+                if (on_failure_("failed to determine mapped file size"))
                 {
                     return;
                 }
@@ -224,7 +224,7 @@ private:
 
                 if (MAP_FAILED == memory)
                 {
-                    on_failure_("Failed to map view of file");
+                    on_failure_("failed to map view of file");
                 }
                 else
                 {

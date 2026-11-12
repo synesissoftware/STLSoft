@@ -4,7 +4,7 @@
  * Purpose: Stopwatch initialising class.
  *
  * Created: 30th July 2002
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -97,18 +97,19 @@ template <ss_typename_param_k T_stopwatch>
 class stopwatch_initialiser
     : public T_stopwatch
 {
-public: // Types
+public: // types
     /// The stopwatch type
-    typedef T_stopwatch                                         stopwatch_type;
+    typedef T_stopwatch                                     stopwatch_type;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    typedef stopwatch_type                                      counter_type;
+    typedef stopwatch_type                                  counter_type;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// The class type
-    typedef stopwatch_initialiser<T_stopwatch>                  class_type;
+    typedef stopwatch_initialiser<T_stopwatch>              class_type;
     /// The interval type
-    typedef ss_typename_type_k stopwatch_type::interval_type    interval_type;
+    typedef ss_typename_type_k stopwatch_type::interval_type
+                                                            interval_type;
 
-public: // Construction
+public: // construction
     /// Initialises the stopwatch by calling start() and stop() on it.
     stopwatch_initialiser()
     {
@@ -116,7 +117,7 @@ public: // Construction
         stopwatch_type::stop();
     }
 
-public: // Operations
+public: // operations
     /// Terminates and measures the current sampling period, and commences
     /// another.
     interval_type

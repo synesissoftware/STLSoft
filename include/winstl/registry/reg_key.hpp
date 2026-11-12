@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    17
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        171
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       11
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        173
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -831,7 +831,7 @@ public:
     void    swap(class_type& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type m_name;         // The key name
@@ -944,7 +944,7 @@ basic_reg_key<C, T, A>::open_key_(
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not open key";
+        static const char message[] = "failed to open key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -987,7 +987,7 @@ basic_reg_key<C, T, A>::dup_key_(
         if (ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            static const char message[] = "could not duplicate key";
+            static const char message[] = "failed to duplicate key";
 
             if (ERROR_ACCESS_DENIED == res)
             {
@@ -1101,7 +1101,7 @@ basic_reg_key<C, T, A>::reg_class() const
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 query_fail:
 
-        static const char message[] = "could not determine the key registry class";
+        static const char message[] = "failed to determine the key registry class";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1149,7 +1149,7 @@ basic_reg_key<C, T, A>::num_sub_keys() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not determine the number of sub-keys";
+        static const char message[] = "failed to determine the number of sub-keys";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1178,7 +1178,7 @@ basic_reg_key<C, T, A>::num_values() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not determine the number of values";
+        static const char message[] = "failed to determine the number of values";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1296,7 +1296,7 @@ basic_reg_key<C, T, A>::create_sub_key_(
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not create sub-key";
+        static const char message[] = "failed to create sub-key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1329,7 +1329,7 @@ ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
 basic_reg_key<C, T, A>::delete_sub_key_(char_type const* subKeyName)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    static const char message[] = "could not delete sub-key";
+    static const char message[] = "failed to delete sub-key";
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     result_type res = traits_type::reg_delete_key(m_hkey, subKeyName);
@@ -1460,7 +1460,7 @@ basic_reg_key<C, T, A>::set_value_(
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (ERROR_SUCCESS != res)
     {
-        static const char message[] = "could not create value";
+        static const char message[] = "failed to create value";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1650,7 +1650,7 @@ basic_reg_key<C, T, A>::delete_value_(
 )
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    static const char message[] = "could not delete value";
+    static const char message[] = "failed to delete value";
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     result_type res = traits_type::reg_delete_value(m_hkey, valueName);

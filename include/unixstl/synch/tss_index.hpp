@@ -4,7 +4,7 @@
  * Purpose: Wrapper class for UNIX PThreads TSS key.
  *
  * Created: 21st January 1999
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   12
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       67
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,7 @@ namespace unixstl_project
 class tss_exception
     : public synchronisation_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent class type
@@ -141,7 +141,7 @@ public:
     tss_exception(
         status_code_type sc
     )
-        : parent_class_type("Failed to allocate a TSS key", sc)
+        : parent_class_type("failed to allocate a TSS key", sc)
     {}
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
@@ -156,7 +156,7 @@ private:
  */
 class tss_index
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This class
@@ -245,7 +245,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     key_type    m_index;

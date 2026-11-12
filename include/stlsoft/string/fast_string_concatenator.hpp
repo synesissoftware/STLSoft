@@ -4,7 +4,7 @@
  * Purpose: Fast string concatenator.
  *
  * Created: 4th November 2003 (the time added to STLSoft libraries)
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Sean Kelly for picking up on my gratuitous use of pointers in
  *          the first implementation.
@@ -148,7 +148,7 @@ template<   ss_typename_param_k S
         >
 class fast_string_concatenator
 {
-/// \name Member types
+/// \name Member Types
 /// @{
 public:
     typedef S                                   string_type;
