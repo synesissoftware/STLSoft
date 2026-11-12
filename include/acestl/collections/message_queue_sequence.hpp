@@ -4,7 +4,7 @@
  * Purpose: Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created: 15th September 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  20
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      84
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -178,7 +178,7 @@ template <ACE_SYNCH_DECL>
 class message_queue_sequence
     : public STLSOFT_NS_QUAL(stl_collection_tag)
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -217,8 +217,7 @@ public:
         public:
             typedef shared_handle   class_type;
 
-        // Members
-        public:
+        public: // fields
             mq_iterator_type    m_mqi;
             ACE_Message_Block*  m_entry;
             as_size_t           m_entryLength;
@@ -226,8 +225,7 @@ public:
         private:
             ss_sint32_t         m_refCount;
 
-        /// Construction
-        public:
+        public: // construction
             ss_explicit_k shared_handle(sequence_type &mq)
                 : m_mqi(mq)
                 , m_entry(NULL)
@@ -434,8 +432,7 @@ public:
                 }
             }
 
-        // Implementation
-        private:
+        private: // implementation
             ACE_Message_Block* nextEntry()
             {
                 ACE_Message_Block* entry = NULL;
@@ -701,7 +698,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     sequence_type   &m_mq;

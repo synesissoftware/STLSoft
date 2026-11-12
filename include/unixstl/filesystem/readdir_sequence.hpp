@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       180
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,7 +159,7 @@ namespace unixstl_project
 class readdir_sequence_exception
     : public unixstl_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent class type
@@ -358,7 +358,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     const flags_type    m_flags;
@@ -382,7 +382,7 @@ class readdir_sequence::const_iterator
         ,   readdir_sequence::value_type    // By-Value Temporary reference
         >
 {
-/// \name Members
+/// \name Fields
 /// @{
 private:
     typedef readdir_sequence::string_type                   string_type;
@@ -441,7 +441,7 @@ public:
     bool equal(class_type const& rhs) const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     struct shared_handle;
@@ -464,7 +464,7 @@ public:
     typedef DIR*            handle_type;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     handle_type m_dir;

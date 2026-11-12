@@ -4,7 +4,7 @@
  * Purpose: Range filter adaptor.
  *
  * Created: 9th July 2004
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -290,7 +290,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     filtered_range_type     m_range;

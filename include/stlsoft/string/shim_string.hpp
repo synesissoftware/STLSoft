@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_shim_string template class.
  *
  * Created: 9th July 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Dimitri Kaparis, for spotting a typo in the string access shims.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        77
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,7 +165,7 @@ template <
 >
 class basic_shim_string
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -601,7 +601,7 @@ private:
 
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     size_type   m_len;

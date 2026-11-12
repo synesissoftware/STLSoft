@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_map class.
  *
  * Created: 14th November 2005
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       5
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        81
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       6
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,8 +193,8 @@ private:
     friend class const_iterator;
     class snapshot
     {
-    public: // Member Types
-        typedef STLSOFT_NS_QUAL(shared_ptr)<snapshot>   ref_type;
+    public: // types
+        typedef STLSOFT_NS_QUAL(shared_ptr)<snapshot>           ref_type;
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
 
@@ -205,13 +205,13 @@ private:
         typedef STLSOFT_NS_QUAL_STD(map)<   const first_type
 #endif /* library */
                                         ,   second_type
-                                        >               variables_type_;
-        typedef variables_type_::iterator               iterator;
+                                        >                       variables_type_;
+        typedef variables_type_::iterator                       iterator;
 
-    public: // Construction
+    public: // construction
         snapshot();
 
-    public: // Operations
+    public: // operations
         ss_bool_t erase(    first_type const&   name) STLSOFT_NOEXCEPT;
         void erase(         iterator            it) STLSOFT_NOEXCEPT;
         void insert(        first_type const    &name
@@ -221,11 +221,11 @@ private:
         ss_bool_t lookup(   first_type const&   name
                         ,   second_type*&       pvalue) STLSOFT_NOEXCEPT;
 
-    public: // Iteration
+    public: // iteration
         iterator    begin();
         iterator    end();
 
-    private: // Members
+    private: // fields
         variables_type_   m_variables;
     };
 /// @}
@@ -424,7 +424,7 @@ public:
         ss_bool_t equal(class_type const& rhs) const;
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     private:
         snapshot::iterator     m_it;
@@ -443,7 +443,7 @@ private:
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
@@ -617,7 +617,7 @@ inline
 environment_map::second_type
 environment_map::operator [](char const* name) const
 {
-    char const  *value  =   traits_type::get_variable(name);
+    char const* const value = traits_type::get_variable(name);
 
     if (NULL == value)
     {
@@ -694,7 +694,7 @@ environment_map::insert(
         // 2. Insert into the host environment
         if (0 != traits_type::set_variable(name.c_str(), value.c_str()))
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("Cannot set environment variable"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("failed to set environment variable"));
         }
 
         // 3. Update the snapshot
@@ -717,7 +717,7 @@ environment_map::insert(
                 m_snapshot->erase(name);
             }
 
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("Cannot set environment variable"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("failed to set environment variable"));
         }
     }
 }
@@ -764,7 +764,7 @@ environment_map::erase(environment_map::first_type const& name)
         if (NULL != traits_type::get_variable(name.c_str()))
 #endif /* 0 */
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("Cannot erase environment variable"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("failed to erase environment variable"));
         }
     }
     else
@@ -820,7 +820,7 @@ environment_map::erase(environment_map::const_iterator it)
         if (NULL != traits_type::get_variable(name.c_str()))
 #endif /* 0 */
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("Cannot erase environment variable"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(runtime_error)("failed to erase environment variable"));
         }
     }
 

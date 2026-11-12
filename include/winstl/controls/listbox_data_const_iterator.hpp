@@ -4,7 +4,7 @@
  * Purpose: Contains the listbox_data_const_iterator class.
  *
  * Created: 16th March 2008
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -350,7 +350,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     HWND    m_hwnd;

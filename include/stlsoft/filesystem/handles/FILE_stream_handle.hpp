@@ -5,7 +5,7 @@
  *          streams.
  *
  * Created: 31st May 2009
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -109,7 +109,7 @@ template<
 >
 struct FILE_stream_handle
 {
-public: // Member Types
+public: // types
     /// The handle type
     typedef FILE*                           handle_type;
     /// The reference count policy type
@@ -121,8 +121,7 @@ public: // Member Types
     /// The Handle::Ref+Wrapper <strong>Ref</strong> type
     typedef stlsoft::ref_ptr<class_type>    Ref;
 
-public: // Construction
-
+public: // construction
     /// Creates an instance of the ref from the underlying
     static Ref create(handle_type h)
     {
@@ -165,7 +164,7 @@ public: // Reference-counting Operations
         }
     }
 
-public: // Member Variables
+public: // fields
     /// The handle value
     handle_type             handle;
 private:

@@ -6,7 +6,7 @@
  *          problems.
  *
  * Created: 11th November 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    7
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        89
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,7 +110,7 @@ template <ss_typename_param_k T>
 class array_view
     : public stl_collection_tag
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef T                                               value_type;
@@ -415,13 +415,13 @@ private:
     {
         if (!(index < size()))
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("array view index out of range"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
         }
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 ///  @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     size_type   m_size;

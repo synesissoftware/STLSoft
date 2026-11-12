@@ -8,7 +8,7 @@
  *              one of the typedefs
  *
  * Created: 1st May 2004
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -509,7 +509,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type m_rootDir;

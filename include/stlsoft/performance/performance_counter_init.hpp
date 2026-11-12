@@ -4,7 +4,7 @@
  * Purpose: Performance counter initialising class.
  *
  * Created: 30th July 2002
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -101,15 +101,17 @@ template <ss_typename_param_k C>
 class performance_counter_initialiser
     : public stopwatch_initialiser<C>
 {
-public: // Types
+public: // types
     /// The counter type
-    typedef ss_typename_type_k stopwatch_initialiser<C>::stopwatch_type     counter_type;
+    typedef ss_typename_type_k stopwatch_initialiser<
+        C
+    >::stopwatch_type                                       counter_type;
     /// The class type
-    typedef performance_counter_initialiser<C>                              class_type;
+    typedef performance_counter_initialiser<C>              class_type;
     /// The interval type
-    typedef ss_typename_type_k counter_type::interval_type                  interval_type;
+    typedef ss_typename_type_k counter_type::interval_type  interval_type;
 
-public: // Construction
+public: // construction
     /// Initialises the counter by calling start() and stop() on it.
     performance_counter_initialiser()
     {

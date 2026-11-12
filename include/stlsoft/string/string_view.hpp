@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        125
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -506,7 +506,7 @@ private:
 #endif /* 0 */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     size_type           m_length;  // The number of elements in the view

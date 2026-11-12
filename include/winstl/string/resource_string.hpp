@@ -4,7 +4,7 @@
  * Purpose: basic_resource_string class.
  *
  * Created: 1st November 1994
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Ryan Ginstrom for suggesting the implementation for handling
  *          Unicode strings on Win9x.
@@ -57,9 +57,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 15
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     107
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    3
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 1
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -335,7 +335,7 @@ private:
             }
             else
             {
-                exception_policy_type()("string did not load", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError(), MAKEINTRESOURCE(id), RT_STRING);
+                exception_policy_type()("failed to load string", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError(), MAKEINTRESOURCE(id), RT_STRING);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # if defined(STLSOFT_COMPILER_IS_MSVC)

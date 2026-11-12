@@ -5,7 +5,7 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 18th January 2006
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -226,7 +226,7 @@ public:
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
-/// \name Element access
+/// \name Element Access
 /// @{
 public:
     const_reference operator [](size_type index) const
@@ -271,7 +271,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     values_type_    m_values;

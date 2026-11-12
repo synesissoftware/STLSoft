@@ -4,7 +4,7 @@
  * Purpose: comstl::comstl_exception class
  *
  * Created: 8th December 2004
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *

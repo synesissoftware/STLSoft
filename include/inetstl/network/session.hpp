@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_session class.
  *
  * Created: 30th April 1999
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   15
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       86
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      2
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   1
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -277,7 +277,7 @@ basic_session<C, X, T>::basic_session()
 {
     if (NULL == m_hConn)
     {
-        exception_policy_type()("Failed to create session", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError());
+        exception_policy_type()("failed to create session", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError());
     }
 }
 
@@ -298,7 +298,7 @@ basic_session<C, X, T>::basic_session(
 {
     if (NULL == m_hConn)
     {
-        exception_policy_type()("Failed to create session", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError());
+        exception_policy_type()("failed to create session", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError());
     }
 }
 
@@ -343,7 +343,7 @@ basic_session<C, X, T>::open(
 
         if (NULL == m_hConn)
         {
-            exception_policy_type()("Failed to create session", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError());
+            exception_policy_type()("failed to create session", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError());
 
             bRet = false;
         }

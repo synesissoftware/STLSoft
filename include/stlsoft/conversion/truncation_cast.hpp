@@ -4,7 +4,7 @@
  * Purpose: Runtime checking for numeric conversions.
  *
  * Created: 10th August 2006
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,19 +51,11 @@
 #define STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MAJOR      2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_REVISION   6
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_EDIT       62
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MAJOR       2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MINOR       1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_REVISION    1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-*/
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,14 +94,14 @@ namespace stlsoft
  */
 
 /** Cast function, that returns the given value cast to the appropriate
- * type, or throws an instance of <code>std::overflow_error</code>
+ * type, or throws an instance of <code>std::overflow_error</code>.
  *
- * \param from The value to be cast to the type <code>TO</code>
+ * \param from The value to be cast to the type <code>TO</code>;
  *
- * \return Equivalent to <code>static_cast&lt;TO>(from)</code>, if returns
+ * \return Equivalent to <code>static_cast&lt;TO>(from)</code>, if returns.
  *
  * \exception std::overflow_error If from is too large to be represented as
- *   an instance of <code>TO</code> without truncation
+ *   an instance of <code>TO</code> without truncation;
  */
 template<
     ss_typename_param_k TO
@@ -123,7 +115,7 @@ truncation_cast(
 {
     if (!truncation_test<TO>(from))
     {
-        STLSOFT_THROW_X(std::overflow_error("Cast would result in truncation"));
+        STLSOFT_THROW_X(std::overflow_error("cast would result in truncation"));
     }
 
     return static_cast<TO>(from);

@@ -5,7 +5,7 @@
  *          information about the host system version.
  *
  * Created: 10th February 2002
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -111,11 +111,11 @@ namespace winstl_project
  */
 class system_version
 {
-public: // Member Types
+public: // types
     /// This type
     typedef system_version class_type;
 
-public: // Accessors
+public: // accessors
 
 public: // Accessors:Operating System Type
 
@@ -140,7 +140,7 @@ public: // Accessors:Operating System Version
     /// Returns the operating system build number
     static ws_uint32_t build_number();
 
-public: // Accessors
+public: // accessors
     /// Provides a non-mutable (const) reference to the \c OSVERSIONINFO instance
     static OSVERSIONINFO const& get_versioninfo();
 

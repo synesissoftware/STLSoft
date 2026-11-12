@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
@@ -59,7 +59,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        176
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        177
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -189,7 +189,7 @@ template <ss_typename_param_k C>
 struct system_traits
     : public stlsoft::c_string_traits<C>
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The character type
@@ -214,7 +214,7 @@ public:
     typedef DWORD                                           error_type;
 /// @}
 
-/// \name Path string handling
+/// \name Path String Handling
 /// @{
 public:
     /// Performs a semantic string comparison with specific handling for
@@ -524,7 +524,7 @@ public:
     );
 /// @}
 
-/// \name Dynamic Loading
+/// \name Dynamic Library Functions
 /// @{
 public:
     /// Loads the given executable module

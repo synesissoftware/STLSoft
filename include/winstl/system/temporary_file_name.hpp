@@ -5,7 +5,7 @@
  *          name.
  *
  * Created: 5th June 2011
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Pablo Aguilar for requesting this component.
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MAJOR     1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MINOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_REVISION  7
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_EDIT      30
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MINOR     3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -198,7 +198,7 @@ private:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("could not elicit temporary directory", e));
+            STLSOFT_THROW_X(winstl_exception("failed to elicit temporary directory", e));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             if (0 != cchBuff)
@@ -217,7 +217,7 @@ private:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("could not elicit temporary file name", e));
+            STLSOFT_THROW_X(winstl_exception("failed to elicit temporary file name", e));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             if (0 != cchBuff)
@@ -263,7 +263,7 @@ private:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("could not elicit temporary directory", e));
+            STLSOFT_THROW_X(winstl_exception("failed to elicit temporary directory", e));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             if (0 != cchBuff)
@@ -282,7 +282,7 @@ private:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("could not elicit temporary file name", e));
+            STLSOFT_THROW_X(winstl_exception("failed to elicit temporary file name", e));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
             if (0 != cchBuff)

@@ -1,11 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    comstl/exception/policy/HRESULT_to_string_translation_policy.hpp
  *
- * Purpose: comstl::HRESULT_to_string_translation_policy
- *          policy class
+ * Purpose: comstl::HRESULT_to_string_translation_policy policy class
  *
  * Created: 8th January 2017
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -100,22 +99,22 @@ namespace comstl_project
  * classes
  */
 
-/** Policy class for Window status code to string translation
+/** Policy class for Window status code to string translation.
  *
  * \ingroup group__library__Exception
  */
 struct HRESULT_to_string_translation_policy
 {
 public:
-    /// The status code type
+    /// The status code type.
     typedef HRESULT                                         status_code_type;
-    /// The string type
+    /// The string type.
     typedef STLSOFT_NS_QUAL(exception_string)               string_type;
-    /// The size type
+    /// The size type.
     typedef ss_size_t                                       size_type;
 
 public:
-    /// Creates a message from the given status code and message
+    /// Creates a message from the given status code and message.
     static
     string_type
     create_message(
@@ -152,8 +151,6 @@ public:
 #ifdef STLSOFT_PPF_pragma_message_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_message_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !COMSTL_INCL_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY */
 

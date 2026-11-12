@@ -4,7 +4,7 @@
  * Purpose: Stopwatch scope class.
  *
  * Created: 20th July 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MAJOR      5
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   5
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       59
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,7 +95,7 @@ namespace stlsoft
 template <ss_typename_param_k T_stopwatch>
 class stopwatch_scope
 {
-public: // Types
+public: // types
     /// The stopwatch type
     typedef T_stopwatch                                     stopwatch_type;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -105,7 +105,7 @@ public: // Types
     /// The class type
     typedef stopwatch_scope<T_stopwatch>                    class_type;
 
-public: // Construction
+public: // construction
     /// Constructs with the stopwatch instance to manage, on which start() is called
     ss_explicit_k
     stopwatch_scope(
@@ -124,7 +124,7 @@ private:
     stopwatch_scope(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-public: // Operations
+public: // operations
     /// Calls stop() on the managed stopwatch
     void stop()
     {
@@ -148,7 +148,7 @@ public: // Operations
     }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-private: // Fields
+private: // fields
     stopwatch_type& m_stopwatch;
 };
 

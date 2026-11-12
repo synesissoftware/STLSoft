@@ -4,7 +4,7 @@
  * Purpose: Contains the pair template.
  *
  * Created: 19th November 1998
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -117,7 +117,7 @@ public:
     {}
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     first_type  first;  //!< The first member

@@ -4,7 +4,7 @@
  * Purpose: Defines the string_slice class template.
  *
  * Created: 22nd February 2010
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -110,7 +110,7 @@ template<
 struct string_slice
     : public P
 {
-public: // Member Types
+public: // types
     /// The character type
     typedef C                                               char_type;
     /// The traits type
@@ -131,7 +131,7 @@ public:
     /// The non-mutating (const) iterator type
     typedef C const*                                        const_iterator;
 
-public: // Construction
+public: // construction
     /// Default constructor
     string_slice()
         : parent_class_type()
@@ -182,7 +182,7 @@ public: // Attributes
         return 0 == this->len;
     }
 
-public: // Accessors
+public: // accessors
     value_type const* data() const STLSOFT_NOEXCEPT
     {
         return this->ptr;
@@ -225,7 +225,7 @@ public: // Comparison
     }
 
 
-public: // Iteration
+public: // iteration
     /// Begins the iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the sequence

@@ -4,7 +4,7 @@
  * Purpose: Policies for spin mutexes.
  *
  * Created: 25th November 2006
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -105,10 +105,10 @@ namespace winstl_project
 
 struct no_yield_spin_mutex_policy
 {
-public: // Types
+public: // types
     typedef atomic_int_t                                    atomic_int_type;
 
-public: // Operations
+public: // operations
     static
     ss_truthy_t
     try_acquire_lock(
@@ -180,10 +180,10 @@ template<
 >
 struct yield_on_N_spin_mutex_policy
 {
-public: // Types
+public: // types
     typedef T_atomicType                                    atomic_int_type;
 
-public: // Operations
+public: // operations
     static
     ss_truthy_t
     try_acquire_lock(

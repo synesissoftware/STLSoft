@@ -5,7 +5,7 @@
  *          Windows file handles.
  *
  * Created: 7th July 2010
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -121,7 +121,7 @@ namespace winstl_project
 template <ss_typename_param_k R>
 struct os_file_handle
 {
-private: // Member Types
+private: // types
 //    typedef filesystem_traits<char>                             traits_a_type_;
 public:
     /// The handle type
@@ -134,8 +134,7 @@ public:
     /// The Handle::Ref+Wrapper ref type
     typedef stlsoft::ref_ptr<class_type>                        Ref;
 
-public: // Construction
-
+public: // construction
     /// Creates an instance of the ref from the underlying
     static Ref create(handle_type h)
     {
@@ -178,7 +177,7 @@ public: // Reference-counting Operations
         }
     }
 
-public: // Member Variables
+public: // fields
     /// The handle value
     handle_type     handle;
 private:

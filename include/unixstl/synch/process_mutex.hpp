@@ -4,7 +4,7 @@
  * Purpose: Intra-process mutext, based on PTHREADS.
  *
  * Created: 15th May 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      6
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   14
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       93
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      7
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -224,7 +224,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 != m_error)
         {
-            STLSOFT_THROW_X(synchronisation_exception("Mutex lock failed", m_error));
+            STLSOFT_THROW_X(synchronisation_exception("failed to lock mutex", m_error));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -250,7 +250,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             if (EBUSY != m_error)
             {
-                STLSOFT_THROW_X(synchronisation_exception("Mutex try-lock failed", m_error));
+                STLSOFT_THROW_X(synchronisation_exception("failed to lock mutex", m_error));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -270,7 +270,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if (0 != m_error)
         {
-            STLSOFT_THROW_X(synchronisation_exception("Mutex unlock failed", m_error));
+            STLSOFT_THROW_X(synchronisation_exception("failed to unlock mutex", m_error));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -336,7 +336,7 @@ private:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                     else
                     {
-                        STLSOFT_THROW_X(synchronisation_exception("failed to set initialise PTHREADS mutex", res));
+                        STLSOFT_THROW_X(synchronisation_exception("failed to initialise PTHREADS mutex", res));
                     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }

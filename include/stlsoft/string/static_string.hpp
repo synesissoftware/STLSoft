@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      235
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      237
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -176,7 +176,7 @@ class basic_static_string
 private:
     enum { internalSize = V_internalSize };
 
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -727,7 +727,7 @@ private:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_buffer[internalSize + 1];
@@ -2457,7 +2457,7 @@ basic_static_string<C, V_internalSize, T>::at(ss_typename_type_k basic_static_st
 
     if (index >= size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("at(): `index` out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -2478,7 +2478,7 @@ basic_static_string<C, V_internalSize, T>::at(ss_typename_type_k basic_static_st
 
     if (index > size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("at(): `index` out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -2502,7 +2502,7 @@ basic_static_string<C, V_internalSize, T>::substr(
 
     if (pos > size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("substr(): `pos` out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -2530,7 +2530,7 @@ basic_static_string<C, V_internalSize, T>::substr(
 
     if (pos > size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("substr(): `pos` out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());

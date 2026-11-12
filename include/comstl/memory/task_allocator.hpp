@@ -4,7 +4,7 @@
  * Purpose: task_allocator class.
  *
  * Created: 19th January 2002
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -210,13 +210,17 @@ public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline cs_bool_t operator ==(const task_allocator<T> &/* lhs */, const task_allocator<T> &/* rhs */)
+inline
+cs_bool_t
+operator ==(const task_allocator<T> &/* lhs */, const task_allocator<T> &/* rhs */)
 {
     return cs_true_v;
 }
 
 template <ss_typename_param_k T>
-inline cs_bool_t operator !=(const task_allocator<T> &/* lhs */, const task_allocator<T> &/* rhs */)
+inline
+cs_bool_t
+operator !=(const task_allocator<T> &/* lhs */, const task_allocator<T> &/* rhs */)
 {
     return cs_false_v;
 }

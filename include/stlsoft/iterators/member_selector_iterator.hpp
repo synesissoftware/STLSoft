@@ -4,7 +4,7 @@
  * Purpose: member_selector_iterator class.
  *
  * Created: 7th April 2005
- * Updated: 11th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
@@ -395,7 +395,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     base_iterator_type  m_it;

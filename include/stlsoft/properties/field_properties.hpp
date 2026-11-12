@@ -4,7 +4,7 @@
  * Purpose: Field-based properties.
  *
  * Created: 6th October 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   12
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       52
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,17 +99,17 @@ namespace stlsoft
 \code
 class ClassWithReadOnlyProp
 {
-public: // Member Types
+public: // types
   typedef std::string   string_type;
   typedef int           index_type;
 
-public: // Construction
+public: // construction
   ClassWithReadOnlyProp(char const* instanceName, index_type instanceIndex)
     : name(instanceName)  // Property value can be initialised inside enclosing class
     , index(1)            // Property value can be initialised inside enclosing class
   {}
 
-public: // Operations
+public: // operations
   void ReBadge(char const* newInstanceName, index_type newInstanceIndex)
   {
     name  = newInstanceName;  // Property value can be assigned inside enclosing class
