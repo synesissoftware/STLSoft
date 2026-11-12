@@ -4,7 +4,7 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
@@ -56,7 +56,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    18
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        87
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -296,7 +296,7 @@ public:
     void swap(BSTR& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     BSTR    m_bstr;

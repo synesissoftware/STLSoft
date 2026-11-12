@@ -4,7 +4,7 @@
  * Purpose: Control Panel module/applet manipulation classes.
  *
  * Created: 1st April 2006
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 26
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     51
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -243,7 +243,7 @@ public:
     LPARAM          get_data() const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     applet_module_base* const   m_module;
@@ -472,7 +472,7 @@ private:
     void init_(int flags, HWND hwndParent);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     const string_type   m_path;

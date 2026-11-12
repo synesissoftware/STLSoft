@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_map class.
  *
  * Created: 14th November 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       5
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        81
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,8 +193,8 @@ private:
     friend class const_iterator;
     class snapshot
     {
-    public: // Member Types
-        typedef STLSOFT_NS_QUAL(shared_ptr)<snapshot>   ref_type;
+    public: // types
+        typedef STLSOFT_NS_QUAL(shared_ptr)<snapshot>           ref_type;
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
 
@@ -205,13 +205,13 @@ private:
         typedef STLSOFT_NS_QUAL_STD(map)<   const first_type
 #endif /* library */
                                         ,   second_type
-                                        >               variables_type_;
-        typedef variables_type_::iterator               iterator;
+                                        >                       variables_type_;
+        typedef variables_type_::iterator                       iterator;
 
-    public: // Construction
+    public: // construction
         snapshot();
 
-    public: // Operations
+    public: // operations
         ss_bool_t erase(    first_type const&   name) STLSOFT_NOEXCEPT;
         void erase(         iterator            it) STLSOFT_NOEXCEPT;
         void insert(        first_type const    &name
@@ -221,11 +221,11 @@ private:
         ss_bool_t lookup(   first_type const&   name
                         ,   second_type*&       pvalue) STLSOFT_NOEXCEPT;
 
-    public: // Iteration
+    public: // iteration
         iterator    begin();
         iterator    end();
 
-    private: // Members
+    private: // fields
         variables_type_   m_variables;
     };
 /// @}
@@ -424,7 +424,7 @@ public:
         ss_bool_t equal(class_type const& rhs) const;
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     private:
         snapshot::iterator     m_it;
@@ -443,7 +443,7 @@ private:
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON

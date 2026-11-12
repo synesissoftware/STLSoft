@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    17
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        171
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        172
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -831,7 +831,7 @@ public:
     void    swap(class_type& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type m_name;         // The key name

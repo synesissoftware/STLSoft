@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/index_iterator.hpp
+ * File:    stlsoft/iterators/index_iterator.hpp
  *
- * Purpose:     index_iterator class template.
+ * Purpose: index_iterator class template.
  *
- * Created:     5th April 2005
- * Updated:     9th November 2026
+ * Created: 5th April 2005
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  11
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      42
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -379,7 +379,7 @@ private:
 #endif /* STLSOFT_INDEX_ITERATOR_MEM_SEL_OP_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     base_iterator_type  m_it;

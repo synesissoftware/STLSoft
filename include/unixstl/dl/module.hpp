@@ -4,7 +4,7 @@
  * Purpose: Contains the module class.
  *
  * Created: 30th October 1997
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    7
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     245
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     246
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,7 +216,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Static operations
+/// \name Static Operations
 /// @{
 public:
     /// Loads the named module, returning its handle, which the
@@ -286,7 +286,7 @@ public:
     module_handle_type detach();
 /// @}
 
-/// \name Lookup Operations
+/// \name Lookup
 /// @{
 public:
     /// Looks up the named symbol.
@@ -341,7 +341,7 @@ private:
     }
 /// @}
 
-/// \name Member Variables
+/// \name Fields
 /// @{
 private:
     module_handle_type  m_hmodule;
