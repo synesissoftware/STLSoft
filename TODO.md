@@ -304,6 +304,11 @@ From **1.12** onwards, every new component or feature must ship with an **exampl
 * [ ] Coverage of currently untested components. Some previously unreleased tests landed in **1.11.1**. The remaining candidate tree is `test-coverage` (about 662 new entries, **TESTING.md**, **TESTING-C.md**, and **test/scripts** generators). That branch predates **1.11.1-rc10** and still uses the old `test.<kind>.*` directory names; rebase it before any merge;
 * [ ] STLSoft — deepen behavioural tests for the ~100 compile-only scaffolds; remove or fix vestigial targets;
 
+* [ ] Exception invocations:
+  * [ ] `comstl::comstl_exception` should be a root exception:
+    * [ ] add `comstl::unsupported_interface_exception`;
+  * [ ]
+
 
 ## 1.13
 
