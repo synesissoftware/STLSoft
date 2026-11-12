@@ -5,7 +5,7 @@
  *          CArray_iadaptor class templates.
  *
  * Created: 1st December 2002
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *          requiring that I implement the full complement of standard
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    3
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 15
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     111
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    4
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 1
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -576,7 +576,7 @@ public:
     {
         if (n >= size())
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("Invalid index specified"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("invalid index"));
         }
 
         return (*this)[n];
@@ -589,7 +589,7 @@ public:
     {
         if (n >= size())
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("Invalid index specified"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("invalid index"));
         }
         return (*this)[n];
     }

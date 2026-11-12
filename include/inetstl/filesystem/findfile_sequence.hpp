@@ -5,7 +5,7 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  29
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      175
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     1
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  1
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      176
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -892,11 +892,11 @@ basic_findfile_sequence<C, T, X>::find_first_file_(
 
         if (ERROR_FTP_TRANSFER_IN_PROGRESS == dwErr)
         {
-            exception_policy_type()("Already enumerating using current connection", dwErr);
+            exception_policy_type()("already enumerating using current connection", dwErr);
         }
         else
         {
-            exception_policy_type()("Search failed", dwErr);
+            exception_policy_type()("search failed", dwErr);
         }
     }
 

@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MAJOR       3
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       0
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    6
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        65
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       1
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    1
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ public:
 public:
     ss_explicit_k
     variant_type_exception(HRESULT hr)
-        : parent_class_type("VARIANT type exception", hr)
+        : parent_class_type(hr)
     {}
     variant_type_exception(char const* reason, HRESULT hr)
         : parent_class_type(reason, hr)

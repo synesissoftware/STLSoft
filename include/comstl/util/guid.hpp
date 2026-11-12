@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   12
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       70
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -425,7 +425,7 @@ guid::guid()
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("Could not allocate GUID", hr));
+        STLSOFT_THROW_X(comstl_exception("failed to allocate GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_guid = GUID_NULL;
@@ -460,7 +460,7 @@ guid::guid(cs_char_a_t const* s)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("Could not convert string to valid GUID", hr));
+        STLSOFT_THROW_X(comstl_exception("failed to convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_guid = GUID_NULL;
@@ -478,7 +478,7 @@ guid::guid(cs_char_w_t const* s)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("Could not convert string to valid GUID", hr));
+        STLSOFT_THROW_X(comstl_exception("failed to convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_guid = GUID_NULL;

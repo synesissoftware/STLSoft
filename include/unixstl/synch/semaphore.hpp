@@ -4,7 +4,7 @@
  * Purpose: Semaphore class, based on POSIX semaphore object.
  *
  * Created: 30th May 2006
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       49
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR      4
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -218,7 +218,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             int const e = errno;
 
-            STLSOFT_THROW_X(synchronisation_exception("semaphore wait failed", e));
+            STLSOFT_THROW_X(synchronisation_exception("failed to wait for semaphore", e));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -236,7 +236,7 @@ public:
             if (EAGAIN != e)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(synchronisation_exception("semaphore wait failed", e));
+                STLSOFT_THROW_X(synchronisation_exception("failed to wait for semaphore", e));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
 
@@ -258,7 +258,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             int const e = errno;
 
-            STLSOFT_THROW_X(synchronisation_exception("semaphore release failed", e));
+            STLSOFT_THROW_X(synchronisation_exception("failed to release semaphore", e));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }

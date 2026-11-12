@@ -4,7 +4,7 @@
  * Purpose: Contains the module class.
  *
  * Created: 30th October 1997
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    7
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     246
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    1
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     247
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -331,10 +331,10 @@ private:
 # if 0
 # elif defined(UNIXSTL_OS_IS_MACOSX)
 
-            STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
+            STLSOFT_THROW_X(unixstl_exception("failed to load module", errno));
 # else
 
-            STLSOFT_THROW_X(unixstl_exception("Cannot load module", ::dlerror()));
+            STLSOFT_THROW_X(unixstl_exception("failed to load module", ::dlerror()));
 # endif
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }

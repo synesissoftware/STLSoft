@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR       2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    16
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        184
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -819,7 +819,7 @@ variant::variant(
         if (NULL != s &&
             '\0' != 0[s])
         {
-            handle_error_("could not initialise from string", E_OUTOFMEMORY);
+            handle_error_("failed to initialise from string", E_OUTOFMEMORY);
         }
     }
 }
@@ -840,7 +840,7 @@ variant::variant(
         if (NULL != s &&
             '\0' != 0[s])
         {
-            handle_error_("could not initialise from string", E_OUTOFMEMORY);
+            handle_error_("failed to initialise from string", E_OUTOFMEMORY);
         }
     }
 }
@@ -858,7 +858,7 @@ variant::variant(
 
     if (FAILED(hr))
     {
-        handle_error_("could not convert variant to requested type", hr);
+        handle_error_("failed to convert variant to requested type", hr);
     }
     else
     {
@@ -916,7 +916,7 @@ variant::convert(VARTYPE vType)
 
     if (FAILED(hr))
     {
-        handle_error_("could not convert variant to requested type", hr);
+        handle_error_("failed to convert variant to requested type", hr);
     }
 
     return *this;
@@ -967,10 +967,10 @@ variant::equal(VARIANT const& rhs) const
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("support for comparison of variant type not currently supported", comparisonSucceeded));
+        STLSOFT_THROW_X(comstl_exception("failed to compare VARIANTs (likely due to unsupported vt)", comparisonSucceeded));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("support for comparison of variant type not currently supported\n");
+        WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("failed to compare VARIANTs (likely due to unsupported vt)\n");
 
         return false;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

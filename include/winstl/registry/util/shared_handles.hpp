@@ -4,7 +4,7 @@
  * Purpose: Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created: 19th January 2002
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Austin Ziegler for fixes to defects evident on x64.
  *
@@ -60,9 +60,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    22
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        60
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       1
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    1
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -288,7 +288,7 @@ namespace registry_util
 
                 if (ERROR_SUCCESS != r)
                 {
-                    STLSOFT_THROW_X(registry_exception("could not register change notification", r));
+                    STLSOFT_THROW_X(registry_exception("failed to register change notification", r));
                 }
             }
             catch (missing_entry_point_exception&)

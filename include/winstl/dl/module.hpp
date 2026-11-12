@@ -4,7 +4,7 @@
  * Purpose: Contains the dl_module class.
  *
  * Created: 30th October 1997
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      7
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   3
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       260
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      1
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       261
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -389,7 +389,7 @@ private:
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-            STLSOFT_THROW_X(winstl_exception("Cannot load module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+            STLSOFT_THROW_X(winstl_exception("failed to load module", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -530,7 +530,7 @@ dl_module::dl_module(dl_module const& rhs)
     }
     else
     {
-        typedef system_traits<ws_char_a_t>      traits_a_t;
+        typedef system_traits<ws_char_a_t>                  traits_a_t;
 
         ws_size_t const                             cchRequired =   traits_a_t::get_module_filename(rhs.get_module_handle(), ss_nullptr_k, 0);
         STLSOFT_NS_QUAL(auto_buffer)<ws_char_a_t>   buffer(1 + cchRequired);
@@ -539,8 +539,10 @@ dl_module::dl_module(dl_module const& rhs)
         if (0 == cch)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("Cannot get module path", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+
+            STLSOFT_THROW_X(winstl_exception("failed to get module path", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
             m_hmodule = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }

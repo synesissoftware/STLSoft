@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    18
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        89
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       9
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -667,10 +667,10 @@ bstr::bstr(
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (pos > rhs.size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("Position out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("position out of range"));
     }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-    COMSTL_MESSAGE_ASSERT("Position out of range", pos <= rhs.size());
+    COMSTL_MESSAGE_ASSERT("position out of range", pos <= rhs.size());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     if (pos + len > rhs.size())
