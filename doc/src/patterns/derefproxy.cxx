@@ -24,7 +24,7 @@
     typedef T                                 value_type;
     typedef acme_output_iterator&lt;T, . . . >   class_type;
 
-  public: // Construction, etc.
+  public: // construction, etc.
     . . .
 
   public: // Output Iterator methods
