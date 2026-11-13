@@ -68,6 +68,12 @@ MARKDOWN_SUPPORT       = YES
 JAVADOC_AUTOBRIEF      = YES
 QUIET                  = YES
 
+# Map Windows path fragment \UNC to literal text. Inline \noop cannot be
+# used in trailing member briefs (it discards the rest of the line).
+ALIASES                = \
+  UNC="\\\\UNC" \
+  \
+
 # Undocumented-member and parameter warnings are disabled (unlike the
 # smaller C libraries) because the very large template corpus would bury
 # genuine documentation errors.
