@@ -47,8 +47,8 @@
  * - <b>Facades</b>: \link comstl::bstr bstr\endlink, \link comstl::guid guid\endlink, \link comstl::variant variant\endlink
  * - <b>Library initialisation</b>: \link comstl::initialiser initialiser\endlink
  * - <b>Object creation</b>: \link comstl::co_create_instance co_create_instance()\endlink
- * - <b>Interface control</b>: \link comstl::addref addref()\endlink, \link comstl::safe_addref safe_addref()\endlink, \link comstl::release release()\endlink, \link comstl::safe_release safe_release()\endlink
- * - <b>Running Object Table</b>: \link comstl::Rot_Register Rot_Register()\endlink, \link comstl::Rot_Revoke Rot_Revoke()\endlink, \link comstl::Rot_IsRunning Rot_IsRunning()\endlink, \link comstl::Rot_GetObject Rot_GetObject()\endlink, \link comstl::Rot_NoteChangeTime Rot_NoteChangeTime()\endlink, \link comstl::Rot_GetTimeOfLastChange Rot_GetTimeOfLastChange()\endlink, \link comstl::Rot_EnumRunning Rot_EnumRunning()\endlink
+ * - <b>Interface control</b>: <code>comstl::addref()</code>, <code>comstl::safe_addref()</code>, <code>comstl::release()</code>, <code>comstl::safe_release()</code>
+ * - <b>Running Object Table</b>: <code>comstl::Rot_Register()</code>, <code>comstl::Rot_Revoke()</code>, <code>comstl::Rot_IsRunning()</code>, <code>comstl::Rot_GetObject()</code>, <code>comstl::Rot_NoteChangeTime()</code>, <code>comstl::Rot_GetTimeOfLastChange()</code>, <code>comstl::Rot_EnumRunning()</code>
  * - <b>Marshalling</b>: \link comstl::MarshalInterThreadInterfaceInStream MarshalInterThreadInterfaceInStream()\endlink, \link comstl::GetInterfaceAndReleaseStream GetInterfaceAndReleaseStream()\endlink
  *
  */

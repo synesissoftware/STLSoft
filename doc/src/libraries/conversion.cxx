@@ -1,7 +1,7 @@
 
 /**
  * Created: 10th June 2006
- * Updated: 12th January 2017
+ * Updated: 13th November 2026
  */
 
 /** \defgroup group__library__Conversion Conversion Library
@@ -30,7 +30,8 @@
 
 /** \example by_library/conversion/interface_cast/main.cpp
  *
- * \brief Illustrates use of the \link comstl::interface_cast interface_cast\endlink
+ * \brief Illustrates use of the
+ *   <code>comstl::interface_cast</code>
  *   custom cast function template, which permits casts between
  *   (non-<code>void*</code>) pointers of the same <i>cv</i>-qualification.
  */

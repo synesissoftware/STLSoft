@@ -46,7 +46,7 @@
 /** \file stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp
  *
  * \brief [C++] Definition of the
- *  \link stlsoft::stopwatch stopwatch\endlink class
+ *  \link stlsoft::std_chrono_hrc_stopwatch std_chrono_hrc_stopwatch\endlink class
  *   (\ref group__library__Diagnostic "Diagnostic" Library).
  */
 
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MAJOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  2
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      9
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  3
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

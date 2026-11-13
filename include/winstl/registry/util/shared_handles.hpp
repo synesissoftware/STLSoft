@@ -46,9 +46,9 @@
 /** \file winstl/registry/util/shared_handles.hpp
  *
  * \brief [C++] [IMPLEMENTATION] Contains the
- *  \link winstl::registry_util::shared_handle shared_handle\endlink
+ *  <code>winstl::registry_util::shared_handle</code>
  *  and
- *  \link winstl::registry_util::monitored_shared_handle monitored_shared_handle\endlink
+ *  <code>winstl::registry_util::monitored_shared_handle</code>
  *  classes that are used to provide shared context between iterators implement
  *  the \ref group__pattern__externally_invalidatable_iterator "Externally Invalidatable Iterator"
  *  pattern
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       1
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        61
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    2
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

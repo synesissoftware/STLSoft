@@ -1,7 +1,7 @@
 
 /**
  * Created: 13th March 2007
- * Updated: 12th January 2017
+ * Updated: 13th November 2026
  */
 
 
@@ -70,7 +70,7 @@
  *
  * <b>Part 1 - Language Concerns</b>:
  * - <b>Chapter 13 - Fundamental Types</b>: STLSOFT_NUM_ELEMENTS(), stlsoft::array_proxy
- * - <b>Chapter 14 - Arrays and Pointers</b>: \link NULL\endlink
+ * - <b>Chapter 14 - Arrays and Pointers</b>: \c NULL
  * - <b>Chapter 16 - Keywords</b>: stlsoft::explicit_cast
  * - <b>Chapter 18 - Typedefs</b>: stlsoft::true_typedef
  *
@@ -85,11 +85,11 @@
  * - Chapter 29 - : stlsoft::sinteger64
  *
  * <b>Part 1 - Extending C++</b>:
- * - Chapter 31 - : stlsoft::integer_to_string(), 
+ * - Chapter 31 - : stlsoft::integer_to_string(),
  * - <b>Chapter 32 - Memory</b>: stlsoft::auto_buffer, stlsoft::pod_vector
  * - <b>Chapter 33 - Multidimensional Arrays</b>: stlsoft::fixed_array_1d, stlsoft::fixed_array_2d, stlsoft::fixed_array_3d, stlsoft::fixed_array_4d
  * - <b>Chapter 34 - Ranges</b>: \ref group__project__rangelib "Ranges"
- * - <b>Chapter 35 - Properties</b>: group__library__Properties "Properties"
+ * - <b>Chapter 35 - Properties</b>: \ref group__library__Properties "Properties"
  *
  *
  *

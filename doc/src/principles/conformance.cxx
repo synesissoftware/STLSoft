@@ -1,7 +1,7 @@
 
 /**
  * Created: 9th June 2006
- * Updated: 14th January 2007
+ * Updated: 13th November 2026
  */
 
 
@@ -346,7 +346,7 @@
  * in the other is emulated. For example, we <i>could</i> emulate the
  * <code>winstl::process_mutex::wait(DWORD)</code> method for
  * <code>unixstl::process_mutex</code> by using a retry loop and
- * a <code>\link unixstl::micro_sleep micro_sleep()\endlink</code> operation.
+ * a <code>unixstl::micro_sleep()</code> operation.
  *
  * However, such approaches can be ugly, or unsafe, or inefficient, and are often
  * all three. Furthermore, there are many cases where no meaningful analogue
