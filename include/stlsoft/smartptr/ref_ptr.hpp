@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION  2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      520
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      521
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -229,29 +229,30 @@ private: // implementation
 #endif /* compiler */
 
 public: // construction
-    /// Default constructor
+    /// Default constructor.
     ///
-    /// Constructs and empty instance
+    /// Constructs and empty instance.
     ref_ptr()
         : m_pi(NULL)
     {}
     /// Construct from a raw pointer to the counted type, and a boolean that
     /// indicates whether a reference should be taken on the instance.
     ///
-    /// \param c Pointer to a counted_type. May be \c nullptr
+    /// \param c Pointer to a counted_type. May be \c nullptr;
     /// \param bAddRef parameter that determines whether reference will be
     ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
-    ///   (<code>true</code>).
+    ///   (<code>true</code>);
     ///
     /// \note It is usual that ref_ptr is used to "sink" an instance, i.e.
-    /// to take ownership of it. In such a case, \c false should be
-    /// specified as the second parameter. If, however, a reference is being
-    /// "borrowed", then \c true should be specified.
+    ///   to take ownership of it. In such a case, \c false should be
+    ///   specified as the second parameter. If, however, a reference is
+    ///   being "borrowed", then \c true should be specified.
     ///
     /// \deprecated This is now deprecated in favour of the borrow() and
-    /// own() creation methods, for the reasons described in
-    /// <a href="https://accu.org/index.php/journals/2183" /> and
-    /// <a href="https://martinfowler.com/bliki/FlagArgument.html" />.
+    ///   own() creation methods, for the reasons described in
+    ///   <a href="https://accu.org/index.php/journals/2183">ACCU Overload</a>
+    ///   and
+    ///   <a href="https://martinfowler.com/bliki/FlagArgument.html">Flag Argument</a>.
     ref_ptr(counted_type* c, bool_type bAddRef)
         : m_pi(i_from_c(c))
     {
@@ -263,7 +264,7 @@ public: // construction
     }
 
     /// Creates a copy of the given ref_ptr instance, and increments the
-    /// reference count on its referent object, if any
+    /// reference count on its referent object, if any.
     ///
     /// \param rhs The instance to copy
     ref_ptr(class_type const& rhs)
@@ -279,10 +280,10 @@ public: // construction
     _MSC_VER > 1100
 
     /// Copy constructs from an instance with different interface and/or
-    ///   counted type
+    /// counted type.
     ///
     /// \note The interface types of the copying and copied instance must be
-    ///   compatible
+    ///   compatible.
     template<
         ss_typename_param_k T2
     ,   ss_typename_param_k I2
@@ -326,7 +327,7 @@ public: // construction
 # endif /* compiler */
 #endif /* compiler */
 
-    /// Destructor
+    /// Destructor.
     ///
     /// If the ref_ptr instance is still holding a pointer to a managed
     /// instance, it will be released.
@@ -338,7 +339,7 @@ public: // construction
         }
     }
 
-    /// Copy assignment from a ref_ptr instance of the same type
+    /// Copy assignment from a ref_ptr instance of the same type.
     ///
     /// \note It is strongly exception-safe, as long as the implementations
     ///   of the add-ref and release functions - as utilised in the
@@ -361,7 +362,7 @@ public: // construction
     /// counted_type (but the same interface type).
     ///
     /// \note This function template uses the copy constructor template, and
-    ///   has the same instantiation restrictions
+    ///   has the same instantiation restrictions.
     ///
     /// \note It is strongly exception-safe, as long as the implementations
     ///   of the add-ref and release functions - as utilised in the
@@ -383,9 +384,9 @@ public: // construction
 
     /// Creates an instance by "borrowing" the given pointer to the counted
     /// type, which means that it is assumed that the instance is already
-    /// owned
+    /// owned.
     ///
-    /// \param c Pointer to a counted_type. May be nullptr
+    /// \param c Pointer to a counted_type. May be nullptr;
     template<
         ss_typename_param_k T_borrowedType
     >
@@ -409,9 +410,9 @@ public: // construction
 
     /// Creates an instance by "owning" the given pointer to the counted
     /// type, which means that it is assumed that the instance is not (yet)
-    /// owned elsehwere
+    /// owned elsewhere.
     ///
-    /// \param c Pointer to a counted_type. May be nullptr
+    /// \param c Pointer to a counted_type. May be nullptr;
     template<
         ss_typename_param_k T_ownedType
     >
@@ -436,9 +437,9 @@ public: // construction
 /// \name Operations
 /// @{
 public:
-    /// Swaps the managed instance of \c this with \c rhs
+    /// Swaps the managed instance of \c this with \c rhs.
     ///
-    /// \note It provides the no-throw guarantee
+    /// \note It provides the no-throw guarantee.
     void swap(class_type& rhs) STLSOFT_NOEXCEPT
     {
         interface_type* t           =   rhs.m_pi;
@@ -448,10 +449,10 @@ public:
 
     /// Assigns a reference-counted type to the smart pointer.
     ///
-    /// \param c Pointer to a counted_type. May be \c nullptr
+    /// \param c Pointer to a counted_type. May be \c nullptr;
     /// \param bAddRef parameter that determines whether reference will be
     ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
-    ///   (<code>true</code>).
+    ///   (<code>true</code>);
     void set(counted_type* c, bool_type bAddRef)
     {
         class_type  t(c, bAddRef);
@@ -472,7 +473,7 @@ public:
     }
 
     /// Detaches the managed instance, and returns it to the caller, which
-    /// takes responsibility for ensuring that the resource is not leaked
+    /// takes responsibility for ensuring that the resource is not leaked.
     counted_type* detach() STLSOFT_NOEXCEPT
     {
         counted_type* r = class_type::c_from_i(m_pi);
@@ -483,32 +484,32 @@ public:
     }
 
 public: // equality comparison
-    /// Evaluates whether two instances are equal
+    /// Evaluates whether two instances are equal.
     bool_type equal(class_type const& rhs) const STLSOFT_NOEXCEPT
     {
         return m_pi == rhs.m_pi;
     }
 
 public: // accessors
-    /// Determines whether the instance is empty
+    /// Determines whether the instance is empty.
     bool_type empty() const STLSOFT_NOEXCEPT
     {
         return NULL == m_pi;
     }
 
-    /// Determines whether the instance is empty
+    /// Determines whether the instance is empty.
     bool_type operator !() const STLSOFT_NOEXCEPT
     {
         return empty();
     }
 
-    /// Provides raw-pointer access to the instance
+    /// Provides raw-pointer access to the instance.
     counted_type* get() const STLSOFT_NOEXCEPT
     {
         return class_type::c_from_i(m_pi);
     }
 
-    /// Returns the interface pointer
+    /// Returns the interface pointer.
     ///
     /// \pre !empty()
     counted_type* operator ->()
@@ -518,7 +519,7 @@ public: // accessors
         return class_type::c_from_i(m_pi);
     }
 
-    /// Returns the interface pointer
+    /// Returns the interface pointer.
     ///
     /// \pre !empty()
     counted_type const* operator ->() const
@@ -528,7 +529,7 @@ public: // accessors
         return class_type::c_from_i(m_pi);
     }
 
-    /// Returns a reference to the managed instance
+    /// Returns a reference to the managed instance.
     ///
     /// \pre !empty()
     counted_type& operator *()
@@ -538,7 +539,7 @@ public: // accessors
         return *class_type::c_from_i(m_pi);
     }
 
-    /// Returns a reference to the managed instance
+    /// Returns a reference to the managed instance.
     ///
     /// \pre !empty()
     counted_type const& operator *() const

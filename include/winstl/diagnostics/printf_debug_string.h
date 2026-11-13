@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    winstl/diagnostics/printf_debug_line.h
+ * File:    winstl/diagnostics/printf_debug_string.h
  *
  * Purpose: Functions to write lines to the Windows debugger.
  *
  * Created: 18th August 2025
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/diagnostics/printf_debug_line.h
+/** \file winstl/diagnostics/printf_debug_string.h
  *
  * \brief [C++] Functions to printf to the Windows debugger.
  *   (\ref group__library__Diagnostic "Diagnostic" Library).
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_MAJOR    1
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_MINOR    0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_REVISION 2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_EDIT     3
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,6 +117,9 @@ winstl_C_call_OutputDebugStringA_(
  * API functions
  */
 
+/** Writes a formatted string to \c OutputDebugString.
+ *
+ */
 #if 0
 #elif defined(__GNUC__)
 __attribute__((format(printf, 1, 2)))
