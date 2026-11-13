@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR      3
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   8
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       38
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   9
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1252,7 +1252,7 @@ string_switch_(
  *
  * \warning If this function is used with an enumeration type that does not
  *   have flag-semantics, the use of the value of <code>resultBase</code>
- *   in evaluating the value of the out-parameter <code>result<code>,
+ *   in evaluating the value of the out-parameter <code>result</code>,
  *   regardless of whether match occurs, can lead to confusing results.
  */
 template<
@@ -1288,7 +1288,7 @@ string_switch(
  *   tested against;
  *
  * \retval true <code>*result</code> is assigned to the matching case's
- *   value and <code>resultBase</code>;
+ *   value;
  * \retval false <code>*result</code> is not assigned;
  */
 template<
