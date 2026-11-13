@@ -10,12 +10,35 @@
  * \brief This library defines path, directory, file, and related
  *   filesystem components across the STLSoft projects.
  *
- * Highlight component lists are deferred until a dedicated catalogue pass;
- * membership is defined by <code>ingroup</code> annotations on the public
- * headers.
+ * Highlights from the File System Library include:
  *
- * \note An earlier catalogue draft incorrectly listed Containers Library
- *   types here; that paste has been removed.
+ * - stlsoft::basic_path_buffer
+ * - stlsoft::searchspec_sequence
+ *
+ * - platformstl::basic_current_directory
+ * - platformstl::basic_file_lines
+ * - platformstl::basic_path
+ * - platformstl::current_directory_scope
+ * - platformstl::memory_mapped_file
+ * - platformstl::pipe
+ * - platformstl::readdir_sequence
+ *
+ * - unixstl::basic_path
+ * - unixstl::glob_sequence
+ * - unixstl::memory_mapped_file
+ * - unixstl::readdir_sequence
+ *
+ * - winstl::basic_absolute_path
+ * - winstl::basic_findfile_sequence
+ * - winstl::basic_findvolume_sequence
+ * - winstl::basic_path
+ * - winstl::memory_mapped_file
+ *
+ * - inetstl::basic_findfile_sequence
+ * - inetstl::basic_ftpdir_sequence
+ *
+ * This is a highlight catalogue, not an inventory; membership is defined by
+ * <code>ingroup</code> annotations on the public headers.
  *
  */
 

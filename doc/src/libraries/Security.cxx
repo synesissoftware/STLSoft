@@ -10,9 +10,15 @@
  * \brief This library defines components for working with security
  *   descriptors, access-control lists, and related security tokens.
  *
- * Highlight component lists are deferred until a dedicated catalogue pass;
- * membership is defined by <code>ingroup</code> annotations on the public
- * headers.
+ * Highlights from the Security Library include:
+ *
+ * - comstl::CoInitSecurity
+ *
+ * - winstl::acl_sequence
+ * - winstl::token_information
+ *
+ * This is a highlight catalogue, not an inventory; membership is defined by
+ * <code>ingroup</code> annotations on the public headers.
  *
  */
 
