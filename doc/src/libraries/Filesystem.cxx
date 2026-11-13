@@ -1,22 +1,21 @@
 
 /**
  * Created: 23rd May 2006
- * Updated: 12th January 2017
+ * Updated: 14th November 2026
  */
 
 /** \defgroup group__library__FileSystem File System Library
  * \ingroup group__libraries
  *
- * \brief This library defines file system components.
+ * \brief This library defines path, directory, file, and related
+ *   filesystem components across the STLSoft projects.
  *
- * The STL-containers provided by the STLSoft libraries include:
+ * Highlight component lists are deferred until a dedicated catalogue pass;
+ * membership is defined by <code>ingroup</code> annotations on the public
+ * headers.
  *
- * - The stlsoft::environment_block - WRONGLY PLACED!!!! This is a facade.
- * - The stlsoft::fixed_array
- * - The stlsoft::frequency_map
- * - The stlsoft::pod_vector
- * - The stlsoft::static_array
- * - The stlsoft::unsorted_map
- * - The stlsoft::fixed_array class templates
+ * \note An earlier catalogue draft incorrectly listed Containers Library
+ *   types here; that paste has been removed.
  *
  */
+

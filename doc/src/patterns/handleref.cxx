@@ -1,7 +1,7 @@
 
 /**
  * Created: 23rd May 2006
- * Updated: 14th January 2007
+ * Updated: 14th November 2026
  */
 
 
@@ -10,7 +10,6 @@
  *
  * \brief &nbsp;&nbsp;&nbsp;&nbsp;High Syntactic Utility with Minimal Coupling.
  *
- * <code class="tbc">To be completed</code>
  *
  * Components in the STLSoft libraries that use the Handle::Ref
  * pattern include:

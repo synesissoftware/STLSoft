@@ -1,7 +1,7 @@
 
 /**
  * Created: 7th July 2006
- * Updated: 14th January 2007
+ * Updated: 14th November 2026
  */
 
 
@@ -10,7 +10,6 @@
  *
  * \brief &nbsp;&nbsp;&nbsp;&nbsp;Reduce Client Code Conditional Testing for Stubbed / Unwanted Behaviour.
  *
- * <code class="tbc">To be completed</code>
  *
  * Components in the STLSoft libraries that use the <b>Null Object</b>
  * pattern include:

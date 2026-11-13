@@ -1,7 +1,7 @@
 
 /**
  * Created: 3rd June 2006
- * Updated: 14th January 2007
+ * Updated: 14th November 2026
  */
 
 
@@ -10,7 +10,6 @@
  *
  * \brief &nbsp;&nbsp;&nbsp;&nbsp;Advanced Template Techniques.
  *
- * <code class="tbc">To be completed</code>
  *
  */
 

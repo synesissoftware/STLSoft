@@ -1,7 +1,7 @@
 
 /**
  * Created: 3rd June 2006
- * Updated: 14th January 2007
+ * Updated: 14th November 2026
  */
 
 
@@ -10,21 +10,9 @@
  *
  * \note Also known as <b>Reverse \ref group__pattern__bolt_in "Bolt-in"</b>.
  *
- * \brief &nbsp;&nbsp;&nbsp;&nbsp;Compile-time Polymorphism.
+ * \brief Compile-time polymorphism.
  *
- * <code class="tbc">To be completed</code>
- *
- * Components in the STLSoft libraries that use the Curiously Recurring
- * Template pattern include:
- *
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
- * - stlsoft::XXXXXXXXX
+ * Highlight component lists are deferred until a dedicated catalogue pass.
  *
  */
 

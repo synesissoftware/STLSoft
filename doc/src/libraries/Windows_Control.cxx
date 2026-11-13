@@ -1,32 +1,22 @@
 
 /**
  * Created: 26th May 2006
- * Updated: 12th January 2017
+ * Updated: 14th November 2026
  */
 
 /** \defgroup group__library__Windows_Control Windows Control Library
  * \ingroup group__libraries
  *
  * \brief This library contains classes and functions for manipulation of
- *  the Windows Controls.
+ *  Windows common controls (list boxes, combo boxes, list-views, and
+ *  related facilities).
  *
- * The Windows Controls is XXX XXX XXX. The 
- * \ref group__library__Windows_Control provides a suite of classes
- * that represent these entities and provide facilities for accessing,
- * enumerating and modifying them:
- * 
- * - The winstl::basic_reg_key class template represents a registry key. It
- *    provides methods for creating, opening, deleting keys, and accessing
- *    and modifying values.
- * - The winstl::basic_reg_value class template represents a registry value.
- *    It provides methods for retrieving the value's value (!) in a variety
- *    of types and forms.
- * - The winstl::basic_reg_key_sequence class template provides an STL
- *    collection for accessing the sub-keys of a given key. Its value type
- *    is (a specialisation of) winstl::basic_reg_key.
- * - The winstl::basic_reg_value_sequence class template provides an STL
- *    collection for accessing the values of a given key. Its value type
- *    is (a specialisation of) winstl::basic_reg_value.
+ * Highlight component lists are deferred until a dedicated catalogue pass;
+ * membership is defined by <code>ingroup</code> annotations on the public
+ * headers.
+ *
+ * \note An earlier catalogue draft incorrectly pasted Windows Registry
+ *   component descriptions here; that paste has been removed.
  *
  */
 
