@@ -1,7 +1,7 @@
 
 /**
  * Created: 13th November 2026
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  *
  * Note: Minimal `\defgroup` stubs for library group ids referenced from
  *       public headers but absent from the recovered 1.10 catalogue.
@@ -54,10 +54,4 @@
  * \ingroup group__library__FileSystem
  *
  * \brief Alias for \ref group__library__FileSystem (legacy lowercase id).
- */
-
-/** \defgroup group__library__security Security Library (alias)
- * \ingroup group__library__Security
- *
- * \brief Alias for \ref group__library__Security (legacy lowercase id).
  */
