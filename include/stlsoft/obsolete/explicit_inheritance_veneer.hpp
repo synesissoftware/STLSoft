@@ -4,7 +4,7 @@
  * Purpose: Explicit inheritance veneer class.
  *
  * Created: 13th January 2003
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR     0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION  6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT      53
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,7 +94,7 @@ namespace stlsoft
  *
  * \param T The type to be subject to the veneer
  *
- * \obsolete
+ * \deprecated
  */
 template <ss_typename_param_k T>
 struct explicit_inheritance_veneer

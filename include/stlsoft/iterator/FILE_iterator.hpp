@@ -4,7 +4,7 @@
  * Purpose: FILE* output iterator.
  *
  * Created: 21st April 2009
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    14
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        28
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,8 +165,8 @@ std::copy(ints.begin(), ints.end()
  * \note The class template avoids fatuous assignment syntax by using
  *   the \ref group__pattern__dereference_proxy "Dereference Proxy" pattern.
  *
- * \warn There is no protection against a mismatched format string. You must
- *   ensure that the assigned type matches the format string.
+ * \warning There is no protection against a mismatched format string. You
+ *   must ensure that the assigned type matches the format string.
  */
 template<
     ss_typename_param_k V

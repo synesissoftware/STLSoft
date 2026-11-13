@@ -4,7 +4,7 @@
  * Purpose: Allocator commmon features.
  *
  * Created: 17th February 2004
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_REVISION   5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       33
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,7 +86,7 @@ namespace stlsoft
  *
  * \ingroup group__library__Memory
  *
- * \obsolete
+ * \deprecated
  */
 template <ss_typename_param_k A>
 struct container_base
