@@ -1,0 +1,32 @@
+
+/**
+ * Created: 23rd May 2006
+ * Updated: 12th January 2017
+ */
+
+/** \defgroup group__library__Memory Memory Library
+ * \ingroup group__libraries
+ *
+ * \brief This library defines functions, classes, allocator class
+ *   templates, and meta-classes that assist in the manipulation of
+ *   memory.
+ *
+ */
+
+/** \example by_library/memory/auto_buffer/auto_buffer.cpp
+ * \brief [C++ only] Illustrates use of the 
+ *  \ref group__library__Memory "Memory Library" component
+ *   \link stlsoft::auto_buffer auto_buffer\endlink.
+ */
+
+/** \example by_library/memory/auto_destructor/auto_destructor.cpp
+ * \brief [C++ only] Illustrates use of the 
+ *  \ref group__library__Memory "Memory Library" component
+ *   \link stlsoft::auto_destructor auto_buffer\endlink.
+ */
+
+/** \example by_library/memory/com_memory_functions/com_memory_functions.cpp
+ * \brief [C++ only] Illustrates use of the 
+ *  \ref group__library__Memory "COM Memory Library"
+ *   memory functions.
+ */

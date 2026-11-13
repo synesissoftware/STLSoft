@@ -20,11 +20,20 @@ TIMESTAMP              = NO
 
 HAVE_DOT               = NO
 
-INPUT                  = include \
-                         doc
-FILE_PATTERNS          = *.h \
-                         *.hpp \
-                         *.md
+INPUT                  = \
+  doc \
+  include \
+  \
+
+
+FILE_PATTERNS          = \
+  *.cxx \
+  *.h \
+  *.hpp \
+  *.md \
+  \
+
+
 RECURSIVE              = YES
 
 # Source is written in Simplified Group Form (SGF); the filter presents
