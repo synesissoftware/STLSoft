@@ -44,12 +44,6 @@
  * \brief Type-traits components.
  */
 
-/** \defgroup group__library__exception Exception Library (alias)
- * \ingroup group__library__Exception
- *
- * \brief Alias for \ref group__library__Exception (legacy lowercase id).
- */
-
 /** \defgroup group__library__filesystem File System Library (alias)
  * \ingroup group__library__FileSystem
  *

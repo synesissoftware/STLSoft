@@ -4,7 +4,7 @@
  * Purpose: Defines the errno_exception exception class.
  *
  * Created: 17th May 2014
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,7 +44,7 @@
 /** \file stlsoft/exception/special/errno_exception.hpp
  *
  * \brief [C++] Defines the errno_exception exception class
- *   (\ref group__library__exception "Exception" Library).
+ *   (\ref group__library__Exception "Exception" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MAJOR       1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MINOR       2
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    4
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        22
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
