@@ -28,24 +28,23 @@
  *
  */
 
-/** \example by_library/conversion/interface_cast/interface_cast.cpp
+/** \example by_library/conversion/interface_cast/main.cpp
  *
  * \brief Illustrates use of the \link comstl::interface_cast interface_cast\endlink
  *   custom cast function template, which permits casts between
  *   (non-<code>void*</code>) pointers of the same <i>cv</i>-qualification.
  */
 
-/** \example by_library/conversion/sap_cast/sap_cast.cpp
+/** \example by_library/conversion/sap_cast/main.cpp
  *
  * \brief Illustrates use of the \link stlsoft::sap_cast sap_cast\endlink
  *   custom cast function template, which permits casts between
  *   (non-<code>void*</code>) pointers of the same <i>cv</i>-qualification.
  */
 
-/** \example by_library/conversion/union_cast/union_cast.cpp
+/** \example by_library/conversion/union_cast/main.cpp
  *
  * \brief Illustrates use of the \link stlsoft::union_cast union_cast\endlink
  *   custom cast function template, which permits casts between
  *   arbitrary types as long as they have the same size.
  */
-

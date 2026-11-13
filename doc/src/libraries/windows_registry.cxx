@@ -36,7 +36,7 @@
  *
  */
 
-/** \example by_library/windows_registry/enum_values/enum_values.cpp
+/** \example by_library/windows_registry/enum_values/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Registry "Windows Registry library"
  *  component
@@ -69,7 +69,7 @@
  *  components.
  */
 
-/** \example by_library/windows_registry/registry_functions/registry_functions.cpp
+/** \example by_library/windows_registry/registry_functions/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Registry "Windows Registry library"
  *   function reg_get_string_value()

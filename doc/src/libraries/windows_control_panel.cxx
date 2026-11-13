@@ -30,7 +30,7 @@
  *
  */
 
-/** \example by_library/windows_control_panel/windows_control_panel/windows_control_panel.cpp
+/** \example by_library/windows_control_panel/windows_control_panel/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_ControlPanel "Windows Control Panel library"
  *   class XXX XXX XXX.

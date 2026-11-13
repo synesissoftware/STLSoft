@@ -13,19 +13,13 @@
  *
  */
 
-/** \example by_library/memory/auto_buffer/auto_buffer.cpp
+/** \example by_library/memory/auto_buffer/main.cpp
  * \brief [C++ only] Illustrates use of the 
  *  \ref group__library__Memory "Memory Library" component
  *   \link stlsoft::auto_buffer auto_buffer\endlink.
  */
 
-/** \example by_library/memory/auto_destructor/auto_destructor.cpp
- * \brief [C++ only] Illustrates use of the 
- *  \ref group__library__Memory "Memory Library" component
- *   \link stlsoft::auto_destructor auto_buffer\endlink.
- */
-
-/** \example by_library/memory/com_memory_functions/com_memory_functions.cpp
+/** \example by_library/memory/com_memory_functions/main.cpp
  * \brief [C++ only] Illustrates use of the 
  *  \ref group__library__Memory "COM Memory Library"
  *   memory functions.

@@ -1,7 +1,7 @@
 
 /**
  * Created: 12th December 2006
- * Updated: 12th January 2017
+ * Updated: 13th November 2026
  */
 
 /** \defgroup group__library__Utility Utility Library
@@ -19,7 +19,7 @@
  */
 
 /** \defgroup group__library__utility__constraints Constraints Utility Library
- * \ingroup group__library__utility
+ * \ingroup group__library__Utility
  *
  * \brief This library defines classes, functions and macros that act as
  *   constraints.
@@ -35,7 +35,7 @@
  */
 
 /** \defgroup group__library__utility__com COM Utility Library
- * \ingroup group__library__utility
+ * \ingroup group__library__Utility
  * \ingroup group__project__comstl
  *
  * \brief This library defines classes and functions for COM that are
@@ -54,7 +54,7 @@
  */
 
 /** \defgroup group__library__utility__windows Windows Utility Library
- * \ingroup group__library__utility
+ * \ingroup group__library__Utility
  * \ingroup group__project__winstl
  *
  */
@@ -63,16 +63,15 @@
  * - <b>Sequences</b>: \link comstl::enumerator_sequence enumerator_sequence\endlink, \link comstl::collection_sequence collection_sequence\endlink, \link comstl::safearray_sequence safearray_sequence\endlink
  */
 
-/** \example by_library/com_utility/rot_functions/rot_functions.cpp
+/** \example by_library/com_utility/rot_functions/main.cpp
  *
  * \brief C++ example program demonstrating use of various \ref comstl "COMSTL"
  *   components to manipulate the COM Running Object Table.
  */
 
-/** \example by_library/com_utility/creation_functions/creation_functions.cpp
+/** \example by_library/com_utility/creation_functions/main.cpp
  *
  * \brief C++ example program demonstrating use of the \ref comstl "COMSTL"
  *   co_create_instance functions to create instances of the
  *   <code><a href = "http://pantheios.org/">Pantheios.COM</a>.LoggerManager</code> coclass.
  */
-

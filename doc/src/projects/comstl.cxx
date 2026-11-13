@@ -55,12 +55,8 @@
  * \brief These macros are used to 
  */
 
-
-
-
-/** \example by_project/comstl/comstl.cpp
+/** \example by_project/comstl/main.cpp
  *
  * \brief C++ example program demonstrating use of most components within
  *   the \ref comstl "COMSTL" project.
  */
-

@@ -53,7 +53,7 @@
  *  Volume 2 Number 5, May 2003.
  */
 
-/** \example by_library/performance/performance/performance.cpp
+/** \example by_library/diagnostics/stopwatch/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Performance "Performance library"
  *  <code>performance_counter</code> component
@@ -64,7 +64,7 @@
  * interval elapsed times in seconds, milliseconds and microseconds.
  */
 
-/** \example by_library/performance/processtimes_counter/processtimes_counter.cpp
+/** \example by_library/diagnostics/processtimes_stopwatch/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Performance "Performance library"
  *  <code>processtimes_counter</code> component
@@ -75,6 +75,3 @@
  * activity and displaying the interval elapsed times for both kernel and
  * user in seconds, milliseconds and microseconds.
  */
-
-
-

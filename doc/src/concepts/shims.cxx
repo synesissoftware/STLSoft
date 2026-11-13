@@ -1,7 +1,7 @@
 
 /**
  * Created: 23rd May 2006
- * Updated: 12th January 2017
+ * Updated: 13th November 2026
  */
 
 
@@ -30,6 +30,21 @@
  *
  * \brief These \ref group__concept__Shim "shims" convert instances
  *   of the types for which they are defined into a common type.
+ */
+
+/** \defgroup group__concept__Shim__Logical Logical Shims
+ *
+ * \ingroup group__concept__Shim
+ *
+ * \brief These \ref group__concept__Shim "shims" elicit a Boolean
+ *   attribute of the types for which they are defined.
+ */
+
+/** \defgroup group__concept__dl Dynamic Library Concepts
+ *
+ * \ingroup group__concepts
+ *
+ * \brief Concepts pertaining to dynamic libraries / modules.
  */
 
 ////////////////////////////////////////////////////////////
@@ -133,8 +148,13 @@
  *
  */
 
-
-
+/** \defgroup group__concept__Shim__Attribute__get_top stlsoft::get_top Top Attribute Shim
+ *
+ * \ingroup group__concept__Shim__Attribute
+ *
+ * \brief These \ref group__concept__Shim "shims" elicit the top element
+ *   of stack-like / sequence types for which they are defined.
+ */
 
 
 /** \defgroup group__concept__Shim__module_attribute Module Attribute Shims
@@ -178,7 +198,8 @@
 
 /** \defgroup group__concept__Shim__synchronisation_control Synchronisation Control Shims
  *
- * \ingroup group__library__synch group__concept__Shim
+ * \ingroup group__library__Synch
+ * \ingroup group__concept__Shim
  *
  * \brief These \ref group__concept__Shim "shims" control the behaviour of
  *   synchronisation objects.

@@ -21,13 +21,13 @@
  *
  */
 
-/** \example by_library/windows_clipboard/clipboard_format_sequence/clipboard_format_sequence.cpp
+/** \example by_library/windows_clipboard/clipboard_format_sequence/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Clipboard "Windows Clipboard library"
  *   class \link winstl::clipboard_format_sequence clipboard_format_sequence\endlink.
  */
 
-/** \example by_library/windows_clipboard/clipboard_scope/clipboard_scope.cpp
+/** \example by_library/windows_clipboard/clipboard_scope/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Clipboard "Windows Clipboard library"
  *   class \link winstl::clipboard_scope clipboard_scope\endlink.

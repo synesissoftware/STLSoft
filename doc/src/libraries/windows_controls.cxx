@@ -30,8 +30,4 @@
  *
  */
 
-/* * \example by_library/windows_controls/windows_controls.cpp
- * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Windows_Control "Windows Controls library"
- *   class XXX XXX XXX.
- */
+/* NOTE: former example by_library/windows_controls/windows_controls.cpp — not present in current examples/ tree */

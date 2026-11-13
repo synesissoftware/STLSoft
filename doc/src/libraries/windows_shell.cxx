@@ -25,47 +25,16 @@
  *
  */
 
-/* \example by_library/windows_shell/enum_values/enum_values.cpp
- * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Windows_Shell "Windows Shell library"
- *  component
- *  \link winstl::basic_reg_value_sequence reg_value_sequence\endlink
- *  (and the associated component
- *  \link winstl::basic_reg_value reg_value\endlink), by enumerating
- *  the environment variables defined for the current user.
- *
- * The name (obtained via
- * \link winstl::basic_reg_value::name() name()\endlink) of
- * each shell value is printed out, followed by its value, as follows:
- * - If the value is a path list (it contains two or more paths separated
- *   by semicolons), then the value (obtained via 
- *   \link winstl::basic_reg_value::value_sz value_sz()\endlink) is tokenised
- *   into individual paths that are printed in an indented list.
- * - If the value contains an environment variable (it contains the %
- *   character), then the value (obtained via 
- *   \link winstl::basic_reg_value::value_sz value_sz()\endlink) is printed,
- *   followed by the actual value (obtained via 
- *   \link winstl::basic_reg_value::value_expand_sz() value_expand_sz()\endlink),
- *   wherein all environment variable references are resolved.
- * - Otherwise the value (obtained via 
- *   \link winstl::basic_reg_value::value_sz value_sz()\endlink) is printed.
- *
- *
- * \remarks The test program also illustrates the use of the 
- *  stlsoft::string_tokeniser
- *  and
- *  stlsoft::ostream_iterator
- *  components.
- */
+/* NOTE: former example by_library/windows_shell/enum_values/enum_values.cpp — not present in current examples/ tree */
 
-/** \example by_library/windows_shell/shell_functions/shell_functions.cpp
+/** \example by_library/windows_shell/shell_functions/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Shell "Windows Shell library"
  *   folder browsing and file operation functions.
  *  component.
  */
 
-/** \example by_library/windows_shell/memory_functions/memory_functions.cpp
+/** \example by_library/windows_shell/memory_functions/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Shell "Windows Shell library"
  *   memory operations.

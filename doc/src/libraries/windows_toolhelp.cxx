@@ -27,7 +27,7 @@
  *  <a href = "http://www.geocities.com/pablo_aguilarg/">Pablo Aguilar</a>.
  */
 
-/** \example by_library/windows_toolhelp/process_sequence/process_sequence.cpp
+/** \example by_library/windows_toolhelp/process_sequence/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Toolhelp "Windows ToolHelp library"
  *  \link winstl::process_sequence process_sequence\endlink
@@ -37,7 +37,7 @@
  * host system, and displays the process Id and the file name.
  */
 
-/** \example by_library/windows_toolhelp/module_sequence/module_sequence.cpp
+/** \example by_library/windows_toolhelp/module_sequence/main.cpp
  * \brief [C++ only] Illustrates use of the
  *  \ref group__library__Windows_Toolhelp "Windows ToolHelp library"
  *  \link winstl::module_sequence module_sequence\endlink
@@ -46,4 +46,3 @@
  * This function enumerates all the currently loaded modules in the
  * executing process, and displays the module handle and the file name.
  */
-

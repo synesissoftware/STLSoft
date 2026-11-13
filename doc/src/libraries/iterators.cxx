@@ -1,7 +1,7 @@
 
 /**
  * Created: 3rd July 2006
- * Updated: 12th January 2017
+ * Updated: 13th November 2026
  */
 
 /** \defgroup group__library__Iterator Iterators Library
@@ -24,4 +24,11 @@
  * - stlsoft::transform_filter_iterator
  * - stlsoft::transform_iterator
  *
+ */
+
+/** \defgroup group__library__iterators Iterators Library (alias)
+ * \ingroup group__library__Iterator
+ *
+ * \brief Alias for \ref group__library__Iterator (legacy lowercase id used
+ *   by some headers under <code>stlsoft/iterator/</code>).
  */

@@ -45,32 +45,3 @@
  *
  *
  */
-
-/** \example by_library/properties/properties/properties.cpp
- * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Properties "Properties library"
- *   \link stlsoft::field_property_get field_property_get\endlink
- *   and
- *   \link stlsoft::method_property_getset_external method_property_getset_external\endlink
- *   components.
- *
- * This example demonstrates the definition of a read-only field property
- * in conjunction with a (validating) read/write external method property.
- */
-
-
-/** \example by_library/properties/field_property_get/field_property_get.cpp
- * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Properties "Properties library"
- *   \link stlsoft::field_property_get field_property_get\endlink component.
- *
- * This example demonstrates the definition of a write-only field property.
- */
-
-/** \example by_library/properties/field_property_set/field_property_set.cpp
- * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Properties "Properties library"
- *   \link stlsoft::field_property_set field_property_set\endlink component.
- *
- * This example demonstrates the definition of a read-only field property.
- */
