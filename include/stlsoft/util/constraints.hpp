@@ -4,7 +4,7 @@
  * Purpose: Compile-time template constraints templates.
  *
  * Created: 19th November 1998
- * Updated: 9th November 2026
+ * Updated: 11th November 2026
  *
  * Thanks:  To Peter Bannister for having the clear thinking to see the
  *          obvious (but only in hindsight) tactic of overloading the
@@ -56,10 +56,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR      5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   12
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       118
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR     5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR     0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION  12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT      119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

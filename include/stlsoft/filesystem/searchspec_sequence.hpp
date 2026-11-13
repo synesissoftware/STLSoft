@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/filesystem/searchspec_sequence.hpp
  *
- * Purpose: Contains the searchspec_sequence template class, and ANSI
- *          and Unicode specialisations thereof.
+ * Purpose:     Contains the searchspec_sequence template class, and ANSI
+ *              and Unicode specialisations thereof.
  *
  * Thanks to:   Jon Papaioannou for spotting a character encoding error in
  *              one of the typedefs
  *
- * Created: 1st May 2004
- * Updated: 12th November 2026
+ * Created:     1st May 2004
+ * Updated:     13th November 2026
  *
- * Home:    http://stlsoft.org/
+ * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    12
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        80
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
