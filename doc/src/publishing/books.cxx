@@ -61,7 +61,7 @@
  * The material pertaining to STLSoft is as follows:
  *
  * <b>Part 1 - Fundamentals</b>:
- * - <b>Chapter 1 - Enforcing Design: \ref group__library__Utility__Constraints "Constraints", Contracts and Assertions</b>
+ * - <b>Chapter 1 - Enforcing Design: \ref group__library__Utility_Constraints "Constraints", Contracts and Assertions</b>
  * - <b>Chapter 5 - Object Access Models</b>: stlsoft::lock_traits, stlsoft::lock_scope, winstl::thread_mutex
  *
  * <b>Part 2 - Surviving the Real World</b>:
