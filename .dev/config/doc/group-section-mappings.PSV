@@ -1,0 +1,81 @@
+# ######################################################################## #
+# File:     .dev/config/doc/group-section-mappings.PSV
+#
+# Purpose:  Maps Full Group Form (FGF) Doxygen \name titles to Simplified
+#           Group Form (SGF) group names, for
+#           .dev/bin/convert-doxy-groups.rb.
+#
+# Created:  30th May 2006
+# Updated:  12th November 2026
+#
+# Format:   <fgf-title>|<sgf-name>[|<sgf-alias>]...
+#
+#           * the first column is the FGF title; the second is the
+#             canonical SGF name (written when converting FGF->SGF);
+#             any further columns are SGF aliases, which are accepted
+#             when converting SGF->FGF but are reported (and may be
+#             fixed to the canonical name) by --validate;
+#           * no column may be blank;
+#           * every SGF name and alias must be lowercase, and may
+#             contain spaces;
+#           * every <fgf-title>, and every SGF name or alias (across all
+#             lines), must be unique, so that the mapping is reversible;
+#           * blank lines and lines beginning with '#' are ignored;
+#           * entries are sorted lexicographically (case-insensitively)
+#             by <fgf-title>.
+#
+# ######################################################################## #
+
+Accessors|accessors
+Allocation|allocation
+Assignment|assignment
+Attributes|attributes
+Comparison|comparison
+Concepts|concepts
+Construction|construction
+Conversion|conversion|conversions
+Directory End|directory end
+Dynamic Library Functions|dynamic library functions|dl functions
+Element Access|element access
+Environment|environment|env
+Error|error
+Fields|fields|member variables|members
+Filesystem Control|filesystem control|fs control
+Filesystem Entry Names|filesystem entry names|fs entry names
+Filesystem Enumeration|filesystem enumeration|fs enum
+Filesystem State|filesystem state|fs state
+General String Handling|general string handling
+Helpers|helpers
+Helper Functions|helper functions
+IDispatch Methods|idispatch
+Identity|identity
+Implementation|implementation
+Invariant|invariant
+Iteration|iteration
+IUnknown|iunknown
+Lookup|lookup
+Member Constants|constants|member constants
+Member Types|types|member types
+Member Types and Constants|types and constants|member types and constants
+Modifiers|modifiers
+Not to be implemented|not to be implemented
+Operations|operations
+Operators|operators
+Overrides|overrides
+Path Classification and Analysis|path classification and analysis|path classification
+Path String Handling|path string handling
+Process Paths|process paths
+Properties|properties
+Reference-counting Operations|reference-counting operations
+Search|search
+Size|size
+Size and Capacity|size and capacity
+Static Operations|static operations
+State|state
+Subscripting|subscripting
+System Paths|system paths
+System Traits|system traits
+Underlying Container Access|underlying container access
+Utility|utility
+Utility Classes|utility classes
+Window Functions|window functions
