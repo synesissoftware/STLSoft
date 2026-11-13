@@ -4,7 +4,7 @@
  * Purpose: Win32 last error scoping class.
  *
  * Created: 27th November 1998
- * Updated: 11th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  *
  * \brief [C++] Definition of the winstl::last_error_scope class
  *  template
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MINOR     0
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_REVISION  10
-# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT      65
+# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -102,7 +102,7 @@ namespace winstl_project
 /** A \ref group__pattern__scoping_class "scoping class" that scopes
  *    the thread's last error.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
 \code
   DWORD   err = ::GetLastError();
@@ -160,6 +160,7 @@ public: // attributes
 private: // fields
     ws_dword_t const m_dwErr;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

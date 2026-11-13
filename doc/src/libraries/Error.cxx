@@ -4,7 +4,7 @@
  * Updated: 14th November 2026
  */
 
-/** \defgroup group__library__error Error Library
+/** \defgroup group__library__Error Error Library
  * \ingroup group__libraries
  *
  * \brief This library defines components that assist with error

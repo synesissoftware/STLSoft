@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  *
  * \brief [C++] Definition of the stlsoft::basic_error_desc class
  *  template
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_ERROR_DESC
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     5
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      60
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -341,7 +341,7 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_error_desc_)
 /** Utility class that loads the system string representation
  *   corresponding to a given error code.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * Consider the following example:
 \code
@@ -459,17 +459,17 @@ private: // fields
 /* Typedefs to commonly encountered types. */
 /** Specialisation of the basic_error_desc template for the multibyte character type \c char
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 typedef basic_error_desc<ss_char_a_t>                       error_desc_a;
 /** Specialisation of the basic_error_desc template for the wide character type \c wchar_t
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 typedef basic_error_desc<ss_char_w_t>                       error_desc_w;
 /** Specialisation of the basic_error_desc template for the character type \c char
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 typedef basic_error_desc<char>                              error_desc;
 
