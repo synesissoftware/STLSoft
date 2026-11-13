@@ -6,7 +6,7 @@
  *          that act, in some fashion, as strings.
  *
  * Created: 29th January 2024
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     8
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -316,8 +316,6 @@ string_insert_4_(
  * \param stm The stream instance, into which to insert
  * \param s The string to insert
  * \param cch The number of characters to insert
- *
- * \return \c stm
  */
 template <
     ss_typename_param_k T_stream
@@ -347,8 +345,6 @@ string_insert(
  * \param stm The stream instance, into which to insert
  * \param s The multibyte string to insert
  * \param cch The number of characters to insert
- *
- * \return \c stm
  */
 template <
     ss_typename_param_k T_stream
@@ -377,8 +373,6 @@ string_insert_m(
  * \param stm The stream instance, into which to insert
  * \param s The wide string to insert
  * \param cch The number of characters to insert
- *
- * \return \c stm
  */
 template <
     ss_typename_param_k T_stream

@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 30
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     623
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     624
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -3431,6 +3431,7 @@ stlsoft_destroy_instance_fn(
 #endif /* compiler */
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* __cplusplus */
 
 /** \def STLSOFT_DESTROY_INSTANCE(T1, T2, P)
  *
@@ -3440,6 +3441,8 @@ stlsoft_destroy_instance_fn(
  *
  * Destroys the given instance \c P of the given type (\c T1 and \c T2)
  */
+#if 0
+#elif defined(__cplusplus)
 # if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      defined(STLSOFT_COMPILER_IS_DMC)
 
@@ -3448,6 +3451,8 @@ stlsoft_destroy_instance_fn(
 
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               STLSOFT_NS_QUAL(stlsoft_destroy_instance_fn)((P))
 # endif /* compiler */
+#else
+#  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               (P)->~T1()
 #endif /* __cplusplus */
 
 /** \def stlsoft_destroy_instance(T1, T2, P)
