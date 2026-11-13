@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       287
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       288
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -465,7 +465,8 @@ public:
     /// Evaluates whether the two instances hold strings that refer
     ///  to the same file-system entity.
     ///
-    /// \note See \link winstl::basic_path::equivalent(char_type const*) equivalent()\endlink for an example.
+    /// \note See <code>winstl::basic_path::equivalent()</code> for an
+    ///   example.
     ///
     /// \note The string comparison is case-insensitive.
     bool_type equivalent(class_type const& rhs) const STLSOFT_NOEXCEPT;

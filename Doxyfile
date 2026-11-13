@@ -83,6 +83,7 @@ SKIP_FUNCTION_MACROS   = YES
 PREDEFINED             = \
   STLSOFT_DOCUMENTATION_SKIP_SECTION \
   STLSOFT_NS_QUAL(x)=stlsoft::x \
+  __cplusplus=201703L \
   \
 
 
