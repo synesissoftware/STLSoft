@@ -1,5 +1,5 @@
 
-/**
+/*
  * Created: 11th July 2006
  * Updated: 14th November 2026
  */

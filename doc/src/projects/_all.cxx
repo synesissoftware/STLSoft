@@ -1,7 +1,7 @@
 
-/**
+/*
  * Created: 20th May 2006
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  *
  * Note: Legacy `\mainpage` from 1.10 `_all.src` omitted — `doc/mainpage.md`
  *       is the sole main page (`USE_MDFILE_AS_MAINPAGE`).

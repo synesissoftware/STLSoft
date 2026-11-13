@@ -1,7 +1,7 @@
 
-/**
+/*
  * Created: 13th November 2026
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  *
  * Note: Legacy headers `@ingroup concepts_veneer` / `concepts_view`; ids kept
  *       as-is for compatibility with existing markup.

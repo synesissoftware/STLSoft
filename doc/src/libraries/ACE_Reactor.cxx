@@ -1,7 +1,7 @@
 
-/**
+/*
  * Created: 13th January 2007
- * Updated: 12th January 2017
+ * Updated: 14th November 2026
  */
 
 /** \defgroup group__library__ACE_Reactor ACE Reactor Library

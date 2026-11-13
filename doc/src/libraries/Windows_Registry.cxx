@@ -1,7 +1,7 @@
 
-/**
+/*
  * Created: 20th May 2006
- * Updated: 12th January 2017
+ * Updated: 14th November 2026
  */
 
 /** \defgroup group__library__Windows_Registry Windows Registry Library
