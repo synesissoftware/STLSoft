@@ -48,7 +48,7 @@
  *
  * \brief [C++] Definition of the
  *  \link winstl::process_sequence process_sequence\endlink class
- *   (\ref group__library__Windows_Toolhelp "Windows ToolHelp" Library).
+ *   (\ref group__library__Windows_ToolHelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE
@@ -137,13 +137,13 @@ public: // iteration
 
 /** An STL collection for accessing process information.
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  */
 typedef th_sequence_base<PROCESSENTRY32>            process_sequence;
 
 /** Attribute shim for retrieving the process id associated with the PROCESSENTRY32 instance
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  *
  * \param pe The PROCESSENTRY32 instance
  */
@@ -170,7 +170,14 @@ get_pid(PROCESSENTRY32 const& pe)
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE */
 

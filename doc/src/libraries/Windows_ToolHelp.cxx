@@ -4,7 +4,7 @@
  * Updated: 12th January 2017
  */
 
-/** \defgroup group__library__Windows_Toolhelp Windows ToolHelp Library
+/** \defgroup group__library__Windows_ToolHelp Windows ToolHelp Library
  * \ingroup group__libraries
  *
  * \brief This library provides facilities for accessing system
@@ -29,7 +29,7 @@
 
 /** \example by_library/windows_toolhelp/process_sequence/main.cpp
  * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Windows_Toolhelp "Windows ToolHelp library"
+ *  \ref group__library__Windows_ToolHelp "Windows ToolHelp library"
  *  \link winstl::process_sequence process_sequence\endlink
  *  component.
  *
@@ -39,7 +39,7 @@
 
 /** \example by_library/windows_toolhelp/module_sequence/main.cpp
  * \brief [C++ only] Illustrates use of the
- *  \ref group__library__Windows_Toolhelp "Windows ToolHelp library"
+ *  \ref group__library__Windows_ToolHelp "Windows ToolHelp library"
  *  \link winstl::module_sequence module_sequence\endlink
  *  component.
  *

@@ -48,7 +48,7 @@
  *
  * \brief [C++] Definition of the
  *  \link winstl::module_sequence module_sequence\endlink class
- *   (\ref group__library__Windows_Toolhelp "Windows ToolHelp" Library).
+ *   (\ref group__library__Windows_ToolHelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE
@@ -137,7 +137,7 @@ public: // iteration
 
 /** An STL collection for accessing module information for a given process.
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  */
 typedef th_sequence_base<MODULEENTRY32>             module_sequence;
 
@@ -152,7 +152,7 @@ struct sequence_doesnt_use_pid<MODULEENTRY32>
 
 /** Attribute shim for retrieving the process id associated with the MODULEENTRY32 instance
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  *
  * \param me The MODULEENTRY32 instance
  */
@@ -179,7 +179,14 @@ get_pid(MODULEENTRY32 const& me)
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE */
 
