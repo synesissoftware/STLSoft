@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_FILETIME/FILETIME.hpp
+ * File:    winstl/shims/conversion/to_FILETIME/FILETIME.hpp
  *
- * Purpose:     winstl::to_FILETIME(FILETIME const&) overload.
+ * Purpose: winstl::to_FILETIME(FILETIME const&) overload.
  *
- * Created:     24th May 2002
- * Updated:     9th November 2026
+ * Created: 24th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_REVISION   7
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_EDIT       21
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

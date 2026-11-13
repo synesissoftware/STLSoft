@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/itoslice.h
+ * File:    stlsoft/conversion/itoslice.h
  *
- * Purpose:     integer to string slice conversions.
+ * Purpose: integer to string slice conversions.
  *
- * Created:     18th December 2016
- * Updated:     9th November 2026
+ * Created: 18th December 2016
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_EDIT     10
+# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

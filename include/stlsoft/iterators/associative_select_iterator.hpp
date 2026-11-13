@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/associative_select_iterator.hpp
+ * File:    stlsoft/iterators/associative_select_iterator.hpp
  *
- * Purpose:     An iterator adaptor that uses a selection function on its
- *              underlying iterator in order to obtain the key/mapped type.
+ * Purpose: An iterator adaptor that uses a selection function on its
+ *          underlying iterator in order to obtain the key/mapped type.
  *
- * Created:     28th January 2005
- * Updated:     9th November 2026
+ * Created: 28th January 2005
+ * Updated: 11th November 2026
  *
- * Thanks:      To Manfred Ehrhart, for detecting issues with iterator
- *              member types and select_second().
+ * Thanks:  To Manfred Ehrhart, for detecting issues with iterator
+ *          member types and select_second().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_REVISION 6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     43
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

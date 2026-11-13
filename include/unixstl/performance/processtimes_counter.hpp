@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/performance/processtimes_counter.hpp
+ * File:    unixstl/performance/processtimes_counter.hpp
  *
- * Purpose:     UNIXSTL process-time performance counter class.
+ * Purpose: UNIXSTL process-time performance counter class.
  *
- * Created:     9th June 2006
- * Updated:     9th November 2026
+ * Created: 9th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      27
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

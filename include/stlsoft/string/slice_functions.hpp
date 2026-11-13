@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/slice_functions.hpp
+ * File:    stlsoft/string/slice_functions.hpp
  *
- * Purpose:     String slice functions.
+ * Purpose: String slice functions.
  *
- * Created:     25th April 2005
- * Updated:     9th November 2026
+ * Created: 25th April 2005
+ * Updated: 11th November 2026
  *
- * Thanks:      To Pablo Aguilar for inspiration for these functions, and
- *              collaboration on their implementation.
+ * Thanks:  To Pablo Aguilar for inspiration for these functions, and
+ *          collaboration on their implementation.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS_REVISION   4
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS_EDIT       25
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

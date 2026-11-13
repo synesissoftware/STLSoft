@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/adapted_iterator_traits.hpp
+ * File:    stlsoft/iterators/adapted_iterator_traits.hpp
  *
- * Purpose:     Traits for detecting characteristics of adapted iterators.
+ * Purpose: Traits for detecting characteristics of adapted iterators.
  *
- * Created:     9th July 2004
- * Updated:     9th November 2026
+ * Created: 9th July 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    5
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     65
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

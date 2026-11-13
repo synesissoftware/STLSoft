@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/path_buffer.hpp
+ * File:    unixstl/filesystem/path_buffer.hpp
  *
- * Purpose:     Contains the basic_path_buffer template class.
+ * Purpose: Contains the basic_path_buffer template class.
  *
- * Created:     12th December 2020
- * Updated:     9th November 2026
+ * Created: 12th December 2020
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT        4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

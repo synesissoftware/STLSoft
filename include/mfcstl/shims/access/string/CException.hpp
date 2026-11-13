@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/access/string/CException.hpp
+ * File:    mfcstl/shims/access/string/CException.hpp
  *
- * Purpose:     Contains classes and functions for dealing with MFC
- *              exceptions.
+ * Purpose: Contains classes and functions for dealing with MFC
+ *          exceptions.
  *
- * Created:     15th September 2010
- * Updated:     9th November 2026
+ * Created: 15th September 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_MAJOR    1
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_REVISION 9
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_EDIT     107
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/capabilities.hpp
+ * File:    stlsoft/meta/capabilities.hpp
  *
- * Purpose:     Pre-processor abilities for the meta library.
+ * Purpose: Pre-processor abilities for the meta library.
  *
- * Created:     5th March 2006
- * Updated:     9th November 2026
+ * Created: 5th March 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 4
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     22
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

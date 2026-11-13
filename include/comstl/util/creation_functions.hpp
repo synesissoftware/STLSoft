@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/creation_functions.hpp
+ * File:    comstl/util/creation_functions.hpp
  *
- * Purpose:     COM instance creation helper functions
+ * Purpose: COM instance creation helper functions
  *
- * Created:     21st September 2005
- * Updated:     9th November 2026
+ * Created: 21st September 2005
+ * Updated: 11th November 2026
  *
- * Thanks:      To Adi Shavit for demanding more usability in these
- *              functions, which led to the adoption of stlsoft::ref_ptr<X>
- *              as the unit of currency throughout COMSTL.
+ * Thanks:  To Adi Shavit for demanding more usability in these
+ *          functions, which led to the adoption of stlsoft::ref_ptr<X>
+ *          as the unit of currency throughout COMSTL.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MAJOR    2
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MINOR    3
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_REVISION 7
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     41
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

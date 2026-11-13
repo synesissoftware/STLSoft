@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_const_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/is_const_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     is_const_type meta class.
+ * Purpose: is_const_type meta class.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CONST_TYPE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CONST_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_CONST_TYPE_REVISION    9
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_CONST_TYPE_EDIT        25
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_CONST_TYPE_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

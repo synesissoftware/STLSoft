@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/path_functions.hpp
+ * File:    unixstl/filesystem/path_functions.hpp
  *
- * Purpose:     Helper functions for file handling
+ * Purpose: Helper functions for file handling
  *
- * Created:     13th June 2006
- * Updated:     9th November 2026
+ * Created: 13th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     27
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

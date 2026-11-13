@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/replace_functions.hpp
+ * File:    stlsoft/string/replace_functions.hpp
  *
- * Purpose:     String replace functions.
+ * Purpose: String replace functions.
  *
- * Created:     11th May 2010
- * Updated:     9th November 2026
+ * Created: 11th May 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_EDIT      17
+# define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

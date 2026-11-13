@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/comparison_operators.hpp
+ * File:    winstl/time/comparison_operators.hpp
  *
- * Purpose:     Comparison operators for Windows time structures.
+ * Purpose: Comparison operators for Windows time structures.
  *
- * Created:     21st November 2003
- * Updated:     9th November 2026
+ * Created: 21st November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_HPP_COMPARISON_OPERATORS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_COMPARISON_OPERATORS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_HPP_COMPARISON_OPERATORS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_HPP_COMPARISON_OPERATORS_EDIT       63
+# define WINSTL_VER_WINSTL_TIME_HPP_COMPARISON_OPERATORS_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

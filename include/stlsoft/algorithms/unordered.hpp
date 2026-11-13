@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/algorithms/unordered.hpp
+ * File:    stlsoft/algorithms/unordered.hpp
  *
- * Purpose:     Algorithms for manipulating unordered sequences.
+ * Purpose: Algorithms for manipulating unordered sequences.
  *
- * Created:     17th January 2002
- * Updated:     9th November 2026
+ * Created: 17th January 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MINOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  8
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      91
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

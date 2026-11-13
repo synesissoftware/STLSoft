@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/interface_traits.hpp
+ * File:    comstl/util/interface_traits.hpp
  *
- * Purpose:     Interface traits.
+ * Purpose: Interface traits.
  *
- * Created:     25th May 2002
- * Updated:     9th November 2026
+ * Created: 25th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MAJOR      5
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MINOR      0
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       73
+# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

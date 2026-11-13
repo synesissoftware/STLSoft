@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/atomic_types.h
+ * File:    platformstl/synch/atomic_types.h
  *
- * Purpose:     Definition of the atomic types.
+ * Purpose: Definition of the atomic types.
  *
- * Created:     22nd March 2005
- * Updated:     9th November 2026
+ * Created: 22nd March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_MAJOR     3
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_MINOR     0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_REVISION  8
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_EDIT      42
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

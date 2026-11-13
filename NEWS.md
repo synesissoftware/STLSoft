@@ -3,7 +3,7 @@
 
 | Date                | News Item                           | Details |
 | ------------------- | ----------------------------------- | ------- |
-| 14th November 2026  | Release of [STLSoft 1.11.9](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.9) | exception messages normalised (`"failed to …"` for runtime conditions, bare lowercase phrases for programmer errors); programmer-error exception types documented; **strategy/EXCEPTION_MESSAGES.md**; aggregate-type section labels sentence-cased |
+| 14th November 2026  | Release of [STLSoft 1.11.9](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.9) | exception messages normalised (`"failed to …"` for runtime conditions, bare lowercase phrases for programmer errors); programmer-error exception types documented; **strategy/EXCEPTION_MESSAGES.md**; aggregate-type section labels sentence-cased; wholesale canonicalisation of header-block indents; |
 | 10th November 2026  | Release of [STLSoft 1.11.8](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.8) | shared ASCII case-fold helpers; `STLSOFT_PPF_pragma_once_SUPPORT`; `vsnprintf` routed through **include/stlsoft/api/internal/stdio.h**; **woad** on **test.scratch.versions.format**; subproject headers require **STLSoft** 1.11.8 |
 | 8th November 2026   | Release of [STLSoft 1.11.7](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.7) | substantial test-coverage expansion; path-classification fixes (UNC roots, long-path prefixes, ASCII drive letters) |
 | 6th November 2026   | Release of [STLSoft 1.11.6](https://github.com/synesissoftware/STLSoft/releases/tag/1.11.6) | CI installs **woad** before **xTests**; `// namespace` closer in **test/unit/stlsoft/string/special_string_instance/entry.cpp** |

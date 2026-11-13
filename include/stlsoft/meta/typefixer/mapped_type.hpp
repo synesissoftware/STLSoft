@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixer/mapped_type.hpp
+ * File:    stlsoft/meta/typefixer/mapped_type.hpp
  *
- * Purpose:     Definition of the fixer_mapped_type type.
+ * Purpose: Definition of the fixer_mapped_type type.
  *
- * Created:     26th February 2005
- * Updated:     9th November 2026
+ * Created: 26th February 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_MAPPED_TYPE_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_MAPPED_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_MAPPED_TYPE_REVISION    5
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_MAPPED_TYPE_EDIT        29
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_MAPPED_TYPE_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

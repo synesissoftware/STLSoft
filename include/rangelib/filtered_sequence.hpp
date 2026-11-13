@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/filtered_sequence.hpp
+ * File:    rangelib/filtered_sequence.hpp
  *
- * Purpose:     Sequence range filter adaptation.
+ * Purpose: Sequence range filter adaptation.
  *
- * Created:     28th December 2005
- * Updated:     9th November 2026
+ * Created: 28th December 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_SEQUENCE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_SEQUENCE_MINOR       0
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_SEQUENCE_REVISION    6
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_SEQUENCE_EDIT        19
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_SEQUENCE_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

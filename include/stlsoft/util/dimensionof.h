@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/dimensionof.h
+ * File:    stlsoft/util/dimensionof.h
  *
- * Purpose:     Definition of the macro dimensionof().
+ * Purpose: Definition of the macro dimensionof().
  *
- * Created:     10th February 2010
- * Updated:     9th November 2026
+ * Created: 10th February 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_REVISION    8
-# define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_EDIT        20
+# define STLSOFT_VER_STLSOFT_UTIL_H_DIMENSIONOF_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/get_kernel_handle.hpp
+ * File:    mfcstl/shims/attribute/get_kernel_handle.hpp
  *
- * Purpose:     Contains classes and functions for dealing with Win32 handles.
+ * Purpose: Contains classes and functions for dealing with Win32 handles.
  *
- * Created:     24th December 2006
- * Updated:     9th November 2026
+ * Created: 24th December 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_MAJOR      1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_MINOR      1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_REVISION   8
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_EDIT       27
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

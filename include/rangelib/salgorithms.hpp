@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/salgorithms.hpp
+ * File:    rangelib/salgorithms.hpp
  *
- * Purpose:     Range-adapted Sequence algorithms.
+ * Purpose: Range-adapted Sequence algorithms.
  *
- * Created:     19th July 2005
- * Updated:     9th November 2026
+ * Created: 19th July 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -72,7 +72,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MINOR     1
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  7
-# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      29
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

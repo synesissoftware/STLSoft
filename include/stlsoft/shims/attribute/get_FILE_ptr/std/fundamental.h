@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_FILE_ptr/std/fundamental.h
+ * File:    stlsoft/shims/attribute/get_FILE_ptr/std/fundamental.h
  *
- * Purpose:     Contains the get_FILE_ptr attribute shim.
+ * Purpose: Contains the get_FILE_ptr attribute shim.
  *
- * Created:     10th January 2002
- * Updated:     9th November 2026
+ * Created: 10th January 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_REVISION    9
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_EDIT        20
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

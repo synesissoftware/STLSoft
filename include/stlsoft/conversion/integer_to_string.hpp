@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/integer_to_string.hpp
+ * File:    stlsoft/conversion/integer_to_string.hpp
  *
- * Purpose:     Very efficient integer to string conversion functions.
+ * Purpose: Very efficient integer to string conversion functions.
  *
- * Created:     7th April 2002
- * Updated:     9th November 2026
+ * Created: 7th April 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     6
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      96
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

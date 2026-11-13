@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/explicit_cast.hpp (originally MTExCast.h, ::SynesisStl)
+ * File:    stlsoft/conversion/explicit_cast.hpp (originally MTExCast.h, ::SynesisStl)
  *
- * Purpose:     Class to provide explicit cast operators.
+ * Purpose: Class to provide explicit cast operators.
  *
- * Created:     20th September 2002
- * Updated:     9th November 2026
+ * Created: 20th September 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_REVISION  7
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_EDIT      53
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/exception/throw_policies.hpp (formerly inetstl/error/exceptions.hpp)
+ * File:    inetstl/exception/throw_policies.hpp (formerly inetstl/error/exceptions.hpp)
  *
- * Purpose:     Contains the internet_exception class.
+ * Purpose: Contains the internet_exception class.
  *
- * Created:     25th April 2004
- * Updated:     9th November 2026
+ * Created: 25th April 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR     4
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR     2
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION  8
-# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      58
+# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

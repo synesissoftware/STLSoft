@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_FILE_ptr.hpp
+ * File:    stlsoft/shims/attribute/get_FILE_ptr.hpp
  *
- * Purpose:     Contains the get_FILE_ptr attribute shim.
+ * Purpose: Contains the get_FILE_ptr attribute shim.
  *
- * Created:     4th November 2007
- * Updated:     9th November 2026
+ * Created: 4th November 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_REVISION  4
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_EDIT      11
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

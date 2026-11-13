@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/operator_bool_adaptor.hpp
+ * File:    stlsoft/util/operator_bool_adaptor.hpp
  *
- * Purpose:     Definition of the operator_bool_adaptor class.
+ * Purpose: Definition of the operator_bool_adaptor class.
  *
- * Created:     21st October 2004
- * Updated:     9th November 2026
+ * Created: 21st October 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_REVISION 8
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_EDIT     41
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

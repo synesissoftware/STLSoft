@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/control_panel/functions.h
+ * File:    winstl/control_panel/functions.h
  *
- * Purpose:     Control Panel functions.
+ * Purpose: Control Panel functions.
  *
- * Created:     1st April 2006
- * Updated:     9th November 2026
+ * Created: 1st April 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   14
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       30
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

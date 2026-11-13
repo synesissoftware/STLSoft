@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/case_functions.hpp
+ * File:    stlsoft/string/case_functions.hpp
  *
- * Purpose:     String utility functions for manipulating case.
+ * Purpose: String utility functions for manipulating case.
  *
- * Created:     1st April 2005
- * Updated:     9th November 2026
+ * Created: 1st April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_REVISION    6
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_EDIT        33
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

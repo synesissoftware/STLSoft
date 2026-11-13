@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/associative_container_veneer.hpp
+ * File:    stlsoft/collections/associative_container_veneer.hpp
  *
- * Purpose:     RRID veneer for associative containers
+ * Purpose: RRID veneer for associative containers
  *
- * Created:     2nd October 2002
- * Updated:     9th November 2026
+ * Created: 2nd October 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  10
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      68
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

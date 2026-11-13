@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/system/system_traits.hpp
+ * File:    platformstl/system/system_traits.hpp
  *
- * Purpose:     Platform header for the system_traits components.
+ * Purpose: Platform header for the system_traits components.
  *
- * Created:     2nd July 2006
- * Updated:     9th November 2026
+ * Created: 2nd July 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  7
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      23
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

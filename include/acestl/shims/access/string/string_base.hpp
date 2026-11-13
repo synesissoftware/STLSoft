@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/access/string/string_base.hpp
+ * File:    acestl/shims/access/string/string_base.hpp
  *
- * Purpose:     Helper functions for the ACE_String_XXXX classes.
+ * Purpose: Helper functions for the ACE_String_XXXX classes.
  *
- * Created:     2nd December 2004
- * Updated:     9th November 2026
+ * Created: 2nd December 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MAJOR       2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_REVISION    7
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        44
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/size_traits.hpp
+ * File:    stlsoft/util/size_traits.hpp
  *
- * Purpose:     size_traits classes.
+ * Purpose: size_traits classes.
  *
- * Created:     24th August 2003
- * Updated:     9th November 2026
+ * Created: 24th August 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_REVISION   5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       36
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

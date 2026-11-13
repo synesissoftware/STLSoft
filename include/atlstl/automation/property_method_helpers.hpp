@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/property_method_helpers.hpp
+ * File:    atlstl/automation/property_method_helpers.hpp
  *
- * Purpose:     Contains functions for assisting in the implementation of
- *              property methods of ATL COM server classes.
+ * Purpose: Contains functions for assisting in the implementation of
+ *          property methods of ATL COM server classes.
  *
- * Created:     25th June 2002
- * Updated:     9th November 2026
+ * Created: 25th June 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MAJOR    5
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 3
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     93
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

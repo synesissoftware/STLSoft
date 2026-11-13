@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/windows_directory.hpp
+ * File:    winstl/system/windows_directory.hpp
  *
- * Purpose:     Simple class that gets, and makes accessible, the windows
- *              directory.
+ * Purpose: Simple class that gets, and makes accessible, the windows
+ *          directory.
  *
- * Created:     10th December 2002
- * Updated:     9th November 2026
+ * Created: 10th December 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_MINOR       3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_REVISION    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_EDIT        83
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

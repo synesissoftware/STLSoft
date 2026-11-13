@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/current_directory.hpp
+ * File:    unixstl/filesystem/current_directory.hpp
  *
- * Purpose:     Special-string instance that obtains the current directory.
+ * Purpose: Special-string instance that obtains the current directory.
  *
- * Created:     1st November 2003
- * Updated:     9th November 2026
+ * Created: 1st November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      71
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/typelib/functions.hpp
+ * File:    comstl/typelib/functions.hpp
  *
- * Purpose:     Functions for manipulating COM Type Libraries.
+ * Purpose: Functions for manipulating COM Type Libraries.
  *
- * Created:     5th April 2005
- * Updated:     9th November 2026
+ * Created: 5th April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MINOR      4
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_REVISION   4
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       87
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

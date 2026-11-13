@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/toolhelp/error/exceptions.hpp
+ * File:    winstl/toolhelp/error/exceptions.hpp
  *
- * Purpose:     Exception classes for TOOLHELP components.
+ * Purpose: Exception classes for TOOLHELP components.
  *
- * Created:     21st May 2005
- * Updated:     9th November 2026
+ * Created: 21st May 2005
+ * Updated: 11th November 2026
  *
- * Thanks:      To Pablo for contributing this great library.
+ * Thanks:  To Pablo for contributing this great library.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_MAJOR      2
 # define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_MINOR      0
 # define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_REVISION   6
-# define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_EDIT       29
+# define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_printf_type.hpp
+ * File:    stlsoft/meta/is_printf_type.hpp
  *
- * Purpose:     is_printf_type meta class.
+ * Purpose: is_printf_type meta class.
  *
- * Created:     27th May 2009
- * Updated:     9th November 2026
+ * Created: 27th May 2009
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_REVISION   2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_EDIT       17
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_PRINTF_TYPE_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

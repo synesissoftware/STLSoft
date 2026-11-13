@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/module_directory.hpp
+ * File:    winstl/system/module_directory.hpp
  *
- * Purpose:     Simple class that gets, and makes accessible, the module's
- *              directory.
+ * Purpose: Simple class that gets, and makes accessible, the module's
+ *          directory.
  *
- * Created:     5th June 2003
- * Updated:     9th November 2026
+ * Created: 5th June 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_DIRECTORY_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_DIRECTORY_MINOR    3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_DIRECTORY_REVISION 2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_DIRECTORY_EDIT     77
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_DIRECTORY_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

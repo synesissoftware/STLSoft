@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/synchfwd.hpp
+ * File:    winstl/synch/synchfwd.hpp
  *
- * Purpose:     Forward declarations for the WinSTL components in the
- *              Synchronisation library.
+ * Purpose: Forward declarations for the WinSTL components in the
+ *          Synchronisation library.
  *
- * Created:     9th June 2006
- * Updated:     9th November 2026
+ * Created: 9th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MAJOR     1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MINOR     1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_REVISION  3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      20
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

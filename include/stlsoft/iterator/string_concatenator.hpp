@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterator/string_concatenator.hpp
+ * File:    stlsoft/iterator/string_concatenator.hpp
  *
- * Purpose:     Forwarding header for the string_concatenator_iterator
- *              class template.
+ * Purpose: Forwarding header for the string_concatenator_iterator
+ *          class template.
  *
- * Created:     30th July 2010
- * Updated:     26th December 2020
+ * Created: 30th July 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

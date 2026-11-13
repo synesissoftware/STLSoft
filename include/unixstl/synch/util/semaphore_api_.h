@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/util/semaphore_api_.h
+ * File:    unixstl/synch/util/semaphore_api_.h
  *
- * Purpose:     Discrimination of synchronisation features.
+ * Purpose: Discrimination of synchronisation features.
  *
- * Created:     16th January 2024
- * Updated:     9th November 2026
+ * Created: 16th January 2024
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -53,7 +53,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__MINOR    0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__REVISION 2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__EDIT     4
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

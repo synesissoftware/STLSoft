@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/yesno.hpp
+ * File:    stlsoft/meta/yesno.hpp
  *
- * Purpose:     yes / no classes.
+ * Purpose: yes / no classes.
  *
- * Created:     16th May 2005
- * Updated:     9th November 2026
+ * Created: 16th May 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MINOR       3
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_REVISION    5
-# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        28
+# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

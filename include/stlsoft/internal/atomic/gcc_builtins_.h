@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/atomic/gcc_builtins_.h
+ * File:    stlsoft/internal/atomic/gcc_builtins_.h
  *
- * Purpose:     Atomic operations built around GCC's builtins
+ * Purpose: Atomic operations built around GCC's builtins
  *
- * Created:     6th January 2017
- * Updated:     9th November 2026
+ * Created: 6th January 2017
+ * Updated: 11th November 2026
  *
- * Author:      Matthew Wilson
+ * Author:  Matthew Wilson
  *
- * Home:        http://www.stlsoft.org/
+ * Home:    http://www.stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__MINOR     0
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__REVISION  4
-# define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__EDIT      10
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/util/module_scope.hpp
+ * File:    atlstl/util/module_scope.hpp
  *
- * Purpose:     Scoping class for ATL _Module
+ * Purpose: Scoping class for ATL _Module
  *
- * Created:     8th December 2004
- * Updated:     9th November 2026
+ * Created: 8th December 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    9
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        44
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/thread_marshal.hpp
+ * File:    comstl/util/thread_marshal.hpp
  *
- * Purpose:     Thread marshalling functions.
+ * Purpose: Thread marshalling functions.
  *
- * Created:     25th May 2002
- * Updated:     9th November 2026
+ * Created: 25th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MAJOR    4
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MINOR    0
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_REVISION 8
-# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     73
+# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

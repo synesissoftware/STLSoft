@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/path_buffer.hpp
+ * File:    winstl/filesystem/path_buffer.hpp
  *
- * Purpose:     Contains the basic_path_buffer template class.
+ * Purpose: Contains the basic_path_buffer template class.
  *
- * Created:     27th May 2020
- * Updated:     9th November 2026
+ * Created: 27th May 2020
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_MAJOR     1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT      4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

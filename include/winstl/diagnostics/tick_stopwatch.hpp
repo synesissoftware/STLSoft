@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/diagnostics/tick_stopwatch.hpp (formerly winstl::tick_counter, winstl/performance/tick_counter.hpp)
+ * File:    winstl/diagnostics/tick_stopwatch.hpp (formerly winstl::tick_counter, winstl/performance/tick_counter.hpp)
  *
- * Purpose:     WinSTL tick-count stopwatch class.
+ * Purpose: WinSTL tick-count stopwatch class.
  *
- * Created:     19th October 1998
- * Updated:     9th November 2026
+ * Created: 19th October 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_MAJOR     5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_MINOR     0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_REVISION  3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_EDIT      60
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

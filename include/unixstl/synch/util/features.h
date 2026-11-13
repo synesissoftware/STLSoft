@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/util/features.h
+ * File:    unixstl/synch/util/features.h
  *
- * Purpose:     Discrimination of synchronisation features.
+ * Purpose: Discrimination of synchronisation features.
  *
- * Created:     23rd October 1997
- * Updated:     9th November 2026
+ * Created: 23rd October 1997
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MAJOR    2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     22
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

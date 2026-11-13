@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixer/pointer.hpp
+ * File:    stlsoft/meta/typefixer/pointer.hpp
  *
- * Purpose:     Definition of the fixer_pointer and fixer_const_pointer types.
+ * Purpose: Definition of the fixer_pointer and fixer_const_pointer types.
  *
- * Created:     9th February 2004
- * Updated:     9th November 2026
+ * Created: 9th February 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_REVISION    5
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_EDIT        45
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

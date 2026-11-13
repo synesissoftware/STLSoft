@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/security/security_initialisers.hpp (originally MOSecFns.h, ::SynesisCom)
+ * File:    comstl/security/security_initialisers.hpp (originally MOSecFns.h, ::SynesisCom)
  *
- * Purpose:     Contains classes for initialising COM/OLE.
+ * Purpose: Contains classes for initialising COM/OLE.
  *
- * Created:     1st February 1998
- * Updated:     9th November 2026
+ * Created: 1st February 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_MAJOR      4
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_MINOR      1
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_REVISION   8
-# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_EDIT       64
+# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

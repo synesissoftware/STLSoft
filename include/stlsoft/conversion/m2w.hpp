@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/m2w.hpp
+ * File:    stlsoft/conversion/m2w.hpp
  *
- * Purpose:     Character-encoding scheme interconversion components.
+ * Purpose: Character-encoding scheme interconversion components.
  *
- * Created:     27th October 2008
- * Updated:     9th November 2026
+ * Created: 27th October 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_MAJOR       1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_REVISION    4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_EDIT        13
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

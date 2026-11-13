@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/atomic_types.h
+ * File:    unixstl/synch/atomic_types.h
  *
- * Purpose:     UNIXSTL atomic functions.
+ * Purpose: UNIXSTL atomic functions.
  *
- * Created:     23rd October 1997
- * Updated:     9th November 2026
+ * Created: 23rd October 1997
+ * Updated: 11th November 2026
  *
- * Thanks:      To Brad Cox, for helping out in testing and fixing the
- *              implementation for MAC OSX (Intel).
+ * Thanks:  To Brad Cox, for helping out in testing and fixing the
+ *          implementation for MAC OSX (Intel).
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_MAJOR     8
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_EDIT      219
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_EDIT      220
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

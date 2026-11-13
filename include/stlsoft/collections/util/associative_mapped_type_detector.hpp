@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/util/associative_mapped_type_detector.hpp
+ * File:    stlsoft/collections/util/associative_mapped_type_detector.hpp
  *
- * Purpose:     Definition of the associative_mapped_type_detector type.
+ * Purpose: Definition of the associative_mapped_type_detector type.
  *
- * Created:     26th February 2005
- * Updated:     9th November 2026
+ * Created: 26th February 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR    3
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION 6
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT     40
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

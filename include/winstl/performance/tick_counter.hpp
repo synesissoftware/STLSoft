@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/performance/tick_counter.hpp
+ * File:    winstl/performance/tick_counter.hpp
  *
- * Purpose:     WinSTL tick-count performance counter class.
+ * Purpose: WinSTL tick-count performance counter class.
  *
- * Created:     19th October 1998
- * Updated:     9th November 2026
+ * Created: 19th October 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_MAJOR       5
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_MINOR       0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_REVISION    2
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_EDIT        59
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

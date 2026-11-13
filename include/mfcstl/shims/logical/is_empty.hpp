@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/logical/is_empty.hpp
+ * File:    mfcstl/shims/logical/is_empty.hpp
  *
- * Purpose:     Contains the is_empty access shim.
+ * Purpose: Contains the is_empty access shim.
  *
- * Created:     18th December 2006
- * Updated:     9th November 2026
+ * Created: 18th December 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR     2
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR     0
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION  5
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      14
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      15
 #endif /* !MFCSTL_DOCUMENTATION_SKIP_SECTION */
 
 

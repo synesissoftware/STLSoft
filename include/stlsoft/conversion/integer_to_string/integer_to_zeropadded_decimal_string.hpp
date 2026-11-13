@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/integer_to_string/integer_to_zeropadded_decimal_string.hpp
+ * File:    stlsoft/conversion/integer_to_string/integer_to_zeropadded_decimal_string.hpp
  *
- * Purpose:     Definition of stlsoft::integer_to_zeropadded_decimal_string()
- *              function template.
+ * Purpose: Definition of stlsoft::integer_to_zeropadded_decimal_string()
+ *          function template.
  *
- * Created:     29th October 2016
- * Updated:     9th November 2026
+ * Created: 29th October 2016
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_ZEROPADDED_DECIMAL_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_ZEROPADDED_DECIMAL_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_ZEROPADDED_DECIMAL_STRING_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_ZEROPADDED_DECIMAL_STRING_EDIT     12
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_ZEROPADDED_DECIMAL_STRING_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

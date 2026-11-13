@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/functional/interface_functionals.hpp
+ * File:    comstl/functional/interface_functionals.hpp
  *
- * Purpose:     Interface-specific predicates and functions.
+ * Purpose: Interface-specific predicates and functions.
  *
- * Created:     14th June 2002
- * Updated:     9th November 2026
+ * Created: 14th June 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MAJOR     4
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MINOR     0
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  9
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      86
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

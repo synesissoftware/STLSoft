@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/system/home_directory.hpp
+ * File:    unixstl/system/home_directory.hpp
  *
- * Purpose:     Simple class that gets, and makes accessible, the user's
- *              home directory.
+ * Purpose: Simple class that gets, and makes accessible, the user's
+ *          home directory.
  *
- * Created:     30th September 2016
- * Updated:     9th November 2026
+ * Created: 30th September 2016
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_HOME_DIRECTORY_MAJOR    2
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_HOME_DIRECTORY_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_HOME_DIRECTORY_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT     17
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/process_mutex.hpp
+ * File:    platformstl/synch/process_mutex.hpp
  *
- * Purpose:     Definition of the process_mutex type.
+ * Purpose: Definition of the process_mutex type.
  *
- * Created:     20th March 2005
- * Updated:     9th November 2026
+ * Created: 20th March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   5
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       32
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

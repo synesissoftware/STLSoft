@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/util/windows_api_.h
+ * File:    unixstl/synch/util/windows_api_.h
  *
- * Purpose:     Discrimination of synchronisation features.
+ * Purpose: Discrimination of synchronisation features.
  *
- * Created:     3rd January 2017
- * Updated:     9th November 2026
+ * Created: 3rd January 2017
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_WINDOWS_API__MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_WINDOWS_API__MINOR    2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_WINDOWS_API__REVISION 5
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_WINDOWS_API__EDIT     13
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_WINDOWS_API__EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

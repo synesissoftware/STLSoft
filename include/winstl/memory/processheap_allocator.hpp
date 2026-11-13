@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/memory/processheap_allocator.hpp
+ * File:    winstl/memory/processheap_allocator.hpp
  *
- * Purpose:     processheap_allocator class.
+ * Purpose: processheap_allocator class.
  *
- * Created:     25th February 2002
- * Updated:     9th November 2026
+ * Created: 25th February 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MINOR       1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_REVISION    11
-# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        104
+# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

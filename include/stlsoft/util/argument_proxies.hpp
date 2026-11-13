@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:     stlsoft/util/argument_proxies.hpp (originally MLRefPrx.h, ::SynesisStd)
+ * File:    stlsoft/util/argument_proxies.hpp (originally MLRefPrx.h, ::SynesisStd)
  *
- * Purpose:  Const and non-const reference and pointer proxy classes.
+ * Purpose: Const and non-const reference and pointer proxy classes.
  *
- * Created:  28th April 2000
- * Updated:  9th November 2026
+ * Created: 28th April 2000
+ * Updated: 11th November 2026
  *
- * Home:     http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  10
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      148
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/string/resource_string.hpp (originally MWResStr.h: ::SynesisWin)
+ * File:    mfcstl/string/resource_string.hpp (originally MWResStr.h: ::SynesisWin)
  *
- * Purpose:     resource_string class.
+ * Purpose: resource_string class.
  *
- * Created:     1st November 1994
- * Updated:     9th November 2026
+ * Created: 1st November 1994
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MAJOR      4
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MINOR      0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   9
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       98
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

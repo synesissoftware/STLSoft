@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_DATE.hpp
+ * File:    winstl/shims/conversion/to_DATE.hpp
  *
- * Purpose:     Includes all winstl::to_DATE conversion shims.
+ * Purpose: Includes all winstl::to_DATE conversion shims.
  *
- * Created:     21st October 2007
- * Updated:     9th November 2026
+ * Created: 21st October 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_MAJOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_REVISION    5
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_EDIT        12
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

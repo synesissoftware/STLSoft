@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/get_FILE_ptr.hpp
+ * File:    mfcstl/shims/attribute/get_FILE_ptr.hpp
  *
- * Purpose:     Contains the get_FILE_ptr attribute shim.
+ * Purpose: Contains the get_FILE_ptr attribute shim.
  *
- * Created:     22nd May 2008
- * Updated:     9th November 2026
+ * Created: 22nd May 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_MINOR       0
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_REVISION    6
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_EDIT        15
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_FILE_PTR_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

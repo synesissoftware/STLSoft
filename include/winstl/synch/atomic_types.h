@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/atomic_types.h (originally MLAtomic.cpp, ::SynesisStd)
+ * File:    winstl/synch/atomic_types.h (originally MLAtomic.cpp, ::SynesisStd)
  *
- * Purpose:     WinSTL atomic functions.
+ * Purpose: WinSTL atomic functions.
  *
- * Created:     23rd October 1997
- * Updated:     9th November 2026
+ * Created: 23rd October 1997
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_MAJOR     5
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_MINOR     1
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_REVISION  3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_EDIT      215
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_EDIT      216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

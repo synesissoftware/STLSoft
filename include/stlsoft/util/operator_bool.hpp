@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/operator_bool.hpp
+ * File:    stlsoft/util/operator_bool.hpp
  *
- * Purpose:     A robust and portable operator bool generator class.
+ * Purpose: A robust and portable operator bool generator class.
  *
- * Created:     5th November 2003
- * Updated:     9th November 2026
+ * Created: 5th November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_REVISION 7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_EDIT     53
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

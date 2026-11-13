@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/address_hiding_veneer.hpp
+ * File:    stlsoft/obsolete/address_hiding_veneer.hpp
  *
- * Purpose:     Contains the address_hiding_veneer template class.
+ * Purpose: Contains the address_hiding_veneer template class.
  *
- * Created:     9th July 2004
- * Updated:     9th November 2026
+ * Created: 9th July 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_ADDRESS_HIDING_VENEER_MAJOR       3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_ADDRESS_HIDING_VENEER_MINOR       0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_ADDRESS_HIDING_VENEER_REVISION    5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_ADDRESS_HIDING_VENEER_EDIT        32
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_ADDRESS_HIDING_VENEER_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

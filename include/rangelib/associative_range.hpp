@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/associative_range.hpp
+ * File:    rangelib/associative_range.hpp
  *
- * Purpose:     Associative container range adaptor.
+ * Purpose: Associative container range adaptor.
  *
- * Created:     1st October 2004
- * Updated:     9th November 2026
+ * Created: 1st October 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    12
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        50
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

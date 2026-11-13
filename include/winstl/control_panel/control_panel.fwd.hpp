@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/control_panel/control_panel.fwd.hpp
+ * File:    winstl/control_panel/control_panel.fwd.hpp
  *
- * Purpose:     Forward declarations.
+ * Purpose: Forward declarations.
  *
- * Created:     18th December 2016
- * Updated:     9th November 2026
+ * Created: 18th December 2016
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_MINOR    0
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_REVISION 4
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_EDIT     10
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

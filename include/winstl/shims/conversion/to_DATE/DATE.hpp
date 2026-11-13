@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_DATE/DATE.hpp
+ * File:    winstl/shims/conversion/to_DATE/DATE.hpp
  *
- * Purpose:     winstl::to_DATE(DATE const&) overload.
+ * Purpose: winstl::to_DATE(DATE const&) overload.
  *
- * Created:     21st October 2007
- * Updated:     9th November 2026
+ * Created: 21st October 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_REVISION   9
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_EDIT       17
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

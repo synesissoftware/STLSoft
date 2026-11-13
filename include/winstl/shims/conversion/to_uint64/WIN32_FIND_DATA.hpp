@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp
+ * File:    winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp
  *
- * Purpose:     Contains the to_uint64 access shim.
+ * Purpose: Contains the to_uint64 access shim.
  *
- * Created:     4th July 2007
- * Updated:     9th November 2026
+ * Created: 4th July 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MAJOR     1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MINOR     0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_REVISION  8
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_EDIT      19
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

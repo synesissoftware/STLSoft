@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/functionals.hpp
+ * File:    unixstl/filesystem/functionals.hpp
  *
- * Purpose:     A number of useful functionals .
+ * Purpose: A number of useful functionals .
  *
- * Created:     2nd November 2003
- * Updated:     9th November 2026
+ * Created: 2nd November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     69
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

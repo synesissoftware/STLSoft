@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_same_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/is_same_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     is_same_type class.
+ * Purpose: is_same_type class.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
  * Thanks to:   Pablo Aguilar for providing the basis for the version that
  *              works for the Borland compiler.
  *
  *              Nevin Liber, for pointing out missing 'type' member.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -60,7 +60,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION    7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        137
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

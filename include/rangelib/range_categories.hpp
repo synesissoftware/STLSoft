@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/range_categories.hpp
+ * File:    rangelib/range_categories.hpp
  *
- * Purpose:     Range categories.
+ * Purpose: Range categories.
  *
- * Created:     4th November 2003
- * Updated:     9th November 2026
+ * Created: 4th November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_MINOR      1
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_REVISION   5
-# define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_EDIT       34
+# define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
