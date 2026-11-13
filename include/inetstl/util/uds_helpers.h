@@ -4,7 +4,7 @@
  * Purpose: Unix Domain Sockets helper functions
  *
  * Created: 21st February 2025
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MAJOR       1
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MINOR       0
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    4
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        7
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,7 +134,7 @@
  *  `*pcb_actual`;
  *
  * errno values set in the current conditions:
- *  -# `EINVAL` — path cannot fit into fixed size of `sockaddr_un#sun_path;
+ *  -# `EINVAL` — path cannot fit into fixed size of `sockaddr_un#sun_path`;
  *  -# `EINVAL` — cb_sa_un is smaller than 1 + offsetof(struct sockaddr_un, sun_path);
  *  -# `EINVAL` — path cannot fit into given storage size;
  */

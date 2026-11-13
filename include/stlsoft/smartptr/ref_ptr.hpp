@@ -4,7 +4,7 @@
  * Purpose: Contains the ref_ptr template class.
  *
  * Created: 2nd November 1994
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION  2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      519
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      520
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -432,7 +432,6 @@ public: // construction
 
         return r;
     }
-/// @}
 
 /// \name Operations
 /// @{

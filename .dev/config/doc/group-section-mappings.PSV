@@ -6,7 +6,7 @@
 #           .dev/bin/convert-doxy-groups.rb.
 #
 # Created:  30th May 2006
-# Updated:  12th November 2026
+# Updated:  13th November 2026
 #
 # Format:   <fgf-title>|<sgf-name>[|<sgf-alias>]...
 #
@@ -38,6 +38,7 @@ Directory End|directory end
 Dynamic Library Functions|dynamic library functions|dl functions
 Element Access|element access
 Environment|environment|env
+Equality Comparison|equality comparison
 Error|error
 Fields|fields|member variables|members
 Filesystem Control|filesystem control|fs control

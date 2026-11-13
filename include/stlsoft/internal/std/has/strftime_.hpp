@@ -19,19 +19,6 @@
 /* All known compilers support it */
 #define STLSOFT_STANDARD_LIBRARY_HAS_strftime_
 
-#if 0
-#if defined(STLSOFT_COMPILER_IS_MSVC)
-
-#else
-
-#endif
-
-#if 0
-#elif __cplusplus < 199711L
-#else
-
-#endif
-
 #endif /* !STLSOFT_INCL_stlsoft_internal_std_has_HPP_strftime_ */
 
 /* ///////////////////////////// end of file //////////////////////////// */

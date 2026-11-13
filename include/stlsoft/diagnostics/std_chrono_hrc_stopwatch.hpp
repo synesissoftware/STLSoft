@@ -4,7 +4,7 @@
  * Purpose: stopwatch class based on std::chrono::high_resolution_clock.
  *
  * Created: 17th March 2024
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MAJOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  2
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      8
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -209,7 +209,6 @@ private: // fields
     epoch_type      m_pause;
     /// Stores the (cumulate) pause time (in nanoseconds)
     interval_type   m_paused_ns;
-/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////
