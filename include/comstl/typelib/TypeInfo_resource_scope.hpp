@@ -4,7 +4,7 @@
  * Purpose: Scoping class template for type information resources.
  *
  * Created: 6th April 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_MAJOR    1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_MINOR    2
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_REVISION 7
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_EDIT     46
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,7 +153,7 @@ public:
     typedef ss_typename_type_k traits_type::resource_type   resource_type;
     typedef TypeInfo_resource_scope<T>                      class_type;
 
-public: // Construction
+public: // construction
     TypeInfo_resource_scope(ITypeInfo* ti, resource_type* resource)
         : m_ti(ti, true)
         , m_resource(resource)
@@ -177,7 +177,7 @@ private:
     TypeInfo_resource_scope(class_type const&);
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-public: // Accessors
+public: // accessors
     resource_type* get() const
     {
         return m_resource;
@@ -192,7 +192,7 @@ public: // Accessors
         return m_resource;
     }
 
-private: // Member Variables
+private: // fields
     stlsoft::ref_ptr<ITypeInfo> m_ti;
     resource_type*              m_resource;
 };

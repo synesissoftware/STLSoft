@@ -4,7 +4,7 @@
  * Purpose: winstl::resource_exception class
  *
  * Created: 19th June 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_MAJOR       5
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_MINOR       0
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_REVISION    5
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_EDIT        80
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_EDIT        81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -146,7 +146,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     LPCTSTR get_resource_id() const

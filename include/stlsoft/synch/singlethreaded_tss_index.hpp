@@ -6,7 +6,7 @@
  *          contexts.
  *
  * Created: 3rd February 2008
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MINOR      0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   10
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       21
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,7 +95,7 @@ namespace stlsoft
  */
 class singlethreaded_tss_index
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This class
@@ -136,7 +136,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/properties/method_properties.hpp
+ * File:    stlsoft/properties/method_properties.hpp
  *
- * Purpose:     Method-based properties.
+ * Purpose: Method-based properties.
  *
- * Created:     6th October 2003
- * Updated:     9th November 2026
+ * Created: 6th October 2003
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -71,7 +71,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  9
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      76
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -601,7 +601,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -708,7 +708,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -823,7 +823,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -1123,7 +1123,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -1184,7 +1184,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;
@@ -1242,7 +1242,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     value_type  m_value;

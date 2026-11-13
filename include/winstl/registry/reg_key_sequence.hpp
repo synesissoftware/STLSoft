@@ -13,7 +13,7 @@
  *          basic_reg_key_sequence class interface.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   16
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       162
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      10
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       164
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -373,7 +373,7 @@ private:
     static hkey_type                dup_key_(hkey_type hkey, REGSAM accessMask/* , result_type *result */);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     hkey_type       m_hkey;
@@ -556,7 +556,7 @@ private:
     static index_type sentinel_() STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     registry_util::shared_handle*   m_handle;       // Shared context for registry key and event object
@@ -589,7 +589,7 @@ basic_reg_key_sequence<C, T, A>::create_shared_handle_(result_type& res)
     if (NULL == hkey2)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not duplicate key";
+        static const char message[] = "failed to duplicate key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -612,7 +612,7 @@ basic_reg_key_sequence<C, T, A>::create_shared_handle_(result_type& res)
         if (NULL == handle)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            static const char   message[]   =   "could not create shared enumeration context";
+            static const char   message[]   =   "failed to create shared enumeration context";
             DWORD const         err         =   WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
             if (ERROR_ACCESS_DENIED == err)
@@ -673,7 +673,7 @@ basic_reg_key_sequence<C, T, A>::dup_key_(
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not duplicate key";
+        static const char message[] = "failed to duplicate key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -707,7 +707,7 @@ basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence(
     if (ERROR_SUCCESS != (res = traits_type::reg_open_key(hkey, sub_key_name, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not open key";
+        static const char message[] = "failed to open key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -740,7 +740,7 @@ basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence(
     if (ERROR_SUCCESS != (res = traits_type::reg_open_key(hkey, sub_key_name, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not open key";
+        static const char message[] = "failed to open key";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -842,7 +842,7 @@ basic_reg_key_sequence<C, T, A>::begin()
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit sub-key information";
+        static const char message[] = "failed to elicit sub-key information";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -867,7 +867,7 @@ basic_reg_key_sequence<C, T, A>::begin()
             if (NULL == handle)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char message[] = "could not create shared enumeration context";
+                static const char message[] = "failed to create shared enumeration context";
 
                 if (ERROR_ACCESS_DENIED == res)
                 {
@@ -908,7 +908,7 @@ basic_reg_key_sequence<C, T, A>::begin()
                     else if (ERROR_SUCCESS != res)
                     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                        static const char message[] = "could not enumerate sub-keys";
+                        static const char message[] = "failed to enumerate sub-keys";
 
                         if (ERROR_ACCESS_DENIED == res)
                         {
@@ -998,7 +998,7 @@ basic_reg_key_sequence<C, T, A>::current_size() const
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit number of sub-keys";
+        static const char message[] = "failed to elicit number of sub-keys";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1135,7 +1135,7 @@ basic_reg_key_sequence_iterator<C, T, V, A>::operator ++()
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit sub-key information";
+        static const char message[] = "failed to elicit sub-key information";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1171,7 +1171,7 @@ basic_reg_key_sequence_iterator<C, T, V, A>::operator ++()
             else if (ERROR_SUCCESS != res)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char message[] = "could not enumerate sub-keys";
+                static const char message[] = "failed to enumerate sub-keys";
 
                 if (ERROR_ACCESS_DENIED == res)
                 {
@@ -1217,7 +1217,7 @@ basic_reg_key_sequence_iterator<C, T, V, A>::operator --()
     if (ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        static const char message[] = "could not elicit sub-key information";
+        static const char message[] = "failed to elicit sub-key information";
 
         if (ERROR_ACCESS_DENIED == res)
         {
@@ -1261,7 +1261,7 @@ basic_reg_key_sequence_iterator<C, T, V, A>::operator --()
             else if (ERROR_SUCCESS != res)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                static const char message[] = "could not elicit sub-key information";
+                static const char message[] = "failed to elicit sub-key information";
 
                 if (ERROR_ACCESS_DENIED == res)
                 {

@@ -4,7 +4,7 @@
  * Purpose: Definition of the string access shims for the VARIANT type.
  *
  * Created: 24th May 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    4
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 12
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     157
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -437,8 +437,7 @@ public:
         return ximpl_comstl_shims_access_string_variant_::string_equal_by_VT(m_bstr, ::SysStringLen(m_bstr), rhs, rhsLen, m_vt);
     }
 
-// Fields
-private:
+private: // fields
     BSTR            m_bstr;
     VARTYPE const   m_vt;
 };
@@ -591,8 +590,7 @@ private:
     }
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
-// Fields
-private:
+private: // fields
     BSTR            m_bstr;
     char_type*      m_buffer;
     VARTYPE const   m_vt;
@@ -831,8 +829,7 @@ private:
         return s_empty;
     }
 
-// Fields
-private:
+private: // fields
     BSTR            m_bstr;
     char_type*      m_buffer;
     VARTYPE const   m_vt;

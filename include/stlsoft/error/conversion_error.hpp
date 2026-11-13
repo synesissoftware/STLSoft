@@ -4,7 +4,7 @@
  * Purpose: Definition of the stlsoft::conversion_error exception class.
  *
  * Created: 15th December 2006
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MINOR       0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    14
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        28
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,7 +104,7 @@ namespace stlsoft
 class conversion_error_base
     : public STLSOFT_NS_QUAL_STD(runtime_error)
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent type
@@ -141,7 +141,7 @@ protected:
 class conversion_error
     : public conversion_error_base
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent type
@@ -198,7 +198,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     status_code_type const  m_statusCode;

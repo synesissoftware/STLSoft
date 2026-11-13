@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/iterator_range.hpp
+ * File:    rangelib/iterator_range.hpp
  *
- * Purpose:     Iterator range adaptor.
+ * Purpose: Iterator range adaptor.
  *
- * Created:     4th November 2003
- * Updated:     9th November 2026
+ * Created: 4th November 2003
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 10
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     59
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -436,7 +436,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     iterator  m_position;

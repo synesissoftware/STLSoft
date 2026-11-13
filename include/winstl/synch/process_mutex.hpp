@@ -4,7 +4,7 @@
  * Purpose: Inter-process mutex, based on Windows MUTEX.
  *
  * Created: 15th May 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 5
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     88
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -285,7 +285,7 @@ public:
                 DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(wait_failed_logic_exception(e, "mutex wait failed"));
+                STLSOFT_THROW_X(wait_failed_logic_exception(e, "failed to wait on mutex"));
 #else
                 WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_WaitFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -325,7 +325,7 @@ public:
                     DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    STLSOFT_THROW_X(wait_failed_logic_exception(e, "mutex wait failed"));
+                    STLSOFT_THROW_X(wait_failed_logic_exception(e, "failed to wait on mutex"));
 #else
                     WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_WaitFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -352,7 +352,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "mutex release failed", Synchronisation_MutexReleaseFailed));
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "failed to release mutex", Synchronisation_MutexReleaseFailed));
 #else
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_MutexReleaseFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

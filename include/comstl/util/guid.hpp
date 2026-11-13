@@ -4,7 +4,7 @@
  * Purpose: guid class.
  *
  * Created: 10th May 2000
- * Updated: 10th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   12
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       69
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ namespace comstl_project
  */
 class guid
 {
-/// \name types
+/// \name Member Types
 /// @{
 public:
     typedef guid                                            class_type;
@@ -226,7 +226,7 @@ public:
     void swap(class_type& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name fields
+/// \name Fields
 /// @{
 private:
     GUID    m_guid;
@@ -368,37 +368,43 @@ c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(COMSTL_NS_QUAL(guid) const& g
  */
 
 inline
-cs_bool_t operator ==(guid const& lhs, guid const& rhs)
+cs_bool_t
+operator ==(guid const& lhs, guid const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(guid const& lhs, guid const& rhs)
+cs_bool_t
+operator !=(guid const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(guid const& lhs, GUID const& rhs)
+cs_bool_t
+operator ==(guid const& lhs, GUID const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(guid const& lhs, GUID const& rhs)
+cs_bool_t
+operator !=(guid const& lhs, GUID const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(GUID const& lhs, guid const& rhs)
+cs_bool_t
+operator ==(GUID const& lhs, guid const& rhs)
 {
     return rhs.equal(lhs);
 }
 
 inline
-cs_bool_t operator !=(GUID const& lhs, guid const& rhs)
+cs_bool_t
+operator !=(GUID const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
@@ -419,7 +425,7 @@ guid::guid()
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("Could not allocate GUID", hr));
+        STLSOFT_THROW_X(comstl_exception("failed to allocate GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_guid = GUID_NULL;
@@ -454,7 +460,7 @@ guid::guid(cs_char_a_t const* s)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("Could not convert string to valid GUID", hr));
+        STLSOFT_THROW_X(comstl_exception("failed to convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_guid = GUID_NULL;
@@ -472,7 +478,7 @@ guid::guid(cs_char_w_t const* s)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("Could not convert string to valid GUID", hr));
+        STLSOFT_THROW_X(comstl_exception("failed to convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_guid = GUID_NULL;

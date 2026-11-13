@@ -4,7 +4,7 @@
  * Purpose: Control Panel module/applet manipulation classes.
  *
  * Created: 1st April 2006
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 26
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     51
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    2
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 1
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -243,7 +243,7 @@ public:
     LPARAM          get_data() const;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     applet_module_base* const   m_module;
@@ -472,7 +472,7 @@ private:
     void init_(int flags, HWND hwndParent);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     const string_type   m_path;
@@ -508,7 +508,7 @@ inline applet::applet(applet_module_base* am, applet::index_type index)
         0 == (m_module->m_flags & applet_module::dontExpectNonZeroInit))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(control_panel_exception("Applet initialisation failed", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+        STLSOFT_THROW_X(control_panel_exception("failed to initialise applet", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_DLL_INIT_FAILED);
 
@@ -533,7 +533,7 @@ inline applet::applet(applet_module_base* am, applet::index_type index)
                     applet_module::ignoreIconLoadFailures == (m_module->m_flags & applet_module::ignoreIconLoadFailures))
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    STLSOFT_THROW_X(resource_exception("Could not load the applet icon", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError(), MAKEINTRESOURCE(info.idIcon), RT_ICON));
+                    STLSOFT_THROW_X(resource_exception("failed to load the applet icon", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError(), MAKEINTRESOURCE(info.idIcon), RT_ICON));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
             }
@@ -745,7 +745,7 @@ inline void applet_module::init_(int flags, HWND hwndParent)
     if (NULL == m_module.get_symbol("CPlApplet", m_pfn))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(control_panel_exception("Control panel entry point not found", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
+        STLSOFT_THROW_X(control_panel_exception("failed to find control panel entry point", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     else

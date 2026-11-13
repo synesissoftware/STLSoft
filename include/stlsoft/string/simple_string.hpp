@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      289
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      291
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -631,7 +631,7 @@ private:
     static void                 destroy_buffer_(string_buffer*) STLSOFT_NOEXCEPT;
     static void                 destroy_buffer_(char_type*) STLSOFT_NOEXCEPT;
 
-    // Iteration
+    // iteration
     pointer                     begin_() STLSOFT_NOEXCEPT;
     pointer                     end_() STLSOFT_NOEXCEPT;
 
@@ -748,7 +748,7 @@ private:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     member_pointer  m_buffer;
@@ -2470,7 +2470,7 @@ basic_simple_string<C, T, A>::equal(
     {
         if (0 != pos)
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
         }
 
         return false;
@@ -2535,7 +2535,7 @@ basic_simple_string<C, T, A>::equal(
                 if (pos > buffer->length ||
                     0 != lhs_n)
                 {
-                    STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+                    STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
                 }
             }
 
@@ -2606,14 +2606,14 @@ basic_simple_string<C, T, A>::equal(
     {
         if (0 != pos)
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
         }
 
         if (ss_nullptr_k == rhs.m_buffer)
         {
             if (0 != posRhs)
             {
-                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
             }
         }
 
@@ -2629,7 +2629,7 @@ basic_simple_string<C, T, A>::equal(
         {
             if (0 != posRhs)
             {
-                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
             }
 
             return 0 == cchRhs;
@@ -2680,7 +2680,7 @@ basic_simple_string<C, T, A>::equal(
             if (pos > lhs_buffer->length ||
                 0 != lhs_n)
             {
-                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
             }
         }
 

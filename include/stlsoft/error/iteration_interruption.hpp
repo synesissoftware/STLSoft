@@ -4,7 +4,7 @@
  * Purpose: An exception thrown when an active end iterator is exhausted.
  *
  * Created: 30th November 2005
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,13 +55,8 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_REVISION  13
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_EDIT      36
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,8 +90,9 @@ namespace stlsoft
  * classes
  */
 
-/** An exception thrown when an active iterator is interrupted, by the underlying range
- * changing outside direct control by the current thread of execution
+/** An exception thrown when an active iterator is interrupted, by the
+ * underlying range changing outside direct control by the current thread of
+ * execution.
  *
  * \ingroup group__library__Exception
  */
@@ -106,8 +102,8 @@ class iteration_interruption
 /// \name Member Types
 /// @{
 public:
-    typedef STLSOFT_NS_QUAL_STD(runtime_error)  parent_class_type;
-    typedef iteration_interruption              class_type;
+    typedef STLSOFT_NS_QUAL_STD(runtime_error)              parent_class_type;
+    typedef iteration_interruption                          class_type;
 /// @}
 
 /// \name Construction
@@ -152,13 +148,13 @@ public:
         return message;
     }
 
-    /// The error code associated with the exception
+    /// The error code associated with the exception.
     virtual long get_error_code() const STLSOFT_NOEXCEPT
     {
         return m_errorCode;
     }
 
-    /// [DEPRECATED] The error code associated with the exception
+    /// [DEPRECATED] The error code associated with the exception.
     ///
     /// \deprecated Use get_error_code() instead.
     virtual long errorCode() const STLSOFT_NOEXCEPT
@@ -176,12 +172,13 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     const long  m_errorCode;
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

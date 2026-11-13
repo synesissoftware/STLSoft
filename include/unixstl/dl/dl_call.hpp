@@ -4,7 +4,7 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    21
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        67
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,7 +131,7 @@ namespace unixstl_project
 class missing_entry_point_exception
     : public unixstl_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef unixstl_exception                               parent_class_type;
@@ -293,7 +293,7 @@ public:
     {};
 /// @}
 
-/// \name Implementation functions
+/// \name Implementation
 /// @{
 public:
     template <ss_typename_param_k T_function>

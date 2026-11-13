@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -58,7 +58,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      196
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      197
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -260,7 +260,7 @@ class glob_sequence_exception
     : public STLSOFT_NS_QUAL_STD(exception)
 #endif /* compiler */
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The parent class type
@@ -310,7 +310,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     us_int_t const  m_globStatus;
@@ -329,7 +329,7 @@ private:
 class glob_sequence
     : public STLSOFT_NS_QUAL(stl_collection_tag)
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This type
@@ -699,7 +699,7 @@ private:
     );
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     typedef STLSOFT_NS_QUAL(auto_buffer)<

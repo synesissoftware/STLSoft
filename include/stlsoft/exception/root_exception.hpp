@@ -4,7 +4,7 @@
  * Purpose: Definition of the stlsoft::root_exception class.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_MAJOR     6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_MINOR     0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_REVISION  4
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_EDIT      64
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,7 +111,7 @@ typedef STLSOFT_NS_QUAL_STD(exception)                      stlsoft_root_excepti
 class stlsoft_root_exception
     : public stlsoft_root_exception_parent_t
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This class type

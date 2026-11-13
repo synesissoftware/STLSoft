@@ -4,7 +4,7 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 10th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    18
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        88
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       9
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -317,7 +317,7 @@ public:
     void swap(BSTR& rhs) STLSOFT_NOEXCEPT;
 /// @}
 
-/// \name fields
+/// \name Fields
 /// @{
 private:
     BSTR    m_bstr;
@@ -455,37 +455,43 @@ operator <<(
  */
 
 inline
-cs_bool_t operator ==(bstr const& lhs, bstr const& rhs)
+cs_bool_t
+operator ==(bstr const& lhs, bstr const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(bstr const& lhs, bstr const& rhs)
+cs_bool_t
+operator !=(bstr const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(bstr const& lhs, BSTR const& rhs)
+cs_bool_t
+operator ==(bstr const& lhs, BSTR const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(bstr const& lhs, BSTR const& rhs)
+cs_bool_t
+operator !=(bstr const& lhs, BSTR const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(BSTR const& lhs, bstr const& rhs)
+cs_bool_t
+operator ==(BSTR const& lhs, bstr const& rhs)
 {
     return rhs.equal(lhs);
 }
 
 inline
-cs_bool_t operator !=(BSTR const& lhs, bstr const& rhs)
+cs_bool_t
+operator !=(BSTR const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
@@ -661,10 +667,10 @@ bstr::bstr(
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if (pos > rhs.size())
     {
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("Position out of range"));
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("position out of range"));
     }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-    COMSTL_MESSAGE_ASSERT("Position out of range", pos <= rhs.size());
+    COMSTL_MESSAGE_ASSERT("position out of range", pos <= rhs.size());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     if (pos + len > rhs.size())

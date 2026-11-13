@@ -4,7 +4,7 @@
  * Purpose: STL sequence for COM collection interfaces.
  *
  * Created: 17th April 2004
- * Updated: 10th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     2
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  12
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      85
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     3
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  1
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,7 +252,7 @@ private:
     static DWORD    calc_size_(LPCSAFEARRAY array);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     LPCSAFEARRAY    m_sa;
@@ -300,7 +300,7 @@ safearray_sequence<T>::safearray_sequence(
 {
     if (!type_is_compatible_(array))
     {
-        STLSOFT_THROW_X(variant_type_exception("initialising safearray_sequence from safe array to incompatible type", DISP_E_BADVARTYPE));
+        STLSOFT_THROW_X(variant_type_exception("failed to initialise safearray_sequence from SAFEARRAY of incompatible type", DISP_E_BADVARTYPE));
     }
 }
 

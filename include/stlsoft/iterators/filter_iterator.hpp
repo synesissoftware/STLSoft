@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/filter_iterator.hpp
+ * File:    stlsoft/iterators/filter_iterator.hpp
  *
- * Purpose:     An iterator adaptor that uses a predicate to filter desired
- *              values from the iterator's underlying sequence.
+ * Purpose: An iterator adaptor that uses a predicate to filter desired
+ *          values from the iterator's underlying sequence.
  *
- * Created:     9th July 2004
- * Updated:     9th November 2026
+ * Created: 9th July 2004
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     57
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -325,7 +325,7 @@ private:
 #endif /* STLSOFT_FILTER_ITERATOR_MEM_SEL_OP_SUPPORT */
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     base_iterator_type      m_it;

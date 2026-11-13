@@ -4,7 +4,7 @@
  * Purpose: Helper for accessing token information.
  *
  * Created: 20th June 2003
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MAJOR     4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MINOR     4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_REVISION  9
-# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      83
+# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -521,7 +521,7 @@ public:
 private:
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     mem_block_type_ const   m_data;

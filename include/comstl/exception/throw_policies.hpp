@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/exception/throw_policies.hpp (formerly comstl/error/exceptions.hpp)
+ * File:    comstl/exception/throw_policies.hpp (formerly comstl/error/exceptions.hpp)
  *
- * Purpose:     COM-related exception classes, and their policy classes
+ * Purpose: COM-related exception classes, and their policy classes
  *
- * Created:     8th December 2004
- * Updated:     9th November 2026
+ * Created: 8th December 2004
+ * Updated: 13th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR       3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR       0
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION    4
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT        60
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,17 +125,17 @@ public:
 /// \name Operators
 /// @{
 public:
-    /// Function call operator, taking no parameters
+    /// Function call operator, taking no parameters.
     void operator ()() const
     {
         STLSOFT_THROW_X(thrown_type(WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
     }
-    /// Function call operator, taking one parameter
+    /// Function call operator, taking one parameter.
     void operator ()(HRESULT hr) const
     {
         STLSOFT_THROW_X(thrown_type(hr));
     }
-    /// Function call operator, taking two parameters
+    /// Function call operator, taking two parameters.
     void operator ()(char const* reason, HRESULT hr) const
     {
         STLSOFT_THROW_X(thrown_type(reason, hr));
@@ -148,14 +148,14 @@ public:
  * \ingroup group__library__Exception
  *
  */
-typedef exception_policy_base<comstl_exception>         com_exception_policy;
+typedef exception_policy_base<comstl_exception>             com_exception_policy;
 
 /** The policy class, which throws a variant_type_exception class.
  *
  * \ingroup group__library__Exception
  *
  */
-typedef exception_policy_base<variant_type_exception>   variant_type_exception_policy;
+typedef exception_policy_base<variant_type_exception>       variant_type_exception_policy;
 
 
 /* /////////////////////////////////////////////////////////////////////////

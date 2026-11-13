@@ -4,7 +4,7 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 10th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR       2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    16
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        183
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -483,37 +483,43 @@ private:
  */
 
 inline
-cs_bool_t operator ==(variant const& lhs, variant const& rhs)
+cs_bool_t
+operator ==(variant const& lhs, variant const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(variant const& lhs, variant const& rhs)
+cs_bool_t
+operator !=(variant const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(variant const& lhs, VARIANT const& rhs)
+cs_bool_t
+operator ==(variant const& lhs, VARIANT const& rhs)
 {
     return lhs.equal(rhs);
 }
 
 inline
-cs_bool_t operator !=(variant const& lhs, VARIANT const& rhs)
+cs_bool_t
+operator !=(variant const& lhs, VARIANT const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
 
 inline
-cs_bool_t operator ==(VARIANT const& lhs, variant const& rhs)
+cs_bool_t
+operator ==(VARIANT const& lhs, variant const& rhs)
 {
     return rhs.equal(lhs);
 }
 
 inline
-cs_bool_t operator !=(VARIANT const& lhs, variant const& rhs)
+cs_bool_t
+operator !=(VARIANT const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
@@ -535,7 +541,6 @@ variant::handle_error_(
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
     STLSOFT_THROW_X(comstl_exception(message, hr));
-
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
     STLSOFT_SUPPRESS_UNUSED(message);
@@ -544,7 +549,6 @@ variant::handle_error_(
 
     this->vt    =   VT_ERROR;
     this->scode =   hr;
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -815,7 +819,7 @@ variant::variant(
         if (NULL != s &&
             '\0' != 0[s])
         {
-            handle_error_("could not initialise from string", E_OUTOFMEMORY);
+            handle_error_("failed to initialise from string", E_OUTOFMEMORY);
         }
     }
 }
@@ -836,7 +840,7 @@ variant::variant(
         if (NULL != s &&
             '\0' != 0[s])
         {
-            handle_error_("could not initialise from string", E_OUTOFMEMORY);
+            handle_error_("failed to initialise from string", E_OUTOFMEMORY);
         }
     }
 }
@@ -854,7 +858,7 @@ variant::variant(
 
     if (FAILED(hr))
     {
-        handle_error_("could not convert variant to requested type", hr);
+        handle_error_("failed to convert variant to requested type", hr);
     }
     else
     {
@@ -912,7 +916,7 @@ variant::convert(VARTYPE vType)
 
     if (FAILED(hr))
     {
-        handle_error_("could not convert variant to requested type", hr);
+        handle_error_("failed to convert variant to requested type", hr);
     }
 
     return *this;
@@ -963,10 +967,10 @@ variant::equal(VARIANT const& rhs) const
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        STLSOFT_THROW_X(comstl_exception("support for comparison of variant type not currently supported", comparisonSucceeded));
+        STLSOFT_THROW_X(comstl_exception("failed to compare VARIANTs (likely due to unsupported vt)", comparisonSucceeded));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
-        WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("support for comparison of variant type not currently supported\n");
+        WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("failed to compare VARIANTs (likely due to unsupported vt)\n");
 
         return false;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -974,8 +978,8 @@ variant::equal(VARIANT const& rhs) const
 
     return 0 != areEqual;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -990,6 +994,7 @@ variant::equal(VARIANT const& rhs) const
 } // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

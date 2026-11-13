@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 7th February 2002
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Pablo Aguilar for discovering the Borland weirdness which is now
  *          addressed with the calc_path_max_() method.
@@ -59,7 +59,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 17
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     157
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -518,7 +518,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     buffer_type         m_buffer;
