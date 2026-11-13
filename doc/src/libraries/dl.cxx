@@ -9,7 +9,7 @@
  *
  * \brief This library provides
  *  \ref section__library__dl__classes "classes"
- *  and 
+ *  and
  *  \ref section__library__dl__functions "functions"
  *  for manipulating
  *  dynamic libraries and executing the functions exported by them.
@@ -27,21 +27,21 @@
 <pre>
   class <b>module</b>
   {
-  public: // Member Types
+  public: // types
     typedef ??? <b>proc_pointer_type</b>; // A generic function pointer type, as appropriate to the operating system
 
-  public: // Construction
+  public: // construction
     <b>module</b>(char const *moduleName); // Loads the library contained in the named executable file
     <b>~module</b>(); // Unloads the library
 
-  public: // Operations
+  public: // operations
     proc_pointer <b>get_symbol</b>(char const *symbolName); // Gets the given function as a generic function pointer
     template &lt;typename F>
     proc_pointer <b>get_symbol</b>(char const *symbolName, F &f); // Gets the given function into a typed function pointer variable
   };
 </pre>
 \endhtmlonly
- * 
+ *
  * These two classes are structurally conformant. Indeed, they exhibit
  * group__principle__intersecting_conformance "Intersecting Conformance".
  * Consequently, the <code>platformstl</code> namespace contains the
@@ -68,7 +68,7 @@
  * We can specify the name of the dynamic library, the name of the entry point,
  * and then all the parameters as if we were invoking the function as a statically
  * linked symbol:
- * 
+ *
 \htmlonly
 <pre>
   CHAR  dir[1 + _MAX_PATH];
@@ -78,7 +78,7 @@
  *
  * or, if the library name is contained in a string object (or any type
  * for which the \ref group__concept__Shim__string_access "String Access Shims"
- * \link stlsoft::c_str_data c_str_data\endlink and 
+ * \link stlsoft::c_str_data c_str_data\endlink and
  * \link stlsoft::c_str_len c_str_len\endlink
  * are defined):
  *
@@ -117,7 +117,7 @@
  *    <code>Recls_Search()</code>, located in recls.so, to search for all
  *    C/C++ header files in the current directory or in any sub-directories.
  *
- * We can specify the name of the 
+ * We can specify the name of the
  *
 \htmlonly
 <pre>
