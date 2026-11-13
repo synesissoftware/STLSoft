@@ -4,7 +4,7 @@
  * Purpose: OOM Histogram utilities.
  *
  * Created: 14th May 2013
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_UTILS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_UTILS_MINOR       0
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_UTILS_REVISION    2
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_UTILS_EDIT        19
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_UTILS_REVISION    3
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_UTILS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -240,6 +240,7 @@ gram_doom_to_char(
  * \param cch_range The number of characters represented by \c range;
  * \param range The range of characters to represent orders-of-magnitude 0,
  *  1, 2, ..., for example "abcd" representing 1s, 10s, 100s, 1000s
+ * \param ar Pointer to a 12-character array that receives the strip
  *
  * \see stlsoft::doomgram
  */

@@ -4,7 +4,7 @@
  * Purpose: Pre-processor abilities for the meta library.
  *
  * Created: 5th March 2006
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 4
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     23
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 5
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,7 +112,8 @@
 # undef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
 #endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 
-#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
   // If partial template specialisation is supported, then select_first_type_if is
   // supported ...
 # define STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF

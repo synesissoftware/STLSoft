@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      201
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      202
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -345,10 +345,10 @@ public:
     /// Ensures that a given C-style string has a trailing path name
     /// separator by appending one where necessary
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param capacity Number of available characters available
-    ///   in \c path. If 0, capacity will not be checked
+    ///   in \c dir. If 0, capacity will not be checked
     /// \param pLenToIncrease An optional pointer to a variable that will
     ///   be incremented if a path name separator is appended
     ///
@@ -401,8 +401,8 @@ public:
     ///
     /// \pre 0 == len || nullptr != dir
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -440,8 +440,8 @@ public:
 
     /// Removes all trailing path name separators from the end of \c dir
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
     ///   be decremented once per path name separator removed
     ///

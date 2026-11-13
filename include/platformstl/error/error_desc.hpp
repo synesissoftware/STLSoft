@@ -4,7 +4,7 @@
  * Purpose: Error .
  *
  * Created: 20th March 2005
- * Updated: 11th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  *
  * \brief [C++] Definition of the platformstl::basic_error_desc class
  *  template
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_ERROR_DESC
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MINOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_REVISION  7
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT      39
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,7 +107,7 @@ namespace platformstl_project
 
     /** Class used for composing and decomposing file-system paths.
      *
-     * \ingroup group__library__error
+     * \ingroup group__library__Error
      *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it

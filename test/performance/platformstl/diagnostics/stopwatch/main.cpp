@@ -4,7 +4,7 @@
  * Purpose: Perf-test for stopwatch types.
  *
  * Created: 15th March 2024
- * Updated: 29th October 2026
+ * Updated: 13th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,13 +53,13 @@ typedef platformstl::stopwatch::interval_type               interval_t;
  * functions
  */
 
-/// Evaluates cost of 1-start and N-stop calls
+/// Evaluates cost of 1-start and N-stop calls.
 ///
-/// @tparam T_sw Type of stopwatch type to be evaluated
+/// \tparam T_sw Type of stopwatch type to be evaluated;
 ///
-/// @param num_iterations Number of iterations
+/// \param num_iterations Number of iterations;
 ///
-/// @return T.B.C.
+/// \return T.B.C.
 template<
     ss_typename_param_k T_sw
 >
@@ -100,13 +100,13 @@ test_start_stop_(
     return std::make_pair(interval, anchoring_value);
 }
 
-/// Evaluates cost of 1-start, 1-stop, N-pause, and N-unpause calls
+/// Evaluates cost of 1-start, 1-stop, N-pause, and N-unpause calls.
 ///
-/// @tparam T_sw Type of stopwatch type to be evaluated
+/// \tparam T_sw Type of stopwatch type to be evaluated;
 ///
-/// @param num_iterations Number of iterations
+/// \param num_iterations Number of iterations;
 ///
-/// @return T.B.C.
+/// \return T.B.C.
 template<
     ss_typename_param_k T_sw
 >
@@ -150,14 +150,14 @@ test_pause_unpause_(
     return std::make_pair(interval, anchoring_value);
 }
 
-/// Evaluates cost of 1-start, 1-stop, N-pause, and N-unpause calls
+/// Evaluates cost of 1-start, 1-stop, N-pause, and N-unpause calls.
 ///
-/// @tparam T_sw Type of stopwatch type to be evaluated
+/// \tparam T_sw Type of stopwatch type to be evaluated;
 ///
-/// @param num_iterations Number of iterations
-/// @param delay_us Pause/unpause delay (in microseconds)
+/// \param num_iterations Number of iterations;
+/// \param delay_us Pause/unpause delay (in microseconds);
 ///
-/// @return T.B.C.
+/// \return T.B.C.
 template<
     ss_typename_param_k T_sw
 >

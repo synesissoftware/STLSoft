@@ -4,7 +4,7 @@
  * Purpose: String-switch functions.
  *
  * Created: 10th May 2010
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR      3
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   8
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       38
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   9
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1234,24 +1234,25 @@ string_switch_(
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** Conducts a string-switch over the given string \c s, according to the
- * given cases, putting the matching value into the given \c result
+ * given cases, putting the matching value into the given \c result.
  *
- * \param s The string whose value is to be tested
+ * \param s The string whose value is to be tested;
  * \param result Pointer to the variable to receive the result, if any of
- *   the cases are matched
+ *   the cases are matched;
  * \param cases The sequence of cases, created via string_cases(), to be
- *   tested against
+ *   tested against;
  * \param resultBase The value to which the result is set before being
  *   combined with the result, if any, of the matched cases. This allows
- *   the function to act in a bit-flag combination mode
+ *   the function to act in a bit-flag combination mode;
  *
  * \retval true <code>*result</code> is assigned to a combination of the
- *   matching case's value and <code>resultBase</code>
- * \retval true <code>*result</code> is assigned to <code>resultBase</code>
+ *   matching case's value and <code>resultBase</code>;
+ * \retval false <code>*result</code> is assigned to
+ *   <code>resultBase</code>;
  *
  * \warning If this function is used with an enumeration type that does not
  *   have flag-semantics, the use of the value of <code>resultBase</code>
- *   in evaluating the value of the out-parameter <code>result<code>,
+ *   in evaluating the value of the out-parameter <code>result</code>,
  *   regardless of whether match occurs, can lead to confusing results.
  */
 template<
@@ -1278,17 +1279,17 @@ string_switch(
 }
 
 /** Conducts a string-switch over the given string \c s, according to the
- * given cases, putting the matching value into the given \c result
+ * given cases, putting the matching value into the given \c result.
  *
- * \param s The string whose value is to be tested
+ * \param s The string whose value is to be tested;
  * \param result Pointer to the variable to receive the result, if any of
- *   the cases are matched
+ *   the cases are matched;
  * \param cases The sequence of cases, created via string_cases(), to be
- *   tested against
+ *   tested against;
  *
  * \retval true <code>*result</code> is assigned to the matching case's
- *   value and <code>resultBase</code>
- * \retval true <code>*result</code> is not assigned
+ *   value;
+ * \retval false <code>*result</code> is not assigned;
  */
 template<
     ss_typename_param_k S

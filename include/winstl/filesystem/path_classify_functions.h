@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 28th November 2020
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    8
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        19
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    9
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,9 +115,9 @@ struct winstl_C_path_classification_results_m_t
 {
     stlsoft_C_string_slice_m_t      input;
     stlsoft_C_string_slice_m_t      fullPath;               /*!< UNUSED. A future version will allow make-absolute and make-canonical functionality */
-    stlsoft_C_string_slice_m_t      prefix;                 /*!< the prefix, if any, before the root, e.g. "\\?\", "\\?\UNC\" */
+    stlsoft_C_string_slice_m_t      prefix;                 /*!< the prefix, if any, before the root, e.g. <code>"\\?\"</code>, <code>"\\?\UNC\"</code> */
     stlsoft_C_string_slice_m_t      location;               /*!< the entire path excepting the file */
-    stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
+    stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or <code>"\\?\UNC\server-name\share-name"</code> */
     stlsoft_C_string_slice_m_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
     size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
@@ -134,9 +134,9 @@ struct winstl_C_path_classification_results_w_t
 {
     stlsoft_C_string_slice_w_t      input;
     stlsoft_C_string_slice_w_t      fullPath;               /*!< UNUSED. A future version will allow make-absolute and make-canonical functionality */
-    stlsoft_C_string_slice_w_t      prefix;                 /*!< the prefix, if any, before the root, e.g. "\\?\", "\\?\UNC\" */
+    stlsoft_C_string_slice_w_t      prefix;                 /*!< the prefix, if any, before the root, e.g. <code>"\\?\"</code>, <code>"\\?\UNC\"</code> */
     stlsoft_C_string_slice_w_t      location;               /*!< the entire path excepting the file */
-    stlsoft_C_string_slice_w_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
+    stlsoft_C_string_slice_w_t      root;                   /*!< root of path, which may be "", or "C:", or <code>"\\?\UNC\server-name\share-name"</code> */
     stlsoft_C_string_slice_w_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
     size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
@@ -474,15 +474,20 @@ typedef winstl_C_path_classification_results_w_t            path_classification_
  * C++ API functions
  */
 
-/**
+/** Classifies a path.
  *
- * \param path
+ * \param path The path to classify. Must provide <code>data()</code> and
+ *   <code>size()</code>;
+ * \param parseFlags Classification flags (see
+ *   <code>WINSTL_PATH_CLASSIFY_F_*</code>);
+ * \param results Optional pointer to a results structure to receive path
+ *   slices; may be <code>nullptr</code>;
  *
  * \note The function does NOT use string-access shims to elicit
  *   from \c path the C-style string pointer and length, because the API
  *   returns results in slices, whose contents could be invalidated. Instead
  *   the function assumes that \c path is of a notional type that provides
- *   the methods <code>data()</code> and <code>size()</code>
+ *   the methods <code>data()</code> and <code>size()</code>.
  */
 template<
     ss_typename_param_k T_string

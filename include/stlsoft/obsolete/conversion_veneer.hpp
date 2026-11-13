@@ -4,7 +4,7 @@
  * Purpose: Raw conversion veneer class.
  *
  * Created: 30th July 2002
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MAJOR       3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR       2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_REVISION    6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT        64
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,7 +92,7 @@ namespace stlsoft
  * \param T The value type
  * \param C The conversion type
  *
- * \obsolete
+ * \deprecated
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
@@ -161,7 +161,7 @@ public:
  * \param T The value type
  * \param C The conversion type
  *
- * \obsolete
+ * \deprecated
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
@@ -243,7 +243,7 @@ public:
  * \param T The value type
  * \param C The conversion type
  *
- * \obsolete
+ * \deprecated
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
@@ -325,7 +325,7 @@ public:
  * \param T The value type
  * \param C The conversion type
  *
- * \obsolete
+ * \deprecated
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
@@ -407,7 +407,7 @@ public:
  * \param T The value type
  * \param C The conversion type
  *
- * \obsolete
+ * \deprecated
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C

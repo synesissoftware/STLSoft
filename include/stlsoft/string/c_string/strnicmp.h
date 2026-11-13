@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
  * Created: 25th November 2020
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        7
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    5
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -83,15 +83,15 @@
  * API functions
  */
 
-/** Finds a specific-length (slice of a) string within a specific-length
- * (slice of a) string, comparing case-insensitively
+/** Compares up to \c n characters of two C-style strings,
+ * case-insensitively
  *
- * \param s1 Pointer to the string in which to search
- * \param n1 Length of the string in which to search
- * \param s2 Pointer to the string to find
- * \param n2 Length of the string to find
- *
- * \retval nullptr The string [s2, s2 + n2) is not found in [s1, s1 + n1)
+ * \param s1 Pointer to the first string
+ * \param s2 Pointer to the second string
+ * \param n Maximum number of characters to compare
+ */
+/* DOXYGEN_PARAM_EYECATCHER: brief/retval previously described a find-style
+ * API (n1/n2/nullptr); confirm compare semantics and return contract
  */
 STLSOFT_INLINE
 int
@@ -125,15 +125,15 @@ stlsoft_C_strnicmp(
     return 0;
 }
 
-/** Finds a specific-length (slice of a) string within a specific-length
- * (slice of a) string, comparing case-insensitively
+/** Compares up to \c n characters of two wide C-style strings,
+ * case-insensitively
  *
- * \param s1 Pointer to the string in which to search
- * \param n1 Length of the string in which to search
- * \param s2 Pointer to the string to find
- * \param n2 Length of the string to find
- *
- * \retval nullptr The string [s2, s2 + n2) is not found in [s1, s1 + n1)
+ * \param s1 Pointer to the first string
+ * \param s2 Pointer to the second string
+ * \param n Maximum number of characters to compare
+ */
+/* DOXYGEN_PARAM_EYECATCHER: brief/retval previously described a find-style
+ * API (n1/n2/nullptr); confirm compare semantics and return contract
  */
 STLSOFT_INLINE
 int

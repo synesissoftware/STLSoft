@@ -47,7 +47,7 @@
 /** \file winstl/toolhelp/sequence_value_traits.hpp
  *
  * \brief [C++] Instantiations of th_sequence_value_traits<>
- *   (\ref group__library__Windows_Toolhelp "Windows ToolHelp" Library).
+ *   (\ref group__library__Windows_ToolHelp "Windows ToolHelp" Library).
  */
 
 /* STLSOFT:FILE_EXCEPTED */

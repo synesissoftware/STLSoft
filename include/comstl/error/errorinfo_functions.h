@@ -4,7 +4,7 @@
  * Purpose: Error info functions.
  *
  * Created: 5th February 2004
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,7 +44,7 @@
 /** \file comstl/error/errorinfo_functions.h
  *
  * \brief [C, C++] Error info functions
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 15
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     66
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -266,7 +266,7 @@ comstl_C_set_error_info_a_(
 
 /** [C] Sets the description of the current error object to the given Unicode string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \see comstl::set_error_info_description
  */
@@ -281,7 +281,7 @@ comstl_C_set_error_info_description_w(cs_char_w_t const* description)
 
 /** [C] Sets the description of the current error object to the given ANSI string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \see comstl::set_error_info_description
  */
@@ -296,7 +296,7 @@ comstl_C_set_error_info_description_a(cs_char_a_t const* description)
 
 /** [C] Sets the description and source of the current error object to the given Unicode strings
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \see comstl::set_error_info_description_and_source
  */
@@ -315,7 +315,7 @@ comstl_C_set_error_info_description_and_source_w(
 
 /** [C] Sets the description and source of the current error object to the given ANSI strings
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \see comstl::set_error_info_description_and_source
  */
@@ -334,7 +334,7 @@ comstl_C_set_error_info_description_and_source_a(
 
 /** [C] Sets the description, source, interface ID and help information of the current error object
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \see comstl::set_error_info
  */
@@ -357,7 +357,7 @@ comstl_C_set_error_info_w(
 
 /** [C] Sets the description, source, interface ID and help information of the current error object
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \see comstl::set_error_info
  */
@@ -397,7 +397,7 @@ namespace comstl
 
 /** Sets the description of the current error object to the given ANSI string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 inline
 HRESULT
@@ -408,7 +408,7 @@ set_error_info(cs_char_a_t const* description)
 
 /** Sets the description of the current error object to the given Unicode string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param description The error description
  */
@@ -421,7 +421,7 @@ set_error_info(cs_char_w_t const* description)
 
 /** Sets the description and source of the current error object to the given ANSI string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param description The error description
  * \param source The error source
@@ -438,7 +438,7 @@ set_error_info(
 
 /** Sets the description and source of the current error object to the given Unicode string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param description The error description
  * \param source The error source
@@ -455,7 +455,7 @@ set_error_info(
 
 /** Sets the description, source and GUID of the current error object to the given ANSI string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param description The error description
  * \param source The error source
@@ -474,7 +474,7 @@ set_error_info(
 
 /** Sets the description, source and GUID of the current error object to the given Unicode string
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param description The error description
  * \param source The error source

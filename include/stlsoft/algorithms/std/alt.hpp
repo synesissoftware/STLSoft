@@ -5,7 +5,7 @@
  *          do or do not have a standard library.
  *
  * Created: 17th January 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       5
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    6
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        96
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -704,11 +704,6 @@ std_unique_copy(FI first, FI last, OI dest, BP pred)
     return dest;
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
-
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group algorithms_std_alt
 
 
 /* /////////////////////////////////////////////////////////////////////////

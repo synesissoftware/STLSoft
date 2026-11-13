@@ -4,7 +4,7 @@
  * Purpose: Field-based properties.
  *
  * Created: 6th October 2003
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   12
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       53
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,7 +116,7 @@ public: // operations
     index = newInstanceIndex; // Property value can be assigned inside enclosing class
   }
 
-public: // Properties
+public: // properties
   stlsoft::field_property_get<index_type, index_type, ClassWithReadOnlyProp>          index;
   stlsoft::field_property_get<string_type, string_type const&, ClassWithReadOnlyProp> name;
 };
@@ -404,6 +404,7 @@ inline S& operator <<(  S& s
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

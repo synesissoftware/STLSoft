@@ -4,7 +4,7 @@
  * Purpose: Security functions.
  *
  * Created: 7th November 2014
- * Updated: 11th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,7 +44,7 @@
 /** \file winstl/security/functions.h
  *
  * \brief [C, C++] Security functions
- *   (\ref group__library__security "Security" Library).
+ *   (\ref group__library__Security "Security" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT     11
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

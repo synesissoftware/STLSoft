@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 10th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    12
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        140
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    13
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -654,7 +654,10 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  * An alternative to the general \c _FORCENAMELESSUNION
  */
 
-#if 1 &&\
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+# define COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES
+#elif 1 &&\
     !defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) &&\
     !defined(_FORCENAMELESSUNION) &&\
     defined(NONAMELESSUNION) &&\

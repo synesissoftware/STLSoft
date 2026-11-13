@@ -4,7 +4,7 @@
  * Purpose: Range adaptor for C-strings.
  *
  * Created: 17th May 2004
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -49,12 +49,14 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR      3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION   9
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT       55
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION   10
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 # include <rangelib/rangelib.hpp>

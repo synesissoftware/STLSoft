@@ -4,7 +4,7 @@
  * Purpose: File functions.
  *
  * Created: 7th November 2014
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,7 +44,7 @@
 /** \file winstl/filesystem/file_information_functions.h
  *
  * \brief [C, C++] File information functions
- *   (\ref group__library__filesystem "File System" Library).
+ *   (\ref group__library__FileSystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_H_FILE_INFORMATION_FUNCTIONS
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    7
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        13
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

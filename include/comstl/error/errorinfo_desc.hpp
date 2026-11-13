@@ -5,7 +5,7 @@
  *          error.
  *
  * Created: 19th December 2002
- * Updated: 12th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,7 +44,7 @@
 /** \file comstl/error/errorinfo_desc.hpp
  *
  * \brief [C++] Definition of the comstl::errorinfo_desc class
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  *
  * \warning The contents of this file are not a final form, and <b>will</b>
  *  change in a future release.
@@ -57,7 +57,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       1
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       1
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    6
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        54
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ namespace comstl_project
 
 /** Provides access to the COM Error Info objecg
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 class errorinfo_desc
 {
@@ -418,6 +418,7 @@ inline S& operator <<(S& s, COMSTL_NS_QUAL(errorinfo_desc) const& eid)
     return s;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -431,6 +432,7 @@ inline S& operator <<(S& s, COMSTL_NS_QUAL(errorinfo_desc) const& eid)
 } // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

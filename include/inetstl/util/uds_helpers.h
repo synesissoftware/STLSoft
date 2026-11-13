@@ -4,7 +4,7 @@
  * Purpose: Unix Domain Sockets helper functions
  *
  * Created: 21st February 2025
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MAJOR       1
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MINOR       0
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    4
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        7
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,21 +120,21 @@
 /** Path initialise an instance of `struct sockaddr_un` suitable for passing
  * to `bind()`.
  *
- * @param sa_un Pointer to an instance of `struct sockaddr_un` (or memory
+ * \param sa_un Pointer to an instance of `struct sockaddr_un` (or memory
  *  that will be interpreted as such). May not be NULL;
- * @param cb_sa_un Number of accessible bytes in sa_un, which must be at
+ * \param cb_sa_un Number of accessible bytes in sa_un, which must be at
  *  least 1 + offsetof(struct sockaddr_un, sun_path);
- * @param path Path to be written into `sa_un`;
- * @param pcb_actual Pointer to variable to obtain the actual size of the
+ * \param path Path to be written into `sa_un`;
+ * \param pcb_actual Pointer to variable to obtain the actual size of the
  *  path-initialised. May not be NULL;
  *
- * @retval -1 The function failed, and global `errno` has been updated;
- * @retval 0 The function succeeded such that the contents of `sa_un` have
+ * \retval -1 The function failed, and global `errno` has been updated;
+ * \retval 0 The function succeeded such that the contents of `sa_un` have
  *  been filled out correctly and the actual size written into
  *  `*pcb_actual`;
  *
  * errno values set in the current conditions:
- *  -# `EINVAL` — path cannot fit into fixed size of `sockaddr_un#sun_path;
+ *  -# `EINVAL` — path cannot fit into fixed size of `sockaddr_un#sun_path`;
  *  -# `EINVAL` — cb_sa_un is smaller than 1 + offsetof(struct sockaddr_un, sun_path);
  *  -# `EINVAL` — path cannot fit into given storage size;
  */

@@ -47,7 +47,7 @@
 /** \file winstl/toolhelp/heap_sequence.hpp
  *
  * \brief [C++] Definition of the \link winstl::heap_sequence heap_sequence\endlink class
- *   (\ref group__library__Windows_Toolhelp "Windows ToolHelp" Library).
+ *   (\ref group__library__Windows_ToolHelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE
@@ -136,7 +136,7 @@ public: // iteration
 
 /** An STL collection for accessing heap information.
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  */
 typedef th_sequence_base<HEAPLIST32>                heap_sequence;
 
@@ -151,7 +151,7 @@ struct sequence_doesnt_use_pid<HEAPLIST32>
 
 /** Attribute shim for retrieving the process id associated with the HEAPLIST32 instance
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  *
  * \param hl The HEAPLIST32 instance
  */
@@ -178,7 +178,14 @@ get_pid(HEAPLIST32 const& hl)
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE */
 

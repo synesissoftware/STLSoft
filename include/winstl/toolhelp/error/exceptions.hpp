@@ -47,7 +47,7 @@
 /** \file winstl/toolhelp/error/exceptions.hpp
  *
  * \brief [C++] Exception classes for the
- *   (\ref group__library__Windows_Toolhelp "Windows ToolHelp" Library).
+ *   (\ref group__library__Windows_ToolHelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION
@@ -111,9 +111,9 @@ namespace winstl_project
  */
 
 /** Root exception thrown by
- *   the \ref group__library__Windows_Toolhelp "Windows ToolHelp" library.
+ *   the \ref group__library__Windows_ToolHelp "Windows ToolHelp" library.
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  */
 struct toolhelp_exception
     : public winstl_exception
@@ -163,7 +163,14 @@ public:
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION */
 
