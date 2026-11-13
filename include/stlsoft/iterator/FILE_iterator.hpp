@@ -4,7 +4,7 @@
  * Purpose: FILE* output iterator.
  *
  * Created: 21st April 2009
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  *
  * \brief [C++] Definition of the stlsoft::FILE_iterator class
  *   template
- *   (\ref group__library__iterators "Iterators" Library).
+ *   (\ref group__library__Iterator "Iterator" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATOR_HPP_FILE_ITERATOR
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    14
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        29
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,7 @@ namespace stlsoft
 
 /** \brief Enhanced functionality over std::FILE_iterator
  *
- * \ingroup group__library__iterators
+ * \ingroup group__library__Iterator
  *
  * This class template provides full backwards-compatibility with
  * std::FILE_iterator, but offers the additional capability to supply both

@@ -25,10 +25,3 @@
  * - stlsoft::transform_iterator
  *
  */
-
-/** \defgroup group__library__iterators Iterators Library (alias)
- * \ingroup group__library__Iterator
- *
- * \brief Alias for \ref group__library__Iterator (legacy lowercase id used
- *   by some headers under <code>stlsoft/iterator/</code>).
- */
