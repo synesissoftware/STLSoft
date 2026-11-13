@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      15
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  11
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -189,7 +189,7 @@ unixstl_C_path_classify_m(
     char const*                                 s
 ,   size_t                                      cch
 ,   int                                         parseFlags
-,   unixstl_C_path_classification_results_m_t*   results
+,   unixstl_C_path_classification_results_m_t*  results
 )
 {
     unixstl_C_path_classification_results_m_t dummy;
@@ -241,7 +241,7 @@ unixstl_C_path_classify(
     char const*                                 s
 ,   size_t                                      cch
 ,   int                                         parseFlags
-,   unixstl_C_path_classification_results_m_t*   results
+,   unixstl_C_path_classification_results_m_t*  results
 )
 {
     return unixstl_C_path_classify_m(s, cch, parseFlags, results);
@@ -284,9 +284,14 @@ typedef unixstl_C_path_classification_results_m_t           path_classification_
  * C++ API functions
  */
 
-/**
+/** Classifies a path.
  *
- * \param path
+ * \param path The path to classify. Must provide <code>data()</code> and
+ *   <code>size()</code>
+ * \param parseFlags Classification flags (see
+ *   <code>UNIXSTL_PATH_CLASSIFY_F_*</code>)
+ * \param results Optional pointer to a results structure to receive path
+ *   slices; may be <code>nullptr</code>
  *
  * \note The function does NOT use string-access shims to elicit
  *   from \c path the C-style string pointer and length, because the API
@@ -357,7 +362,6 @@ path_is_rooted(
 # define UNIXSTL_C_PathType_reserved_2                      unixstl_C_PathType_reserved_2
 # define UNIXSTL_C_PathType_reserved_3                      unixstl_C_PathType_reserved_3
 # define UNIXSTL_C_PathType_reserved_4                      unixstl_C_PathType_reserved_4
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

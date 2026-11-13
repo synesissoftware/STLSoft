@@ -4,7 +4,7 @@
  * Purpose: Synchronisation library exception(s).
  *
  * Created: 30th May 2006
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR       5
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        37
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    7
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -603,6 +603,8 @@ public: // construction
     ///
     /// \param sc The system condition code associated with the condition
     ///   that resulted in the exception being thrown;
+    /// \param message The human-readable message describing the condition;
+    /// \param subsystemStatusCode The subsystem-specific status code;
     ss_explicit_k
     invalid_state_exception(
         system_status_code_type     sc

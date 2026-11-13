@@ -4,7 +4,7 @@
  * Purpose: Simple utility class for creating (constant) C-strings.
  *
  * Created: 14th May 2004
- * Updated: 11th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_REVISION  7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_EDIT      71
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_REVISION  8
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,13 +252,13 @@ public:
     }
 
     /// Allocates storage for writing into a string, optionally
-    /// initialising, or returns \c nullptr if \c cch is 0
+    /// initialising, or returns \c nullptr if \c cch is 0.
     ///
     /// \note Includes space for a NUL character character.
     ///
     /// \param s The optional string to be copied into the block. May be
-    ///   \c null; if not, must be of at least \c cch characters long
-    /// \param cch The number of characters to allocate
+    ///   \c null; if not, must be of at least \c cch characters long;
+    /// \param cch The number of characters to allocate;
     static
     block*
     alloc_null(
@@ -284,9 +284,9 @@ public:
         return pblock;
     }
 
-    /// Releases the storage associated with the string
+    /// Releases the storage associated with the string.
     ///
-    /// \param s The string to free
+    /// \param pblock The string block to free;
     static
     void
     free(
@@ -348,11 +348,11 @@ public:
     ,   size_type           cch
     )
     {
-        size_type       cb      =   offsetof(block, data) + sizeof(char_type) * (1 + cch);
+        size_type cb = offsetof(block, data) + sizeof(char_type) * (1 + cch);
 
         cb = (cb + (AllocationGranularity - 1)) & ~(AllocationGranularity - 1);
 
-        block* const    pblock  =   static_cast<block*>(malloc(cb));
+        block* constpblock = static_cast<block*>(malloc(cb));
 
         if (NULL == pblock)
         {

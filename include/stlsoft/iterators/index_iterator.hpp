@@ -4,7 +4,7 @@
  * Purpose: index_iterator class template.
  *
  * Created: 5th April 2005
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  11
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      43
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  12
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -207,8 +207,8 @@ public:
 
         return r;
     }
-
 #ifdef STLSOFT_INDEX_ITERATOR_MUTABLE_OP_SUPPORT
+
     effective_reference operator *()
     {
         return *m_it;
@@ -235,6 +235,7 @@ public:
     }
 #else /* ? 0 */
 # ifdef STLSOFT_INDEX_ITERATOR_MUTABLE_OP_SUPPORT
+
     effective_pointer operator ->()
     {
         enum { is_iterator_pointer_type = is_pointer_type<base_iterator_type>::value };
@@ -256,7 +257,6 @@ public:
         return invoke_member_selection_operator_(yesno_t());
     }
 #endif /* 0 */
-
 #endif /* STLSOFT_INDEX_ITERATOR_MUTABLE_OP_SUPPORT */
 /// @}
 
@@ -305,12 +305,11 @@ public:
 
         return *this;
     }
+#ifdef STLSOFT_INDEX_ITERATOR_MUTABLE_OP_SUPPORT
 
     /// Access the element at the given index
     ///
     /// \param index The required offset from the iterator's position
-
-#ifdef STLSOFT_INDEX_ITERATOR_MUTABLE_OP_SUPPORT
     effective_reference         operator [](difference_type index)
     {
         return m_it[index];

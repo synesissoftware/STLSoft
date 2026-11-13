@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 12th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    14
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        201
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    15
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        202
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -311,10 +311,10 @@ public:
     /// Ensures that a given C-style string has a trailing path name
     /// separator by appending one where necessary
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param capacity Number of available characters available
-    ///   in \c path. If 0, capacity will not be checked
+    ///   in \c dir. If 0, capacity will not be checked
     /// \param pLenToIncrease An optional pointer to a variable that will
     ///   be incremented if a path name separator is appended
     ///
@@ -367,8 +367,8 @@ public:
     ///
     /// \pre 0 == len || nullptr != dir
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -406,8 +406,8 @@ public:
 
     /// Removes the path name separator from the end of \c dir, if present
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
     ///   be decremented if a path name separator is removed
     ///

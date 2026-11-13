@@ -4,7 +4,7 @@
  * Purpose: Modification functions for Windows time structures.
  *
  * Created: 2nd February 2011
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       17
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,7 +117,7 @@ namespace winstl_project
  * \param microseconds The number of microseconds to add. May be negative,
  *   in which case a subtraction is effected.
  *
- * \return The function does not return a value. The pointers must not be
+ * \note The function does not return a value. The pointers must not be
  *   <code>NULL</code>, and no validity checking is performed on the offset
  *   parameter values.
  *
@@ -187,7 +187,7 @@ winstl_C_increment_FILETIME_us(
  * \param milliseconds The number of milliseconds to add. May be negative,
  *   in which case a subtraction is effected.
  *
- * \return The function does not return a value. The pointers must not be
+ * \note The function does not return a value. The pointers must not be
  *   \c nullptr, and no validity checking is performed on the offset
  *   parameter values.
  *

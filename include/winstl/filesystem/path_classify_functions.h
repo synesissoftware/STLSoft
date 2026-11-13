@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    8
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        20
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    9
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -474,15 +474,20 @@ typedef winstl_C_path_classification_results_w_t            path_classification_
  * C++ API functions
  */
 
-/**
+/** Classifies a path.
  *
- * \param path
+ * \param path The path to classify. Must provide <code>data()</code> and
+ *   <code>size()</code>;
+ * \param parseFlags Classification flags (see
+ *   <code>WINSTL_PATH_CLASSIFY_F_*</code>);
+ * \param results Optional pointer to a results structure to receive path
+ *   slices; may be <code>nullptr</code>;
  *
  * \note The function does NOT use string-access shims to elicit
  *   from \c path the C-style string pointer and length, because the API
  *   returns results in slices, whose contents could be invalidated. Instead
  *   the function assumes that \c path is of a notional type that provides
- *   the methods <code>data()</code> and <code>size()</code>
+ *   the methods <code>data()</code> and <code>size()</code>.
  */
 template<
     ss_typename_param_k T_string

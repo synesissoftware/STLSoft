@@ -4,7 +4,7 @@
  * Purpose: String to integer conversions.
  *
  * Created: 18th November 2008
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Chris Oldwood for righteous criticism of one of my hastily-
  *          written articles, which led to the creation of the
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      79
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  5
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -926,7 +926,7 @@ string_to_integer(
  *
  * \param s Pointer to first character in string to be interpreted;
  * \param len Number of characters in string to be interpreted;
- * \param ep Optional pointer to variable that receives the position of
+ * \param endptr Optional pointer to variable that receives the position of
  *   the character the caused the translation to fail; set to NULL
  *   otherwise;
  *
@@ -953,7 +953,7 @@ string_to_integer(
  *
  * \param s Pointer to first character in string to be interpreted;
  * \param len Number of characters in string to be interpreted;
- * \param ep Optional pointer to variable that receives the position of
+ * \param endptr Optional pointer to variable that receives the position of
  *   the character the caused the translation to fail; set to NULL
  *   otherwise;
  *
