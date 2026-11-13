@@ -127,7 +127,7 @@
 \endhtmlonly
  */
 
-/** \defgroup group__library__dl__error DL Library Error
+/** \defgroup group__library__DL__Error DL Library Error
  *
  * \brief Exception classes used by the \ref group__library__DL.
  *

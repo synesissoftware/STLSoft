@@ -1,10 +1,10 @@
 
 /**
  * Created: 3rd July 2006
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  */
 
-/** \defgroup group__library__Iterator Iterators Library
+/** \defgroup group__library__Iterator Iterator Library
  * \ingroup group__libraries
  *
  * \brief This library defines iterator adaptors that extend the STL.

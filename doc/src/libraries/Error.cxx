@@ -1,7 +1,7 @@
 
 /**
  * Created: 6th June 2006
- * Updated: 14th January 2007
+ * Updated: 14th November 2026
  */
 
 /** \defgroup group__library__error Error Library
@@ -10,7 +10,7 @@
  * \brief This library defines components that assist with error
  *  interpretation and handling.
  *
- * \section section__library__error__classes Error Classes
+ * \section section__library__Error__Classes Error Classes
  *
  * The Error library currently includes the following classes:
  *
@@ -20,7 +20,7 @@
  * - winstl::basic_error_desc - represents a Windows error code as its string form
  * - winstl::last_error_scope - \ref group__pattern__scoping_class "scoping class" for the Windows thread error
  *
- * \section section__library__error__functions Error Functions
+ * \section section__library__Error__Functions Error Functions
  *
  * The Error library currently includes the function suites:
  *

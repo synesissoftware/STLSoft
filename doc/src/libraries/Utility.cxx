@@ -1,7 +1,7 @@
 
 /**
  * Created: 12th December 2006
- * Updated: 13th November 2026
+ * Updated: 14th November 2026
  */
 
 /** \defgroup group__library__Utility Utility Library
@@ -13,12 +13,12 @@
  * The utility components provided by the STLSoft libraries are
  * subdivided into project/library-specific projects, which include:
  *
- * - \ref group__library__utility__com
+ * - \ref group__library__Utility__COM
  *
  *
  */
 
-/** \defgroup group__library__utility__constraints Constraints Utility Library
+/** \defgroup group__library__Utility__Constraints Constraints Utility Library
  * \ingroup group__library__Utility
  *
  * \brief This library defines classes, functions and macros that act as
@@ -34,7 +34,7 @@
  * - stlsoft::must_be_pod_or_void - ensures that a type is POD (plain old data), or is \c void.
  */
 
-/** \defgroup group__library__utility__com COM Utility Library
+/** \defgroup group__library__Utility__COM COM Utility Library
  * \ingroup group__library__Utility
  * \ingroup group__project__comstl
  *
@@ -53,7 +53,7 @@
  *
  */
 
-/** \defgroup group__library__utility__windows Windows Utility Library
+/** \defgroup group__library__Utility__Windows Windows Utility Library
  * \ingroup group__library__Utility
  * \ingroup group__project__winstl
  *

@@ -84,7 +84,7 @@
     class deref_proxy;
     friend class deref_proxy;</b>
 
-  public: // Construction, etc.
+  public: // construction, etc.
     . . .
 
   public: // Output Iterator methods
