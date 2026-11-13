@@ -44,8 +44,3 @@
  * \brief Type-traits components.
  */
 
-/** \defgroup group__library__filesystem File System Library (alias)
- * \ingroup group__library__FileSystem
- *
- * \brief Alias for \ref group__library__FileSystem (legacy lowercase id).
- */
