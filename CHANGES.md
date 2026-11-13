@@ -1,10 +1,18 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
-## 1.11.9 - 12th November 2026
+## 1.11.9 - 14th November 2026
 
+* behaviour:
+  * exception messages across **acestl**, **atlstl**, **comstl**, **inetstl**, **mfcstl**, **platformstl**, **rangelib**, **stlsoft**, **unixstl**, and **winstl** use the house forms: `"failed to <verb> <object>"` for runtime conditions, and a bare lowercase noun phrase (e.g. `"index out of range"`) for programmer errors. The `"Cannot …"` / `"Could not …"` / `"Failed to …"` and class-prefix qualifier forms are gone. Notable cases: **unixstl** mutex `"failed to set initialise PTHREADS mutex"` is now grammatical; **winstl** `process_module_sequence` (`"failed to enumerate process modules"`) is distinct from `pid_sequence` (`"failed to enumerate processes"`); **comstl** `variant_type_exception` no longer carries a fixed `"VARIANT type exception"` constructor message (it forwards the `HRESULT` and gains a reason-taking overload);
 * layout:
   * wholesale canonicalisation of header-block indents;
+* documentation:
+  * programmer-error exception types carry a Doxygen note distinguishing them from a valid runtime condition (`rangelib::empty_range_exception`, `comstl::variant_type_exception`, `winstl::invalid_calling_convention_exception`, and the `wait_failed_logic_exception` derivatives in **include/winstl/synch/exceptions.hpp**);
+  * aggregate-type documentation section labels are sentence case;
+  * **strategy/EXCEPTION_MESSAGES.md** surveys the messages, with links into the headers;
+* version:
+  * **_STLSOFT_VER** is **1.11.9** (**_STLSOFT_VER_1_11_9** = `0x010B09FF`); **test.unit.versions** asserts it. No subproject composite version changed;
 
 
 ## 1.11.8 - 10th November 2026
