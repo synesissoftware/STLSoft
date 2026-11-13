@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/algorithms.hpp
+ * File:    rangelib/algorithms.hpp
  *
- * Purpose:     Range algorithms.
+ * Purpose: Range algorithms.
  *
- * Created:     4th November 2003
- * Updated:     13th November 2026
+ * Created: 4th November 2003
+ * Updated: 13th November 2026
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
  *              Yakov Markovitch for spotting a bug in r_exists_if_1_impl().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
