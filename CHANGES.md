@@ -6,16 +6,17 @@
 * behaviour:
   * exception messages across **acestl**, **atlstl**, **comstl**, **inetstl**, **mfcstl**, **platformstl**, **rangelib**, **stlsoft**, **unixstl**, and **winstl** use the house forms: `"failed to <verb> <object>"` for runtime conditions, and a bare lowercase noun phrase (e.g. `"index out of range"`) for programmer errors. The `"Cannot …"` / `"Could not …"` / `"Failed to …"` and class-prefix qualifier forms are gone. Notable cases: **unixstl** mutex `"failed to set initialise PTHREADS mutex"` is now grammatical; **winstl** `process_module_sequence` (`"failed to enumerate process modules"`) is distinct from `pid_sequence` (`"failed to enumerate processes"`); **comstl** `variant_type_exception` no longer carries a fixed `"VARIANT type exception"` constructor message (it forwards the `HRESULT` and gains a reason-taking overload);
 * layout:
-  * wholesale canonicalisation of header-block indents;
+  * wholesale canonicalisation of header-block indents, including the version-number lines;
 * documentation:
   * **strategy/DOXYGEN_GROUPS.md** defines the Full Group Form (FGF) and Simplified Group Form (SGF) of member groups in aggregate types;
   * **.dev/bin/convert-doxy-groups.rb** converts between FGF and SGF (`--to-sgf` / `--to-fgf`, with `expansive` and `line-preserving` modes) and validates SGF group names (`--validate`, with optional `--fix`), with `--allow-sgf-triple-exemptions` for unmapped labels written as `/// Title`, and is the **Doxyfile** `INPUT_FILTER` so that Doxygen processes FGF while the source is written in SGF;
   * **.dev/config/doc/group-section-mappings.PSV** maps FGF titles to a canonical SGF name and any SGF aliases;
+  * the 1.10 Doxygen `\defgroup` catalogues are restored under **doc/src/** as `*.cxx` (**concepts**, **libraries**, **pages**, **patterns**, **principles**, **projects**, **publishing**). **Doxyfile** `FILE_PATTERNS` includes `*.cxx`. Library group ids are canonical (`group__library__FileSystem`, `group__library__Error`, `group__library__Exception`, `group__library__Iterator`, `group__library__Security`, `group__library__ToolHelp`). `\example` paths point at current **examples/** programs. An `UNC` alias keeps Windows long-path fragments from being read as commands. `\param` names match signatures;
   * programmer-error exception types carry a Doxygen note distinguishing them from a valid runtime condition (`rangelib::empty_range_exception`, `comstl::variant_type_exception`, `winstl::invalid_calling_convention_exception`, and the `wait_failed_logic_exception` derivatives in **include/winstl/synch/exceptions.hpp**);
   * aggregate-type documentation section labels are sentence case;
   * **strategy/EXCEPTION_MESSAGES.md** surveys the messages, with links into the headers;
 * testing:
-  * **.dev/test/unit/test_convert-doxy-groups.rb** covers **convert-doxy-groups.rb**;
+  * **.dev/test/unit/test_convert_doxy_groups.rb** covers **convert-doxy-groups.rb**;
 * version:
   * **_STLSOFT_VER** is **1.11.9** (**_STLSOFT_VER_1_11_9** = `0x010B09FF`); **test.unit.versions** asserts it. No subproject composite version changed;
 

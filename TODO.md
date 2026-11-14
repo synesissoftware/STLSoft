@@ -123,6 +123,10 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [x] ~~~punctuation~~~ - ✅;
   * [x] ~~~case~~~ - ✅;
   * [x] ~~~" : " clausing~~~ - ✅;
+
+
+### 1.11.10
+
 * [ ] Correct/ensure (and write coding guidelines for) test-function naming;
 * [ ] Review the relationship between **include/\*stl\*/error** and **include/\*stl\*/diagnostics**, and retain or consolidate only distinct responsibilities;
 * [ ] All precondition enforcements => \pre;
@@ -133,7 +137,8 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
 * [ ] `cbegin()` / `cend()` / `crbegin()` / `crend()` wherever missing;
 
 
-### 1.11.10
+### 1.11.11
+
 
 * [ ] Make **include/stlsoft/api/external** the lowest layer of abstraction: no `STLSOFT_API_EXTERNAL_*` alias may be implemented in terms of an `stlsoft_C_*` function (e.g. `STLSOFT_API_EXTERNAL_string_strnicmp` / `STLSOFT_API_EXTERNAL_string_wcsnicmp` currently fall back to `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`, which inverts the layering). Where the platform lacks a function, leave the alias undefined and put the portable fallback in **include/stlsoft/api/internal**, then fix the consumers (`stricmp` / `wcsicmp` have no portable fallback at all, and the `lstrcmpiA` / `lstrcmpiW` fallbacks need `<windows.h>`) - ⏸️ deferred;
 * [ ] **include/stlsoft/conversion/byte_format_functions.hpp** known / suspected issues in `format_bytes()` (unit tests landed in **test.unit.stlsoft.conversion.byte_format_functions**; none of these is pinned by a test yet):
@@ -195,10 +200,6 @@ The enumerator-comma fix, the CMake program-name generator, the secure-CRT worke
   * [ ] `winstl_C_calc_RECT_width()` and `winstl_C_calc_RECT_height()` return `right - left` and `bottom - top`, which are negative when the rectangle is inverted;
   * [ ] The C++ `treeview_getchilditem`, `treeview_getrootitem`, and `treeview_getcaretitem` call `winstl_C_treeview_getnextitem` directly, rather than the C functions of the same role;
 * [ ] bring in some essential unit-tests from internal repo;
-
-
-### 1.11.11
-
 
 
 ### 1.11.12
