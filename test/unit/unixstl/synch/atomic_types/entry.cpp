@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/synch/atomic_types.h`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_atomic_int_type_is_integral(void);
+    static void TEST_ATOMIC_int_TYPE_IS_INTEGRAL();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_atomic_int_type_is_integral);
+        XTESTS_RUN_CASE(TEST_ATOMIC_int_TYPE_IS_INTEGRAL);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_atomic_int_type_is_integral()
+static void TEST_ATOMIC_int_TYPE_IS_INTEGRAL()
 {
     static_assert(stlsoft::is_integral_type<unixstl::atomic_int_t>::value, "atomic_int_t must be integral");
     TEST_PASSED();

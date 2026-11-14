@@ -4,7 +4,7 @@
  * Purpose: Component test for `platformstl::memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,8 +39,8 @@
 
 namespace {
 
-    static void test_nonexisting_file();
-    static void test_existing_file_with_known_contents();
+    static void TEST_NONEXISTING_FILE();
+    static void TEST_EXISTING_FILE_WITH_KNOWN_CONTENTS();
 } // anonymous namespace
 
 
@@ -57,8 +57,8 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE_THAT_THROWS(test_nonexisting_file, platformstl::filesystem_exception);
-        XTESTS_RUN_CASE(test_existing_file_with_known_contents);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_NONEXISTING_FILE, platformstl::filesystem_exception);
+        XTESTS_RUN_CASE(TEST_EXISTING_FILE_WITH_KNOWN_CONTENTS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -78,7 +78,7 @@ namespace {
     using ::xtests::cpp::util::temp_file;
 
 
-static void test_nonexisting_file()
+static void TEST_NONEXISTING_FILE()
 {
     temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
 
@@ -89,7 +89,7 @@ static void test_nonexisting_file()
     STLSOFT_SUPPRESS_UNUSED(mmf);
 }
 
-static void test_existing_file_with_known_contents()
+static void TEST_EXISTING_FILE_WITH_KNOWN_CONTENTS()
 {
     stlsoft::byte_t bytes[4 * 1024];
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::CList_iadaptor`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void TEST_iadaptor_default_empty(void);
-    static void TEST_iadaptor_push_back_and_iterate(void);
-    static void TEST_iadaptor_clear(void);
+    static void TEST_IADAPTOR_DEFAULT_EMPTY();
+    static void TEST_IADAPTOR_push_back_AND_ITERATE();
+    static void TEST_IADAPTOR_CLEAR();
 } // anonymous namespace
 
 
@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_iadaptor_default_empty);
-        XTESTS_RUN_CASE(TEST_iadaptor_push_back_and_iterate);
-        XTESTS_RUN_CASE(TEST_iadaptor_clear);
+        XTESTS_RUN_CASE(TEST_IADAPTOR_DEFAULT_EMPTY);
+        XTESTS_RUN_CASE(TEST_IADAPTOR_push_back_AND_ITERATE);
+        XTESTS_RUN_CASE(TEST_IADAPTOR_CLEAR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_iadaptor_default_empty()
+static void TEST_IADAPTOR_DEFAULT_EMPTY()
 {
     CPtrList                          raw;
     mfcstl::CList_iadaptor<CPtrList>  lip(raw);
@@ -75,7 +75,7 @@ static void TEST_iadaptor_default_empty()
     TEST_INT_EQ(0, lip.size());
 }
 
-static void TEST_iadaptor_push_back_and_iterate()
+static void TEST_IADAPTOR_push_back_AND_ITERATE()
 {
     CPtrList                          raw;
     mfcstl::CList_iadaptor<CPtrList>  lip(raw);
@@ -89,7 +89,7 @@ static void TEST_iadaptor_push_back_and_iterate()
     TEST_PTR_EQ(reinterpret_cast<void*>(2), raw.GetTail());
 }
 
-static void TEST_iadaptor_clear()
+static void TEST_IADAPTOR_CLEAR()
 {
     CPtrList                          raw;
     mfcstl::CList_iadaptor<CPtrList>  lip(raw);

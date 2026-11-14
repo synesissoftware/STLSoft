@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for CWnd string-access shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void TEST_null_hwnd_window(void);
-    static void TEST_c_str_ptr_returns_empty_for_null_hwnd(void);
+    static void TEST_NULL_HWND_WINDOW();
+    static void TEST_c_str_ptr_RETURNS_EMPTY_FOR_NULL_HWND();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_null_hwnd_window);
-        XTESTS_RUN_CASE(TEST_c_str_ptr_returns_empty_for_null_hwnd);
+        XTESTS_RUN_CASE(TEST_NULL_HWND_WINDOW);
+        XTESTS_RUN_CASE(TEST_c_str_ptr_RETURNS_EMPTY_FOR_NULL_HWND);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_null_hwnd_window()
+static void TEST_NULL_HWND_WINDOW()
 {
     CWnd w;
 
@@ -73,7 +73,7 @@ static void TEST_null_hwnd_window()
     TEST_PTR_EQ(NULL, static_cast<LPCTSTR>(stlsoft::c_str_ptr_null(w)));
 }
 
-static void TEST_c_str_ptr_returns_empty_for_null_hwnd()
+static void TEST_c_str_ptr_RETURNS_EMPTY_FOR_NULL_HWND()
 {
     CWnd w;
 

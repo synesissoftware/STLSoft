@@ -3,7 +3,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-static void test_query(void);
+static void TEST_QUERY();
 
 int main(int argc, char* argv[])
 {
@@ -12,14 +12,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER("test.component.platformstl.performance.processtimes_counter", verbosity))
     {
-        XTESTS_RUN_CASE(test_query);
+        XTESTS_RUN_CASE(TEST_QUERY);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_query(void)
+static void TEST_QUERY()
 {
     platformstl::processtimes_counter pc;
 

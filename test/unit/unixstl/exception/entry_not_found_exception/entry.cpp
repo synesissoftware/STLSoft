@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/exception/entry_not_found_exception.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_carries_path(void);
+    static void TEST_CARRIES_PATH();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_carries_path);
+        XTESTS_RUN_CASE(TEST_CARRIES_PATH);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_carries_path()
+static void TEST_CARRIES_PATH()
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     unixstl::entry_not_found_exception x("/missing/entry", ENOENT);

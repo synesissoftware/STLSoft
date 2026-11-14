@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,20 +48,20 @@
 namespace {
 
     // 0 parameters
-    static void test_Kernel32_GetTickCount();
-    static void test_Kernel32_GetTickCount64();
+    static void TEST_Kernel32_GetTickCount();
+    static void TEST_Kernel32_GetTickCount64();
 
     // 1 parameter
-    static void test_Kernel32_GetSystemInfo();
+    static void TEST_Kernel32_GetSystemInfo();
 
     // 2 parameters
-    static void test_Kernel32_GetSystemDirectory();
+    static void TEST_Kernel32_GetSystemDirectory();
 
     // 3 parameters
-    static void test_GetSystemTimeAdjustmentPrecise();
+    static void TEST_GetSystemTimeAdjustmentPrecise();
 
     // 4 parameters
-    static void test_SystemParametersInfo();
+    static void TEST_SystemParametersInfo();
 } // anonymous namespace
 
 
@@ -78,16 +78,16 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.winstl.dl.dl_call", verbosity))
     {
-        XTESTS_RUN_CASE(test_Kernel32_GetTickCount);
-        XTESTS_RUN_CASE(test_Kernel32_GetTickCount64);
+        XTESTS_RUN_CASE(TEST_Kernel32_GetTickCount);
+        XTESTS_RUN_CASE(TEST_Kernel32_GetTickCount64);
 
-        XTESTS_RUN_CASE(test_Kernel32_GetSystemInfo);
+        XTESTS_RUN_CASE(TEST_Kernel32_GetSystemInfo);
 
-        XTESTS_RUN_CASE(test_Kernel32_GetSystemDirectory);
+        XTESTS_RUN_CASE(TEST_Kernel32_GetSystemDirectory);
 
-        XTESTS_RUN_CASE(test_GetSystemTimeAdjustmentPrecise);
+        XTESTS_RUN_CASE(TEST_GetSystemTimeAdjustmentPrecise);
 
-        XTESTS_RUN_CASE(test_SystemParametersInfo);
+        XTESTS_RUN_CASE(TEST_SystemParametersInfo);
 
         XTESTS_PRINT_RESULTS();
 
@@ -125,7 +125,7 @@ namespace {
 #endif
     }
 
-static void test_Kernel32_GetTickCount()
+static void TEST_Kernel32_GetTickCount()
 {
     try
     {
@@ -148,7 +148,7 @@ static void test_Kernel32_GetTickCount()
     }
 }
 
-static void test_Kernel32_GetTickCount64()
+static void TEST_Kernel32_GetTickCount64()
 {
     try
     {
@@ -171,7 +171,7 @@ static void test_Kernel32_GetTickCount64()
     }
 }
 
-static void test_Kernel32_GetSystemInfo()
+static void TEST_Kernel32_GetSystemInfo()
 {
     try
     {
@@ -190,7 +190,7 @@ static void test_Kernel32_GetSystemInfo()
     }
 }
 
-static void test_Kernel32_GetSystemDirectory()
+static void TEST_Kernel32_GetSystemDirectory()
 {
     try
     {
@@ -212,7 +212,7 @@ static void test_Kernel32_GetSystemDirectory()
     }
 }
 
-static void test_GetSystemTimeAdjustmentPrecise()
+static void TEST_GetSystemTimeAdjustmentPrecise()
 {
     try
     {
@@ -238,7 +238,7 @@ static void test_GetSystemTimeAdjustmentPrecise()
     {}
 }
 
-static void test_SystemParametersInfo()
+static void TEST_SystemParametersInfo()
 {
     try
     {

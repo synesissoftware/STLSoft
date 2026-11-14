@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `acestl::message_queue_sequence`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -33,8 +33,8 @@
 
 namespace {
 
-    static void TEST_empty_sequence(void);
-    static void TEST_copy_sequence(void);
+    static void TEST_EMPTY_SEQUENCE();
+    static void TEST_COPY_SEQUENCE();
 } // anonymous namespace
 
 
@@ -51,8 +51,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_empty_sequence);
-        XTESTS_RUN_CASE(TEST_copy_sequence);
+        XTESTS_RUN_CASE(TEST_EMPTY_SEQUENCE);
+        XTESTS_RUN_CASE(TEST_COPY_SEQUENCE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -80,7 +80,7 @@ typedef acestl::message_queue_sequence<ACE_SYNCH> sequence_type;
 
 namespace {
 
-static void TEST_empty_sequence()
+static void TEST_EMPTY_SEQUENCE()
 {
     queue_type q;
     sequence_type mqs(q);
@@ -90,7 +90,7 @@ static void TEST_empty_sequence()
     TEST_BOOLEAN_TRUE(mqs.begin() == mqs.end());
 }
 
-static void TEST_copy_sequence()
+static void TEST_COPY_SEQUENCE()
 {
     char const payload[] = "message-queue-sequence";
     queue_type q;

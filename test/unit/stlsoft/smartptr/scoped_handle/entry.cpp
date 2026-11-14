@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::scoped_handle`.
  *
  * Created: 16th October 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,19 +37,19 @@
 
 namespace {
 
-    static void test_types_exist();
+    static void TEST_TYPES_EXIST();
 
-    static void test_1_0();
+    static void TEST_1_0();
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
      __GNUC__ > 4 || \
      (   __GNUC__ == 3 && \
          __GNUC_MINOR__ > 4)
-    static void test_1_1();
-    static void test_1_2();
-    static void test_1_3();
-    static void test_1_4();
-    static void test_1_6();
-    static void test_1_10();
+    static void TEST_1_1();
+    static void TEST_1_2();
+    static void TEST_1_3();
+    static void TEST_1_4();
+    static void TEST_1_6();
+    static void TEST_1_10();
 #endif /* compiler */
 } // anonymous namespace
 
@@ -67,19 +67,19 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.smartptr.scoped_handle", verbosity))
     {
-        XTESTS_RUN_CASE(test_types_exist);
+        XTESTS_RUN_CASE(TEST_TYPES_EXIST);
 
-        XTESTS_RUN_CASE(test_1_0);
+        XTESTS_RUN_CASE(TEST_1_0);
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
      __GNUC__ > 4 || \
      (   __GNUC__ == 3 && \
          __GNUC_MINOR__ > 4)
-        XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(TEST_1_1);
+        XTESTS_RUN_CASE(TEST_1_2);
+        XTESTS_RUN_CASE(TEST_1_3);
+        XTESTS_RUN_CASE(TEST_1_4);
+        XTESTS_RUN_CASE(TEST_1_6);
+        XTESTS_RUN_CASE(TEST_1_10);
 #endif /* compiler */
 
         XTESTS_PRINT_RESULTS();
@@ -148,7 +148,7 @@ namespace {
 
 namespace {
 
-static void test_types_exist()
+static void TEST_TYPES_EXIST()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::scoped_handle<char*>));
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::scoped_handle<void>));
@@ -156,7 +156,7 @@ static void test_types_exist()
     TEST_PASSED();
 }
 
-static void test_1_0()
+static void TEST_1_0()
 {
     TEST_INT_EQ(0, s_intCount);
 
@@ -214,7 +214,7 @@ static void test_1_0()
      (   __GNUC__ == 3 && \
          __GNUC_MINOR__ > 4)
 
-static void test_1_1()
+static void TEST_1_1()
 {
     TEST_INT_EQ(0, s_doubleCount);
 
@@ -267,7 +267,7 @@ static void test_1_1()
     TEST_INT_EQ(0, s_doubleCount);
 }
 
-static void test_1_2()
+static void TEST_1_2()
 {
     TEST_INT_EQ(0, s_voidstarCount);
 
@@ -320,7 +320,7 @@ static void test_1_2()
     TEST_INT_EQ(0, s_voidstarCount);
 }
 
-static void test_1_3()
+static void TEST_1_3()
 {
     TEST_INT_EQ(0, s_personCount);
 
@@ -373,7 +373,7 @@ static void test_1_3()
     TEST_INT_EQ(0, s_personCount);
 }
 
-static void test_1_4()
+static void TEST_1_4()
 {
     TEST_INT_EQ(0, s_intCount);
 
@@ -426,7 +426,7 @@ static void test_1_4()
     TEST_INT_EQ(0, s_intCount);
 }
 
-static void test_1_6()
+static void TEST_1_6()
 {
     TEST_INT_EQ(0, s_voidCount);
 
@@ -503,7 +503,7 @@ static void test_1_6()
     TEST_INT_EQ(0, s_voidCount);
 }
 
-static void test_1_10()
+static void TEST_1_10()
 {
     TEST_INT_EQ(0, s_intCount);
 

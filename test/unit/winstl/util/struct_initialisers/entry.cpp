@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_initialisers`.
  *
  * Created: 9th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,37 +38,37 @@
 namespace {
 
     // no_init_member_type
-    static void test_FILETIME();
-    static void test_SYSTEM_INFO();
-    static void test_SYSTEMTIME();
+    static void TEST__FILETIME();
+    static void TEST__SYSTEM__INFO();
+    static void TEST__SYSTEMTIME();
 
     // cbSize_member_type
-    static void test_CONSOLE_SCREEN_BUFFER_INFOEX();
+    static void TEST__CONSOLE__SCREEN__BUFFER__INFOEX();
 
     // cb_member_type
-    static void test_STARTUPINFOW();
+    static void TEST__STARTUPINFOW();
 
     // cBytes_member_type
-    static void test_OFSTRUCT();
+    static void TEST__OFSTRUCT();
 
     // dwLength_member_type
-    static void test_MEMORYSTATUS();
+    static void TEST__MEMORYSTATUS();
 
     // dwOSVersionInfoSize_member_type
-    static void test_OSVERSIONINFOA();
-    static void test_OSVERSIONINFOEXA();
+    static void TEST__OSVERSIONINFOA();
+    static void TEST__OSVERSIONINFOEXA();
 
     // dwSize_member_type
-    static void test_COMMCONFIG();
+    static void TEST__COMMCONFIG();
 
     // nLength_member_type
-    static void test_SECURITY_ATTRIBUTES();
+    static void TEST__SECURITY__ATTRIBUTES();
 
     // uSize_member_type
-    static void test_DRAGINFOA();
+    static void TEST__DRAGINFOA();
 
     // DCBlength
-    static void test_DCB();
+    static void TEST__DCB();
 } // anonymous namespace
 
 
@@ -86,37 +86,37 @@ int main(int argc, char* argv[])
     if (XTESTS_START_RUNNER("test.unit.winstl.util.struct_initialisers", verbosity))
     {
         // no_init_member_type
-        XTESTS_RUN_CASE(test_FILETIME);
-        XTESTS_RUN_CASE(test_SYSTEM_INFO);
-        XTESTS_RUN_CASE(test_SYSTEMTIME);
+        XTESTS_RUN_CASE(TEST__FILETIME);
+        XTESTS_RUN_CASE(TEST__SYSTEM__INFO);
+        XTESTS_RUN_CASE(TEST__SYSTEMTIME);
 
         // cbSize_member_type
-        XTESTS_RUN_CASE(test_CONSOLE_SCREEN_BUFFER_INFOEX);
+        XTESTS_RUN_CASE(TEST__CONSOLE__SCREEN__BUFFER__INFOEX);
 
         // cb_member_type
-        XTESTS_RUN_CASE(test_STARTUPINFOW);
+        XTESTS_RUN_CASE(TEST__STARTUPINFOW);
 
         // cBytes_member_type
-        XTESTS_RUN_CASE(test_OFSTRUCT);
+        XTESTS_RUN_CASE(TEST__OFSTRUCT);
 
         // dwLength_member_type
-        XTESTS_RUN_CASE(test_MEMORYSTATUS);
+        XTESTS_RUN_CASE(TEST__MEMORYSTATUS);
 
         // dwOSVersionInfoSize_member_type
-        XTESTS_RUN_CASE(test_OSVERSIONINFOA);
-        XTESTS_RUN_CASE(test_OSVERSIONINFOEXA);
+        XTESTS_RUN_CASE(TEST__OSVERSIONINFOA);
+        XTESTS_RUN_CASE(TEST__OSVERSIONINFOEXA);
 
         // dwSize_member_type
-        XTESTS_RUN_CASE(test_COMMCONFIG);
+        XTESTS_RUN_CASE(TEST__COMMCONFIG);
 
         // nLength_member_type
-        XTESTS_RUN_CASE(test_SECURITY_ATTRIBUTES);
+        XTESTS_RUN_CASE(TEST__SECURITY__ATTRIBUTES);
 
         // uSize_member_type
-        XTESTS_RUN_CASE(test_DRAGINFOA);
+        XTESTS_RUN_CASE(TEST__DRAGINFOA);
 
         // DCBlength
-        XTESTS_RUN_CASE(test_DCB);
+        XTESTS_RUN_CASE(TEST__DCB);
 
         XTESTS_PRINT_RESULTS();
 
@@ -138,7 +138,7 @@ namespace {
 
 // no_init_member_type
 
-static void test_FILETIME()
+static void TEST__FILETIME()
 {
     FILETIME ft;
 
@@ -148,7 +148,7 @@ static void test_FILETIME()
     TEST_INT_EQ(0u, ft.dwHighDateTime);
 }
 
-static void test_SYSTEMTIME()
+static void TEST__SYSTEMTIME()
 {
     SYSTEMTIME st;
 
@@ -164,7 +164,7 @@ static void test_SYSTEMTIME()
     TEST_INT_EQ(0u, st.wMilliseconds);
 }
 
-static void test_SYSTEM_INFO()
+static void TEST__SYSTEM__INFO()
 {
     SYSTEM_INFO si;
 
@@ -186,7 +186,7 @@ static void test_SYSTEM_INFO()
 
 // cbSize_member_type
 
-static void test_CONSOLE_SCREEN_BUFFER_INFOEX()
+static void TEST__CONSOLE__SCREEN__BUFFER__INFOEX()
 {
     CONSOLE_SCREEN_BUFFER_INFOEX csbix;
 
@@ -211,7 +211,7 @@ static void test_CONSOLE_SCREEN_BUFFER_INFOEX()
 
 // cb_member_type
 
-static void test_STARTUPINFOW()
+static void TEST__STARTUPINFOW()
 {
     STARTUPINFOW si;
 
@@ -240,7 +240,7 @@ static void test_STARTUPINFOW()
 
 // cBytes_member_type
 
-static void test_OFSTRUCT()
+static void TEST__OFSTRUCT()
 {
     OFSTRUCT ofs;
 
@@ -259,7 +259,7 @@ static void test_OFSTRUCT()
 
 // dwLength_member_type
 
-static void test_MEMORYSTATUS()
+static void TEST__MEMORYSTATUS()
 {
     MEMORYSTATUS ms;
 
@@ -278,7 +278,7 @@ static void test_MEMORYSTATUS()
 
 // dwOSVersionInfoSize_member_type
 
-static void test_OSVERSIONINFOA()
+static void TEST__OSVERSIONINFOA()
 {
     OSVERSIONINFOA osvi;
 
@@ -294,7 +294,7 @@ static void test_OSVERSIONINFOA()
 #endif
 }
 
-static void test_OSVERSIONINFOEXA()
+static void TEST__OSVERSIONINFOEXA()
 {
     OSVERSIONINFOEXA osvix;
 
@@ -318,7 +318,7 @@ static void test_OSVERSIONINFOEXA()
 
 // dwSize_member_type
 
-static void test_COMMCONFIG()
+static void TEST__COMMCONFIG()
 {
     // NOTE: this specialisation is questionnable, since COMMCONFIG is a
     // variable-length structure
@@ -344,7 +344,7 @@ static void test_COMMCONFIG()
 
 // nLength_member_type
 
-static void test_SECURITY_ATTRIBUTES()
+static void TEST__SECURITY__ATTRIBUTES()
 {
     SECURITY_ATTRIBUTES sa;
 
@@ -358,7 +358,7 @@ static void test_SECURITY_ATTRIBUTES()
 
 // uSize_member_type
 
-static void test_DRAGINFOA()
+static void TEST__DRAGINFOA()
 {
     DRAGINFOA da;
 
@@ -376,7 +376,7 @@ static void test_DRAGINFOA()
 
 // DCBlength
 
-static void test_DCB()
+static void TEST__DCB()
 {
     DCB dcb;
 

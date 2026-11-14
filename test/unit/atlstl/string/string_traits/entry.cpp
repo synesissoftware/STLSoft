@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_traits<CComBSTR>`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -31,10 +31,10 @@
 
 namespace {
 
-    static void TEST_empty_string(void);
-    static void TEST_construct(void);
-    static void TEST_assign_inplace(void);
-    static void TEST_begin_and_end(void);
+    static void TEST_empty_string();
+    static void TEST_CONSTRUCT();
+    static void TEST_assign_inplace();
+    static void TEST_BEGIN_AND_END();
 } // anonymous namespace
 
 
@@ -52,9 +52,9 @@ int main(int argc, char* argv[])
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
         XTESTS_RUN_CASE(TEST_empty_string);
-        XTESTS_RUN_CASE(TEST_construct);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT);
         XTESTS_RUN_CASE(TEST_assign_inplace);
-        XTESTS_RUN_CASE(TEST_begin_and_end);
+        XTESTS_RUN_CASE(TEST_BEGIN_AND_END);
 
         XTESTS_PRINT_RESULTS();
 
@@ -78,7 +78,7 @@ static void TEST_empty_string()
     TEST_INT_EQ(0, s.Length());
 }
 
-static void TEST_construct()
+static void TEST_CONSTRUCT()
 {
     CComBSTR const src(L"abcdef");
     CComBSTR const sub = stlsoft::string_traits<CComBSTR>::construct(src, 2u, 3u);
@@ -98,7 +98,7 @@ static void TEST_assign_inplace()
     TEST_INT_EQ(0, ::wcscmp(L"newer", dest));
 }
 
-static void TEST_begin_and_end()
+static void TEST_BEGIN_AND_END()
 {
     CComBSTR s(L"ab");
 

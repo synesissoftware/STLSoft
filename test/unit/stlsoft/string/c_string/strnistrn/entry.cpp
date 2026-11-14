@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnistrn() and wcsnistrn().
  *
  * Created: 23rd October 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,8 +33,8 @@
 namespace
 {
 
-    static void TEST_c_string_strnistrn_n2_0();
-    static void TEST_c_string_strnistrn_n1_0();
+    static void TEST_C_STRING_STRNISTRN_N2_0();
+    static void TEST_C_STRING_STRNISTRN_N1_0();
     static void TEST_c_string_strnistrn_n2_GT_n1();
     static void TEST_c_string_strnistrn_EXACT_MATCH();
     static void TEST_c_string_strnistrn_CASE_FOLD_FULL();
@@ -48,8 +48,8 @@ namespace
     static void TEST_c_string_strnistrn_DOES_NOT_READ_PAST_n2();
     static void TEST_c_string_strnistrn_SINGLE_BYTE();
     static void TEST_c_string_strnistrn_HIGH_BIT();
-    static void TEST_c_string_wcsnistrn_n2_0();
-    static void TEST_c_string_wcsnistrn_n1_0();
+    static void TEST_C_STRING_WCSNISTRN_N2_0();
+    static void TEST_C_STRING_WCSNISTRN_N1_0();
     static void TEST_c_string_wcsnistrn_n2_GT_n1();
     static void TEST_c_string_wcsnistrn_EXACT_MATCH();
     static void TEST_c_string_wcsnistrn_CASE_FOLD_FULL();
@@ -81,8 +81,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.c_string.strnistrn", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_c_string_strnistrn_n2_0);
-        XTESTS_RUN_CASE(TEST_c_string_strnistrn_n1_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNISTRN_N2_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNISTRN_N1_0);
         XTESTS_RUN_CASE(TEST_c_string_strnistrn_n2_GT_n1);
         XTESTS_RUN_CASE(TEST_c_string_strnistrn_EXACT_MATCH);
         XTESTS_RUN_CASE(TEST_c_string_strnistrn_CASE_FOLD_FULL);
@@ -96,8 +96,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_c_string_strnistrn_DOES_NOT_READ_PAST_n2);
         XTESTS_RUN_CASE(TEST_c_string_strnistrn_SINGLE_BYTE);
         XTESTS_RUN_CASE(TEST_c_string_strnistrn_HIGH_BIT);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnistrn_n2_0);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnistrn_n1_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNISTRN_N2_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNISTRN_N1_0);
         XTESTS_RUN_CASE(TEST_c_string_wcsnistrn_n2_GT_n1);
         XTESTS_RUN_CASE(TEST_c_string_wcsnistrn_EXACT_MATCH);
         XTESTS_RUN_CASE(TEST_c_string_wcsnistrn_CASE_FOLD_FULL);
@@ -138,7 +138,7 @@ static wchar_t const* wcsnistrn_both_(wchar_t const* s1, size_t n1, wchar_t cons
     return via_wcs;
 }
 
-static void TEST_c_string_strnistrn_n2_0()
+static void TEST_C_STRING_STRNISTRN_N2_0()
 {
     char const s[] = "abc";
 
@@ -146,7 +146,7 @@ static void TEST_c_string_strnistrn_n2_0()
     TEST_PTR_EQ(s, stlsoft::c_string::strnistrn(s, 0, "xyz", 0));
 }
 
-static void TEST_c_string_strnistrn_n1_0()
+static void TEST_C_STRING_STRNISTRN_N1_0()
 {
     TEST_PTR_NULL(stlsoft::c_string::strnistrn("abc", 0, "a", 1));
 }
@@ -255,7 +255,7 @@ static void TEST_c_string_strnistrn_HIGH_BIT()
     TEST_PTR_NULL(stlsoft::c_string::strnistrn(hay, 2, other, 2));
 }
 
-static void TEST_c_string_wcsnistrn_n2_0()
+static void TEST_C_STRING_WCSNISTRN_N2_0()
 {
     wchar_t const s[] = L"abc";
 
@@ -263,7 +263,7 @@ static void TEST_c_string_wcsnistrn_n2_0()
     TEST_PTR_EQ(s, wcsnistrn_both_(s, 0, L"xyz", 0));
 }
 
-static void TEST_c_string_wcsnistrn_n1_0()
+static void TEST_C_STRING_WCSNISTRN_N1_0()
 {
     TEST_PTR_NULL(wcsnistrn_both_(L"abc", 0, L"a", 1));
 }

@@ -4,7 +4,7 @@
  * Purpose: Scratch test for GUID functions.
  *
  * Created: 12th May 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,11 +38,11 @@
  * forward declarations
  */
 
-static void test_equal(void);
-static void test_compare(void);
-static void test_binary_compare(void);
-static void test_to_string(void);
-static void test_from_string(void);
+static void TEST_EQUAL(void);
+static void TEST_COMPARE(void);
+static void TEST_BINARY_COMPARE(void);
+static void TEST_TO_STRING(void);
+static void TEST_FROM_STRING(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,11 +60,11 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.comstl.util.GUID_functions.C", verbosity))
     {
-        XTESTS_RUN_CASE(test_equal);
-        XTESTS_RUN_CASE(test_compare);
-        XTESTS_RUN_CASE(test_binary_compare);
-        XTESTS_RUN_CASE(test_to_string);
-        XTESTS_RUN_CASE(test_from_string);
+        XTESTS_RUN_CASE(TEST_EQUAL);
+        XTESTS_RUN_CASE(TEST_COMPARE);
+        XTESTS_RUN_CASE(TEST_BINARY_COMPARE);
+        XTESTS_RUN_CASE(TEST_TO_STRING);
+        XTESTS_RUN_CASE(TEST_FROM_STRING);
 
         XTESTS_PRINT_RESULTS();
 
@@ -94,20 +94,20 @@ static const GUID s_guid3 =
 #endif /* 0 */
 
 
-static void test_equal(void)
+static void TEST_EQUAL(void)
 {
     TEST_BOOLEAN_TRUE(comstl_C_GUID_equal(&IID_IUnknown, &IID_IUnknown));
     TEST_BOOLEAN_FALSE(comstl_C_GUID_equal(&GUID_NULL, &IID_IUnknown));
 }
 
-static void test_compare(void)
+static void TEST_COMPARE(void)
 {
     TEST_INT_EQ(0, comstl_C_GUID_compare(&IID_IUnknown, &IID_IUnknown, NULL));
     TEST_INT_LT(0, comstl_C_GUID_compare(&GUID_NULL, &IID_IUnknown, NULL));
     TEST_INT_GT(0, comstl_C_GUID_compare(&IID_IUnknown, &GUID_NULL, NULL));
 }
 
-static void test_binary_compare(void)
+static void TEST_BINARY_COMPARE(void)
 {
 #if defined(PLATFORMSTL_ARCH_IS_X86) || \
     defined(PLATFORMSTL_ARCH_IS_X64)
@@ -119,7 +119,7 @@ static void test_binary_compare(void)
 #endif
 }
 
-static void test_to_string(void)
+static void TEST_TO_STRING(void)
 {
     wchar_t ws1[39];
     char    mbs1[39];
@@ -135,7 +135,7 @@ static void test_to_string(void)
 
 }
 
-static void test_from_string(void)
+static void TEST_FROM_STRING(void)
 {
     GUID    guid1;
     GUID    guid2;

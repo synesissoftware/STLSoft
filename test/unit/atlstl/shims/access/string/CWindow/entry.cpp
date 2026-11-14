@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `CWindow` (NULL HWND).
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -31,9 +31,9 @@
 
 namespace {
 
-    static void TEST_calls_possible_with_null_hwnd(void);
-    static void TEST_empty_window_text(void);
-    static void TEST_proxy_equality_operators(void);
+    static void TEST_CALLS_POSSIBLE_WITH_NULL_HWND();
+    static void TEST_EMPTY_WINDOW_TEXT();
+    static void TEST_PROXY_EQUALITY_OPERATORS();
 } // anonymous namespace
 
 
@@ -50,9 +50,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_calls_possible_with_null_hwnd);
-        XTESTS_RUN_CASE(TEST_empty_window_text);
-        XTESTS_RUN_CASE(TEST_proxy_equality_operators);
+        XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE_WITH_NULL_HWND);
+        XTESTS_RUN_CASE(TEST_EMPTY_WINDOW_TEXT);
+        XTESTS_RUN_CASE(TEST_PROXY_EQUALITY_OPERATORS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_calls_possible_with_null_hwnd()
+static void TEST_CALLS_POSSIBLE_WITH_NULL_HWND()
 {
     CWindow w;
 
@@ -83,7 +83,7 @@ static void TEST_calls_possible_with_null_hwnd()
     TEST_PASSED();
 }
 
-static void TEST_empty_window_text()
+static void TEST_EMPTY_WINDOW_TEXT()
 {
     CWindow w;
 
@@ -101,7 +101,7 @@ static void TEST_empty_window_text()
 #endif /* UNICODE */
 }
 
-static void TEST_proxy_equality_operators()
+static void TEST_PROXY_EQUALITY_OPERATORS()
 {
     CWindow w;
 

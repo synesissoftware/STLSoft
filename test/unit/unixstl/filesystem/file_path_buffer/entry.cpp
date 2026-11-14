@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/filesystem/file_path_buffer.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,7 +30,7 @@
 
 namespace {
 
-    static void test_file_path_buffer(void);
+    static void TEST_FILE_PATH_BUFFER();
 } // anonymous namespace
 
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_file_path_buffer);
+        XTESTS_RUN_CASE(TEST_FILE_PATH_BUFFER);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_file_path_buffer()
+static void TEST_FILE_PATH_BUFFER()
 {
 #if defined(__GNUC__)
 # pragma GCC diagnostic push

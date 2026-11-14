@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/exception/invalid_file_type_exception.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_invalid_file_type(void);
+    static void TEST_INVALID_FILE_TYPE();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_invalid_file_type);
+        XTESTS_RUN_CASE(TEST_INVALID_FILE_TYPE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_invalid_file_type()
+static void TEST_INVALID_FILE_TYPE()
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     unixstl::invalid_file_type_exception x("/file", EINVAL);

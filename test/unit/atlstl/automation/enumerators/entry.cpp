@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `atlstl::copy_enumerator`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -32,10 +32,10 @@
 
 namespace {
 
-    static void TEST_init_and_size(void);
-    static void TEST_next_and_reset(void);
-    static void TEST_clone(void);
-    static void TEST_next_null_pointer(void);
+    static void TEST_Init_AND_SIZE();
+    static void TEST_Next_AND_Reset();
+    static void TEST_Clone();
+    static void TEST_Next_NULL_POINTER();
 } // anonymous namespace
 
 
@@ -52,10 +52,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_init_and_size);
-        XTESTS_RUN_CASE(TEST_next_and_reset);
-        XTESTS_RUN_CASE(TEST_clone);
-        XTESTS_RUN_CASE(TEST_next_null_pointer);
+        XTESTS_RUN_CASE(TEST_Init_AND_SIZE);
+        XTESTS_RUN_CASE(TEST_Next_AND_Reset);
+        XTESTS_RUN_CASE(TEST_Clone);
+        XTESTS_RUN_CASE(TEST_Next_NULL_POINTER);
 
         XTESTS_PRINT_RESULTS();
 
@@ -88,7 +88,7 @@ typedef atlstl::copy_enumerator<
 
 namespace {
 
-static void TEST_init_and_size()
+static void TEST_Init_AND_SIZE()
 {
     CComObject<string_enumerator_t>* pEnum = NULL;
 
@@ -102,7 +102,7 @@ static void TEST_init_and_size()
     TEST_INT_EQ(3u, spEnum->size());
 }
 
-static void TEST_next_and_reset()
+static void TEST_Next_AND_Reset()
 {
     CComObject<string_enumerator_t>* pEnum = NULL;
 
@@ -137,7 +137,7 @@ static void TEST_next_and_reset()
     ::SysFreeString(rgelt[2]);
 }
 
-static void TEST_clone()
+static void TEST_Clone()
 {
     CComObject<string_enumerator_t>* pEnum = NULL;
 
@@ -163,7 +163,7 @@ static void TEST_clone()
     ::SysFreeString(rgelt);
 }
 
-static void TEST_next_null_pointer()
+static void TEST_Next_NULL_POINTER()
 {
     CComObject<string_enumerator_t>* pEnum = NULL;
 

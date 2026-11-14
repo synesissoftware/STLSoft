@@ -4,7 +4,7 @@
  * Purpose: Unit-test
  *
  * Created: 11th August 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,187 +44,187 @@
 namespace {
 
     // LF-only
-    static void test_1_0();
-    static void test_1_1();
-    static void test_1_2();
-    static void test_1_3();
-    static void test_1_4();
-    static void test_1_5();
-    static void test_1_6();
-    static void test_1_7();
-    static void test_1_8();
-    static void test_1_9();
-    static void test_1_10();
+    static void TEST_1_0();
+    static void TEST_1_1();
+    static void TEST_1_2();
+    static void TEST_1_3();
+    static void TEST_1_4();
+    static void TEST_1_5();
+    static void TEST_1_6();
+    static void TEST_1_7();
+    static void TEST_1_8();
+    static void TEST_1_9();
+    static void TEST_1_10();
 
     // CR-only
-    static void test_2_0();
-    static void test_2_1();
-    static void test_2_2();
-    static void test_2_3();
-    static void test_2_4();
-    static void test_2_5();
-    static void test_2_6();
-    static void test_2_7();
-    static void test_2_8();
-    static void test_2_9();
-    static void test_2_10();
+    static void TEST_2_0();
+    static void TEST_2_1();
+    static void TEST_2_2();
+    static void TEST_2_3();
+    static void TEST_2_4();
+    static void TEST_2_5();
+    static void TEST_2_6();
+    static void TEST_2_7();
+    static void TEST_2_8();
+    static void TEST_2_9();
+    static void TEST_2_10();
 
     // CRLF-only
-    static void test_3_0();
-    static void test_3_1();
-    static void test_3_2();
-    static void test_3_3();
-    static void test_3_4();
-    static void test_3_5();
-    static void test_3_6();
-    static void test_3_7();
-    static void test_3_8();
-    static void test_3_9();
-    static void test_3_10();
+    static void TEST_3_0();
+    static void TEST_3_1();
+    static void TEST_3_2();
+    static void TEST_3_3();
+    static void TEST_3_4();
+    static void TEST_3_5();
+    static void TEST_3_6();
+    static void TEST_3_7();
+    static void TEST_3_8();
+    static void TEST_3_9();
+    static void TEST_3_10();
 
     // LF or CR (but not CRLF)
-    static void test_4_0();
-    static void test_4_1();
-    static void test_4_2();
-    static void test_4_3();
-    static void test_4_4();
-    static void test_4_5();
-    static void test_4_6();
-    static void test_4_7();
-    static void test_4_8();
-    static void test_4_9();
-    static void test_4_10();
+    static void TEST_4_0();
+    static void TEST_4_1();
+    static void TEST_4_2();
+    static void TEST_4_3();
+    static void TEST_4_4();
+    static void TEST_4_5();
+    static void TEST_4_6();
+    static void TEST_4_7();
+    static void TEST_4_8();
+    static void TEST_4_9();
+    static void TEST_4_10();
 
     // LF or CRLF
-    static void test_5_0();
-    static void test_5_1();
-    static void test_5_2();
-    static void test_5_3();
-    static void test_5_4();
-    static void test_5_5();
-    static void test_5_6();
-    static void test_5_7();
-    static void test_5_8();
-    static void test_5_9();
-    static void test_5_10();
+    static void TEST_5_0();
+    static void TEST_5_1();
+    static void TEST_5_2();
+    static void TEST_5_3();
+    static void TEST_5_4();
+    static void TEST_5_5();
+    static void TEST_5_6();
+    static void TEST_5_7();
+    static void TEST_5_8();
+    static void TEST_5_9();
+    static void TEST_5_10();
 
     // CR or CRLF
-    static void test_6_0();
-    static void test_6_1();
-    static void test_6_2();
-    static void test_6_3();
-    static void test_6_4();
-    static void test_6_5();
-    static void test_6_6();
-    static void test_6_7();
-    static void test_6_8();
-    static void test_6_9();
-    static void test_6_10();
+    static void TEST_6_0();
+    static void TEST_6_1();
+    static void TEST_6_2();
+    static void TEST_6_3();
+    static void TEST_6_4();
+    static void TEST_6_5();
+    static void TEST_6_6();
+    static void TEST_6_7();
+    static void TEST_6_8();
+    static void TEST_6_9();
+    static void TEST_6_10();
 
     // 0 === (LF or CR or CRLF)
-    static void test_7_0();
-    static void test_7_1();
-    static void test_7_2();
-    static void test_7_3();
-    static void test_7_4();
-    static void test_7_5();
-    static void test_7_6();
-    static void test_7_7();
-    static void test_7_8();
-    static void test_7_9();
-    static void test_7_10();
+    static void TEST_7_0();
+    static void TEST_7_1();
+    static void TEST_7_2();
+    static void TEST_7_3();
+    static void TEST_7_4();
+    static void TEST_7_5();
+    static void TEST_7_6();
+    static void TEST_7_7();
+    static void TEST_7_8();
+    static void TEST_7_9();
+    static void TEST_7_10();
 
 
     // LF-only
-    static void test_8_0();
-    static void test_8_1();
-    static void test_8_2();
-    static void test_8_3();
-    static void test_8_4();
-    static void test_8_5();
-    static void test_8_6();
-    static void test_8_7();
-    static void test_8_8();
-    static void test_8_9();
-    static void test_8_10();
+    static void TEST_8_0();
+    static void TEST_8_1();
+    static void TEST_8_2();
+    static void TEST_8_3();
+    static void TEST_8_4();
+    static void TEST_8_5();
+    static void TEST_8_6();
+    static void TEST_8_7();
+    static void TEST_8_8();
+    static void TEST_8_9();
+    static void TEST_8_10();
 
     // CR-only
-    static void test_9_0();
-    static void test_9_1();
-    static void test_9_2();
-    static void test_9_3();
-    static void test_9_4();
-    static void test_9_5();
-    static void test_9_6();
-    static void test_9_7();
-    static void test_9_8();
-    static void test_9_9();
-    static void test_9_10();
+    static void TEST_9_0();
+    static void TEST_9_1();
+    static void TEST_9_2();
+    static void TEST_9_3();
+    static void TEST_9_4();
+    static void TEST_9_5();
+    static void TEST_9_6();
+    static void TEST_9_7();
+    static void TEST_9_8();
+    static void TEST_9_9();
+    static void TEST_9_10();
 
     // CRLF-only
-    static void test_10_0();
-    static void test_10_1();
-    static void test_10_2();
-    static void test_10_3();
-    static void test_10_4();
-    static void test_10_5();
-    static void test_10_6();
-    static void test_10_7();
-    static void test_10_8();
-    static void test_10_9();
-    static void test_10_10();
+    static void TEST_10_0();
+    static void TEST_10_1();
+    static void TEST_10_2();
+    static void TEST_10_3();
+    static void TEST_10_4();
+    static void TEST_10_5();
+    static void TEST_10_6();
+    static void TEST_10_7();
+    static void TEST_10_8();
+    static void TEST_10_9();
+    static void TEST_10_10();
 
     // LF or CR (but not CRLF)
-    static void test_11_0();
-    static void test_11_1();
-    static void test_11_2();
-    static void test_11_3();
-    static void test_11_4();
-    static void test_11_5();
-    static void test_11_6();
-    static void test_11_7();
-    static void test_11_8();
-    static void test_11_9();
-    static void test_11_10();
+    static void TEST_11_0();
+    static void TEST_11_1();
+    static void TEST_11_2();
+    static void TEST_11_3();
+    static void TEST_11_4();
+    static void TEST_11_5();
+    static void TEST_11_6();
+    static void TEST_11_7();
+    static void TEST_11_8();
+    static void TEST_11_9();
+    static void TEST_11_10();
 
     // LF or CRLF
-    static void test_12_0();
-    static void test_12_1();
-    static void test_12_2();
-    static void test_12_3();
-    static void test_12_4();
-    static void test_12_5();
-    static void test_12_6();
-    static void test_12_7();
-    static void test_12_8();
-    static void test_12_9();
-    static void test_12_10();
+    static void TEST_12_0();
+    static void TEST_12_1();
+    static void TEST_12_2();
+    static void TEST_12_3();
+    static void TEST_12_4();
+    static void TEST_12_5();
+    static void TEST_12_6();
+    static void TEST_12_7();
+    static void TEST_12_8();
+    static void TEST_12_9();
+    static void TEST_12_10();
 
     // CR or CRLF
-    static void test_13_0();
-    static void test_13_1();
-    static void test_13_2();
-    static void test_13_3();
-    static void test_13_4();
-    static void test_13_5();
-    static void test_13_6();
-    static void test_13_7();
-    static void test_13_8();
-    static void test_13_9();
-    static void test_13_10();
+    static void TEST_13_0();
+    static void TEST_13_1();
+    static void TEST_13_2();
+    static void TEST_13_3();
+    static void TEST_13_4();
+    static void TEST_13_5();
+    static void TEST_13_6();
+    static void TEST_13_7();
+    static void TEST_13_8();
+    static void TEST_13_9();
+    static void TEST_13_10();
 
     // 0 === (LF or CR or CRLF)
-    static void test_14_0();
-    static void test_14_1();
-    static void test_14_2();
-    static void test_14_3();
-    static void test_14_4();
-    static void test_14_5();
-    static void test_14_6();
-    static void test_14_7();
-    static void test_14_8();
-    static void test_14_9();
-    static void test_14_10();
+    static void TEST_14_0();
+    static void TEST_14_1();
+    static void TEST_14_2();
+    static void TEST_14_3();
+    static void TEST_14_4();
+    static void TEST_14_5();
+    static void TEST_14_6();
+    static void TEST_14_7();
+    static void TEST_14_8();
+    static void TEST_14_9();
+    static void TEST_14_10();
 } // anonymous namespace
 
 
@@ -241,173 +241,173 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.filesystem.io_functions.read_line", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(TEST_1_0);
+        XTESTS_RUN_CASE(TEST_1_1);
+        XTESTS_RUN_CASE(TEST_1_2);
+        XTESTS_RUN_CASE(TEST_1_3);
+        XTESTS_RUN_CASE(TEST_1_4);
+        XTESTS_RUN_CASE(TEST_1_5);
+        XTESTS_RUN_CASE(TEST_1_6);
+        XTESTS_RUN_CASE(TEST_1_7);
+        XTESTS_RUN_CASE(TEST_1_8);
+        XTESTS_RUN_CASE(TEST_1_9);
+        XTESTS_RUN_CASE(TEST_1_10);
 
-        XTESTS_RUN_CASE(test_2_0);
-        XTESTS_RUN_CASE(test_2_1);
-        XTESTS_RUN_CASE(test_2_2);
-        XTESTS_RUN_CASE(test_2_3);
-        XTESTS_RUN_CASE(test_2_4);
-        XTESTS_RUN_CASE(test_2_5);
-        XTESTS_RUN_CASE(test_2_6);
-        XTESTS_RUN_CASE(test_2_7);
-        XTESTS_RUN_CASE(test_2_8);
-        XTESTS_RUN_CASE(test_2_9);
-        XTESTS_RUN_CASE(test_2_10);
+        XTESTS_RUN_CASE(TEST_2_0);
+        XTESTS_RUN_CASE(TEST_2_1);
+        XTESTS_RUN_CASE(TEST_2_2);
+        XTESTS_RUN_CASE(TEST_2_3);
+        XTESTS_RUN_CASE(TEST_2_4);
+        XTESTS_RUN_CASE(TEST_2_5);
+        XTESTS_RUN_CASE(TEST_2_6);
+        XTESTS_RUN_CASE(TEST_2_7);
+        XTESTS_RUN_CASE(TEST_2_8);
+        XTESTS_RUN_CASE(TEST_2_9);
+        XTESTS_RUN_CASE(TEST_2_10);
 
-        XTESTS_RUN_CASE(test_3_0);
-        XTESTS_RUN_CASE(test_3_1);
-        XTESTS_RUN_CASE(test_3_2);
-        XTESTS_RUN_CASE(test_3_3);
-        XTESTS_RUN_CASE(test_3_4);
-        XTESTS_RUN_CASE(test_3_5);
-        XTESTS_RUN_CASE(test_3_6);
-        XTESTS_RUN_CASE(test_3_7);
-        XTESTS_RUN_CASE(test_3_8);
-        XTESTS_RUN_CASE(test_3_9);
-        XTESTS_RUN_CASE(test_3_10);
+        XTESTS_RUN_CASE(TEST_3_0);
+        XTESTS_RUN_CASE(TEST_3_1);
+        XTESTS_RUN_CASE(TEST_3_2);
+        XTESTS_RUN_CASE(TEST_3_3);
+        XTESTS_RUN_CASE(TEST_3_4);
+        XTESTS_RUN_CASE(TEST_3_5);
+        XTESTS_RUN_CASE(TEST_3_6);
+        XTESTS_RUN_CASE(TEST_3_7);
+        XTESTS_RUN_CASE(TEST_3_8);
+        XTESTS_RUN_CASE(TEST_3_9);
+        XTESTS_RUN_CASE(TEST_3_10);
 
-        XTESTS_RUN_CASE(test_4_0);
-        XTESTS_RUN_CASE(test_4_1);
-        XTESTS_RUN_CASE(test_4_2);
-        XTESTS_RUN_CASE(test_4_3);
-        XTESTS_RUN_CASE(test_4_4);
-        XTESTS_RUN_CASE(test_4_5);
-        XTESTS_RUN_CASE(test_4_6);
-        XTESTS_RUN_CASE(test_4_7);
-        XTESTS_RUN_CASE(test_4_8);
-        XTESTS_RUN_CASE(test_4_9);
-        XTESTS_RUN_CASE(test_4_10);
+        XTESTS_RUN_CASE(TEST_4_0);
+        XTESTS_RUN_CASE(TEST_4_1);
+        XTESTS_RUN_CASE(TEST_4_2);
+        XTESTS_RUN_CASE(TEST_4_3);
+        XTESTS_RUN_CASE(TEST_4_4);
+        XTESTS_RUN_CASE(TEST_4_5);
+        XTESTS_RUN_CASE(TEST_4_6);
+        XTESTS_RUN_CASE(TEST_4_7);
+        XTESTS_RUN_CASE(TEST_4_8);
+        XTESTS_RUN_CASE(TEST_4_9);
+        XTESTS_RUN_CASE(TEST_4_10);
 
-        XTESTS_RUN_CASE(test_5_0);
-        XTESTS_RUN_CASE(test_5_1);
-        XTESTS_RUN_CASE(test_5_2);
-        XTESTS_RUN_CASE(test_5_3);
-        XTESTS_RUN_CASE(test_5_4);
-        XTESTS_RUN_CASE(test_5_5);
-        XTESTS_RUN_CASE(test_5_6);
-        XTESTS_RUN_CASE(test_5_7);
-        XTESTS_RUN_CASE(test_5_8);
-        XTESTS_RUN_CASE(test_5_9);
-        XTESTS_RUN_CASE(test_5_10);
+        XTESTS_RUN_CASE(TEST_5_0);
+        XTESTS_RUN_CASE(TEST_5_1);
+        XTESTS_RUN_CASE(TEST_5_2);
+        XTESTS_RUN_CASE(TEST_5_3);
+        XTESTS_RUN_CASE(TEST_5_4);
+        XTESTS_RUN_CASE(TEST_5_5);
+        XTESTS_RUN_CASE(TEST_5_6);
+        XTESTS_RUN_CASE(TEST_5_7);
+        XTESTS_RUN_CASE(TEST_5_8);
+        XTESTS_RUN_CASE(TEST_5_9);
+        XTESTS_RUN_CASE(TEST_5_10);
 
-        XTESTS_RUN_CASE(test_6_0);
-        XTESTS_RUN_CASE(test_6_1);
-        XTESTS_RUN_CASE(test_6_2);
-        XTESTS_RUN_CASE(test_6_3);
-        XTESTS_RUN_CASE(test_6_4);
-        XTESTS_RUN_CASE(test_6_5);
-        XTESTS_RUN_CASE(test_6_6);
-        XTESTS_RUN_CASE(test_6_7);
-        XTESTS_RUN_CASE(test_6_8);
-        XTESTS_RUN_CASE(test_6_9);
-        XTESTS_RUN_CASE(test_6_10);
+        XTESTS_RUN_CASE(TEST_6_0);
+        XTESTS_RUN_CASE(TEST_6_1);
+        XTESTS_RUN_CASE(TEST_6_2);
+        XTESTS_RUN_CASE(TEST_6_3);
+        XTESTS_RUN_CASE(TEST_6_4);
+        XTESTS_RUN_CASE(TEST_6_5);
+        XTESTS_RUN_CASE(TEST_6_6);
+        XTESTS_RUN_CASE(TEST_6_7);
+        XTESTS_RUN_CASE(TEST_6_8);
+        XTESTS_RUN_CASE(TEST_6_9);
+        XTESTS_RUN_CASE(TEST_6_10);
 
-        XTESTS_RUN_CASE(test_7_0);
-        XTESTS_RUN_CASE(test_7_1);
-        XTESTS_RUN_CASE(test_7_2);
-        XTESTS_RUN_CASE(test_7_3);
-        XTESTS_RUN_CASE(test_7_4);
-        XTESTS_RUN_CASE(test_7_5);
-        XTESTS_RUN_CASE(test_7_6);
-        XTESTS_RUN_CASE(test_7_7);
-        XTESTS_RUN_CASE(test_7_8);
-        XTESTS_RUN_CASE(test_7_9);
-        XTESTS_RUN_CASE(test_7_10);
+        XTESTS_RUN_CASE(TEST_7_0);
+        XTESTS_RUN_CASE(TEST_7_1);
+        XTESTS_RUN_CASE(TEST_7_2);
+        XTESTS_RUN_CASE(TEST_7_3);
+        XTESTS_RUN_CASE(TEST_7_4);
+        XTESTS_RUN_CASE(TEST_7_5);
+        XTESTS_RUN_CASE(TEST_7_6);
+        XTESTS_RUN_CASE(TEST_7_7);
+        XTESTS_RUN_CASE(TEST_7_8);
+        XTESTS_RUN_CASE(TEST_7_9);
+        XTESTS_RUN_CASE(TEST_7_10);
 
-        XTESTS_RUN_CASE(test_8_0);
-        XTESTS_RUN_CASE(test_8_1);
-        XTESTS_RUN_CASE(test_8_2);
-        XTESTS_RUN_CASE(test_8_3);
-        XTESTS_RUN_CASE(test_8_4);
-        XTESTS_RUN_CASE(test_8_5);
-        XTESTS_RUN_CASE(test_8_6);
-        XTESTS_RUN_CASE(test_8_7);
-        XTESTS_RUN_CASE(test_8_8);
-        XTESTS_RUN_CASE(test_8_9);
-        XTESTS_RUN_CASE(test_8_10);
+        XTESTS_RUN_CASE(TEST_8_0);
+        XTESTS_RUN_CASE(TEST_8_1);
+        XTESTS_RUN_CASE(TEST_8_2);
+        XTESTS_RUN_CASE(TEST_8_3);
+        XTESTS_RUN_CASE(TEST_8_4);
+        XTESTS_RUN_CASE(TEST_8_5);
+        XTESTS_RUN_CASE(TEST_8_6);
+        XTESTS_RUN_CASE(TEST_8_7);
+        XTESTS_RUN_CASE(TEST_8_8);
+        XTESTS_RUN_CASE(TEST_8_9);
+        XTESTS_RUN_CASE(TEST_8_10);
 
-        XTESTS_RUN_CASE(test_9_0);
-        XTESTS_RUN_CASE(test_9_1);
-        XTESTS_RUN_CASE(test_9_2);
-        XTESTS_RUN_CASE(test_9_3);
-        XTESTS_RUN_CASE(test_9_4);
-        XTESTS_RUN_CASE(test_9_5);
-        XTESTS_RUN_CASE(test_9_6);
-        XTESTS_RUN_CASE(test_9_7);
-        XTESTS_RUN_CASE(test_9_8);
-        XTESTS_RUN_CASE(test_9_9);
-        XTESTS_RUN_CASE(test_9_10);
+        XTESTS_RUN_CASE(TEST_9_0);
+        XTESTS_RUN_CASE(TEST_9_1);
+        XTESTS_RUN_CASE(TEST_9_2);
+        XTESTS_RUN_CASE(TEST_9_3);
+        XTESTS_RUN_CASE(TEST_9_4);
+        XTESTS_RUN_CASE(TEST_9_5);
+        XTESTS_RUN_CASE(TEST_9_6);
+        XTESTS_RUN_CASE(TEST_9_7);
+        XTESTS_RUN_CASE(TEST_9_8);
+        XTESTS_RUN_CASE(TEST_9_9);
+        XTESTS_RUN_CASE(TEST_9_10);
 
-        XTESTS_RUN_CASE(test_10_0);
-        XTESTS_RUN_CASE(test_10_1);
-        XTESTS_RUN_CASE(test_10_2);
-        XTESTS_RUN_CASE(test_10_3);
-        XTESTS_RUN_CASE(test_10_4);
-        XTESTS_RUN_CASE(test_10_5);
-        XTESTS_RUN_CASE(test_10_6);
-        XTESTS_RUN_CASE(test_10_7);
-        XTESTS_RUN_CASE(test_10_8);
-        XTESTS_RUN_CASE(test_10_9);
-        XTESTS_RUN_CASE(test_10_10);
+        XTESTS_RUN_CASE(TEST_10_0);
+        XTESTS_RUN_CASE(TEST_10_1);
+        XTESTS_RUN_CASE(TEST_10_2);
+        XTESTS_RUN_CASE(TEST_10_3);
+        XTESTS_RUN_CASE(TEST_10_4);
+        XTESTS_RUN_CASE(TEST_10_5);
+        XTESTS_RUN_CASE(TEST_10_6);
+        XTESTS_RUN_CASE(TEST_10_7);
+        XTESTS_RUN_CASE(TEST_10_8);
+        XTESTS_RUN_CASE(TEST_10_9);
+        XTESTS_RUN_CASE(TEST_10_10);
 
-        XTESTS_RUN_CASE(test_11_0);
-        XTESTS_RUN_CASE(test_11_1);
-        XTESTS_RUN_CASE(test_11_2);
-        XTESTS_RUN_CASE(test_11_3);
-        XTESTS_RUN_CASE(test_11_4);
-        XTESTS_RUN_CASE(test_11_5);
-        XTESTS_RUN_CASE(test_11_6);
-        XTESTS_RUN_CASE(test_11_7);
-        XTESTS_RUN_CASE(test_11_8);
-        XTESTS_RUN_CASE(test_11_9);
-        XTESTS_RUN_CASE(test_11_10);
+        XTESTS_RUN_CASE(TEST_11_0);
+        XTESTS_RUN_CASE(TEST_11_1);
+        XTESTS_RUN_CASE(TEST_11_2);
+        XTESTS_RUN_CASE(TEST_11_3);
+        XTESTS_RUN_CASE(TEST_11_4);
+        XTESTS_RUN_CASE(TEST_11_5);
+        XTESTS_RUN_CASE(TEST_11_6);
+        XTESTS_RUN_CASE(TEST_11_7);
+        XTESTS_RUN_CASE(TEST_11_8);
+        XTESTS_RUN_CASE(TEST_11_9);
+        XTESTS_RUN_CASE(TEST_11_10);
 
-        XTESTS_RUN_CASE(test_12_0);
-        XTESTS_RUN_CASE(test_12_1);
-        XTESTS_RUN_CASE(test_12_2);
-        XTESTS_RUN_CASE(test_12_3);
-        XTESTS_RUN_CASE(test_12_4);
-        XTESTS_RUN_CASE(test_12_5);
-        XTESTS_RUN_CASE(test_12_6);
-        XTESTS_RUN_CASE(test_12_7);
-        XTESTS_RUN_CASE(test_12_8);
-        XTESTS_RUN_CASE(test_12_9);
-        XTESTS_RUN_CASE(test_12_10);
+        XTESTS_RUN_CASE(TEST_12_0);
+        XTESTS_RUN_CASE(TEST_12_1);
+        XTESTS_RUN_CASE(TEST_12_2);
+        XTESTS_RUN_CASE(TEST_12_3);
+        XTESTS_RUN_CASE(TEST_12_4);
+        XTESTS_RUN_CASE(TEST_12_5);
+        XTESTS_RUN_CASE(TEST_12_6);
+        XTESTS_RUN_CASE(TEST_12_7);
+        XTESTS_RUN_CASE(TEST_12_8);
+        XTESTS_RUN_CASE(TEST_12_9);
+        XTESTS_RUN_CASE(TEST_12_10);
 
-        XTESTS_RUN_CASE(test_13_0);
-        XTESTS_RUN_CASE(test_13_1);
-        XTESTS_RUN_CASE(test_13_2);
-        XTESTS_RUN_CASE(test_13_3);
-        XTESTS_RUN_CASE(test_13_4);
-        XTESTS_RUN_CASE(test_13_5);
-        XTESTS_RUN_CASE(test_13_6);
-        XTESTS_RUN_CASE(test_13_7);
-        XTESTS_RUN_CASE(test_13_8);
-        XTESTS_RUN_CASE(test_13_9);
-        XTESTS_RUN_CASE(test_13_10);
+        XTESTS_RUN_CASE(TEST_13_0);
+        XTESTS_RUN_CASE(TEST_13_1);
+        XTESTS_RUN_CASE(TEST_13_2);
+        XTESTS_RUN_CASE(TEST_13_3);
+        XTESTS_RUN_CASE(TEST_13_4);
+        XTESTS_RUN_CASE(TEST_13_5);
+        XTESTS_RUN_CASE(TEST_13_6);
+        XTESTS_RUN_CASE(TEST_13_7);
+        XTESTS_RUN_CASE(TEST_13_8);
+        XTESTS_RUN_CASE(TEST_13_9);
+        XTESTS_RUN_CASE(TEST_13_10);
 
-        XTESTS_RUN_CASE(test_14_0);
-        XTESTS_RUN_CASE(test_14_1);
-        XTESTS_RUN_CASE(test_14_2);
-        XTESTS_RUN_CASE(test_14_3);
-        XTESTS_RUN_CASE(test_14_4);
-        XTESTS_RUN_CASE(test_14_5);
-        XTESTS_RUN_CASE(test_14_6);
-        XTESTS_RUN_CASE(test_14_7);
-        XTESTS_RUN_CASE(test_14_8);
-        XTESTS_RUN_CASE(test_14_9);
-        XTESTS_RUN_CASE(test_14_10);
+        XTESTS_RUN_CASE(TEST_14_0);
+        XTESTS_RUN_CASE(TEST_14_1);
+        XTESTS_RUN_CASE(TEST_14_2);
+        XTESTS_RUN_CASE(TEST_14_3);
+        XTESTS_RUN_CASE(TEST_14_4);
+        XTESTS_RUN_CASE(TEST_14_5);
+        XTESTS_RUN_CASE(TEST_14_6);
+        XTESTS_RUN_CASE(TEST_14_7);
+        XTESTS_RUN_CASE(TEST_14_8);
+        XTESTS_RUN_CASE(TEST_14_9);
+        XTESTS_RUN_CASE(TEST_14_10);
 
         XTESTS_PRINT_RESULTS();
 
@@ -447,7 +447,7 @@ namespace {
     }
 
 
-static void test_1_0()
+static void TEST_1_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -457,7 +457,7 @@ static void test_1_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_1()
+static void TEST_1_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -471,7 +471,7 @@ static void test_1_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_2()
+static void TEST_1_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -485,7 +485,7 @@ static void test_1_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_3()
+static void TEST_1_3()
 {
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
@@ -499,7 +499,7 @@ static void test_1_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_4()
+static void TEST_1_4()
 {
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
@@ -513,7 +513,7 @@ static void test_1_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_5()
+static void TEST_1_5()
 {
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
@@ -527,7 +527,7 @@ static void test_1_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_6()
+static void TEST_1_6()
 {
     read_from_char_buffer   policy("\r\r\r\n", -1);
     std::string             line0;
@@ -541,7 +541,7 @@ static void test_1_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_7()
+static void TEST_1_7()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -555,7 +555,7 @@ static void test_1_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_8()
+static void TEST_1_8()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -573,7 +573,7 @@ static void test_1_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_9()
+static void TEST_1_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -615,7 +615,7 @@ static void test_1_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_1_10()
+static void TEST_1_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -637,7 +637,7 @@ static void test_1_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_0()
+static void TEST_2_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -647,7 +647,7 @@ static void test_2_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_1()
+static void TEST_2_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -661,7 +661,7 @@ static void test_2_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_2()
+static void TEST_2_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -675,7 +675,7 @@ static void test_2_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_3()
+static void TEST_2_3()
 {
     read_from_char_buffer   policy("\r", -1);
     std::string             line0;
@@ -689,7 +689,7 @@ static void test_2_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_4()
+static void TEST_2_4()
 {
     read_from_char_buffer   policy("\n\r", -1);
     std::string             line0;
@@ -703,7 +703,7 @@ static void test_2_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_5()
+static void TEST_2_5()
 {
     read_from_char_buffer   policy("\n\n\r", -1);
     std::string             line0;
@@ -717,7 +717,7 @@ static void test_2_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_6()
+static void TEST_2_6()
 {
     read_from_char_buffer   policy("\n\n\n\r", -1);
     std::string             line0;
@@ -731,7 +731,7 @@ static void test_2_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_7()
+static void TEST_2_7()
 {
     read_from_char_buffer   policy("\n\n\n\n\n\n\n\n\n\n\r", -1);
     std::string             line0;
@@ -745,7 +745,7 @@ static void test_2_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_8()
+static void TEST_2_8()
 {
     read_from_char_buffer   policy("\n\n\n\n\n\r\n\n\n\n\n\r", -1);
     std::string             line0;
@@ -763,7 +763,7 @@ static void test_2_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_9()
+static void TEST_2_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -809,7 +809,7 @@ static void test_2_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_2_10()
+static void TEST_2_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -831,7 +831,7 @@ static void test_2_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_0()
+static void TEST_3_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -841,7 +841,7 @@ static void test_3_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_1()
+static void TEST_3_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -855,7 +855,7 @@ static void test_3_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_2()
+static void TEST_3_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -869,7 +869,7 @@ static void test_3_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_3()
+static void TEST_3_3()
 {
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
@@ -883,7 +883,7 @@ static void test_3_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_4()
+static void TEST_3_4()
 {
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
@@ -897,7 +897,7 @@ static void test_3_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_5()
+static void TEST_3_5()
 {
     read_from_char_buffer   policy("\r\r\r\n", -1);
     std::string             line0;
@@ -911,7 +911,7 @@ static void test_3_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_6()
+static void TEST_3_6()
 {
     read_from_char_buffer   policy("\r\r\r\r\n", -1);
     std::string             line0;
@@ -925,7 +925,7 @@ static void test_3_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_7()
+static void TEST_3_7()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -939,7 +939,7 @@ static void test_3_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_8()
+static void TEST_3_8()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\n\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -957,7 +957,7 @@ static void test_3_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_9()
+static void TEST_3_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -983,7 +983,7 @@ static void test_3_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_3_10()
+static void TEST_3_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -1001,7 +1001,7 @@ static void test_3_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_0()
+static void TEST_4_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -1011,7 +1011,7 @@ static void test_4_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_1()
+static void TEST_4_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -1025,7 +1025,7 @@ static void test_4_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_2()
+static void TEST_4_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -1039,7 +1039,7 @@ static void test_4_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_3()
+static void TEST_4_3()
 {
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
@@ -1053,7 +1053,7 @@ static void test_4_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_4()
+static void TEST_4_4()
 {
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
@@ -1071,7 +1071,7 @@ static void test_4_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_5()
+static void TEST_4_5()
 {
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
@@ -1093,7 +1093,7 @@ static void test_4_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_6()
+static void TEST_4_6()
 {
     read_from_char_buffer   policy("\r\r\r\n", -1);
     std::string             line0;
@@ -1119,7 +1119,7 @@ static void test_4_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_7()
+static void TEST_4_7()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1173,7 +1173,7 @@ static void test_4_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_8()
+static void TEST_4_8()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1231,7 +1231,7 @@ static void test_4_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_9()
+static void TEST_4_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -1305,7 +1305,7 @@ static void test_4_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_4_10()
+static void TEST_4_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -1335,7 +1335,7 @@ static void test_4_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_0()
+static void TEST_5_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -1345,7 +1345,7 @@ static void test_5_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_1()
+static void TEST_5_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -1359,7 +1359,7 @@ static void test_5_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_2()
+static void TEST_5_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -1373,7 +1373,7 @@ static void test_5_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_3()
+static void TEST_5_3()
 {
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
@@ -1387,7 +1387,7 @@ static void test_5_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_4()
+static void TEST_5_4()
 {
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
@@ -1401,7 +1401,7 @@ static void test_5_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_5()
+static void TEST_5_5()
 {
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
@@ -1415,7 +1415,7 @@ static void test_5_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_6()
+static void TEST_5_6()
 {
     read_from_char_buffer   policy("\r\n\n\r\r\n", -1);
     std::string             line0;
@@ -1437,7 +1437,7 @@ static void test_5_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_7()
+static void TEST_5_7()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1451,7 +1451,7 @@ static void test_5_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_8()
+static void TEST_5_8()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1469,7 +1469,7 @@ static void test_5_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_9()
+static void TEST_5_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -1511,7 +1511,7 @@ static void test_5_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_5_10()
+static void TEST_5_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -1533,7 +1533,7 @@ static void test_5_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_0()
+static void TEST_6_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -1543,7 +1543,7 @@ static void test_6_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_1()
+static void TEST_6_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -1557,7 +1557,7 @@ static void test_6_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_2()
+static void TEST_6_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -1571,7 +1571,7 @@ static void test_6_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_3()
+static void TEST_6_3()
 {
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
@@ -1585,7 +1585,7 @@ static void test_6_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_4()
+static void TEST_6_4()
 {
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
@@ -1599,7 +1599,7 @@ static void test_6_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_5()
+static void TEST_6_5()
 {
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
@@ -1617,7 +1617,7 @@ static void test_6_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_6()
+static void TEST_6_6()
 {
     read_from_char_buffer   policy("\r\n\n\r\r\n", -1);
     std::string             line0;
@@ -1639,7 +1639,7 @@ static void test_6_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_7()
+static void TEST_6_7()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1689,7 +1689,7 @@ static void test_6_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_8()
+static void TEST_6_8()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1739,7 +1739,7 @@ static void test_6_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_9()
+static void TEST_6_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -1781,7 +1781,7 @@ static void test_6_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_6_10()
+static void TEST_6_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -1803,7 +1803,7 @@ static void test_6_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_0()
+static void TEST_7_0()
 {
     read_from_char_buffer   policy("", 0);
     std::string             line0;
@@ -1813,7 +1813,7 @@ static void test_7_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_1()
+static void TEST_7_1()
 {
     read_from_char_buffer   policy("a", -1);
     std::string             line0;
@@ -1827,7 +1827,7 @@ static void test_7_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_2()
+static void TEST_7_2()
 {
     read_from_char_buffer   policy("abcdefghijklmnopqrstuvwxyz", -1);
     std::string             line0;
@@ -1841,7 +1841,7 @@ static void test_7_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_3()
+static void TEST_7_3()
 {
     read_from_char_buffer   policy("\n", -1);
     std::string             line0;
@@ -1855,7 +1855,7 @@ static void test_7_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_4()
+static void TEST_7_4()
 {
     read_from_char_buffer   policy("\r\n", -1);
     std::string             line0;
@@ -1869,7 +1869,7 @@ static void test_7_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_5()
+static void TEST_7_5()
 {
     read_from_char_buffer   policy("\r\r\n", -1);
     std::string             line0;
@@ -1887,7 +1887,7 @@ static void test_7_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_6()
+static void TEST_7_6()
 {
     read_from_char_buffer   policy("\r\n\n\r\r\n", -1);
     std::string             line0;
@@ -1913,7 +1913,7 @@ static void test_7_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_7()
+static void TEST_7_7()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -1963,7 +1963,7 @@ static void test_7_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_8()
+static void TEST_7_8()
 {
     read_from_char_buffer   policy("\r\r\r\r\r\n\r\r\r\r\r\n", -1);
     std::string             line0;
@@ -2013,7 +2013,7 @@ static void test_7_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_9()
+static void TEST_7_9()
 {
     read_from_char_buffer   policy("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n", -1);
     std::string             line0;
@@ -2071,7 +2071,7 @@ static void test_7_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_7_10()
+static void TEST_7_10()
 {
     read_from_char_buffer   policy("abc\rdef\nghi\r\njkl", -1);
     std::string             line0;
@@ -2097,7 +2097,7 @@ static void test_7_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_0()
+static void TEST_8_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -2109,7 +2109,7 @@ static void test_8_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_1()
+static void TEST_8_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -2125,7 +2125,7 @@ static void test_8_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_2()
+static void TEST_8_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -2141,7 +2141,7 @@ static void test_8_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_3()
+static void TEST_8_3()
 {
     std::string const   input("\n");
     std::string         line0;
@@ -2157,7 +2157,7 @@ static void test_8_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_4()
+static void TEST_8_4()
 {
     std::string const   input("\r\n");
     std::string         line0;
@@ -2173,7 +2173,7 @@ static void test_8_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_5()
+static void TEST_8_5()
 {
     std::string const   input("\r\r\n");
     std::string         line0;
@@ -2189,7 +2189,7 @@ static void test_8_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_6()
+static void TEST_8_6()
 {
     std::string const   input("\r\r\r\n");
     std::string         line0;
@@ -2205,7 +2205,7 @@ static void test_8_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_7()
+static void TEST_8_7()
 {
     std::string const   input("\r\r\r\r\r\r\r\r\r\r\n");
     std::string         line0;
@@ -2221,7 +2221,7 @@ static void test_8_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_8()
+static void TEST_8_8()
 {
     std::string const   input("\r\r\r\r\r\n\r\r\r\r\r\n");
     std::string         line0;
@@ -2241,7 +2241,7 @@ static void test_8_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_9()
+static void TEST_8_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -2285,7 +2285,7 @@ static void test_8_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_8_10()
+static void TEST_8_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;
@@ -2309,7 +2309,7 @@ static void test_8_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_0()
+static void TEST_9_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -2321,7 +2321,7 @@ static void test_9_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_1()
+static void TEST_9_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -2337,7 +2337,7 @@ static void test_9_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_2()
+static void TEST_9_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -2353,7 +2353,7 @@ static void test_9_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_3()
+static void TEST_9_3()
 {
     std::string const   input("\r");
     std::string         line0;
@@ -2369,7 +2369,7 @@ static void test_9_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_4()
+static void TEST_9_4()
 {
     std::string const   input("\n\r");
     std::string         line0;
@@ -2385,7 +2385,7 @@ static void test_9_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_5()
+static void TEST_9_5()
 {
     std::string const   input("\n\n\r");
     std::string         line0;
@@ -2401,7 +2401,7 @@ static void test_9_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_6()
+static void TEST_9_6()
 {
     std::string const   input("\n\n\n\r");
     std::string         line0;
@@ -2417,7 +2417,7 @@ static void test_9_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_7()
+static void TEST_9_7()
 {
     std::string const   input("\n\n\n\n\n\n\n\n\n\n\r");
     std::string         line0;
@@ -2433,7 +2433,7 @@ static void test_9_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_8()
+static void TEST_9_8()
 {
     std::string const   input("\n\n\n\n\n\r\n\n\n\n\n\r");
     std::string         line0;
@@ -2453,7 +2453,7 @@ static void test_9_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_9()
+static void TEST_9_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -2501,7 +2501,7 @@ static void test_9_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_9_10()
+static void TEST_9_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;
@@ -2525,7 +2525,7 @@ static void test_9_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_0()
+static void TEST_10_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -2537,7 +2537,7 @@ static void test_10_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_1()
+static void TEST_10_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -2553,7 +2553,7 @@ static void test_10_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_2()
+static void TEST_10_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -2569,7 +2569,7 @@ static void test_10_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_3()
+static void TEST_10_3()
 {
     std::string const   input("\r\n");
     std::string         line0;
@@ -2585,7 +2585,7 @@ static void test_10_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_4()
+static void TEST_10_4()
 {
     std::string const   input("\r\r\n");
     std::string         line0;
@@ -2601,7 +2601,7 @@ static void test_10_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_5()
+static void TEST_10_5()
 {
     std::string const   input("\r\r\r\n");
     std::string         line0;
@@ -2617,7 +2617,7 @@ static void test_10_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_6()
+static void TEST_10_6()
 {
     std::string const   input("\r\r\r\r\n");
     std::string         line0;
@@ -2633,7 +2633,7 @@ static void test_10_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_7()
+static void TEST_10_7()
 {
     std::string const   input("\r\r\r\r\r\r\r\r\r\r\r\n");
     std::string         line0;
@@ -2649,7 +2649,7 @@ static void test_10_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_8()
+static void TEST_10_8()
 {
     std::string const   input("\r\r\r\r\r\r\n\r\r\r\r\r\r\n");
     std::string         line0;
@@ -2669,7 +2669,7 @@ static void test_10_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_9()
+static void TEST_10_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -2697,7 +2697,7 @@ static void test_10_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_10_10()
+static void TEST_10_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;
@@ -2717,7 +2717,7 @@ static void test_10_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_0()
+static void TEST_11_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -2729,7 +2729,7 @@ static void test_11_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_1()
+static void TEST_11_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -2745,7 +2745,7 @@ static void test_11_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_2()
+static void TEST_11_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -2761,7 +2761,7 @@ static void test_11_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_3()
+static void TEST_11_3()
 {
     std::string const   input("\n");
     std::string         line0;
@@ -2777,7 +2777,7 @@ static void test_11_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_4()
+static void TEST_11_4()
 {
     std::string const   input("\r\n");
     std::string         line0;
@@ -2797,7 +2797,7 @@ static void test_11_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_5()
+static void TEST_11_5()
 {
     std::string const   input("\r\r\n");
     std::string         line0;
@@ -2821,7 +2821,7 @@ static void test_11_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_6()
+static void TEST_11_6()
 {
     std::string const   input("\r\r\r\n");
     std::string         line0;
@@ -2849,7 +2849,7 @@ static void test_11_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_7()
+static void TEST_11_7()
 {
     std::string const   input("\r\r\r\r\r\r\r\r\r\r\n");
     std::string         line0;
@@ -2905,7 +2905,7 @@ static void test_11_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_8()
+static void TEST_11_8()
 {
     std::string const   input("\r\r\r\r\r\n\r\r\r\r\r\n");
     std::string         line0;
@@ -2965,7 +2965,7 @@ static void test_11_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_9()
+static void TEST_11_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -3041,7 +3041,7 @@ static void test_11_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_11_10()
+static void TEST_11_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;
@@ -3073,7 +3073,7 @@ static void test_11_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_0()
+static void TEST_12_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -3085,7 +3085,7 @@ static void test_12_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_1()
+static void TEST_12_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -3101,7 +3101,7 @@ static void test_12_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_2()
+static void TEST_12_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -3117,7 +3117,7 @@ static void test_12_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_3()
+static void TEST_12_3()
 {
     std::string const   input("\n");
     std::string         line0;
@@ -3133,7 +3133,7 @@ static void test_12_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_4()
+static void TEST_12_4()
 {
     std::string const   input("\r\n");
     std::string         line0;
@@ -3149,7 +3149,7 @@ static void test_12_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_5()
+static void TEST_12_5()
 {
     std::string const   input("\r\r\n");
     std::string         line0;
@@ -3165,7 +3165,7 @@ static void test_12_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_6()
+static void TEST_12_6()
 {
     std::string const   input("\r\n\n\r\r\n");
     std::string         line0;
@@ -3189,7 +3189,7 @@ static void test_12_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_7()
+static void TEST_12_7()
 {
     std::string const   input("\r\r\r\r\r\r\r\r\r\r\n");
     std::string         line0;
@@ -3205,7 +3205,7 @@ static void test_12_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_8()
+static void TEST_12_8()
 {
     std::string const   input("\r\r\r\r\r\n\r\r\r\r\r\n");
     std::string         line0;
@@ -3225,7 +3225,7 @@ static void test_12_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_9()
+static void TEST_12_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -3269,7 +3269,7 @@ static void test_12_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_12_10()
+static void TEST_12_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;
@@ -3293,7 +3293,7 @@ static void test_12_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_0()
+static void TEST_13_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -3305,7 +3305,7 @@ static void test_13_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_1()
+static void TEST_13_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -3321,7 +3321,7 @@ static void test_13_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_2()
+static void TEST_13_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -3337,7 +3337,7 @@ static void test_13_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_3()
+static void TEST_13_3()
 {
     std::string const   input("\n");
     std::string         line0;
@@ -3353,7 +3353,7 @@ static void test_13_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_4()
+static void TEST_13_4()
 {
     std::string const   input("\r\n");
     std::string         line0;
@@ -3369,7 +3369,7 @@ static void test_13_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_5()
+static void TEST_13_5()
 {
     std::string const   input("\r\r\n");
     std::string         line0;
@@ -3389,7 +3389,7 @@ static void test_13_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_6()
+static void TEST_13_6()
 {
     std::string const   input("\r\n\n\r\r\n");
     std::string         line0;
@@ -3413,7 +3413,7 @@ static void test_13_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_7()
+static void TEST_13_7()
 {
     std::string const   input("\r\r\r\r\r\r\r\r\r\r\n");
     std::string         line0;
@@ -3465,7 +3465,7 @@ static void test_13_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_8()
+static void TEST_13_8()
 {
     std::string const   input("\r\r\r\r\r\n\r\r\r\r\r\n");
     std::string         line0;
@@ -3517,7 +3517,7 @@ static void test_13_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_9()
+static void TEST_13_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -3561,7 +3561,7 @@ static void test_13_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_13_10()
+static void TEST_13_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;
@@ -3585,7 +3585,7 @@ static void test_13_10()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_0()
+static void TEST_14_0()
 {
     std::string const   input("");
     std::string         line0;
@@ -3597,7 +3597,7 @@ static void test_14_0()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_1()
+static void TEST_14_1()
 {
     std::string const   input("a");
     std::string         line0;
@@ -3613,7 +3613,7 @@ static void test_14_1()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_2()
+static void TEST_14_2()
 {
     std::string const   input("abcdefghijklmnopqrstuvwxyz");
     std::string         line0;
@@ -3629,7 +3629,7 @@ static void test_14_2()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_3()
+static void TEST_14_3()
 {
     std::string const   input("\n");
     std::string         line0;
@@ -3645,7 +3645,7 @@ static void test_14_3()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_4()
+static void TEST_14_4()
 {
     std::string const   input("\r\n");
     std::string         line0;
@@ -3661,7 +3661,7 @@ static void test_14_4()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_5()
+static void TEST_14_5()
 {
     std::string const   input("\r\r\n");
     std::string         line0;
@@ -3681,7 +3681,7 @@ static void test_14_5()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_6()
+static void TEST_14_6()
 {
     std::string const   input("\r\n\n\r\r\n");
     std::string         line0;
@@ -3709,7 +3709,7 @@ static void test_14_6()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_7()
+static void TEST_14_7()
 {
     std::string const   input("\r\r\r\r\r\r\r\r\r\r\n");
     std::string         line0;
@@ -3761,7 +3761,7 @@ static void test_14_7()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_8()
+static void TEST_14_8()
 {
     std::string const   input("\r\r\r\r\r\n\r\r\r\r\r\n");
     std::string         line0;
@@ -3813,7 +3813,7 @@ static void test_14_8()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_9()
+static void TEST_14_9()
 {
     std::string const   input("a\rb\nc\r\nd\re\nf\r\ng\rh\ni\r\nj\rk\nl\r\n");
     std::string         line0;
@@ -3873,7 +3873,7 @@ static void test_14_9()
     TEST_MS_EQ_APPROX("", line0);
 }
 
-static void test_14_10()
+static void TEST_14_10()
 {
     std::string const   input("abc\rdef\nghi\r\njkl");
     std::string         line0;

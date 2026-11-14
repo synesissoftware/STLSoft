@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/conversion/truncation_cast`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_truncation_cast_in_range(void);
+    static void TEST_truncation_cast_IN_RANGE();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_truncation_cast_in_range);
+        XTESTS_RUN_CASE(TEST_truncation_cast_IN_RANGE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_truncation_cast_in_range()
+static void TEST_truncation_cast_IN_RANGE()
 {
     int const v = stlsoft::truncation_cast<int>(42L);
     TEST_INTEGER_EQUAL(42, v);

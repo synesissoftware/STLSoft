@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/system/pid_sequence.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_pid_sequence_contains_self(void);
+    static void TEST_pid_sequence_CONTAINS_SELF();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_pid_sequence_contains_self);
+        XTESTS_RUN_CASE(TEST_pid_sequence_CONTAINS_SELF);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_pid_sequence_contains_self()
+static void TEST_pid_sequence_CONTAINS_SELF()
 {
     unixstl::pid_sequence pids;
 

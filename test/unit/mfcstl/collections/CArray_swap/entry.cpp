@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::CArray_swap`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void TEST_swap_exchanges_contents(void);
+    static void TEST_SWAP_EXCHANGES_CONTENTS();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_swap_exchanges_contents);
+        XTESTS_RUN_CASE(TEST_SWAP_EXCHANGES_CONTENTS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_swap_exchanges_contents()
+static void TEST_SWAP_EXCHANGES_CONTENTS()
 {
 #ifdef MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT
     CUIntArray lhs;

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `rangelib::invalid_integral_range_policy`.
  *
  * Created: 29th October 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,18 +43,18 @@
 
 namespace {
 
-    static void TEST_policy_sint32();
-    static void TEST_policy_uint32();
+    static void TEST_POLICY_SINT32();
+    static void TEST_POLICY_UINT32();
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    static void TEST_policy_sint64();
-    static void TEST_policy_uint64();
+    static void TEST_POLICY_SINT64();
+    static void TEST_POLICY_UINT64();
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-    static void TEST_policy_int();
-    static void TEST_policy_unsigned();
+    static void TEST_POLICY_int();
+    static void TEST_POLICY_UNSIGNED();
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
-    static void TEST_range_rejects_non_closing();
-    static void TEST_range_accepts_closing();
+    static void TEST_RANGE_REJECTS_NON_CLOSING();
+    static void TEST_RANGE_ACCEPTS_CLOSING();
 } // anonymous namespace
 
 
@@ -71,18 +71,18 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.rangelib.invalid_integral_range_policy", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_policy_sint32);
-        XTESTS_RUN_CASE(TEST_policy_uint32);
+        XTESTS_RUN_CASE(TEST_POLICY_SINT32);
+        XTESTS_RUN_CASE(TEST_POLICY_UINT32);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-        XTESTS_RUN_CASE(TEST_policy_sint64);
-        XTESTS_RUN_CASE(TEST_policy_uint64);
+        XTESTS_RUN_CASE(TEST_POLICY_SINT64);
+        XTESTS_RUN_CASE(TEST_POLICY_UINT64);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-        XTESTS_RUN_CASE(TEST_policy_int);
-        XTESTS_RUN_CASE(TEST_policy_unsigned);
+        XTESTS_RUN_CASE(TEST_POLICY_int);
+        XTESTS_RUN_CASE(TEST_POLICY_UNSIGNED);
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
-        XTESTS_RUN_CASE(TEST_range_rejects_non_closing);
-        XTESTS_RUN_CASE(TEST_range_accepts_closing);
+        XTESTS_RUN_CASE(TEST_RANGE_REJECTS_NON_CLOSING);
+        XTESTS_RUN_CASE(TEST_RANGE_ACCEPTS_CLOSING);
 
         XTESTS_PRINT_RESULTS();
 
@@ -119,7 +119,7 @@ namespace {
         TEST_INT_EQ(1, caught_); \
     } while (0)
 
-static void TEST_policy_sint32()
+static void TEST_POLICY_SINT32()
 {
     rangelib::invalid_integral_range_policy policy;
 
@@ -138,7 +138,7 @@ static void TEST_policy_sint32()
     );
 }
 
-static void TEST_policy_uint32()
+static void TEST_POLICY_UINT32()
 {
     rangelib::invalid_integral_range_policy policy;
 
@@ -158,7 +158,7 @@ static void TEST_policy_uint32()
 }
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 
-static void TEST_policy_sint64()
+static void TEST_POLICY_SINT64()
 {
     stlsoft::ss_sint64_t const  minimum =   STLSOFT_GEN_SINT64_SUFFIX(-9223372036854775807) - 1;
     stlsoft::ss_sint64_t const  maximum =   STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807);
@@ -175,7 +175,7 @@ static void TEST_policy_sint64()
     );
 }
 
-static void TEST_policy_uint64()
+static void TEST_POLICY_UINT64()
 {
     stlsoft::ss_uint64_t const  maximum =   STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615);
     rangelib::invalid_integral_range_policy policy;
@@ -193,7 +193,7 @@ static void TEST_policy_uint64()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 
-static void TEST_policy_int()
+static void TEST_POLICY_int()
 {
     rangelib::invalid_integral_range_policy policy;
 
@@ -203,7 +203,7 @@ static void TEST_policy_int()
     );
 }
 
-static void TEST_policy_unsigned()
+static void TEST_POLICY_UNSIGNED()
 {
     rangelib::invalid_integral_range_policy policy;
 
@@ -214,7 +214,7 @@ static void TEST_policy_unsigned()
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
-static void TEST_range_rejects_non_closing()
+static void TEST_RANGE_REJECTS_NON_CLOSING()
 {
     int caught = 0;
 
@@ -234,7 +234,7 @@ static void TEST_range_rejects_non_closing()
     TEST_INT_EQ(1, caught);
 }
 
-static void TEST_range_accepts_closing()
+static void TEST_RANGE_ACCEPTS_CLOSING()
 {
     rangelib::integral_range<stlsoft::ss_sint32_t> r(-100, 100, 5);
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::try_parse_to`.
  *
  * Created: 18th November 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,37 +63,37 @@
 namespace
 {
 
-    static void TEST_2PARAM_ccs_pi(void);
-    static void TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA(void);
-    static void TEST_3PARAM_ccs_n_pi(void);
-    static void TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA(void);
-    static void test_try_5_int(void);
-    static void test_try_6_int(void);
-    static void test_try_7_int(void);
-    static void test_try_8_int(void);
-    static void test_try_9_int(void);
-    static void test_try_10_int(void);
-    static void test_try_11_int(void);
-    static void test_try_12_int(void);
+    static void TEST__2PARAM__CCS_PI();
+    static void TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA();
+    static void TEST__3PARAM__CCS_N_PI();
+    static void TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA();
+    static void TEST_TRY_5_int();
+    static void TEST_TRY_6_int();
+    static void TEST_TRY_7_int();
+    static void TEST_TRY_8_int();
+    static void TEST_TRY_9_int();
+    static void TEST_TRY_10_int();
+    static void TEST_TRY_11_int();
+    static void TEST_TRY_12_int();
 
-    static void test_try_1_uint64(void);
-    static void test_try_2_uint64(void);
-    static void test_try_3_uint64(void);
-    static void test_try_4_uint64(void);
-    static void test_try_5_uint64(void);
-    static void test_try_6_uint64(void);
-    static void test_try_7_uint64(void);
-    static void test_try_8_uint64(void);
-    static void test_try_9_uint64(void);
-    static void test_try_10_uint64(void);
+    static void TEST_TRY_1_UINT64();
+    static void TEST_TRY_2_UINT64();
+    static void TEST_TRY_3_UINT64();
+    static void TEST_TRY_4_UINT64();
+    static void TEST_TRY_5_UINT64();
+    static void TEST_TRY_6_UINT64();
+    static void TEST_TRY_7_UINT64();
+    static void TEST_TRY_8_UINT64();
+    static void TEST_TRY_9_UINT64();
+    static void TEST_TRY_10_UINT64();
 
-    static void test_try_hex_1_int(void);
-    static void test_try_hex_2_int(void);
-    static void test_try_hex_3_int(void);
-    static void test_try_hex_4_int(void);
-    static void test_try_hex_5_int(void);
-    static void test_try_hex_6_int(void);
-    static void test_try_hex_7_int(void);
+    static void TEST_TRY_HEX_1_int();
+    static void TEST_TRY_HEX_2_int();
+    static void TEST_TRY_HEX_3_int();
+    static void TEST_TRY_HEX_4_int();
+    static void TEST_TRY_HEX_5_int();
+    static void TEST_TRY_HEX_6_int();
+    static void TEST_TRY_HEX_7_int();
 
 } // anonymous namespace
 
@@ -111,37 +111,37 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.try_parse_to", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_2PARAM_ccs_pi);
+        XTESTS_RUN_CASE(TEST__2PARAM__CCS_PI);
         XTESTS_RUN_CASE(TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA);
-        XTESTS_RUN_CASE(TEST_3PARAM_ccs_n_pi);
+        XTESTS_RUN_CASE(TEST__3PARAM__CCS_N_PI);
         XTESTS_RUN_CASE(TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA);
-        XTESTS_RUN_CASE(test_try_5_int);
-        XTESTS_RUN_CASE(test_try_6_int);
-        XTESTS_RUN_CASE(test_try_7_int);
-        XTESTS_RUN_CASE(test_try_8_int);
-        XTESTS_RUN_CASE(test_try_9_int);
-        XTESTS_RUN_CASE(test_try_10_int);
-        XTESTS_RUN_CASE(test_try_11_int);
-        XTESTS_RUN_CASE(test_try_12_int);
+        XTESTS_RUN_CASE(TEST_TRY_5_int);
+        XTESTS_RUN_CASE(TEST_TRY_6_int);
+        XTESTS_RUN_CASE(TEST_TRY_7_int);
+        XTESTS_RUN_CASE(TEST_TRY_8_int);
+        XTESTS_RUN_CASE(TEST_TRY_9_int);
+        XTESTS_RUN_CASE(TEST_TRY_10_int);
+        XTESTS_RUN_CASE(TEST_TRY_11_int);
+        XTESTS_RUN_CASE(TEST_TRY_12_int);
 
-        XTESTS_RUN_CASE(test_try_1_uint64);
-        XTESTS_RUN_CASE(test_try_2_uint64);
-        XTESTS_RUN_CASE(test_try_3_uint64);
-        XTESTS_RUN_CASE(test_try_4_uint64);
-        XTESTS_RUN_CASE(test_try_5_uint64);
-        XTESTS_RUN_CASE(test_try_6_uint64);
-        XTESTS_RUN_CASE(test_try_7_uint64);
-        XTESTS_RUN_CASE(test_try_8_uint64);
-        XTESTS_RUN_CASE(test_try_9_uint64);
-        XTESTS_RUN_CASE(test_try_10_uint64);
+        XTESTS_RUN_CASE(TEST_TRY_1_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_2_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_3_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_4_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_5_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_6_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_7_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_8_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_9_UINT64);
+        XTESTS_RUN_CASE(TEST_TRY_10_UINT64);
 
-        XTESTS_RUN_CASE(test_try_hex_1_int);
-        XTESTS_RUN_CASE(test_try_hex_2_int);
-        XTESTS_RUN_CASE(test_try_hex_3_int);
-        XTESTS_RUN_CASE(test_try_hex_4_int);
-        XTESTS_RUN_CASE(test_try_hex_5_int);
-        XTESTS_RUN_CASE(test_try_hex_6_int);
-        XTESTS_RUN_CASE(test_try_hex_7_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_1_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_2_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_3_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_4_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_5_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_6_int);
+        XTESTS_RUN_CASE(TEST_TRY_HEX_7_int);
 
         XTESTS_PRINT_RESULTS();
 
@@ -162,7 +162,7 @@ namespace
     using stlsoft::uint64_t;
 
 
-static void TEST_2PARAM_ccs_pi()
+static void TEST__2PARAM__CCS_PI()
 {
     {
         short i;
@@ -257,7 +257,7 @@ static void TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA()
     TEST_INT_EQ(10, i);
 }
 
-static void TEST_3PARAM_ccs_n_pi()
+static void TEST__3PARAM__CCS_N_PI()
 {
     {
         short i;
@@ -467,7 +467,7 @@ static void TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA()
     }
 }
 
-static void test_try_5_int()
+static void TEST_TRY_5_int()
 {
     int i;
     char const* endptr = NULL;
@@ -477,7 +477,7 @@ static void test_try_5_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_6_int()
+static void TEST_TRY_6_int()
 {
     int i;
 
@@ -485,7 +485,7 @@ static void test_try_6_int()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_7_int()
+static void TEST_TRY_7_int()
 {
     int i;
 
@@ -493,7 +493,7 @@ static void test_try_7_int()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_8_int()
+static void TEST_TRY_8_int()
 {
     int i;
 
@@ -501,7 +501,7 @@ static void test_try_8_int()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_9_int()
+static void TEST_TRY_9_int()
 {
     int i;
 
@@ -509,7 +509,7 @@ static void test_try_9_int()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_10_int()
+static void TEST_TRY_10_int()
 {
     int i;
     char const* endptr = NULL;
@@ -519,7 +519,7 @@ static void test_try_10_int()
     TEST_MS_EQ("a", endptr);
 }
 
-static void test_try_11_int()
+static void TEST_TRY_11_int()
 {
 #if 0
 
@@ -541,7 +541,7 @@ static void test_try_11_int()
 #endif
 }
 
-static void test_try_12_int()
+static void TEST_TRY_12_int()
 {
 #if 1
 
@@ -594,7 +594,7 @@ static void test_try_12_int()
 #endif
 }
 
-static void test_try_1_uint64()
+static void TEST_TRY_1_UINT64()
 {
     uint64_t i;
 
@@ -602,7 +602,7 @@ static void test_try_1_uint64()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_2_uint64()
+static void TEST_TRY_2_UINT64()
 {
     uint64_t i;
 
@@ -610,7 +610,7 @@ static void test_try_2_uint64()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_3_uint64()
+static void TEST_TRY_3_UINT64()
 {
     uint64_t i;
 
@@ -628,7 +628,7 @@ static void test_try_3_uint64()
 #endif
 }
 
-static void test_try_4_uint64()
+static void TEST_TRY_4_UINT64()
 {
     uint64_t i;
 
@@ -646,7 +646,7 @@ static void test_try_4_uint64()
 #endif
 }
 
-static void test_try_5_uint64()
+static void TEST_TRY_5_UINT64()
 {
     uint64_t i;
 
@@ -654,7 +654,7 @@ static void test_try_5_uint64()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_6_uint64()
+static void TEST_TRY_6_UINT64()
 {
     uint64_t i;
 
@@ -662,7 +662,7 @@ static void test_try_6_uint64()
     TEST_INT_EQ(10, i);
 }
 
-static void test_try_7_uint64()
+static void TEST_TRY_7_UINT64()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -672,7 +672,7 @@ static void test_try_7_uint64()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_8_uint64()
+static void TEST_TRY_8_UINT64()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -683,7 +683,7 @@ static void test_try_8_uint64()
     TEST_CHAR_EQ('a', *endptr);
 }
 
-static void test_try_9_uint64()
+static void TEST_TRY_9_UINT64()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -693,7 +693,7 @@ static void test_try_9_uint64()
     TEST_MS_EQ("a", endptr);
 }
 
-static void test_try_10_uint64()
+static void TEST_TRY_10_UINT64()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -703,7 +703,7 @@ static void test_try_10_uint64()
     TEST_MS_EQ("a", endptr);
 }
 
-static void test_try_hex_1_int()
+static void TEST_TRY_HEX_1_int()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -713,7 +713,7 @@ static void test_try_hex_1_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_hex_2_int()
+static void TEST_TRY_HEX_2_int()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -723,7 +723,7 @@ static void test_try_hex_2_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_hex_3_int()
+static void TEST_TRY_HEX_3_int()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -733,7 +733,7 @@ static void test_try_hex_3_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_hex_4_int()
+static void TEST_TRY_HEX_4_int()
 {
     sint64_t i;
     char const* endptr = NULL;
@@ -743,7 +743,7 @@ static void test_try_hex_4_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_hex_5_int()
+static void TEST_TRY_HEX_5_int()
 {
     uint64_t i;
     char const* endptr = NULL;
@@ -753,7 +753,7 @@ static void test_try_hex_5_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_hex_6_int()
+static void TEST_TRY_HEX_6_int()
 {
     sint64_t i;
     char const* endptr = NULL;
@@ -763,7 +763,7 @@ static void test_try_hex_6_int()
     TEST_MS_EQ("", endptr);
 }
 
-static void test_try_hex_7_int()
+static void TEST_TRY_HEX_7_int()
 {
     sint64_t i;
     char const* endptr = NULL;

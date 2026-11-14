@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_printf_format_traits`.
  *
  * Created: 20th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,18 +42,18 @@
 
 namespace {
 
-    static void test_char();
-    static void test_char_signed();
-    static void test_char_unsigned();
-    static void test_short_signed();
-    static void test_short_unsigned();
-    static void test_int_signed();
-    static void test_int_unsigned();
-    static void test_long_signed();
-    static void test_long_unsigned();
+    static void TEST_char();
+    static void TEST_char_signed();
+    static void TEST_char_unsigned();
+    static void TEST_short_signed();
+    static void TEST_short_unsigned();
+    static void TEST_int_signed();
+    static void TEST_int_unsigned();
+    static void TEST_long_signed();
+    static void TEST_long_unsigned();
 #ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
-    static void test_long_long_signed();
-    static void test_long_long_unsigned();
+    static void TEST_long_long_signed();
+    static void TEST_long_long_unsigned();
 #endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
 } // anonymous namespace
 
@@ -71,18 +71,18 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.traits.integral_printf_format_traits", verbosity))
     {
-        XTESTS_RUN_CASE(test_char);
-        XTESTS_RUN_CASE(test_char_signed);
-        XTESTS_RUN_CASE(test_char_unsigned);
-        XTESTS_RUN_CASE(test_short_signed);
-        XTESTS_RUN_CASE(test_short_unsigned);
-        XTESTS_RUN_CASE(test_int_signed);
-        XTESTS_RUN_CASE(test_int_unsigned);
-        XTESTS_RUN_CASE(test_long_signed);
-        XTESTS_RUN_CASE(test_long_unsigned);
+        XTESTS_RUN_CASE(TEST_char);
+        XTESTS_RUN_CASE(TEST_char_signed);
+        XTESTS_RUN_CASE(TEST_char_unsigned);
+        XTESTS_RUN_CASE(TEST_short_signed);
+        XTESTS_RUN_CASE(TEST_short_unsigned);
+        XTESTS_RUN_CASE(TEST_int_signed);
+        XTESTS_RUN_CASE(TEST_int_unsigned);
+        XTESTS_RUN_CASE(TEST_long_signed);
+        XTESTS_RUN_CASE(TEST_long_unsigned);
 #ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
-        XTESTS_RUN_CASE(test_long_long_signed);
-        XTESTS_RUN_CASE(test_long_long_unsigned);
+        XTESTS_RUN_CASE(TEST_long_long_signed);
+        XTESTS_RUN_CASE(TEST_long_long_unsigned);
 #endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
 
         XTESTS_PRINT_RESULTS();
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 
 namespace {
 
-static void test_char()
+static void TEST_char()
 {
     typedef char                                            int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -170,7 +170,7 @@ static void test_char()
     }
 }
 
-static void test_char_signed()
+static void TEST_char_signed()
 {
     typedef char signed                                     int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -196,7 +196,7 @@ static void test_char_signed()
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-static void test_char_unsigned()
+static void TEST_char_unsigned()
 {
     typedef char unsigned                                   int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -222,7 +222,7 @@ static void test_char_unsigned()
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-static void test_short_signed()
+static void TEST_short_signed()
 {
     typedef short signed                                    int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -276,7 +276,7 @@ static void test_short_signed()
     }
 }
 
-static void test_short_unsigned()
+static void TEST_short_unsigned()
 {
     typedef short unsigned                                  int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -302,7 +302,7 @@ static void test_short_unsigned()
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-static void test_int_signed()
+static void TEST_int_signed()
 {
     typedef int signed                                      int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -328,7 +328,7 @@ static void test_int_signed()
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-static void test_int_unsigned()
+static void TEST_int_unsigned()
 {
     typedef int unsigned                                    int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -382,7 +382,7 @@ static void test_int_unsigned()
     }
 }
 
-static void test_long_signed()
+static void TEST_long_signed()
 {
     typedef long signed                                     int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -408,7 +408,7 @@ static void test_long_signed()
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-static void test_long_unsigned()
+static void TEST_long_unsigned()
 {
     typedef long unsigned                                   int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -435,7 +435,7 @@ static void test_long_unsigned()
 }
 #ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
 
-static void test_long_long_signed()
+static void TEST_long_long_signed()
 {
     typedef long long signed                                int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -514,7 +514,7 @@ static void test_long_long_signed()
     }
 }
 
-static void test_long_long_unsigned()
+static void TEST_long_long_unsigned()
 {
     typedef long long unsigned                              int_t;
     typedef stlsoft::integral_printf_format_traits<

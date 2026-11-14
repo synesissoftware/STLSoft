@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM stream helper functions.
  *
  * Created: 9th August 2026
- * Updated: 8th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_get_stream_size(void);
+    static void TEST_get_stream_size();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_get_stream_size);
+        XTESTS_RUN_CASE(TEST_get_stream_size);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_get_stream_size(void)
+static void TEST_get_stream_size()
 {
     IStream*            pstm = NULL;
     ULARGE_INTEGER      size = { { 0, 0 } };

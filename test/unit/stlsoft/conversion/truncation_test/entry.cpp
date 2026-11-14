@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *
  * Created: 7th November 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,15 +45,15 @@
 
 namespace {
 
-    static void test_12();
-    static void test_zero();
-    static void test_sign();
-    static void test_range_signed();
-    static void test_range_unsigned();
-    static void test_edge_to_sint8();
-    static void test_to_sint8();
-    static void test_to_uint8();
-    static void test_to_sint16();
+    static void TEST_12();
+    static void TEST_ZERO();
+    static void TEST_SIGN();
+    static void TEST_RANGE_SIGNED();
+    static void TEST_RANGE_UNSIGNED();
+    static void TEST_EDGE_TO_SINT8();
+    static void TEST_TO_SINT8();
+    static void TEST_TO_UINT8();
+    static void TEST_TO_SINT16();
 } // anonymous namespace
 
 
@@ -70,15 +70,15 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.truncation_test", verbosity))
     {
-        XTESTS_RUN_CASE(test_12);
-        XTESTS_RUN_CASE(test_zero);
-        XTESTS_RUN_CASE(test_sign);
-        XTESTS_RUN_CASE(test_range_signed);
-        XTESTS_RUN_CASE(test_range_unsigned);
-        XTESTS_RUN_CASE(test_edge_to_sint8);
-        XTESTS_RUN_CASE(test_to_sint8);
-        XTESTS_RUN_CASE(test_to_uint8);
-        XTESTS_RUN_CASE(test_to_sint16);
+        XTESTS_RUN_CASE(TEST_12);
+        XTESTS_RUN_CASE(TEST_ZERO);
+        XTESTS_RUN_CASE(TEST_SIGN);
+        XTESTS_RUN_CASE(TEST_RANGE_SIGNED);
+        XTESTS_RUN_CASE(TEST_RANGE_UNSIGNED);
+        XTESTS_RUN_CASE(TEST_EDGE_TO_SINT8);
+        XTESTS_RUN_CASE(TEST_TO_SINT8);
+        XTESTS_RUN_CASE(TEST_TO_UINT8);
+        XTESTS_RUN_CASE(TEST_TO_SINT16);
 
         XTESTS_PRINT_RESULTS();
 
@@ -103,7 +103,7 @@ namespace {
     using stlsoft::sint64_t;
     using stlsoft::uint64_t;
 
-static void test_12()
+static void TEST_12()
 {
     // 1a
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<sint16_t>(sint8_t(stlsoft::integral_limits<sint8_t>::minimum())));
@@ -172,7 +172,7 @@ static void test_12()
 
 }
 
-static void test_zero()
+static void TEST_ZERO()
 {
     // int
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<sint8_t>(0));
@@ -205,7 +205,7 @@ static void test_zero()
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<uint32_t>(sint64_t(0)));
 }
 
-static void test_sign()
+static void TEST_SIGN()
 {
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<sint8_t>(-10));
     TEST_BOOLEAN_FALSE(stlsoft::truncation_test<uint8_t>(-10));
@@ -220,7 +220,7 @@ static void test_sign()
     TEST_BOOLEAN_FALSE(stlsoft::truncation_test<uint32_t>(-10));
 }
 
-static void test_range_signed()
+static void TEST_RANGE_SIGNED()
 {
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<sint8_t>(-1));
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<sint8_t>(-10));
@@ -257,7 +257,7 @@ static void test_range_signed()
     TEST_BOOLEAN_FALSE(stlsoft::truncation_test<sint32_t>(sint64_t(stlsoft::integral_limits<sint32_t>::minimum()) - 1));
 }
 
-static void test_range_unsigned()
+static void TEST_RANGE_UNSIGNED()
 {
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<uint8_t>(1));
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<uint8_t>(10));
@@ -288,7 +288,7 @@ static void test_range_unsigned()
     TEST_BOOLEAN_FALSE(stlsoft::truncation_test<uint32_t>(uint64_t(stlsoft::integral_limits<uint32_t>::maximum()) + 1));
 }
 
-static void test_edge_to_sint8()
+static void TEST_EDGE_TO_SINT8()
 {
     // sint8_t
     TEST_BOOLEAN_TRUE(stlsoft::truncation_test<sint8_t>(stlsoft::integral_limits<sint8_t>::minimum()));
@@ -324,7 +324,7 @@ static void test_edge_to_sint8()
     ;
 }
 
-static void test_to_sint8()
+static void TEST_TO_SINT8()
 {
     // All in range
     { for (sint8_t from = stlsoft::integral_limits<sint8_t>::minimum(); ; ++from)
@@ -350,7 +350,7 @@ static void test_to_sint8()
     }}
 }
 
-static void test_to_uint8()
+static void TEST_TO_UINT8()
 {
     // All in range
     { for (uint8_t from = stlsoft::integral_limits<uint8_t>::minimum(); ; ++from)
@@ -376,7 +376,7 @@ static void test_to_uint8()
     }}
 }
 
-static void test_to_sint16()
+static void TEST_TO_SINT16()
 {
     // All in range
     { for (sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); ; ++from)

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `ACE_Time_Value`.
  *
  * Created: 7th August 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,7 +47,7 @@ namespace {
 
     static void TEST_CALLS_POSSIBLE();
     static void TEST_c_str_len();
-    static void TEST_c_str_ptr_format_and_milliseconds();
+    static void TEST_c_str_ptr_FORMAT_AND_MILLISECONDS();
     static void TEST_c_str_ptr_w_MATCHES_NARROW();
 } // anonymous namespace
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
         XTESTS_RUN_CASE(TEST_c_str_len);
-        XTESTS_RUN_CASE(TEST_c_str_ptr_format_and_milliseconds);
+        XTESTS_RUN_CASE(TEST_c_str_ptr_FORMAT_AND_MILLISECONDS);
         XTESTS_RUN_CASE(TEST_c_str_ptr_w_MATCHES_NARROW);
 
         XTESTS_PRINT_RESULTS();
@@ -118,7 +118,7 @@ static void TEST_c_str_len()
     TEST_INT_EQ(23u, stlsoft::c_str_len_w(tv));
 }
 
-static void TEST_c_str_ptr_format_and_milliseconds()
+static void TEST_c_str_ptr_FORMAT_AND_MILLISECONDS()
 {
     /* Format is localtime("%Y-%m-%d %H:%M:%S") + ".%03ld" milliseconds
      * (usec / 1000). Length is fixed at 23; avoid absolute wall-clock

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `synch/sleep_functions`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -27,7 +27,7 @@
 
 namespace {
 
-    static void test_sleep_zero(void);
+    static void TEST_Sleep_ZERO();
 } // anonymous namespace
 
 
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_sleep_zero);
+        XTESTS_RUN_CASE(TEST_Sleep_ZERO);
 
         XTESTS_PRINT_RESULTS();
 
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_sleep_zero(void)
+static void TEST_Sleep_ZERO()
 {
     winstl::micro_sleep(0);
     TEST_PASSED();

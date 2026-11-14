@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/util/minmax`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void test_minimum(void);
-    static void test_maximum(void);
-    static void test_minimum_three(void);
+    static void TEST_MINIMUM();
+    static void TEST_MAXIMUM();
+    static void TEST_MINIMUM_THREE();
 } // anonymous namespace
 
 
@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_minimum);
-        XTESTS_RUN_CASE(test_maximum);
-        XTESTS_RUN_CASE(test_minimum_three);
+        XTESTS_RUN_CASE(TEST_MINIMUM);
+        XTESTS_RUN_CASE(TEST_MAXIMUM);
+        XTESTS_RUN_CASE(TEST_MINIMUM_THREE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,19 +66,19 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_minimum()
+static void TEST_MINIMUM()
 {
     TEST_INTEGER_EQUAL(1, stlsoft::minimum(1, 2));
     TEST_INTEGER_EQUAL(1, stlsoft::minimum(2, 1));
 }
 
-static void test_maximum()
+static void TEST_MAXIMUM()
 {
     TEST_INTEGER_EQUAL(2, stlsoft::maximum(1, 2));
     TEST_INTEGER_EQUAL(2, stlsoft::maximum(2, 1));
 }
 
-static void test_minimum_three()
+static void TEST_MINIMUM_THREE()
 {
     TEST_INTEGER_EQUAL(1, stlsoft::minimum(3, 1, 2));
 }

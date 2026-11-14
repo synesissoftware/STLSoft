@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/diagnostics/processtimes_stopwatch.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 8th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void test_process_time_increases_with_work(void);
-    static void test_total_is_sum_of_user_and_kernel(void);
+    static void TEST_PROCESS_TIME_INCREASES_WITH_WORK();
+    static void TEST_TOTAL_IS_SUM_OF_USER_AND_KERNEL();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_process_time_increases_with_work);
-        XTESTS_RUN_CASE(test_total_is_sum_of_user_and_kernel);
+        XTESTS_RUN_CASE(TEST_PROCESS_TIME_INCREASES_WITH_WORK);
+        XTESTS_RUN_CASE(TEST_TOTAL_IS_SUM_OF_USER_AND_KERNEL);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_process_time_increases_with_work()
+static void TEST_PROCESS_TIME_INCREASES_WITH_WORK()
 {
     unixstl::processtimes_stopwatch sw;
 
@@ -84,7 +84,7 @@ static void test_process_time_increases_with_work()
     STLSOFT_SUPPRESS_UNUSED(n);
 }
 
-static void test_total_is_sum_of_user_and_kernel()
+static void TEST_TOTAL_IS_SUM_OF_USER_AND_KERNEL()
 {
     unixstl::processtimes_stopwatch sw;
 

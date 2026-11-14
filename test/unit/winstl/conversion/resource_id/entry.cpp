@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `conversion/resource_id`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_make_resource_id(void);
+    static void TEST_MAKE_RESOURCE_ID();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_make_resource_id);
+        XTESTS_RUN_CASE(TEST_MAKE_RESOURCE_ID);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_make_resource_id(void)
+static void TEST_MAKE_RESOURCE_ID()
 {
     winstl::resource_id const rs(MAKEINTRESOURCE(1234));
     TEST_PTR_NE(NULL, rs);

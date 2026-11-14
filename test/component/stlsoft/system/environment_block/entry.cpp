@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,10 +39,10 @@
 
 namespace {
 
-    static void test_empty();
-    static void test_1_element();
-    static void test_2_elements();
-    static void test_clear();
+    static void TEST_EMPTY();
+    static void TEST_1_ELEMENT();
+    static void TEST_2_ELEMENTS();
+    static void TEST_CLEAR();
 } // anonymous namespace
 
 
@@ -59,10 +59,10 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.component.stlsoft.system.environment_block", verbosity))
     {
-        XTESTS_RUN_CASE(test_empty);
-        XTESTS_RUN_CASE(test_1_element);
-        XTESTS_RUN_CASE(test_2_elements);
-        XTESTS_RUN_CASE(test_clear);
+        XTESTS_RUN_CASE(TEST_EMPTY);
+        XTESTS_RUN_CASE(TEST_1_ELEMENT);
+        XTESTS_RUN_CASE(TEST_2_ELEMENTS);
+        XTESTS_RUN_CASE(TEST_CLEAR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -79,14 +79,14 @@ int main(int argc, char *argv[])
 
 namespace {
 
-static void test_empty()
+static void TEST_EMPTY()
 {
     stlsoft::environment_block_a block;
 
     TEST_INT_EQ(0u, block.size());
 }
 
-static void test_1_element()
+static void TEST_1_ELEMENT()
 {
     stlsoft::environment_block_a block;
 
@@ -96,7 +96,7 @@ static void test_1_element()
     TEST_MS_EQ("key-1=value-1", block.base()[0]);
 }
 
-static void test_2_elements()
+static void TEST_2_ELEMENTS()
 {
     stlsoft::environment_block_a block;
 
@@ -108,7 +108,7 @@ static void test_2_elements()
     TEST_MS_EQ("key-0=value-0", block.base()[1]);
 }
 
-static void test_clear()
+static void TEST_CLEAR()
 {
     stlsoft::environment_block_a block;
 

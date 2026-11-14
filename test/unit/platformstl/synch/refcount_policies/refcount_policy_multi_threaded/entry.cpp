@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <thread>
 
-static void test_increment_decrement(void);
+static void TEST_INCREMENT_DECREMENT();
 
 int main(int argc, char* argv[])
 {
@@ -13,14 +13,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_increment_decrement);
+        XTESTS_RUN_CASE(TEST_INCREMENT_DECREMENT);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_increment_decrement(void)
+static void TEST_INCREMENT_DECREMENT()
 {
     platformstl::refcount_policy_multi_threaded policy;
     platformstl::atomic_int_t rc = 0;

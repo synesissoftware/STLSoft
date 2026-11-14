@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/synch/spin_mutex_policies.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_default_policy_type_exists(void);
+    static void TEST_DEFAULT_POLICY_TYPE_EXISTS();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_default_policy_type_exists);
+        XTESTS_RUN_CASE(TEST_DEFAULT_POLICY_TYPE_EXISTS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_default_policy_type_exists()
+static void TEST_DEFAULT_POLICY_TYPE_EXISTS()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(unixstl::yield_on_N_spin_mutex_policy<1000>));
     TEST_PASSED();

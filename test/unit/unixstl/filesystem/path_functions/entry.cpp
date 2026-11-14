@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/filesystem/path_functions.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void test_aggregate_includes_path_parse(void);
-    static void test_aggregate_includes_path_classify(void);
+    static void TEST_AGGREGATE_INCLUDES_PATH_PARSE();
+    static void TEST_AGGREGATE_INCLUDES_PATH_CLASSIFY();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_aggregate_includes_path_parse);
-        XTESTS_RUN_CASE(test_aggregate_includes_path_classify);
+        XTESTS_RUN_CASE(TEST_AGGREGATE_INCLUDES_PATH_PARSE);
+        XTESTS_RUN_CASE(TEST_AGGREGATE_INCLUDES_PATH_CLASSIFY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,14 +64,14 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_aggregate_includes_path_parse()
+static void TEST_AGGREGATE_INCLUDES_PATH_PARSE()
 {
     char const path[] = "a/b";
 
     TEST_PTR_EQ(path + 1, unixstl::find_first_path_name_separator(path));
 }
 
-static void test_aggregate_includes_path_classify()
+static void TEST_AGGREGATE_INCLUDES_PATH_CLASSIFY()
 {
     unixstl_C_path_classification_results_m_t results = {};
 

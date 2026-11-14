@@ -6,7 +6,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-static void test_create_and_remove(void);
+static void TEST_CREATE_AND_REMOVE();
 
 int main(int argc, char* argv[])
 {
@@ -15,14 +15,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_create_and_remove);
+        XTESTS_RUN_CASE(TEST_CREATE_AND_REMOVE);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_create_and_remove(void)
+static void TEST_CREATE_AND_REMOVE()
 {
     using ::xtests::cpp::util::temp_directory;
     temp_directory td(temp_directory::EmptyOnOpen | temp_directory::EmptyOnClose | temp_directory::RemoveOnClose);

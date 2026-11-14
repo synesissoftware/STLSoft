@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::get_HWND` attribute shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void TEST_null_hwnd_reference(void);
-    static void TEST_null_hwnd_pointer(void);
+    static void TEST_NULL_HWND_REFERENCE();
+    static void TEST_NULL_HWND_POINTER();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_null_hwnd_reference);
-        XTESTS_RUN_CASE(TEST_null_hwnd_pointer);
+        XTESTS_RUN_CASE(TEST_NULL_HWND_REFERENCE);
+        XTESTS_RUN_CASE(TEST_NULL_HWND_POINTER);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,14 +64,14 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_null_hwnd_reference()
+static void TEST_NULL_HWND_REFERENCE()
 {
     CWnd w;
 
     TEST_PTR_EQ(NULL, mfcstl::get_HWND(w));
 }
 
-static void TEST_null_hwnd_pointer()
+static void TEST_NULL_HWND_POINTER()
 {
     CWnd w;
 

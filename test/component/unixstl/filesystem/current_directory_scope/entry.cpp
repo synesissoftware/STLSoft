@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/filesystem/current_directory_scope.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -32,7 +32,7 @@
 
 namespace {
 
-    static void test_scope_restores_directory(void);
+    static void TEST_SCOPE_RESTORES_DIRECTORY();
 } // anonymous namespace
 
 
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_scope_restores_directory);
+        XTESTS_RUN_CASE(TEST_SCOPE_RESTORES_DIRECTORY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -76,7 +76,7 @@ using xtests::cpp::util::temp_directory;
 
 namespace {
 
-static void test_scope_restores_directory()
+static void TEST_SCOPE_RESTORES_DIRECTORY()
 {
     char original[PATH_MAX];
     XTESTS_REQUIRE(TEST(NULL != getcwd(original, sizeof(original))));

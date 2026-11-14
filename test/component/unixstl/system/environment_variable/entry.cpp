@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::environment_variable`.
  *
  * Created: 11th August 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,7 +38,7 @@
 
 namespace {
 
-    static void test_1_00();
+    static void TEST_1_00();
 } // anonymous namespace
 
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.component.unixstl.system.environment_variable", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
+        XTESTS_RUN_CASE(TEST_1_00);
 
         XTESTS_PRINT_RESULTS();
 
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 namespace {
 
-static void test_1_00()
+static void TEST_1_00()
 {
     char const* const PATH = ::getenv("PATH");
 

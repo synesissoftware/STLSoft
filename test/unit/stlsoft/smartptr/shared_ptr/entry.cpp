@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,18 +40,18 @@
 
 namespace {
 
-    static void test_types_exist();
+    static void TEST_TYPES_EXIST();
 
-    static void test_ctor_default();
-    static void test_ctor_nullptr();
-    static void test_ctor_conversion();
-    static void test_ctor_copy();
+    static void TEST_CTOR_DEFAULT();
+    static void TEST_CTOR_NULLPTR();
+    static void TEST_CTOR_CONVERSION();
+    static void TEST_CTOR_COPY();
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-    static void test_ctor_move();
+    static void TEST_CTOR_MOVE();
 #endif
-    static void test_swap();
-    static void test_std_swap();
+    static void TEST_SWAP();
+    static void TEST_std_swap();
 } // anonymous namespace
 
 
@@ -68,18 +68,18 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.smartptr.shared_ptr", verbosity))
     {
-        XTESTS_RUN_CASE(test_types_exist);
+        XTESTS_RUN_CASE(TEST_TYPES_EXIST);
 
-        XTESTS_RUN_CASE(test_ctor_default);
-        XTESTS_RUN_CASE(test_ctor_nullptr);
-        XTESTS_RUN_CASE(test_ctor_conversion);
-        XTESTS_RUN_CASE(test_ctor_copy);
+        XTESTS_RUN_CASE(TEST_CTOR_DEFAULT);
+        XTESTS_RUN_CASE(TEST_CTOR_NULLPTR);
+        XTESTS_RUN_CASE(TEST_CTOR_CONVERSION);
+        XTESTS_RUN_CASE(TEST_CTOR_COPY);
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-        XTESTS_RUN_CASE(test_ctor_move);
+        XTESTS_RUN_CASE(TEST_CTOR_MOVE);
 #endif
-        XTESTS_RUN_CASE(test_swap);
-        XTESTS_RUN_CASE(test_std_swap);
+        XTESTS_RUN_CASE(TEST_SWAP);
+        XTESTS_RUN_CASE(TEST_std_swap);
 
         XTESTS_PRINT_RESULTS();
 
@@ -123,7 +123,7 @@ namespace {
 
 namespace {
 
-static void test_types_exist()
+static void TEST_TYPES_EXIST()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::shared_ptr<char*>));
 #if 0
@@ -134,7 +134,7 @@ static void test_types_exist()
     TEST_PASSED();
 }
 
-static void test_ctor_default()
+static void TEST_CTOR_DEFAULT()
 {
     {
         stlsoft::shared_ptr<int> ptr;
@@ -161,7 +161,7 @@ static void test_ctor_default()
     }
 }
 
-static void test_ctor_nullptr()
+static void TEST_CTOR_NULLPTR()
 {
     {
         stlsoft::shared_ptr<int> ptr(ss_nullptr_k);
@@ -188,7 +188,7 @@ static void test_ctor_nullptr()
     }
 }
 
-static void test_ctor_conversion()
+static void TEST_CTOR_CONVERSION()
 {
     {
         stlsoft::shared_ptr<int> ptr(new int(123));
@@ -228,7 +228,7 @@ static void test_ctor_conversion()
     }
 }
 
-static void test_ctor_copy()
+static void TEST_CTOR_COPY()
 {
     {
         stlsoft::shared_ptr<int> ptr(new int(123));
@@ -321,7 +321,7 @@ static void test_ctor_copy()
 
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-static void test_ctor_move()
+static void TEST_CTOR_MOVE()
 {
     {
         stlsoft::shared_ptr<int> ptr(new int(123));
@@ -404,7 +404,7 @@ static void test_ctor_move()
 }
 #endif
 
-static void test_swap()
+static void TEST_SWAP()
 {
     {
         stlsoft::shared_ptr<int> ptr(new int(123));
@@ -492,7 +492,7 @@ static void test_swap()
     }
 }
 
-static void test_std_swap()
+static void TEST_std_swap()
 {
     {
         stlsoft::shared_ptr<int> ptr(new int(123));

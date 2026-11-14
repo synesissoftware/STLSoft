@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_comparers`.
  *
  * Created: 9th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,8 +34,8 @@
 
 namespace {
 
-    static void test_FILETIME();
-    static void test_SYSTEMTIME();
+    static void TEST__FILETIME();
+    static void TEST__SYSTEMTIME();
 } // anonymous namespace
 
 
@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.winstl.util.struct_comparers", verbosity))
     {
-        XTESTS_RUN_CASE(test_FILETIME);
-        XTESTS_RUN_CASE(test_SYSTEMTIME);
+        XTESTS_RUN_CASE(TEST__FILETIME);
+        XTESTS_RUN_CASE(TEST__SYSTEMTIME);
 
         XTESTS_PRINT_RESULTS();
 
@@ -72,7 +72,7 @@ namespace {
 
     using stlsoft::ss_size_t;
 
-static void test_FILETIME()
+static void TEST__FILETIME()
 {
     {
         FILETIME ft1 = {0, 0};
@@ -89,7 +89,7 @@ static void test_FILETIME()
     }
 }
 
-static void test_SYSTEMTIME()
+static void TEST__SYSTEMTIME()
 {
     {
         SYSTEMTIME st1;

@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -34,7 +34,7 @@
 
 namespace {
 
-    static void test_view_handle_create_and_destroy(void);
+    static void TEST_VIEW_HANDLE_CREATE_AND_DESTROY();
 } // anonymous namespace
 
 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_view_handle_create_and_destroy);
+        XTESTS_RUN_CASE(TEST_VIEW_HANDLE_CREATE_AND_DESTROY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -79,7 +79,7 @@ typedef unixstl::memory_mapped_file_view_handle<stlsoft::refcount_policy_single_
 
 namespace {
 
-static void test_view_handle_create_and_destroy()
+static void TEST_VIEW_HANDLE_CREATE_AND_DESTROY()
 {
     temp_directory td(temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 

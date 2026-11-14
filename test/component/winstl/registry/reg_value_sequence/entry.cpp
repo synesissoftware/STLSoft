@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value_sequence`.
  *
  * Created: 22nd October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,7 +44,7 @@
 
 namespace {
 
-    static void test_1_12();
+    static void TEST_1_12();
 } // anonymous namespace
 
 
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.registry.reg_value_sequence", verbosity, setup, teardown, NULL))
     {
-        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(TEST_1_12);
 
         XTESTS_PRINT_RESULTS();
 
@@ -122,7 +122,7 @@ namespace {
     using winstl::reg_value;
     using winstl::reg_value_sequence;
 
-static void test_1_12()
+static void TEST_1_12()
 {
     rootKey->set_value("value-name-1", "value-1");
     rootKey->set_value("value-name-2", "value-2");

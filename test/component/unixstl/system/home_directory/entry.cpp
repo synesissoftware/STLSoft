@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/system/home_directory.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_home_directory_non_empty(void);
+    static void TEST_HOME_DIRECTORY_NON_EMPTY();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_home_directory_non_empty);
+        XTESTS_RUN_CASE(TEST_HOME_DIRECTORY_NON_EMPTY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_home_directory_non_empty()
+static void TEST_HOME_DIRECTORY_NON_EMPTY()
 {
     unixstl::home_directory_a home;
 

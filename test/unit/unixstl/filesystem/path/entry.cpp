@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *
  * Created: 16th February 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,9 +47,9 @@
 
 namespace {
 
-    static void test_construct_default();
-    static void test_construct_filename();
-    static void test_construct_relative_directory_and_file();
+    static void TEST_CONSTRUCT_DEFAULT();
+    static void TEST_CONSTRUCT_FILENAME();
+    static void TEST_CONSTRUCT_RELATIVE_DIRECTORY_AND_FILE();
 } // anonymous namespace
 
 
@@ -66,9 +66,9 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.unixstl.filesystem.path", verbosity))
     {
-        XTESTS_RUN_CASE(test_construct_default);
-        XTESTS_RUN_CASE(test_construct_filename);
-        XTESTS_RUN_CASE(test_construct_relative_directory_and_file);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT_DEFAULT);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT_FILENAME);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT_RELATIVE_DIRECTORY_AND_FILE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -98,7 +98,7 @@ namespace {
 
 namespace {
 
-static void test_construct_default()
+static void TEST_CONSTRUCT_DEFAULT()
 {
     char    buffer[1001];
 
@@ -205,7 +205,7 @@ static void test_construct_default()
     TEST_INT_EQ(0, p3.length());
 }
 
-static void test_construct_filename()
+static void TEST_CONSTRUCT_FILENAME()
 {
     char    buffer[1001];
 
@@ -318,7 +318,7 @@ static void test_construct_filename()
     TEST(p3.equivalent(p1));
 }
 
-static void test_construct_relative_directory_and_file()
+static void TEST_CONSTRUCT_RELATIVE_DIRECTORY_AND_FILE()
 {
     char    buffer[1001];
 

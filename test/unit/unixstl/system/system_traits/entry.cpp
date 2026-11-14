@@ -6,7 +6,7 @@
  *          `test/component/unixstl/system/system_traits`.
  *
  * Created: 15th October 2026
- * Updated: 15th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,7 +39,7 @@
 
 namespace {
 
-    static void TEST_path_str_compare_w();
+    static void TEST_path_str_compare_W();
 } // anonymous namespace
 
 
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.unixstl.system.system_traits", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_path_str_compare_w);
+        XTESTS_RUN_CASE(TEST_path_str_compare_W);
 
         XTESTS_PRINT_RESULTS();
 
@@ -77,7 +77,7 @@ namespace {
     typedef unixstl::system_traits<wchar_t>                 traits_w_t;
 
 
-static void TEST_path_str_compare_w()
+static void TEST_path_str_compare_W()
 {
     TEST_INT_EQ(0, traits_w_t::path_str_compare(L"/a/b", L"/a/b"));
     TEST_INT_NE(0, traits_w_t::path_str_compare(L"/a/b", L"/a/c"));

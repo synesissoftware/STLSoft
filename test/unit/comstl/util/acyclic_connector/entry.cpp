@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::acyclic_connector`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,7 +30,7 @@
 
 namespace {
 
-    static void test_query_peer(void);
+    static void TEST_QUERY_PEER();
 } // anonymous namespace
 
 
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_query_peer);
+        XTESTS_RUN_CASE(TEST_QUERY_PEER);
 
         XTESTS_PRINT_RESULTS();
 
@@ -77,7 +77,7 @@ typedef comstl::acyclic_connector<stlsoft::null_mutex> connector_t;
 
 namespace {
 
-static void test_query_peer(void)
+static void TEST_QUERY_PEER()
 {
     mock_unknown    left;
     mock_unknown    right;

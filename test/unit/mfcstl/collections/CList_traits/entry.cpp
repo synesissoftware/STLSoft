@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void TEST_CPtrList_traits(void);
-    static void TEST_CStringList_traits(void);
-    static void TEST_CList_specific_traits(void);
+    static void TEST_CPtrList_traits();
+    static void TEST_CStringList_traits();
+    static void TEST_CList_specific_traits();
 } // anonymous namespace
 
 

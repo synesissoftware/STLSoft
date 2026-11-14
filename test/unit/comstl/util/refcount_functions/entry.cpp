@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM reference-count helpers.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void test_addref_release(void);
-    static void test_safe_addref_release(void);
-    static void test_release_set_null(void);
+    static void TEST_AddRef_Release();
+    static void TEST_safe_addref_Release();
+    static void TEST_release_set_null();
 } // anonymous namespace
 
 
@@ -50,9 +50,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_addref_release);
-        XTESTS_RUN_CASE(test_safe_addref_release);
-        XTESTS_RUN_CASE(test_release_set_null);
+        XTESTS_RUN_CASE(TEST_AddRef_Release);
+        XTESTS_RUN_CASE(TEST_safe_addref_Release);
+        XTESTS_RUN_CASE(TEST_release_set_null);
 
         XTESTS_PRINT_RESULTS();
 
@@ -79,7 +79,7 @@ using test_comstl::mock_unknown;
 
 namespace {
 
-static void test_addref_release(void)
+static void TEST_AddRef_Release()
 {
     mock_unknown*   p = new mock_unknown();
 
@@ -89,7 +89,7 @@ static void test_addref_release(void)
     p->Release();
 }
 
-static void test_safe_addref_release(void)
+static void TEST_safe_addref_Release()
 {
     mock_unknown*   p = new mock_unknown();
 
@@ -102,7 +102,7 @@ static void test_safe_addref_release(void)
     p->Release();
 }
 
-static void test_release_set_null(void)
+static void TEST_release_set_null()
 {
     mock_unknown*   p = new mock_unknown();
 

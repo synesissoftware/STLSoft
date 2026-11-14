@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,41 +63,41 @@
 
 namespace {
 
-    static void test_empty_directory();
+    static void TEST_EMPTY_DIRECTORY();
 
-    static void test_dot();
-    static void test_dot_and_includeDots();
-    static void test_dotdot();
-    static void test_dotdot_and_includeDots();
-    static void test_dot_and_absolutePath();
-    static void test_dot_and_absolutePath_includeDots();
-    static void test_dotdot_and_absolutePath();
-    static void test_dotdot_and_absolutePath_includeDots();
-    static void test_dotslashstardotstar_and_files();
-    static void test_dotslashstardotstar_and_directories();
-    static void test_dotslashstardotstar_and_files_absolutePath();
-    static void test_dotslashstardotstar_and_directories_absolutePath();
-    static void test_dotdotslashstardotstar_and_files_absolutePath();
-    static void test_dotdotslashstardotstar_and_directories_absolutePath();
-    static void test_dotstar();
-    static void test_dotstar_and_includeDots();
-    static void test_dotstar_and_matchPeriod();
-    static void test_dotstar_and_includeDots_matchPeriod();
+    static void TEST_DOT();
+    static void TEST_DOT_AND_includeDots();
+    static void TEST_DOTDOT();
+    static void TEST_DOTDOT_AND_includeDots();
+    static void TEST_DOT_AND_absolutePath();
+    static void TEST_DOT_AND_absolutePath_includeDots();
+    static void TEST_DOTDOT_AND_absolutePath();
+    static void TEST_DOTDOT_AND_absolutePath_includeDots();
+    static void TEST_DOTSLASHSTARDOTSTAR_AND_FILES();
+    static void TEST_DOTSLASHSTARDOTSTAR_AND_DIRECTORIES();
+    static void TEST_DOTSLASHSTARDOTSTAR_AND_FILES_absolutePath();
+    static void TEST_DOTSLASHSTARDOTSTAR_AND_DIRECTORIES_absolutePath();
+    static void TEST_DOTDOTSLASHSTARDOTSTAR_AND_FILES_absolutePath();
+    static void TEST_DOTDOTSLASHSTARDOTSTAR_AND_DIRECTORIES_absolutePath();
+    static void TEST_DOTSTAR();
+    static void TEST_DOTSTAR_AND_includeDots();
+    static void TEST_DOTSTAR_AND_matchPeriod();
+    static void TEST_DOTSTAR_AND_includeDots_matchPeriod();
 
-    static void test_dot_and_dot();
-    static void test_dot_and_dot_and_includeDots();
-    static void test_dot_and_dotdot();
-    static void test_dot_and_dotdot_and_includeDots();
-    static void test_dot_and_dot_and_absolutePath();
-    static void test_dot_and_dot_and_absolutePath_includeDots();
-    static void test_dot_and_dotdot_and_absolutePath();
-    static void test_dot_and_dotdot_and_absolutePath_includeDots();
-    static void test_dot_and_stardotstar_and_files();
-    static void test_dot_and_stardotstar_and_directories();
-    static void test_dot_and_stardotstar_and_files_absolutePath();
-    static void test_dot_and_stardotstar_and_directories_absolutePath();
-    static void test_dotdot_and_stardotstar_and_files_absolutePath();
-    static void test_dotdot_and_stardotstar_and_directories_absolutePath();
+    static void TEST_DOT_AND_DOT();
+    static void TEST_DOT_AND_DOT_AND_includeDots();
+    static void TEST_DOT_AND_DOTDOT();
+    static void TEST_DOT_AND_DOTDOT_AND_includeDots();
+    static void TEST_DOT_AND_DOT_AND_absolutePath();
+    static void TEST_DOT_AND_DOT_AND_absolutePath_includeDots();
+    static void TEST_DOT_AND_DOTDOT_AND_absolutePath();
+    static void TEST_DOT_AND_DOTDOT_AND_absolutePath_includeDots();
+    static void TEST_DOT_AND_STARDOTSTAR_AND_FILES();
+    static void TEST_DOT_AND_STARDOTSTAR_AND_DIRECTORIES();
+    static void TEST_DOT_AND_STARDOTSTAR_AND_FILES_absolutePath();
+    static void TEST_DOT_AND_STARDOTSTAR_AND_DIRECTORIES_absolutePath();
+    static void TEST_DOTDOT_AND_STARDOTSTAR_AND_FILES_absolutePath();
+    static void TEST_DOTDOT_AND_STARDOTSTAR_AND_DIRECTORIES_absolutePath();
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
     static void TEST_is_socket();
@@ -118,41 +118,41 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.glob_sequence", verbosity))
     {
-        XTESTS_RUN_CASE(test_empty_directory);
+        XTESTS_RUN_CASE(TEST_EMPTY_DIRECTORY);
 
-        XTESTS_RUN_CASE(test_dot);
-        XTESTS_RUN_CASE(test_dot_and_includeDots);
-        XTESTS_RUN_CASE(test_dotdot);
-        XTESTS_RUN_CASE(test_dotdot_and_includeDots);
-        XTESTS_RUN_CASE(test_dot_and_absolutePath);
-        XTESTS_RUN_CASE(test_dot_and_absolutePath_includeDots);
-        XTESTS_RUN_CASE(test_dotdot_and_absolutePath);
-        XTESTS_RUN_CASE(test_dotdot_and_absolutePath_includeDots);
-        XTESTS_RUN_CASE(test_dotslashstardotstar_and_files);
-        XTESTS_RUN_CASE(test_dotslashstardotstar_and_directories);
-        XTESTS_RUN_CASE(test_dotslashstardotstar_and_files_absolutePath);
-        XTESTS_RUN_CASE(test_dotslashstardotstar_and_directories_absolutePath);
-        XTESTS_RUN_CASE(test_dotdotslashstardotstar_and_files_absolutePath);
-        XTESTS_RUN_CASE(test_dotdotslashstardotstar_and_directories_absolutePath);
-        XTESTS_RUN_CASE(test_dotstar);
-        XTESTS_RUN_CASE(test_dotstar_and_includeDots);
-        XTESTS_RUN_CASE(test_dotstar_and_matchPeriod);
-        XTESTS_RUN_CASE(test_dotstar_and_includeDots_matchPeriod);
+        XTESTS_RUN_CASE(TEST_DOT);
+        XTESTS_RUN_CASE(TEST_DOT_AND_includeDots);
+        XTESTS_RUN_CASE(TEST_DOTDOT);
+        XTESTS_RUN_CASE(TEST_DOTDOT_AND_includeDots);
+        XTESTS_RUN_CASE(TEST_DOT_AND_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOT_AND_absolutePath_includeDots);
+        XTESTS_RUN_CASE(TEST_DOTDOT_AND_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTDOT_AND_absolutePath_includeDots);
+        XTESTS_RUN_CASE(TEST_DOTSLASHSTARDOTSTAR_AND_FILES);
+        XTESTS_RUN_CASE(TEST_DOTSLASHSTARDOTSTAR_AND_DIRECTORIES);
+        XTESTS_RUN_CASE(TEST_DOTSLASHSTARDOTSTAR_AND_FILES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTSLASHSTARDOTSTAR_AND_DIRECTORIES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTDOTSLASHSTARDOTSTAR_AND_FILES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTDOTSLASHSTARDOTSTAR_AND_DIRECTORIES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTSTAR);
+        XTESTS_RUN_CASE(TEST_DOTSTAR_AND_includeDots);
+        XTESTS_RUN_CASE(TEST_DOTSTAR_AND_matchPeriod);
+        XTESTS_RUN_CASE(TEST_DOTSTAR_AND_includeDots_matchPeriod);
 
-        XTESTS_RUN_CASE(test_dot_and_dot);
-        XTESTS_RUN_CASE(test_dot_and_dot_and_includeDots);
-        XTESTS_RUN_CASE(test_dot_and_dotdot);
-        XTESTS_RUN_CASE(test_dot_and_dotdot_and_includeDots);
-        XTESTS_RUN_CASE(test_dot_and_dot_and_absolutePath);
-        XTESTS_RUN_CASE(test_dot_and_dot_and_absolutePath_includeDots);
-        XTESTS_RUN_CASE(test_dot_and_dotdot_and_absolutePath);
-        XTESTS_RUN_CASE(test_dot_and_dotdot_and_absolutePath_includeDots);
-        XTESTS_RUN_CASE(test_dot_and_stardotstar_and_files);
-        XTESTS_RUN_CASE(test_dot_and_stardotstar_and_directories);
-        XTESTS_RUN_CASE(test_dot_and_stardotstar_and_files_absolutePath);
-        XTESTS_RUN_CASE(test_dot_and_stardotstar_and_directories_absolutePath);
-        XTESTS_RUN_CASE(test_dotdot_and_stardotstar_and_files_absolutePath);
-        XTESTS_RUN_CASE(test_dotdot_and_stardotstar_and_directories_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOT);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOT_AND_includeDots);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOTDOT);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOTDOT_AND_includeDots);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOT_AND_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOT_AND_absolutePath_includeDots);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOTDOT_AND_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOT_AND_DOTDOT_AND_absolutePath_includeDots);
+        XTESTS_RUN_CASE(TEST_DOT_AND_STARDOTSTAR_AND_FILES);
+        XTESTS_RUN_CASE(TEST_DOT_AND_STARDOTSTAR_AND_DIRECTORIES);
+        XTESTS_RUN_CASE(TEST_DOT_AND_STARDOTSTAR_AND_FILES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOT_AND_STARDOTSTAR_AND_DIRECTORIES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTDOT_AND_STARDOTSTAR_AND_FILES_absolutePath);
+        XTESTS_RUN_CASE(TEST_DOTDOT_AND_STARDOTSTAR_AND_DIRECTORIES_absolutePath);
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
         XTESTS_RUN_CASE(TEST_is_socket);
@@ -179,7 +179,7 @@ namespace {
     using ::xtests::cpp::util::temp_directory;
 
 
-static void test_empty_directory()
+static void TEST_EMPTY_DIRECTORY()
 {
     temp_directory temp_dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
@@ -202,7 +202,7 @@ static void test_empty_directory()
     }
 }
 
-static void test_dot()
+static void TEST_DOT()
 {
     glob_sequence_t files(".");
 
@@ -214,7 +214,7 @@ static void test_dot()
     TEST_PASSED();
 }
 
-static void test_dot_and_includeDots()
+static void TEST_DOT_AND_includeDots()
 {
     glob_sequence_t files(".", glob_sequence_t::includeDots);
 
@@ -226,7 +226,7 @@ static void test_dot_and_includeDots()
     TEST_PASSED();
 }
 
-static void test_dotdot()
+static void TEST_DOTDOT()
 {
     glob_sequence_t files("..");
 
@@ -239,7 +239,7 @@ static void test_dotdot()
     TEST_PASSED();
 }
 
-static void test_dotdot_and_includeDots()
+static void TEST_DOTDOT_AND_includeDots()
 {
     glob_sequence_t files("..", glob_sequence_t::includeDots);
 
@@ -252,7 +252,7 @@ static void test_dotdot_and_includeDots()
     TEST_PASSED();
 }
 
-static void test_dot_and_absolutePath()
+static void TEST_DOT_AND_absolutePath()
 {
     glob_sequence_t files(".", glob_sequence_t::absolutePath);
 
@@ -266,7 +266,7 @@ static void test_dot_and_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dot_and_absolutePath_includeDots()
+static void TEST_DOT_AND_absolutePath_includeDots()
 {
     glob_sequence_t files(".", glob_sequence_t::absolutePath | glob_sequence_t::includeDots);
 
@@ -280,7 +280,7 @@ static void test_dot_and_absolutePath_includeDots()
     TEST_PASSED();
 }
 
-static void test_dotdot_and_absolutePath()
+static void TEST_DOTDOT_AND_absolutePath()
 {
     glob_sequence_t files("..", glob_sequence_t::absolutePath);
 
@@ -293,7 +293,7 @@ static void test_dotdot_and_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotdot_and_absolutePath_includeDots()
+static void TEST_DOTDOT_AND_absolutePath_includeDots()
 {
     glob_sequence_t files("..", glob_sequence_t::absolutePath | glob_sequence_t::includeDots);
 
@@ -306,7 +306,7 @@ static void test_dotdot_and_absolutePath_includeDots()
     TEST_PASSED();
 }
 
-static void test_dotslashstardotstar_and_files()
+static void TEST_DOTSLASHSTARDOTSTAR_AND_FILES()
 {
     glob_sequence_t files("./*.*", glob_sequence_t::files);
 
@@ -319,7 +319,7 @@ static void test_dotslashstardotstar_and_files()
     TEST_PASSED();
 }
 
-static void test_dotslashstardotstar_and_directories()
+static void TEST_DOTSLASHSTARDOTSTAR_AND_DIRECTORIES()
 {
     glob_sequence_t directories("./*.*", glob_sequence_t::directories);
 
@@ -332,7 +332,7 @@ static void test_dotslashstardotstar_and_directories()
     TEST_PASSED();
 }
 
-static void test_dotslashstardotstar_and_files_absolutePath()
+static void TEST_DOTSLASHSTARDOTSTAR_AND_FILES_absolutePath()
 {
     glob_sequence_t files("./*.*", glob_sequence_t::files | glob_sequence_t::absolutePath);
 
@@ -345,7 +345,7 @@ static void test_dotslashstardotstar_and_files_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotslashstardotstar_and_directories_absolutePath()
+static void TEST_DOTSLASHSTARDOTSTAR_AND_DIRECTORIES_absolutePath()
 {
     glob_sequence_t directories("./*.*", glob_sequence_t::directories | glob_sequence_t::absolutePath);
 
@@ -358,7 +358,7 @@ static void test_dotslashstardotstar_and_directories_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotdotslashstardotstar_and_files_absolutePath()
+static void TEST_DOTDOTSLASHSTARDOTSTAR_AND_FILES_absolutePath()
 {
     glob_sequence_t files("../*.*", glob_sequence_t::files | glob_sequence_t::absolutePath);
 
@@ -371,7 +371,7 @@ static void test_dotdotslashstardotstar_and_files_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotdotslashstardotstar_and_directories_absolutePath()
+static void TEST_DOTDOTSLASHSTARDOTSTAR_AND_DIRECTORIES_absolutePath()
 {
     glob_sequence_t directories("../*.*", glob_sequence_t::directories | glob_sequence_t::absolutePath);
 
@@ -384,7 +384,7 @@ static void test_dotdotslashstardotstar_and_directories_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotstar()
+static void TEST_DOTSTAR()
 {
     glob_sequence_t files(".*");
 
@@ -400,7 +400,7 @@ static void test_dotstar()
     TEST_PASSED();
 }
 
-static void test_dotstar_and_includeDots()
+static void TEST_DOTSTAR_AND_includeDots()
 {
     glob_sequence_t files(".*", glob_sequence_t::includeDots);
 
@@ -413,7 +413,7 @@ static void test_dotstar_and_includeDots()
     TEST_PASSED();
 }
 
-static void test_dotstar_and_matchPeriod()
+static void TEST_DOTSTAR_AND_matchPeriod()
 {
 #ifdef GLOB_PERIOD
     glob_sequence_t files(".*", glob_sequence_t::matchPeriod);
@@ -431,7 +431,7 @@ static void test_dotstar_and_matchPeriod()
 #endif /* GLOB_PERIOD */
 }
 
-static void test_dotstar_and_includeDots_matchPeriod()
+static void TEST_DOTSTAR_AND_includeDots_matchPeriod()
 {
 #ifdef GLOB_PERIOD
     glob_sequence_t files(".*", glob_sequence_t::includeDots | glob_sequence_t::matchPeriod);
@@ -446,7 +446,7 @@ static void test_dotstar_and_includeDots_matchPeriod()
 #endif /* GLOB_PERIOD */
 }
 
-static void test_dot_and_dot()
+static void TEST_DOT_AND_DOT()
 {
     glob_sequence_t files(".", ".");
 
@@ -462,7 +462,7 @@ static void test_dot_and_dot()
     TEST_PASSED();
 }
 
-static void test_dot_and_dot_and_includeDots()
+static void TEST_DOT_AND_DOT_AND_includeDots()
 {
     glob_sequence_t files(".", ".", glob_sequence_t::includeDots);
 
@@ -479,7 +479,7 @@ static void test_dot_and_dot_and_includeDots()
     TEST_PASSED();
 }
 
-static void test_dot_and_dotdot()
+static void TEST_DOT_AND_DOTDOT()
 {
     glob_sequence_t files(".", "..");
 
@@ -492,7 +492,7 @@ static void test_dot_and_dotdot()
     TEST_PASSED();
 }
 
-static void test_dot_and_dotdot_and_includeDots()
+static void TEST_DOT_AND_DOTDOT_AND_includeDots()
 {
     glob_sequence_t files(".", "..", glob_sequence_t::includeDots);
 
@@ -505,7 +505,7 @@ static void test_dot_and_dotdot_and_includeDots()
     TEST_PASSED();
 }
 
-static void test_dot_and_dot_and_absolutePath()
+static void TEST_DOT_AND_DOT_AND_absolutePath()
 {
     glob_sequence_t files(".", ".", glob_sequence_t::absolutePath);
 
@@ -518,7 +518,7 @@ static void test_dot_and_dot_and_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dot_and_dot_and_absolutePath_includeDots()
+static void TEST_DOT_AND_DOT_AND_absolutePath_includeDots()
 {
     glob_sequence_t files(".", ".", glob_sequence_t::absolutePath | glob_sequence_t::includeDots);
 
@@ -531,7 +531,7 @@ static void test_dot_and_dot_and_absolutePath_includeDots()
     TEST_PASSED();
 }
 
-static void test_dot_and_dotdot_and_absolutePath()
+static void TEST_DOT_AND_DOTDOT_AND_absolutePath()
 {
     glob_sequence_t files(".", "..", glob_sequence_t::absolutePath);
 
@@ -544,7 +544,7 @@ static void test_dot_and_dotdot_and_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dot_and_dotdot_and_absolutePath_includeDots()
+static void TEST_DOT_AND_DOTDOT_AND_absolutePath_includeDots()
 {
     glob_sequence_t files(".", "..", glob_sequence_t::absolutePath | glob_sequence_t::includeDots);
 
@@ -557,7 +557,7 @@ static void test_dot_and_dotdot_and_absolutePath_includeDots()
     TEST_PASSED();
 }
 
-static void test_dot_and_stardotstar_and_files()
+static void TEST_DOT_AND_STARDOTSTAR_AND_FILES()
 {
     glob_sequence_t files(".", "*.*", glob_sequence_t::files);
 
@@ -570,7 +570,7 @@ static void test_dot_and_stardotstar_and_files()
     TEST_PASSED();
 }
 
-static void test_dot_and_stardotstar_and_directories()
+static void TEST_DOT_AND_STARDOTSTAR_AND_DIRECTORIES()
 {
     glob_sequence_t directories(".", "*.*", glob_sequence_t::directories);
 
@@ -583,7 +583,7 @@ static void test_dot_and_stardotstar_and_directories()
     TEST_PASSED();
 }
 
-static void test_dot_and_stardotstar_and_files_absolutePath()
+static void TEST_DOT_AND_STARDOTSTAR_AND_FILES_absolutePath()
 {
     glob_sequence_t files(".", "*.*", glob_sequence_t::files | glob_sequence_t::absolutePath);
 
@@ -596,7 +596,7 @@ static void test_dot_and_stardotstar_and_files_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dot_and_stardotstar_and_directories_absolutePath()
+static void TEST_DOT_AND_STARDOTSTAR_AND_DIRECTORIES_absolutePath()
 {
     glob_sequence_t directories(".", "*.*", glob_sequence_t::directories | glob_sequence_t::absolutePath);
 
@@ -609,7 +609,7 @@ static void test_dot_and_stardotstar_and_directories_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotdot_and_stardotstar_and_files_absolutePath()
+static void TEST_DOTDOT_AND_STARDOTSTAR_AND_FILES_absolutePath()
 {
     glob_sequence_t files("..", "*.*", glob_sequence_t::files | glob_sequence_t::absolutePath);
 
@@ -622,7 +622,7 @@ static void test_dotdot_and_stardotstar_and_files_absolutePath()
     TEST_PASSED();
 }
 
-static void test_dotdot_and_stardotstar_and_directories_absolutePath()
+static void TEST_DOTDOT_AND_STARDOTSTAR_AND_DIRECTORIES_absolutePath()
 {
     glob_sequence_t directories("..", "*.*", glob_sequence_t::directories | glob_sequence_t::absolutePath);
 

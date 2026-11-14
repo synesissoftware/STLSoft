@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-static void test_start_stop(void);
+static void TEST_START_STOP();
 
 int main(int argc, char* argv[])
 {
@@ -13,14 +13,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER("test.component.platformstl.diagnostics.processtimes_stopwatch", verbosity))
     {
-        XTESTS_RUN_CASE(test_start_stop);
+        XTESTS_RUN_CASE(TEST_START_STOP);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_start_stop(void)
+static void TEST_START_STOP()
 {
     platformstl::processtimes_stopwatch sw;
     sw.start();

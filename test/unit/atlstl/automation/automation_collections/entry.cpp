@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `atlstl::generic_automation_collection`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -32,10 +32,10 @@
 
 namespace {
 
-    static void TEST_supports_count_and_get_count(void);
-    static void TEST_idispatch_count_property(void);
-    static void TEST_idispatch_newenum(void);
-    static void TEST_get_count_without_set_count(void);
+    static void TEST_SUPPORTS_COUNT_AND_get_Count();
+    static void TEST_IDISPATCH_COUNT_PROPERTY();
+    static void TEST_IDISPATCH_NEWENUM();
+    static void TEST_get_Count_WITHOUT_SET_COUNT();
 } // anonymous namespace
 
 
@@ -52,10 +52,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_supports_count_and_get_count);
-        XTESTS_RUN_CASE(TEST_idispatch_count_property);
-        XTESTS_RUN_CASE(TEST_idispatch_newenum);
-        XTESTS_RUN_CASE(TEST_get_count_without_set_count);
+        XTESTS_RUN_CASE(TEST_SUPPORTS_COUNT_AND_get_Count);
+        XTESTS_RUN_CASE(TEST_IDISPATCH_COUNT_PROPERTY);
+        XTESTS_RUN_CASE(TEST_IDISPATCH_NEWENUM);
+        XTESTS_RUN_CASE(TEST_get_Count_WITHOUT_SET_COUNT);
 
         XTESTS_PRINT_RESULTS();
 
@@ -132,7 +132,7 @@ static HRESULT create_collection_with_items(
 
 namespace {
 
-static void TEST_supports_count_and_get_count()
+static void TEST_SUPPORTS_COUNT_AND_get_Count()
 {
     string_collection_t*    pColl = NULL;
     ULONG                   cItems = 0;
@@ -149,7 +149,7 @@ static void TEST_supports_count_and_get_count()
     TEST_INT_EQ(static_cast<long>(cItems), count);
 }
 
-static void TEST_idispatch_count_property()
+static void TEST_IDISPATCH_COUNT_PROPERTY()
 {
     string_collection_t*    pColl = NULL;
     ULONG                   cItems = 0;
@@ -175,7 +175,7 @@ static void TEST_idispatch_count_property()
     ::VariantClear(&varResult);
 }
 
-static void TEST_idispatch_newenum()
+static void TEST_IDISPATCH_NEWENUM()
 {
     string_collection_t*    pColl = NULL;
     ULONG                   cItems = 0;
@@ -196,7 +196,7 @@ static void TEST_idispatch_newenum()
     ::VariantClear(&varResult);
 }
 
-static void TEST_get_count_without_set_count()
+static void TEST_get_Count_WITHOUT_SET_COUNT()
 {
     CComObject<string_enumerator_t>* pEnum = NULL;
 

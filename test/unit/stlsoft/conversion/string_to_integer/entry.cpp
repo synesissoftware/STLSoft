@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_to_integer`.
  *
  * Created: 18th November 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,24 +63,24 @@
 namespace
 {
 
-    static void test_specialisations_1(void);
-    static void test_specialisations_2(void);
-    static void test_0(void);
-    static void TEST_EMPTY(void);
-    static void test_positives_implicit(void);
-    static void test_positives_explicit(void);
-    static void test_negatives(void);
-    static void test_bad(void);
-    static void TEST_INVALID_STRINGS(void);
-    static void test_spaces(void);
-    static void test_len_spaces(void);
-    static void test_trailing(void);
-    static void test_len_trailing(void);
-    static void test_len_truncated(void);
-    static void test_increasing_length(void);
-    static void test_decimal_leading_plus(void);
-    static void test_endptr(void);
-    static void TEST_POLLUTED_STRINGS(void);
+    static void TEST_SPECIALISATIONS_1();
+    static void TEST_SPECIALISATIONS_2();
+    static void TEST_0();
+    static void TEST_EMPTY();
+    static void TEST_POSITIVES_IMPLICIT();
+    static void TEST_POSITIVES_EXPLICIT();
+    static void TEST_NEGATIVES();
+    static void TEST_BAD();
+    static void TEST_INVALID_STRINGS();
+    static void TEST_SPACES();
+    static void TEST_LEN_SPACES();
+    static void TEST_TRAILING();
+    static void TEST_LEN_TRAILING();
+    static void TEST_LEN_TRUNCATED();
+    static void TEST_INCREASING_LENGTH();
+    static void TEST_DECIMAL_LEADING_PLUS();
+    static void TEST_ENDPTR();
+    static void TEST_POLLUTED_STRINGS();
 } // anonymous namespace
 
 
@@ -97,23 +97,23 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.string_to_integer", verbosity))
     {
-        XTESTS_RUN_CASE(test_specialisations_1);
-        XTESTS_RUN_CASE(test_specialisations_2);
-        XTESTS_RUN_CASE(test_0);
+        XTESTS_RUN_CASE(TEST_SPECIALISATIONS_1);
+        XTESTS_RUN_CASE(TEST_SPECIALISATIONS_2);
+        XTESTS_RUN_CASE(TEST_0);
         XTESTS_RUN_CASE(TEST_EMPTY);
-        XTESTS_RUN_CASE(test_positives_implicit);
-        XTESTS_RUN_CASE(test_positives_explicit);
-        XTESTS_RUN_CASE(test_negatives);
-        XTESTS_RUN_CASE(test_bad);
+        XTESTS_RUN_CASE(TEST_POSITIVES_IMPLICIT);
+        XTESTS_RUN_CASE(TEST_POSITIVES_EXPLICIT);
+        XTESTS_RUN_CASE(TEST_NEGATIVES);
+        XTESTS_RUN_CASE(TEST_BAD);
         XTESTS_RUN_CASE(TEST_INVALID_STRINGS);
-        XTESTS_RUN_CASE(test_spaces);
-        XTESTS_RUN_CASE(test_len_spaces);
-        XTESTS_RUN_CASE(test_trailing);
-        XTESTS_RUN_CASE(test_len_trailing);
-        XTESTS_RUN_CASE(test_len_truncated);
-        XTESTS_RUN_CASE(test_increasing_length);
-        XTESTS_RUN_CASE(test_decimal_leading_plus);
-        XTESTS_RUN_CASE(test_endptr);
+        XTESTS_RUN_CASE(TEST_SPACES);
+        XTESTS_RUN_CASE(TEST_LEN_SPACES);
+        XTESTS_RUN_CASE(TEST_TRAILING);
+        XTESTS_RUN_CASE(TEST_LEN_TRAILING);
+        XTESTS_RUN_CASE(TEST_LEN_TRUNCATED);
+        XTESTS_RUN_CASE(TEST_INCREASING_LENGTH);
+        XTESTS_RUN_CASE(TEST_DECIMAL_LEADING_PLUS);
+        XTESTS_RUN_CASE(TEST_ENDPTR);
         XTESTS_RUN_CASE(TEST_POLLUTED_STRINGS);
 
         XTESTS_PRINT_RESULTS();
@@ -135,7 +135,7 @@ namespace
     using stlsoft::uint64_t;
 
 
-static void test_specialisations_1()
+static void TEST_SPECIALISATIONS_1()
 {
     {
         stlsoft::string_to_integer( "0", static_cast<char const**>(0));
@@ -227,7 +227,7 @@ static void test_specialisations_1()
     TEST_PASSED();
 }
 
-static void test_specialisations_2()
+static void TEST_SPECIALISATIONS_2()
 {
 
 #if 0
@@ -268,7 +268,7 @@ static void test_specialisations_2()
     TEST_PASSED();
 }
 
-static void test_0()
+static void TEST_0()
 {
     TEST_INT_EQ(0, stlsoft::string_to_integer( "0", static_cast<char const**>(0)));
 
@@ -292,7 +292,7 @@ static void TEST_EMPTY()
     }
 }
 
-static void test_positives_implicit()
+static void TEST_POSITIVES_IMPLICIT()
 {
     TEST_INT_EQ(1, stlsoft::string_to_integer("1", static_cast<char const**>(0)));
     TEST_INT_EQ(7, stlsoft::string_to_integer("7", static_cast<char const**>(0)));
@@ -309,7 +309,7 @@ static void test_positives_implicit()
     TEST_INT_EQ(654321, stlsoft::string_to_integer(L"654321", static_cast<wchar_t const**>(0)));
 }
 
-static void test_positives_explicit()
+static void TEST_POSITIVES_EXPLICIT()
 {
     TEST_INT_EQ(+1, stlsoft::string_to_integer("+1", static_cast<char const**>(0)));
     TEST_INT_EQ(+7, stlsoft::string_to_integer("+7", static_cast<char const**>(0)));
@@ -319,7 +319,7 @@ static void test_positives_explicit()
     TEST_INT_EQ(+654321, stlsoft::string_to_integer("+654321", static_cast<char const**>(0)));
 }
 
-static void test_negatives()
+static void TEST_NEGATIVES()
 {
     TEST_INT_EQ(-1, stlsoft::string_to_integer("-1", static_cast<char const**>(0)));
     TEST_INT_EQ(-7, stlsoft::string_to_integer("-7", static_cast<char const**>(0)));
@@ -329,7 +329,7 @@ static void test_negatives()
     TEST_INT_EQ(-654321, stlsoft::string_to_integer("-654321", static_cast<char const**>(0)));
 }
 
-static void test_bad()
+static void TEST_BAD()
 {
     char const* endptr = NULL;
 
@@ -365,7 +365,7 @@ static void TEST_INVALID_STRINGS()
     }
 }
 
-static void test_spaces()
+static void TEST_SPACES()
 {
     TEST_INT_EQ(1, stlsoft::string_to_integer(" \t\r\n\v\b1", static_cast<char const**>(0)));
     TEST_INT_EQ(7, stlsoft::string_to_integer(" \t\r\n\v\b7", static_cast<char const**>(0)));
@@ -389,7 +389,7 @@ static void test_spaces()
     TEST_INT_EQ(-654321, stlsoft::string_to_integer(" \t\r\n\v\b-654321", static_cast<char const**>(0)));
 }
 
-static void test_len_spaces()
+static void TEST_LEN_SPACES()
 {
     TEST_INT_EQ(1, stlsoft::string_to_integer(" \t\r\n\v\b1", 7, static_cast<char const**>(0)));
     TEST_INT_EQ(7, stlsoft::string_to_integer(" \t\r\n\v\b7", 7, static_cast<char const**>(0)));
@@ -413,7 +413,7 @@ static void test_len_spaces()
     TEST_INT_EQ(-654321, stlsoft::string_to_integer(" \t\r\n\v\b-654321", 13, static_cast<char const**>(0)));
 }
 
-static void test_trailing()
+static void TEST_TRAILING()
 {
     char const* endptr = NULL;
 
@@ -457,7 +457,7 @@ static void test_trailing()
     TEST_MS_EQ("abc", endptr);
 }
 
-static void test_len_trailing()
+static void TEST_LEN_TRAILING()
 {
     char const* endptr = NULL;
 
@@ -501,7 +501,7 @@ static void test_len_trailing()
     TEST_MS_EQ("abc", endptr);
 }
 
-static void test_len_truncated()
+static void TEST_LEN_TRUNCATED()
 {
     char const* endptr = NULL;
 
@@ -545,7 +545,7 @@ static void test_len_truncated()
     REQUIRE(TEST_PTR_NOT_NULL(endptr));
 }
 
-static void test_increasing_length()
+static void TEST_INCREASING_LENGTH()
 {
     {
         const char  number[]    =   "1000000000";
@@ -576,7 +576,7 @@ static void test_increasing_length()
     }
 }
 
-static void test_decimal_leading_plus()
+static void TEST_DECIMAL_LEADING_PLUS()
 {
     char const* endptr = NULL;
 
@@ -590,7 +590,7 @@ static void test_decimal_leading_plus()
     TEST_MS_EQ("abc123", endptr);
 }
 
-static void test_endptr()
+static void TEST_ENDPTR()
 {
     {
         char const  src[]   =   "0";

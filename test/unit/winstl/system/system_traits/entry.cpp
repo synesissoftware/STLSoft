@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::system_traits`.
  *
  * Created: 22nd May 2025
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,8 +48,8 @@ namespace {
 
     static void TEST_expand_environment_string_EMPTY_INPUT();
     static void TEST_expand_environment_string_NONEXISTING_VARIABLE();
-    static void TEST_expand_environment_string_0();
-    static void TEST_expand_environment_string_1();
+    static void TEST_EXPAND_ENVIRONMENT_STRING_0();
+    static void TEST_EXPAND_ENVIRONMENT_STRING_1();
 
     static void TEST_get_environment_variable();
 
@@ -80,8 +80,8 @@ int main(int argc, char *argv[])
     {
         XTESTS_RUN_CASE(TEST_expand_environment_string_EMPTY_INPUT);
         XTESTS_RUN_CASE(TEST_expand_environment_string_NONEXISTING_VARIABLE);
-        XTESTS_RUN_CASE(TEST_expand_environment_string_0);
-        XTESTS_RUN_CASE(TEST_expand_environment_string_1);
+        XTESTS_RUN_CASE(TEST_EXPAND_ENVIRONMENT_STRING_0);
+        XTESTS_RUN_CASE(TEST_EXPAND_ENVIRONMENT_STRING_1);
 
         XTESTS_RUN_CASE(TEST_get_environment_variable);
 
@@ -358,7 +358,7 @@ static void TEST_expand_environment_string_NONEXISTING_VARIABLE()
     }
 }
 
-static void TEST_expand_environment_string_0()
+static void TEST_EXPAND_ENVIRONMENT_STRING_0()
 {
     {
         platformstl::environment_variable_scope scope_X("X", "x");
@@ -389,7 +389,7 @@ static void TEST_expand_environment_string_0()
     }
 }
 
-static void TEST_expand_environment_string_1()
+static void TEST_EXPAND_ENVIRONMENT_STRING_1()
 {
     char const      ms_TempDir[] =  R"(C:\Users\MYUSER\AppData\Local\Temp)";
     wchar_t const   ws_TempDir[] = LR"(C:\Users\MYUSER\AppData\Local\Temp)";

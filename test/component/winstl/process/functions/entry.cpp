@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `process/functions`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_current_pid(void);
+    static void TEST_CURRENT_PID();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_current_pid);
+        XTESTS_RUN_CASE(TEST_CURRENT_PID);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_current_pid(void)
+static void TEST_CURRENT_PID()
 {
     DWORD pid = ::GetCurrentProcessId();
     TEST_INT_NE(0u, static_cast<unsigned>(pid));

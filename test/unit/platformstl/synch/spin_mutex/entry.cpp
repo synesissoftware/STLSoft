@@ -4,7 +4,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-static void test_lock_unlock(void);
+static void TEST_LOCK_UNLOCK();
 
 int main(int argc, char* argv[])
 {
@@ -13,14 +13,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_lock_unlock);
+        XTESTS_RUN_CASE(TEST_LOCK_UNLOCK);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_lock_unlock(void)
+static void TEST_LOCK_UNLOCK()
 {
     platformstl::spin_mutex mx;
     mx.lock();

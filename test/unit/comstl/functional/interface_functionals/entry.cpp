@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM interface functionals.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_interface_addref_release(void);
+    static void TEST_INTERFACE_AddRef_Release();
 } // anonymous namespace
 
 
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_interface_addref_release);
+        XTESTS_RUN_CASE(TEST_INTERFACE_AddRef_Release);
 
         XTESTS_PRINT_RESULTS();
 
@@ -75,7 +75,7 @@ using test_comstl::mock_unknown;
 
 namespace {
 
-static void test_interface_addref_release(void)
+static void TEST_INTERFACE_AddRef_Release()
 {
     comstl::interface_addref<IUnknown>  addref_fn;
     comstl::interface_release<IUnknown> release_fn;

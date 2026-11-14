@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `CComBSTR`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,10 +30,10 @@
 
 namespace {
 
-    static void TEST_calls_possible(void);
-    static void TEST_empty_string(void);
-    static void TEST_non_empty_string(void);
-    static void TEST_null_bstr_returns_empty_ptr(void);
+    static void TEST_CALLS_POSSIBLE();
+    static void TEST_EMPTY_STRING();
+    static void TEST_NON_EMPTY_STRING();
+    static void TEST_NULL_BSTR_RETURNS_EMPTY_PTR();
 } // anonymous namespace
 
 
@@ -50,10 +50,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_calls_possible);
-        XTESTS_RUN_CASE(TEST_empty_string);
-        XTESTS_RUN_CASE(TEST_non_empty_string);
-        XTESTS_RUN_CASE(TEST_null_bstr_returns_empty_ptr);
+        XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
+        XTESTS_RUN_CASE(TEST_EMPTY_STRING);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_STRING);
+        XTESTS_RUN_CASE(TEST_NULL_BSTR_RETURNS_EMPTY_PTR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_calls_possible()
+static void TEST_CALLS_POSSIBLE()
 {
     CComBSTR const s(L"atlstl");
 
@@ -89,7 +89,7 @@ static void TEST_calls_possible()
     TEST_PASSED();
 }
 
-static void TEST_empty_string()
+static void TEST_EMPTY_STRING()
 {
     CComBSTR const s;
 
@@ -103,7 +103,7 @@ static void TEST_empty_string()
     TEST_WS_EQ(L"", stlsoft::c_str_ptr(s));
 }
 
-static void TEST_non_empty_string()
+static void TEST_NON_EMPTY_STRING()
 {
     wchar_t const* const expected = L"ATL STL";
     CComBSTR const       s(expected);
@@ -121,7 +121,7 @@ static void TEST_non_empty_string()
     TEST_WS_EQ(expected, stlsoft::c_str_ptr_null_w(s));
 }
 
-static void TEST_null_bstr_returns_empty_ptr()
+static void TEST_NULL_BSTR_RETURNS_EMPTY_PTR()
 {
     CComBSTR s;
 

@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `system/environment_variable`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_path(void);
+    static void TEST_PATH();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_path);
+        XTESTS_RUN_CASE(TEST_PATH);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_path(void)
+static void TEST_PATH()
 {
     winstl::environment_variable ev("PATH");
     TEST_INT_NE(0u, ev.length());

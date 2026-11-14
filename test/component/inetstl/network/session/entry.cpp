@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `inetstl::basic_session`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,11 +29,11 @@
 
 namespace {
 
-    static void TEST_default_session(void);
-    static void TEST_session_with_agent(void);
-    static void TEST_session_open_close(void);
-    static void TEST_session_detach(void);
-    static void TEST_get_handle(void);
+    static void TEST_DEFAULT_SESSION();
+    static void TEST_SESSION_WITH_AGENT();
+    static void TEST_SESSION_OPEN_CLOSE();
+    static void TEST_SESSION_DETACH();
+    static void TEST_get_handle();
 } // anonymous namespace
 
 
@@ -50,10 +50,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_default_session);
-        XTESTS_RUN_CASE(TEST_session_with_agent);
-        XTESTS_RUN_CASE(TEST_session_open_close);
-        XTESTS_RUN_CASE(TEST_session_detach);
+        XTESTS_RUN_CASE(TEST_DEFAULT_SESSION);
+        XTESTS_RUN_CASE(TEST_SESSION_WITH_AGENT);
+        XTESTS_RUN_CASE(TEST_SESSION_OPEN_CLOSE);
+        XTESTS_RUN_CASE(TEST_SESSION_DETACH);
         XTESTS_RUN_CASE(TEST_get_handle);
 
         XTESTS_PRINT_RESULTS();
@@ -81,7 +81,7 @@ typedef inetstl::basic_session<char, stlsoft::null_exception_policy> session_nul
 
 namespace {
 
-static void TEST_default_session()
+static void TEST_DEFAULT_SESSION()
 {
     inetstl::session_a sess;
 
@@ -89,7 +89,7 @@ static void TEST_default_session()
     TEST_PTR_NE(NULL, sess.get());
 }
 
-static void TEST_session_with_agent()
+static void TEST_SESSION_WITH_AGENT()
 {
     inetstl::session_a sess("InetSTL test agent");
 
@@ -97,7 +97,7 @@ static void TEST_session_with_agent()
     TEST_PTR_NE(NULL, sess.get());
 }
 
-static void TEST_session_open_close()
+static void TEST_SESSION_OPEN_CLOSE()
 {
     session_null_x_t sess;
 
@@ -116,7 +116,7 @@ static void TEST_session_open_close()
     TEST_BOOLEAN_FALSE(sess.is_open());
 }
 
-static void TEST_session_detach()
+static void TEST_SESSION_DETACH()
 {
     inetstl::session_a sess("InetSTL test agent");
     HINTERNET const    h = sess.get();

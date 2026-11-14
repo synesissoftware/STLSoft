@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `inetstl::basic_connection`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,10 +29,10 @@
 
 namespace {
 
-    static void TEST_default_connection(void);
-    static void TEST_failed_connect_with_null_policy(void);
-    static void TEST_close_on_unconnected(void);
-    static void TEST_get_handle(void);
+    static void TEST_DEFAULT_CONNECTION();
+    static void TEST_FAILED_CONNECT_WITH_NULL_POLICY();
+    static void TEST_CLOSE_ON_UNCONNECTED();
+    static void TEST_get_handle();
 } // anonymous namespace
 
 
@@ -49,9 +49,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_default_connection);
-        XTESTS_RUN_CASE(TEST_failed_connect_with_null_policy);
-        XTESTS_RUN_CASE(TEST_close_on_unconnected);
+        XTESTS_RUN_CASE(TEST_DEFAULT_CONNECTION);
+        XTESTS_RUN_CASE(TEST_FAILED_CONNECT_WITH_NULL_POLICY);
+        XTESTS_RUN_CASE(TEST_CLOSE_ON_UNCONNECTED);
         XTESTS_RUN_CASE(TEST_get_handle);
 
         XTESTS_PRINT_RESULTS();
@@ -80,7 +80,7 @@ typedef inetstl::basic_session<char, stlsoft::null_exception_policy>    session_
 
 namespace {
 
-static void TEST_default_connection()
+static void TEST_DEFAULT_CONNECTION()
 {
     connection_null_x_t conn;
 
@@ -89,7 +89,7 @@ static void TEST_default_connection()
     TEST_INT_EQ(ERROR_SUCCESS, conn.last_error());
 }
 
-static void TEST_failed_connect_with_null_policy()
+static void TEST_FAILED_CONNECT_WITH_NULL_POLICY()
 {
     session_null_x_t    sess;
     connection_null_x_t conn;
@@ -113,7 +113,7 @@ static void TEST_failed_connect_with_null_policy()
     TEST_INT_NE(ERROR_SUCCESS, conn.last_error());
 }
 
-static void TEST_close_on_unconnected()
+static void TEST_CLOSE_ON_UNCONNECTED()
 {
     connection_null_x_t conn;
 

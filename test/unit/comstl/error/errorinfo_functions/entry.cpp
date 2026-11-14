@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for error-info helper functions.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_set_and_get_error_info(void);
+    static void TEST_SET_AND_GET_ERROR_INFO();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_set_and_get_error_info);
+        XTESTS_RUN_CASE(TEST_SET_AND_GET_ERROR_INFO);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_set_and_get_error_info(void)
+static void TEST_SET_AND_GET_ERROR_INFO()
 {
     HRESULT     hr;
     IErrorInfo* pei = NULL;

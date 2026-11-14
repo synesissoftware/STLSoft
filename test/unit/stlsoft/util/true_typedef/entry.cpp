@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,9 +47,9 @@
 
 namespace {
 
-    static void test_int_spec();
-    static void test_double_spec();
-    static void test_stdstring_spec();
+    static void TEST_int_SPEC();
+    static void TEST_double_SPEC();
+    static void TEST_STDSTRING_SPEC();
 } // anonymous namespace
 
 
@@ -66,9 +66,9 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.util.true_typedef", verbosity))
     {
-        XTESTS_RUN_CASE(test_int_spec);
-        XTESTS_RUN_CASE(test_double_spec);
-        XTESTS_RUN_CASE(test_stdstring_spec);
+        XTESTS_RUN_CASE(TEST_int_SPEC);
+        XTESTS_RUN_CASE(TEST_double_SPEC);
+        XTESTS_RUN_CASE(TEST_STDSTRING_SPEC);
 
 
         XTESTS_PRINT_RESULTS();
@@ -151,7 +151,7 @@ STLSOFT_GEN_OPAQUE(h_string_tt)
 #endif
 
 
-static void test_int_spec()
+static void TEST_int_SPEC()
 {
     STLSOFT_GEN_OPAQUE(h_int_tt)
 
@@ -643,7 +643,7 @@ static void test_int_spec()
     }
 }
 
-static void test_double_spec()
+static void TEST_double_SPEC()
 {
     STLSOFT_GEN_OPAQUE(h_double_tt)
 
@@ -652,7 +652,7 @@ static void test_double_spec()
     STLSOFT_STATIC_ASSERT(!stlsoft::is_integral_type<type_t>::value);
 }
 
-static void test_stdstring_spec()
+static void TEST_STDSTRING_SPEC()
 {
     STLSOFT_GEN_OPAQUE(h_string_tt)
 

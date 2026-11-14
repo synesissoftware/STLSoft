@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::CString_cadaptor` and `mfcstl::CString_iadaptor`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,10 +29,10 @@
 
 namespace {
 
-    static void TEST_cadaptor_default_empty(void);
-    static void TEST_cadaptor_construct_and_assign(void);
-    static void TEST_cadaptor_append_and_substr(void);
-    static void TEST_iadaptor_wraps_underlying_string(void);
+    static void TEST_CADAPTOR_DEFAULT_EMPTY();
+    static void TEST_CADAPTOR_CONSTRUCT_AND_ASSIGN();
+    static void TEST_CADAPTOR_APPEND_AND_SUBSTR();
+    static void TEST_IADAPTOR_WRAPS_UNDERLYING_STRING();
 } // anonymous namespace
 
 
@@ -49,10 +49,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_cadaptor_default_empty);
-        XTESTS_RUN_CASE(TEST_cadaptor_construct_and_assign);
-        XTESTS_RUN_CASE(TEST_cadaptor_append_and_substr);
-        XTESTS_RUN_CASE(TEST_iadaptor_wraps_underlying_string);
+        XTESTS_RUN_CASE(TEST_CADAPTOR_DEFAULT_EMPTY);
+        XTESTS_RUN_CASE(TEST_CADAPTOR_CONSTRUCT_AND_ASSIGN);
+        XTESTS_RUN_CASE(TEST_CADAPTOR_APPEND_AND_SUBSTR);
+        XTESTS_RUN_CASE(TEST_IADAPTOR_WRAPS_UNDERLYING_STRING);
 
         XTESTS_PRINT_RESULTS();
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_cadaptor_default_empty()
+static void TEST_CADAPTOR_DEFAULT_EMPTY()
 {
     mfcstl::CString_cadaptor s;
 
@@ -77,7 +77,7 @@ static void TEST_cadaptor_default_empty()
     TEST_INT_EQ(0, s.size());
 }
 
-static void TEST_cadaptor_construct_and_assign()
+static void TEST_CADAPTOR_CONSTRUCT_AND_ASSIGN()
 {
     mfcstl::CString_cadaptor s(_T("mfcstl"));
 
@@ -90,7 +90,7 @@ static void TEST_cadaptor_construct_and_assign()
     TEST_MS_EQ(_T("adaptors"), s.c_str());
 }
 
-static void TEST_cadaptor_append_and_substr()
+static void TEST_CADAPTOR_APPEND_AND_SUBSTR()
 {
     mfcstl::CString_cadaptor s(_T("hello"));
 
@@ -103,7 +103,7 @@ static void TEST_cadaptor_append_and_substr()
     TEST_MS_EQ(_T("world"), sub.c_str());
 }
 
-static void TEST_iadaptor_wraps_underlying_string()
+static void TEST_IADAPTOR_WRAPS_UNDERLYING_STRING()
 {
     CString                             raw(_T("instance"));
     mfcstl::CString_iadaptor            sip(raw);

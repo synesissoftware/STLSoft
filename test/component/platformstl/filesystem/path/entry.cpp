@@ -4,26 +4,33 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_join(void); static void test_construct_filename(void); }
+namespace {
+
+    static void TEST_JOIN();
+    static void TEST_CONSTRUCT_FILENAME();
+}
 
 int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
+
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_join);
-        XTESTS_RUN_CASE(test_construct_filename);
+        XTESTS_RUN_CASE(TEST_JOIN);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT_FILENAME);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
+
     return retCode;
 }
 
 namespace {
 
-static void test_join(void)
+static void TEST_JOIN()
 {
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
     platformstl::path_a p("C:/temp");
@@ -36,7 +43,7 @@ static void test_join(void)
 #endif
 }
 
-static void test_construct_filename(void)
+static void TEST_CONSTRUCT_FILENAME()
 {
     platformstl::path_a p("file.ext");
     TEST_BOOLEAN_FALSE(p.empty());

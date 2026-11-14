@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,7 +47,7 @@
 
 namespace {
 
-    static void test_min_max();
+    static void TEST_MIN_MAX();
 } // anonymous namespace
 
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.limits.integral_limits", verbosity))
     {
-        XTESTS_RUN_CASE(test_min_max);
+        XTESTS_RUN_CASE(TEST_MIN_MAX);
 
 
         XTESTS_PRINT_RESULTS();
@@ -122,7 +122,7 @@ namespace {
     using stlsoft::ss_uint64_t;
 
 
-static void test_min_max()
+static void TEST_MIN_MAX()
 {
     {
         typedef signed int                                  int_t;

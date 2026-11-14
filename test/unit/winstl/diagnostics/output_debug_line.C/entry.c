@@ -4,7 +4,7 @@
  * Purpose: Unit test for `winstl_C_diagnostics_output_debug_line_1_m()`, etc.
  *
  * Created: 22nd November 2011
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,17 +40,17 @@ static void winstl_C_call_OutputDebugStringA_(char const* s);
  * forward declarations
  */
 
-static void test_1_0(void);
-static void test_1_1(void);
-static void test_1_2(void);
-static void test_1_3(void);
-static void test_1_5(void);
-static void test_1_6(void);
-static void test_1_7(void);
-static void test_1_8(void);
-static void test_1_9(void);
-static void test_1_10(void);
-static void test_1_11(void);
+static void TEST_1_0(void);
+static void TEST_1_1(void);
+static void TEST_1_2(void);
+static void TEST_1_3(void);
+static void TEST_1_5(void);
+static void TEST_1_6(void);
+static void TEST_1_7(void);
+static void TEST_1_8(void);
+static void TEST_1_9(void);
+static void TEST_1_10(void);
+static void TEST_1_11(void);
 
 static int setup(void* param);
 static int teardown(void* param);
@@ -71,17 +71,17 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.unit.winstl.diagnostics.output_debug_line.C", verbosity, setup, teardown, setupParam))
     {
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(TEST_1_0);
+        XTESTS_RUN_CASE(TEST_1_1);
+        XTESTS_RUN_CASE(TEST_1_2);
+        XTESTS_RUN_CASE(TEST_1_3);
+        XTESTS_RUN_CASE(TEST_1_5);
+        XTESTS_RUN_CASE(TEST_1_6);
+        XTESTS_RUN_CASE(TEST_1_7);
+        XTESTS_RUN_CASE(TEST_1_8);
+        XTESTS_RUN_CASE(TEST_1_9);
+        XTESTS_RUN_CASE(TEST_1_10);
+        XTESTS_RUN_CASE(TEST_1_11);
 
         XTESTS_PRINT_RESULTS();
 
@@ -124,7 +124,7 @@ static int teardown(void* param)
 }
 
 
-static void test_1_0()
+static void TEST_1_0()
 {
     winstl_C_diagnostics_output_debug_line_1_m(NULL);
 
@@ -132,7 +132,7 @@ static void test_1_0()
     TEST_MS_EQ("\n", string.ptr);
 }
 
-static void test_1_1()
+static void TEST_1_1()
 {
     winstl_C_diagnostics_output_debug_line_1_m("");
 
@@ -140,7 +140,7 @@ static void test_1_1()
     TEST_MS_EQ("\n", string.ptr);
 }
 
-static void test_1_2()
+static void TEST_1_2()
 {
     winstl_C_diagnostics_output_debug_line_1_m("abc");
 
@@ -148,7 +148,7 @@ static void test_1_2()
     TEST_MS_EQ("abc\n", string.ptr);
 }
 
-static void test_1_3()
+static void TEST_1_3()
 {
     { size_t i; for (i = 1; i != 10000000; i *= 10)
     {
@@ -172,7 +172,7 @@ static void test_1_3()
     }}
 }
 
-static void test_1_5()
+static void TEST_1_5()
 {
     winstl_C_diagnostics_output_debug_line_2_m(NULL, NULL);
 
@@ -180,7 +180,7 @@ static void test_1_5()
     TEST_MS_EQ("\n", string.ptr);
 }
 
-static void test_1_6()
+static void TEST_1_6()
 {
     winstl_C_diagnostics_output_debug_line_2_m("", NULL);
 
@@ -188,7 +188,7 @@ static void test_1_6()
     TEST_MS_EQ("\n", string.ptr);
 }
 
-static void test_1_7()
+static void TEST_1_7()
 {
     winstl_C_diagnostics_output_debug_line_2_m(NULL, "");
 
@@ -196,7 +196,7 @@ static void test_1_7()
     TEST_MS_EQ("\n", string.ptr);
 }
 
-static void test_1_8()
+static void TEST_1_8()
 {
     winstl_C_diagnostics_output_debug_line_2_m("", "");
 
@@ -204,7 +204,7 @@ static void test_1_8()
     TEST_MS_EQ("\n", string.ptr);
 }
 
-static void test_1_9()
+static void TEST_1_9()
 {
     winstl_C_diagnostics_output_debug_line_2_m("abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
@@ -212,7 +212,7 @@ static void test_1_9()
     TEST_MS_EQ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n", string.ptr);
 }
 
-static void test_1_10()
+static void TEST_1_10()
 {
     winstl_C_diagnostics_output_debug_line_2_m("abcdefghijklm", "nopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
@@ -220,7 +220,7 @@ static void test_1_10()
     TEST_MS_EQ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n", string.ptr);
 }
 
-static void test_1_11()
+static void TEST_1_11()
 {
     { size_t i; for (i = 1; i != 10000000; i *= 10)
     {

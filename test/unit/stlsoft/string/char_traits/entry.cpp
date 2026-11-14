@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::char_traits and char_traits_safe.
  *
  * Created: 29th September 2026
- * Updated: 2nd November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,13 +37,13 @@ namespace
     static void TEST_compare_EQUAL();
     static void TEST_compare_LESS();
     static void TEST_compare_GREATER();
-    static void TEST_compare_n_0();
+    static void TEST_COMPARE_N_0();
     static void TEST_compare_EXACT_n_SEES_BYTE_AFTER_NUL();
     static void TEST_compare_max_STOPS_AT_NUL();
     static void TEST_compare_null_BOTH_NULL();
     static void TEST_compare_null_ONE_NULL();
     static void TEST_compare_HIGH_BIT_UNSIGNED_ORDER();
-    static void TEST_char_traits_safe_compare();
+    static void TEST_char_TRAITS_SAFE_COMPARE();
     static void TEST_char_traits_safe_compare_NULL();
     static void TEST_assign_n_CHAR();
     static void TEST_assign_n_WCHAR();
@@ -74,13 +74,13 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_compare_EQUAL);
         XTESTS_RUN_CASE(TEST_compare_LESS);
         XTESTS_RUN_CASE(TEST_compare_GREATER);
-        XTESTS_RUN_CASE(TEST_compare_n_0);
+        XTESTS_RUN_CASE(TEST_COMPARE_N_0);
         XTESTS_RUN_CASE(TEST_compare_EXACT_n_SEES_BYTE_AFTER_NUL);
         XTESTS_RUN_CASE(TEST_compare_max_STOPS_AT_NUL);
         XTESTS_RUN_CASE(TEST_compare_null_BOTH_NULL);
         XTESTS_RUN_CASE(TEST_compare_null_ONE_NULL);
         XTESTS_RUN_CASE(TEST_compare_HIGH_BIT_UNSIGNED_ORDER);
-        XTESTS_RUN_CASE(TEST_char_traits_safe_compare);
+        XTESTS_RUN_CASE(TEST_char_TRAITS_SAFE_COMPARE);
         XTESTS_RUN_CASE(TEST_char_traits_safe_compare_NULL);
         XTESTS_RUN_CASE(TEST_assign_n_CHAR);
         XTESTS_RUN_CASE(TEST_assign_n_WCHAR);
@@ -157,7 +157,7 @@ static void TEST_compare_GREATER()
     TEST_INT_GT(0, w_traits_t::compare(L"abc", L"ab", 3));
 }
 
-static void TEST_compare_n_0()
+static void TEST_COMPARE_N_0()
 {
     TEST_INT_EQ(0, a_traits_t::compare("abc", "xyz", 0));
     TEST_INT_EQ(0, a_traits_t::compare(NULL, NULL, 0));
@@ -255,7 +255,7 @@ static void TEST_compare_HIGH_BIT_UNSIGNED_ORDER()
     TEST_INT_GT(0, w_traits_t::compare(w_large, w_small, 1));
 }
 
-static void TEST_char_traits_safe_compare()
+static void TEST_char_TRAITS_SAFE_COMPARE()
 {
     char const a1[] = { 'a', '\0', 'd' };
     char const a2[] = { 'a', '\0', 'e' };

@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `acestl::custom_event_handler`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,8 +29,8 @@
 
 namespace {
 
-    static void TEST_schedule_and_has_custom_events(void);
-    static void TEST_cancel_custom_event(void);
+    static void TEST_SCHEDULE_AND_has_custom_events();
+    static void TEST_cancel_custom_event();
 } // anonymous namespace
 
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_schedule_and_has_custom_events);
+        XTESTS_RUN_CASE(TEST_SCHEDULE_AND_has_custom_events);
         XTESTS_RUN_CASE(TEST_cancel_custom_event);
 
         XTESTS_PRINT_RESULTS();
@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_schedule_and_has_custom_events()
+static void TEST_SCHEDULE_AND_has_custom_events()
 {
     test_handler handler;
 

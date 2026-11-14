@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::filesystem_traits`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,16 +28,16 @@
 
 namespace {
 
-    static void TEST_is_dots(void);
-    static void TEST_ensure_dir_end(void);
-    static void TEST_has_dir_end(void);
-    static void TEST_remove_dir_end(void);
-    static void TEST_is_path_rooted(void);
-    static void TEST_is_path_absolute(void);
-    static void TEST_is_path_name_separator(void);
-    static void TEST_path_separators(void);
-    static void TEST_pattern_all(void);
-    static void TEST_stat_data_attributes(void);
+    static void TEST_is_dots();
+    static void TEST_ensure_dir_end();
+    static void TEST_has_dir_end();
+    static void TEST_remove_dir_end();
+    static void TEST_is_path_rooted();
+    static void TEST_is_path_absolute();
+    static void TEST_is_path_name_separator();
+    static void TEST_PATH_SEPARATORS();
+    static void TEST_pattern_all();
+    static void TEST_STAT_DATA_ATTRIBUTES();
 } // anonymous namespace
 
 
@@ -61,9 +61,9 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_is_path_rooted);
         XTESTS_RUN_CASE(TEST_is_path_absolute);
         XTESTS_RUN_CASE(TEST_is_path_name_separator);
-        XTESTS_RUN_CASE(TEST_path_separators);
+        XTESTS_RUN_CASE(TEST_PATH_SEPARATORS);
         XTESTS_RUN_CASE(TEST_pattern_all);
-        XTESTS_RUN_CASE(TEST_stat_data_attributes);
+        XTESTS_RUN_CASE(TEST_STAT_DATA_ATTRIBUTES);
 
         XTESTS_PRINT_RESULTS();
 
@@ -246,7 +246,7 @@ static void TEST_is_path_name_separator()
     }
 }
 
-static void TEST_path_separators()
+static void TEST_PATH_SEPARATORS()
 {
     {
         TEST_CHAR_EQ(';', filesystem_traits_m_t::path_separator());
@@ -265,7 +265,7 @@ static void TEST_pattern_all()
     TEST_WS_EQ(L"*", filesystem_traits_w_t::pattern_all());
 }
 
-static void TEST_stat_data_attributes()
+static void TEST_STAT_DATA_ATTRIBUTES()
 {
     {
         WIN32_FIND_DATAA    fd;

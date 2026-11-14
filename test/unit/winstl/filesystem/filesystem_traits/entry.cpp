@@ -5,7 +5,7 @@
  *          classify UNC coarseness).
  *
  * Created: 31st December 2008
- * Updated: 25th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,7 +53,7 @@ namespace {
     static void TEST_has_dir_end_1();
 
     static void TEST_remove_dir_end_1();
-    static void TEST_remove_then_ensure_round_trip();
+    static void TEST_REMOVE_THEN_ENSURE_ROUND_TRIP();
 
     static void TEST_find_last_path_name_separator();
     static void TEST_find_next_path_name_separator();
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_has_dir_end_1);
 
         XTESTS_RUN_CASE(TEST_remove_dir_end_1);
-        XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
+        XTESTS_RUN_CASE(TEST_REMOVE_THEN_ENSURE_ROUND_TRIP);
 
         XTESTS_RUN_CASE(TEST_path_is_absolute_1);
         XTESTS_RUN_CASE(TEST_path_is_absolute_2);
@@ -1053,7 +1053,7 @@ static void TEST_remove_dir_end_1()
     }
 }
 
-static void TEST_remove_then_ensure_round_trip()
+static void TEST_REMOVE_THEN_ENSURE_ROUND_TRIP()
 {
     vec_m_t         buff;
     buff.push_back('a');

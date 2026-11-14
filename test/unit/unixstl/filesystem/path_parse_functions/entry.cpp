@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/filesystem/path_parse_functions.h`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,10 +28,10 @@
 
 namespace {
 
-    static void test_find_first_separator(void);
-    static void test_find_last_separator(void);
-    static void test_no_separator(void);
-    static void test_bounded_search(void);
+    static void TEST_FIND_FIRST_SEPARATOR();
+    static void TEST_FIND_LAST_SEPARATOR();
+    static void TEST_NO_SEPARATOR();
+    static void TEST_BOUNDED_SEARCH();
 } // anonymous namespace
 
 
@@ -48,10 +48,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_find_first_separator);
-        XTESTS_RUN_CASE(test_find_last_separator);
-        XTESTS_RUN_CASE(test_no_separator);
-        XTESTS_RUN_CASE(test_bounded_search);
+        XTESTS_RUN_CASE(TEST_FIND_FIRST_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_FIND_LAST_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_NO_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_BOUNDED_SEARCH);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_find_first_separator()
+static void TEST_FIND_FIRST_SEPARATOR()
 {
     char const path[] = "dir/sub/file";
 
@@ -76,7 +76,7 @@ static void test_find_first_separator()
     TEST_PTR_EQ(path + 3, unixstl::find_first_path_name_separator(path));
 }
 
-static void test_find_last_separator()
+static void TEST_FIND_LAST_SEPARATOR()
 {
     char const path[] = "dir/sub/file";
 
@@ -84,7 +84,7 @@ static void test_find_last_separator()
     TEST_PTR_EQ(path + 7, unixstl::find_last_path_name_separator(path));
 }
 
-static void test_no_separator()
+static void TEST_NO_SEPARATOR()
 {
     char const path[] = "fileonly";
 
@@ -92,7 +92,7 @@ static void test_no_separator()
     TEST_PTR_EQ(NULL, unixstl_C_find_last_path_name_separator_m(path));
 }
 
-static void test_bounded_search()
+static void TEST_BOUNDED_SEARCH()
 {
     char const path[] = "a/b/c";
     size_t const len = 3; /* "a/b" */

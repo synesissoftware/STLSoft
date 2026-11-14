@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `acestl::close_and_deregister`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,8 +30,8 @@
 
 namespace {
 
-    static void TEST_close_and_deregister_invalid_handle(void);
-    static void TEST_close_and_deregister_open_socket(void);
+    static void TEST_close_and_deregister_INVALID_HANDLE();
+    static void TEST_close_and_deregister_OPEN_SOCKET();
 } // anonymous namespace
 
 
@@ -48,8 +48,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_close_and_deregister_invalid_handle);
-        XTESTS_RUN_CASE(TEST_close_and_deregister_open_socket);
+        XTESTS_RUN_CASE(TEST_close_and_deregister_INVALID_HANDLE);
+        XTESTS_RUN_CASE(TEST_close_and_deregister_OPEN_SOCKET);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,14 +66,14 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_close_and_deregister_invalid_handle()
+static void TEST_close_and_deregister_INVALID_HANDLE()
 {
     ACE_SOCK_Stream sk;
 
     TEST_BOOLEAN_FALSE(acestl::close_and_deregister(sk, NULL));
 }
 
-static void TEST_close_and_deregister_open_socket()
+static void TEST_close_and_deregister_OPEN_SOCKET()
 {
     ACE_SOCK_Stream sk;
 

@@ -8,7 +8,7 @@
  *          absolute/UNC expects follow `_WIN32` traits rules).
  *
  * Created: 15th October 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,16 +56,16 @@ namespace {
     static void TEST_ensure_dir_end_RESIZE_FAILURE_sets_ENOMEM();
     static void TEST_remove_dir_end_SHRINKS_buffer();
     static void TEST_remove_dir_end_STRIPS_ALL_trailing_separators();
-    static void TEST_remove_then_ensure_round_trip();
+    static void TEST_REMOVE_THEN_ENSURE_ROUND_TRIP();
 
-    static void TEST_path_separators();
+    static void TEST_PATH_SEPARATORS();
     static void TEST_path_is_rooted_FROM_CLASSIFICATION();
     static void TEST_starts_with_dots();
     static void TEST_ensure_and_remove_dir_end_CSTRING();
 
-    static void TEST_find_path_name_separators_w();
-    static void TEST_path_classification_w();
-    static void TEST_path_classification_m_matches_w();
+    static void TEST_FIND_PATH_NAME_SEPARATORS_W();
+    static void TEST_PATH_CLASSIFICATION_W();
+    static void TEST_PATH_CLASSIFICATION_M_MATCHES_W();
 } // anonymous namespace
 
 
@@ -87,16 +87,16 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_ensure_dir_end_RESIZE_FAILURE_sets_ENOMEM);
         XTESTS_RUN_CASE(TEST_remove_dir_end_SHRINKS_buffer);
         XTESTS_RUN_CASE(TEST_remove_dir_end_STRIPS_ALL_trailing_separators);
-        XTESTS_RUN_CASE(TEST_remove_then_ensure_round_trip);
+        XTESTS_RUN_CASE(TEST_REMOVE_THEN_ENSURE_ROUND_TRIP);
 
-        XTESTS_RUN_CASE(TEST_path_separators);
+        XTESTS_RUN_CASE(TEST_PATH_SEPARATORS);
         XTESTS_RUN_CASE(TEST_path_is_rooted_FROM_CLASSIFICATION);
         XTESTS_RUN_CASE(TEST_starts_with_dots);
         XTESTS_RUN_CASE(TEST_ensure_and_remove_dir_end_CSTRING);
 
-        XTESTS_RUN_CASE(TEST_find_path_name_separators_w);
-        XTESTS_RUN_CASE(TEST_path_classification_w);
-        XTESTS_RUN_CASE(TEST_path_classification_m_matches_w);
+        XTESTS_RUN_CASE(TEST_FIND_PATH_NAME_SEPARATORS_W);
+        XTESTS_RUN_CASE(TEST_PATH_CLASSIFICATION_W);
+        XTESTS_RUN_CASE(TEST_PATH_CLASSIFICATION_M_MATCHES_W);
 
         XTESTS_PRINT_RESULTS();
 
@@ -331,7 +331,7 @@ static void TEST_remove_dir_end_STRIPS_ALL_trailing_separators()
     }
 }
 
-static void TEST_remove_then_ensure_round_trip()
+static void TEST_REMOVE_THEN_ENSURE_ROUND_TRIP()
 {
     vec_m_t         buff;
     buff.push_back('a');
@@ -365,7 +365,7 @@ static unixstl::path_classification_t classify_m_(char const* path)
     );
 }
 
-static void TEST_path_separators()
+static void TEST_PATH_SEPARATORS()
 {
     TEST_CHAR_EQ('/', traits_m_t::path_name_separator());
     TEST_CHAR_EQ(':', traits_m_t::path_separator());
@@ -401,7 +401,7 @@ static void TEST_ensure_and_remove_dir_end_CSTRING()
     TEST_MS_EQ("dir", buf2);
 }
 
-static void TEST_find_path_name_separators_w()
+static void TEST_FIND_PATH_NAME_SEPARATORS_W()
 {
     {
         wchar_t const* const path = L"/usr/local/bin";
@@ -426,7 +426,7 @@ static void TEST_find_path_name_separators_w()
     }
 }
 
-static void TEST_path_classification_w()
+static void TEST_PATH_CLASSIFICATION_W()
 {
     TEST_BOOLEAN_TRUE(traits_w_t::is_path_rooted(L"/"));
     TEST_BOOLEAN_TRUE(traits_w_t::is_path_rooted(L"/tmp"));
@@ -451,7 +451,7 @@ static void TEST_path_classification_w()
 #endif /* _WIN32 */
 }
 
-static void TEST_path_classification_m_matches_w()
+static void TEST_PATH_CLASSIFICATION_M_MATCHES_W()
 {
     char const* const paths_m[] =
     {

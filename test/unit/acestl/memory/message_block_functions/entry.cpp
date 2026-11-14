@@ -30,9 +30,9 @@
 
 namespace {
 
-    static void TEST_make_copied_Message_Block_with_data(void);
-    static void TEST_make_copied_Message_Block_nullptr(void);
-    static void TEST_make_copied_Message_Block_array(void);
+    static void TEST_make_copied_Message_Block_with_data();
+    static void TEST_make_copied_Message_Block_nullptr();
+    static void TEST_make_copied_Message_Block_array();
 } // anonymous namespace
 
 

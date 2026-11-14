@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/algorithms/bounded`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,8 +30,8 @@
 
 namespace {
 
-    static void test_copy_n(void);
-    static void test_replace_n(void);
+    static void TEST_copy_n();
+    static void TEST_replace_n();
 } // anonymous namespace
 
 
@@ -48,8 +48,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_copy_n);
-        XTESTS_RUN_CASE(test_replace_n);
+        XTESTS_RUN_CASE(TEST_copy_n);
+        XTESTS_RUN_CASE(TEST_replace_n);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_copy_n()
+static void TEST_copy_n()
 {
     int const src[] = { 1, 2, 3, 4, 5 };
     int       dest[5] = {};
@@ -78,7 +78,7 @@ static void test_copy_n()
     TEST_INTEGER_EQUAL(3, dest[2]);
 }
 
-static void test_replace_n()
+static void TEST_replace_n()
 {
     int src[] = { 1, 2, 1, 3, 1 };
 

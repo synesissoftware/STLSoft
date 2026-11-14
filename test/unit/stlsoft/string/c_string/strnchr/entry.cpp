@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnchr() and wcsnchr().
  *
  * Created: 23rd October 2026
- * Updated: 2nd November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,7 +33,7 @@
 namespace
 {
 
-    static void TEST_c_string_strnchr_n_0();
+    static void TEST_C_STRING_STRNCHR_N_0();
     static void TEST_c_string_strnchr_MATCH_AT_START();
     static void TEST_c_string_strnchr_MATCH_IN_MIDDLE();
     static void TEST_c_string_strnchr_MATCH_AT_END();
@@ -43,7 +43,7 @@ namespace
     static void TEST_c_string_strnchr_FINDS_EMBEDDED_NUL();
     static void TEST_c_string_strnchr_CONTINUES_PAST_NUL();
     static void TEST_c_string_strnchr_HIGH_BIT();
-    static void TEST_c_string_wcsnchr_n_0();
+    static void TEST_C_STRING_WCSNCHR_N_0();
     static void TEST_c_string_wcsnchr_MATCH_AT_START();
     static void TEST_c_string_wcsnchr_MATCH_IN_MIDDLE();
     static void TEST_c_string_wcsnchr_MATCH_AT_END();
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.c_string.strnchr", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_c_string_strnchr_n_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNCHR_N_0);
         XTESTS_RUN_CASE(TEST_c_string_strnchr_MATCH_AT_START);
         XTESTS_RUN_CASE(TEST_c_string_strnchr_MATCH_IN_MIDDLE);
         XTESTS_RUN_CASE(TEST_c_string_strnchr_MATCH_AT_END);
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_c_string_strnchr_FINDS_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_c_string_strnchr_CONTINUES_PAST_NUL);
         XTESTS_RUN_CASE(TEST_c_string_strnchr_HIGH_BIT);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnchr_n_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNCHR_N_0);
         XTESTS_RUN_CASE(TEST_c_string_wcsnchr_MATCH_AT_START);
         XTESTS_RUN_CASE(TEST_c_string_wcsnchr_MATCH_IN_MIDDLE);
         XTESTS_RUN_CASE(TEST_c_string_wcsnchr_MATCH_AT_END);
@@ -118,7 +118,7 @@ static wchar_t const* wcsnchr_both_(wchar_t const* s, size_t n, int ch)
     return via_wcs;
 }
 
-static void TEST_c_string_strnchr_n_0()
+static void TEST_C_STRING_STRNCHR_N_0()
 {
     TEST_PTR_NULL(stlsoft::c_string::strnchr("abc", 0, 'a'));
     TEST_PTR_NULL(stlsoft::c_string::strnchr("", 0, '\0'));
@@ -196,7 +196,7 @@ static void TEST_c_string_strnchr_HIGH_BIT()
     TEST_PTR_NULL(stlsoft::c_string::strnchr(s, 3, 'x'));
 }
 
-static void TEST_c_string_wcsnchr_n_0()
+static void TEST_C_STRING_WCSNCHR_N_0()
 {
     TEST_PTR_NULL(wcsnchr_both_(L"abc", 0, L'a'));
     TEST_PTR_NULL(wcsnchr_both_(L"", 0, L'\0'));

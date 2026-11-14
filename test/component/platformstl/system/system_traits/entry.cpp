@@ -43,8 +43,8 @@
 namespace
 {
 
-    static void TEST_INSUFFICIENT_SPACE(void);
-    static void TEST_get_home_directory(void);
+    static void TEST_INSUFFICIENT_SPACE();
+    static void TEST_get_home_directory();
 } // anonymous namespace
 
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM/OLE initialiser RAII classes.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void test_ole_init_nothrow(void);
-    static void test_com_init_nothrow(void);
+    static void TEST_OLE_INIT_NOTHROW();
+    static void TEST_COM_INIT_NOTHROW();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_ole_init_nothrow);
-        XTESTS_RUN_CASE(test_com_init_nothrow);
+        XTESTS_RUN_CASE(TEST_OLE_INIT_NOTHROW);
+        XTESTS_RUN_CASE(TEST_COM_INIT_NOTHROW);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_ole_init_nothrow(void)
+static void TEST_OLE_INIT_NOTHROW()
 {
     comstl::ole_init_nothrow  init;
 
@@ -73,7 +73,7 @@ static void test_ole_init_nothrow(void)
     TEST_INT_EQ((int)S_OK, (int)init.get_HRESULT());
 }
 
-static void test_com_init_nothrow(void)
+static void TEST_COM_INIT_NOTHROW()
 {
     comstl::com_init_nothrow  init;
 

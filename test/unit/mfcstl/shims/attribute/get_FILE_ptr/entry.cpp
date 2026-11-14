@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::get_FILE_ptr` attribute shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void TEST_unopened_stdio_file(void);
+    static void TEST_UNOPENED_STDIO_FILE();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_unopened_stdio_file);
+        XTESTS_RUN_CASE(TEST_UNOPENED_STDIO_FILE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_unopened_stdio_file()
+static void TEST_UNOPENED_STDIO_FILE()
 {
     CStdioFile file;
 

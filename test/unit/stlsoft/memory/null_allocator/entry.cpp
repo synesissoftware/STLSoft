@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::null_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,14 +47,14 @@
 
 namespace {
 
-    static void test_alloc_0();
-    static void test_alloc_small();
-    static void test_alloc_medium();
-    static void test_alloc_large();
-    static void test_alloc_toolarge();
+    static void TEST_ALLOC_0();
+    static void TEST_ALLOC_SMALL();
+    static void TEST_ALLOC_MEDIUM();
+    static void TEST_ALLOC_LARGE();
+    static void TEST_ALLOC_TOOLARGE();
 
-    static void test_specialise_list();
-    static void test_specialise_vector();
+    static void TEST_SPECIALISE_LIST();
+    static void TEST_SPECIALISE_VECTOR();
 } // anonymous namespace
 
 
@@ -71,14 +71,14 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.null_allocator", verbosity))
     {
-        XTESTS_RUN_CASE(test_alloc_0);
-        XTESTS_RUN_CASE(test_alloc_small);
-        XTESTS_RUN_CASE(test_alloc_medium);
-        XTESTS_RUN_CASE(test_alloc_large);
-        XTESTS_RUN_CASE(test_alloc_toolarge);
+        XTESTS_RUN_CASE(TEST_ALLOC_0);
+        XTESTS_RUN_CASE(TEST_ALLOC_SMALL);
+        XTESTS_RUN_CASE(TEST_ALLOC_MEDIUM);
+        XTESTS_RUN_CASE(TEST_ALLOC_LARGE);
+        XTESTS_RUN_CASE(TEST_ALLOC_TOOLARGE);
 
-        XTESTS_RUN_CASE(test_specialise_list);
-        XTESTS_RUN_CASE(test_specialise_vector);
+        XTESTS_RUN_CASE(TEST_SPECIALISE_LIST);
+        XTESTS_RUN_CASE(TEST_SPECIALISE_VECTOR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -113,7 +113,7 @@ static void expect_out_of_memory(allocator_t& ator, allocator_t::size_type n)
     TEST_INT_EQ(1, threw);
 }
 
-static void test_alloc_0()
+static void TEST_ALLOC_0()
 {
     allocator_t a1;
     allocator_t a2;
@@ -124,28 +124,28 @@ static void test_alloc_0()
     expect_out_of_memory(a1, 0);
 }
 
-static void test_alloc_small()
+static void TEST_ALLOC_SMALL()
 {
     allocator_t ator;
 
     expect_out_of_memory(ator, 4);
 }
 
-static void test_alloc_medium()
+static void TEST_ALLOC_MEDIUM()
 {
     allocator_t ator;
 
     expect_out_of_memory(ator, 256);
 }
 
-static void test_alloc_large()
+static void TEST_ALLOC_LARGE()
 {
     allocator_t ator;
 
     expect_out_of_memory(ator, 4096);
 }
 
-static void test_alloc_toolarge()
+static void TEST_ALLOC_TOOLARGE()
 {
     allocator_t                     ator;
     allocator_t::size_type const    too_large = ator.max_size() + 1;
@@ -153,7 +153,7 @@ static void test_alloc_toolarge()
     expect_out_of_memory(ator, too_large);
 }
 
-static void test_specialise_list()
+static void TEST_SPECIALISE_LIST()
 {
     try
     {
@@ -169,7 +169,7 @@ static void test_specialise_list()
     }
 }
 
-static void test_specialise_vector()
+static void TEST_SPECIALISE_VECTOR()
 {
     try
     {

@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 
-static void test_scope_restores(void);
+static void TEST_SCOPE_RESTORES();
 
 int main(int argc, char* argv[])
 {
@@ -19,14 +19,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_scope_restores);
+        XTESTS_RUN_CASE(TEST_SCOPE_RESTORES);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_scope_restores(void)
+static void TEST_SCOPE_RESTORES()
 {
     using ::xtests::cpp::util::temp_directory;
     platformstl::current_directory_a const original;

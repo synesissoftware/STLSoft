@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnstrn() and wcsnstrn().
  *
  * Created: 23rd October 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,8 +33,8 @@
 namespace
 {
 
-    static void TEST_c_string_strnstrn_n2_0();
-    static void TEST_c_string_strnstrn_n1_0();
+    static void TEST_C_STRING_STRNSTRN_N2_0();
+    static void TEST_C_STRING_STRNSTRN_N1_0();
     static void TEST_c_string_strnstrn_n2_GT_n1();
     static void TEST_c_string_strnstrn_MATCH_AT_START();
     static void TEST_c_string_strnstrn_MATCH_IN_MIDDLE();
@@ -47,8 +47,8 @@ namespace
     static void TEST_c_string_strnstrn_EMBEDDED_NUL();
     static void TEST_c_string_strnstrn_SINGLE_BYTE();
     static void TEST_c_string_strnstrn_FULL_SPAN();
-    static void TEST_c_string_wcsnstrn_n2_0();
-    static void TEST_c_string_wcsnstrn_n1_0();
+    static void TEST_C_STRING_WCSNSTRN_N2_0();
+    static void TEST_C_STRING_WCSNSTRN_N1_0();
     static void TEST_c_string_wcsnstrn_n2_GT_n1();
     static void TEST_c_string_wcsnstrn_MATCH_AT_START();
     static void TEST_c_string_wcsnstrn_MATCH_IN_MIDDLE();
@@ -79,8 +79,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.c_string.strnstrn", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_c_string_strnstrn_n2_0);
-        XTESTS_RUN_CASE(TEST_c_string_strnstrn_n1_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNSTRN_N2_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNSTRN_N1_0);
         XTESTS_RUN_CASE(TEST_c_string_strnstrn_n2_GT_n1);
         XTESTS_RUN_CASE(TEST_c_string_strnstrn_MATCH_AT_START);
         XTESTS_RUN_CASE(TEST_c_string_strnstrn_MATCH_IN_MIDDLE);
@@ -93,8 +93,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_c_string_strnstrn_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_c_string_strnstrn_SINGLE_BYTE);
         XTESTS_RUN_CASE(TEST_c_string_strnstrn_FULL_SPAN);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnstrn_n2_0);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnstrn_n1_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNSTRN_N2_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNSTRN_N1_0);
         XTESTS_RUN_CASE(TEST_c_string_wcsnstrn_n2_GT_n1);
         XTESTS_RUN_CASE(TEST_c_string_wcsnstrn_MATCH_AT_START);
         XTESTS_RUN_CASE(TEST_c_string_wcsnstrn_MATCH_IN_MIDDLE);
@@ -134,7 +134,7 @@ static wchar_t const* wcsnstrn_both_(wchar_t const* s1, size_t n1, wchar_t const
     return via_wcs;
 }
 
-static void TEST_c_string_strnstrn_n2_0()
+static void TEST_C_STRING_STRNSTRN_N2_0()
 {
     char const s[] = "abc";
 
@@ -143,7 +143,7 @@ static void TEST_c_string_strnstrn_n2_0()
     TEST_PTR_EQ(s, stlsoft::c_string::strnstrn(s, 3, "xyz", 0));
 }
 
-static void TEST_c_string_strnstrn_n1_0()
+static void TEST_C_STRING_STRNSTRN_N1_0()
 {
     char const s[] = "abc";
 
@@ -243,7 +243,7 @@ static void TEST_c_string_strnstrn_FULL_SPAN()
     TEST_PTR_NULL(stlsoft::c_string::strnstrn(s, 4, "abce", 4));
 }
 
-static void TEST_c_string_wcsnstrn_n2_0()
+static void TEST_C_STRING_WCSNSTRN_N2_0()
 {
     wchar_t const s[] = L"abc";
 
@@ -252,7 +252,7 @@ static void TEST_c_string_wcsnstrn_n2_0()
     TEST_PTR_EQ(s, wcsnstrn_both_(s, 3, L"xyz", 0));
 }
 
-static void TEST_c_string_wcsnstrn_n1_0()
+static void TEST_C_STRING_WCSNSTRN_N1_0()
 {
     wchar_t const s[] = L"abc";
 

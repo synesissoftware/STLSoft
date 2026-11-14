@@ -28,10 +28,10 @@
 
 namespace {
 
-    static void TEST_CUIntArray_traits(void);
-    static void TEST_CStringArray_traits(void);
-    static void TEST_CPtrArray_traits(void);
-    static void TEST_CArray_specific_traits(void);
+    static void TEST_CUIntArray_traits();
+    static void TEST_CStringArray_traits();
+    static void TEST_CPtrArray_traits();
+    static void TEST_CArray_specific_traits();
 } // anonymous namespace
 
 

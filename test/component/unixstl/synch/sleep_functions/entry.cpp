@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/synch/sleep_functions.h`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_micro_sleep_returns(void);
+    static void TEST_micro_sleep_RETURNS();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_micro_sleep_returns);
+        XTESTS_RUN_CASE(TEST_micro_sleep_RETURNS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_micro_sleep_returns()
+static void TEST_micro_sleep_RETURNS()
 {
     struct timeval start;
     struct timeval end;

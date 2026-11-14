@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,25 +53,25 @@
 
 namespace {
 
-    static void test_ctor_default();
+    static void TEST_CTOR_DEFAULT();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_initializer_list_1();
-    static void test_ctor_initializer_list_2();
+    static void TEST_CTOR_INITIALIZER_LIST_1();
+    static void TEST_CTOR_INITIALIZER_LIST_2();
 #endif
-    static void test_ctor_range_pointers_1();
+    static void TEST_CTOR_RANGE_POINTERS_1();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_range_list_iters_1();
+    static void TEST_CTOR_RANGE_LIST_ITERS_1();
 #endif
-    static void test_clear();
-    static void test_merge();
-    static void test_op_addassign();
-    static void test_op_add();
-    static void test_push();
-    static void test_swap();
-    static void test_swap_std();
-    static void test_iteration_order_1();
+    static void TEST_CLEAR();
+    static void TEST_MERGE();
+    static void TEST_OP_ADDASSIGN();
+    static void TEST_OP_ADD();
+    static void TEST_PUSH();
+    static void TEST_SWAP();
+    static void TEST_SWAP_STD();
+    static void TEST_ITERATION_ORDER_1();
 } // anonymous namespace
 
 
@@ -88,25 +88,25 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.containers.frequency_map", verbosity))
     {
-        XTESTS_RUN_CASE(test_ctor_default);
+        XTESTS_RUN_CASE(TEST_CTOR_DEFAULT);
 #if __cplusplus >= 201103L
 
-        XTESTS_RUN_CASE(test_ctor_initializer_list_1);
-        XTESTS_RUN_CASE(test_ctor_initializer_list_2);
+        XTESTS_RUN_CASE(TEST_CTOR_INITIALIZER_LIST_1);
+        XTESTS_RUN_CASE(TEST_CTOR_INITIALIZER_LIST_2);
 #endif
-        XTESTS_RUN_CASE(test_ctor_range_pointers_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_POINTERS_1);
 #if __cplusplus >= 201103L
 
-        XTESTS_RUN_CASE(test_ctor_range_list_iters_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_LIST_ITERS_1);
 #endif
-        XTESTS_RUN_CASE(test_clear);
-        XTESTS_RUN_CASE(test_merge);
-        XTESTS_RUN_CASE(test_op_addassign);
-        XTESTS_RUN_CASE(test_op_add);
-        XTESTS_RUN_CASE(test_push);
-        XTESTS_RUN_CASE(test_swap);
-        XTESTS_RUN_CASE(test_swap_std);
-        XTESTS_RUN_CASE(test_iteration_order_1);
+        XTESTS_RUN_CASE(TEST_CLEAR);
+        XTESTS_RUN_CASE(TEST_MERGE);
+        XTESTS_RUN_CASE(TEST_OP_ADDASSIGN);
+        XTESTS_RUN_CASE(TEST_OP_ADD);
+        XTESTS_RUN_CASE(TEST_PUSH);
+        XTESTS_RUN_CASE(TEST_SWAP);
+        XTESTS_RUN_CASE(TEST_SWAP_STD);
+        XTESTS_RUN_CASE(TEST_ITERATION_ORDER_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -253,7 +253,7 @@ namespace {
 
 
 
-static void test_ctor_default()
+static void TEST_CTOR_DEFAULT()
 {
     {
         fm_ordered_int_t fm;
@@ -301,7 +301,7 @@ static void test_ctor_default()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_initializer_list_1()
+static void TEST_CTOR_INITIALIZER_LIST_1()
 {
     {
         fm_ordered_int_t fm = {};
@@ -436,7 +436,7 @@ static void test_ctor_initializer_list_1()
     }
 }
 
-static void test_ctor_initializer_list_2()
+static void TEST_CTOR_INITIALIZER_LIST_2()
 {
     {
         fm_ordered_int_t fm = { { 2, 2 }, { 3, 1 } };
@@ -534,7 +534,7 @@ static void test_ctor_initializer_list_2()
 }
 #endif
 
-static void test_ctor_range_pointers_1()
+static void TEST_CTOR_RANGE_POINTERS_1()
 {
     const int VALUES[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
 
@@ -648,7 +648,7 @@ static void test_ctor_range_pointers_1()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_range_list_iters_1()
+static void TEST_CTOR_RANGE_LIST_ITERS_1()
 {
     std::list<int> VALUES = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
 
@@ -752,7 +752,7 @@ static void test_ctor_range_list_iters_1()
 }
 #endif
 
-static void test_clear()
+static void TEST_CLEAR()
 {
     {
         fm_ordered_int_t    fm;
@@ -834,7 +834,7 @@ static void test_clear()
     }
 }
 
-static void test_merge()
+static void TEST_MERGE()
 {
     {
         fm_ordered_int_t    fm1;
@@ -1019,7 +1019,7 @@ static void test_merge()
 #endif /* C++ */
 }
 
-static void test_op_addassign()
+static void TEST_OP_ADDASSIGN()
 {
     {
 
@@ -1210,7 +1210,7 @@ static void test_op_addassign()
 #endif
 }
 
-static void test_op_add()
+static void TEST_OP_ADD()
 {
     {
         {
@@ -1309,7 +1309,7 @@ static void test_op_add()
 #endif
 }
 
-static void test_push()
+static void TEST_PUSH()
 {
     {
         fm_ordered_int_t        fm;
@@ -1560,7 +1560,7 @@ static void test_push()
 #endif /* C++ */
 }
 
-static void test_swap()
+static void TEST_SWAP()
 {
     {
         fm_ordered_int_t    fm1;
@@ -1663,7 +1663,7 @@ static void test_swap()
     }
 }
 
-static void test_swap_std()
+static void TEST_SWAP_STD()
 {
     {
         {
@@ -1872,7 +1872,7 @@ static void test_swap_std()
 #endif
 }
 
-static void test_iteration_order_1()
+static void TEST_ITERATION_ORDER_1()
 {
 #if __cplusplus >= 201103L
 

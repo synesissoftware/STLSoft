@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM task memory helper functions.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void test_CoTaskMemGetSize(void);
-    static void test_CoTaskMemDidAlloc(void);
-    static void test_CoTaskMemHeapMinimise(void);
+    static void TEST_CoTaskMemGetSize();
+    static void TEST_CoTaskMemDidAlloc();
+    static void TEST_CoTaskMemHeapMinimise();
 } // anonymous namespace
 
 
@@ -49,9 +49,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_CoTaskMemGetSize);
-        XTESTS_RUN_CASE(test_CoTaskMemDidAlloc);
-        XTESTS_RUN_CASE(test_CoTaskMemHeapMinimise);
+        XTESTS_RUN_CASE(TEST_CoTaskMemGetSize);
+        XTESTS_RUN_CASE(TEST_CoTaskMemDidAlloc);
+        XTESTS_RUN_CASE(TEST_CoTaskMemHeapMinimise);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_CoTaskMemGetSize(void)
+static void TEST_CoTaskMemGetSize()
 {
     void* pv = ::CoTaskMemAlloc(16);
 
@@ -77,7 +77,7 @@ static void test_CoTaskMemGetSize(void)
     ::CoTaskMemFree(pv);
 }
 
-static void test_CoTaskMemDidAlloc(void)
+static void TEST_CoTaskMemDidAlloc()
 {
     void* pv = ::CoTaskMemAlloc(8);
     int   stack;
@@ -88,7 +88,7 @@ static void test_CoTaskMemDidAlloc(void)
     ::CoTaskMemFree(pv);
 }
 
-static void test_CoTaskMemHeapMinimise(void)
+static void TEST_CoTaskMemHeapMinimise()
 {
     comstl::CoTaskMemHeapMinimise();
     comstl::CoTaskMemHeapMinimize();

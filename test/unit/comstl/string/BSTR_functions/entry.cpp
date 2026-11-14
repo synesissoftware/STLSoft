@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for comstl BSTR comparison.
  *
  * Created: 29th September 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,7 +37,7 @@ namespace
     static void TEST_comstl_C_BSTR_compare_EMBEDDED_NUL();
     static void TEST_comstl_C_BSTR_compare_PREFIX_LENGTH();
     static void TEST_BSTR_compare_MATCHES_comstl_C_BSTR_compare();
-    static void TEST_bstr_equal();
+    static void TEST_BSTR_EQUAL();
     static void TEST_comstl__bstr_compare_MATCHES_comstl_C_BSTR_compare();
 } // anonymous namespace
 
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_PREFIX_LENGTH);
         XTESTS_RUN_CASE(TEST_BSTR_compare_MATCHES_comstl_C_BSTR_compare);
-        XTESTS_RUN_CASE(TEST_bstr_equal);
+        XTESTS_RUN_CASE(TEST_BSTR_EQUAL);
         XTESTS_RUN_CASE(TEST_comstl__bstr_compare_MATCHES_comstl_C_BSTR_compare);
 
         XTESTS_PRINT_RESULTS();
@@ -182,7 +182,7 @@ static void TEST_BSTR_compare_MATCHES_comstl_C_BSTR_compare()
     comstl::comstl_C_BSTR_destroy(s_ay);
 }
 
-static void TEST_bstr_equal()
+static void TEST_BSTR_EQUAL()
 {
     comstl::bstr const abc(L"abc");
     comstl::bstr const abc2(L"abc");

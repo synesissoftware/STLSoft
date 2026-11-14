@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM security initialiser helpers.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_CoInitSecurity_appid(void);
+    static void TEST_CoInitSecurity_APPID();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_CoInitSecurity_appid);
+        XTESTS_RUN_CASE(TEST_CoInitSecurity_APPID);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_CoInitSecurity_appid(void)
+static void TEST_CoInitSecurity_APPID()
 {
     GUID const  appid = GUID_NULL;
     HRESULT     hr    = comstl::CoInitSecurity(appid, -1, NULL, RPC_C_AUTHN_LEVEL_NONE, RPC_C_IMP_LEVEL_IDENTIFY, NULL, EOAC_NONE);

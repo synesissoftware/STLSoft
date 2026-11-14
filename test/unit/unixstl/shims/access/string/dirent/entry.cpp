@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/shims/access/string/dirent.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -32,8 +32,8 @@
 
 namespace {
 
-    static void test_c_str_data_null(void);
-    static void test_c_str_ptr_with_name(void);
+    static void TEST_c_str_data_NULL();
+    static void TEST_c_str_ptr_WITH_NAME();
 } // anonymous namespace
 
 
@@ -50,8 +50,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_c_str_data_null);
-        XTESTS_RUN_CASE(test_c_str_ptr_with_name);
+        XTESTS_RUN_CASE(TEST_c_str_data_NULL);
+        XTESTS_RUN_CASE(TEST_c_str_ptr_WITH_NAME);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,13 +68,13 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_c_str_data_null()
+static void TEST_c_str_data_NULL()
 {
     TEST_MS_EQ("", stlsoft::c_str_data_a(static_cast<struct dirent const*>(NULL)));
     TEST_MS_EQ("", stlsoft::c_str_data(static_cast<struct dirent const*>(NULL)));
 }
 
-static void test_c_str_ptr_with_name()
+static void TEST_c_str_ptr_WITH_NAME()
 {
     struct dirent entry;
     strcpy(entry.d_name, "filename.ext");

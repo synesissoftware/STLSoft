@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/filesystem/functionals.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void test_path_compare_equal(void);
-    static void test_path_compare_rooted(void);
+    static void TEST_PATH_COMPARE_EQUAL();
+    static void TEST_PATH_COMPARE_ROOTED();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_path_compare_equal);
-        XTESTS_RUN_CASE(test_path_compare_rooted);
+        XTESTS_RUN_CASE(TEST_PATH_COMPARE_EQUAL);
+        XTESTS_RUN_CASE(TEST_PATH_COMPARE_ROOTED);
 
         XTESTS_PRINT_RESULTS();
 
@@ -74,7 +74,7 @@ typedef unixstl::path_compare<char> path_compare_t;
 
 namespace {
 
-static void test_path_compare_equal()
+static void TEST_PATH_COMPARE_EQUAL()
 {
     path_compare_t cmp;
 
@@ -82,7 +82,7 @@ static void test_path_compare_equal()
     TEST_BOOLEAN_FALSE(cmp("a/b", "a/c"));
 }
 
-static void test_path_compare_rooted()
+static void TEST_PATH_COMPARE_ROOTED()
 {
     path_compare_t cmp;
 

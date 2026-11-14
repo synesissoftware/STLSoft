@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_query(void);
+    static void TEST_QUERY();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_query);
+        XTESTS_RUN_CASE(TEST_QUERY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_query(void)
+static void TEST_QUERY()
 {
     winstl::commandline_parser parser(GetCommandLineA());
 

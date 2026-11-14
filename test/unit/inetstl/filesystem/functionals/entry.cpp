@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::path_compare`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -27,9 +27,9 @@
 
 namespace {
 
-    static void TEST_path_compare_equal(void);
-    static void TEST_path_compare_different(void);
-    static void TEST_path_compare_trailing_separators(void);
+    static void TEST_PATH_COMPARE_EQUAL();
+    static void TEST_PATH_COMPARE_DIFFERENT();
+    static void TEST_PATH_COMPARE_TRAILING_SEPARATORS();
 } // anonymous namespace
 
 
@@ -46,9 +46,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_path_compare_equal);
-        XTESTS_RUN_CASE(TEST_path_compare_different);
-        XTESTS_RUN_CASE(TEST_path_compare_trailing_separators);
+        XTESTS_RUN_CASE(TEST_PATH_COMPARE_EQUAL);
+        XTESTS_RUN_CASE(TEST_PATH_COMPARE_DIFFERENT);
+        XTESTS_RUN_CASE(TEST_PATH_COMPARE_TRAILING_SEPARATORS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -76,7 +76,7 @@ typedef inetstl::path_compare<char>                     path_compare_m_t;
 
 namespace {
 
-static void TEST_path_compare_equal()
+static void TEST_PATH_COMPARE_EQUAL()
 {
     {
         path_compare_m_t    cmp;
@@ -93,7 +93,7 @@ static void TEST_path_compare_equal()
     }
 }
 
-static void TEST_path_compare_different()
+static void TEST_PATH_COMPARE_DIFFERENT()
 {
     {
         path_compare_m_t    cmp;
@@ -110,7 +110,7 @@ static void TEST_path_compare_different()
     }
 }
 
-static void TEST_path_compare_trailing_separators()
+static void TEST_PATH_COMPARE_TRAILING_SEPARATORS()
 {
     {
         path_compare_m_t    cmp;

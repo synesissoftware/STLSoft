@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::strcmp and stlsoft::strncmp.
  *
  * Created: 29th September 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,7 +38,7 @@ namespace
 
     static void TEST_strcmp_CHAR();
     static void TEST_strcmp_WCHAR();
-    static void TEST_strncmp_n_0();
+    static void TEST_STRNCMP_N_0();
     static void TEST_strncmp_STOPS_AT_NUL();
     static void TEST_strcmp_SHIM_simple_string();
     static void TEST_strcmp_SHIM_string_view();
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(TEST_strcmp_CHAR);
         XTESTS_RUN_CASE(TEST_strcmp_WCHAR);
-        XTESTS_RUN_CASE(TEST_strncmp_n_0);
+        XTESTS_RUN_CASE(TEST_STRNCMP_N_0);
         XTESTS_RUN_CASE(TEST_strncmp_STOPS_AT_NUL);
         XTESTS_RUN_CASE(TEST_strcmp_SHIM_simple_string);
         XTESTS_RUN_CASE(TEST_strcmp_SHIM_string_view);
@@ -111,7 +111,7 @@ static void TEST_strcmp_WCHAR()
     TEST_INT_LT(0, stlsoft::strcmp(L"A", L"a"));
 }
 
-static void TEST_strncmp_n_0()
+static void TEST_STRNCMP_N_0()
 {
     TEST_INT_EQ(0, stlsoft::strncmp("abc", "xyz", 0));
     TEST_INT_EQ(0, stlsoft::strncmp("", "abc", 0));

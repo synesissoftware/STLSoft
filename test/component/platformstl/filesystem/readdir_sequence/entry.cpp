@@ -4,7 +4,7 @@
  * Purpose: Component test for `platformstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -59,11 +59,11 @@
 
 namespace {
 
-    static void test_empty_directory();
-    static void test_non_empty_directory();
+    static void TEST_EMPTY_DIRECTORY();
+    static void TEST_NON_EMPTY_DIRECTORY();
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
-    static void TEST_is_socket();
+    static void TEST_IS_SOCKET();
 #endif
 } // anonymous namespace
 
@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_empty_directory);
-        XTESTS_RUN_CASE(test_non_empty_directory);
+        XTESTS_RUN_CASE(TEST_EMPTY_DIRECTORY);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_DIRECTORY);
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
-        XTESTS_RUN_CASE(TEST_is_socket);
+        XTESTS_RUN_CASE(TEST_IS_SOCKET);
 #endif
 
         XTESTS_PRINT_RESULTS();
@@ -154,7 +154,7 @@ create_uds_socket_and_bind(
 
 namespace {
 
-static void test_empty_directory()
+static void TEST_EMPTY_DIRECTORY()
 {
     temp_directory dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
@@ -163,7 +163,7 @@ static void test_empty_directory()
     TEST_BOOLEAN_TRUE(rds.empty());
 }
 
-static void test_non_empty_directory()
+static void TEST_NON_EMPTY_DIRECTORY()
 {
     readdir_sequence_t rds(".");
 
@@ -172,7 +172,7 @@ static void test_non_empty_directory()
 
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
-static void TEST_is_socket()
+static void TEST_IS_SOCKET()
 {
 
     path_t  td_path;

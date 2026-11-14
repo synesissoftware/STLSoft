@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *
  * Created: 19th February 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,30 +40,30 @@
 
 namespace {
 
-    static void test_type_exists();
-    static void test_constructor_callable();
-    static void test_constructed_state();
-    static void test_constructed_subslice_1();
-    static void test_constructed_from_c_string_1();
-    static void test_copy_construction_1();
-    static void test_assignment_1();
-    static void test_string_access_shims_1();
-    static void test_string_access_shims_multibyte_1();
-    static void test_string_access_shims_2();
-    static void test_string_access_shims_multibyte_2();
-    static void test_string_access_shims_multibyte_3();
-    static void test_equality_operator_1();
-    static void test_less_than_operator_1();
-    static void test_greater_than_operator_1();
-    static void test_lessgreaterequal_operators_1();
-    static void test_lessgreaterequal_operators_2();
+    static void TEST_TYPE_EXISTS();
+    static void TEST_CONSTRUCTOR_CALLABLE();
+    static void TEST_CONSTRUCTED_STATE();
+    static void TEST_CONSTRUCTED_SUBSLICE_1();
+    static void TEST_CONSTRUCTED_FROM_C_STRING_1();
+    static void TEST_COPY_CONSTRUCTION_1();
+    static void TEST_ASSIGNMENT_1();
+    static void TEST_STRING_ACCESS_SHIMS_1();
+    static void TEST_STRING_ACCESS_SHIMS_MULTIBYTE_1();
+    static void TEST_STRING_ACCESS_SHIMS_2();
+    static void TEST_STRING_ACCESS_SHIMS_MULTIBYTE_2();
+    static void TEST_STRING_ACCESS_SHIMS_MULTIBYTE_3();
+    static void TEST_EQUALITY_OPERATOR_1();
+    static void TEST_LESS_THAN_OPERATOR_1();
+    static void TEST_GREATER_THAN_OPERATOR_1();
+    static void TEST_LESSGREATEREQUAL_OPERATORS_1();
+    static void TEST_LESSGREATEREQUAL_OPERATORS_2();
     static void TEST_compare_EMPTY();
     static void TEST_compare_EMBEDDED_NUL();
     static void TEST_compare_HIGH_BIT();
-    static void test_insertion_1();
-    static void test_insertion_2();
-    static void test_insertion_3();
-    static void test_insertion_4();
+    static void TEST_INSERTION_1();
+    static void TEST_INSERTION_2();
+    static void TEST_INSERTION_3();
+    static void TEST_INSERTION_4();
 } // anonymous namespace
 
 
@@ -80,30 +80,30 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.string_slice", verbosity))
     {
-        XTESTS_RUN_CASE(test_type_exists);
-        XTESTS_RUN_CASE(test_constructor_callable);
-        XTESTS_RUN_CASE(test_constructed_state);
-        XTESTS_RUN_CASE(test_constructed_subslice_1);
-        XTESTS_RUN_CASE(test_constructed_from_c_string_1);
-        XTESTS_RUN_CASE(test_copy_construction_1);
-        XTESTS_RUN_CASE(test_assignment_1);
-        XTESTS_RUN_CASE(test_string_access_shims_1);
-        XTESTS_RUN_CASE(test_string_access_shims_multibyte_1);
-        XTESTS_RUN_CASE(test_string_access_shims_2);
-        XTESTS_RUN_CASE(test_string_access_shims_multibyte_2);
-        XTESTS_RUN_CASE(test_string_access_shims_multibyte_3);
-        XTESTS_RUN_CASE(test_equality_operator_1);
-        XTESTS_RUN_CASE(test_less_than_operator_1);
-        XTESTS_RUN_CASE(test_greater_than_operator_1);
-        XTESTS_RUN_CASE(test_lessgreaterequal_operators_1);
-        XTESTS_RUN_CASE(test_lessgreaterequal_operators_2);
+        XTESTS_RUN_CASE(TEST_TYPE_EXISTS);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTOR_CALLABLE);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTED_STATE);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTED_SUBSLICE_1);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTED_FROM_C_STRING_1);
+        XTESTS_RUN_CASE(TEST_COPY_CONSTRUCTION_1);
+        XTESTS_RUN_CASE(TEST_ASSIGNMENT_1);
+        XTESTS_RUN_CASE(TEST_STRING_ACCESS_SHIMS_1);
+        XTESTS_RUN_CASE(TEST_STRING_ACCESS_SHIMS_MULTIBYTE_1);
+        XTESTS_RUN_CASE(TEST_STRING_ACCESS_SHIMS_2);
+        XTESTS_RUN_CASE(TEST_STRING_ACCESS_SHIMS_MULTIBYTE_2);
+        XTESTS_RUN_CASE(TEST_STRING_ACCESS_SHIMS_MULTIBYTE_3);
+        XTESTS_RUN_CASE(TEST_EQUALITY_OPERATOR_1);
+        XTESTS_RUN_CASE(TEST_LESS_THAN_OPERATOR_1);
+        XTESTS_RUN_CASE(TEST_GREATER_THAN_OPERATOR_1);
+        XTESTS_RUN_CASE(TEST_LESSGREATEREQUAL_OPERATORS_1);
+        XTESTS_RUN_CASE(TEST_LESSGREATEREQUAL_OPERATORS_2);
         XTESTS_RUN_CASE(TEST_compare_EMPTY);
         XTESTS_RUN_CASE(TEST_compare_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_compare_HIGH_BIT);
-        XTESTS_RUN_CASE(test_insertion_1);
-        XTESTS_RUN_CASE(test_insertion_2);
-        XTESTS_RUN_CASE(test_insertion_3);
-        XTESTS_RUN_CASE(test_insertion_4);
+        XTESTS_RUN_CASE(TEST_INSERTION_1);
+        XTESTS_RUN_CASE(TEST_INSERTION_2);
+        XTESTS_RUN_CASE(TEST_INSERTION_3);
+        XTESTS_RUN_CASE(TEST_INSERTION_4);
 
         XTESTS_PRINT_RESULTS();
 
@@ -162,7 +162,7 @@ namespace {
     static wchar_t const    alphabet_w[]    =   L"abcdefghijklmnopqrstuvwxyz";
 
 
-static void test_type_exists()
+static void TEST_TYPE_EXISTS()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::string_slice<char>));
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::string_slice<wchar_t>));
@@ -170,7 +170,7 @@ static void test_type_exists()
     TEST_PASSED();
 }
 
-static void test_constructor_callable()
+static void TEST_CONSTRUCTOR_CALLABLE()
 {
     stlsoft::string_slice<char>     slice;
     stlsoft::string_slice<wchar_t>  slice_w;
@@ -181,7 +181,7 @@ static void test_constructor_callable()
     TEST_PASSED();
 }
 
-static void test_constructed_state()
+static void TEST_CONSTRUCTED_STATE()
 {
     stlsoft::string_slice<char>     slice;
     stlsoft::string_slice<wchar_t>  slice_w;
@@ -212,7 +212,7 @@ static void test_constructed_state()
     TEST_PTR_NOT_NULL(::stlsoft::c_str_data(&slice_w));
 }
 
-static void test_constructed_subslice_1()
+static void TEST_CONSTRUCTED_SUBSLICE_1()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<wchar_t>  slice_w(alphabet_w, 3u);
@@ -223,7 +223,7 @@ static void test_constructed_subslice_1()
     TEST_PTR_EQ(alphabet_w, slice_w.ptr);
 }
 
-static void test_constructed_from_c_string_1()
+static void TEST_CONSTRUCTED_FROM_C_STRING_1()
 {
     stlsoft::string_slice<char>     slice(alphabet);
     stlsoft::string_slice<wchar_t>  slice_w(alphabet_w);
@@ -234,7 +234,7 @@ static void test_constructed_from_c_string_1()
     TEST_PTR_EQ(alphabet_w, slice_w.ptr);
 }
 
-static void test_copy_construction_1()
+static void TEST_COPY_CONSTRUCTION_1()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<char>     slice2(slice);
@@ -247,7 +247,7 @@ static void test_copy_construction_1()
     TEST_PTR_EQ(alphabet_w, slice2_w.ptr);
 }
 
-static void test_assignment_1()
+static void TEST_ASSIGNMENT_1()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<char>     slice2;
@@ -263,7 +263,7 @@ static void test_assignment_1()
     TEST_PTR_EQ(alphabet_w, slice2_w.ptr);
 }
 
-static void test_string_access_shims_1()
+static void TEST_STRING_ACCESS_SHIMS_1()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<wchar_t>  slice_w(alphabet_w, 3u);
@@ -279,7 +279,7 @@ static void test_string_access_shims_1()
     TEST_PTR_EQ(alphabet_w, ptr_w);
 }
 
-static void test_string_access_shims_multibyte_1()
+static void TEST_STRING_ACCESS_SHIMS_MULTIBYTE_1()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<wchar_t>  slice_w(alphabet_w, 3u);
@@ -295,7 +295,7 @@ static void test_string_access_shims_multibyte_1()
     TEST_PTR_EQ(alphabet_w, ptr_w);
 }
 
-static void test_string_access_shims_2()
+static void TEST_STRING_ACCESS_SHIMS_2()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<wchar_t>  slice_w(alphabet_w, 3u);
@@ -311,7 +311,7 @@ static void test_string_access_shims_2()
     TEST_PTR_EQ(alphabet_w, ptr_w);
 }
 
-static void test_string_access_shims_multibyte_2()
+static void TEST_STRING_ACCESS_SHIMS_MULTIBYTE_2()
 {
     stlsoft::string_slice<char>     slice(alphabet, 3u);
     stlsoft::string_slice<wchar_t>  slice_w(alphabet_w, 3u);
@@ -327,7 +327,7 @@ static void test_string_access_shims_multibyte_2()
     TEST_PTR_EQ(alphabet_w, ptr_w);
 }
 
-static void test_string_access_shims_multibyte_3()
+static void TEST_STRING_ACCESS_SHIMS_MULTIBYTE_3()
 {
     stlsoft::string_slice<char> const*      slice   =   NULL;
     stlsoft::string_slice<wchar_t> const*   slice_w =   NULL;
@@ -343,7 +343,7 @@ static void test_string_access_shims_multibyte_3()
     TEST_PTR_NOT_NULL(ptr_w);
 }
 
-static void test_equality_operator_1()
+static void TEST_EQUALITY_OPERATOR_1()
 {
     stlsoft::string_slice<char>     slice1(alphabet, 3u);
     stlsoft::string_slice<char>     slice2(alphabet, 3u);
@@ -358,7 +358,7 @@ static void test_equality_operator_1()
     TEST_BOOLEAN_FALSE(slice1_w != slice2_w);
 }
 
-static void test_less_than_operator_1()
+static void TEST_LESS_THAN_OPERATOR_1()
 {
     stlsoft::string_slice<char>     slice1(alphabet, 3u);
     stlsoft::string_slice<char>     slice2(alphabet + 1, 3u);
@@ -371,7 +371,7 @@ static void test_less_than_operator_1()
     TEST_BOOLEAN_FALSE(slice1_w > slice2_w);
 }
 
-static void test_greater_than_operator_1()
+static void TEST_GREATER_THAN_OPERATOR_1()
 {
     stlsoft::string_slice<char>     slice1(alphabet, 3u);
     stlsoft::string_slice<char>     slice2(alphabet, 4u);
@@ -384,7 +384,7 @@ static void test_greater_than_operator_1()
     TEST_BOOLEAN_FALSE(slice1_w > slice2_w);
 }
 
-static void test_lessgreaterequal_operators_1()
+static void TEST_LESSGREATEREQUAL_OPERATORS_1()
 {
     stlsoft::string_slice<char>     slice1(alphabet, 3u);
     stlsoft::string_slice<char>     slice2(alphabet, 3u);
@@ -401,7 +401,7 @@ static void test_lessgreaterequal_operators_1()
     TEST_BOOLEAN_TRUE(slice1_w >= slice2_w);
 }
 
-static void test_lessgreaterequal_operators_2()
+static void TEST_LESSGREATEREQUAL_OPERATORS_2()
 {
     stlsoft::string_slice<char>     slice1(alphabet, 3u);
     stlsoft::string_slice<char>     slice2(alphabet + 1, 3u);
@@ -482,7 +482,7 @@ static void TEST_compare_HIGH_BIT()
     TEST_INT_GT(0, hi.compare(lo));
 }
 
-static void test_insertion_1()
+static void TEST_INSERTION_1()
 {
     stlsoft::string_slice<char> const   s1;
     stlsoft::string_slice<char> const   s2("abc");
@@ -515,7 +515,7 @@ static void test_insertion_1()
     }
 }
 
-static void test_insertion_2()
+static void TEST_INSERTION_2()
 {
     stlsoft::string_slice<char> const   s2("abc");
     stlsoft::string_slice<char> const   s3("def");
@@ -535,7 +535,7 @@ static void test_insertion_2()
     }
 }
 
-static void test_insertion_3()
+static void TEST_INSERTION_3()
 {
     stlsoft::string_slice<char> const   s1;
     stlsoft::string_slice<char> const   s2("abc");
@@ -559,7 +559,7 @@ static void test_insertion_3()
 }
 
 
-static void test_insertion_4()
+static void TEST_INSERTION_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
 #if defined(_MSC_VER) &&\

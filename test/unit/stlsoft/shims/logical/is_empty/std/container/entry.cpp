@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/shims/logical/is_empty/std/container`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -34,7 +34,7 @@
 
 namespace {
 
-    static void test_is_empty_vector(void);
+    static void TEST_is_empty_VECTOR();
 } // anonymous namespace
 
 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_is_empty_vector);
+        XTESTS_RUN_CASE(TEST_is_empty_VECTOR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_is_empty_vector()
+static void TEST_is_empty_VECTOR()
 {
     std::vector<int> empty;
     std::vector<int> nonempty(1);

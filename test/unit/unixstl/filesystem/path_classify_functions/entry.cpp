@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/filesystem/path_classify_functions.h`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,10 +28,10 @@
 
 namespace {
 
-    static void test_empty_path(void);
-    static void test_relative_path(void);
-    static void test_slash_rooted(void);
-    static void test_home_rooted_with_flag(void);
+    static void TEST_EMPTY_PATH();
+    static void TEST_RELATIVE_PATH();
+    static void TEST_SLASH_ROOTED();
+    static void TEST_HOME_ROOTED_WITH_FLAG();
 } // anonymous namespace
 
 
@@ -48,10 +48,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_empty_path);
-        XTESTS_RUN_CASE(test_relative_path);
-        XTESTS_RUN_CASE(test_slash_rooted);
-        XTESTS_RUN_CASE(test_home_rooted_with_flag);
+        XTESTS_RUN_CASE(TEST_EMPTY_PATH);
+        XTESTS_RUN_CASE(TEST_RELATIVE_PATH);
+        XTESTS_RUN_CASE(TEST_SLASH_ROOTED);
+        XTESTS_RUN_CASE(TEST_HOME_ROOTED_WITH_FLAG);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_empty_path()
+static void TEST_EMPTY_PATH()
 {
     unixstl_C_path_classification_results_m_t results = {};
 
@@ -77,7 +77,7 @@ static void test_empty_path()
     TEST_INT_EQ((int)UNIXSTL_C_PathType_Empty, r);
 }
 
-static void test_relative_path()
+static void TEST_RELATIVE_PATH()
 {
     unixstl_C_path_classification_results_m_t results = {};
 
@@ -88,7 +88,7 @@ static void test_relative_path()
     TEST_INT_GE(1u, results.numDirectoryParts);
 }
 
-static void test_slash_rooted()
+static void TEST_SLASH_ROOTED()
 {
     unixstl_C_path_classification_results_m_t results = {};
 
@@ -98,7 +98,7 @@ static void test_slash_rooted()
     TEST_INT_EQ((int)UNIXSTL_C_PathType_SlashRooted, r);
 }
 
-static void test_home_rooted_with_flag()
+static void TEST_HOME_ROOTED_WITH_FLAG()
 {
     unixstl_C_path_classification_results_m_t results = {};
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,10 +51,10 @@
 
 namespace {
 
-    static void test_calls_possible();
-    static void test_c_str_len();
-    static void test_c_str_ptr();
-    static void test_invalid_value_conversion();
+    static void TEST_CALLS_POSSIBLE();
+    static void TEST_c_str_len();
+    static void TEST_c_str_ptr();
+    static void TEST_INVALID_VALUE_CONVERSION();
 } // anonymous namespace
 
 
@@ -71,10 +71,10 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.unixstl.shims.access.string.timeval", verbosity))
     {
-        XTESTS_RUN_CASE(test_calls_possible);
-        XTESTS_RUN_CASE(test_c_str_len);
-        XTESTS_RUN_CASE(test_c_str_ptr);
-        XTESTS_RUN_CASE(test_invalid_value_conversion);
+        XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
+        XTESTS_RUN_CASE(TEST_c_str_len);
+        XTESTS_RUN_CASE(TEST_c_str_ptr);
+        XTESTS_RUN_CASE(TEST_INVALID_VALUE_CONVERSION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -127,7 +127,7 @@ namespace {
         return tv;
     }
 
-static void test_calls_possible()
+static void TEST_CALLS_POSSIBLE()
 {
     {
         struct timeval tv = get_fixed_date();
@@ -167,7 +167,7 @@ static void test_calls_possible()
     }
 }
 
-static void test_c_str_len()
+static void TEST_c_str_len()
 {
     {
         struct timeval tv = get_fixed_date();
@@ -185,7 +185,7 @@ static void test_c_str_len()
     }
 }
 
-static void test_c_str_ptr()
+static void TEST_c_str_ptr()
 {
     {
         struct timeval tv = get_fixed_date();
@@ -203,7 +203,7 @@ static void test_c_str_ptr()
     }
 }
 
-static void test_invalid_value_conversion()
+static void TEST_INVALID_VALUE_CONVERSION()
 {
     {
         struct timeval tv = get_fixed_date();

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/iterators/null_output_iterator`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,7 +30,7 @@
 
 namespace {
 
-    static void test_null_output_iterator(void);
+    static void TEST_NULL_OUTPUT_ITERATOR();
 } // anonymous namespace
 
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_null_output_iterator);
+        XTESTS_RUN_CASE(TEST_NULL_OUTPUT_ITERATOR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_null_output_iterator()
+static void TEST_NULL_OUTPUT_ITERATOR()
 {
     stlsoft::null_output_iterator<int> it;
     *it = 42;

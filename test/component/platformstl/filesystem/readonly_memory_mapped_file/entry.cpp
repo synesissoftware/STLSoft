@@ -4,7 +4,7 @@
  * Purpose: Component test for `platformstl::readonly_memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,17 +40,17 @@
 
 namespace {
 
-    static void test_types_exist();
+    static void TEST_TYPES_EXIST();
 
     namespace single_threaded {
 
-        static void test_nonexisting_file();
-        static void test_a_new_file_with_fixed_content();
+        static void TEST_NONEXISTING_FILE();
+        static void TEST_A_NEW_FILE_WITH_FIXED_CONTENT();
     } // namespace single_threaded
     namespace multi_threaded {
 
-        static void test_nonexisting_file();
-        static void test_a_new_file_with_fixed_content();
+        static void TEST_NONEXISTING_FILE();
+        static void TEST_A_NEW_FILE_WITH_FIXED_CONTENT();
     } // namespace multi_threaded
 } // anonymous namespace
 
@@ -68,13 +68,13 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_types_exist);
-        XTESTS_RUN_CASE_THAT_THROWS(single_threaded::test_nonexisting_file, platformstl::filesystem_exception);
-        XTESTS_RUN_CASE_THAT_THROWS(multi_threaded::test_nonexisting_file, platformstl::filesystem_exception);
-        XTESTS_RUN_CASE(single_threaded::test_a_new_file_with_fixed_content);
-        XTESTS_RUN_CASE(multi_threaded::test_a_new_file_with_fixed_content);
+        XTESTS_RUN_CASE(TEST_TYPES_EXIST);
+        XTESTS_RUN_CASE_THAT_THROWS(single_threaded::TEST_NONEXISTING_FILE, platformstl::filesystem_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(multi_threaded::TEST_NONEXISTING_FILE, platformstl::filesystem_exception);
+        XTESTS_RUN_CASE(single_threaded::TEST_A_NEW_FILE_WITH_FIXED_CONTENT);
+        XTESTS_RUN_CASE(multi_threaded::TEST_A_NEW_FILE_WITH_FIXED_CONTENT);
 
-        // XTESTS_RUN_CASE(test_empty_directory);
+        // XTESTS_RUN_CASE(TEST_EMPTY_DIRECTORY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -94,7 +94,7 @@ namespace {
     using ::xtests::cpp::util::temp_file;
 
 
-static void test_types_exist()
+static void TEST_TYPES_EXIST()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::readonly_memory_mapped_file_base<stlsoft::refcount_policy_single_threaded>));
     STLSOFT_SUPPRESS_UNUSED(typeid(platformstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded>));
@@ -105,7 +105,7 @@ namespace single_threaded {
     typedef platformstl::readonly_memory_mapped_file_base<stlsoft::refcount_policy_single_threaded> rommf_t;
 
 
-    static void test_nonexisting_file()
+    static void TEST_NONEXISTING_FILE()
     {
         temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
 
@@ -116,7 +116,7 @@ namespace single_threaded {
         STLSOFT_SUPPRESS_UNUSED(mmf);
     }
 
-    static void test_a_new_file_with_fixed_content()
+    static void TEST_A_NEW_FILE_WITH_FIXED_CONTENT()
     {
         stlsoft::byte_t bytes[4 * 1024];
 
@@ -135,7 +135,7 @@ namespace multi_threaded {
     typedef platformstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded> rommf_t;
 
 
-    static void test_nonexisting_file()
+    static void TEST_NONEXISTING_FILE()
     {
         temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
 
@@ -146,7 +146,7 @@ namespace multi_threaded {
         STLSOFT_SUPPRESS_UNUSED(mmf);
     }
 
-    static void test_a_new_file_with_fixed_content()
+    static void TEST_A_NEW_FILE_WITH_FIXED_CONTENT()
     {
         stlsoft::byte_t bytes[4 * 1024];
 

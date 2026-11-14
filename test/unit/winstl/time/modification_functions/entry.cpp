@@ -29,8 +29,8 @@
 
 namespace {
 
-    static void test_FILETIME_ordering(void);
-    static void test_SYSTEMTIME_ordering(void);
+    static void TEST__FILETIME__ORDERING();
+    static void TEST__SYSTEMTIME__ORDERING();
 } // anonymous namespace
 
 
@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_FILETIME_ordering);
-        XTESTS_RUN_CASE(test_SYSTEMTIME_ordering);
+        XTESTS_RUN_CASE(TEST__FILETIME__ORDERING);
+        XTESTS_RUN_CASE(TEST__SYSTEMTIME__ORDERING);
 
         XTESTS_PRINT_RESULTS();
 
@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_FILETIME_ordering(void)
+static void TEST__FILETIME__ORDERING()
 {
     FILETIME ft1 = { 0, 0 };
     FILETIME ft2 = { 1, 0 };
@@ -75,7 +75,7 @@ static void test_FILETIME_ordering(void)
     TEST_INT_GT(0, winstl::compare(ft2, ft1));
 }
 
-static void test_SYSTEMTIME_ordering(void)
+static void TEST__SYSTEMTIME__ORDERING()
 {
     SYSTEMTIME st1; SYSTEMTIME st2;
     winstl::init_struct(st1);

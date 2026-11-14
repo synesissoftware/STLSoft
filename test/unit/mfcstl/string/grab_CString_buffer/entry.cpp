@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::grab_CString_buffer`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,8 +29,8 @@
 
 namespace {
 
-    static void TEST_acquires_and_releases_buffer(void);
-    static void TEST_preserves_original_length_metadata(void);
+    static void TEST_ACQUIRES_AND_RELEASES_BUFFER();
+    static void TEST_PRESERVES_original_length_METADATA();
 } // anonymous namespace
 
 
@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_acquires_and_releases_buffer);
-        XTESTS_RUN_CASE(TEST_preserves_original_length_metadata);
+        XTESTS_RUN_CASE(TEST_ACQUIRES_AND_RELEASES_BUFFER);
+        XTESTS_RUN_CASE(TEST_PRESERVES_original_length_METADATA);
 
         XTESTS_PRINT_RESULTS();
 
@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_acquires_and_releases_buffer()
+static void TEST_ACQUIRES_AND_RELEASES_BUFFER()
 {
     CString s(_T("hello"));
 
@@ -88,7 +88,7 @@ static void TEST_acquires_and_releases_buffer()
     TEST_MS_EQ(_T("world"), s);
 }
 
-static void TEST_preserves_original_length_metadata()
+static void TEST_PRESERVES_original_length_METADATA()
 {
     CString s(_T("abc"));
 

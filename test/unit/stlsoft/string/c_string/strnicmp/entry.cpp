@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string::strnicmp() and wcsnicmp().
  *
  * Created: 29th September 2026
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,8 +36,8 @@ namespace
     static void TEST_c_string_strnicmp_EQUAL();
     static void TEST_c_string_strnicmp_LESS();
     static void TEST_c_string_strnicmp_GREATER();
-    static void TEST_c_string_strnicmp_n_0();
-    static void TEST_c_string_strnicmp_n_1();
+    static void TEST_C_STRING_STRNICMP_N_0();
+    static void TEST_C_STRING_STRNICMP_N_1();
     static void TEST_c_string_strnicmp_STOPS_AT_NUL();
     static void TEST_c_string_strnicmp_NUL_AT_START();
     static void TEST_c_string_strnicmp_IGNORES_BYTE_PAST_n();
@@ -49,8 +49,8 @@ namespace
     static void TEST_c_string_wcsnicmp_EQUAL();
     static void TEST_c_string_wcsnicmp_LESS();
     static void TEST_c_string_wcsnicmp_GREATER();
-    static void TEST_c_string_wcsnicmp_n_0();
-    static void TEST_c_string_wcsnicmp_n_1();
+    static void TEST_C_STRING_WCSNICMP_N_0();
+    static void TEST_C_STRING_WCSNICMP_N_1();
     static void TEST_c_string_wcsnicmp_STOPS_AT_NUL();
     static void TEST_c_string_wcsnicmp_NUL_AT_START();
     static void TEST_c_string_wcsnicmp_IGNORES_BYTE_PAST_n();
@@ -80,8 +80,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_c_string_strnicmp_EQUAL);
         XTESTS_RUN_CASE(TEST_c_string_strnicmp_LESS);
         XTESTS_RUN_CASE(TEST_c_string_strnicmp_GREATER);
-        XTESTS_RUN_CASE(TEST_c_string_strnicmp_n_0);
-        XTESTS_RUN_CASE(TEST_c_string_strnicmp_n_1);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNICMP_N_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_STRNICMP_N_1);
         XTESTS_RUN_CASE(TEST_c_string_strnicmp_STOPS_AT_NUL);
         XTESTS_RUN_CASE(TEST_c_string_strnicmp_NUL_AT_START);
         XTESTS_RUN_CASE(TEST_c_string_strnicmp_IGNORES_BYTE_PAST_n);
@@ -93,8 +93,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_EQUAL);
         XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_LESS);
         XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_GREATER);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_n_0);
-        XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_n_1);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNICMP_N_0);
+        XTESTS_RUN_CASE(TEST_C_STRING_WCSNICMP_N_1);
         XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_STOPS_AT_NUL);
         XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_NUL_AT_START);
         XTESTS_RUN_CASE(TEST_c_string_wcsnicmp_IGNORES_BYTE_PAST_n);
@@ -149,13 +149,13 @@ static void TEST_c_string_strnicmp_GREATER()
     TEST_INT_GT(0, stlsoft::c_string::strnicmp("abc", "ab", 3));
 }
 
-static void TEST_c_string_strnicmp_n_0()
+static void TEST_C_STRING_STRNICMP_N_0()
 {
     TEST_INT_EQ(0, stlsoft::c_string::strnicmp("abc", "xyz", 0));
     TEST_INT_EQ(0, stlsoft::c_string::strnicmp("", "abc", 0));
 }
 
-static void TEST_c_string_strnicmp_n_1()
+static void TEST_C_STRING_STRNICMP_N_1()
 {
     TEST_INT_EQ(0, stlsoft::c_string::strnicmp("aX", "Ay", 1));
     TEST_INT_LT(0, stlsoft::c_string::strnicmp("A", "b", 1));
@@ -253,13 +253,13 @@ static void TEST_c_string_wcsnicmp_GREATER()
     TEST_INT_GT(0, wcsnicmp_both_(L"abc", L"ab", 3));
 }
 
-static void TEST_c_string_wcsnicmp_n_0()
+static void TEST_C_STRING_WCSNICMP_N_0()
 {
     TEST_INT_EQ(0, wcsnicmp_both_(L"abc", L"xyz", 0));
     TEST_INT_EQ(0, wcsnicmp_both_(L"", L"abc", 0));
 }
 
-static void TEST_c_string_wcsnicmp_n_1()
+static void TEST_C_STRING_WCSNICMP_N_1()
 {
     TEST_INT_EQ(0, wcsnicmp_both_(L"aX", L"Ay", 1));
     TEST_INT_LT(0, wcsnicmp_both_(L"A", L"b", 1));

@@ -1,6 +1,12 @@
 # STLSoft - CHANGES <!-- omit in toc -->
 
 
+## 1.11.10 - 16th November 2026
+
+* testing:
+  * canonicalisation of test-case function names;
+
+
 ## 1.11.9 - 14th November 2026
 
 * behaviour:

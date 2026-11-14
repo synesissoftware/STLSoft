@@ -4,26 +4,35 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-namespace { static void test_enumeration(void); static void test_lookup_path(void); }
+namespace {
+
+    static void TEST_ENUMERATION();
+    static void TEST_LOOKUP_PATH();
+}
 
 int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
+
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_enumeration);
-        XTESTS_RUN_CASE(test_lookup_path);
+        XTESTS_RUN_CASE(TEST_ENUMERATION);
+        XTESTS_RUN_CASE(TEST_LOOKUP_PATH);
+
         XTESTS_PRINT_RESULTS();
+
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
+
     return retCode;
 }
 
 namespace {
 
-static void test_enumeration(void)
+static void TEST_ENUMERATION()
 {
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
     platformstl::environment_map em;
@@ -31,7 +40,7 @@ static void test_enumeration(void)
 #endif
 }
 
-static void test_lookup_path(void)
+static void TEST_LOOKUP_PATH()
 {
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
 #if defined(_MSC_VER)

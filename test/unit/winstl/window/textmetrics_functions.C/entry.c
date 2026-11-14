@@ -26,7 +26,7 @@
  * forward declarations
  */
 
-static void TEST_compile_and_link(void);
+static void TEST_COMPILE_AND_LINK(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_compile_and_link);
+        XTESTS_RUN_CASE(TEST_COMPILE_AND_LINK);
 
         XTESTS_PRINT_RESULTS();
 
@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-static void TEST_compile_and_link(void)
+static void TEST_COMPILE_AND_LINK(void)
 {
     TEST_PASSED();
 }

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::IID_traits`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void test_iunknown_iid(void);
-    static void test_idispatch_iid(void);
+    static void TEST_IUNKNOWN_IID();
+    static void TEST_IDISPATCH_IID();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_iunknown_iid);
-        XTESTS_RUN_CASE(test_idispatch_iid);
+        XTESTS_RUN_CASE(TEST_IUNKNOWN_IID);
+        XTESTS_RUN_CASE(TEST_IDISPATCH_IID);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,12 +64,12 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_iunknown_iid(void)
+static void TEST_IUNKNOWN_IID()
 {
     TEST_BOOLEAN_TRUE(IsEqualGUID(comstl::IID_traits<IUnknown>::iid(), IID_IUnknown));
 }
 
-static void test_idispatch_iid(void)
+static void TEST_IDISPATCH_IID()
 {
     TEST_BOOLEAN_TRUE(IsEqualGUID(comstl::IID_traits<IDispatch>::iid(), IID_IDispatch));
 }

@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::spin_mutex`.
  *
  * Created: sometime in 2015
- * Updated: 12th November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -57,16 +57,16 @@
 
 namespace {
 
-    static void test_1_0();
-    static void test_types_exist();
-    static void test_types_have_expected_attributes();
-    static void test_spin_mutex_can_be_locked_and_unlocked();
-    static void test_spin_mutex_can_be_locked_and_unlocked_with_lock_scope();
-    static void test_spin_mutex_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread();
-    static void test_spin_mutex32_can_be_locked_and_unlocked();
-    static void test_spin_mutex32_can_be_locked_and_unlocked_with_lock_scope();
-    static void test_spin_mutex32_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread();
-    static void test_with_specific_policy();
+    static void TEST_1_0();
+    static void TEST_TYPES_EXIST();
+    static void TEST_TYPES_HAVE_EXPECTED_ATTRIBUTES();
+    static void TEST_SPIN_MUTEX_CAN_BE_LOCKED_AND_UNLOCKED();
+    static void TEST_SPIN_MUTEX_CAN_BE_LOCKED_AND_UNLOCKED_WITH_LOCK_SCOPE();
+    static void TEST_SPIN_MUTEX_CAN_BE_LOCKED_IN_THE_MAIN_THREAD_AND_UNLOCKED_IN_A_WORKER_THREAD();
+    static void TEST_SPIN_MUTEX32_CAN_BE_LOCKED_AND_UNLOCKED();
+    static void TEST_SPIN_MUTEX32_CAN_BE_LOCKED_AND_UNLOCKED_WITH_LOCK_SCOPE();
+    static void TEST_SPIN_MUTEX32_CAN_BE_LOCKED_IN_THE_MAIN_THREAD_AND_UNLOCKED_IN_A_WORKER_THREAD();
+    static void TEST_WITH_SPECIFIC_POLICY();
 } // anonymous namespace
 
 
@@ -83,16 +83,16 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.winstl.synch.spin_mutex", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_types_exist);
-        XTESTS_RUN_CASE(test_types_have_expected_attributes);
-        XTESTS_RUN_CASE(test_spin_mutex_can_be_locked_and_unlocked);
-        XTESTS_RUN_CASE(test_spin_mutex_can_be_locked_and_unlocked_with_lock_scope);
-        XTESTS_RUN_CASE(test_spin_mutex_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread);
-        XTESTS_RUN_CASE(test_spin_mutex32_can_be_locked_and_unlocked);
-        XTESTS_RUN_CASE(test_spin_mutex32_can_be_locked_and_unlocked_with_lock_scope);
-        XTESTS_RUN_CASE(test_spin_mutex32_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread);
-        XTESTS_RUN_CASE(test_with_specific_policy);
+        XTESTS_RUN_CASE(TEST_1_0);
+        XTESTS_RUN_CASE(TEST_TYPES_EXIST);
+        XTESTS_RUN_CASE(TEST_TYPES_HAVE_EXPECTED_ATTRIBUTES);
+        XTESTS_RUN_CASE(TEST_SPIN_MUTEX_CAN_BE_LOCKED_AND_UNLOCKED);
+        XTESTS_RUN_CASE(TEST_SPIN_MUTEX_CAN_BE_LOCKED_AND_UNLOCKED_WITH_LOCK_SCOPE);
+        XTESTS_RUN_CASE(TEST_SPIN_MUTEX_CAN_BE_LOCKED_IN_THE_MAIN_THREAD_AND_UNLOCKED_IN_A_WORKER_THREAD);
+        XTESTS_RUN_CASE(TEST_SPIN_MUTEX32_CAN_BE_LOCKED_AND_UNLOCKED);
+        XTESTS_RUN_CASE(TEST_SPIN_MUTEX32_CAN_BE_LOCKED_AND_UNLOCKED_WITH_LOCK_SCOPE);
+        XTESTS_RUN_CASE(TEST_SPIN_MUTEX32_CAN_BE_LOCKED_IN_THE_MAIN_THREAD_AND_UNLOCKED_IN_A_WORKER_THREAD);
+        XTESTS_RUN_CASE(TEST_WITH_SPECIFIC_POLICY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -203,11 +203,11 @@ namespace {
 
 namespace {
 
-    static void test_1_0()
+    static void TEST_1_0()
     {
     }
 
-    static void test_types_exist()
+    static void TEST_TYPES_EXIST()
     {
         STLSOFT_SUPPRESS_UNUSED(typeid(winstl::spin_mutex));
         STLSOFT_SUPPRESS_UNUSED(typeid(winstl::spin_mutex_no_yield));
@@ -216,7 +216,7 @@ namespace {
         TEST_PASSED();
     }
 
-    static void test_types_have_expected_attributes()
+    static void TEST_TYPES_HAVE_EXPECTED_ATTRIBUTES()
     {
         static_assert(stlsoft::is_integral_type<winstl::spin_mutex::atomic_int_type>::value, "spin_mutex type must have integral atomic type");
         static_assert(stlsoft::is_integral_type<winstl::spin_mutex32::atomic_int_type>::value, "spin_mutex32 type must have integral atomic type");
@@ -224,7 +224,7 @@ namespace {
         TEST_PASSED();
     }
 
-    static void test_spin_mutex_can_be_locked_and_unlocked()
+    static void TEST_SPIN_MUTEX_CAN_BE_LOCKED_AND_UNLOCKED()
     {
         winstl::spin_mutex mx;
 
@@ -237,7 +237,7 @@ namespace {
         TEST_PASSED();
     }
 
-    static void test_spin_mutex_can_be_locked_and_unlocked_with_lock_scope()
+    static void TEST_SPIN_MUTEX_CAN_BE_LOCKED_AND_UNLOCKED_WITH_LOCK_SCOPE()
     {
         winstl::spin_mutex mx;
 
@@ -250,7 +250,7 @@ namespace {
         TEST_PASSED();
     }
 
-    static void test_spin_mutex_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread()
+    static void TEST_SPIN_MUTEX_CAN_BE_LOCKED_IN_THE_MAIN_THREAD_AND_UNLOCKED_IN_A_WORKER_THREAD()
     {
         winstl::spin_mutex mx;
 
@@ -269,7 +269,7 @@ namespace {
         TEST_BOOLEAN_FALSE(locked);
     }
 
-    static void test_spin_mutex32_can_be_locked_and_unlocked()
+    static void TEST_SPIN_MUTEX32_CAN_BE_LOCKED_AND_UNLOCKED()
     {
         winstl::spin_mutex32 mx;
 
@@ -282,7 +282,7 @@ namespace {
         TEST_PASSED();
     }
 
-    static void test_spin_mutex32_can_be_locked_and_unlocked_with_lock_scope()
+    static void TEST_SPIN_MUTEX32_CAN_BE_LOCKED_AND_UNLOCKED_WITH_LOCK_SCOPE()
     {
         winstl::spin_mutex32 mx;
 
@@ -295,7 +295,7 @@ namespace {
         TEST_PASSED();
     }
 
-    static void test_spin_mutex32_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread()
+    static void TEST_SPIN_MUTEX32_CAN_BE_LOCKED_IN_THE_MAIN_THREAD_AND_UNLOCKED_IN_A_WORKER_THREAD()
     {
         winstl::spin_mutex32 mx;
 
@@ -314,7 +314,7 @@ namespace {
         TEST_BOOLEAN_FALSE(locked);
     }
 
-    static void test_with_specific_policy()
+    static void TEST_WITH_SPECIFIC_POLICY()
     {
         winstl::event ev_start(true, false);
         winstl::event ev_stop(true, false);

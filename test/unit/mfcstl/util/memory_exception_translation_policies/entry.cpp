@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl` memory exception translation policies.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void TEST_bad_alloc_policy_rethrows_bad_alloc(void);
-    static void TEST_bad_alloc_policy_translates_memory_exception(void);
-    static void TEST_cmemory_exception_policy_rethrows_memory_exception(void);
+    static void TEST_BAD_ALLOC_POLICY_RETHROWS_BAD_ALLOC();
+    static void TEST_BAD_ALLOC_POLICY_TRANSLATES_MEMORY_EXCEPTION();
+    static void TEST_CMEMORY_EXCEPTION_POLICY_RETHROWS_MEMORY_EXCEPTION();
 } // anonymous namespace
 
 
@@ -48,9 +48,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_bad_alloc_policy_rethrows_bad_alloc);
-        XTESTS_RUN_CASE(TEST_bad_alloc_policy_translates_memory_exception);
-        XTESTS_RUN_CASE(TEST_cmemory_exception_policy_rethrows_memory_exception);
+        XTESTS_RUN_CASE(TEST_BAD_ALLOC_POLICY_RETHROWS_BAD_ALLOC);
+        XTESTS_RUN_CASE(TEST_BAD_ALLOC_POLICY_TRANSLATES_MEMORY_EXCEPTION);
+        XTESTS_RUN_CASE(TEST_CMEMORY_EXCEPTION_POLICY_RETHROWS_MEMORY_EXCEPTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_bad_alloc_policy_rethrows_bad_alloc()
+static void TEST_BAD_ALLOC_POLICY_RETHROWS_BAD_ALLOC()
 {
     std::bad_alloc x;
 
@@ -87,7 +87,7 @@ static void TEST_bad_alloc_policy_rethrows_bad_alloc()
     }
 }
 
-static void TEST_bad_alloc_policy_translates_memory_exception()
+static void TEST_BAD_ALLOC_POLICY_TRANSLATES_MEMORY_EXCEPTION()
 {
     try
     {
@@ -114,7 +114,7 @@ static void TEST_bad_alloc_policy_translates_memory_exception()
     }
 }
 
-static void TEST_cmemory_exception_policy_rethrows_memory_exception()
+static void TEST_CMEMORY_EXCEPTION_POLICY_RETHROWS_MEMORY_EXCEPTION()
 {
     try
     {

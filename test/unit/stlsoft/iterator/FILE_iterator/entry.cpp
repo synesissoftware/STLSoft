@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::FILE_iterator`.
  *
  * Created: 24th March 2025
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,7 +45,7 @@
 
 namespace {
 
-    static void test_1();
+    static void TEST_1();
 } // anonymous namespace
 
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.iterator.FILE_iterator", verbosity))
     {
-        XTESTS_RUN_CASE(test_1);
+        XTESTS_RUN_CASE(TEST_1);
 
 
         XTESTS_PRINT_RESULTS();
@@ -94,7 +94,7 @@ namespace {
     using ::xtests::cpp::util::temp_file;
 
 
-static void test_1()
+static void TEST_1()
 {
     temp_file f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 

@@ -27,7 +27,7 @@
 
 namespace {
 
-    static void TEST_compile_and_link(void);
+    static void TEST_COMPILE_AND_LINK();
 } // anonymous namespace
 
 
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_compile_and_link);
+        XTESTS_RUN_CASE(TEST_COMPILE_AND_LINK);
 
         XTESTS_PRINT_RESULTS();
 
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_compile_and_link(void)
+static void TEST_COMPILE_AND_LINK()
 {
     TEST_PASSED();
 }

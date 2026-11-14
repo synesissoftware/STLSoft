@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl_C_CY_compare`.
  *
  * Created: 9th August 2026
- * Updated: 8th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -18,9 +18,9 @@
 
 #include <stdlib.h>
 
-static void test_compare_equal_hi_and_lo(void);
-static void test_compare_less(void);
-static void test_compare_greater(void);
+static void TEST_COMPARE_EQUAL_HI_AND_LO(void);
+static void TEST_COMPARE_LESS(void);
+static void TEST_COMPARE_GREATER(void);
 
 int main(int argc, char **argv)
 {
@@ -31,9 +31,9 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_compare_equal_hi_and_lo);
-        XTESTS_RUN_CASE(test_compare_less);
-        XTESTS_RUN_CASE(test_compare_greater);
+        XTESTS_RUN_CASE(TEST_COMPARE_EQUAL_HI_AND_LO);
+        XTESTS_RUN_CASE(TEST_COMPARE_LESS);
+        XTESTS_RUN_CASE(TEST_COMPARE_GREATER);
 
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     return retCode;
 }
 
-static void test_compare_equal_hi_and_lo(void)
+static void TEST_COMPARE_EQUAL_HI_AND_LO(void)
 {
     CY lhs = { { 0, 42 } };
     CY rhs = { { 0, 42 } };
@@ -51,7 +51,7 @@ static void test_compare_equal_hi_and_lo(void)
     TEST_INT_GT(0, comstl_C_CY_compare(&lhs, &rhs));
 }
 
-static void test_compare_less(void)
+static void TEST_COMPARE_LESS(void)
 {
     CY lhs = { { 0, 1 } };
     CY rhs = { { 0, 2 } };
@@ -60,7 +60,7 @@ static void test_compare_less(void)
     TEST_INT_LT(0, comstl_C_CY_compare(&lhs, &rhs));
 }
 
-static void test_compare_greater(void)
+static void TEST_COMPARE_GREATER(void)
 {
     CY lhs = { { 1, 0 } };
     CY rhs = { { 0, 0xffffffff } };

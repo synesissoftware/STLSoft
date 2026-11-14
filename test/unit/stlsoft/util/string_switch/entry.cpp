@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 9th June 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,33 +41,33 @@
 
 namespace {
 
-    static void test_1_1();
-    static void test_1_2();
-    static void test_1_3();
-    static void test_1_4();
-    static void test_1_5();
-    static void test_1_6();
-    static void test_1_7();
-    static void test_1_8();
-    static void test_1_9();
-    static void test_1_10();
+    static void TEST_1_1();
+    static void TEST_1_2();
+    static void TEST_1_3();
+    static void TEST_1_4();
+    static void TEST_1_5();
+    static void TEST_1_6();
+    static void TEST_1_7();
+    static void TEST_1_8();
+    static void TEST_1_9();
+    static void TEST_1_10();
 
-    static void test_1_11();
+    static void TEST_1_11();
 
-    static void test_2_1();
-    static void test_2_2();
+    static void TEST_2_1();
+    static void TEST_2_2();
 
-    static void test_3_1();
-    static void test_3_2();
-    static void test_3_3();
-    static void test_3_4();
-    static void test_3_5();
-    static void test_3_6();
-    static void test_3_7();
-    static void test_3_8();
-    static void test_3_9();
-    static void test_3_10();
-    static void test_3_11();
+    static void TEST_3_1();
+    static void TEST_3_2();
+    static void TEST_3_3();
+    static void TEST_3_4();
+    static void TEST_3_5();
+    static void TEST_3_6();
+    static void TEST_3_7();
+    static void TEST_3_8();
+    static void TEST_3_9();
+    static void TEST_3_10();
+    static void TEST_3_11();
 } // anonymous namespace
 
 
@@ -84,33 +84,33 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.util.string_switch", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(TEST_1_1);
+        XTESTS_RUN_CASE(TEST_1_2);
+        XTESTS_RUN_CASE(TEST_1_3);
+        XTESTS_RUN_CASE(TEST_1_4);
+        XTESTS_RUN_CASE(TEST_1_5);
+        XTESTS_RUN_CASE(TEST_1_6);
+        XTESTS_RUN_CASE(TEST_1_7);
+        XTESTS_RUN_CASE(TEST_1_8);
+        XTESTS_RUN_CASE(TEST_1_9);
+        XTESTS_RUN_CASE(TEST_1_10);
 
-        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(TEST_1_11);
 
-        XTESTS_RUN_CASE(test_2_1);
-        XTESTS_RUN_CASE(test_2_2);
+        XTESTS_RUN_CASE(TEST_2_1);
+        XTESTS_RUN_CASE(TEST_2_2);
 
-        XTESTS_RUN_CASE(test_3_1);
-        XTESTS_RUN_CASE(test_3_2);
-        XTESTS_RUN_CASE(test_3_3);
-        XTESTS_RUN_CASE(test_3_4);
-        XTESTS_RUN_CASE(test_3_5);
-        XTESTS_RUN_CASE(test_3_6);
-        XTESTS_RUN_CASE(test_3_7);
-        XTESTS_RUN_CASE(test_3_8);
-        XTESTS_RUN_CASE(test_3_9);
-        XTESTS_RUN_CASE(test_3_10);
-        XTESTS_RUN_CASE(test_3_11);
+        XTESTS_RUN_CASE(TEST_3_1);
+        XTESTS_RUN_CASE(TEST_3_2);
+        XTESTS_RUN_CASE(TEST_3_3);
+        XTESTS_RUN_CASE(TEST_3_4);
+        XTESTS_RUN_CASE(TEST_3_5);
+        XTESTS_RUN_CASE(TEST_3_6);
+        XTESTS_RUN_CASE(TEST_3_7);
+        XTESTS_RUN_CASE(TEST_3_8);
+        XTESTS_RUN_CASE(TEST_3_9);
+        XTESTS_RUN_CASE(TEST_3_10);
+        XTESTS_RUN_CASE(TEST_3_11);
 
         XTESTS_PRINT_RESULTS();
 
@@ -200,7 +200,7 @@ namespace {
  * 1_x
  */
 
-static void test_1_1()
+static void TEST_1_1()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -232,7 +232,7 @@ static void test_1_1()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_2()
+static void TEST_1_2()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -253,7 +253,7 @@ static void test_1_2()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_3()
+static void TEST_1_3()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -275,7 +275,7 @@ static void test_1_3()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_4()
+static void TEST_1_4()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -298,7 +298,7 @@ static void test_1_4()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_5()
+static void TEST_1_5()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -322,7 +322,7 @@ static void test_1_5()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_6()
+static void TEST_1_6()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -347,7 +347,7 @@ static void test_1_6()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_7()
+static void TEST_1_7()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -373,7 +373,7 @@ static void test_1_7()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_8()
+static void TEST_1_8()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -400,7 +400,7 @@ static void test_1_8()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_9()
+static void TEST_1_9()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -428,7 +428,7 @@ static void test_1_9()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_10()
+static void TEST_1_10()
 {
     char const  VAR[] = "B";
     int         var = -1;
@@ -457,7 +457,7 @@ static void test_1_10()
     TEST_INT_EQ(11, var);
 }
 
-static void test_1_11()
+static void TEST_1_11()
 {
     static const stlsoft::enum_map<const char*, int> cases[] =
     {
@@ -495,7 +495,7 @@ static void test_1_11()
  * 2_x
  */
 
-static void test_2_1()
+static void TEST_2_1()
 {
     char const  VAR[] = "B";
     int         var       =   0x00;
@@ -529,7 +529,7 @@ static void test_2_1()
     TEST_INT_EQ(0x02, var);
 }
 
-static void test_2_2()
+static void TEST_2_2()
 {
     char const  VAR[] = "B";
     int         var       =   0x10;
@@ -556,7 +556,7 @@ static void test_2_2()
  * 3_x
  */
 
-static void test_3_1()
+static void TEST_3_1()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -588,7 +588,7 @@ static void test_3_1()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_2()
+static void TEST_3_2()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -609,7 +609,7 @@ static void test_3_2()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_3()
+static void TEST_3_3()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -631,7 +631,7 @@ static void test_3_3()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_4()
+static void TEST_3_4()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -654,7 +654,7 @@ static void test_3_4()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_5()
+static void TEST_3_5()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -678,7 +678,7 @@ static void test_3_5()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_6()
+static void TEST_3_6()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -703,7 +703,7 @@ static void test_3_6()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_7()
+static void TEST_3_7()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -729,7 +729,7 @@ static void test_3_7()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_8()
+static void TEST_3_8()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -756,7 +756,7 @@ static void test_3_8()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_9()
+static void TEST_3_9()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -784,7 +784,7 @@ static void test_3_9()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_10()
+static void TEST_3_10()
 {
     wchar_t const   VAR[] = L"B";
     int             var = -1;
@@ -813,7 +813,7 @@ static void test_3_10()
     TEST_INT_EQ(11, var);
 }
 
-static void test_3_11()
+static void TEST_3_11()
 {
     static const stlsoft::enum_map<const wchar_t*, int> cases[] =
     {

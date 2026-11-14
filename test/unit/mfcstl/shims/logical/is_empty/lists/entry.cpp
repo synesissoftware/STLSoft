@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for is_empty shims for MFC list classes.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -27,8 +27,8 @@
 
 namespace {
 
-    static void TEST_empty_lists(void);
-    static void TEST_non_empty_lists(void);
+    static void TEST_EMPTY_LISTS();
+    static void TEST_NON_EMPTY_LISTS();
 } // anonymous namespace
 
 
@@ -45,8 +45,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_empty_lists);
-        XTESTS_RUN_CASE(TEST_non_empty_lists);
+        XTESTS_RUN_CASE(TEST_EMPTY_LISTS);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_LISTS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_empty_lists()
+static void TEST_EMPTY_LISTS()
 {
     CPtrList const pl;
     CObList const ol;
@@ -72,7 +72,7 @@ static void TEST_empty_lists()
     TEST_BOOLEAN_TRUE(stlsoft::is_empty(ol));
 }
 
-static void TEST_non_empty_lists()
+static void TEST_NON_EMPTY_LISTS()
 {
     CPtrList pl;
     CObList ol;

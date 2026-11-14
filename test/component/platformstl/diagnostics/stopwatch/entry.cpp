@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *
  * Created: 19th November 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,9 +43,9 @@
 
 namespace {
 
-    static void test_default_ctor();
-    static void test_start_then_stop_immediately();
-    static void test_get_epoch_twice();
+    static void TEST_DEFAULT_CTOR();
+    static void TEST_START_THEN_STOP_IMMEDIATELY();
+    static void TEST_get_epoch_TWICE();
 } // anonymous namespace
 
 
@@ -62,9 +62,9 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.component.platformstl.diagnostics.stopwatch", verbosity))
     {
-        XTESTS_RUN_CASE(test_default_ctor);
-        XTESTS_RUN_CASE(test_start_then_stop_immediately);
-        XTESTS_RUN_CASE(test_get_epoch_twice);
+        XTESTS_RUN_CASE(TEST_DEFAULT_CTOR);
+        XTESTS_RUN_CASE(TEST_START_THEN_STOP_IMMEDIATELY);
+        XTESTS_RUN_CASE(TEST_get_epoch_TWICE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -91,12 +91,12 @@ namespace {
 
 namespace {
 
-static void test_default_ctor()
+static void TEST_DEFAULT_CTOR()
 {
     stopwatch sw;
 }
 
-static void test_start_then_stop_immediately()
+static void TEST_START_THEN_STOP_IMMEDIATELY()
 {
     stopwatch sw;
 
@@ -132,7 +132,7 @@ static void test_start_then_stop_immediately()
 #endif
 }
 
-static void test_get_epoch_twice()
+static void TEST_get_epoch_TWICE()
 {
     stopwatch::epoch_type e1 = stopwatch::get_epoch();
     stopwatch::epoch_type e2 = stopwatch::get_epoch();

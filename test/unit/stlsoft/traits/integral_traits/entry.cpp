@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_traits`.
  *
  * Created: 21st November 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,7 +47,7 @@
 
 namespace {
 
-    static void test_1();
+    static void TEST_1();
 } // anonymous namespace
 
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.traits.integral_traits", verbosity))
     {
-        XTESTS_RUN_CASE(test_1);
+        XTESTS_RUN_CASE(TEST_1);
 
 
         XTESTS_PRINT_RESULTS();
@@ -128,7 +128,7 @@ namespace {
     using stlsoft::ss_uint64_t;
 
 
-static void test_1()
+static void TEST_1()
 {
     {
         typedef signed char                                 int_t;

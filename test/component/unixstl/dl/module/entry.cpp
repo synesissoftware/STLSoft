@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/dl/module.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void test_load_self_and_lookup_main(void);
-    static void test_raii_module_loads_libc(void);
-    static void test_get_module_handle_shim(void);
+    static void TEST_LOAD_SELF_AND_LOOKUP_MAIN();
+    static void TEST_RAII_MODULE_LOADS_LIBC();
+    static void TEST_get_module_handle_SHIM();
 } // anonymous namespace
 
 
@@ -48,9 +48,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_load_self_and_lookup_main);
-        XTESTS_RUN_CASE(test_raii_module_loads_libc);
-        XTESTS_RUN_CASE(test_get_module_handle_shim);
+        XTESTS_RUN_CASE(TEST_LOAD_SELF_AND_LOOKUP_MAIN);
+        XTESTS_RUN_CASE(TEST_RAII_MODULE_LOADS_LIBC);
+        XTESTS_RUN_CASE(TEST_get_module_handle_SHIM);
 
         XTESTS_PRINT_RESULTS();
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_load_self_and_lookup_main()
+static void TEST_LOAD_SELF_AND_LOOKUP_MAIN()
 {
     void* h = ::dlopen(NULL, RTLD_LAZY);
 
@@ -84,7 +84,7 @@ static void test_load_self_and_lookup_main()
     unixstl::dl_module::unload(h);
 }
 
-static void test_raii_module_loads_libc()
+static void TEST_RAII_MODULE_LOADS_LIBC()
 {
 #if defined(UNIXSTL_OS_IS_MACOSX)
     char const* lib = "libSystem.B.dylib";
@@ -102,7 +102,7 @@ static void test_raii_module_loads_libc()
     TEST_PTR_NE(NULL, sym);
 }
 
-static void test_get_module_handle_shim()
+static void TEST_get_module_handle_SHIM()
 {
 #if defined(UNIXSTL_OS_IS_MACOSX)
     char const* lib = "libSystem.B.dylib";

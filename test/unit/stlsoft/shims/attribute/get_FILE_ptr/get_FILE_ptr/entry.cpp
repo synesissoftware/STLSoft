@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/shims/attribute/get_FILE_ptr`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_get_FILE_ptr_null(void);
+    static void TEST_GET__FILE__PTR_NULL();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_get_FILE_ptr_null);
+        XTESTS_RUN_CASE(TEST_GET__FILE__PTR_NULL);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_get_FILE_ptr_null()
+static void TEST_GET__FILE__PTR_NULL()
 {
     FILE* fp = NULL;
     TEST_PTR_EQ(NULL, stlsoft::get_FILE_ptr(fp));

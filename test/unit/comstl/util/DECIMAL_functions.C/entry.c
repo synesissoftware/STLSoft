@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl_C_DECIMAL_compare`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -19,9 +19,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void test_compare_equal_zero(void);
-static void test_compare_same_scale(void);
-static void test_compare_different_sign(void);
+static void TEST_COMPARE_EQUAL_ZERO(void);
+static void TEST_COMPARE_SAME_SCALE(void);
+static void TEST_COMPARE_DIFFERENT_SIGN(void);
 
 static void init_decimal(DECIMAL* dec, BYTE sign, BYTE scale, ULONG hi, ULONG mid, ULONG lo)
 {
@@ -44,9 +44,9 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_compare_equal_zero);
-        XTESTS_RUN_CASE(test_compare_same_scale);
-        XTESTS_RUN_CASE(test_compare_different_sign);
+        XTESTS_RUN_CASE(TEST_COMPARE_EQUAL_ZERO);
+        XTESTS_RUN_CASE(TEST_COMPARE_SAME_SCALE);
+        XTESTS_RUN_CASE(TEST_COMPARE_DIFFERENT_SIGN);
 
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     return retCode;
 }
 
-static void test_compare_equal_zero(void)
+static void TEST_COMPARE_EQUAL_ZERO(void)
 {
     DECIMAL lhs;
     DECIMAL rhs;
@@ -66,7 +66,7 @@ static void test_compare_equal_zero(void)
     TEST_INT_EQ(0, comstl_C_DECIMAL_compare(&lhs, &rhs));
 }
 
-static void test_compare_same_scale(void)
+static void TEST_COMPARE_SAME_SCALE(void)
 {
     DECIMAL lhs;
     DECIMAL rhs;
@@ -78,7 +78,7 @@ static void test_compare_same_scale(void)
     TEST_INT_GT(0, comstl_C_DECIMAL_compare(&rhs, &lhs));
 }
 
-static void test_compare_different_sign(void)
+static void TEST_COMPARE_DIFFERENT_SIGN(void)
 {
     DECIMAL lhs;
     DECIMAL rhs;

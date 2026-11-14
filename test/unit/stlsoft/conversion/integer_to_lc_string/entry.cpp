@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_lc_string`.
  *
  * Created: 1st November 2011
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,15 +51,15 @@
 
 namespace {
 
-    static void test_987654321();
+    static void TEST_987654321();
 
-    static void test_1_0();
-    static void test_1_1();
-    static void test_1_2();
-    static void test_1_3();
-    static void test_1_4();
-    static void test_1_5();
-    static void test_1_6();
+    static void TEST_1_0();
+    static void TEST_1_1();
+    static void TEST_1_2();
+    static void TEST_1_3();
+    static void TEST_1_4();
+    static void TEST_1_5();
+    static void TEST_1_6();
 } // anonymous namespace
 
 
@@ -76,15 +76,15 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.integer_to_lc_string", verbosity))
     {
-        XTESTS_RUN_CASE(test_987654321);
+        XTESTS_RUN_CASE(TEST_987654321);
 
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
+        XTESTS_RUN_CASE(TEST_1_0);
+        XTESTS_RUN_CASE(TEST_1_1);
+        XTESTS_RUN_CASE(TEST_1_2);
+        XTESTS_RUN_CASE(TEST_1_3);
+        XTESTS_RUN_CASE(TEST_1_4);
+        XTESTS_RUN_CASE(TEST_1_5);
+        XTESTS_RUN_CASE(TEST_1_6);
 
         XTESTS_PRINT_RESULTS();
 
@@ -107,7 +107,7 @@ namespace {
     };
 
 
-static void test_987654321()
+static void TEST_987654321()
 {
     char        sz[101];
     size_t      n;
@@ -134,7 +134,7 @@ static void test_987654321()
     TEST_MS_EQ("9,87654321", s);
 }
 
-static void test_1_0()
+static void TEST_1_0()
 {
     static mapping_t const  mappings[] =
     {
@@ -160,7 +160,7 @@ static void test_1_0()
     }}
 }
 
-static void test_1_1()
+static void TEST_1_1()
 {
     static char const       grouping[]        =    "\0";
     static char const       thousands_sep[]    =    ",";
@@ -188,7 +188,7 @@ static void test_1_1()
     }}
 }
 
-static void test_1_2()
+static void TEST_1_2()
 {
     // Australia, UK, US, ...
     static char const    grouping[]        =    "\3";
@@ -217,7 +217,7 @@ static void test_1_2()
     }}
 }
 
-static void test_1_3()
+static void TEST_1_3()
 {
     static char const    grouping[]        =    { char(3), char(CHAR_MAX), char(0) };
     static char const    thousands_sep[]    =    ",";
@@ -245,7 +245,7 @@ static void test_1_3()
     }}
 }
 
-static void test_1_4()
+static void TEST_1_4()
 {
     static char const    grouping[]        =    { char(2), char(3), char(0) };
     static char const    thousands_sep[]    =    ",";
@@ -273,7 +273,7 @@ static void test_1_4()
     }}
 }
 
-static void test_1_5()
+static void TEST_1_5()
 {
     static char const    grouping[]        =    { char(2), char(3), char(CHAR_MAX), char(0) };
     static char const    thousands_sep[]    =    ",";
@@ -301,7 +301,7 @@ static void test_1_5()
     }}
 }
 
-static void test_1_6()
+static void TEST_1_6()
 {
     // Nepal
     static char const    grouping[]        =    { char(3), char(2), char(0) };

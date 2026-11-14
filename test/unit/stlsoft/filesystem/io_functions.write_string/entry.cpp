@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::write_string<>()`.
  *
  * Created: 22nd January 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,20 +46,20 @@
 
 namespace {
 
-    static void test_write_css_n_empty();
-    static void test_write_css_n_1_character();
-    static void test_write_css_n_1_long_string();
-    static void test_write_css_n_3_strings();
+    static void TEST_WRITE_CSS_N_EMPTY();
+    static void TEST_WRITE_CSS_N_1_CHARACTER();
+    static void TEST_WRITE_CSS_N_1_LONG_STRING();
+    static void TEST_WRITE_CSS_N_3_STRINGS();
 
-    static void test_write_css_empty();
-    static void test_write_css_1_character();
-    static void test_write_css_1_long_string();
-    static void test_write_css_3_strings();
+    static void TEST_WRITE_CSS_EMPTY();
+    static void TEST_WRITE_CSS_1_CHARACTER();
+    static void TEST_WRITE_CSS_1_LONG_STRING();
+    static void TEST_WRITE_CSS_3_STRINGS();
 
-    static void test_write_stdstring_empty();
-    static void test_write_stdstring_1_character();
-    static void test_write_stdstring_1_long_string();
-    static void test_write_stdstring_3_strings();
+    static void TEST_WRITE_STDSTRING_EMPTY();
+    static void TEST_WRITE_STDSTRING_1_CHARACTER();
+    static void TEST_WRITE_STDSTRING_1_LONG_STRING();
+    static void TEST_WRITE_STDSTRING_3_STRINGS();
 } // anonymous namespace
 
 
@@ -76,20 +76,20 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.filesystem.io_functions.write_string", verbosity))
     {
-        XTESTS_RUN_CASE(test_write_css_n_empty);
-        XTESTS_RUN_CASE(test_write_css_n_1_character);
-        XTESTS_RUN_CASE(test_write_css_n_1_long_string);
-        XTESTS_RUN_CASE(test_write_css_n_3_strings);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_N_EMPTY);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_N_1_CHARACTER);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_N_1_LONG_STRING);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_N_3_STRINGS);
 
-        XTESTS_RUN_CASE(test_write_css_empty);
-        XTESTS_RUN_CASE(test_write_css_1_character);
-        XTESTS_RUN_CASE(test_write_css_1_long_string);
-        XTESTS_RUN_CASE(test_write_css_3_strings);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_EMPTY);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_1_CHARACTER);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_1_LONG_STRING);
+        XTESTS_RUN_CASE(TEST_WRITE_CSS_3_STRINGS);
 
-        XTESTS_RUN_CASE(test_write_stdstring_empty);
-        XTESTS_RUN_CASE(test_write_stdstring_1_character);
-        XTESTS_RUN_CASE(test_write_stdstring_1_long_string);
-        XTESTS_RUN_CASE(test_write_stdstring_3_strings);
+        XTESTS_RUN_CASE(TEST_WRITE_STDSTRING_EMPTY);
+        XTESTS_RUN_CASE(TEST_WRITE_STDSTRING_1_CHARACTER);
+        XTESTS_RUN_CASE(TEST_WRITE_STDSTRING_1_LONG_STRING);
+        XTESTS_RUN_CASE(TEST_WRITE_STDSTRING_3_STRINGS);
 
 
         XTESTS_PRINT_RESULTS();
@@ -110,7 +110,7 @@ namespace {
     using ::xtests::cpp::util::temp_file;
 
 
-static void test_write_css_n_empty()
+static void TEST_WRITE_CSS_N_EMPTY()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -128,7 +128,7 @@ static void test_write_css_n_empty()
     }
 }
 
-static void test_write_css_n_1_character()
+static void TEST_WRITE_CSS_N_1_CHARACTER()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -147,7 +147,7 @@ static void test_write_css_n_1_character()
     }
 }
 
-static void test_write_css_n_1_long_string()
+static void TEST_WRITE_CSS_N_1_LONG_STRING()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -166,7 +166,7 @@ static void test_write_css_n_1_long_string()
     }
 }
 
-static void test_write_css_n_3_strings()
+static void TEST_WRITE_CSS_N_3_STRINGS()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -190,7 +190,7 @@ static void test_write_css_n_3_strings()
 }
 
 
-static void test_write_css_empty()
+static void TEST_WRITE_CSS_EMPTY()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -208,7 +208,7 @@ static void test_write_css_empty()
     }
 }
 
-static void test_write_css_1_character()
+static void TEST_WRITE_CSS_1_CHARACTER()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -227,7 +227,7 @@ static void test_write_css_1_character()
     }
 }
 
-static void test_write_css_1_long_string()
+static void TEST_WRITE_CSS_1_LONG_STRING()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -246,7 +246,7 @@ static void test_write_css_1_long_string()
     }
 }
 
-static void test_write_css_3_strings()
+static void TEST_WRITE_CSS_3_STRINGS()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -270,7 +270,7 @@ static void test_write_css_3_strings()
 }
 
 
-static void test_write_stdstring_empty()
+static void TEST_WRITE_STDSTRING_EMPTY()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -290,7 +290,7 @@ static void test_write_stdstring_empty()
     }
 }
 
-static void test_write_stdstring_1_character()
+static void TEST_WRITE_STDSTRING_1_CHARACTER()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -311,7 +311,7 @@ static void test_write_stdstring_1_character()
     }
 }
 
-static void test_write_stdstring_1_long_string()
+static void TEST_WRITE_STDSTRING_1_LONG_STRING()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
@@ -332,7 +332,7 @@ static void test_write_stdstring_1_long_string()
     }
 }
 
-static void test_write_stdstring_3_strings()
+static void TEST_WRITE_STDSTRING_3_STRINGS()
 {
     temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 

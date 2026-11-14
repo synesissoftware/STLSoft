@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void test_map_view(void);
+static void TEST_MAP_VIEW();
 
 int main(int argc, char* argv[])
 {
@@ -15,14 +15,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_map_view);
+        XTESTS_RUN_CASE(TEST_MAP_VIEW);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_map_view(void)
+static void TEST_MAP_VIEW()
 {
     using ::xtests::cpp::util::temp_file;
     char const content[] = "testdata";

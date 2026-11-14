@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM type functionals.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,10 +28,10 @@
 
 namespace {
 
-    static void test_BSTR_close(void);
-    static void test_olestring_close(void);
-    static void test_task_memory_close(void);
-    static void test_VARIANT_close(void);
+    static void TEST__BSTR__CLOSE();
+    static void TEST_OLESTRING_CLOSE();
+    static void TEST_TASK_MEMORY_CLOSE();
+    static void TEST__VARIANT__CLOSE();
 } // anonymous namespace
 
 
@@ -50,10 +50,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_BSTR_close);
-        XTESTS_RUN_CASE(test_olestring_close);
-        XTESTS_RUN_CASE(test_task_memory_close);
-        XTESTS_RUN_CASE(test_VARIANT_close);
+        XTESTS_RUN_CASE(TEST__BSTR__CLOSE);
+        XTESTS_RUN_CASE(TEST_OLESTRING_CLOSE);
+        XTESTS_RUN_CASE(TEST_TASK_MEMORY_CLOSE);
+        XTESTS_RUN_CASE(TEST__VARIANT__CLOSE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_BSTR_close(void)
+static void TEST__BSTR__CLOSE()
 {
     comstl::BSTR_close  closer;
     BSTR                s = ::SysAllocString(L"z");
@@ -79,7 +79,7 @@ static void test_BSTR_close(void)
     closer(s);
 }
 
-static void test_olestring_close(void)
+static void TEST_OLESTRING_CLOSE()
 {
     comstl::olestring_close  closer;
     LPOLESTR                 s = static_cast<LPOLESTR>(::CoTaskMemAlloc(4 * sizeof(OLECHAR)));
@@ -88,7 +88,7 @@ static void test_olestring_close(void)
     closer(s);
 }
 
-static void test_task_memory_close(void)
+static void TEST_TASK_MEMORY_CLOSE()
 {
     comstl::task_memory_close  closer;
     void*                      p = ::CoTaskMemAlloc(16);
@@ -97,7 +97,7 @@ static void test_task_memory_close(void)
     closer(p);
 }
 
-static void test_VARIANT_close(void)
+static void TEST__VARIANT__CLOSE()
 {
     comstl::VARIANT_close  closer;
     VARIANT                v;

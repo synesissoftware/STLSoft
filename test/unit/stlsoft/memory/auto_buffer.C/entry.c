@@ -4,7 +4,7 @@
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *
  * Created: 5th August 2011
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,14 +35,14 @@
  * forward declarations
  */
 
-static void test_value_type_of_char_internal_1(void);
-static void test_value_type_of_char_internal_2(void);
-static void test_value_type_of_char_external_1(void);
-static void test_value_type_of_char_internal_3(void);
-static void test_value_type_of_char_external_2(void);
-static void test_value_type_of_char_external_then_internal_1(void);
-static void test_value_type_of_int_internal_1(void);
-static void test_value_type_of_int_external_1(void);
+static void TEST_VALUE_TYPE_OF_char_INTERNAL_1(void);
+static void TEST_VALUE_TYPE_OF_char_INTERNAL_2(void);
+static void TEST_VALUE_TYPE_OF_char_EXTERNAL_1(void);
+static void TEST_VALUE_TYPE_OF_char_INTERNAL_3(void);
+static void TEST_VALUE_TYPE_OF_char_EXTERNAL_2(void);
+static void TEST_VALUE_TYPE_OF_char_EXTERNAL_THEN_INTERNAL_1(void);
+static void TEST_VALUE_TYPE_OF_int_INTERNAL_1(void);
+static void TEST_VALUE_TYPE_OF_int_EXTERNAL_1(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,14 +58,14 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.auto_buffer.C", verbosity))
     {
-        XTESTS_RUN_CASE(test_value_type_of_char_internal_1);
-        XTESTS_RUN_CASE(test_value_type_of_char_internal_2);
-        XTESTS_RUN_CASE(test_value_type_of_char_external_1);
-        XTESTS_RUN_CASE(test_value_type_of_char_internal_3);
-        XTESTS_RUN_CASE(test_value_type_of_char_external_2);
-        XTESTS_RUN_CASE(test_value_type_of_char_external_then_internal_1);
-        XTESTS_RUN_CASE(test_value_type_of_int_internal_1);
-        XTESTS_RUN_CASE(test_value_type_of_int_external_1);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_char_INTERNAL_1);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_char_INTERNAL_2);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_char_EXTERNAL_1);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_char_INTERNAL_3);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_char_EXTERNAL_2);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_char_EXTERNAL_THEN_INTERNAL_1);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_int_INTERNAL_1);
+        XTESTS_RUN_CASE(TEST_VALUE_TYPE_OF_int_EXTERNAL_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -172,7 +172,7 @@ int pantheios_log_n(
  * test function implementations
  */
 
-static void test_value_type_of_char_internal_1(void)
+static void TEST_VALUE_TYPE_OF_char_INTERNAL_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff);
 
@@ -189,7 +189,7 @@ static void test_value_type_of_char_internal_1(void)
     }
 }
 
-static void test_value_type_of_char_internal_2(void)
+static void TEST_VALUE_TYPE_OF_char_INTERNAL_2(void)
 {
     char    buff[10];
     void*   ptr;
@@ -210,7 +210,7 @@ static void test_value_type_of_char_internal_2(void)
     }
 }
 
-static void test_value_type_of_char_external_1(void)
+static void TEST_VALUE_TYPE_OF_char_EXTERNAL_1(void)
 {
     char    buff[10];
     void*   ptr;
@@ -230,7 +230,7 @@ static void test_value_type_of_char_external_1(void)
     }
 }
 
-static void test_value_type_of_char_internal_3(void)
+static void TEST_VALUE_TYPE_OF_char_INTERNAL_3(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, XXXX);
 
@@ -247,7 +247,7 @@ static void test_value_type_of_char_internal_3(void)
     }
 }
 
-static void test_value_type_of_char_external_2(void)
+static void TEST_VALUE_TYPE_OF_char_EXTERNAL_2(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff1);
 
@@ -264,7 +264,7 @@ static void test_value_type_of_char_external_2(void)
     }
 }
 
-static void test_value_type_of_char_external_then_internal_1(void)
+static void TEST_VALUE_TYPE_OF_char_EXTERNAL_THEN_INTERNAL_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff1);
     int i;
@@ -297,7 +297,7 @@ static void test_value_type_of_char_external_then_internal_1(void)
     }
 }
 
-static void test_value_type_of_int_internal_1(void)
+static void TEST_VALUE_TYPE_OF_int_INTERNAL_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(int, 10, buff);
 
@@ -314,7 +314,7 @@ static void test_value_type_of_int_internal_1(void)
     }
 }
 
-static void test_value_type_of_int_external_1(void)
+static void TEST_VALUE_TYPE_OF_int_EXTERNAL_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(int, 10, buff1);
 

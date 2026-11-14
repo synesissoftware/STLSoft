@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `atlstl::IDispatchImpl2`, `atlstl::IDispatchImpl3`
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,10 +30,10 @@
 
 namespace {
 
-    static void TEST_stripe_flags_are_distinct(void);
-    static void TEST_stripe_round_trip(void);
-    static void TEST_stripe_preserves_negative_dispids(void);
-    static void TEST_header_compiles(void);
+    static void TEST_STRIPE_FLAGS_ARE_DISTINCT();
+    static void TEST_STRIPE_ROUND_TRIP();
+    static void TEST_STRIPE_PRESERVES_NEGATIVE_DISPIDS();
+    static void TEST_HEADER_COMPILES();
 } // anonymous namespace
 
 
@@ -50,10 +50,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_stripe_flags_are_distinct);
-        XTESTS_RUN_CASE(TEST_stripe_round_trip);
-        XTESTS_RUN_CASE(TEST_stripe_preserves_negative_dispids);
-        XTESTS_RUN_CASE(TEST_header_compiles);
+        XTESTS_RUN_CASE(TEST_STRIPE_FLAGS_ARE_DISTINCT);
+        XTESTS_RUN_CASE(TEST_STRIPE_ROUND_TRIP);
+        XTESTS_RUN_CASE(TEST_STRIPE_PRESERVES_NEGATIVE_DISPIDS);
+        XTESTS_RUN_CASE(TEST_HEADER_COMPILES);
 
         XTESTS_PRINT_RESULTS();
 
@@ -111,7 +111,7 @@ static DISPID remove_stripe(DISPID dispid, unsigned index)
 
 namespace {
 
-static void TEST_stripe_flags_are_distinct()
+static void TEST_STRIPE_FLAGS_ARE_DISTINCT()
 {
     DISPID const flag1 = stripe_flag_for_index(1);
     DISPID const flag2 = stripe_flag_for_index(2);
@@ -124,7 +124,7 @@ static void TEST_stripe_flags_are_distinct()
     TEST_BOOLEAN_EQ(1, 0 == (flag3 & flag4));
 }
 
-static void TEST_stripe_round_trip()
+static void TEST_STRIPE_ROUND_TRIP()
 {
     DISPID const baseDispid = 42;
     unsigned     index;
@@ -139,7 +139,7 @@ static void TEST_stripe_round_trip()
     }
 }
 
-static void TEST_stripe_preserves_negative_dispids()
+static void TEST_STRIPE_PRESERVES_NEGATIVE_DISPIDS()
 {
     DISPID const dispid = -1;
 
@@ -147,7 +147,7 @@ static void TEST_stripe_preserves_negative_dispids()
     TEST_INT_EQ(dispid, apply_stripe(dispid, 2));
 }
 
-static void TEST_header_compiles()
+static void TEST_HEADER_COMPILES()
 {
     /* Successful inclusion verifies template declarations are available. */
     TEST_PASSED();

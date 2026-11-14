@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::c_string_traits compare functions.
  *
  * Created: 29th September 2026
- * Updated: 2nd November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,7 +35,7 @@ namespace
 
     static void TEST_str_compare_CHAR();
     static void TEST_str_compare_WCHAR();
-    static void TEST_str_n_compare_n_0();
+    static void TEST_str_n_compare_N_0();
     static void TEST_str_n_compare_STOPS_AT_NUL();
     static void TEST_str_n_compare_IGNORES_BYTE_PAST_n();
     static void TEST_str_compare_no_case_ASCII();
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(TEST_str_compare_CHAR);
         XTESTS_RUN_CASE(TEST_str_compare_WCHAR);
-        XTESTS_RUN_CASE(TEST_str_n_compare_n_0);
+        XTESTS_RUN_CASE(TEST_str_n_compare_N_0);
         XTESTS_RUN_CASE(TEST_str_n_compare_STOPS_AT_NUL);
         XTESTS_RUN_CASE(TEST_str_n_compare_IGNORES_BYTE_PAST_n);
         XTESTS_RUN_CASE(TEST_str_compare_no_case_ASCII);
@@ -113,7 +113,7 @@ static void TEST_str_compare_WCHAR()
     TEST_INT_NE(0, w_traits_t::str_compare(L"AbC", L"aBc"));
 }
 
-static void TEST_str_n_compare_n_0()
+static void TEST_str_n_compare_N_0()
 {
     TEST_INT_EQ(0, a_traits_t::str_n_compare("abc", "xyz", 0));
     TEST_INT_EQ(0, a_traits_t::str_n_compare("", "abc", 0));

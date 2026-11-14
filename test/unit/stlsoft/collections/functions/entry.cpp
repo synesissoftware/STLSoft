@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/collections/functions`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,7 +30,7 @@
 
 namespace {
 
-    static void test_collections_compile(void);
+    static void TEST_COLLECTIONS_COMPILE();
 } // anonymous namespace
 
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_collections_compile);
+        XTESTS_RUN_CASE(TEST_COLLECTIONS_COMPILE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_collections_compile()
+static void TEST_COLLECTIONS_COMPILE()
 {
     int arr[] = { 1, 2, 3 };
     TEST_INTEGER_EQUAL(3, arr[2]);

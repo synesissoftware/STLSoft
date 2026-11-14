@@ -4,7 +4,7 @@
  * Purpose: Component-tests for is_empty shims for `ACE_Message_Queue`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,8 +30,8 @@
 
 namespace {
 
-    static void TEST_empty_queue(void);
-    static void TEST_non_empty_queue(void);
+    static void TEST_EMPTY_QUEUE();
+    static void TEST_NON_EMPTY_QUEUE();
 } // anonymous namespace
 
 
@@ -48,8 +48,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_empty_queue);
-        XTESTS_RUN_CASE(TEST_non_empty_queue);
+        XTESTS_RUN_CASE(TEST_EMPTY_QUEUE);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_QUEUE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -76,7 +76,7 @@ typedef ACE_Message_Queue<ACE_SYNCH> queue_type;
 
 namespace {
 
-static void TEST_empty_queue()
+static void TEST_EMPTY_QUEUE()
 {
     queue_type q;
 
@@ -84,7 +84,7 @@ static void TEST_empty_queue()
     TEST_BOOLEAN_TRUE(stlsoft::is_empty(q, stlsoft::is_empty_type()));
 }
 
-static void TEST_non_empty_queue()
+static void TEST_NON_EMPTY_QUEUE()
 {
     queue_type q;
     ACE_Message_Block mb(16);

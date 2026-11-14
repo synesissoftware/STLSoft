@@ -5,7 +5,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 
-static void test_missing_file_throws(void);
+static void TEST_MISSING_FILE_THROWS();
 
 int main(int argc, char* argv[])
 {
@@ -14,14 +14,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER("test.component.platformstl.exception.filesystem_exception", verbosity))
     {
-        XTESTS_RUN_CASE_THAT_THROWS(test_missing_file_throws, platformstl::filesystem_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_MISSING_FILE_THROWS, platformstl::filesystem_exception);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_missing_file_throws(void)
+static void TEST_MISSING_FILE_THROWS()
 {
     using ::xtests::cpp::util::temp_file;
     temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);

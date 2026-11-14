@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::resource_string`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void TEST_construct_from_cstring(void);
-    static void TEST_copy_and_assign(void);
-    static void TEST_iteration_and_shims(void);
+    static void TEST_CONSTRUCT_FROM_CString();
+    static void TEST_COPY_AND_ASSIGN();
+    static void TEST_ITERATION_AND_SHIMS();
 } // anonymous namespace
 
 
@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_construct_from_cstring);
-        XTESTS_RUN_CASE(TEST_copy_and_assign);
-        XTESTS_RUN_CASE(TEST_iteration_and_shims);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT_FROM_CString);
+        XTESTS_RUN_CASE(TEST_COPY_AND_ASSIGN);
+        XTESTS_RUN_CASE(TEST_ITERATION_AND_SHIMS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_construct_from_cstring()
+static void TEST_CONSTRUCT_FROM_CString()
 {
     CString const src(_T("resource"));
     mfcstl::resource_string const rs(src);
@@ -76,7 +76,7 @@ static void TEST_construct_from_cstring()
     TEST_MS_EQ(_T("resource"), rs.c_str());
 }
 
-static void TEST_copy_and_assign()
+static void TEST_COPY_AND_ASSIGN()
 {
     mfcstl::resource_string rs1(CString(_T("one")));
     mfcstl::resource_string rs2(rs1);
@@ -89,7 +89,7 @@ static void TEST_copy_and_assign()
     TEST_MS_EQ(_T("two"), rs2.data());
 }
 
-static void TEST_iteration_and_shims()
+static void TEST_ITERATION_AND_SHIMS()
 {
     mfcstl::resource_string const rs(CString(_T("abc")));
 

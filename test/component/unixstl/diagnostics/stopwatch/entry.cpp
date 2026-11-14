@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/diagnostics/stopwatch.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,10 +30,10 @@
 
 namespace {
 
-    static void test_static_interval_helpers(void);
-    static void test_start_stop_elapsed(void);
-    static void test_pause_unpause(void);
-    static void test_restart_and_stop_get(void);
+    static void TEST_STATIC_INTERVAL_HELPERS();
+    static void TEST_START_STOP_ELAPSED();
+    static void TEST_PAUSE_UNPAUSE();
+    static void TEST_RESTART_AND_STOP_GET();
 } // anonymous namespace
 
 
@@ -50,10 +50,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_static_interval_helpers);
-        XTESTS_RUN_CASE(test_start_stop_elapsed);
-        XTESTS_RUN_CASE(test_pause_unpause);
-        XTESTS_RUN_CASE(test_restart_and_stop_get);
+        XTESTS_RUN_CASE(TEST_STATIC_INTERVAL_HELPERS);
+        XTESTS_RUN_CASE(TEST_START_STOP_ELAPSED);
+        XTESTS_RUN_CASE(TEST_PAUSE_UNPAUSE);
+        XTESTS_RUN_CASE(TEST_RESTART_AND_STOP_GET);
 
         XTESTS_PRINT_RESULTS();
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_static_interval_helpers()
+static void TEST_STATIC_INTERVAL_HELPERS()
 {
     unixstl::stopwatch::epoch_type start = { 10, 0 };
     unixstl::stopwatch::epoch_type end   = { 12, 500000 };
@@ -80,7 +80,7 @@ static void test_static_interval_helpers()
     TEST_INT_EQ(2500000, unixstl::stopwatch::get_microseconds(start, end));
 }
 
-static void test_start_stop_elapsed()
+static void TEST_START_STOP_ELAPSED()
 {
     unixstl::stopwatch sw;
 
@@ -92,7 +92,7 @@ static void test_start_stop_elapsed()
     TEST_INT_GE(40000, sw.get_microseconds());
 }
 
-static void test_pause_unpause()
+static void TEST_PAUSE_UNPAUSE()
 {
     unixstl::stopwatch sw;
 
@@ -113,7 +113,7 @@ static void test_pause_unpause()
     TEST_INT_LT(1000000, us);
 }
 
-static void test_restart_and_stop_get()
+static void TEST_RESTART_AND_STOP_GET()
 {
     unixstl::stopwatch sw;
 

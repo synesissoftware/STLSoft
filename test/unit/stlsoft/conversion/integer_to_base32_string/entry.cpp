@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_base32_string`.
  *
  * Created: 17th February 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,12 +56,12 @@
 
 namespace {
 
-    static void test_zero();
-    static void test_ones();
+    static void TEST_ZERO();
+    static void TEST_ONES();
 #if __cplusplus >= 201103L
-    static void test_fibonacci();
+    static void TEST_FIBONACCI();
 #endif
-    static void test_limits();
+    static void TEST_LIMITS();
 } // anonymous namespace
 
 
@@ -78,12 +78,12 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.integer_to_base32_string", verbosity))
     {
-        XTESTS_RUN_CASE(test_zero);
-        XTESTS_RUN_CASE(test_ones);
+        XTESTS_RUN_CASE(TEST_ZERO);
+        XTESTS_RUN_CASE(TEST_ONES);
 #if __cplusplus >= 201103L
-        XTESTS_RUN_CASE(test_fibonacci);
+        XTESTS_RUN_CASE(TEST_FIBONACCI);
 #endif
-        XTESTS_RUN_CASE(test_limits);
+        XTESTS_RUN_CASE(TEST_LIMITS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -173,7 +173,7 @@ namespace {
 #endif
 
 
-static void test_zero()
+static void TEST_ZERO()
 {
     {
         char                buf[21];
@@ -195,7 +195,7 @@ static void test_zero()
 #endif
 }
 
-static void test_ones()
+static void TEST_ONES()
 {
     {
         char                buf[21];
@@ -218,7 +218,7 @@ static void test_ones()
 
 #if __cplusplus >= 201103L
 
-static void test_fibonacci()
+static void TEST_FIBONACCI()
 {
     for (size_t i = 0; STLSOFT_NUM_ELEMENTS(fibonacci_mappings) != i; ++i)
     {
@@ -319,7 +319,7 @@ static void test_fibonacci()
 }
 #endif
 
-static void test_limits()
+static void TEST_LIMITS()
 {
     // int8_t
     {

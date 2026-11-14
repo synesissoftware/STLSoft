@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,7 +61,7 @@
 
 namespace {
 
-    static void TEST_nullptr();
+    static void TEST_NULLPTR();
     static void TEST_127_0_0_1();
     static void TEST_254_120_99_7();
     static void TEST_255_255_255_255();
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inetstl.shims.access.string.std.in_addr", verbosity))
     {
-        XTESTS_RUN_CASE(TEST_nullptr);
+        XTESTS_RUN_CASE(TEST_NULLPTR);
         XTESTS_RUN_CASE(TEST_127_0_0_1);
         XTESTS_RUN_CASE(TEST_254_120_99_7);
         XTESTS_RUN_CASE(TEST_255_255_255_255);
@@ -133,7 +133,7 @@ void ipv4_address_to_in_addr(
 }
 
 
-static void TEST_nullptr()
+static void TEST_NULLPTR()
 {
     struct in_addr const* const addr = NULL;
 

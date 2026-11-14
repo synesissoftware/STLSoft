@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM value policies.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void test_guid_policy(void);
-    static void test_bstr_policy(void);
-    static void test_variant_policy(void);
+    static void TEST_GUID_POLICY();
+    static void TEST_BSTR_POLICY();
+    static void TEST_VARIANT_POLICY();
 } // anonymous namespace
 
 
@@ -50,9 +50,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_guid_policy);
-        XTESTS_RUN_CASE(test_bstr_policy);
-        XTESTS_RUN_CASE(test_variant_policy);
+        XTESTS_RUN_CASE(TEST_GUID_POLICY);
+        XTESTS_RUN_CASE(TEST_BSTR_POLICY);
+        XTESTS_RUN_CASE(TEST_VARIANT_POLICY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_guid_policy(void)
+static void TEST_GUID_POLICY()
 {
     GUID lhs;
     GUID rhs = IID_IUnknown;
@@ -80,7 +80,7 @@ static void test_guid_policy(void)
     comstl::GUID_policy::clear(&lhs);
 }
 
-static void test_bstr_policy(void)
+static void TEST_BSTR_POLICY()
 {
     BSTR value = NULL;
     BSTR src   = ::SysAllocString(L"x");
@@ -98,7 +98,7 @@ static void test_bstr_policy(void)
     ::SysFreeString(src);
 }
 
-static void test_variant_policy(void)
+static void TEST_VARIANT_POLICY()
 {
     VARIANT v;
 

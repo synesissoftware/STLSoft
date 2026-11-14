@@ -4,7 +4,7 @@
  * Purpose: Scratch test for BSTR functions.
  *
  * Created: 31st May 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,13 +35,13 @@
  * forward declarations
  */
 
-static void test_comstl_C_BSTR_create_w_1(void);
-static void test_comstl_C_BSTR_create_w_2(void);
-static void test_comstl_C_BSTR_create_a_1(void);
-static void test_comstl_C_BSTR_create_a_2(void);
-static void test_comstl_C_BSTR_create_len_w(void);
-static void test_comstl_C_BSTR_create_len_a(void);
-static void test_comstl_C_BSTR_compare(void);
+static void TEST_COMSTL_C__BSTR__CREATE_W_1(void);
+static void TEST_COMSTL_C__BSTR__CREATE_W_2(void);
+static void TEST_COMSTL_C__BSTR__CREATE_A_1(void);
+static void TEST_COMSTL_C__BSTR__CREATE_A_2(void);
+static void TEST_comstl_C_BSTR_create_len_w(void);
+static void TEST_comstl_C_BSTR_create_len_a(void);
+static void TEST_comstl_C_BSTR_compare(void);
 static void TEST_comstl_C_BSTR_compare_EMPTY(void);
 static void TEST_comstl_C_BSTR_compare_EMBEDDED_NUL(void);
 static void TEST_comstl_C_BSTR_compare_PREFIX_LENGTH(void);
@@ -60,13 +60,13 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.comstl.string.BSTR_functions.C", verbosity))
     {
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_create_w_1);
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_create_w_2);
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_create_a_1);
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_create_a_2);
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_create_len_w);
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_create_len_a);
-        XTESTS_RUN_CASE(test_comstl_C_BSTR_compare);
+        XTESTS_RUN_CASE(TEST_COMSTL_C__BSTR__CREATE_W_1);
+        XTESTS_RUN_CASE(TEST_COMSTL_C__BSTR__CREATE_W_2);
+        XTESTS_RUN_CASE(TEST_COMSTL_C__BSTR__CREATE_A_1);
+        XTESTS_RUN_CASE(TEST_COMSTL_C__BSTR__CREATE_A_2);
+        XTESTS_RUN_CASE(TEST_comstl_C_BSTR_create_len_w);
+        XTESTS_RUN_CASE(TEST_comstl_C_BSTR_create_len_a);
+        XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare);
         XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_EMPTY);
         XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_EMBEDDED_NUL);
         XTESTS_RUN_CASE(TEST_comstl_C_BSTR_compare_PREFIX_LENGTH);
@@ -99,7 +99,7 @@ static wchar_t const* m2w(char const* s)
 // to allocate the BSTR. In practice, however, this'll never happen
 // (unless we drive the system in/close to out-of-memory conditions).
 
-static void test_comstl_C_BSTR_create_w_1()
+static void TEST_COMSTL_C__BSTR__CREATE_W_1()
 {
     {
         BSTR s = comstl_C_BSTR_create_w(NULL);
@@ -120,7 +120,7 @@ static void test_comstl_C_BSTR_create_w_1()
     }
 }
 
-static void test_comstl_C_BSTR_create_w_2()
+static void TEST_COMSTL_C__BSTR__CREATE_W_2()
 {
     wchar_t const* const strings[] =
     {
@@ -143,7 +143,7 @@ static void test_comstl_C_BSTR_create_w_2()
     }}
 }
 
-static void test_comstl_C_BSTR_create_a_1()
+static void TEST_COMSTL_C__BSTR__CREATE_A_1()
 {
     {
         BSTR s = comstl_C_BSTR_create_a(NULL);
@@ -161,7 +161,7 @@ static void test_comstl_C_BSTR_create_a_1()
     }
 }
 
-static void test_comstl_C_BSTR_create_a_2()
+static void TEST_COMSTL_C__BSTR__CREATE_A_2()
 {
     char const* const strings[] =
     {
@@ -184,7 +184,7 @@ static void test_comstl_C_BSTR_create_a_2()
     }}
 }
 
-static void test_comstl_C_BSTR_create_len_w(void)
+static void TEST_comstl_C_BSTR_create_len_w(void)
 {
     wchar_t const alphabet[] = L"abcdefghijklmnopqrstuvwxyz";
 
@@ -200,7 +200,7 @@ static void test_comstl_C_BSTR_create_len_w(void)
     }}
 }
 
-static void test_comstl_C_BSTR_create_len_a(void)
+static void TEST_comstl_C_BSTR_create_len_a(void)
 {
     char const alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
@@ -216,7 +216,7 @@ static void test_comstl_C_BSTR_create_len_a(void)
     }}
 }
 
-static void test_comstl_C_BSTR_compare()
+static void TEST_comstl_C_BSTR_compare()
 {
     BSTR    abc =   SysAllocString(L"abc");
     BSTR    def =   SysAllocString(L"def");

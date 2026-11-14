@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/conversion/sas_to_string`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_conversion_compile(void);
+    static void TEST_CONVERSION_COMPILE();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_conversion_compile);
+        XTESTS_RUN_CASE(TEST_CONVERSION_COMPILE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_conversion_compile()
+static void TEST_CONVERSION_COMPILE()
 {
     TEST_INTEGER_EQUAL(42, 42);
 }

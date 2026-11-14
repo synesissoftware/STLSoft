@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/time/comparison_functions.h`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,10 +28,10 @@
 
 namespace {
 
-    static void test_equal_timevals(void);
-    static void test_lhs_before_rhs(void);
-    static void test_lhs_after_rhs(void);
-    static void test_microsecond_difference(void);
+    static void TEST_EQUAL_TIMEVALS();
+    static void TEST_LHS_BEFORE_RHS();
+    static void TEST_LHS_AFTER_RHS();
+    static void TEST_MICROSECOND_DIFFERENCE();
 } // anonymous namespace
 
 
@@ -48,10 +48,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_equal_timevals);
-        XTESTS_RUN_CASE(test_lhs_before_rhs);
-        XTESTS_RUN_CASE(test_lhs_after_rhs);
-        XTESTS_RUN_CASE(test_microsecond_difference);
+        XTESTS_RUN_CASE(TEST_EQUAL_TIMEVALS);
+        XTESTS_RUN_CASE(TEST_LHS_BEFORE_RHS);
+        XTESTS_RUN_CASE(TEST_LHS_AFTER_RHS);
+        XTESTS_RUN_CASE(TEST_MICROSECOND_DIFFERENCE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_equal_timevals()
+static void TEST_EQUAL_TIMEVALS()
 {
     struct timeval lhs = { 100, 500 };
     struct timeval rhs = { 100, 500 };
@@ -77,7 +77,7 @@ static void test_equal_timevals()
     TEST_INT_EQ(0, unixstl::compare(&lhs, &rhs));
 }
 
-static void test_lhs_before_rhs()
+static void TEST_LHS_BEFORE_RHS()
 {
     struct timeval lhs = { 100, 0 };
     struct timeval rhs = { 101, 0 };
@@ -85,7 +85,7 @@ static void test_lhs_before_rhs()
     TEST_INT_EQ(-1, unixstl::compare(lhs, rhs));
 }
 
-static void test_lhs_after_rhs()
+static void TEST_LHS_AFTER_RHS()
 {
     struct timeval lhs = { 200, 1000 };
     struct timeval rhs = { 199, 999999 };
@@ -93,7 +93,7 @@ static void test_lhs_after_rhs()
     TEST_INT_EQ(+1, unixstl::compare(lhs, rhs));
 }
 
-static void test_microsecond_difference()
+static void TEST_MICROSECOND_DIFFERENCE()
 {
     struct timeval lhs = { 1, 0 };
     struct timeval rhs = { 1, 42 };

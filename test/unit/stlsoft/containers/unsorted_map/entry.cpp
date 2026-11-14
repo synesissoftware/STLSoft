@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/containers/unsorted_map`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_unsorted_map_push_back(void);
+    static void TEST_UNSORTED_MAP_push_back();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_unsorted_map_push_back);
+        XTESTS_RUN_CASE(TEST_UNSORTED_MAP_push_back);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_unsorted_map_push_back()
+static void TEST_UNSORTED_MAP_push_back()
 {
     stlsoft::unsorted_map<int, int> m;
     m.push_back(1, 10);

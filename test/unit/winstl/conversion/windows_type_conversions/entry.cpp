@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `conversion/windows_type_conversions`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_WPARAM2HWND(void);
+    static void TEST__WPARAM2HWND()
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_WPARAM2HWND);
+        XTESTS_RUN_CASE(TEST__WPARAM2HWND);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_WPARAM2HWND(void)
+static void TEST__WPARAM2HWND()
 {
     HWND const hwnd = winstl::WPARAM2HWND(static_cast<WPARAM>(42));
     TEST_PTR_EQ(reinterpret_cast<HWND>(42), hwnd);

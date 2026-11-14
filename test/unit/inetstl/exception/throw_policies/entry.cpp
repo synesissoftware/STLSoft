@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::throw_internet_exception_policy`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void TEST_throw_status_code(void);
-    static void TEST_throw_reason_and_status_code(void);
+    static void TEST_THROW_STATUS_CODE();
+    static void TEST_THROW_REASON_AND_STATUS_CODE();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE_THAT_THROWS(TEST_throw_status_code, inetstl::inetstl_exception);
-        XTESTS_RUN_CASE_THAT_THROWS(TEST_throw_reason_and_status_code, inetstl::inetstl_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_THROW_STATUS_CODE, inetstl::inetstl_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_THROW_REASON_AND_STATUS_CODE, inetstl::inetstl_exception);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_throw_status_code()
+static void TEST_THROW_STATUS_CODE()
 {
 #if defined(INETSTL_OS_IS_UNIX)
 
@@ -78,7 +78,7 @@ static void TEST_throw_status_code()
 #endif /* platform */
 }
 
-static void TEST_throw_reason_and_status_code()
+static void TEST_THROW_REASON_AND_STATUS_CODE()
 {
 #if defined(INETSTL_OS_IS_UNIX)
 

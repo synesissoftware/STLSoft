@@ -4,7 +4,7 @@
  * Purpose: Scratch test for VARIANT functions.
  *
  * Created: 26th October 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,16 +37,16 @@
  * forward declarations
  */
 
-static void test_VARIANT_equal_VT_EMPTY(void);
-static void test_VARIANT_equal_VT_NULL(void);
-static void test_VARIANT_equal_VT_I4(void);
-static void test_VARIANT_equal_VT_BSTR(void);
-static void test_VARIANT_equal_VT_R8(void);
-static void test_VARIANT_equal_VT_DECIMAL(void);
+static void TEST__VARIANT__EQUAL_VT__EMPTY(void);
+static void TEST__VARIANT__EQUAL_VT_NULL(void);
+static void TEST__VARIANT__EQUAL_VT_I4(void);
+static void TEST__VARIANT__EQUAL_VT__BSTR(void);
+static void TEST__VARIANT__EQUAL_VT_R8(void);
+static void TEST__VARIANT__EQUAL_VT__DECIMAL(void);
 
-static void test_VARIANT_change_type_VT_I4(void);
-static void test_VARIANT_change_type_VT_R8(void);
-static void test_VARIANT_change_type_VT_BSTR(void);
+static void TEST__VARIANT__CHANGE_TYPE_VT_I4(void);
+static void TEST__VARIANT__CHANGE_TYPE_VT_R8(void);
+static void TEST__VARIANT__CHANGE_TYPE_VT__BSTR(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,16 +64,16 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.comstl.util.VARIANT_functions.C", verbosity))
     {
-        XTESTS_RUN_CASE(test_VARIANT_equal_VT_EMPTY);
-        XTESTS_RUN_CASE(test_VARIANT_equal_VT_NULL);
-        XTESTS_RUN_CASE(test_VARIANT_equal_VT_I4);
-        XTESTS_RUN_CASE(test_VARIANT_equal_VT_BSTR);
-        XTESTS_RUN_CASE(test_VARIANT_equal_VT_R8);
-        XTESTS_RUN_CASE(test_VARIANT_equal_VT_DECIMAL);
+        XTESTS_RUN_CASE(TEST__VARIANT__EQUAL_VT__EMPTY);
+        XTESTS_RUN_CASE(TEST__VARIANT__EQUAL_VT_NULL);
+        XTESTS_RUN_CASE(TEST__VARIANT__EQUAL_VT_I4);
+        XTESTS_RUN_CASE(TEST__VARIANT__EQUAL_VT__BSTR);
+        XTESTS_RUN_CASE(TEST__VARIANT__EQUAL_VT_R8);
+        XTESTS_RUN_CASE(TEST__VARIANT__EQUAL_VT__DECIMAL);
 
-        XTESTS_RUN_CASE(test_VARIANT_change_type_VT_I4);
-        XTESTS_RUN_CASE(test_VARIANT_change_type_VT_R8);
-        XTESTS_RUN_CASE(test_VARIANT_change_type_VT_BSTR);
+        XTESTS_RUN_CASE(TEST__VARIANT__CHANGE_TYPE_VT_I4);
+        XTESTS_RUN_CASE(TEST__VARIANT__CHANGE_TYPE_VT_R8);
+        XTESTS_RUN_CASE(TEST__VARIANT__CHANGE_TYPE_VT__BSTR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -239,7 +239,7 @@ void release_VARIANTS(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, VA
     VariantClear(pvarUNKNOWN);
 }
 
-static void test_VARIANT_equal_VT_EMPTY()
+static void TEST__VARIANT__EQUAL_VT__EMPTY()
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -276,7 +276,7 @@ static void test_VARIANT_equal_VT_EMPTY()
     }
 }
 
-static void test_VARIANT_equal_VT_NULL()
+static void TEST__VARIANT__EQUAL_VT_NULL()
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -313,7 +313,7 @@ static void test_VARIANT_equal_VT_NULL()
     }
 }
 
-static void test_VARIANT_equal_VT_I4()
+static void TEST__VARIANT__EQUAL_VT_I4()
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -350,7 +350,7 @@ static void test_VARIANT_equal_VT_I4()
     }
 }
 
-static void test_VARIANT_equal_VT_BSTR()
+static void TEST__VARIANT__EQUAL_VT__BSTR()
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -387,7 +387,7 @@ static void test_VARIANT_equal_VT_BSTR()
     }
 }
 
-static void test_VARIANT_equal_VT_R8()
+static void TEST__VARIANT__EQUAL_VT_R8()
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -424,7 +424,7 @@ static void test_VARIANT_equal_VT_R8()
     }
 }
 
-static void test_VARIANT_equal_VT_DECIMAL()
+static void TEST__VARIANT__EQUAL_VT__DECIMAL()
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -461,7 +461,7 @@ static void test_VARIANT_equal_VT_DECIMAL()
     }
 }
 
-static void test_VARIANT_change_type_VT_I4(void)
+static void TEST__VARIANT__CHANGE_TYPE_VT_I4(void)
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -515,7 +515,7 @@ static void test_VARIANT_change_type_VT_I4(void)
     }
 }
 
-static void test_VARIANT_change_type_VT_R8(void)
+static void TEST__VARIANT__CHANGE_TYPE_VT_R8(void)
 {
     VARIANT varEMPTY;
     VARIANT varNULL;
@@ -569,7 +569,7 @@ static void test_VARIANT_change_type_VT_R8(void)
     }
 }
 
-static void test_VARIANT_change_type_VT_BSTR(void)
+static void TEST__VARIANT__CHANGE_TYPE_VT__BSTR(void)
 {
     VARIANT varEMPTY;
     VARIANT varNULL;

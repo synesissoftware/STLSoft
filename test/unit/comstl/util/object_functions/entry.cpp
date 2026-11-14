@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for COM object identity helpers.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void test_get_object_identity_null_args(void);
-    static void test_is_same_object(void);
-    static void test_is_interface_implemented(void);
+    static void TEST_get_object_identity_NULL_ARGS();
+    static void TEST_is_same_object();
+    static void TEST_is_interface_implemented();
 } // anonymous namespace
 
 
@@ -50,9 +50,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_get_object_identity_null_args);
-        XTESTS_RUN_CASE(test_is_same_object);
-        XTESTS_RUN_CASE(test_is_interface_implemented);
+        XTESTS_RUN_CASE(TEST_get_object_identity_NULL_ARGS);
+        XTESTS_RUN_CASE(TEST_is_same_object);
+        XTESTS_RUN_CASE(TEST_is_interface_implemented);
 
         XTESTS_PRINT_RESULTS();
 
@@ -79,7 +79,7 @@ using test_comstl::mock_unknown;
 
 namespace {
 
-static void test_get_object_identity_null_args(void)
+static void TEST_get_object_identity_NULL_ARGS()
 {
     mock_unknown    obj;
     LPUNKNOWN       identity = NULL;
@@ -92,7 +92,7 @@ static void test_get_object_identity_null_args(void)
     identity->Release();
 }
 
-static void test_is_same_object(void)
+static void TEST_is_same_object()
 {
     mock_unknown    obj1;
     mock_unknown    obj2;
@@ -104,7 +104,7 @@ static void test_is_same_object(void)
     TEST_INT_EQ((int)E_POINTER, (int)comstl::comstl_C_is_same_object(NULL, p1));
 }
 
-static void test_is_interface_implemented(void)
+static void TEST_is_interface_implemented()
 {
     mock_unknown    obj;
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/error/conversion_error`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_conversion_error(void);
+    static void TEST_conversion_error();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_conversion_error);
+        XTESTS_RUN_CASE(TEST_conversion_error);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_conversion_error()
+static void TEST_conversion_error()
 {
     stlsoft::conversion_error e("test", 42);
     TEST_INTEGER_EQUAL(42, e.get_error_code());

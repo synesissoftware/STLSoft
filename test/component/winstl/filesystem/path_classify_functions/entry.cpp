@@ -4,7 +4,7 @@
  * Purpose: Component-tests for `filesystem/path_classify_functions`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void test_empty(void);
-    static void test_relative(void);
-    static void test_drive_rooted(void);
+    static void TEST_EMPTY();
+    static void TEST_RELATIVE();
+    static void TEST_DRIVE_ROOTED();
 } // anonymous namespace
 
 
@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_empty);
-        XTESTS_RUN_CASE(test_relative);
-        XTESTS_RUN_CASE(test_drive_rooted);
+        XTESTS_RUN_CASE(TEST_EMPTY);
+        XTESTS_RUN_CASE(TEST_RELATIVE);
+        XTESTS_RUN_CASE(TEST_DRIVE_ROOTED);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,17 +66,17 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_empty(void)
+static void TEST_EMPTY()
 {
     TEST_INT_EQ(static_cast<int>(WinSTL_C_PathType_Empty), static_cast<int>(winstl_C_path_classify_m("", 0, 0, NULL)));
 }
 
-static void test_relative(void)
+static void TEST_RELATIVE()
 {
     TEST_INT_EQ(static_cast<int>(WinSTL_C_PathType_Relative), static_cast<int>(winstl_C_path_classify_m("foo/bar", 7, 0, NULL)));
 }
 
-static void test_drive_rooted(void)
+static void TEST_DRIVE_ROOTED()
 {
     TEST_INT_EQ(static_cast<int>(WinSTL_C_PathType_DriveLetterRooted), static_cast<int>(winstl_C_path_classify_m("C:/windows", 10, 0, NULL)));
 }

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for GUID string access shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,8 +30,8 @@
 
 namespace {
 
-    static void test_c_str_ptr_known_guid(void);
-    static void test_c_str_len(void);
+    static void TEST_c_str_ptr_KNOWN_GUID();
+    static void TEST_c_str_len();
 } // anonymous namespace
 
 
@@ -48,8 +48,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_c_str_ptr_known_guid);
-        XTESTS_RUN_CASE(test_c_str_len);
+        XTESTS_RUN_CASE(TEST_c_str_ptr_KNOWN_GUID);
+        XTESTS_RUN_CASE(TEST_c_str_len);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_c_str_ptr_known_guid(void)
+static void TEST_c_str_ptr_KNOWN_GUID()
 {
     comstl::cs_char_a_t const*  s = stlsoft::c_str_ptr_a(IID_IUnknown);
 
@@ -74,7 +74,7 @@ static void test_c_str_ptr_known_guid(void)
     TEST_INT_NE(0u, strlen(s));
 }
 
-static void test_c_str_len(void)
+static void TEST_c_str_len()
 {
     TEST_INT_EQ(stlsoft::c_str_len_a(IID_IUnknown), stlsoft::c_str_len(IID_IUnknown));
 }

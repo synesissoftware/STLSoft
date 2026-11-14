@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::get_synch_handle` attribute shims for MFC types.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,10 +29,10 @@
 
 namespace {
 
-    static void TEST_event_handle(void);
-    static void TEST_mutex_handle(void);
-    static void TEST_semaphore_handle(void);
-    static void TEST_winthread_null_handle(void);
+    static void TEST_EVENT_HANDLE();
+    static void TEST_MUTEX_HANDLE();
+    static void TEST_SEMAPHORE_HANDLE();
+    static void TEST_WINTHREAD_NULL_HANDLE();
 } // anonymous namespace
 
 
@@ -49,10 +49,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_event_handle);
-        XTESTS_RUN_CASE(TEST_mutex_handle);
-        XTESTS_RUN_CASE(TEST_semaphore_handle);
-        XTESTS_RUN_CASE(TEST_winthread_null_handle);
+        XTESTS_RUN_CASE(TEST_EVENT_HANDLE);
+        XTESTS_RUN_CASE(TEST_MUTEX_HANDLE);
+        XTESTS_RUN_CASE(TEST_SEMAPHORE_HANDLE);
+        XTESTS_RUN_CASE(TEST_WINTHREAD_NULL_HANDLE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_event_handle()
+static void TEST_EVENT_HANDLE()
 {
     CEvent ev(FALSE, FALSE);
 
@@ -77,7 +77,7 @@ static void TEST_event_handle()
     TEST_PTR_EQ(static_cast<HANDLE>(ev), winstl::get_synch_handle(ev));
 }
 
-static void TEST_mutex_handle()
+static void TEST_MUTEX_HANDLE()
 {
     CMutex mx(FALSE);
 
@@ -85,7 +85,7 @@ static void TEST_mutex_handle()
     TEST_PTR_EQ(static_cast<HANDLE>(mx), winstl::get_synch_handle(mx));
 }
 
-static void TEST_semaphore_handle()
+static void TEST_SEMAPHORE_HANDLE()
 {
     CSemaphore sem(1, 1);
 
@@ -93,7 +93,7 @@ static void TEST_semaphore_handle()
     TEST_PTR_EQ(static_cast<HANDLE>(sem), winstl::get_synch_handle(sem));
 }
 
-static void TEST_winthread_null_handle()
+static void TEST_WINTHREAD_NULL_HANDLE()
 {
     CWinThread th;
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for CString string-access shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void TEST_calls_possible(void);
-    static void TEST_empty_string(void);
-    static void TEST_non_empty_string(void);
+    static void TEST_CALLS_POSSIBLE();
+    static void TEST_EMPTY_STRING();
+    static void TEST_NON_EMPTY_STRING();
 } // anonymous namespace
 
 
@@ -48,9 +48,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_calls_possible);
-        XTESTS_RUN_CASE(TEST_empty_string);
-        XTESTS_RUN_CASE(TEST_non_empty_string);
+        XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
+        XTESTS_RUN_CASE(TEST_EMPTY_STRING);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_STRING);
 
         XTESTS_PRINT_RESULTS();
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_calls_possible()
+static void TEST_CALLS_POSSIBLE()
 {
     CString const s(_T("mfcstl"));
 
@@ -79,7 +79,7 @@ static void TEST_calls_possible()
     TEST_PASSED();
 }
 
-static void TEST_empty_string()
+static void TEST_EMPTY_STRING()
 {
     CString const s;
 
@@ -88,7 +88,7 @@ static void TEST_empty_string()
     TEST_INT_EQ(0, _tcslen(stlsoft::c_str_ptr(s)));
 }
 
-static void TEST_non_empty_string()
+static void TEST_NON_EMPTY_STRING()
 {
     CString const s(_T("mfcstl"));
 

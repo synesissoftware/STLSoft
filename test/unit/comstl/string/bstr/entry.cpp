@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::bstr`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,9 +30,9 @@
 
 namespace {
 
-    static void test_default_construction(void);
-    static void test_construction_from_string(void);
-    static void test_attach_detach(void);
+    static void TEST_DEFAULT_CONSTRUCTION();
+    static void TEST_CONSTRUCTION_FROM_STRING();
+    static void TEST_ATTACH_DETACH();
 } // anonymous namespace
 
 
@@ -51,9 +51,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_default_construction);
-        XTESTS_RUN_CASE(test_construction_from_string);
-        XTESTS_RUN_CASE(test_attach_detach);
+        XTESTS_RUN_CASE(TEST_DEFAULT_CONSTRUCTION);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTION_FROM_STRING);
+        XTESTS_RUN_CASE(TEST_ATTACH_DETACH);
 
         XTESTS_PRINT_RESULTS();
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_default_construction(void)
+static void TEST_DEFAULT_CONSTRUCTION()
 {
     comstl::bstr  s;
 
@@ -78,7 +78,7 @@ static void test_default_construction(void)
     TEST_INT_EQ(0u, s.length());
 }
 
-static void test_construction_from_string(void)
+static void TEST_CONSTRUCTION_FROM_STRING()
 {
     comstl::bstr  s(L"hello");
 
@@ -87,7 +87,7 @@ static void test_construction_from_string(void)
     TEST_INT_EQ(0, ::wcscmp(L"hello", stlsoft::c_str_ptr(s)));
 }
 
-static void test_attach_detach(void)
+static void TEST_ATTACH_DETACH()
 {
     BSTR          raw = ::SysAllocString(L"raw");
     comstl::bstr  s;

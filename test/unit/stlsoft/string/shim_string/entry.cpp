@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,24 +53,24 @@
 
 namespace {
 
-    static void test_sizes();
-    static void test_construction();
-    static void test_method_calls();
-    static void test_constructor_c_string();
-    static void test_constructor_range_string();
-    static void test_constructor_length();
-    static void test_write();
-    static void test_truncate();
-    static void test_swap();
-    static void test_append_c_string();
-    static void test_append_c_string_after_truncate();
-    static void test_null_string();
-    static void test_reserve();
-    static void test_resize();
-    static void test_insertion_1();
-    static void test_insertion_2();
-    static void test_insertion_3();
-    static void test_insertion_4();
+    static void TEST_SIZES();
+    static void TEST_CONSTRUCTION();
+    static void TEST_METHOD_CALLS();
+    static void TEST_CONSTRUCTOR_C_STRING();
+    static void TEST_CONSTRUCTOR_RANGE_STRING();
+    static void TEST_CONSTRUCTOR_LENGTH();
+    static void TEST_WRITE();
+    static void TEST_TRUNCATE();
+    static void TEST_SWAP();
+    static void TEST_APPEND_C_STRING();
+    static void TEST_APPEND_C_STRING_AFTER_TRUNCATE();
+    static void TEST_NULL_STRING();
+    static void TEST_RESERVE();
+    static void TEST_RESIZE();
+    static void TEST_INSERTION_1();
+    static void TEST_INSERTION_2();
+    static void TEST_INSERTION_3();
+    static void TEST_INSERTION_4();
 } // anonymous namespace
 
 
@@ -87,24 +87,24 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.shim_string", verbosity))
     {
-        XTESTS_RUN_CASE(test_sizes);
-        XTESTS_RUN_CASE(test_construction);
-        XTESTS_RUN_CASE(test_method_calls);
-        XTESTS_RUN_CASE(test_constructor_c_string);
-        XTESTS_RUN_CASE(test_constructor_range_string);
-        XTESTS_RUN_CASE(test_constructor_length);
-        XTESTS_RUN_CASE(test_write);
-        XTESTS_RUN_CASE(test_truncate);
-        XTESTS_RUN_CASE(test_swap);
-        XTESTS_RUN_CASE(test_append_c_string);
-        XTESTS_RUN_CASE(test_append_c_string_after_truncate);
-        XTESTS_RUN_CASE(test_null_string);
-        XTESTS_RUN_CASE(test_reserve);
-        XTESTS_RUN_CASE(test_resize);
-        XTESTS_RUN_CASE(test_insertion_1);
-        XTESTS_RUN_CASE(test_insertion_2);
-        XTESTS_RUN_CASE(test_insertion_3);
-        XTESTS_RUN_CASE(test_insertion_4);
+        XTESTS_RUN_CASE(TEST_SIZES);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTION);
+        XTESTS_RUN_CASE(TEST_METHOD_CALLS);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTOR_C_STRING);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTOR_RANGE_STRING);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTOR_LENGTH);
+        XTESTS_RUN_CASE(TEST_WRITE);
+        XTESTS_RUN_CASE(TEST_TRUNCATE);
+        XTESTS_RUN_CASE(TEST_SWAP);
+        XTESTS_RUN_CASE(TEST_APPEND_C_STRING);
+        XTESTS_RUN_CASE(TEST_APPEND_C_STRING_AFTER_TRUNCATE);
+        XTESTS_RUN_CASE(TEST_NULL_STRING);
+        XTESTS_RUN_CASE(TEST_RESERVE);
+        XTESTS_RUN_CASE(TEST_RESIZE);
+        XTESTS_RUN_CASE(TEST_INSERTION_1);
+        XTESTS_RUN_CASE(TEST_INSERTION_2);
+        XTESTS_RUN_CASE(TEST_INSERTION_3);
+        XTESTS_RUN_CASE(TEST_INSERTION_4);
 
 #ifdef STLSOFT_USE_XCOVER
         XCOVER_REPORT_ALIAS_COVERAGE("shim_string", NULL);
@@ -174,7 +174,7 @@ namespace {
     char const alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
 
-static void test_sizes()
+static void TEST_SIZES()
 {
     TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 4>), sizeof(stlsoft::basic_shim_string<char, 4>));
     TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 16>), sizeof(stlsoft::basic_shim_string<char, 16>));
@@ -183,7 +183,7 @@ static void test_sizes()
     TEST_INT_LE(sizeof(void*) * 2 + sizeof(stlsoft::auto_buffer<char, 256>), sizeof(stlsoft::basic_shim_string<char, 256>));
 }
 
-static void test_construction()
+static void TEST_CONSTRUCTION()
 {
     stlsoft::basic_shim_string<char> str0;
 
@@ -246,7 +246,7 @@ static void test_construction()
     TEST_MS_EQ("", str5.data());
 }
 
-static void test_method_calls()
+static void TEST_METHOD_CALLS()
 {
     stlsoft::basic_shim_string<char> str1(size_t(0u));
 
@@ -258,7 +258,7 @@ static void test_method_calls()
     TEST_PASSED();
 }
 
-static void test_constructor_length()
+static void TEST_CONSTRUCTOR_LENGTH()
 {
     stlsoft::basic_shim_string<char> str(5u);
 
@@ -270,7 +270,7 @@ static void test_constructor_length()
     TEST_MS_EQ("", str.data());
 }
 
-static void test_constructor_c_string()
+static void TEST_CONSTRUCTOR_C_STRING()
 {
     stlsoft::basic_shim_string<char> str("a");
 
@@ -282,7 +282,7 @@ static void test_constructor_c_string()
     TEST_MS_EQ("a", str.data());
 }
 
-static void test_constructor_range_string()
+static void TEST_CONSTRUCTOR_RANGE_STRING()
 {
     stlsoft::basic_shim_string<char> str("abcdefghijkl", 3);
 
@@ -294,7 +294,7 @@ static void test_constructor_range_string()
     TEST_MS_EQ("abc", str.data());
 }
 
-static void test_write()
+static void TEST_WRITE()
 {
     stlsoft::basic_shim_string<char> str(3);
 
@@ -308,7 +308,7 @@ static void test_write()
     TEST_MS_EQ("abc", str.data());
 }
 
-static void test_truncate()
+static void TEST_TRUNCATE()
 {
     stlsoft::basic_shim_string<char> str("abcdefghijklmnopqrstuvwx");
 
@@ -331,7 +331,7 @@ static void test_truncate()
     }}
 }
 
-static void test_swap()
+static void TEST_SWAP()
 {
     {
         stlsoft::basic_shim_string<char>  s1("abc");
@@ -368,7 +368,7 @@ static void test_swap()
     }
 }
 
-static void test_append_c_string()
+static void TEST_APPEND_C_STRING()
 {
     char const* strings[] =
     {
@@ -393,7 +393,7 @@ static void test_append_c_string()
     }}
 }
 
-static void test_append_c_string_after_truncate()
+static void TEST_APPEND_C_STRING_AFTER_TRUNCATE()
 {
     char const* strings[] =
     {
@@ -423,7 +423,7 @@ static void test_append_c_string_after_truncate()
     }}
 }
 
-static void test_null_string()
+static void TEST_NULL_STRING()
 {
     {
         stlsoft::basic_shim_string<char, 64, true>  s(size_t(0u));
@@ -436,7 +436,7 @@ static void test_null_string()
     }
 }
 
-static void test_reserve()
+static void TEST_RESERVE()
 {
     {
         stlsoft::basic_shim_string<char>    s(size_t(0u));
@@ -472,7 +472,7 @@ static void test_reserve()
 
 }
 
-static void test_resize()
+static void TEST_RESIZE()
 {
     {
         stlsoft::basic_shim_string<char>    s(size_t(0u));
@@ -508,7 +508,7 @@ static void test_resize()
 
 }
 
-static void test_insertion_1()
+static void TEST_INSERTION_1()
 {
     // char const* (for reference)
 
@@ -613,7 +613,7 @@ static void test_insertion_1()
     }
 }
 
-static void test_insertion_2()
+static void TEST_INSERTION_2()
 {
     // char const* (for reference)
 
@@ -721,7 +721,7 @@ static void test_insertion_2()
     }
 }
 
-static void test_insertion_3()
+static void TEST_INSERTION_3()
 {
     // char const* (for reference)
 
@@ -815,7 +815,7 @@ static void test_insertion_3()
     }
 }
 
-static void test_insertion_4()
+static void TEST_INSERTION_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
 #if defined(_MSC_VER) &&\

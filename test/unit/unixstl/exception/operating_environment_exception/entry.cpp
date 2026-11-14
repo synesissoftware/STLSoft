@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/exception/operating_environment_exception.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_operating_environment(void);
+    static void TEST_OPERATING_ENVIRONMENT();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_operating_environment);
+        XTESTS_RUN_CASE(TEST_OPERATING_ENVIRONMENT);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_operating_environment()
+static void TEST_OPERATING_ENVIRONMENT()
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     unixstl::operating_environment_exception x("env", ENOENT);

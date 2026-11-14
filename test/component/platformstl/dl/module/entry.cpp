@@ -6,7 +6,7 @@
 # include <dlfcn.h>
 #endif
 
-static void test_load_system_library(void); // anonymous namespace
+static void TEST_LOAD_SYSTEM_LIBRARY(); // anonymous namespace
 
 int main(int argc, char* argv[])
 {
@@ -15,14 +15,14 @@ int main(int argc, char* argv[])
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
     if (XTESTS_START_RUNNER("test.component.platformstl.dl.module", verbosity))
     {
-        XTESTS_RUN_CASE(test_load_system_library);
+        XTESTS_RUN_CASE(TEST_LOAD_SYSTEM_LIBRARY);
         XTESTS_PRINT_RESULTS();
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
     return retCode;
 }
 
-static void test_load_system_library(void)
+static void TEST_LOAD_SYSTEM_LIBRARY()
 {
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
     platformstl::dl_module mod("kernel32.dll");

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::enumerator_sequence`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -32,7 +32,7 @@
 
 namespace {
 
-    static void test_iteration(void);
+    static void TEST_ITERATION();
 } // anonymous namespace
 
 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_iteration);
+        XTESTS_RUN_CASE(TEST_ITERATION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_iteration(void)
+static void TEST_ITERATION()
 {
     /* IEnumGUID is not an SDK interface; the header is compiled here. */
     TEST_PASSED();

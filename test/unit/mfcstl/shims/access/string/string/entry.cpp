@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for the MFCSTL string-access shim umbrella header.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,9 +28,9 @@
 
 namespace {
 
-    static void TEST_umbrella_includes_compile(void);
-    static void TEST_cstring_shims_via_umbrella(void);
-    static void TEST_cwnd_shims_via_umbrella(void);
+    static void TEST_UMBRELLA_INCLUDES_COMPILE();
+    static void TEST_CSTRING_SHIMS_VIA_UMBRELLA();
+    static void TEST_CWND_SHIMS_VIA_UMBRELLA();
 } // anonymous namespace
 
 
@@ -47,9 +47,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_umbrella_includes_compile);
-        XTESTS_RUN_CASE(TEST_cstring_shims_via_umbrella);
-        XTESTS_RUN_CASE(TEST_cwnd_shims_via_umbrella);
+        XTESTS_RUN_CASE(TEST_UMBRELLA_INCLUDES_COMPILE);
+        XTESTS_RUN_CASE(TEST_CSTRING_SHIMS_VIA_UMBRELLA);
+        XTESTS_RUN_CASE(TEST_CWND_SHIMS_VIA_UMBRELLA);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_umbrella_includes_compile()
+static void TEST_UMBRELLA_INCLUDES_COMPILE()
 {
     CString const s(_T("umbrella"));
     CWnd const    w;
@@ -77,7 +77,7 @@ static void TEST_umbrella_includes_compile()
     TEST_PASSED();
 }
 
-static void TEST_cstring_shims_via_umbrella()
+static void TEST_CSTRING_SHIMS_VIA_UMBRELLA()
 {
     CString const s(_T("mfcstl"));
 
@@ -85,7 +85,7 @@ static void TEST_cstring_shims_via_umbrella()
     TEST_MS_EQ(_T("mfcstl"), stlsoft::c_str_ptr(s));
 }
 
-static void TEST_cwnd_shims_via_umbrella()
+static void TEST_CWND_SHIMS_VIA_UMBRELLA()
 {
     CWnd w;
 

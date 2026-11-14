@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::interface_cast` helpers.
  *
  * Created: 9th August 2026
- * Updated: 8th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,8 +30,8 @@
 
 namespace {
 
-    static void test_interface_cast_test(void);
-    static void test_try_interface_cast(void);
+    static void TEST_interface_cast_test();
+    static void TEST_try_interface_cast();
 } // anonymous namespace
 
 
@@ -50,8 +50,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_interface_cast_test);
-        XTESTS_RUN_CASE(test_try_interface_cast);
+        XTESTS_RUN_CASE(TEST_interface_cast_test);
+        XTESTS_RUN_CASE(TEST_try_interface_cast);
 
         XTESTS_PRINT_RESULTS();
 
@@ -78,7 +78,7 @@ using test_comstl::mock_unknown;
 
 namespace {
 
-static void test_interface_cast_test(void)
+static void TEST_interface_cast_test()
 {
     mock_unknown* const p = new mock_unknown();
 
@@ -92,7 +92,7 @@ static void test_interface_cast_test(void)
     TEST_BOOLEAN_FALSE(comstl::interface_cast_test<IDispatch*>(static_cast<IUnknown*>(&obj)));
 }
 
-static void test_try_interface_cast(void)
+static void TEST_try_interface_cast()
 {
     mock_unknown  obj;
     stlsoft::ref_ptr<IUnknown>  punk = comstl::try_interface_cast<IUnknown>(static_cast<IUnknown*>(&obj));

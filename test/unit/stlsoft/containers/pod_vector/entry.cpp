@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::pod_vector`
  *
  * Created: 1st December 2008
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,26 +44,26 @@
 
 namespace {
 
-    static void test_default_ctor();
-    static void test_ctor_size();
-    static void test_ctor_size_and_value();
-    static void test_ctor_begin_end();
-    static void test_copy_ctor();
-    static void test_copy_assign();
+    static void TEST_DEFAULT_CTOR();
+    static void TEST_CTOR_SIZE();
+    static void TEST_CTOR_SIZE_AND_VALUE();
+    static void TEST_CTOR_BEGIN_END();
+    static void TEST_COPY_CTOR();
+    static void TEST_COPY_ASSIGN();
 
-    static void test_assign();
-    static void test_at_1();
-    static void test_at_2();
-    static void test_clear();
-    static void test_erase();
-    static void test_front_and_back();
-    static void test_insert();
-    static void test_pop_back();
-    static void test_push_back();
-    static void test_reserve();
-    static void test_resize();
-    static void test_subscript_operator();
-    static void test_swap();
+    static void TEST_ASSIGN();
+    static void TEST_AT_1();
+    static void TEST_AT_2();
+    static void TEST_CLEAR();
+    static void TEST_ERASE();
+    static void TEST_FRONT_AND_BACK();
+    static void TEST_INSERT();
+    static void TEST_pop_back();
+    static void TEST_push_back();
+    static void TEST_RESERVE();
+    static void TEST_RESIZE();
+    static void TEST_SUBSCRIPT_OPERATOR();
+    static void TEST_SWAP();
 } // anonymous namespace
 
 
@@ -80,26 +80,26 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.containers.pod_vector", verbosity))
     {
-        XTESTS_RUN_CASE(test_default_ctor);
-        XTESTS_RUN_CASE(test_ctor_size);
-        XTESTS_RUN_CASE(test_ctor_size_and_value);
-        XTESTS_RUN_CASE(test_ctor_begin_end);
-        XTESTS_RUN_CASE(test_copy_ctor);
-        XTESTS_RUN_CASE(test_copy_assign);
+        XTESTS_RUN_CASE(TEST_DEFAULT_CTOR);
+        XTESTS_RUN_CASE(TEST_CTOR_SIZE);
+        XTESTS_RUN_CASE(TEST_CTOR_SIZE_AND_VALUE);
+        XTESTS_RUN_CASE(TEST_CTOR_BEGIN_END);
+        XTESTS_RUN_CASE(TEST_COPY_CTOR);
+        XTESTS_RUN_CASE(TEST_COPY_ASSIGN);
 
-        XTESTS_RUN_CASE(test_assign);
-        XTESTS_RUN_CASE(test_at_1);
-        XTESTS_RUN_CASE_THAT_THROWS(test_at_2, std::out_of_range);
-        XTESTS_RUN_CASE(test_clear);
-        XTESTS_RUN_CASE(test_erase);
-        XTESTS_RUN_CASE(test_front_and_back);
-        XTESTS_RUN_CASE(test_insert);
-        XTESTS_RUN_CASE(test_pop_back);
-        XTESTS_RUN_CASE(test_push_back);
-        XTESTS_RUN_CASE(test_reserve);
-        XTESTS_RUN_CASE(test_resize);
-        XTESTS_RUN_CASE(test_subscript_operator);
-        XTESTS_RUN_CASE(test_swap);
+        XTESTS_RUN_CASE(TEST_ASSIGN);
+        XTESTS_RUN_CASE(TEST_AT_1);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_AT_2, std::out_of_range);
+        XTESTS_RUN_CASE(TEST_CLEAR);
+        XTESTS_RUN_CASE(TEST_ERASE);
+        XTESTS_RUN_CASE(TEST_FRONT_AND_BACK);
+        XTESTS_RUN_CASE(TEST_INSERT);
+        XTESTS_RUN_CASE(TEST_pop_back);
+        XTESTS_RUN_CASE(TEST_push_back);
+        XTESTS_RUN_CASE(TEST_RESERVE);
+        XTESTS_RUN_CASE(TEST_RESIZE);
+        XTESTS_RUN_CASE(TEST_SUBSCRIPT_OPERATOR);
+        XTESTS_RUN_CASE(TEST_SWAP);
 
         XTESTS_PRINT_RESULTS();
 
@@ -118,7 +118,7 @@ namespace {
 
     typedef stlsoft::pod_vector<int>    int_vector_t;
 
-static void test_default_ctor()
+static void TEST_DEFAULT_CTOR()
 {
     int_vector_t        v;
     int_vector_t const& cv = v;
@@ -134,7 +134,7 @@ static void test_default_ctor()
     TEST_INT_GE(v.size(), v.capacity());
 }
 
-static void test_ctor_size()
+static void TEST_CTOR_SIZE()
 {
     int_vector_t        v(10);
     int_vector_t const& cv = v;
@@ -150,7 +150,7 @@ static void test_ctor_size()
     TEST_INT_GE(v.size(), v.capacity());
 }
 
-static void test_ctor_size_and_value()
+static void TEST_CTOR_SIZE_AND_VALUE()
 {
     int_vector_t        v(10, -1);
     int_vector_t const& cv = v;
@@ -166,7 +166,7 @@ static void test_ctor_size_and_value()
     TEST_INT_GE(v.size(), v.capacity());
 }
 
-static void test_ctor_begin_end()
+static void TEST_CTOR_BEGIN_END()
 {
     int const           ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4 };
     int_vector_t const  v(ints, ints + STLSOFT_NUM_ELEMENTS(ints));
@@ -177,7 +177,7 @@ static void test_ctor_begin_end()
     TEST_INT_GE(v.size(), v.capacity());
 }
 
-static void test_copy_ctor()
+static void TEST_COPY_CTOR()
 {
     int_vector_t    v1(10, -1);
     int_vector_t    v2(v1);
@@ -188,7 +188,7 @@ static void test_copy_ctor()
     TEST_INT_GE(v2.size(), v2.capacity());
 }
 
-static void test_copy_assign()
+static void TEST_COPY_ASSIGN()
 {
     int_vector_t    v1(10, -1);
     int_vector_t    v2;
@@ -201,7 +201,7 @@ static void test_copy_assign()
     TEST_INT_GE(v2.size(), v2.capacity());
 }
 
-static void test_assign()
+static void TEST_ASSIGN()
 {
     int const ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4, 5 };
 
@@ -232,7 +232,7 @@ static void test_assign()
     TEST_INT_EQ(5, std::accumulate(v.begin(), v.end(), 0));
 }
 
-static void test_at_1()
+static void TEST_AT_1()
 {
     int const           ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4 };
     int_vector_t        v(ints, ints + STLSOFT_NUM_ELEMENTS(ints));
@@ -253,7 +253,7 @@ static void test_at_1()
     TEST_INT_EQ(+4, cv.at(8));
 }
 
-static void test_at_2()
+static void TEST_AT_2()
 {
     int const           ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4 };
     int_vector_t const  v(ints, ints + STLSOFT_NUM_ELEMENTS(ints));
@@ -265,7 +265,7 @@ static void test_at_2()
     TEST_FAIL("should not get here");
 }
 
-static void test_clear()
+static void TEST_CLEAR()
 {
     int_vector_t v(10, -1);
 
@@ -276,7 +276,7 @@ static void test_clear()
     TEST_INT_GE(v.size(), v.capacity());
 }
 
-static void test_erase()
+static void TEST_ERASE()
 {
     int const ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4, 5 };
 
@@ -350,7 +350,7 @@ static void test_erase()
     TEST_INT_EQ(0, std::accumulate(v.begin(), v.end(), 0));
 }
 
-static void test_front_and_back()
+static void TEST_FRONT_AND_BACK()
 {
     int const           ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4 };
     int_vector_t        v(ints, ints + STLSOFT_NUM_ELEMENTS(ints));
@@ -365,7 +365,7 @@ static void test_front_and_back()
     TEST_INT_EQ(+4, cv.back());
 }
 
-static void test_insert()
+static void TEST_INSERT()
 {
     int const ints_neg8_to_neg5[] = { -8, -7, -6, -5 };
     int const ints_neg3_to_neg1[] = { -3, -2, -1 };
@@ -485,7 +485,7 @@ static void test_insert()
     TEST_INT_EQ(4, v[15]);
 }
 
-static void test_pop_back()
+static void TEST_pop_back()
 {
     int_vector_t v(10, 1);
 
@@ -519,7 +519,7 @@ static void test_pop_back()
     TEST_INT_EQ(0, std::accumulate(v.begin(), v.end(), 0));
 }
 
-static void test_push_back()
+static void TEST_push_back()
 {
     int_vector_t v;
 
@@ -543,7 +543,7 @@ static void test_push_back()
     TEST_INT_EQ(2, v[1]);
 }
 
-static void test_reserve()
+static void TEST_RESERVE()
 {
     int_vector_t v;
 
@@ -557,7 +557,7 @@ static void test_reserve()
     TEST_INT_GE(250u, v.capacity());
 }
 
-static void test_resize()
+static void TEST_RESIZE()
 {
     int_vector_t v;
 
@@ -581,7 +581,7 @@ static void test_resize()
     TEST_INT_EQ(4, std::accumulate(v.begin(), v.end(), 0));
 }
 
-static void test_subscript_operator()
+static void TEST_SUBSCRIPT_OPERATOR()
 {
     int const           ints[] = { -4, -3, -2, -1, 0, 1, 2, 3, 4 };
     int_vector_t        v(ints, ints + STLSOFT_NUM_ELEMENTS(ints));
@@ -602,7 +602,7 @@ static void test_subscript_operator()
     TEST_INT_EQ(+4, cv[8]);
 }
 
-static void test_swap()
+static void TEST_SWAP()
 {
     int_vector_t    v1(10, -1);
     int_vector_t    v2;

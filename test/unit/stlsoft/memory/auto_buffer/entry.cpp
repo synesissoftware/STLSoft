@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -167,83 +167,83 @@ private:
 namespace {
 
     // auto_buffer(size_t)
-    static void test_ctor_n_1();
-    static void test_ctor_n_2();
-    static void test_ctor_n_3();
+    static void TEST_CTOR_N_1();
+    static void TEST_CTOR_N_2();
+    static void TEST_CTOR_N_3();
     // auto_buffer(size_t)
-    static void test_ctor_n_v_1();
-    static void test_ctor_n_v_2();
-    static void test_ctor_n_v_3();
-    static void test_ctor_n_v_4();
+    static void TEST_CTOR_N_V_1();
+    static void TEST_CTOR_N_V_2();
+    static void TEST_CTOR_N_V_3();
+    static void TEST_CTOR_N_V_4();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_initlist_1();
-    static void test_ctor_initlist_2();
-    static void test_ctor_initlist_3();
+    static void TEST_CTOR_INITLIST_1();
+    static void TEST_CTOR_INITLIST_2();
+    static void TEST_CTOR_INITLIST_3();
 #endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-    static void test_ctor_move_1();
-    static void test_ctor_move_2();
-    static void test_ctor_move_3();
-    static void test_ctor_move_4();
+    static void TEST_CTOR_MOVE_1();
+    static void TEST_CTOR_MOVE_2();
+    static void TEST_CTOR_MOVE_3();
+    static void TEST_CTOR_MOVE_4();
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
-    static void test_ctor_range_pointers_1();
-    static void test_ctor_range_pointers_2();
-    static void test_ctor_range_pointers_3();
+    static void TEST_CTOR_RANGE_POINTERS_1();
+    static void TEST_CTOR_RANGE_POINTERS_2();
+    static void TEST_CTOR_RANGE_POINTERS_3();
 #if __cplusplus >= 201703L
 
-    static void test_ctor_range_vec_iters_1();
-    static void test_ctor_range_vec_iters_2();
-    static void test_ctor_range_vec_iters_3();
-    static void test_ctor_range_list_iters_1();
-    static void test_ctor_range_list_iters_2();
-    static void test_ctor_range_list_iters_3();
-    static void test_ctor_range_input_iters_1();
-    static void test_ctor_range_input_iters_2();
-    static void test_ctor_range_input_iters_3();
-    static void test_ctor_range_fwd_iters_1();
-    static void test_ctor_range_fwd_iters_2();
-    static void test_ctor_range_fwd_iters_3();
+    static void TEST_CTOR_RANGE_VEC_ITERS_1();
+    static void TEST_CTOR_RANGE_VEC_ITERS_2();
+    static void TEST_CTOR_RANGE_VEC_ITERS_3();
+    static void TEST_CTOR_RANGE_LIST_ITERS_1();
+    static void TEST_CTOR_RANGE_LIST_ITERS_2();
+    static void TEST_CTOR_RANGE_LIST_ITERS_3();
+    static void TEST_CTOR_RANGE_INPUT_ITERS_1();
+    static void TEST_CTOR_RANGE_INPUT_ITERS_2();
+    static void TEST_CTOR_RANGE_INPUT_ITERS_3();
+    static void TEST_CTOR_RANGE_FWD_ITERS_1();
+    static void TEST_CTOR_RANGE_FWD_ITERS_2();
+    static void TEST_CTOR_RANGE_FWD_ITERS_3();
 #endif
 
     // resize(size_t)
-    static void test_resize();
+    static void TEST_RESIZE();
     // resize(size_t, value)
-    static void test_resize_n_v_1();
-    static void test_resize_n_v_2();
-    static void test_resize_n_v_3();
+    static void TEST_RESIZE_N_V_1();
+    static void TEST_RESIZE_N_V_2();
+    static void TEST_RESIZE_N_V_3();
 
-    static void test_allocator_null();
+    static void TEST_ALLOCATOR_NULL();
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
 
-    static void test_allocator_to_exhaustion();
+    static void TEST_ALLOCATOR_TO_EXHAUSTION();
 #endif
 
     // copy_from(class_type const&)
-    static void test_copy_from();
+    static void TEST_copy_from();
 
     // swap(class_type&&)
-    static void test_swap_1();
-    static void test_swap_2();
-    static void test_swap_3();
+    static void TEST_SWAP_1();
+    static void TEST_SWAP_2();
+    static void TEST_SWAP_3();
 
     // operator [](size_t) {const}
-    static void test_subscript();
+    static void TEST_SUBSCRIPT();
 
     // data() {const}
-    static void test_data();
+    static void TEST_DATA();
 
     // front() {const}
     // back() {const}
-    static void test_front_and_back();
+    static void TEST_FRONT_AND_BACK();
 
     // begin() {const}
     // end() {const}
-    static void test_begin_and_end();
+    static void TEST_BEGIN_AND_END();
     // rbegin() {const}
     // rend() {const}
-    static void test_rbegin_and_rend();
+    static void TEST_RBEGIN_AND_REND();
 } // anonymous namespace
 
 
@@ -260,70 +260,70 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.auto_buffer", verbosity))
     {
-        XTESTS_RUN_CASE(test_ctor_n_1);
-        XTESTS_RUN_CASE(test_ctor_n_2);
-        XTESTS_RUN_CASE(test_ctor_n_3);
-        XTESTS_RUN_CASE(test_ctor_n_v_1);
-        XTESTS_RUN_CASE(test_ctor_n_v_2);
-        XTESTS_RUN_CASE(test_ctor_n_v_3);
-        XTESTS_RUN_CASE(test_ctor_n_v_4);
+        XTESTS_RUN_CASE(TEST_CTOR_N_1);
+        XTESTS_RUN_CASE(TEST_CTOR_N_2);
+        XTESTS_RUN_CASE(TEST_CTOR_N_3);
+        XTESTS_RUN_CASE(TEST_CTOR_N_V_1);
+        XTESTS_RUN_CASE(TEST_CTOR_N_V_2);
+        XTESTS_RUN_CASE(TEST_CTOR_N_V_3);
+        XTESTS_RUN_CASE(TEST_CTOR_N_V_4);
 #if __cplusplus >= 201103L
 
-        XTESTS_RUN_CASE(test_ctor_initlist_1);
-        XTESTS_RUN_CASE(test_ctor_initlist_2);
-        XTESTS_RUN_CASE(test_ctor_initlist_3);
+        XTESTS_RUN_CASE(TEST_CTOR_INITLIST_1);
+        XTESTS_RUN_CASE(TEST_CTOR_INITLIST_2);
+        XTESTS_RUN_CASE(TEST_CTOR_INITLIST_3);
 #endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-        XTESTS_RUN_CASE(test_ctor_move_1);
-        XTESTS_RUN_CASE(test_ctor_move_2);
-        XTESTS_RUN_CASE(test_ctor_move_3);
-        XTESTS_RUN_CASE(test_ctor_move_4);
+        XTESTS_RUN_CASE(TEST_CTOR_MOVE_1);
+        XTESTS_RUN_CASE(TEST_CTOR_MOVE_2);
+        XTESTS_RUN_CASE(TEST_CTOR_MOVE_3);
+        XTESTS_RUN_CASE(TEST_CTOR_MOVE_4);
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
-        XTESTS_RUN_CASE(test_ctor_range_pointers_1);
-        XTESTS_RUN_CASE(test_ctor_range_pointers_2);
-        XTESTS_RUN_CASE(test_ctor_range_pointers_3);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_POINTERS_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_POINTERS_2);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_POINTERS_3);
 #if __cplusplus >= 201703L
 
-        XTESTS_RUN_CASE(test_ctor_range_vec_iters_1);
-        XTESTS_RUN_CASE(test_ctor_range_vec_iters_2);
-        XTESTS_RUN_CASE(test_ctor_range_vec_iters_3);
-        XTESTS_RUN_CASE(test_ctor_range_list_iters_1);
-        XTESTS_RUN_CASE(test_ctor_range_list_iters_2);
-        XTESTS_RUN_CASE(test_ctor_range_list_iters_3);
-        XTESTS_RUN_CASE(test_ctor_range_input_iters_1);
-        XTESTS_RUN_CASE(test_ctor_range_input_iters_2);
-        XTESTS_RUN_CASE(test_ctor_range_input_iters_3);
-        XTESTS_RUN_CASE(test_ctor_range_fwd_iters_1);
-        XTESTS_RUN_CASE(test_ctor_range_fwd_iters_2);
-        XTESTS_RUN_CASE(test_ctor_range_fwd_iters_3);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_VEC_ITERS_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_VEC_ITERS_2);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_VEC_ITERS_3);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_LIST_ITERS_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_LIST_ITERS_2);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_LIST_ITERS_3);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_INPUT_ITERS_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_INPUT_ITERS_2);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_INPUT_ITERS_3);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_FWD_ITERS_1);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_FWD_ITERS_2);
+        XTESTS_RUN_CASE(TEST_CTOR_RANGE_FWD_ITERS_3);
 #endif
 
-        XTESTS_RUN_CASE(test_resize);
-        XTESTS_RUN_CASE(test_resize_n_v_1);
-        XTESTS_RUN_CASE(test_resize_n_v_2);
-        XTESTS_RUN_CASE(test_resize_n_v_3);
+        XTESTS_RUN_CASE(TEST_RESIZE);
+        XTESTS_RUN_CASE(TEST_RESIZE_N_V_1);
+        XTESTS_RUN_CASE(TEST_RESIZE_N_V_2);
+        XTESTS_RUN_CASE(TEST_RESIZE_N_V_3);
 
-        XTESTS_RUN_CASE(test_allocator_null);
+        XTESTS_RUN_CASE(TEST_ALLOCATOR_NULL);
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
 
-        XTESTS_RUN_CASE(test_allocator_to_exhaustion);
+        XTESTS_RUN_CASE(TEST_ALLOCATOR_TO_EXHAUSTION);
 #endif
 
-        XTESTS_RUN_CASE(test_copy_from);
+        XTESTS_RUN_CASE(TEST_copy_from);
 
-        XTESTS_RUN_CASE(test_swap_1);
-        XTESTS_RUN_CASE(test_swap_2);
-        XTESTS_RUN_CASE(test_swap_3);
+        XTESTS_RUN_CASE(TEST_SWAP_1);
+        XTESTS_RUN_CASE(TEST_SWAP_2);
+        XTESTS_RUN_CASE(TEST_SWAP_3);
 
-        XTESTS_RUN_CASE(test_subscript);
+        XTESTS_RUN_CASE(TEST_SUBSCRIPT);
 
-        XTESTS_RUN_CASE(test_data);
+        XTESTS_RUN_CASE(TEST_DATA);
 
-        XTESTS_RUN_CASE(test_front_and_back);
+        XTESTS_RUN_CASE(TEST_FRONT_AND_BACK);
 
-        XTESTS_RUN_CASE(test_begin_and_end);
-        XTESTS_RUN_CASE(test_rbegin_and_rend);
+        XTESTS_RUN_CASE(TEST_BEGIN_AND_END);
+        XTESTS_RUN_CASE(TEST_RBEGIN_AND_REND);
 
         XTESTS_PRINT_RESULTS();
 
@@ -354,7 +354,7 @@ namespace {
     };
 
 
-static void test_ctor_n_1()
+static void TEST_CTOR_N_1()
 {
 #if __cplusplus >= 202002L
     static
@@ -367,7 +367,7 @@ static void test_ctor_n_1()
     TEST_INT_NE(0u, buff.internal_size());
 }
 
-static void test_ctor_n_2()
+static void TEST_CTOR_N_2()
 {
 #if __cplusplus >= 202002L
     static
@@ -380,7 +380,7 @@ static void test_ctor_n_2()
     TEST_INT_EQ(10u, buff.internal_size());
 }
 
-static void test_ctor_n_3()
+static void TEST_CTOR_N_3()
 {
 #if __cplusplus >= 202002L
     static
@@ -393,7 +393,7 @@ static void test_ctor_n_3()
     TEST_INT_EQ(10u, buff.internal_size());
 }
 
-static void test_ctor_n_v_1()
+static void TEST_CTOR_N_V_1()
 {
 #if __cplusplus >= 202002L
     static
@@ -406,7 +406,7 @@ static void test_ctor_n_v_1()
     TEST_INT_NE(0u, buff.internal_size());
 }
 
-static void test_ctor_n_v_2()
+static void TEST_CTOR_N_V_2()
 {
 #if __cplusplus >= 202002L
     static
@@ -419,7 +419,7 @@ static void test_ctor_n_v_2()
     TEST_INT_EQ(10u, buff.internal_size());
 }
 
-static void test_ctor_n_v_3()
+static void TEST_CTOR_N_V_3()
 {
 #if __cplusplus >= 202002L
     static
@@ -435,7 +435,7 @@ static void test_ctor_n_v_3()
     TEST_CHAR_EQ('a', buff[9]);
 }
 
-static void test_ctor_n_v_4()
+static void TEST_CTOR_N_V_4()
 {
 #if __cplusplus >= 202002L
     static
@@ -452,7 +452,7 @@ static void test_ctor_n_v_4()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_initlist_1()
+static void TEST_CTOR_INITLIST_1()
 {
     stlsoft::auto_buffer<int, 10> buff = {};
 
@@ -461,7 +461,7 @@ static void test_ctor_initlist_1()
 }
 
 
-static void test_ctor_initlist_2()
+static void TEST_CTOR_INITLIST_2()
 {
     stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
@@ -473,7 +473,7 @@ static void test_ctor_initlist_2()
     TEST_INT_EQ(9, buff[9]);
 }
 
-static void test_ctor_initlist_3()
+static void TEST_CTOR_INITLIST_3()
 {
     stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -487,7 +487,7 @@ static void test_ctor_initlist_3()
 #endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-static void test_ctor_move_1()
+static void TEST_CTOR_MOVE_1()
 {
     stlsoft::auto_buffer<char> rhs(0, 'a');
     stlsoft::auto_buffer<char> buff(std::move(rhs));
@@ -497,7 +497,7 @@ static void test_ctor_move_1()
     TEST_INT_NE(0u, buff.internal_size());
 }
 
-static void test_ctor_move_2()
+static void TEST_CTOR_MOVE_2()
 {
     stlsoft::auto_buffer<char, 10> rhs(0, 'a');
     stlsoft::auto_buffer<char, 10> buff(std::move(rhs));
@@ -507,7 +507,7 @@ static void test_ctor_move_2()
     TEST_INT_EQ(10u, buff.internal_size());
 }
 
-static void test_ctor_move_3()
+static void TEST_CTOR_MOVE_3()
 {
     stlsoft::auto_buffer<char, 10> rhs(10, 'a');
     stlsoft::auto_buffer<char, 10> buff(std::move(rhs));
@@ -520,7 +520,7 @@ static void test_ctor_move_3()
     TEST_CHAR_EQ('a', buff[9]);
 }
 
-static void test_ctor_move_4()
+static void TEST_CTOR_MOVE_4()
 {
     stlsoft::auto_buffer<int, 10> buff(10u, 123);
 
@@ -543,7 +543,7 @@ static void test_ctor_move_4()
 }
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
-static void test_ctor_range_pointers_1()
+static void TEST_CTOR_RANGE_POINTERS_1()
 {
     stlsoft::auto_buffer<int> buff(&INTEGERS[0], &INTEGERS[0] + 0);
 
@@ -552,7 +552,7 @@ static void test_ctor_range_pointers_1()
     TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_pointers_2()
+static void TEST_CTOR_RANGE_POINTERS_2()
 {
     stlsoft::auto_buffer<int, 10> buff(&INTEGERS[0] + 0, &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
 
@@ -561,7 +561,7 @@ static void test_ctor_range_pointers_2()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_pointers_3()
+static void TEST_CTOR_RANGE_POINTERS_3()
 {
     stlsoft::auto_buffer<int, 100> buff(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
 
@@ -572,7 +572,7 @@ static void test_ctor_range_pointers_3()
 
 #if __cplusplus >= 201703L
 
-static void test_ctor_range_vec_iters_1()
+static void TEST_CTOR_RANGE_VEC_ITERS_1()
 {
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + 0);
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
@@ -582,7 +582,7 @@ static void test_ctor_range_vec_iters_1()
     TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_vec_iters_2()
+static void TEST_CTOR_RANGE_VEC_ITERS_2()
 {
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
@@ -592,7 +592,7 @@ static void test_ctor_range_vec_iters_2()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_vec_iters_3()
+static void TEST_CTOR_RANGE_VEC_ITERS_3()
 {
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 100>  buff(src.begin(), src.end());
@@ -602,7 +602,7 @@ static void test_ctor_range_vec_iters_3()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_list_iters_1()
+static void TEST_CTOR_RANGE_LIST_ITERS_1()
 {
     std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + 0);
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
@@ -612,7 +612,7 @@ static void test_ctor_range_list_iters_1()
     TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_list_iters_2()
+static void TEST_CTOR_RANGE_LIST_ITERS_2()
 {
     std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
@@ -622,7 +622,7 @@ static void test_ctor_range_list_iters_2()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_list_iters_3()
+static void TEST_CTOR_RANGE_LIST_ITERS_3()
 {
     std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
     stlsoft::auto_buffer<int, 100>  buff(src.begin(), src.end());
@@ -632,7 +632,7 @@ static void test_ctor_range_list_iters_3()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_input_iters_1()
+static void TEST_CTOR_RANGE_INPUT_ITERS_1()
 {
 # if defined(STLSOFT_COMPILER_IS_MSVC) &&\
      __cplusplus >= 202002L
@@ -651,7 +651,7 @@ static void test_ctor_range_input_iters_1()
     TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_input_iters_2()
+static void TEST_CTOR_RANGE_INPUT_ITERS_2()
 {
 # if defined(STLSOFT_COMPILER_IS_MSVC) &&\
      __cplusplus >= 202002L
@@ -670,7 +670,7 @@ static void test_ctor_range_input_iters_2()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_input_iters_3()
+static void TEST_CTOR_RANGE_INPUT_ITERS_3()
 {
 # if defined(STLSOFT_COMPILER_IS_MSVC) &&\
      __cplusplus >= 202002L
@@ -688,7 +688,7 @@ static void test_ctor_range_input_iters_3()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_fwd_iters_1()
+static void TEST_CTOR_RANGE_FWD_ITERS_1()
 {
 # if defined(STLSOFT_COMPILER_IS_MSVC) &&\
      __cplusplus >= 202002L
@@ -707,7 +707,7 @@ static void test_ctor_range_fwd_iters_1()
     TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_fwd_iters_2()
+static void TEST_CTOR_RANGE_FWD_ITERS_2()
 {
 # if defined(STLSOFT_COMPILER_IS_MSVC) &&\
      __cplusplus >= 202002L
@@ -726,7 +726,7 @@ static void test_ctor_range_fwd_iters_2()
     TEST_INT_EQ(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_ctor_range_fwd_iters_3()
+static void TEST_CTOR_RANGE_FWD_ITERS_3()
 {
 # if defined(STLSOFT_COMPILER_IS_MSVC) &&\
      __cplusplus >= 202002L
@@ -746,7 +746,7 @@ static void test_ctor_range_fwd_iters_3()
 }
 #endif
 
-static void test_resize()
+static void TEST_RESIZE()
 {
     stlsoft::auto_buffer<char, 10>      buff(1u);
 
@@ -769,7 +769,7 @@ static void test_resize()
     }}
 }
 
-static void test_resize_n_v_1()
+static void TEST_RESIZE_N_V_1()
 {
     typedef stlsoft::auto_buffer<int, 10> ab_int_10_t;
 
@@ -796,7 +796,7 @@ static void test_resize_n_v_1()
     TEST_INT_EQ(44, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_resize_n_v_2()
+static void TEST_RESIZE_N_V_2()
 {
     typedef stlsoft::auto_buffer<int, 10> ab_int_10_t;
 
@@ -830,7 +830,7 @@ static void test_resize_n_v_2()
     TEST_INT_EQ(555, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_resize_n_v_3()
+static void TEST_RESIZE_N_V_3()
 {
     typedef stlsoft::auto_buffer<int, 10> ab_int_10_t;
 
@@ -864,7 +864,7 @@ static void test_resize_n_v_3()
     TEST_INT_EQ(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_allocator_null()
+static void TEST_ALLOCATOR_NULL()
 {
     typedef stlsoft::null_allocator<char>                   ator_t;
     typedef stlsoft::auto_buffer<char, 10, ator_t>          buff_10_t;
@@ -912,7 +912,7 @@ static void test_allocator_null()
 }
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
 
-static void test_allocator_to_exhaustion()
+static void TEST_ALLOCATOR_TO_EXHAUSTION()
 {
     stlsoft::auto_buffer<char, 10>::allocator_type  ator;
     stlsoft::auto_buffer<char, 10>                  buff(0);
@@ -962,7 +962,7 @@ static void test_allocator_to_exhaustion()
 }
 #endif
 
-static void test_copy_from()
+static void TEST_copy_from()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 
@@ -1001,7 +1001,7 @@ static void test_copy_from()
     TEST_INT_EQ(-5, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
 }
 
-static void test_swap_1()
+static void TEST_SWAP_1()
 {
     // ab1.swap(ab2)
     {
@@ -1094,7 +1094,7 @@ static void test_swap_1()
     }
 }
 
-static void test_swap_2()
+static void TEST_SWAP_2()
 {
     // ab1.swap(ab2)
     {
@@ -1187,7 +1187,7 @@ static void test_swap_2()
     }
 }
 
-static void test_swap_3()
+static void TEST_SWAP_3()
 {
     // ab1.swap(ab2)
     {
@@ -1280,7 +1280,7 @@ static void test_swap_3()
     }
 }
 
-static void test_subscript()
+static void TEST_SUBSCRIPT()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 
@@ -1306,7 +1306,7 @@ static void test_subscript()
     }
 }
 
-static void test_data()
+static void TEST_DATA()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 
@@ -1329,7 +1329,7 @@ static void test_data()
     TEST(0 == memcmp(&ints[0], cbuff.data(), sizeof(ints)));
 }
 
-static void test_front_and_back()
+static void TEST_FRONT_AND_BACK()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 
@@ -1355,7 +1355,7 @@ static void test_front_and_back()
     TEST_INT_EQ(4, cbuff.back());
 }
 
-static void test_begin_and_end()
+static void TEST_BEGIN_AND_END()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 
@@ -1379,7 +1379,7 @@ static void test_begin_and_end()
     TEST_INT_EQ(-9, std::accumulate(cbuff.begin(), cbuff.end() -1, 0));
 }
 
-static void test_rbegin_and_rend()
+static void TEST_RBEGIN_AND_REND()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 

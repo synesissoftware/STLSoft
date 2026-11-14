@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -59,8 +59,8 @@
 
 namespace {
 
-    static void test_empty_directory();
-    static void test_non_empty_directory();
+    static void TEST_EMPTY_Directory();
+    static void TEST_NON_EMPTY_Directory();
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
     static void TEST_is_socket();
@@ -80,8 +80,8 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.readdir_sequence", verbosity))
     {
-        XTESTS_RUN_CASE(test_empty_directory);
-        XTESTS_RUN_CASE(test_non_empty_directory);
+        XTESTS_RUN_CASE(TEST_EMPTY_Directory);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_Directory);
 #ifdef PLATFORM_SUPPORTS_SOCKETS_
 
         XTESTS_RUN_CASE(TEST_is_socket);
@@ -154,7 +154,7 @@ create_uds_socket_and_bind(
 
 namespace {
 
-static void test_empty_directory()
+static void TEST_EMPTY_Directory()
 {
     temp_directory dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
@@ -163,7 +163,7 @@ static void test_empty_directory()
     TEST_BOOLEAN_TRUE(rds.empty());
 }
 
-static void test_non_empty_directory()
+static void TEST_NON_EMPTY_Directory()
 {
     readdir_sequence_t rds(".");
 

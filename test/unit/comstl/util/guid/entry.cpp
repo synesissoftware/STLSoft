@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::guid`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,9 +30,9 @@
 
 namespace {
 
-    static void test_construction_from_string(void);
-    static void test_equality(void);
-    static void test_string_shims(void);
+    static void TEST_CONSTRUCTION_FROM_STRING();
+    static void TEST_EQUALITY();
+    static void TEST_STRING_SHIMS();
 } // anonymous namespace
 
 
@@ -51,9 +51,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_construction_from_string);
-        XTESTS_RUN_CASE(test_equality);
-        XTESTS_RUN_CASE(test_string_shims);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTION_FROM_STRING);
+        XTESTS_RUN_CASE(TEST_EQUALITY);
+        XTESTS_RUN_CASE(TEST_STRING_SHIMS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_construction_from_string(void)
+static void TEST_CONSTRUCTION_FROM_STRING()
 {
     GUID const expected = { 0xf4864792, 0xd0d2, 0x4005, { 0xab, 0xca, 0xf6, 0x79, 0x94, 0xc2, 0xff, 0xa6 } };
     comstl::guid const  g("{F4864792-D0D2-4005-ABCA-F67994C2FFA6}");
@@ -79,7 +79,7 @@ static void test_construction_from_string(void)
     TEST_BOOLEAN_FALSE(g.equal(GUID_NULL));
 }
 
-static void test_equality(void)
+static void TEST_EQUALITY()
 {
     comstl::guid        g1("{F4864792-D0D2-4005-ABCA-F67994C2FFA6}");
     comstl::guid        g2(g1);
@@ -88,7 +88,7 @@ static void test_equality(void)
     TEST_BOOLEAN_TRUE(g1.equal(g2.get()));
 }
 
-static void test_string_shims(void)
+static void TEST_STRING_SHIMS()
 {
     comstl::guid const  g(IID_IUnknown);
     comstl::cs_char_a_t const*  s = stlsoft::c_str_ptr_a(g);

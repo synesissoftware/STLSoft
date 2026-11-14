@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value`.
  *
  * Created: 23rd February 2009
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,16 +46,16 @@
 namespace {
 
 #if 0
-    static void test_missing_value();
+    static void TEST_MISSING_VALUE();
 #endif /* 0 */
-    static void test_none_value();
-    static void test_0_dword();
-    static void test_empty_string();
-    static void test_many_dwords();
-    static void test_many_strings();
-    static void test_empty_multistring();
-    static void test_multistring_multibyte();
-    static void test_multistring_wide();
+    static void TEST_NONE_VALUE();
+    static void TEST_0__DWORD();
+    static void TEST_EMPTY_STRING();
+    static void TEST_MANY_DWORDS();
+    static void TEST_MANY_STRINGS();
+    static void TEST_EMPTY_MULTISTRING();
+    static void TEST_MULTISTRING_MULTIBYTE();
+    static void TEST_MULTISTRING_WIDE();
 } // anonymous namespace
 
 
@@ -115,16 +115,16 @@ int main(int argc, char **argv)
     if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.registry.reg_value", verbosity, setup, teardown, NULL))
     {
 #if 0
-        XTESTS_RUN_CASE_THAT_THROWS(test_missing_value, winstl::registry_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(TEST_MISSING_VALUE, winstl::registry_exception);
 #endif /* 0 */
-        XTESTS_RUN_CASE(test_none_value);
-        XTESTS_RUN_CASE(test_0_dword);
-        XTESTS_RUN_CASE(test_empty_string);
-        XTESTS_RUN_CASE(test_many_dwords);
-        XTESTS_RUN_CASE(test_many_strings);
-        XTESTS_RUN_CASE(test_empty_multistring);
-        XTESTS_RUN_CASE(test_multistring_multibyte);
-        XTESTS_RUN_CASE(test_multistring_wide);
+        XTESTS_RUN_CASE(TEST_NONE_VALUE);
+        XTESTS_RUN_CASE(TEST_0__DWORD);
+        XTESTS_RUN_CASE(TEST_EMPTY_STRING);
+        XTESTS_RUN_CASE(TEST_MANY_DWORDS);
+        XTESTS_RUN_CASE(TEST_MANY_STRINGS);
+        XTESTS_RUN_CASE(TEST_EMPTY_MULTISTRING);
+        XTESTS_RUN_CASE(TEST_MULTISTRING_MULTIBYTE);
+        XTESTS_RUN_CASE(TEST_MULTISTRING_WIDE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -149,7 +149,7 @@ namespace {
 
 
 #if 0
-static void test_missing_value()
+static void TEST_MISSING_VALUE()
 {
 #if 0
     {
@@ -169,7 +169,7 @@ static void test_missing_value()
 }
 #endif /* 0 */
 
-static void test_none_value()
+static void TEST_NONE_VALUE()
 {
     const comstl::guid  guid;
 
@@ -178,7 +178,7 @@ static void test_none_value()
     TEST_INT_EQ(DWORD(REG_NONE), rootKey->get_value(guid).type());
 }
 
-static void test_0_dword()
+static void TEST_0__DWORD()
 {
     const comstl::guid  guid;
     const DWORD         value = 0u;
@@ -189,7 +189,7 @@ static void test_0_dword()
     TEST_INT_EQ(value, rootKey->get_value(guid).value_dword());
 }
 
-static void test_empty_string()
+static void TEST_EMPTY_STRING()
 {
     const comstl::guid  guid;
     char const* const   value = "";
@@ -200,7 +200,7 @@ static void test_empty_string()
     TEST_MS_EQ(value, rootKey->get_value(guid).value_sz());
 }
 
-static void test_many_dwords()
+static void TEST_MANY_DWORDS()
 {
     const DWORD values[] = { 0, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000, 100000, 300000, 1000000, 3000000, 10000000, 30000000, 100000000, 300000000, 1000000000, 3000000000u, };
 
@@ -225,7 +225,7 @@ static void test_many_dwords()
     }}
 }
 
-static void test_many_strings()
+static void TEST_MANY_STRINGS()
 {
     char const* values[] = { "0", "3", "10", "30", "100", "300", "1000", "3000", "10000", "30000", "100000", "300000", "1000000", "3000000", "10000000", "30000000", "100000000", "300000000", "1000000000", "3000000000", };
 
@@ -251,7 +251,7 @@ static void test_many_strings()
 }
 
 
-static void test_empty_multistring()
+static void TEST_EMPTY_MULTISTRING()
 {
     const comstl::guid  guid;
     char const**        value = NULL;
@@ -262,7 +262,7 @@ static void test_empty_multistring()
     TEST_INT_EQ(0u, rootKey->get_value(guid).value_multi_sz().size());
 }
 
-static void test_multistring_multibyte()
+static void TEST_MULTISTRING_MULTIBYTE()
 {
     char const* values[] = { "0", "3", "10", "30", "100", "300", "1000", "3000", "10000", "30000", "100000", "300000", "1000000", "3000000", "10000000", "30000000", "100000000", "300000000", "1000000000", "3000000000", };
 
@@ -278,7 +278,7 @@ static void test_multistring_multibyte()
     }}
 }
 
-static void test_multistring_wide()
+static void TEST_MULTISTRING_WIDE()
 {
     wchar_t const* values[] = { L"0", L"3", L"10", L"30", L"100", L"300", L"1000", L"3000", L"10000", L"30000", L"100000", L"300000", L"1000000", L"3000000", L"10000000", L"30000000", L"100000000", L"300000000", L"1000000000", L"3000000000", };
 

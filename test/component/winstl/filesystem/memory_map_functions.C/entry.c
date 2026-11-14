@@ -4,7 +4,7 @@
  * Purpose: Scratch test for memory-map functions.
  *
  * Created: 26th August 2010
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,10 +46,10 @@
  * forward declarations
  */
 
-static void test_1_0(void);
-static void test_1_1(void);
-static void test_1_2(void);
-static void test_1_3(void);
+static void TEST_1_0(void);
+static void TEST_1_1(void);
+static void TEST_1_2(void);
+static void TEST_1_3(void);
 
 static int setup(void* param);
 static int teardown(void* param);
@@ -68,10 +68,10 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.filesystem.memory_map_functions.C", verbosity, setup, teardown, NULL))
     {
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
+        XTESTS_RUN_CASE(TEST_1_0);
+        XTESTS_RUN_CASE(TEST_1_1);
+        XTESTS_RUN_CASE(TEST_1_2);
+        XTESTS_RUN_CASE(TEST_1_3);
 
         XTESTS_PRINT_RESULTS();
 
@@ -156,7 +156,7 @@ static int teardown(void* param)
 }
 
 
-static void test_1_0()
+static void TEST_1_0()
 {
     ws_uintptr_t    viewSize    =   0;
     void*           view = winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, 0, 0, &viewSize);
@@ -185,7 +185,7 @@ static void test_1_0()
     }
 }
 
-static void test_1_1()
+static void TEST_1_1()
 {
     ws_uintptr_t    viewSize    =   0;
     ws_uintptr_t    offset      =   65536;
@@ -220,7 +220,7 @@ static void test_1_1()
     }
 }
 
-static void test_1_2()
+static void TEST_1_2()
 {
     ws_uint32_t requestSize;
     for (requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
@@ -269,7 +269,7 @@ static void test_1_2()
     }
 }
 
-static void test_1_3()
+static void TEST_1_3()
 {
     ws_uintptr_t    viewSizes[10];
     void*           views[10];

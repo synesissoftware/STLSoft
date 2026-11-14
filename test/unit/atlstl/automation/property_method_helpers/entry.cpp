@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `atlstl::get_MemberValue`, `atlstl::put_MemberValue`
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -31,15 +31,15 @@
 
 namespace {
 
-    static void TEST_get_member_value_integral(void);
-    static void TEST_get_member_value_bstr(void);
-    static void TEST_get_member_value_variant(void);
-    static void TEST_get_member_value_bool(void);
-    static void TEST_get_member_value_size_t_overflow(void);
-    static void TEST_get_member_value_method(void);
-    static void TEST_put_member_value(void);
-    static void TEST_get_constant_value(void);
-    static void TEST_null_pointer_returns(void);
+    static void TEST_get_Member_VALUE_INTEGRAL();
+    static void TEST_get_Member_VALUE_BSTR();
+    static void TEST_get_Member_VALUE_VARIANT();
+    static void TEST_get_Member_VALUE_bool();
+    static void TEST_get_Member_VALUE_size_t_OVERFLOW();
+    static void TEST_get_Member_VALUE_METHOD();
+    static void TEST_put_Member_VALUE();
+    static void TEST_GET_CONSTANT_VALUE();
+    static void TEST_NULL_POINTER_RETURNS();
 } // anonymous namespace
 
 
@@ -56,15 +56,15 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_get_member_value_integral);
-        XTESTS_RUN_CASE(TEST_get_member_value_bstr);
-        XTESTS_RUN_CASE(TEST_get_member_value_variant);
-        XTESTS_RUN_CASE(TEST_get_member_value_bool);
-        XTESTS_RUN_CASE(TEST_get_member_value_size_t_overflow);
-        XTESTS_RUN_CASE(TEST_get_member_value_method);
-        XTESTS_RUN_CASE(TEST_put_member_value);
-        XTESTS_RUN_CASE(TEST_get_constant_value);
-        XTESTS_RUN_CASE(TEST_null_pointer_returns);
+        XTESTS_RUN_CASE(TEST_get_Member_VALUE_INTEGRAL);
+        XTESTS_RUN_CASE(TEST_get_Member_VALUE_BSTR);
+        XTESTS_RUN_CASE(TEST_get_Member_VALUE_VARIANT);
+        XTESTS_RUN_CASE(TEST_get_Member_VALUE_bool);
+        XTESTS_RUN_CASE(TEST_get_Member_VALUE_size_t_OVERFLOW);
+        XTESTS_RUN_CASE(TEST_get_Member_VALUE_METHOD);
+        XTESTS_RUN_CASE(TEST_put_Member_VALUE);
+        XTESTS_RUN_CASE(TEST_GET_CONSTANT_VALUE);
+        XTESTS_RUN_CASE(TEST_NULL_POINTER_RETURNS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_get_member_value_integral()
+static void TEST_get_Member_VALUE_INTEGRAL()
 {
     test_object obj = {};
 
@@ -93,7 +93,7 @@ static void TEST_get_member_value_integral()
     TEST_INT_EQ(42, value);
 }
 
-static void TEST_get_member_value_bstr()
+static void TEST_get_Member_VALUE_BSTR()
 {
     test_object obj = {};
 
@@ -106,7 +106,7 @@ static void TEST_get_member_value_bstr()
     ::SysFreeString(value);
 }
 
-static void TEST_get_member_value_variant()
+static void TEST_get_Member_VALUE_VARIANT()
 {
     test_object obj = {};
 
@@ -123,7 +123,7 @@ static void TEST_get_member_value_variant()
     ::VariantClear(&value);
 }
 
-static void TEST_get_member_value_bool()
+static void TEST_get_Member_VALUE_bool()
 {
     test_object obj = {};
 
@@ -140,7 +140,7 @@ static void TEST_get_member_value_bool()
     TEST_BOOLEAN_EQ(VARIANT_TRUE, vbool);
 }
 
-static void TEST_get_member_value_size_t_overflow()
+static void TEST_get_Member_VALUE_size_t_OVERFLOW()
 {
     test_object obj = {};
 
@@ -151,7 +151,7 @@ static void TEST_get_member_value_size_t_overflow()
     TEST_INT_EQ(DISP_E_OVERFLOW, atlstl::get_MemberValue(&obj, &value, &test_object::m_size));
 }
 
-static void TEST_get_member_value_method()
+static void TEST_get_Member_VALUE_METHOD()
 {
     test_object obj = {};
 
@@ -163,7 +163,7 @@ static void TEST_get_member_value_method()
     TEST_INT_EQ(99, value);
 }
 
-static void TEST_put_member_value()
+static void TEST_put_Member_VALUE()
 {
     test_object obj = {};
 
@@ -190,7 +190,7 @@ static void TEST_put_member_value()
     TEST_BOOLEAN_EQ(true, obj.m_bool);
 }
 
-static void TEST_get_constant_value()
+static void TEST_GET_CONSTANT_VALUE()
 {
     long value = 0;
 
@@ -198,7 +198,7 @@ static void TEST_get_constant_value()
     TEST_INT_EQ(123, value);
 }
 
-static void TEST_null_pointer_returns()
+static void TEST_NULL_POINTER_RETURNS()
 {
     test_object obj = {};
 

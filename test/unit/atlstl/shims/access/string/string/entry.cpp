@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for the primary string-access-shim include
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,9 +30,9 @@
 
 namespace {
 
-    static void TEST_calls_possible(void);
-    static void TEST_empty_ccombstr(void);
-    static void TEST_non_empty_ccombstr(void);
+    static void TEST_CALLS_POSSIBLE();
+    static void TEST_EMPTY_CCOMBSTR();
+    static void TEST_NON_EMPTY_CCOMBSTR();
 } // anonymous namespace
 
 
@@ -49,9 +49,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_calls_possible);
-        XTESTS_RUN_CASE(TEST_empty_ccombstr);
-        XTESTS_RUN_CASE(TEST_non_empty_ccombstr);
+        XTESTS_RUN_CASE(TEST_CALLS_POSSIBLE);
+        XTESTS_RUN_CASE(TEST_EMPTY_CCOMBSTR);
+        XTESTS_RUN_CASE(TEST_NON_EMPTY_CCOMBSTR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_calls_possible()
+static void TEST_CALLS_POSSIBLE()
 {
     CComBSTR const s(L"atlstl");
 
@@ -80,7 +80,7 @@ static void TEST_calls_possible()
     TEST_PASSED();
 }
 
-static void TEST_empty_ccombstr()
+static void TEST_EMPTY_CCOMBSTR()
 {
     CComBSTR const s;
 
@@ -89,7 +89,7 @@ static void TEST_empty_ccombstr()
     TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(s));
 }
 
-static void TEST_non_empty_ccombstr()
+static void TEST_NON_EMPTY_CCOMBSTR()
 {
     wchar_t const* const expected = L"ATL STL";
     CComBSTR const       s(expected);

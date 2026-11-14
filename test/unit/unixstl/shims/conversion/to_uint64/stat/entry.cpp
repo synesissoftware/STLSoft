@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for UnixSTL `unixstl/shims/conversion/to_uint64/stat.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_to_uint64_from_stat(void);
+    static void TEST_to_uint64_FROM_STAT();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_to_uint64_from_stat);
+        XTESTS_RUN_CASE(TEST_to_uint64_FROM_STAT);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_to_uint64_from_stat()
+static void TEST_to_uint64_FROM_STAT()
 {
     struct stat st = {};
     st.st_size = 12345;

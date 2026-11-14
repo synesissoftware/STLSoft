@@ -4,7 +4,7 @@
  * Purpose: Scratch test for string copy functions.
  *
  * Created: 29th September 2016
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,14 +45,14 @@
 namespace
 {
 
-    void test_string_copy_with_toolarge_destination();
-    void test_string_copy_with_exactlysufficient_destination();
-    void test_string_copy_with_insufficient_destination();
-    void test_string_copy_with_nul_with_toolarge_destination();
-    void test_string_copy_with_nul_with_exactlysufficient_destination();
-    void test_string_copy_with_nul_with_insufficient_destination();
-    void test_string_copy_with_different_lengths();
-    void test_string_copy_with_nul_with_different_lengths();
+    void TEST_string_copy_WITH_TOOLARGE_DESTINATION();
+    void TEST_string_copy_WITH_EXACTLYSUFFICIENT_DESTINATION();
+    void TEST_string_copy_WITH_INSUFFICIENT_DESTINATION();
+    void TEST_string_copy_with_nul_WITH_TOOLARGE_DESTINATION();
+    void TEST_string_copy_with_nul_WITH_EXACTLYSUFFICIENT_DESTINATION();
+    void TEST_string_copy_with_nul_WITH_INSUFFICIENT_DESTINATION();
+    void TEST_string_copy_WITH_DIFFERENT_LENGTHS();
+    void TEST_string_copy_with_nul_WITH_DIFFERENT_LENGTHS();
 } // anonymous namespace
 
 
@@ -69,14 +69,14 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.copy_functions", verbosity))
     {
-        XTESTS_RUN_CASE(test_string_copy_with_toolarge_destination);
-        XTESTS_RUN_CASE(test_string_copy_with_exactlysufficient_destination);
-        XTESTS_RUN_CASE(test_string_copy_with_insufficient_destination);
-        XTESTS_RUN_CASE(test_string_copy_with_nul_with_toolarge_destination);
-        XTESTS_RUN_CASE(test_string_copy_with_nul_with_exactlysufficient_destination);
-        XTESTS_RUN_CASE(test_string_copy_with_nul_with_insufficient_destination);
-        XTESTS_RUN_CASE(test_string_copy_with_different_lengths);
-        XTESTS_RUN_CASE(test_string_copy_with_nul_with_different_lengths);
+        XTESTS_RUN_CASE(TEST_string_copy_WITH_TOOLARGE_DESTINATION);
+        XTESTS_RUN_CASE(TEST_string_copy_WITH_EXACTLYSUFFICIENT_DESTINATION);
+        XTESTS_RUN_CASE(TEST_string_copy_WITH_INSUFFICIENT_DESTINATION);
+        XTESTS_RUN_CASE(TEST_string_copy_with_nul_WITH_TOOLARGE_DESTINATION);
+        XTESTS_RUN_CASE(TEST_string_copy_with_nul_WITH_EXACTLYSUFFICIENT_DESTINATION);
+        XTESTS_RUN_CASE(TEST_string_copy_with_nul_WITH_INSUFFICIENT_DESTINATION);
+        XTESTS_RUN_CASE(TEST_string_copy_WITH_DIFFERENT_LENGTHS);
+        XTESTS_RUN_CASE(TEST_string_copy_with_nul_WITH_DIFFERENT_LENGTHS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 namespace
 {
 
-void test_string_copy_with_toolarge_destination()
+void TEST_string_copy_WITH_TOOLARGE_DESTINATION()
 {
     char        dest[10];
     char const  src[]   =   "source";
@@ -143,7 +143,7 @@ void test_string_copy_with_toolarge_destination()
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 }
 
-void test_string_copy_with_exactlysufficient_destination()
+void TEST_string_copy_WITH_EXACTLYSUFFICIENT_DESTINATION()
 {
     char        dest[7];
     char const  src[]   =   "source";
@@ -180,7 +180,7 @@ void test_string_copy_with_exactlysufficient_destination()
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 }
 
-void test_string_copy_with_insufficient_destination()
+void TEST_string_copy_WITH_INSUFFICIENT_DESTINATION()
 {
     char        dest[5];
     char const  src[]   =   "source";
@@ -209,7 +209,7 @@ void test_string_copy_with_insufficient_destination()
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 }
 
-void test_string_copy_with_nul_with_toolarge_destination()
+void TEST_string_copy_with_nul_WITH_TOOLARGE_DESTINATION()
 {
     char        dest[10];
     char const  src[]   =   "source";
@@ -247,7 +247,7 @@ void test_string_copy_with_nul_with_toolarge_destination()
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 }
 
-void test_string_copy_with_nul_with_exactlysufficient_destination()
+void TEST_string_copy_with_nul_WITH_EXACTLYSUFFICIENT_DESTINATION()
 {
     char        dest[7];
     char const  src[]   =   "source";
@@ -276,7 +276,7 @@ void test_string_copy_with_nul_with_exactlysufficient_destination()
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 }
 
-void test_string_copy_with_nul_with_insufficient_destination()
+void TEST_string_copy_with_nul_WITH_INSUFFICIENT_DESTINATION()
 {
     char        dest[5];
     char const  src[]   =   "source";
@@ -305,7 +305,7 @@ void test_string_copy_with_nul_with_insufficient_destination()
 # endif /* !STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 }
 
-void test_string_copy_with_different_lengths()
+void TEST_string_copy_WITH_DIFFERENT_LENGTHS()
 {
     wchar_t         dest[10];
     wchar_t const*  src =   L"source";
@@ -464,7 +464,7 @@ void test_string_copy_with_different_lengths()
     TEST_CHAR_EQ(L'~', dest[8]);
 }
 
-void test_string_copy_with_nul_with_different_lengths()
+void TEST_string_copy_with_nul_WITH_DIFFERENT_LENGTHS()
 {
     wchar_t         dest[10];
     wchar_t const*  src =   L"source";

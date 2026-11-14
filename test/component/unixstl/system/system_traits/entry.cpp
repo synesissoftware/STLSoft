@@ -6,7 +6,7 @@
  *          `get_environment_variable`) and wide home / environment APIs.
  *
  * Created: 15th October 2026
- * Updated: 19th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,10 +52,10 @@ namespace {
     static void TEST_get_environment_variable_MISSING();
     static void TEST_get_environment_variable_RESIZEABLE_auto_buffer();
     static void TEST_get_environment_variable_RESIZEABLE_vector();
-    static void TEST_get_environment_variable_w();
+    static void TEST_get_environment_variable_W();
     static void TEST_get_home_directory_RESIZEABLE_auto_buffer();
     static void TEST_get_home_directory_RESIZEABLE_vector();
-    static void TEST_get_home_directory_w();
+    static void TEST_get_home_directory_W();
 } // anonymous namespace
 
 
@@ -75,10 +75,10 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_get_environment_variable_MISSING);
         XTESTS_RUN_CASE(TEST_get_environment_variable_RESIZEABLE_auto_buffer);
         XTESTS_RUN_CASE(TEST_get_environment_variable_RESIZEABLE_vector);
-        XTESTS_RUN_CASE(TEST_get_environment_variable_w);
+        XTESTS_RUN_CASE(TEST_get_environment_variable_W);
         XTESTS_RUN_CASE(TEST_get_home_directory_RESIZEABLE_auto_buffer);
         XTESTS_RUN_CASE(TEST_get_home_directory_RESIZEABLE_vector);
-        XTESTS_RUN_CASE(TEST_get_home_directory_w);
+        XTESTS_RUN_CASE(TEST_get_home_directory_W);
 
         XTESTS_PRINT_RESULTS();
 
@@ -192,7 +192,7 @@ static void TEST_get_environment_variable_RESIZEABLE_vector()
     TEST_MS_EQ(s_present_value, &rb[0]);
 }
 
-static void TEST_get_environment_variable_w()
+static void TEST_get_environment_variable_W()
 {
     platformstl::environment_variable_scope const scope(
         s_wide_present_name
@@ -290,7 +290,7 @@ static void TEST_get_home_directory_RESIZEABLE_vector()
     TEST_MS_EQ(home, &rb[0]);
 }
 
-static void TEST_get_home_directory_w()
+static void TEST_get_home_directory_W()
 {
     size_t const required_m = traits_m_t::get_home_directory(static_cast<char*>(NULL), 0);
     size_t const required_w = traits_w_t::get_home_directory(static_cast<wchar_t*>(NULL), 0);

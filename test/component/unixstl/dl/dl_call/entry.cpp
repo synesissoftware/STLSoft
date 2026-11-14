@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 29th October 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,11 +56,11 @@ namespace {
 
 namespace {
 
-    static void test_1_00();
-    static void test_example_so_abs1();
-    static void test_example_so_add2();
-    static void test_example_so_add3();
-    static void test_example_so_add10();
+    static void TEST_1_00();
+    static void TEST_EXAMPLE_SO_ABS1();
+    static void TEST_EXAMPLE_SO_ADD2();
+    static void TEST_EXAMPLE_SO_ADD3();
+    static void TEST_EXAMPLE_SO_ADD10();
 
     static char*        s_cwd;
     static h_module_t   h_example_so;
@@ -191,7 +191,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.unixstl.dl.dl_call", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
+        XTESTS_RUN_CASE(TEST_1_00);
 
         std::unique_ptr<unixstl_module_t> module = load_example_so(argv[0]);
 
@@ -207,10 +207,10 @@ int main(int argc, char* argv[])
             });
 #endif
 
-            XTESTS_RUN_CASE(test_example_so_abs1);
-            XTESTS_RUN_CASE(test_example_so_add2);
-            XTESTS_RUN_CASE(test_example_so_add3);
-            XTESTS_RUN_CASE(test_example_so_add10);
+            XTESTS_RUN_CASE(TEST_EXAMPLE_SO_ABS1);
+            XTESTS_RUN_CASE(TEST_EXAMPLE_SO_ADD2);
+            XTESTS_RUN_CASE(TEST_EXAMPLE_SO_ADD3);
+            XTESTS_RUN_CASE(TEST_EXAMPLE_SO_ADD10);
 
 #if __cplusplus < 201103L
 
@@ -233,11 +233,11 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_1_00()
+static void TEST_1_00()
 {
 }
 
-static void test_example_so_abs1()
+static void TEST_EXAMPLE_SO_ABS1()
 {
     try
     {
@@ -253,7 +253,7 @@ static void test_example_so_abs1()
     }
 }
 
-static void test_example_so_add2()
+static void TEST_EXAMPLE_SO_ADD2()
 {
     try
     {
@@ -269,7 +269,7 @@ static void test_example_so_add2()
     }
 }
 
-static void test_example_so_add3()
+static void TEST_EXAMPLE_SO_ADD3()
 {
     try
     {
@@ -285,7 +285,7 @@ static void test_example_so_add3()
     }
 }
 
-static void test_example_so_add10()
+static void TEST_EXAMPLE_SO_ADD10()
 {
     try
     {

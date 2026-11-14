@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/synch/atomic_functions.h`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,8 +28,8 @@
 
 namespace {
 
-    static void test_atomic_increment_decrement(void);
-    static void test_atomic_exchange(void);
+    static void TEST_atomic_increment_DECREMENT();
+    static void TEST_atomic_exchange();
 } // anonymous namespace
 
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_atomic_increment_decrement);
-        XTESTS_RUN_CASE(test_atomic_exchange);
+        XTESTS_RUN_CASE(TEST_atomic_increment_DECREMENT);
+        XTESTS_RUN_CASE(TEST_atomic_exchange);
 
         XTESTS_PRINT_RESULTS();
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_atomic_increment_decrement()
+static void TEST_atomic_increment_DECREMENT()
 {
     unixstl::atomic_int_t n = 0;
 
@@ -75,7 +75,7 @@ static void test_atomic_increment_decrement()
     TEST_INT_EQ(0, n);
 }
 
-static void test_atomic_exchange()
+static void TEST_atomic_exchange()
 {
     unixstl::atomic_int_t n = 5;
 

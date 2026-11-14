@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `atlstl::SupportErrorInfoImpl` and related templates.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -31,11 +31,11 @@
 
 namespace {
 
-    static void TEST_support_error_info_impl1(void);
-    static void TEST_support_error_info_impl2(void);
-    static void TEST_support_error_info_impl3(void);
-    static void TEST_support_error_info_impl4(void);
-    static void TEST_support_error_info_impl5(void);
+    static void TEST_SUPPORT_ERROR_INFO_IMPL1();
+    static void TEST_SUPPORT_ERROR_INFO_IMPL2();
+    static void TEST_SUPPORT_ERROR_INFO_IMPL3();
+    static void TEST_SUPPORT_ERROR_INFO_IMPL4();
+    static void TEST_SUPPORT_ERROR_INFO_IMPL5();
 } // anonymous namespace
 
 
@@ -52,11 +52,11 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_support_error_info_impl1);
-        XTESTS_RUN_CASE(TEST_support_error_info_impl2);
-        XTESTS_RUN_CASE(TEST_support_error_info_impl3);
-        XTESTS_RUN_CASE(TEST_support_error_info_impl4);
-        XTESTS_RUN_CASE(TEST_support_error_info_impl5);
+        XTESTS_RUN_CASE(TEST_SUPPORT_ERROR_INFO_IMPL1);
+        XTESTS_RUN_CASE(TEST_SUPPORT_ERROR_INFO_IMPL2);
+        XTESTS_RUN_CASE(TEST_SUPPORT_ERROR_INFO_IMPL3);
+        XTESTS_RUN_CASE(TEST_SUPPORT_ERROR_INFO_IMPL4);
+        XTESTS_RUN_CASE(TEST_SUPPORT_ERROR_INFO_IMPL5);
 
         XTESTS_PRINT_RESULTS();
 
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_support_error_info_impl1()
+static void TEST_SUPPORT_ERROR_INFO_IMPL1()
 {
     support_error_info1 sei;
 
@@ -81,7 +81,7 @@ static void TEST_support_error_info_impl1()
     TEST_INT_EQ(S_FALSE, sei.InterfaceSupportsErrorInfo(IID_IUnknown));
 }
 
-static void TEST_support_error_info_impl2()
+static void TEST_SUPPORT_ERROR_INFO_IMPL2()
 {
     support_error_info2 sei;
 
@@ -90,7 +90,7 @@ static void TEST_support_error_info_impl2()
     TEST_INT_EQ(S_FALSE, sei.InterfaceSupportsErrorInfo(IID_IUnknown));
 }
 
-static void TEST_support_error_info_impl3()
+static void TEST_SUPPORT_ERROR_INFO_IMPL3()
 {
     support_error_info3 sei;
 
@@ -100,7 +100,7 @@ static void TEST_support_error_info_impl3()
     TEST_INT_EQ(S_FALSE, sei.InterfaceSupportsErrorInfo(IID_IUnknown));
 }
 
-static void TEST_support_error_info_impl4()
+static void TEST_SUPPORT_ERROR_INFO_IMPL4()
 {
     support_error_info4 sei;
 
@@ -111,7 +111,7 @@ static void TEST_support_error_info_impl4()
     TEST_INT_EQ(S_FALSE, sei.InterfaceSupportsErrorInfo(IID_IUnknown));
 }
 
-static void TEST_support_error_info_impl5()
+static void TEST_SUPPORT_ERROR_INFO_IMPL5()
 {
     support_error_info5 sei;
 

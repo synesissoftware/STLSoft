@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `comstl::interface_ptr`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,8 +29,8 @@
 
 namespace {
 
-    static void test_construction_and_release(void);
-    static void test_attach_detach(void);
+    static void TEST_CONSTRUCTION_AND_Release();
+    static void TEST_ATTACH_DETACH();
 } // anonymous namespace
 
 
@@ -49,8 +49,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_construction_and_release);
-        XTESTS_RUN_CASE(test_attach_detach);
+        XTESTS_RUN_CASE(TEST_CONSTRUCTION_AND_Release);
+        XTESTS_RUN_CASE(TEST_ATTACH_DETACH);
 
         XTESTS_PRINT_RESULTS();
 
@@ -77,7 +77,7 @@ using test_comstl::mock_unknown;
 
 namespace {
 
-static void test_construction_and_release(void)
+static void TEST_CONSTRUCTION_AND_Release()
 {
     mock_unknown*                   raw = new mock_unknown();
     comstl::interface_ptr<IUnknown> ptr(raw, false);
@@ -86,7 +86,7 @@ static void test_construction_and_release(void)
     TEST_PTR_EQ(raw, ptr.get_interface_ptr());
 }
 
-static void test_attach_detach(void)
+static void TEST_ATTACH_DETACH()
 {
     mock_unknown*                   raw = new mock_unknown();
     comstl::interface_ptr<IUnknown> ptr;

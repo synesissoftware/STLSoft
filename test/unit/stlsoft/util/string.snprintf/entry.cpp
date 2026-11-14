@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::snprintf`, `stlsoft::snwprintf`.
  *
  * Created: 23rd March 2025
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,18 +53,18 @@ namespace {
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     static void TEST_stlsoft_C_snprintf_2();
 #endif
-    static void TEST_snprintf_3();
+    static void TEST_SNPRINTF_3();
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-    static void TEST_snprintf_2();
+    static void TEST_SNPRINTF_2();
 #endif
     static void TEST_stlsoft_C_snprintf_truncate();
-    static void TEST_snprintf_truncate();
+    static void TEST_SNPRINTF_TRUNCATE();
 #ifdef STLSOFT_vsnwprintf_SUPPORT
     static void TEST_stlsoft_C_snwprintf();
-    static void TEST_snwprintf();
+    static void TEST_SNWPRINTF();
 # ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     static void TEST_stlsoft_C_snwprintf_array();
-    static void TEST_snwprintf_array();
+    static void TEST_SNWPRINTF_ARRAY();
 # endif
 #endif /* STLSOFT_vsnwprintf_SUPPORT */
 } // anonymous namespace
@@ -87,18 +87,18 @@ int main(int argc, char* argv[])
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
         XTESTS_RUN_CASE(TEST_stlsoft_C_snprintf_2);
 #endif
-        XTESTS_RUN_CASE(TEST_snprintf_3);
+        XTESTS_RUN_CASE(TEST_SNPRINTF_3);
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-        XTESTS_RUN_CASE(TEST_snprintf_2);
+        XTESTS_RUN_CASE(TEST_SNPRINTF_2);
 #endif
         XTESTS_RUN_CASE(TEST_stlsoft_C_snprintf_truncate);
-        XTESTS_RUN_CASE(TEST_snprintf_truncate);
+        XTESTS_RUN_CASE(TEST_SNPRINTF_TRUNCATE);
 #ifdef STLSOFT_vsnwprintf_SUPPORT
         XTESTS_RUN_CASE(TEST_stlsoft_C_snwprintf);
-        XTESTS_RUN_CASE(TEST_snwprintf);
+        XTESTS_RUN_CASE(TEST_SNWPRINTF);
 # ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
         XTESTS_RUN_CASE(TEST_stlsoft_C_snwprintf_array);
-        XTESTS_RUN_CASE(TEST_snwprintf_array);
+        XTESTS_RUN_CASE(TEST_SNWPRINTF_ARRAY);
 # endif
 #endif /* STLSOFT_vsnwprintf_SUPPORT */
 
@@ -188,7 +188,7 @@ static void TEST_stlsoft_C_snprintf_2()
 }
 #endif
 
-static void TEST_snprintf_3()
+static void TEST_SNPRINTF_3()
 {
     {
         char        buff[101] = { '~', '~', '~', '~', };
@@ -222,7 +222,7 @@ static void TEST_snprintf_3()
 }
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
-static void TEST_snprintf_2()
+static void TEST_SNPRINTF_2()
 {
     {
         char        buff[101] = { '~', '~', '~', '~', };
@@ -337,7 +337,7 @@ static void TEST_stlsoft_C_snprintf_truncate()
 #endif
 }
 
-static void TEST_snprintf_truncate()
+static void TEST_SNPRINTF_TRUNCATE()
 {
     {
         char        buff[3] = { '~', '~', '~', };
@@ -428,7 +428,7 @@ static void TEST_stlsoft_C_snwprintf()
 #endif
 }
 
-static void TEST_snwprintf()
+static void TEST_SNWPRINTF()
 {
     {
         wchar_t     buff[8] = { L'~', L'~', L'~', L'~', };
@@ -468,7 +468,7 @@ static void TEST_stlsoft_C_snwprintf_array()
     TEST_INT_EQ(static_cast<int>(L'\0'), static_cast<int>(buff[3]));
 }
 
-static void TEST_snwprintf_array()
+static void TEST_SNWPRINTF_ARRAY()
 {
     wchar_t     buff[8] = { L'~', L'~', L'~', L'~', };
     int const   r = stlsoft::snwprintf(buff, L"%s", L"123");

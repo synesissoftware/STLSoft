@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/conversion/integer_to_string/integer_to_decimal_string`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_integer_to_decimal_string(void);
+    static void TEST_integer_to_decimal_string();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_integer_to_decimal_string);
+        XTESTS_RUN_CASE(TEST_integer_to_decimal_string);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_integer_to_decimal_string()
+static void TEST_integer_to_decimal_string()
 {
     char buf[32];
     char const* s = stlsoft::integer_to_decimal_string(buf, STLSOFT_NUM_ELEMENTS(buf), 12345);

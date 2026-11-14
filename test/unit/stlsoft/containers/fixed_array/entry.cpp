@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/containers/fixed_array`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,7 +29,7 @@
 
 namespace {
 
-    static void test_fixed_array_1d(void);
+    static void TEST_fixed_array_1d();
 } // anonymous namespace
 
 
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_fixed_array_1d);
+        XTESTS_RUN_CASE(TEST_fixed_array_1d);
 
         XTESTS_PRINT_RESULTS();
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_fixed_array_1d()
+static void TEST_fixed_array_1d()
 {
     stlsoft::fixed_array_1d<int> arr(4, 7);
     TEST_INTEGER_EQUAL(4, static_cast<int>(arr.size()));

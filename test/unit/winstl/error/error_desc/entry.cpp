@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `error/error_desc`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,8 +29,8 @@
 
 namespace {
 
-    static void test_success(void);
-    static void test_known_error(void);
+    static void TEST_SUCCESS();
+    static void TEST_KNOWN_ERROR();
 } // anonymous namespace
 
 
@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_success);
-        XTESTS_RUN_CASE(test_known_error);
+        XTESTS_RUN_CASE(TEST_SUCCESS);
+        XTESTS_RUN_CASE(TEST_KNOWN_ERROR);
 
         XTESTS_PRINT_RESULTS();
 
@@ -65,16 +65,18 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_success(void)
+static void TEST_SUCCESS()
 {
     winstl::error_desc ed(ERROR_SUCCESS);
+
     TEST_PTR_NE(NULL, ed.get_description());
     TEST_INT_NE(0u, stlsoft::c_str_len(ed));
 }
 
-static void test_known_error(void)
+static void TEST_KNOWN_ERROR()
 {
     winstl::error_desc ed(ERROR_FILE_NOT_FOUND);
+
     TEST_PTR_NE(NULL, ed.get_description());
     TEST_INT_NE(0u, stlsoft::c_str_len(ed));
 }

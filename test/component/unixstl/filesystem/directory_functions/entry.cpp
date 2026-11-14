@@ -4,7 +4,7 @@
  * Purpose: Component-tests for UnixSTL `unixstl/filesystem/directory_functions.hpp`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -31,8 +31,8 @@
 
 namespace {
 
-    static void test_create_directory_recurse(void);
-    static void test_remove_directory_recurse(void);
+    static void TEST_create_directory_recurse();
+    static void TEST_remove_directory_recurse();
 } // anonymous namespace
 
 
@@ -49,8 +49,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_create_directory_recurse);
-        XTESTS_RUN_CASE(test_remove_directory_recurse);
+        XTESTS_RUN_CASE(TEST_create_directory_recurse);
+        XTESTS_RUN_CASE(TEST_remove_directory_recurse);
 
         XTESTS_PRINT_RESULTS();
 
@@ -78,7 +78,7 @@ using xtests::cpp::util::temp_directory;
 
 namespace {
 
-static void test_create_directory_recurse()
+static void TEST_create_directory_recurse()
 {
     temp_directory td(temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
@@ -92,7 +92,7 @@ static void test_create_directory_recurse()
     TEST_BOOLEAN_TRUE(S_ISDIR(st.st_mode));
 }
 
-static void test_remove_directory_recurse()
+static void TEST_remove_directory_recurse()
 {
     temp_directory td(temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 

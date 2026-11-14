@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `atlstl::CComBSTR_veneer`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -30,12 +30,12 @@
 
 namespace {
 
-    static void TEST_default_construction(void);
-    static void TEST_copy_and_assignment(void);
-    static void TEST_iteration(void);
-    static void TEST_indexing_and_swap(void);
-    static void TEST_comparison_operators(void);
-    static void TEST_string_access_shims(void);
+    static void TEST_DEFAULT_CONSTRUCTION();
+    static void TEST_COPY_AND_ASSIGNMENT();
+    static void TEST_ITERATION();
+    static void TEST_INDEXING_AND_SWAP();
+    static void TEST_COMPARISON_OPERATORS();
+    static void TEST_STRING_ACCESS_SHIMS();
 } // anonymous namespace
 
 
@@ -52,12 +52,12 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_default_construction);
-        XTESTS_RUN_CASE(TEST_copy_and_assignment);
-        XTESTS_RUN_CASE(TEST_iteration);
-        XTESTS_RUN_CASE(TEST_indexing_and_swap);
-        XTESTS_RUN_CASE(TEST_comparison_operators);
-        XTESTS_RUN_CASE(TEST_string_access_shims);
+        XTESTS_RUN_CASE(TEST_DEFAULT_CONSTRUCTION);
+        XTESTS_RUN_CASE(TEST_COPY_AND_ASSIGNMENT);
+        XTESTS_RUN_CASE(TEST_ITERATION);
+        XTESTS_RUN_CASE(TEST_INDEXING_AND_SWAP);
+        XTESTS_RUN_CASE(TEST_COMPARISON_OPERATORS);
+        XTESTS_RUN_CASE(TEST_STRING_ACCESS_SHIMS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_default_construction()
+static void TEST_DEFAULT_CONSTRUCTION()
 {
     atlstl::CComBSTR_veneer const s;
 
@@ -85,7 +85,7 @@ static void TEST_default_construction()
     TEST_WS_EQ(L"", s.data());
 }
 
-static void TEST_copy_and_assignment()
+static void TEST_COPY_AND_ASSIGNMENT()
 {
     atlstl::CComBSTR_veneer const s1(L"hello");
     atlstl::CComBSTR_veneer       s2(s1);
@@ -103,7 +103,7 @@ static void TEST_copy_and_assignment()
     TEST_WS_EQ(L"a", s4.c_str());
 }
 
-static void TEST_iteration()
+static void TEST_ITERATION()
 {
     atlstl::CComBSTR_veneer const s(L"xy");
 
@@ -112,7 +112,7 @@ static void TEST_iteration()
     TEST_INT_EQ(L'y', s.begin()[1]);
 }
 
-static void TEST_indexing_and_swap()
+static void TEST_INDEXING_AND_SWAP()
 {
     atlstl::CComBSTR_veneer s1(L"one");
     atlstl::CComBSTR_veneer s2(L"two");
@@ -126,7 +126,7 @@ static void TEST_indexing_and_swap()
     TEST_WS_EQ(L"one", s2.c_str());
 }
 
-static void TEST_comparison_operators()
+static void TEST_COMPARISON_OPERATORS()
 {
     atlstl::CComBSTR_veneer const s1(L"match");
     atlstl::CComBSTR_veneer const s2(L"match");
@@ -138,7 +138,7 @@ static void TEST_comparison_operators()
     TEST_BOOLEAN_EQ(1, L"match" == s1);
 }
 
-static void TEST_string_access_shims()
+static void TEST_STRING_ACCESS_SHIMS()
 {
     atlstl::CComBSTR_veneer const s(L"veneer");
 

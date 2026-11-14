@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_traits<CString>`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -29,9 +29,9 @@
 
 namespace {
 
-    static void TEST_type_traits(void);
-    static void TEST_empty_string(void);
-    static void TEST_construct_and_assign_inplace(void);
+    static void TEST_TYPE_TRAITS();
+    static void TEST_empty_string();
+    static void TEST_CONSTRUCT_AND_assign_inplace();
 } // anonymous namespace
 
 
@@ -48,9 +48,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(TEST_type_traits);
+        XTESTS_RUN_CASE(TEST_TYPE_TRAITS);
         XTESTS_RUN_CASE(TEST_empty_string);
-        XTESTS_RUN_CASE(TEST_construct_and_assign_inplace);
+        XTESTS_RUN_CASE(TEST_CONSTRUCT_AND_assign_inplace);
 
         XTESTS_PRINT_RESULTS();
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void TEST_type_traits()
+static void TEST_TYPE_TRAITS()
 {
     typedef stlsoft::string_traits<CString> traits_t;
 
@@ -87,7 +87,7 @@ static void TEST_empty_string()
     TEST_BOOLEAN_TRUE(s.IsEmpty());
 }
 
-static void TEST_construct_and_assign_inplace()
+static void TEST_CONSTRUCT_AND_assign_inplace()
 {
     typedef stlsoft::string_traits<CString> traits_t;
 

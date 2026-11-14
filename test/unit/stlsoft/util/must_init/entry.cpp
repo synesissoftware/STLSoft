@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft/util/must_init`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 14th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -28,7 +28,7 @@
 
 namespace {
 
-    static void test_must_init(void);
+    static void TEST_must_init();
 } // anonymous namespace
 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER(__FILE__, verbosity))
     {
-        XTESTS_RUN_CASE(test_must_init);
+        XTESTS_RUN_CASE(TEST_must_init);
 
         XTESTS_PRINT_RESULTS();
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_must_init()
+static void TEST_must_init()
 {
     stlsoft::must_init<int> m(7);
     TEST_INTEGER_EQUAL(7, static_cast<int>(m));
