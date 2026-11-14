@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/security/functions.h
+ * File:    winstl/security/functions.h
  *
- * Purpose:     Security functions.
+ * Purpose: Security functions.
  *
- * Created:     7th November 2014
- * Updated:     9th November 2026
+ * Created: 7th November 2014
+ * Updated: 14th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -44,17 +44,17 @@
 /** \file winstl/security/functions.h
  *
  * \brief [C, C++] Security functions
- *   (\ref group__library__security "Security" Library).
+ *   (\ref group__library__Security "Security" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
 #define WINSTL_INCL_WINSTL_H_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR       1
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR       1
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        9
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR    1
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR    1
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

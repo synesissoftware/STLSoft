@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/spin_mutex_policies.hpp
+ * File:    unixstl/synch/spin_mutex_policies.hpp
  *
- * Purpose:     Policies for spin mutexes.
+ * Purpose: Policies for spin mutexes.
  *
- * Created:     25th November 2006
- * Updated:     9th November 2026
+ * Created: 25th November 2006
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -50,10 +50,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES
 
 #ifndef UNIXSTL_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MAJOR      2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       21
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MAJOR    2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MINOR    0
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_REVISION 5
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT     23
 #endif /* !UNIXSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -142,10 +142,10 @@ template<
 >
 struct spin_mutex_policy_base
 {
-protected: // Types
+protected: // types
     typedef T_atomicInteger                                 atomic_int_type;
 
-protected: // Operations
+protected: // operations
 #if 0
 #elif 0 ||\
       defined(UNIXSTL_HAS_atomic_exchange) ||\
@@ -258,12 +258,12 @@ protected:
 struct no_yield_spin_mutex_policy
     : public spin_mutex_policy_base<atomic_int_t>
 {
-private: // Types
+private: // types
     typedef spin_mutex_policy_base<atomic_int_t>            parent_class_type_;
 public:
     typedef parent_class_type_::atomic_int_type             atomic_int_type;
 
-public: // Operations
+public: // operations
     static
     ss_truthy_t
     try_acquire_lock(
@@ -346,12 +346,12 @@ template<
 struct yield_on_N_spin_mutex_policy
     : public spin_mutex_policy_base<atomic_int_t>
 {
-private: // Types
+private: // types
     typedef spin_mutex_policy_base<atomic_int_t>            parent_class_type_;
 public:
     typedef parent_class_type_::atomic_int_type             atomic_int_type;
 
-public: // Operations
+public: // operations
     static
     ss_truthy_t
     try_acquire_lock(

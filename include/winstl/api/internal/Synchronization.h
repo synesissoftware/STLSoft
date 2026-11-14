@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/internal/Synchronization.h
+ * File:    winstl/api/internal/Synchronization.h
  *
- * Purpose:     External preprocessor aliases for internal Windows' Synchronization
- *              API.
+ * Purpose: External preprocessor aliases for internal Windows' Synchronization
+ *          API.
  *
- * Created:     9th January 2017
- * Updated:     9th November 2026
+ * Created: 9th January 2017
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software

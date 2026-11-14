@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/tss_index.hpp
+ * File:    platformstl/synch/tss_index.hpp
  *
- * Purpose:     Definition of the tss_index type.
+ * Purpose: Definition of the tss_index type.
  *
- * Created:     20th March 2005
- * Updated:     9th November 2026
+ * Created: 20th March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_REVISION   5
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       32
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/tss_index.hpp

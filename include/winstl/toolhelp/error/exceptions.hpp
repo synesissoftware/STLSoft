@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/toolhelp/error/exceptions.hpp
+ * File:    winstl/toolhelp/error/exceptions.hpp
  *
- * Purpose:     Exception classes for TOOLHELP components.
+ * Purpose: Exception classes for TOOLHELP components.
  *
- * Created:     21st May 2005
- * Updated:     9th November 2026
+ * Created: 21st May 2005
+ * Updated: 11th November 2026
  *
- * Thanks:      To Pablo for contributing this great library.
+ * Thanks:  To Pablo for contributing this great library.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
@@ -47,7 +47,7 @@
 /** \file winstl/toolhelp/error/exceptions.hpp
  *
  * \brief [C++] Exception classes for the
- *   (\ref group__library__Windows_Toolhelp "Windows ToolHelp" Library).
+ *   (\ref group__library__Windows_ToolHelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_MAJOR      2
 # define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_MINOR      0
 # define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_REVISION   6
-# define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_EDIT       29
+# define WINSTL_VER_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,9 +111,9 @@ namespace winstl_project
  */
 
 /** Root exception thrown by
- *   the \ref group__library__Windows_Toolhelp "Windows ToolHelp" library.
+ *   the \ref group__library__Windows_ToolHelp "Windows ToolHelp" library.
  *
- * \ingroup group__library__Windows_Toolhelp
+ * \ingroup group__library__Windows_ToolHelp
  */
 struct toolhelp_exception
     : public winstl_exception
@@ -163,7 +163,14 @@ public:
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_message_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_message_SUPPORT */
 
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION */
 

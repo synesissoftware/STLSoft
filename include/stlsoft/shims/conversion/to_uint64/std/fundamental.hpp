@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/conversion/to_uint64/std/fundamental.hpp
+ * File:    stlsoft/shims/conversion/to_uint64/std/fundamental.hpp
  *
- * Purpose:     Contains the to_uint64 access shim.
+ * Purpose: Contains the to_uint64 access shim.
  *
- * Created:     4th July 2007
- * Updated:     9th November 2026
+ * Created: 4th July 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_REVISION    6
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        20
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

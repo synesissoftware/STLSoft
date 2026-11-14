@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/validation_functions.h
+ * File:    winstl/time/validation_functions.h
  *
- * Purpose:     Validation functions for Windows time structures.
+ * Purpose: Validation functions for Windows time structures.
  *
- * Created:     1st June 2014
- * Updated:     9th November 2026
+ * Created: 1st June 2014
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_REVISION 3
-# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_EDIT     15
+# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

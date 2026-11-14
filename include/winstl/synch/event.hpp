@@ -4,7 +4,7 @@
  * Purpose: event class, based on Windows EVENT.
  *
  * Created: 3rd July 2003
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 8
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     85
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -174,7 +174,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "event set operation failed", Synchronisation_EventSetFailed));
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "failed to set event", Synchronisation_EventSetFailed));
 #else
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_EventSetFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -190,7 +190,7 @@ public:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "event reset operation failed", Synchronisation_EventResetFailed));
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "failed to reset event", Synchronisation_EventResetFailed));
 #else
             WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(Synchronisation_EventResetFailed, e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -335,7 +335,7 @@ lock_instance(
         DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(WINSTL_NS_QUAL(wait_failed_logic_exception)(e, "event wait failed"));
+        STLSOFT_THROW_X(WINSTL_NS_QUAL(wait_failed_logic_exception)(e, "failed to wait on event"));
 #else
         WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(WINSTL_NS_QUAL(Synchronisation_WaitFailed), e);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

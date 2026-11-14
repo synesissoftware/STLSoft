@@ -5,7 +5,7 @@
  *          types; special implementation for Borland.
  *
  * Created: 1st November 1994
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Thanks:  Maciej Kaniewski, for requesting Borland compatibility (in order
  *          to use FastFormat and Pantheios)
@@ -61,7 +61,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_MINOR     3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_REVISION  4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_EDIT      692
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_EDIT      693
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1074,14 +1074,15 @@ struct scoped_handle_borland_impl_
 template <ss_typename_param_k H>
 class scoped_handle
 {
-public:
+public: // types
     typedef H                                               resource_type;
     typedef H                                               handle_type;
     typedef scoped_handle<H>                                class_type;
 private:
     typedef scoped_handle_borland_impl_::function_type<H>   function_type;
 
-public: // NOTE: These constants have to be public for the Borland compiler
+public: // constants
+    // NOTE: These constants have to be public for the Borland compiler
     enum
     {
             cdecl_function_type_v_size  =   sizeof(scoped_handle_borland_impl_::cdecl_function_type_v<H>)

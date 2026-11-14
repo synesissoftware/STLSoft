@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/warnings/pop/suppress_deprecation_.h
+ * File:    stlsoft/internal/warnings/pop/suppress_deprecation_.h
  *
- * Purpose:     Pops warning suppression for "".
+ * Purpose: Pops warning suppression for "".
  *
- * Created:     6th October 2016
- * Updated:     23rd January 2021
+ * Created: 6th October 2016
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

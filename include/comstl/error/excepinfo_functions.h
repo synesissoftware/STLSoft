@@ -4,7 +4,7 @@
  * Purpose: EXCEPINFO functions.
  *
  * Created: 11th August 2007
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,7 +44,7 @@
 /** \file comstl/error/excepinfo_functions.h
  *
  * \brief [C, C++] Error info functions
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MINOR    0
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 10
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     18
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -137,7 +137,7 @@ namespace comstl
 #ifdef __cplusplus
 /** Releases the resources associated with the EXCEPINFO instance.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 inline
 void
@@ -170,7 +170,6 @@ comstl_c_EXCEPINFO_free(
 {
     comstl_C_EXCEPINFO_free(pxi);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

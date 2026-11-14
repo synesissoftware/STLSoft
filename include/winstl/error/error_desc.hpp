@@ -4,7 +4,7 @@
  * Purpose: Converts a Win32 error code to a printable string.
  *
  * Created: 13th July 2003
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  *
  * \brief [C++] Definition of the winstl::basic_error_desc class
  *  template
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_ERROR_DESC
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       7
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        115
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,7 +141,7 @@ namespace winstl_project
 /** Utility class that loads the system string representation
  *   corresponding to a given error code.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * Consider the following example:
 \code
@@ -177,7 +177,7 @@ template<
 >
 class basic_error_desc
 {
-/// \name Types
+/// \name Member Types
 /// @{
 private:
     typedef
@@ -422,17 +422,17 @@ private:
 /* Typedefs to commonly encountered types. */
 /** Specialisation of the basic_error_desc template for the ANSI character type \c char
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 typedef basic_error_desc<ws_char_a_t>                       error_desc_a;
 /** Specialisation of the basic_error_desc template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 typedef basic_error_desc<ws_char_w_t>                       error_desc_w;
 /** Specialisation of the basic_error_desc template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 typedef basic_error_desc<TCHAR>                             error_desc;
 
@@ -802,8 +802,8 @@ operator <<(
 
     return s;
 }
-
 #endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -818,6 +818,7 @@ operator <<(
 } // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

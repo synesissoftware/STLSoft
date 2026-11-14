@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/conversion/method_cast.hpp
+ * File:    comstl/conversion/method_cast.hpp
  *
- * Purpose:     COM memory functions.
+ * Purpose: COM memory functions.
  *
- * Created:     20th December 2003
- * Updated:     9th November 2026
+ * Created: 20th December 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  5
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      48
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

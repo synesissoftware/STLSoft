@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/file_path_buffer.hpp
+ * File:    platformstl/filesystem/file_path_buffer.hpp
  *
- * Purpose:     Platform header for the file_path_buffer components.
+ * Purpose: Platform header for the file_path_buffer components.
  *
- * Created:     20th March 2005
- * Updated:     9th November 2026
+ * Created: 20th March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   10
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       42
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

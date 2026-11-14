@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:     comstl/collections/collection_sequence.hpp (originally MOEnSeq.h, ::SynesisCom)
+ * File:    comstl/collections/collection_sequence.hpp (originally MOEnSeq.h, ::SynesisCom)
  *
- * Purpose:  STL sequence for COM collection interfaces.
+ * Purpose: STL sequence for COM collection interfaces.
  *
- * Created:  17th September 1998
- * Updated:  9th November 2026
+ * Created: 17th September 1998
+ * Updated: 13th November 2026
  *
- * Thanks:   To Eduardo Bezerra and Vivi Orunitia for reporting
- *           incompatibilities with Borland's 5.82 (Turbo C++). The awful
- *           preprocessor hack around retrievalQuanta are the result. ;)
+ * Thanks:  To Eduardo Bezerra and Vivi Orunitia for reporting
+ *          incompatibilities with Borland's 5.82 (Turbo C++). The awful
+ *          preprocessor hack around retrievalQuanta are the result. ;)
  *
- * Home:     http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -57,9 +57,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 20
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     128
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    2
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 1
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -360,7 +360,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             COMSTL_ASSERT(is_valid());
 
-            STLSOFT_THROW_X(comstl_exception("enumerator could not be elicited from the collection", hr));
+            STLSOFT_THROW_X(comstl_exception("failed to elicit enumerator from the collection", hr));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

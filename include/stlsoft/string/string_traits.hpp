@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/string_traits.hpp
+ * File:    stlsoft/string/string_traits.hpp
  *
- * Purpose:     string_traits traits class.
+ * Purpose: string_traits traits class.
  *
- * Created:     16th January 2002
- * Updated:     9th November 2026
+ * Created: 16th January 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      97
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

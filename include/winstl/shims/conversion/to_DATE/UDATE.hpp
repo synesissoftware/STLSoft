@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_DATE/UDATE.hpp
+ * File:    winstl/shims/conversion/to_DATE/UDATE.hpp
  *
- * Purpose:     winstl::to_DATE(UDATE const&) overload.
+ * Purpose: winstl::to_DATE(UDATE const&) overload.
  *
- * Created:     21st October 2007
- * Updated:     9th November 2026
+ * Created: 21st October 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_UDATE_MAJOR     1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_UDATE_MINOR     0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_UDATE_REVISION  8
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_UDATE_EDIT      18
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_UDATE_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

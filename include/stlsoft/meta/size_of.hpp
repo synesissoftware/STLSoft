@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/size_of.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/size_of.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Size determination.
+ * Purpose: Size determination.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_REVISION  5
-# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      138
+# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

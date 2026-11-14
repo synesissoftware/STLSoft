@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
  *          doesn't work for wide-string builds).
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 13
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     332
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     336
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -178,7 +178,7 @@ template<
 >
 class basic_path
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The char type
@@ -521,7 +521,7 @@ public:
     /// Evaluates whether the two instances hold strings that refer
     ///  to the same file-system entity.
     ///
-    /// \note See \link winstl::basic_path::equivalent(C const* ) equivalent()\endlink for an example.
+    /// \note See the preceding overload for an example.
     ///
     /// \note The string comparison is case-insensitive.
     bool_type equivalent(class_type const& rhs) const STLSOFT_NOEXCEPT;
@@ -1995,7 +1995,7 @@ basic_path<C, T, A>::make_absolute(
 
         DWORD const le = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
-        STLSOFT_THROW_X(winstl_exception("could not determine the absolute path", le));
+        STLSOFT_THROW_X(winstl_exception("failed to determine the absolute path", le));
 #else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return false;

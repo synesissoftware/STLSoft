@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/functional/procedure_adaptors.hpp
+ * File:    stlsoft/functional/procedure_adaptors.hpp
  *
- * Purpose:     Contains the adaptors to allow functions to be used as procedures in algorithms.
+ * Purpose: Contains the adaptors to allow functions to be used as procedures in algorithms.
  *
- * Created:     13th June 1999
- * Updated:     9th November 2026
+ * Created: 13th June 1999
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MAJOR       2
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MINOR       0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_REVISION    7
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_EDIT        27
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MAJOR    2
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MINOR    0
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_REVISION 7
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

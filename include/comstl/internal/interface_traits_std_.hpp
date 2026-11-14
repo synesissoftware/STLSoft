@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/internal/interface_traits_std_.hpp
+ * File:    comstl/internal/interface_traits_std_.hpp
  *
- * Purpose:     Standard interface traits.
+ * Purpose: Standard interface traits.
  *
- * Created:     25th May 2002
- * Updated:     29th July 2026
+ * Created: 25th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD__MAJOR     4
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD__MINOR     0
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD__REVISION  1
-# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD__EDIT      59
+# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD__EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

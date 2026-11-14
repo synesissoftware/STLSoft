@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/indexed_range.hpp
+ * File:    rangelib/indexed_range.hpp
  *
- * Purpose:     Indexed range adaptor class.
+ * Purpose: Indexed range adaptor class.
  *
- * Created:     11th October 2004
- * Updated:     9th November 2026
+ * Created: 11th October 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -47,10 +47,10 @@
 #define RANGELIB_INCL_RANGELIB_HPP_INDEXED_RANGE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       4
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    7
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        47
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR      2
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR      4
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION   7
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

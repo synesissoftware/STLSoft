@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 21st December 2020
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      14
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  11
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,9 +120,9 @@ struct unixstl_C_path_classification_results_m_t
 {
     stlsoft_C_string_slice_m_t      input;
     stlsoft_C_string_slice_m_t      fullPath;               /*!< UNUSED. A future version will allow make-absolute and make-canonical functionality */
-    stlsoft_C_string_slice_m_t      prefix;                 /*!< the prefix, if any, before the root, e.g. "\\?\", "\\?\UNC\" */
+    stlsoft_C_string_slice_m_t      prefix;                 /*!< the prefix, if any, before the root, e.g. <code>"\\?\"</code>, <code>"\\?\UNC\"</code> */
     stlsoft_C_string_slice_m_t      location;               /*!< the entire path excepting the file */
-    stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or "\\?\UNC\server-name\share-name" */
+    stlsoft_C_string_slice_m_t      root;                   /*!< root of path, which may be "", or "C:", or <code>"\\?\UNC\server-name\share-name"</code> */
     stlsoft_C_string_slice_m_t      directory;              /*!< the entire directory, beginning with the first character after the root until the first character before the file */
     size_t                          numDirectoryParts;
     size_t                          numDotsDirectoryParts;  /*!< count of directory parts that are exactly "." or ".." (entry excluded) */
@@ -189,7 +189,7 @@ unixstl_C_path_classify_m(
     char const*                                 s
 ,   size_t                                      cch
 ,   int                                         parseFlags
-,   unixstl_C_path_classification_results_m_t*   results
+,   unixstl_C_path_classification_results_m_t*  results
 )
 {
     unixstl_C_path_classification_results_m_t dummy;
@@ -241,7 +241,7 @@ unixstl_C_path_classify(
     char const*                                 s
 ,   size_t                                      cch
 ,   int                                         parseFlags
-,   unixstl_C_path_classification_results_m_t*   results
+,   unixstl_C_path_classification_results_m_t*  results
 )
 {
     return unixstl_C_path_classify_m(s, cch, parseFlags, results);
@@ -284,9 +284,14 @@ typedef unixstl_C_path_classification_results_m_t           path_classification_
  * C++ API functions
  */
 
-/**
+/** Classifies a path.
  *
- * \param path
+ * \param path The path to classify. Must provide <code>data()</code> and
+ *   <code>size()</code>
+ * \param parseFlags Classification flags (see
+ *   <code>UNIXSTL_PATH_CLASSIFY_F_*</code>)
+ * \param results Optional pointer to a results structure to receive path
+ *   slices; may be <code>nullptr</code>
  *
  * \note The function does NOT use string-access shims to elicit
  *   from \c path the C-style string pointer and length, because the API
@@ -357,7 +362,6 @@ path_is_rooted(
 # define UNIXSTL_C_PathType_reserved_2                      unixstl_C_PathType_reserved_2
 # define UNIXSTL_C_PathType_reserved_3                      unixstl_C_PathType_reserved_3
 # define UNIXSTL_C_PathType_reserved_4                      unixstl_C_PathType_reserved_4
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

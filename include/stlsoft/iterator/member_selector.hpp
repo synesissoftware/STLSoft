@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterator/member_selector.hpp
+ * File:    stlsoft/iterator/member_selector.hpp
  *
- * Purpose:     Forwarding header for the member_selector_iterator
- *              class template.
+ * Purpose: Forwarding header for the member_selector_iterator
+ *          class template.
  *
- * Created:     1st August 2010
- * Updated:     13th December 2023
+ * Created: 1st August 2010
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

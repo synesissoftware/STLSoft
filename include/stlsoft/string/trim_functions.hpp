@@ -4,7 +4,7 @@
  * Purpose: String utility functions for trimming and removing string contents.
  *
  * Created: 25th April 2005
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    5
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        65
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    6
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -658,7 +658,7 @@ remove_all(
 /** Removes all instances of given characters, if any, from a string
  *
  * \param str The string to be processed, which will be modified
- * \param trimChars A non-empty string (or arbitrary type) specifying the
+ * \param removeChars A non-empty string (or arbitrary type) specifying the
  *   characters to remove
  *
  * \ingroup group__library__String

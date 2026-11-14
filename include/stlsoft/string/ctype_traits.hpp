@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/ctype_traits.hpp
+ * File:    stlsoft/string/ctype_traits.hpp
  *
- * Purpose:     Traits for ctype functions.
+ * Purpose: Traits for ctype functions.
  *
- * Created:     1st April 2005
- * Updated:     9th November 2026
+ * Created: 1st April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_MAJOR     2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_MINOR     0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_REVISION  7
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_EDIT      34
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CTYPE_TRAITS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

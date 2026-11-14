@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/pair.hpp (originally MTPair.h, ::SynesisStl)
+ * File:    stlsoft/util/pair.hpp (originally MTPair.h, ::SynesisStl)
  *
- * Purpose:     Contains the pair template.
+ * Purpose: Contains the pair template.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_PAIR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MAJOR     5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      71
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MAJOR    5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MINOR    0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION 8
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,7 +117,7 @@ public:
     {}
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     first_type  first;  //!< The first member

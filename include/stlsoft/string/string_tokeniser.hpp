@@ -4,7 +4,7 @@
  * Purpose: String token parsing class.
  *
  * Created: 6th January 2001
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  18
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      247
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR      5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR      1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION   18
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT       248
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1016,7 +1016,7 @@ public:
         }
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     private:
         underlying_iterator_type    m_find0;        // the start of the current item
@@ -1069,7 +1069,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     string_type const       m_str;

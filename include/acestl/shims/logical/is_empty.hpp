@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/logical/is_empty.hpp
+ * File:    acestl/shims/logical/is_empty.hpp
  *
- * Purpose:     Contains the is_empty access shim.
+ * Purpose: Contains the is_empty access shim.
  *
- * Created:     26th July 2006
- * Updated:     9th November 2026
+ * Created: 26th July 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION  4
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      17
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      18
 #endif /* !ACESTL_DOCUMENTATION_SKIP_SECTION */
 
 

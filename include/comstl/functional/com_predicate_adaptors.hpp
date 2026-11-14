@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/functional/com_predicate_adaptors.hpp
+ * File:    comstl/functional/com_predicate_adaptors.hpp
  *
- * Purpose:     Contains the comstl::com_SUCCEEDED and comstl::com_S_OK.
+ * Purpose: Contains the comstl::com_SUCCEEDED and comstl::com_S_OK.
  *
- * Created:     3rd April 2007
- * Updated:     9th November 2026
+ * Created: 3rd April 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://comstl.org/
+ * Home:    http://comstl.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS
 
 #ifndef COMSTL_DOCUMENTATION_SKIP_SECTION
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MAJOR    1
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MINOR    0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 7
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     19
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MAJOR      1
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MINOR      0
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION   7
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT       21
 #endif /* !COMSTL_DOCUMENTATION_SKIP_SECTION */
 
 

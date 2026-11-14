@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_SYSTEMTIME/SYSTEMTIME.hpp
+ * File:    winstl/shims/conversion/to_SYSTEMTIME/SYSTEMTIME.hpp
  *
- * Purpose:     winstl::to_SYSTEMTIME(SYSTEMTIME const&) overload.
+ * Purpose: winstl::to_SYSTEMTIME(SYSTEMTIME const&) overload.
  *
- * Created:     24th May 2002
- * Updated:     9th November 2026
+ * Created: 24th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_REVISION   6
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_EDIT       20
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

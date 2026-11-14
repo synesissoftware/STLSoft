@@ -4,7 +4,7 @@
  * Purpose: Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created: 19th January 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Austin Ziegler for fixes to defects evident on x64.
  *
@@ -46,9 +46,9 @@
 /** \file winstl/registry/util/shared_handles.hpp
  *
  * \brief [C++] [IMPLEMENTATION] Contains the
- *  \link winstl::registry_util::shared_handle shared_handle\endlink
+ *  <code>winstl::registry_util::shared_handle</code>
  *  and
- *  \link winstl::registry_util::monitored_shared_handle monitored_shared_handle\endlink
+ *  <code>winstl::registry_util::monitored_shared_handle</code>
  *  classes that are used to provide shared context between iterators implement
  *  the \ref group__pattern__externally_invalidatable_iterator "Externally Invalidatable Iterator"
  *  pattern
@@ -60,9 +60,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    22
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        59
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       1
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    2
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -164,7 +164,7 @@ namespace registry_util
         typedef HKEY            handle_type;
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     public:
         handle_type m_hkey;
@@ -288,7 +288,7 @@ namespace registry_util
 
                 if (ERROR_SUCCESS != r)
                 {
-                    STLSOFT_THROW_X(registry_exception("could not register change notification", r));
+                    STLSOFT_THROW_X(registry_exception("failed to register change notification", r));
                 }
             }
             catch (missing_entry_point_exception&)
@@ -313,7 +313,7 @@ namespace registry_util
         }
     /// @}
 
-    /// \name Members
+    /// \name Fields
     /// @{
     private:
         const int   m_eventType;

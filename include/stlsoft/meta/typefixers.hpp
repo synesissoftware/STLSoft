@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixers.hpp
+ * File:    stlsoft/meta/typefixers.hpp
  *
- * Purpose:     Combined header file for STLSoft's TypeFixer utility components.
+ * Purpose: Combined header file for STLSoft's TypeFixer utility components.
  *
- * Created:     24th April 2005
- * Updated:     9th November 2026
+ * Created: 24th April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_REVISION   4
-# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       21
+# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

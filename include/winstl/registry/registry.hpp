@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/registry.hpp
+ * File:    winstl/registry/registry.hpp
  *
- * Purpose:     Declares the Registry Library.
+ * Purpose: Declares the Registry Library.
  *
- * Created:     19th January 2002
- * Updated:     9th November 2026
+ * Created: 19th January 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_MAJOR      1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_MINOR      0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_REVISION   8
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_EDIT       71
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

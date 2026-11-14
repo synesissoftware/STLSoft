@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       22
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    14
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        200
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    15
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        202
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -183,7 +183,7 @@ template <ss_typename_param_k C>
 struct filesystem_traits
     : public system_traits<C>
 {
-/// \name types
+/// \name Member Types
 /// @{
 private:
     typedef system_traits<C>                                parent_class_type;
@@ -224,7 +224,7 @@ public:
     typedef DWORD                                           file_attributes_type;
 /// @}
 
-/// \name concepts
+/// \name Concepts
 /// @{
 public:
     /// This type does not actually exists in the compilable code, but,
@@ -234,7 +234,7 @@ public:
     ///   buffer is a <code>NUL</code>-terminator
     struct resizeable_buffer
     {
-    public: // typedef
+    public: // types
         typedef T_value                                     value_type;
         typedef std::size_t                                 size_type;
 
@@ -260,7 +260,7 @@ public:
     };
 /// @}
 
-/// \name constants
+/// \name Member Constants
 /// @{
 public:
     enum
@@ -274,7 +274,7 @@ public:
     };
 /// @}
 
-/// \name general string handling
+/// \name General String Handling
 /// @{
 public:
     /// Compares the contents of \c src and \c dest, according to the
@@ -286,7 +286,7 @@ public:
     static int_type     str_fs_n_compare(char_type const* s1, char_type const* s2, size_type len);
 /// @}
 
-/// \name directory-end
+/// \name Directory End
 /// @{
 public:
     /// Ensures that a given C-style string has a trailing path name
@@ -311,10 +311,10 @@ public:
     /// Ensures that a given C-style string has a trailing path name
     /// separator by appending one where necessary
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param capacity Number of available characters available
-    ///   in \c path. If 0, capacity will not be checked
+    ///   in \c dir. If 0, capacity will not be checked
     /// \param pLenToIncrease An optional pointer to a variable that will
     ///   be incremented if a path name separator is appended
     ///
@@ -367,8 +367,8 @@ public:
     ///
     /// \pre 0 == len || nullptr != dir
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -406,8 +406,8 @@ public:
 
     /// Removes the path name separator from the end of \c dir, if present
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
     ///   be decremented if a path name separator is removed
     ///
@@ -440,7 +440,7 @@ public:
     );
 /// @}
 
-/// \name path classification and analysis
+/// \name Path Classification and Analysis
 /// @{
 public:
     /// Classifies a path
@@ -750,7 +750,7 @@ public:
     );
 /// @}
 
-/// \name file-system enumeration
+/// \name Filesystem Enumeration
 /// @{
 public:
     // FindFirstFile/FindNextFile API
@@ -780,7 +780,7 @@ public:
 #endif // !WINSTL_FINDVOLUME_API_NOT_DECLARED
 /// @}
 
-/// \name file-system control
+/// \name Filesystem Control
 /// @{
 public:
     /// Sets the current directory to \c dir
@@ -824,7 +824,7 @@ public:
     );
 /// @}
 
-/// \name file-system state
+/// \name Filesystem State
 /// @{
 public:
     /// Returns whether a file exists or not
@@ -869,7 +869,7 @@ public:
     static DWORD        get_drive_type(char_type driveLetter);
 /// @}
 
-/// \name file-system control
+/// \name Filesystem Control
 /// @{
 public:
     /// Creates a directory
@@ -1036,7 +1036,7 @@ public: // general string handling
         return str_n_compare_no_case(s1, s2, len);
     }
 
-public: // directory-end
+public: // directory end
     static
     char_type*
     ensure_dir_end(
@@ -2179,7 +2179,7 @@ public:
         return get_short_path_name(fileName, &rb[0], rb.size());
     }
 
-public: // file-system enumeration
+public: // fs enum
     static HANDLE find_first_file(char_type const* spec, find_data_type* findData)
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileA(spec, findData);
@@ -2224,7 +2224,7 @@ public: // file-system enumeration
     }
 #endif // !WINSTL_FINDVOLUME_API_NOT_DECLARED
 
-public: // file-system control
+public: // fs control
     static
     bool_type
     set_current_directory(
@@ -2286,7 +2286,7 @@ public: // file-system control
         return class_type::get_current_directory(buffer, cchBuffer);
     }
 
-public: // file-system state
+public: // fs state
     static bool_type file_exists(char_type const* fileName)
     {
         return INVALID_FILE_ATTRIBUTES != WINSTL_API_EXTERNAL_FileManagement_GetFileAttributesA(fileName);
@@ -2488,7 +2488,7 @@ public:
         return (drive[0] = driveLetter, WINSTL_API_EXTERNAL_FileManagement_GetDriveTypeA(drive));
     }
 
-public: // file-system control
+public: // fs control
     static bool_type    create_directory(char_type const* dir)
     {
         return FALSE != WINSTL_API_EXTERNAL_FileManagement_CreateDirectoryA(dir, NULL);
@@ -2732,7 +2732,7 @@ public: // general string handling
         return str_n_compare_no_case(s1, s2, len);
     }
 
-public: // directory-end
+public: // directory end
     static
     char_type*
     ensure_dir_end(
@@ -3614,7 +3614,7 @@ public:
         return get_short_path_name(fileName, &rb[0], rb.size());
     }
 
-public: // file-system enumeration
+public: // fs enum
     static HANDLE find_first_file(char_type const* spec, find_data_type* findData)
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileW(spec, findData);
@@ -3660,7 +3660,7 @@ public: // file-system enumeration
     }
 #endif // !WINSTL_FINDVOLUME_API_NOT_DECLARED
 
-public: // file-system control
+public: // fs control
     static
     bool_type
     set_current_directory(
@@ -3722,7 +3722,7 @@ public: // file-system control
         return class_type::get_current_directory(buffer, cchBuffer);
     }
 
-public: // file-system state
+public: // fs state
     static bool_type file_exists(char_type const* fileName)
     {
         return INVALID_FILE_ATTRIBUTES != WINSTL_API_EXTERNAL_FileManagement_GetFileAttributesW(fileName);
@@ -3919,7 +3919,7 @@ public:
         return (drive[0] = driveLetter, WINSTL_API_EXTERNAL_FileManagement_GetDriveTypeW(drive));
     }
 
-public: // file-system control
+public: // fs control
     static bool_type    create_directory(char_type const* dir)
     {
         return FALSE != WINSTL_API_EXTERNAL_FileManagement_CreateDirectoryW(dir, NULL);

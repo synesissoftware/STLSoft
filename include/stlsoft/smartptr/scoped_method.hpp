@@ -5,7 +5,7 @@
  *          methods.
  *
  * Created: 1st January 2004
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MINOR       0
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_REVISION    7
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        16
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -289,7 +289,7 @@ public: // operations
         }
     }
 
-private: // Fields
+private: // fields
     C*              m_instance;
     invoker_type*   m_invoker;
 };

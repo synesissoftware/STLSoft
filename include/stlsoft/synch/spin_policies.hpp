@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/synch/spin_policies.hpp
+ * File:    stlsoft/synch/spin_policies.hpp
  *
- * Purpose:     Policies for spin mutexes.
+ * Purpose: Policies for spin mutexes.
  *
- * Created:     25th November 2006
- * Updated:     9th November 2026
+ * Created: 25th November 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_MAJOR      2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_REVISION   4
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_EDIT       16
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */

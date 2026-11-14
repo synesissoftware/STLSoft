@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/std/iterator_category_limiters.hpp (derived in part from stlsoft/iterators/filter_iterator.hpp)
+ * File:    stlsoft/util/std/iterator_category_limiters.hpp (derived in part from stlsoft/iterators/filter_iterator.hpp)
  *
- * Purpose:     Meta classes to limit iterator categories.
+ * Purpose: Meta classes to limit iterator categories.
  *
- * Created:     3rd January 2006
- * Updated:     9th November 2026
+ * Created: 3rd January 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_REVISION   6
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_EDIT       23
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

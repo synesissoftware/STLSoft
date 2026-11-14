@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 20th September 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      34
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       121
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,14 +110,15 @@
 # define STLSOFT_INTERNAL_GCC_PATCHLEVEL_                   (0)
 #endif /* __GNUC_PATCHLEVEL__ */
 
-/** \def STLSOFT_GCC_VER A composite version object-like macro comprising
- *  the major*10000 + minor*100 + patch, e.g. 30401 (3.4.1).
+/** \def STLSOFT_GCC_VER
+ *
+ * A composite version object-like macro comprising the major*10000 +
+ * minor*100 + patch, e.g. 30401 (3.4.1).
  *
  * \note Because several compilers (e.g. Clang) may offer GCC compatibility,
  *  the presence of this symbol does NOT, in and of itself, mean that the
  *  compiler is actually GCC. Rather, code must first check for definition
  *  of STLSOFT_COMPILER_IS_GCC.
- *
  */
 #define STLSOFT_GCC_VER                                     \
                                                             \

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/util/ident_.hpp
+ * File:    winstl/window/util/ident_.hpp
  *
- * Purpose:     Windows identification.
+ * Purpose: Windows identification.
  *
- * Created:     11th March 2004
- * Updated:     9th November 2026
+ * Created: 11th March 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_WINDOW_UTIL_HPP_IDENT_
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MAJOR      4
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MINOR      1
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION   4
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       62
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MAJOR     4
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MINOR     1
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION  4
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

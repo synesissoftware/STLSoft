@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/sleep_functions.h
+ * File:    platformstl/synch/sleep_functions.h
  *
- * Purpose:     Time functions.
+ * Purpose: Time functions.
  *
- * Created:     10th June 2006
- * Updated:     9th November 2026
+ * Created: 10th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   7
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       20
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

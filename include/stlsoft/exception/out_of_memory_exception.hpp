@@ -4,7 +4,7 @@
  * Purpose: Definition of the stlsoft::out_of_memory_exception class.
  *
  * Created: 13th May 2010
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_MAJOR    2
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_MINOR    0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_REVISION 9
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_EDIT     28
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -130,7 +130,7 @@ class out_of_memory_exception
     , public library_identifier_provider
     , public status_code_provider<int>
 {
-public: // Member Types
+public: // types
     /// The parent class type
     typedef stlsoft_out_of_memory_exception_parent_t        parent_class_type;
     /// The class type
@@ -144,7 +144,7 @@ public:
     typedef STLSoftLibraryIdentifier_t                      LibraryIdentifier_t;
 #endif /* STLSOFT_NO_NAMESPACE */
 
-public: // Construction
+public: // construction
     out_of_memory_exception()
         : parent_class_type()
         , project_identifier_provider()
@@ -194,7 +194,7 @@ public: // Construction
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-public: // Overrides
+public: // overrides
     /* virtual */ project_identifier_type
     project_identifier() const ss_override_k
     {

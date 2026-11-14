@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/cstring_range.hpp
+ * File:    rangelib/cstring_range.hpp
  *
- * Purpose:     Range adaptor for C-strings.
+ * Purpose: Range adaptor for C-strings.
  *
- * Created:     17th May 2004
- * Updated:     9th November 2026
+ * Created: 17th May 2004
+ * Updated: 13th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -47,14 +47,16 @@
 #define RANGELIB_INCL_RANGELIB_HPP_CSTRING_RANGE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  9
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      53
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR      2
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR      3
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION   10
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 # include <rangelib/rangelib.hpp>
@@ -117,7 +119,7 @@ namespace rangelib_project
 template <ss_typename_param_k C>
 struct cstring_range_traits
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type
@@ -150,7 +152,7 @@ class cstring_range
                                         >       // This provides the operator forms of the methods
     , public notional_range_tag
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// The value type

@@ -4,7 +4,7 @@
  * Purpose: cstring_concatenator_iterator class template.
  *
  * Created: 20th June 2005
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       51
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   13
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -130,13 +130,11 @@ public:
     /// \param dest The C-string which in which will be written the results
     ///  of the application of the iterator's dereference. May not be
     ///  \c nullptr
-    /// \param pNumWritten An optional paramter to receive a count of how
-    ///   many bytes were written by the iterator. <b>Note</b>: the variable
-    ///   pointed to by this parameter is <i>not</i> set to 0 by the
-    ///   concatenator class. It must be initialised by the caller.
     /// \param pNumWritten Pointer to an unsigned integer that receives the
     ///   number of characters written by the iterator, or \c nullptr if not
-    ///   required
+    ///   required. <b>Note</b>: the variable pointed to by this parameter
+    ///   is <i>not</i> set to 0 by the concatenator class. It must be
+    ///   initialised by the caller.
     ss_explicit_k
     cstring_concatenator_iterator(
         char_type*  dest
@@ -225,7 +223,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     char_type   *m_dest;

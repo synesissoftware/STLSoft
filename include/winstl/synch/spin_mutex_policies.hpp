@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/spin_mutex_policies.hpp
+ * File:    winstl/synch/spin_mutex_policies.hpp
  *
- * Purpose:     Policies for spin mutexes.
+ * Purpose: Policies for spin mutexes.
  *
- * Created:     25th November 2006
- * Updated:     9th November 2026
+ * Created: 25th November 2006
+ * Updated: 12th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MINOR      1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_REVISION   4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       20
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       21
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,10 +105,10 @@ namespace winstl_project
 
 struct no_yield_spin_mutex_policy
 {
-public: // Types
+public: // types
     typedef atomic_int_t                                    atomic_int_type;
 
-public: // Operations
+public: // operations
     static
     ss_truthy_t
     try_acquire_lock(
@@ -180,10 +180,10 @@ template<
 >
 struct yield_on_N_spin_mutex_policy
 {
-public: // Types
+public: // types
     typedef T_atomicType                                    atomic_int_type;
 
-public: // Operations
+public: // operations
     static
     ss_truthy_t
     try_acquire_lock(

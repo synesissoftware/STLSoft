@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/basic_indirect_range_adaptor.hpp
+ * File:    rangelib/basic_indirect_range_adaptor.hpp
  *
- * Purpose:     basic_indirect_range_adaptor.
+ * Purpose: basic_indirect_range_adaptor.
  *
- * Created:     4th November 2003
- * Updated:     9th November 2026
+ * Created: 4th November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -47,10 +47,10 @@
 #define RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MAJOR      2
-# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MINOR      1
-# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_REVISION   7
-# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_EDIT       45
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MAJOR       2
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MINOR       1
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_REVISION    7
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

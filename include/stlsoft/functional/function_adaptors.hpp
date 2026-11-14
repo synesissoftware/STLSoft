@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/functional/function_adaptors.hpp (originally ::SynesisStd)
+ * File:    stlsoft/functional/function_adaptors.hpp (originally ::SynesisStd)
  *
- * Purpose:     Contains the stlsoft::mem_fun and stlsoft::ptr_fun calling
- *              convention-aware function adaptors.
+ * Purpose: Contains the stlsoft::mem_fun and stlsoft::ptr_fun calling
+ *          convention-aware function adaptors.
  *
- * Created:     13th June 1999
- * Updated:     9th November 2026
+ * Created: 13th June 1999
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -54,10 +54,10 @@
 #define STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MINOR    0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_REVISION 5
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_EDIT     69
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MAJOR     4
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MINOR     0
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_REVISION  5
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_EDIT      71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

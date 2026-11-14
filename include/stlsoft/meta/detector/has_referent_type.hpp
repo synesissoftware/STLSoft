@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/detector/has_referent_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/detector/has_referent_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Definition of the has_referent_type member type detector.
+ * Purpose: Definition of the has_referent_type member type detector.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE_MAJOR      4
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE_REVISION   6
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE_EDIT       144
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE_EDIT       145
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

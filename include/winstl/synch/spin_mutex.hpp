@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/spin_mutex.hpp (originally MWSpinMx.h, ::SynesisWin)
+ * File:    winstl/synch/spin_mutex.hpp (originally MWSpinMx.h, ::SynesisWin)
  *
- * Purpose:     Intra-process mutex, based on spin waits.
+ * Purpose: Intra-process mutex, based on spin waits.
  *
- * Created:     27th August 1997
- * Updated:     9th November 2026
+ * Created: 27th August 1997
+ * Updated: 11th November 2026
  *
- * Thanks:      To Rupert Kittinger, for pointing out that the prior
- *              implementation that always yielded was not really "spinning".
+ * Thanks:  To Rupert Kittinger, for pointing out that the prior
+ *          implementation that always yielded was not really "spinning".
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       5
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        79
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

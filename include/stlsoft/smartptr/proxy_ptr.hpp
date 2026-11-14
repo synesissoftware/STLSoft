@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/smartptr/proxy_ptr.hpp
+ * File:    stlsoft/smartptr/proxy_ptr.hpp
  *
- * Purpose:     Contains the proxy_ptr template class.
+ * Purpose: Contains the proxy_ptr template class.
  *
- * Created:     17th January 1999
- * Updated:     9th November 2026
+ * Created: 17th January 1999
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_MAJOR       5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_MINOR       2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_REVISION    2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_EDIT        89
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

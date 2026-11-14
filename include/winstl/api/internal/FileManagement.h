@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/internal/FileManagement.h
+ * File:    winstl/api/internal/FileManagement.h
  *
- * Purpose:     Internal preprocessor aliases for internal Windows' File
- *              Management Functions API.
+ * Purpose: Internal preprocessor aliases for internal Windows' File
+ *          Management Functions API.
  *
- * Created:     13th October 2019
- * Updated:     9th November 2026
+ * Created: 13th October 2019
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software

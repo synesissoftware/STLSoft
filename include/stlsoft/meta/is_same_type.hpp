@@ -4,7 +4,7 @@
  * Purpose:     is_same_type class.
  *
  * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Updated:     13th November 2026
  *
  * Thanks to:   Pablo Aguilar for providing the basis for the version that
  *              works for the Borland compiler.
@@ -57,10 +57,10 @@
 #define STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MAJOR       4
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       4
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION    7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        137
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MAJOR    4
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR    4
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION 7
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT     140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

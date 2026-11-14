@@ -27,7 +27,7 @@ Search positions in the haystack:
 `strpbrk` and `strstr` are NUL-terminated. The fixture places a NUL at index 96, so on this haystack they scan the same 96 bytes as the length-bounded helpers. `strncasecmp` is the non-Windows name of the case-insensitive baseline (`_strnicmp` on Windows). `local_strnrchr` is a reverse scan written in the performance program, the same shape as `stlsoft_C_strnrchr`. `stlsoft_C_strnistrn` has no paired baseline.
 
 
-## Local: Gorbicx-MacBook-Pro, mains power, 27th October 2026
+## Local: MacBook-Pro, mains power, 27th October 2026
 
 Built with `./build_cmake.sh test.performance.stlsoft.string.c_string` and run with `SIS_PERFTESTS_GROUPGAPS=1`. Compiler, optimisation level, and CPU model were not recorded with the log.
 

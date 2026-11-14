@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/string_slice.hpp
+ * File:    stlsoft/string/string_slice.hpp
  *
- * Purpose:     Defines the string_slice class template.
+ * Purpose: Defines the string_slice class template.
  *
- * Created:     22nd February 2010
- * Updated:     9th November 2026
+ * Created: 22nd February 2010
+ * Updated: 13th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MINOR      6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       36
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,7 +110,7 @@ template<
 struct string_slice
     : public P
 {
-public: // Member Types
+public: // types
     /// The character type
     typedef C                                               char_type;
     /// The traits type
@@ -131,7 +131,7 @@ public:
     /// The non-mutating (const) iterator type
     typedef C const*                                        const_iterator;
 
-public: // Construction
+public: // construction
     /// Default constructor
     string_slice()
         : parent_class_type()
@@ -168,7 +168,7 @@ public: // Construction
     }
 
 
-public: // Attributes
+public: // attributes
     size_type size() const STLSOFT_NOEXCEPT
     {
         return this->len;
@@ -182,13 +182,13 @@ public: // Attributes
         return 0 == this->len;
     }
 
-public: // Accessors
+public: // accessors
     value_type const* data() const STLSOFT_NOEXCEPT
     {
         return this->ptr;
     }
 
-public: // Comparison
+public: // comparison
     /// Determines whether the current instance is equal to the given
     /// instance
     bool_type equals(class_type const& rhs) const STLSOFT_NOEXCEPT
@@ -225,7 +225,7 @@ public: // Comparison
     }
 
 
-public: // Iteration
+public: // iteration
     /// Begins the iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the sequence

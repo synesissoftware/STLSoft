@@ -4,7 +4,7 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     44
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -152,29 +152,34 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// Constructs a sequence according to the given criteria
-    ///
-    /// The constructor initialises a readdir_sequence instance on the given
-    /// directory with the given flags.
+    /// Constructs a sequence that searches the given directory for
+    /// directories and files
     ///
     /// \param directory The directory whose contents are to be searched
-    /// \param flags Flags to alter the behaviour of the search
     ///
-    /// \note The \c flags parameter defaults to <code>directories | files</code> because
-    /// this reflects the default behaviour of \c readdir(), and also because it is the
-    /// most efficient.
+    /// \note Equivalent to constructing with flags
+    ///   <code>directories | files</code>, which reflects the default
+    ///   behaviour of \c readdir() and is also the most efficient.
     template <ss_typename_param_k S>
     ss_explicit_k readdir_sequence(S const& directory)
         : m_ffs(STLSOFT_NS_QUAL(c_str_ptr)(directory), "*.*", translate_flags_(directories | files))
         , m_flags(validate_flags_(directories | files))
     {}
 
+    /// Constructs a sequence according to the given criteria
+    ///
+    /// \param directory The directory whose contents are to be searched
+    /// \param flags Flags to alter the behaviour of the search
     template <ss_typename_param_k S>
     readdir_sequence(S const& directory, flags_type flags)
         : m_ffs(STLSOFT_NS_QUAL(c_str_ptr)(directory), "*.*", translate_flags_(flags))
         , m_flags(validate_flags_(flags))
     {}
 
+    /// Constructs a sequence according to the given criteria
+    ///
+    /// \param directory The directory whose contents are to be searched
+    /// \param flags Flags to alter the behaviour of the search
     template <ss_typename_param_k S>
     readdir_sequence(S const& directory, search_flags flags)
         : m_ffs(STLSOFT_NS_QUAL(c_str_ptr)(directory), "*.*", translate_flags_(flags))
@@ -230,7 +235,7 @@ private:
     static flags_type   translate_flags_(flags_type flags);
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     underlying_sequence_type const  m_ffs;
@@ -251,7 +256,7 @@ class readdir_sequence::const_iterator
                                         ,   readdir_sequence::value_type
                                         >
 {
-/// \name Members
+/// \name Fields
 /// @{
 public:
     /// The class type
@@ -342,7 +347,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     underlying_sequence_const_iterator_type m_it;

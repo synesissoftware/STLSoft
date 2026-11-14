@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/forward_enums.hpp (originally MLFwdEnm.h)
+ * File:    stlsoft/util/forward_enums.hpp (originally MLFwdEnm.h)
  *
- * Purpose:     Contains macros for forward declaring enums.
+ * Purpose: Contains macros for forward declaring enums.
  *
- * Created:     3rd November 2000
- * Updated:     9th November 2026
+ * Created: 3rd November 2000
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_FORWARD_ENUM
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_MINOR      0
-# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_REVISION   6
-# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_EDIT       60
+# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_MAJOR     3
+# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_MINOR     0
+# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_REVISION  6
+# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

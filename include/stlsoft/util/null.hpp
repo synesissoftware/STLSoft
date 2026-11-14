@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/null.hpp (stlsoft_null.h
+ * File:    stlsoft/util/null.hpp (stlsoft_null.h
  *
- * Purpose:     NULL_v template class. Include stlsoft_nulldef.h for NULL to be
- *              automatically the strong NULL.
+ * Purpose: NULL_v template class. Include stlsoft_nulldef.h for NULL to be
+ *          automatically the strong NULL.
  *
- * Created:     8th September 2002
- * Updated:     9th November 2026
+ * Created: 8th September 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_NULL
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MAJOR     4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_REVISION  7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      68
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MAJOR    4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MINOR    0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_REVISION 7
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

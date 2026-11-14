@@ -4,7 +4,7 @@
  * Purpose: Current working directory scoping class.
  *
  * Created: 12th November 1998
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  21
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      150
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -331,8 +331,10 @@ basic_current_directory_scope<C, T>::init_(
         DWORD const le = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(winstl_exception("could not determine current directory", le));
+
+        STLSOFT_THROW_X(winstl_exception("failed to determine current directory", le));
 #else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
+
         m_previous[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -341,8 +343,10 @@ basic_current_directory_scope<C, T>::init_(
         DWORD const le = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(winstl_exception("could not change current directory", le));
+
+        STLSOFT_THROW_X(winstl_exception("failed to change current directory", le));
 #else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
+
         m_previous[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }

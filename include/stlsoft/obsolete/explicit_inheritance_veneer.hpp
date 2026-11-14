@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/explicit_inheritance_veneer.hpp
+ * File:    stlsoft/obsolete/explicit_inheritance_veneer.hpp
  *
- * Purpose:     Explicit inheritance veneer class.
+ * Purpose: Explicit inheritance veneer class.
  *
- * Created:     13th January 2003
- * Updated:     9th November 2026
+ * Created: 13th January 2003
+ * Updated: 13th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -49,10 +49,10 @@
 #define STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR      4
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR      0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION   6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       51
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR     4
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR     0
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION  6
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,7 +94,7 @@ namespace stlsoft
  *
  * \param T The type to be subject to the veneer
  *
- * \obsolete
+ * \deprecated
  */
 template <ss_typename_param_k T>
 struct explicit_inheritance_veneer

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/std/stdio_overload_detectors.hpp
+ * File:    stlsoft/util/std/stdio_overload_detectors.hpp
  *
- * Purpose:     Detects characteristics of certain stdio functions that are, or
- *              will be, subject to upgrade in standardisation.
+ * Purpose: Detects characteristics of certain stdio functions that are, or
+ *          will be, subject to upgrade in standardisation.
  *
- * Created:     30th May 2002
- * Updated:     9th November 2026
+ * Created: 30th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_REVISION 10
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_EDIT     31
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

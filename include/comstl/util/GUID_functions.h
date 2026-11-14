@@ -4,7 +4,7 @@
  * Purpose: GUID helper functions.
  *
  * Created: 12th May 2010
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MAJOR      1
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MINOR      4
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   9
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       31
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MINOR      5
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   1
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -506,7 +506,7 @@ GUID_compare(
 #   pragma message(__FILE__ "(" STLSOFT_STRINGIZE(__LINE__) "): Should make comstl_exception abstract, and throw here a comparison_exception instead")
 #  endif
 # endif
-            STLSOFT_THROW_X(comstl_exception("comparison failed", succeeded));
+            STLSOFT_THROW_X(comstl_exception("failed to compare two GUIDs", succeeded));
         }
         else
         {

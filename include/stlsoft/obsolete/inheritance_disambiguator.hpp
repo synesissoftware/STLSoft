@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/inheritance_disambiguator.hpp
+ * File:    stlsoft/obsolete/inheritance_disambiguator.hpp
  *
- * Purpose:     Class to disambiguate between parent classes of same type.
+ * Purpose: Class to disambiguate between parent classes of same type.
  *
- * Created:     1st September 2002
- * Updated:     9th November 2026
+ * Created: 1st September 2002
+ * Updated: 13th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -49,10 +49,10 @@
 #define STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MAJOR      3
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_REVISION   5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_EDIT       39
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MAJOR       3
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MINOR       1
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_REVISION    5
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,7 +89,7 @@ namespace stlsoft
  * \param T The type to disambiguate
  * \param N A unique integer index used to disambiguate between the classes
  *
- * \obsolete
+ * \deprecated
  */
 template <ss_typename_param_k T, int N>
 class inheritance_disambiguator

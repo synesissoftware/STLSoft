@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/shims/attribute/get_HWND.hpp
+ * File:    atlstl/shims/attribute/get_HWND.hpp
  *
- * Purpose:     Contains access shims for windows.
+ * Purpose: Contains access shims for windows.
  *
- * Created:     10th January 2003
- * Updated:     9th November 2026
+ * Created: 10th January 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      1
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   7
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       60
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -2,7 +2,7 @@
 
 PROJECT_NAME           = "STLSoft"
 PROJECT_BRIEF          = "Robust, lightweight, cross-platform, template software"
-PROJECT_NUMBER         = 1.11.8
+PROJECT_NUMBER         = 1.11.9
 
 # Overridden at generation time by generate_doxygen.sh (respects
 # SIS_CMAKE_BUILD_DIR).
@@ -18,12 +18,28 @@ STRIP_FROM_PATH        = include
 STRIP_FROM_INC_PATH    = include
 TIMESTAMP              = NO
 
-INPUT                  = include \
-                         doc
-FILE_PATTERNS          = *.h \
-                         *.hpp \
-                         *.md
+HAVE_DOT               = NO
+
+INPUT                  = \
+  doc \
+  include \
+  \
+
+
+FILE_PATTERNS          = \
+  *.cxx \
+  *.h \
+  *.hpp \
+  *.md \
+  \
+
+
 RECURSIVE              = YES
+
+# Source is written in Simplified Group Form (SGF); the filter presents
+# Full Group Form (FGF) to Doxygen, preserving line numbers. Paths are
+# relative to the project root, from which generate_doxygen.sh runs.
+INPUT_FILTER           = "ruby .dev/bin/convert-doxy-groups.rb --to-fgf --mode line-preserving --warn-only"
 
 USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
 
@@ -52,6 +68,12 @@ MARKDOWN_SUPPORT       = YES
 JAVADOC_AUTOBRIEF      = YES
 QUIET                  = YES
 
+# Map Windows path fragment \UNC to literal text. Inline \noop cannot be
+# used in trailing member briefs (it discards the rest of the line).
+ALIASES                = \
+  UNC="\\\\UNC" \
+  \
+
 # Undocumented-member and parameter warnings are disabled (unlike the
 # smaller C libraries) because the very large template corpus would bury
 # genuine documentation errors.
@@ -64,9 +86,12 @@ MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = YES
 SKIP_FUNCTION_MACROS   = YES
 # Skip internal version/edit noise.
-PREDEFINED             = STLSOFT_DOCUMENTATION_SKIP_SECTION
+PREDEFINED             = \
+  STLSOFT_DOCUMENTATION_SKIP_SECTION \
+  STLSOFT_NS_QUAL(x)=stlsoft::x \
+  __cplusplus=201703L \
+  \
 
-HAVE_DOT               = NO
 
 
 # ########################### end of file ########################### #

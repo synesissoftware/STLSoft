@@ -4,7 +4,7 @@
  * Purpose: Wrapper class for Win32 TSS key.
  *
  * Created: 20th January 1999
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 19
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     62
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,7 +115,7 @@ namespace winstl_project
 class tss_exception
     : public synchronisation_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     typedef synchronisation_exception                       parent_class_type;
@@ -160,7 +160,7 @@ public:
  */
 class tss_index
 {
-/// \name Types
+/// \name Member Types
 /// @{
 public:
     /// This class
@@ -229,9 +229,12 @@ private:
             DWORD const e = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(tss_exception(e, "could not allocate a TSS key"));
+
+            STLSOFT_THROW_X(tss_exception(e, "failed to allocate a TSS key"));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("fatal: could not allocate a TSS key!\n");
+
+            WINSTL_API_EXTERNAL_Debugging_OutputDebugStringA("fatal: failed to allocate a TSS key!\n");
+
             ::RaiseException(STATUS_NO_MEMORY, EXCEPTION_NONCONTINUABLE, 0, 0);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
@@ -255,7 +258,7 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     key_type    m_index;

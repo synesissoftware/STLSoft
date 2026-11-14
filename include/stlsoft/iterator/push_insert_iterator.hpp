@@ -4,7 +4,7 @@
  * Purpose: Push insert iterator for sequence containers.
  *
  * Created: 6th April 2005
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MAJOR      2
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_REVISION   10
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_EDIT       37
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MAJOR    2
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MINOR    0
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_REVISION 10
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -136,7 +136,7 @@ template <ss_typename_param_k T_class>
 class push_insert_iterator
     : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
 {
-/// \name member types
+/// \name Member Types
 /// @{
 public:
     /// The container type
@@ -150,7 +150,7 @@ private:
     friend class deref_proxy;
 /// @}
 
-/// \name construction
+/// \name Construction
 /// @{
 public:
     ss_explicit_k
@@ -161,7 +161,7 @@ public:
     {}
 /// @}
 
-/// \name implementation
+/// \name Implementation
 /// @{
 private:
     class deref_proxy
@@ -217,7 +217,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     // sadly, this can't be a reference, because Dinkumware's library does

@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 29
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     622
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 31
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     625
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -433,11 +433,12 @@
 # define _STLSOFT_VER_1_11_6        0x010B06FF  /*!< Version 1.11.6 (6th November 2026) */
 # define _STLSOFT_VER_1_11_7        0x010B07FF  /*!< Version 1.11.7 (8th November 2026) */
 # define _STLSOFT_VER_1_11_8        0x010B08FF  /*!< Version 1.11.8 (10th November 2026) */
+# define _STLSOFT_VER_1_11_9        0x010B09FF  /*!< Version 1.11.9 (14th November 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
-#define _STLSOFT_VER_PATCH          8
+#define _STLSOFT_VER_PATCH          9
 #define _STLSOFT_VER_RELSTATUS      0xFF
 
 #define _STLSOFT_VER \
@@ -1090,17 +1091,24 @@
  * Suppressed STLSOFT_DEBUG in all circumstances
  */
 
-#ifndef STLSOFT_DEBUG
-# if !defined(NDEBUG) &&\
-     defined(_DEBUG)
-#  define STLSOFT_DEBUG
-# endif
-#endif /* !STLSOFT_DEBUG */
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#if defined(STLSOFT_NO_DEBUG) &&\
-    defined(STLSOFT_DEBUG)
-# undef STLSOFT_DEBUG
-#endif
+# define STLSOFT_DEBUG
+# define STLSOFT_NO_DEBUG
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+# ifndef STLSOFT_DEBUG
+#  if !defined(NDEBUG) &&\
+      defined(_DEBUG)
+#   define STLSOFT_DEBUG
+#  endif
+# endif /* !STLSOFT_DEBUG */
+
+# if defined(STLSOFT_NO_DEBUG) &&\
+     defined(STLSOFT_DEBUG)
+#  undef STLSOFT_DEBUG
+# endif
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /** \def STLSOFT_FALLTHROUGH
@@ -2925,63 +2933,63 @@ stlsoft_CXX_throw(
  * @{
  */
 
-/** \def stlsoft_throw_0
+/** \def stlsoft_throw_0()
  * Indicates that the given function/method does not throw any exceptions.
  *
  * \note As of STLSoft 1.9.125, this resolves to \c noexcept for translators
  *   that support this keyword; in all other cases this resolves to
  *   <code>throw()</code>
  */
-/** \def stlsoft_throw_1
+/** \def stlsoft_throw_1()
  * Indicates that the given function/method throws the named type.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_2
+/** \def stlsoft_throw_2()
  * Indicates that the given function/method throws the two named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_3
+/** \def stlsoft_throw_3()
  * Indicates that the given function/method throws the three named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_4
+/** \def stlsoft_throw_4()
  * Indicates that the given function/method throws the four named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_5
+/** \def stlsoft_throw_5()
  * Indicates that the given function/method throws the five named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_6
+/** \def stlsoft_throw_6()
  * Indicates that the given function/method throws the six named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_7
+/** \def stlsoft_throw_7()
  * Indicates that the given function/method throws the seven named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
  *   specifications are deprecated unless the preprocessor object-like
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
-/** \def stlsoft_throw_8
+/** \def stlsoft_throw_8()
  * Indicates that the given function/method throws the eight named types.
  *
  * \note As of STLSoft 1.9.125, this resolves to nothing, because exception
@@ -2989,15 +2997,26 @@ stlsoft_CXX_throw(
  *   symbol STLSOFT_USE_EXCEPTION_SPECIFICATIONS is defined
  */
 
-#ifdef __cplusplus
+#if defined(__cplusplus) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 /* Exception signatures. */
 # if 0
+# elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+#  define stlsoft_throw_0()                                 ss_noexcept_k
+#  define stlsoft_throw_1(x1)
+#  define stlsoft_throw_2(x1, x2)
+#  define stlsoft_throw_3(x1, x2, x3)
+#  define stlsoft_throw_4(x1, x2, x3, x4)
+#  define stlsoft_throw_5(x1, x2, x3, x4, x5)
+#  define stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
+#  define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
+#  define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 # elif defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS)
 
 #  define stlsoft_throw_0()
-# elif defined(STLSOFT_CF_noexcept_KEYWORD_SUPPORT) ||\
-       defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# elif defined(STLSOFT_CF_noexcept_KEYWORD_SUPPORT)
 
 #  define stlsoft_throw_0()                                 ss_noexcept_k
 # elif defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT)
@@ -3009,31 +3028,33 @@ stlsoft_CXX_throw(
 # endif
 
 
-# if !defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS) &&\
-     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) &&\
-     defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) &&\
-     defined(STLSOFT_USE_EXCEPTION_SPECIFICATIONS)
+# if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-#  define stlsoft_throw_1(x1)                               throw (x1)
-#  define stlsoft_throw_2(x1, x2)                           throw (x1, x2)
-#  define stlsoft_throw_3(x1, x2, x3)                       throw (x1, x2, x3)
-#  define stlsoft_throw_4(x1, x2, x3, x4)                   throw (x1, x2, x3, x4)
-#  define stlsoft_throw_5(x1, x2, x3, x4, x5)               throw (x1, x2, x3, x4, x5)
-#  define stlsoft_throw_6(x1, x2, x3, x4, x5, x6)           throw (x1, x2, x3, x4, x5, x6)
-#  define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)       throw (x1, x2, x3, x4, x5, x6, x7)
-#  define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)   throw (x1, x2, x3, x4, x5, x6, x7, x8)
-# else /* ? exception specifications */
+#  if !defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS) &&\
+      defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) &&\
+      defined(STLSOFT_USE_EXCEPTION_SPECIFICATIONS)
 
-#  define stlsoft_throw_1(x1)
-#  define stlsoft_throw_2(x1, x2)
-#  define stlsoft_throw_3(x1, x2, x3)
-#  define stlsoft_throw_4(x1, x2, x3, x4)
-#  define stlsoft_throw_5(x1, x2, x3, x4, x5)
-#  define stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
-#  define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
-#  define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
-# endif /* exception specifications */
-#endif /* __cplusplus */
+#   define stlsoft_throw_1(x1)                              throw (x1)
+#   define stlsoft_throw_2(x1, x2)                          throw (x1, x2)
+#   define stlsoft_throw_3(x1, x2, x3)                      throw (x1, x2, x3)
+#   define stlsoft_throw_4(x1, x2, x3, x4)                  throw (x1, x2, x3, x4)
+#   define stlsoft_throw_5(x1, x2, x3, x4, x5)              throw (x1, x2, x3, x4, x5)
+#   define stlsoft_throw_6(x1, x2, x3, x4, x5, x6)          throw (x1, x2, x3, x4, x5, x6)
+#   define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)      throw (x1, x2, x3, x4, x5, x6, x7)
+#   define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  throw (x1, x2, x3, x4, x5, x6, x7, x8)
+#  else /* ? exception specifications */
+
+#   define stlsoft_throw_1(x1)
+#   define stlsoft_throw_2(x1, x2)
+#   define stlsoft_throw_3(x1, x2, x3)
+#   define stlsoft_throw_4(x1, x2, x3, x4)
+#   define stlsoft_throw_5(x1, x2, x3, x4, x5)
+#   define stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
+#   define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
+#   define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
+#  endif /* exception specifications */
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* __cplusplus || STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /** \def STLSOFT_COPY_ASSIGNMENT_PROSCRIBED
@@ -3060,16 +3081,18 @@ public: // attributes
 };
 \endcode
  */
-#ifdef __cplusplus
+#if defined(__cplusplus) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-# if __cplusplus >= 201103L
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+     __cplusplus >= 201103L
 
 #  define STLSOFT_COPY_ASSIGNMENT_PROSCRIBED                = delete
 # else
 
 #  define STLSOFT_COPY_ASSIGNMENT_PROSCRIBED
 # endif
-#endif /* __cplusplus */
+#endif /* __cplusplus || STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /** \def STLSOFT_COPY_CONSTRUCTION_PROSCRIBED
@@ -3096,16 +3119,18 @@ public: // attributes
 };
 \endcode
  */
-#ifdef __cplusplus
+#if defined(__cplusplus) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-# if __cplusplus >= 201103L
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+     __cplusplus >= 201103L
 
 #  define STLSOFT_COPY_CONSTRUCTION_PROSCRIBED              = delete
 # else
 
 #  define STLSOFT_COPY_CONSTRUCTION_PROSCRIBED
 # endif
-#endif /* __cplusplus */
+#endif /* __cplusplus || STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /** \def STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED
@@ -3132,16 +3157,18 @@ public: // attributes
 };
 \endcode
  */
-#ifdef __cplusplus
+#if defined(__cplusplus) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-# if __cplusplus >= 201103L
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+     __cplusplus >= 201103L
 
 #  define STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED           = delete
 # else
 
 #  define STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED
 # endif
-#endif /* __cplusplus */
+#endif /* __cplusplus || STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /** \def STLSOFT_NOEXCEPT
@@ -3430,6 +3457,7 @@ stlsoft_destroy_instance_fn(
 #endif /* compiler */
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* __cplusplus */
 
 /** \def STLSOFT_DESTROY_INSTANCE(T1, T2, P)
  *
@@ -3439,6 +3467,8 @@ stlsoft_destroy_instance_fn(
  *
  * Destroys the given instance \c P of the given type (\c T1 and \c T2)
  */
+#if 0
+#elif defined(__cplusplus)
 # if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) ||\
      defined(STLSOFT_COMPILER_IS_DMC)
 
@@ -3447,6 +3477,8 @@ stlsoft_destroy_instance_fn(
 
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               STLSOFT_NS_QUAL(stlsoft_destroy_instance_fn)((P))
 # endif /* compiler */
+#else
+#  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               (P)->~T1()
 #endif /* __cplusplus */
 
 /** \def stlsoft_destroy_instance(T1, T2, P)

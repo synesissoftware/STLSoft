@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/error/support_error_info.hpp (originally MAErInfo.h, ::SynesisAtl)
+ * File:    atlstl/error/support_error_info.hpp (originally MAErInfo.h, ::SynesisAtl)
  *
- * Purpose:     SupportErrorInfoImpl class.
+ * Purpose: SupportErrorInfoImpl class.
  *
- * Created:     17th April 1999
- * Updated:     9th November 2026
+ * Created: 17th April 1999
+ * Updated: 14th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -47,17 +47,17 @@
  *   atlstl::SupportErrorInfoImpl2, atlstl::SupportErrorInfoImpl3
  *   atlstl::SupportErrorInfoImpl4 and atlstl::SupportErrorInfoImpl5
  *   class templates
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO
 #define ATLSTL_INCL_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MAJOR     5
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MINOR     0
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_REVISION  5
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      80
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MAJOR       5
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MINOR       0
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_REVISION    5
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,7 @@ namespace atlstl_project
 /** Provides implementation of ISupportErrorInfo for support for
  *   errors on one interface
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 // [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*>]]
 template <IID const* piid>
@@ -124,7 +124,7 @@ public:
 /** Provides implementation of ISupportErrorInfo for support for
  *   errors on two interfaces
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 // [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2>
@@ -149,7 +149,7 @@ public:
 /** Provides implementation of ISupportErrorInfo for support for
  *   errors on three interfaces
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 // [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2, IID const* piid3>
@@ -175,7 +175,7 @@ public:
 /** Provides implementation of ISupportErrorInfo for support for
  *   errors on four interfaces
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 // [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*, IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2, IID const* piid3, IID const* piid4>
@@ -202,7 +202,7 @@ public:
 /** Provides implementation of ISupportErrorInfo for support for
  *   errors on five interfaces
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 // [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*, IID const*, IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2, IID const* piid3, IID const* piid4, IID const* piid5>
@@ -225,6 +225,7 @@ public:
                     : S_FALSE;
     }
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

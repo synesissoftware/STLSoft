@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      200
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      202
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -212,7 +212,7 @@ template <ss_typename_param_k C>
 struct filesystem_traits
     : public system_traits<C>
 {
-/// \name types
+/// \name Member Types
 /// @{
 private:
     typedef system_traits<C>                                parent_class_type;
@@ -256,7 +256,7 @@ public:
 #endif /* _WIN32 */
 /// @}
 
-/// \name concepts
+/// \name Concepts
 /// @{
 public:
     /// This type does not actually exists in the compilable code, but,
@@ -266,7 +266,7 @@ public:
     ///   buffer is a <code>NUL</code>-terminator
     struct resizeable_buffer
     {
-    public: // typedef
+    public: // types
         typedef T_value                                     value_type;
         typedef std::size_t                                 size_type;
 
@@ -292,7 +292,7 @@ public:
     };
 /// @}
 
-/// \name constants
+/// \name Member Constants
 /// @{
 public:
 #ifdef PATH_MAX
@@ -308,7 +308,7 @@ public:
     };
 /// @}
 
-/// \name general string handling
+/// \name General String Handling
 /// @{
 public:
     /// Compares the contents of \c src and \c dest, according to the
@@ -320,7 +320,7 @@ public:
     static int_type     str_fs_n_compare(char_type const* s1, char_type const* s2, size_type len);
 /// @}
 
-/// \name directory-end
+/// \name Directory End
 /// @{
 public:
     /// Ensures that a given C-style string has a trailing path name
@@ -345,10 +345,10 @@ public:
     /// Ensures that a given C-style string has a trailing path name
     /// separator by appending one where necessary
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param capacity Number of available characters available
-    ///   in \c path. If 0, capacity will not be checked
+    ///   in \c dir. If 0, capacity will not be checked
     /// \param pLenToIncrease An optional pointer to a variable that will
     ///   be incremented if a path name separator is appended
     ///
@@ -401,8 +401,8 @@ public:
     ///
     /// \pre 0 == len || nullptr != dir
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static
@@ -440,8 +440,8 @@ public:
 
     /// Removes all trailing path name separators from the end of \c dir
     ///
-    /// \param path Pointer to characters of path to be examined
-    /// \param len Number of characters in \c path to be examined
+    /// \param dir Pointer to characters of path to be examined
+    /// \param len Number of characters in \c dir to be examined
     /// \param pLenToDecrease An optional pointer to a variable that will
     ///   be decremented once per path name separator removed
     ///
@@ -474,7 +474,7 @@ public:
     );
 /// @}
 
-/// \name path classification and analysis
+/// \name Path Classification and Analysis
 /// @{
 public:
     /// Classifies a path
@@ -745,7 +745,7 @@ public:
     );
 /// @}
 
-/// \name file-system enumeration
+/// \name Filesystem Enumeration
 /// @{
 public:
     // opendir/readdir API
@@ -763,7 +763,7 @@ public:
     static void                 close_dir(DIR* h);
 /// @}
 
-/// \name file-system control
+/// \name Filesystem Control
 /// @{
 public:
     /// Sets the current directory to \c dir
@@ -805,7 +805,7 @@ public:
     );
 /// @}
 
-/// \name file-system state
+/// \name Filesystem State
 /// @{
 public:
     /// Returns whether a file exists or not
@@ -847,7 +847,7 @@ public:
     static bool_type    is_readonly(stat_data_type const* stat_data);
 /// @}
 
-/// \name file-system control
+/// \name Filesystem Control
 /// @{
 public:
     /// Creates a directory
@@ -1014,7 +1014,7 @@ public: // general string handling
 #endif /* _WIN32 */
     }
 
-public: // directory-end
+public: // directory end
     static
     char_type*
     ensure_dir_end(
@@ -2261,7 +2261,7 @@ public:
         return get_full_path_name(fileName, rb);
     }
 
-public: // file-system enumeration
+public: // fs enum
     static DIR* open_dir(char_type const* dir)
     {
         return ::opendir(dir);
@@ -2281,7 +2281,7 @@ public: // file-system enumeration
         ::closedir(h);
     }
 
-public: // file-system control
+public: // fs control
     static
     bool_type
     set_current_directory(
@@ -2452,7 +2452,7 @@ public:
         }
     }
 
-public: // file-system state
+public: // fs state
     static bool_type file_exists(char_type const* fileName)
     {
         stat_data_type sd;
@@ -2867,7 +2867,7 @@ public: // general string handling
 #endif /* _WIN32 */
     }
 
-public: // directory-end
+public: // directory end
     static
     char_type*
     ensure_dir_end(
@@ -3509,7 +3509,7 @@ public: // path classification and analysis
     )
     ;
 
-public: // file-system enumeration
+public: // fs enum
     static DIR* open_dir(char_type const* dir)
     ;
     static struct dirent const* read_dir(DIR* h)
@@ -3519,7 +3519,7 @@ public: // file-system enumeration
     static void close_dir(DIR* h)
     ;
 
-public: // file-system control
+public: // fs control
     static
     bool_type
     set_current_directory(

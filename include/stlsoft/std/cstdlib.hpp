@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/std/cstdlib.hpp
+ * File:    stlsoft/std/cstdlib.hpp
  *
- * Purpose:     Mappings to stdlib string functions
+ * Purpose: Mappings to stdlib string functions
  *
- * Created:     2nd December 2004
- * Updated:     9th November 2026
+ * Created: 2nd December 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      0
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   7
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       42
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

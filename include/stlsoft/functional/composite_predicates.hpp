@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/functional/composite_predicates.hpp
+ * File:    stlsoft/functional/composite_predicates.hpp
  *
- * Purpose:     Definition of composite predicates function templates.
+ * Purpose: Definition of composite predicates function templates.
  *
- * Created:     27th March 2007
- * Updated:     9th November 2026
+ * Created: 27th March 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MAJOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MINOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_REVISION   7
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_EDIT       18
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

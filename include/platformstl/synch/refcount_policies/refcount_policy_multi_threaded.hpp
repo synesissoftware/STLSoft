@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp
+ * File:    platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp
  *
- * Purpose:     Definition of the stlsoft::refcount_policy_multi_threaded
- *              policy class.
+ * Purpose: Definition of the stlsoft::refcount_policy_multi_threaded
+ *          policy class.
  *
- * Created:     31st May 2009
- * Updated:     9th November 2026
+ * Created: 31st May 2009
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED_EDIT        22
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

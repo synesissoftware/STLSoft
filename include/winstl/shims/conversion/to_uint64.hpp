@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_uint64.hpp
+ * File:    winstl/shims/conversion/to_uint64.hpp
  *
- * Purpose:     Contains the to_uint64 conversion shim.
+ * Purpose: Contains the to_uint64 conversion shim.
  *
- * Created:     4th July 2007
- * Updated:     9th November 2026
+ * Created: 4th July 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define WINSTL_INCL_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_MAJOR       1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_MINOR       1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_REVISION    5
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_EDIT        12
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_MAJOR     1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_MINOR     1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_REVISION  5
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

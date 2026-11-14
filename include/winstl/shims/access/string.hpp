@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/access/string.hpp
+ * File:    winstl/shims/access/string.hpp
  *
- * Purpose:     Contains classes and functions for dealing with Win32 strings.
+ * Purpose: Contains classes and functions for dealing with Win32 strings.
  *
- * Created:     24th May 2002
- * Updated:     9th November 2026
+ * Created: 24th May 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_REVISION 4
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_EDIT     118
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_EDIT     119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/unsorted_map.hpp
+ * File:    stlsoft/containers/unsorted_map.hpp
  *
- * Purpose:     An associative container that maintains the order of element insertion.
+ * Purpose: An associative container that maintains the order of element insertion.
  *
- * Created:     12th February 2006
- * Updated:     9th November 2026
+ * Created: 12th February 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_MINOR      3
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_EDIT       38
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

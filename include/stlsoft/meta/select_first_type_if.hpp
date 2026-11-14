@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/select_first_type_if.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/select_first_type_if.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Compile-time if component.
+ * Purpose: Compile-time if component.
  *
- * Created:     19th November 1998
- * Updated:     9th November 2026
+ * Created: 19th November 1998
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_MAJOR       3
-# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_MINOR       18
-# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_REVISION    6
-# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_EDIT        138
+# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_MAJOR    3
+# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_MINOR    18
+# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_REVISION 6
+# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_EDIT     140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

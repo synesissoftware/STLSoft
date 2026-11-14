@@ -4,7 +4,7 @@
  * Purpose: errno scoping class.
  *
  * Created: 28th November 1998
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -44,17 +44,17 @@
 /** \file stlsoft/error/errno_scope.hpp
  *
  * \brief [C++] Definition of the stlsoft::errno_scope class
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_ERRNO_SCOPE
 #define STLSOFT_INCL_STLSOFT_ERROR_HPP_ERRNO_SCOPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MAJOR      3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   10
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       57
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MAJOR    3
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MINOR    0
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION 10
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,7 +92,7 @@ namespace stlsoft
 /** A \ref group__pattern__scoping_class "scoping class" that scopes
  *    the thread's last error.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
 \code
   DWORD   err = errno;
@@ -143,6 +143,7 @@ public: // operations
 private: // fields
     int m_errno;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

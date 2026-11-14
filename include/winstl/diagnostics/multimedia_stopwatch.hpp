@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/diagnostics/multimedia_stopwatch.hpp (formerly winstl::multimedia_counter, winstl/performance/multimedia_counter.hpp)
+ * File:    winstl/diagnostics/multimedia_stopwatch.hpp (formerly winstl::multimedia_counter, winstl/performance/multimedia_counter.hpp)
  *
- * Purpose:     WinSTL multimedia stopwatch class.
+ * Purpose: WinSTL multimedia stopwatch class.
  *
- * Created:     31st July 2002
- * Updated:     9th November 2026
+ * Created: 31st July 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_MAJOR       5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_MINOR       0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_REVISION    3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_EDIT        58
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Initialiser classes for the STLSoft libraries.
  *
  * Created: 17th February 1997
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_REVISION  9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      234
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,7 +117,7 @@ class static_initialiser
 public:
     typedef static_initialiser                              class_type;
 
-/// \name Constructors
+/// \name Construction
 /// @{
 public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
@@ -166,7 +166,7 @@ class api_constructor
 public: // types
     typedef api_constructor                                 class_type;
 
-/// \name Constructors
+/// \name Construction
 /// @{
 public:
     api_constructor(void (*pfnInit)(), void (*pfnUninit)())
@@ -189,7 +189,7 @@ private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 private:
     void (*m_pfnUninit)(void);
@@ -222,18 +222,16 @@ template <ss_typename_param_k T>
 class class_constructor
     : protected api_constructor
 {
-public: // types
-    typedef class_constructor                               class_type;
-
-/// \name Member types
+/// \name Member Types
 /// @{
 public:
+    typedef class_constructor                               class_type;
+
     typedef void (*class_init_fn_t)();
     typedef void (*class_uninit_fn_t)();
-
 /// @}
 
-/// \name Constructors
+/// \name Construction
 /// @{
 public:
     ss_explicit_k class_constructor()

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/exception/access_exception.hpp
+ * File:    platformstl/exception/access_exception.hpp
  *
- * Purpose:     Discrimination of the platformstl::access_exception
- *              class.
+ * Purpose: Discrimination of the platformstl::access_exception
+ *          class.
  *
- * Created:     2nd January 2017
- * Updated:     9th November 2026
+ * Created: 2nd January 2017
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_REVISION    3
-# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_EDIT        8
+# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ACCESS_EXCEPTION_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/exception/access_exception.hpp

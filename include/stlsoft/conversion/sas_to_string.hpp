@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/sas_to_string.hpp
+ * File:    stlsoft/conversion/sas_to_string.hpp
  *
- * Purpose:     String creation functions (from String Access Shims)
+ * Purpose: String creation functions (from String Access Shims)
  *
- * Created:     25th December 2018
- * Updated:     9th November 2026
+ * Created: 25th December 2018
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_MAJOR    1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_MINOR    1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_REVISION 4
-# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_EDIT     12
+# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

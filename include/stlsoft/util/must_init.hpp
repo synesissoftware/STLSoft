@@ -9,7 +9,7 @@
  *          coverage.
  *
  * Created: 18th June 2006
- * Updated: 9th November 2026
+ * Updated: 12th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    10
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        34
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -161,7 +161,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     /// Provides non-mutating (const) access to the base type value
@@ -187,7 +187,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     /// The underlying value
@@ -243,7 +243,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     /// Provides non-mutating (const) access to the base type value
@@ -269,7 +269,7 @@ public:
     }
 /// @}
 
-/// \name Members
+/// \name Fields
 /// @{
 public:
     /// The underlying value

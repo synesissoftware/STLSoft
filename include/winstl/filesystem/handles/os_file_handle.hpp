@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/handles/os_file_handle.hpp
+ * File:    winstl/filesystem/handles/os_file_handle.hpp
  *
- * Purpose:     Handle::Ref+Wrapper handle-adapter class template for
- *              Windows file handles.
+ * Purpose: Handle::Ref+Wrapper handle-adapter class template for
+ *          Windows file handles.
  *
- * Created:     7th July 2010
- * Updated:     9th November 2026
+ * Created: 7th July 2010
+ * Updated: 14th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MINOR      0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_REVISION   7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT       19
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,7 +121,7 @@ namespace winstl_project
 template <ss_typename_param_k R>
 struct os_file_handle
 {
-private: // Member Types
+private: // types
 //    typedef filesystem_traits<char>                             traits_a_type_;
 public:
     /// The handle type
@@ -134,8 +134,7 @@ public:
     /// The Handle::Ref+Wrapper ref type
     typedef stlsoft::ref_ptr<class_type>                        Ref;
 
-public: // Construction
-
+public: // construction
     /// Creates an instance of the ref from the underlying
     static Ref create(handle_type h)
     {
@@ -156,7 +155,7 @@ private:
 private:
     class_type& operator =(class_type const &);
 
-public: // Reference-counting Operations
+public: // refcounting
     /// Adds/increment the reference
     os_file_handle* AddRef()
     {
@@ -178,7 +177,7 @@ public: // Reference-counting Operations
         }
     }
 
-public: // Member Variables
+public: // fields
     /// The handle value
     handle_type     handle;
 private:

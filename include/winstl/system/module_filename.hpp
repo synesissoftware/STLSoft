@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/module_filename.hpp (originally MWModFNm.h; ::SynesisWin)
+ * File:    winstl/system/module_filename.hpp (originally MWModFNm.h; ::SynesisWin)
  *
- * Purpose:     Preposterously simple class that gets, and makes accessible, the
- *              module filename.
+ * Purpose: Preposterously simple class that gets, and makes accessible, the
+ *          module filename.
  *
- * Created:     31st March 2002
- * Updated:     9th November 2026
+ * Created: 31st March 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MAJOR     4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MINOR     3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      93
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

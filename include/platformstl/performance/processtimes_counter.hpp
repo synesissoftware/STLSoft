@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/performance/processtimes_counter.hpp
+ * File:    platformstl/performance/processtimes_counter.hpp
  *
- * Purpose:     Platform header for the processtimes_counter components.
+ * Purpose: Platform header for the processtimes_counter components.
  *
- * Created:     9th June 2006
- * Updated:     9th November 2026
+ * Created: 9th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  5
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      21
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/processtimes_counter.hpp

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/functional/noop.hpp (originally MLCpp.h, ::SynesisStd)
+ * File:    stlsoft/functional/noop.hpp (originally MLCpp.h, ::SynesisStd)
  *
- * Purpose:     Basic functionals.
+ * Purpose: Basic functionals.
  *
- * Created:     19th January 2002
- * Updated:     9th November 2026
+ * Created: 19th January 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MAJOR      3
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MINOR      0
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   8
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       63
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

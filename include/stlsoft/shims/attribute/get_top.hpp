@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_top.hpp
+ * File:    stlsoft/shims/attribute/get_top.hpp
  *
- * Purpose:     Contains the get_top attribute shim.
+ * Purpose: Contains the get_top attribute shim.
  *
- * Created:     8th September 2019
- * Updated:     9th November 2026
+ * Created: 8th September 2019
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_REVISION   3
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_EDIT       4
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

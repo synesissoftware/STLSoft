@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/user_name.hpp
+ * File:    winstl/system/user_name.hpp
  *
- * Purpose:     Preposterously simple class that gets, and makes accessible,
- *              the user name.
+ * Purpose: Preposterously simple class that gets, and makes accessible,
+ *          the user name.
  *
- * Created:     13th September 2014
- * Updated:     9th November 2026
+ * Created: 13th September 2014
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_MAJOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_MINOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_REVISION    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_EDIT        18
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/compiler_optimisation_traits.hpp (was stlsoft_compiler_traits.h)
+ * File:    stlsoft/util/compiler_optimisation_traits.hpp (was stlsoft_compiler_traits.h)
  *
- * Purpose:     compiler_optimisation_traits class.
+ * Purpose: compiler_optimisation_traits class.
  *
- * Created:     15th November 2003
- * Updated:     9th November 2026
+ * Created: 15th November 2003
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MAJOR       4
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MINOR       0
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_REVISION    6
-# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        36
+# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

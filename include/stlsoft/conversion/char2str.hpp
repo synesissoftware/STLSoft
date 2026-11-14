@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/char2str.hpp
+ * File:    stlsoft/conversion/char2str.hpp
  *
- * Purpose:     Conversion from character(s) to string.
+ * Purpose: Conversion from character(s) to string.
  *
- * Created:     12th November 2020
- * Updated:     9th November 2026
+ * Created: 12th November 2020
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_MAJOR     1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_MINOR     0
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_REVISION  2
-# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_EDIT      4
+# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_CHAR2STR_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

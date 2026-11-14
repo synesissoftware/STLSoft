@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/directory_functions.hpp
+ * File:    platformstl/filesystem/directory_functions.hpp
  *
- * Purpose:     Platform header for directory manipulation functions.
+ * Purpose: Platform header for directory manipulation functions.
  *
- * Created:     29th May 2006
- * Updated:     9th November 2026
+ * Created: 29th May 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    6
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        27
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

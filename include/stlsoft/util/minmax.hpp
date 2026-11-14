@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/minmax.hpp (originally MLFwdEnm.h)
+ * File:    stlsoft/util/minmax.hpp (originally MLFwdEnm.h)
  *
- * Purpose:     Definition of minimum() and maximum() template functions.
+ * Purpose: Definition of minimum() and maximum() template functions.
  *
- * Created:     11th April 2005
- * Updated:     9th November 2026
+ * Created: 11th April 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_MAJOR       2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_EDIT        29
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_MAJOR      2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_MINOR      1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_REVISION   5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

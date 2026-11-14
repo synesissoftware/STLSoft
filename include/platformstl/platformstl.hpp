@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/platformstl.hpp
+ * File:    platformstl/platformstl.hpp
  *
- * Purpose:     Root header for the PlatformSTL C++ libraries. Performs platform
- *              discriminations, and definitions of types.
+ * Purpose: Root header for the PlatformSTL C++ libraries. Performs platform
+ *          discriminations, and definitions of types.
  *
- * Created:     20th March 2005
- * Updated:     9th November 2026
+ * Created: 20th March 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   6
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       28
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp

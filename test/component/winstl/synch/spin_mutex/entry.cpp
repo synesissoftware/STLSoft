@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::spin_mutex`.
  *
  * Created: sometime in 2015
- * Updated: 29th October 2026
+ * Updated: 12th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -111,12 +111,12 @@ namespace {
 
     struct specific_policy
     {
-    public: // Types
+    public: // types
         typedef stlsoft::ss_sint32_t                            ss_sint32_t;
         typedef stlsoft::ss_truthy_t                            ss_truthy_t;
         typedef winstl::atomic_int_t                            atomic_int_type;
 
-    public: // Operations
+    public: // operations
         static
         ss_truthy_t
         try_acquire_lock(

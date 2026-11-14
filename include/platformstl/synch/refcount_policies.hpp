@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/refcount_policies.hpp
+ * File:    platformstl/synch/refcount_policies.hpp
  *
- * Purpose:     Reference-counting policies.
+ * Purpose: Reference-counting policies.
  *
- * Created:     31st May 2009
- * Updated:     9th November 2026
+ * Created: 31st May 2009
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_REVISION   4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_EDIT       19
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

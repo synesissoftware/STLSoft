@@ -4,7 +4,7 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 9th November 2026
+ * Updated: 14th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  *
  * \brief [C, C++] Windows error manipulation and representation
  *   functions
- *   (\ref group__library__error "Error" Library).
+ *   (\ref group__library__Error "Error" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR    5
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION 8
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT     93
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,7 +118,7 @@ namespace winstl_project
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 ws_char_a_t const*
@@ -131,7 +131,7 @@ winstl_C_fmtmsg_empty_reason_unknown_a()
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 ws_char_w_t const*
@@ -144,7 +144,7 @@ winstl_C_fmtmsg_empty_reason_unknown_w()
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 ws_char_a_t const*
@@ -157,7 +157,7 @@ winstl_C_fmtmsg_empty_string_a()
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 ws_char_w_t const*
@@ -170,7 +170,7 @@ winstl_C_fmtmsg_empty_string_w()
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 ws_char_a_t*
@@ -236,7 +236,7 @@ winstl_C_fmtmsg_elide_message_a_(
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 ws_char_w_t*
@@ -313,7 +313,7 @@ winstl_C_fmtmsg_elide_message_w_(
  *   added; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
  *   \c source is \c \c nullptr.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 DWORD
@@ -356,7 +356,7 @@ winstl_C_FormatMessageA_INVOKE_for_alloc_(
  *   added; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
  *   \c source is \c \c nullptr.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 DWORD
@@ -400,7 +400,7 @@ winstl_C_FormatMessageW_INVOKE_for_alloc_(
  *   removed; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
  *   \c source is \c \c nullptr.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 DWORD
@@ -443,7 +443,7 @@ winstl_C_FormatMessageA_INVOKE_in_buffer_(
  *   removed; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
  *   \c source is \c \c nullptr.
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 DWORD
@@ -485,7 +485,7 @@ winstl_C_FormatMessageW_INVOKE_in_buffer_(
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -525,7 +525,7 @@ winstl_C_FormatMessageA__buff_inst(
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -565,7 +565,7 @@ winstl_C_FormatMessageW__buff_inst(
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -604,7 +604,7 @@ winstl_C_FormatMessageA__alloc_inst(
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -643,7 +643,7 @@ winstl_C_FormatMessageW__alloc_inst(
 
 /** [UNDOCUMENTED]
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 void
@@ -664,7 +664,7 @@ winstl_C_fmtmsg_LocalFree__(void* pv)
  * created string to the caller via the pointer \c ppBuffer, according to
  * the <code>FormatMessage()</code> \c flags and the \c elisionFlags
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param flags <code>FormatMessage()</code> flags
  * \param hModule The message strings module. May be \c nullptr
@@ -718,7 +718,7 @@ winstl_C_format_message_from_module_to_allocated_buffer_a(
  * created string to the caller via the pointer \c ppBuffer, according to
  * the <code>FormatMessage()</code> \c flags and the \c elisionFlags
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \param flags <code>FormatMessage()</code> flags
  * \param hModule The message strings module. May be \c nullptr
@@ -774,7 +774,7 @@ winstl_C_format_message_from_module_to_allocated_buffer_w(
 
 /** Translates the given error to an error string and
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -810,7 +810,7 @@ winstl_C_format_message_buff_inst_a(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -846,7 +846,7 @@ winstl_C_format_message_buff_inst_w(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -868,7 +868,7 @@ winstl_C_format_message_buff_a(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -890,7 +890,7 @@ winstl_C_format_message_buff_w(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -925,7 +925,7 @@ winstl_C_format_message_alloc_a(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_alloc_w)
@@ -1040,7 +1040,7 @@ winstl_C_format_message_strerror_w(
  *
  * \param buffer The string to be released. May be \c nullptr
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 void
@@ -1062,7 +1062,7 @@ winstl_C_format_message_free_buff_a(ws_char_a_t* buffer)
  *
  * \param buffer The string to be released. May be \c nullptr
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 STLSOFT_INLINE
 void
@@ -1375,7 +1375,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -1396,7 +1396,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -1417,7 +1417,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -1437,7 +1437,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -1457,7 +1457,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -1477,7 +1477,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  *
  * \deprecated This function is deprecated and will be removed in a future release.
  */
@@ -1497,7 +1497,7 @@ format_message(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 inline
 void
@@ -1510,7 +1510,7 @@ format_message_free_buff(
 
 /**
  *
- * \ingroup group__library__error
+ * \ingroup group__library__Error
  */
 inline
 void

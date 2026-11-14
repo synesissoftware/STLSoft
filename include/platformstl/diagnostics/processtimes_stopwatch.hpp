@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/diagnostics/processtimes_stopwatch.hpp (formerly platformstl::processtimes_counter, platformstl/performance/processtimes_counter.hpp)
+ * File:    platformstl/diagnostics/processtimes_stopwatch.hpp (formerly platformstl::processtimes_counter, platformstl/performance/processtimes_counter.hpp)
  *
- * Purpose:     Platform header for the processtimes_stopwatch components.
+ * Purpose: Platform header for the processtimes_stopwatch components.
  *
- * Created:     9th June 2006
- * Updated:     9th November 2026
+ * Created: 9th June 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    3
-# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        21
+# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/diagnostics/processtimes_stopwatch.hpp

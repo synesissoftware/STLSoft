@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/policy/errno_to_string_translation_policy.hpp (formerly unixstl/error/exceptions.hpp)
+ * File:    stlsoft/exception/policy/errno_to_string_translation_policy.hpp (formerly unixstl/error/exceptions.hpp)
  *
  * Purpose: stlsoft::errno_to_string_translation_policy policy class
  *
  * Created: 19th June 2004
- * Updated: 9th November 2026
+ * Updated: 11th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_POLICY_HPP_ERRNO_TO_STRING_TRANSLATION_POLICY_MAJOR      5
 # define STLSOFT_VER_STLSOFT_EXCEPTION_POLICY_HPP_ERRNO_TO_STRING_TRANSLATION_POLICY_MINOR      1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_POLICY_HPP_ERRNO_TO_STRING_TRANSLATION_POLICY_REVISION   2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_POLICY_HPP_ERRNO_TO_STRING_TRANSLATION_POLICY_EDIT       71
+# define STLSOFT_VER_STLSOFT_EXCEPTION_POLICY_HPP_ERRNO_TO_STRING_TRANSLATION_POLICY_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

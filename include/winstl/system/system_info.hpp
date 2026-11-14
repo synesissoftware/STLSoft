@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/system_info.hpp
+ * File:    winstl/system/system_info.hpp
  *
- * Purpose:     Contains the basic_system_info class, which provides information
- *              regarding the host system, such as number of processors and
- *              page size.
+ * Purpose: Contains the basic_system_info class, which provides information
+ *          regarding the host system, such as number of processors and
+ *          page size.
  *
- * Created:     7th February 2002
- * Updated:     9th November 2026
+ * Created: 7th February 2002
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_MAJOR     4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_MINOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_REVISION  9
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_EDIT      78
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_EDIT      79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Helper functions for file handling
  *
  * Created: 1st January 2005
- * Updated: 9th November 2026
+ * Updated: 13th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   20
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       77
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -237,7 +237,7 @@ load_text_file_impl(
     {
         DWORD const le = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
-        STLSOFT_THROW_X(winstl_exception("File does not exist", le));
+        STLSOFT_THROW_X(winstl_exception("failed to open file", le));
     }
 
     ws_uint64_t             size    =   filesys_traits_t::get_file_size(h.get());
@@ -247,7 +247,7 @@ load_text_file_impl(
     {
         if (size > 0xFFFFFFFF)
         {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("Cannot read in files larger than 4GB"));
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("cannot read in files larger than 4GB"));
         }
         else
         {
@@ -266,7 +266,7 @@ load_text_file_impl(
             {
                 DWORD const le = WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 
-                STLSOFT_THROW_X(winstl_exception("Read operation failed", le));
+                STLSOFT_THROW_X(winstl_exception("failed to read from file", le));
             }
             else
             {

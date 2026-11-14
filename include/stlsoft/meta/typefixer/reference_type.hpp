@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixer/reference_type.hpp
+ * File:    stlsoft/meta/typefixer/reference_type.hpp
  *
- * Purpose:     Definition of the fixer_reference_type and fixer_const_reference_type types.
+ * Purpose: Definition of the fixer_reference_type and fixer_const_reference_type types.
  *
- * Created:     9th February 2004
- * Updated:     9th November 2026
+ * Created: 9th February 2004
+ * Updated: 11th November 2026
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE_MAJOR    2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE_REVISION 5
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE_EDIT     46
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
