@@ -5,7 +5,7 @@
  *          `stlsoft::wide2multibyte`.
  *
  * Created: 28th October 2026
- * Updated: 29th October 2026
+ * Updated: 15th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,9 @@
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/error/conversion_error.hpp>
 
+/* Standard C++ header files */
+#include <sstream>
+
 /* Standard C header files */
 #include <stdlib.h>
 #include <string.h>
@@ -51,6 +54,7 @@ namespace {
     static void TEST_LONGER_THAN_INTERNAL_BUFFER();
     static void TEST_MULTIBYTE_REJECTION();
     static void TEST_WIDE_REJECTION();
+    static void TEST_STREAM_INSERTION();
 } // anonymous namespace
 
 
@@ -74,6 +78,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_LONGER_THAN_INTERNAL_BUFFER);
         XTESTS_RUN_CASE(TEST_MULTIBYTE_REJECTION);
         XTESTS_RUN_CASE(TEST_WIDE_REJECTION);
+        XTESTS_RUN_CASE(TEST_STREAM_INSERTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -295,6 +300,20 @@ static void TEST_WIDE_REJECTION()
 
         TEST_MS_EQ(scratch, conv.c_str());
     }
+}
+
+static void TEST_STREAM_INSERTION()
+{
+    stlsoft::multibyte2wide<64> const   wide("hello");
+    stlsoft::wide2multibyte<64> const   narrow(L"hello");
+    std::wostringstream                 wstm;
+    std::ostringstream                  nstm;
+
+    wstm << wide;
+    nstm << narrow;
+
+    TEST_WS_EQ(wide.c_str(), wstm.str().c_str());
+    TEST_MS_EQ(narrow.c_str(), nstm.str().c_str());
 }
 
 } // anonymous namespace

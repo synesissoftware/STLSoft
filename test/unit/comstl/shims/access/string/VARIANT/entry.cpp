@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for VARIANT string access shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 15th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -20,6 +20,7 @@
 #include <xtests/terse-api.h>
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/shims/access/string.hpp>
+#include <sstream>
 #include <stdlib.h>
 
 
@@ -29,8 +30,9 @@
 
 namespace {
 
-    static void test_c_str_ptr_integer_variant(void);
-    static void test_c_str_ptr_bstr_variant(void);
+    static void test_c_str_ptr_integer_variant();
+    static void test_c_str_ptr_bstr_variant();
+    static void TEST_STREAM_INSERTION();
 } // anonymous namespace
 
 
@@ -51,6 +53,7 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(test_c_str_ptr_integer_variant);
         XTESTS_RUN_CASE(test_c_str_ptr_bstr_variant);
+        XTESTS_RUN_CASE(TEST_STREAM_INSERTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -67,7 +70,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_c_str_ptr_integer_variant(void)
+static void test_c_str_ptr_integer_variant()
 {
     VARIANT v;
 
@@ -81,7 +84,7 @@ static void test_c_str_ptr_integer_variant(void)
     ::VariantClear(&v);
 }
 
-static void test_c_str_ptr_bstr_variant(void)
+static void test_c_str_ptr_bstr_variant()
 {
     VARIANT v;
 
@@ -90,6 +93,35 @@ static void test_c_str_ptr_bstr_variant(void)
     v.bstrVal = ::SysAllocString(L"abc");
 
     TEST_PTR_NE(NULL, stlsoft::c_str_ptr(v));
+
+    ::VariantClear(&v);
+}
+
+static void TEST_STREAM_INSERTION()
+{
+    VARIANT v;
+
+    ::VariantInit(&v);
+    v.vt = VT_BSTR;
+    v.bstrVal = ::SysAllocString(L"abc");
+
+    {
+        std::ostringstream nstm;
+
+        nstm << stlsoft::c_str_ptr_a(v);
+        nstm << stlsoft::c_str_ptr_null_a(v);
+
+        TEST_MS_EQ("abcabc", nstm.str().c_str());
+    }
+
+    {
+        std::wostringstream wstm;
+
+        wstm << stlsoft::c_str_ptr_w(v);
+        wstm << stlsoft::c_str_ptr_null_w(v);
+
+        TEST_WS_EQ(L"abcabc", wstm.str().c_str());
+    }
 
     ::VariantClear(&v);
 }
