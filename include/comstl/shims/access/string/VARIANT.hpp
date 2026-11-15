@@ -4,7 +4,7 @@
  * Purpose: Definition of the string access shims for the VARIANT type.
  *
  * Created: 24th May 2002
- * Updated: 12th November 2026
+ * Updated: 15th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    4
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 12
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     158
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

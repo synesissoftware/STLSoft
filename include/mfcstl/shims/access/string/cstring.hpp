@@ -4,7 +4,7 @@
  * Purpose: String access shims for CString
  *
  * Created: 24th May 2002
- * Updated: 9th November 2026
+ * Updated: 15th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MAJOR    4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_REVISION 8
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     105
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -292,7 +292,12 @@ using ::mfcstl::c_str_ptr_null_a;
 # include <iosfwd>
 
 /* Has to be like this otherwise it conflicts with operator <<(class CArchive &,const class CString &) (at least with VC++ <7.1). */
-inline STLSOFT_NS_QUAL_STD(basic_ostream)<TCHAR>& operator <<(STLSOFT_NS_QUAL_STD(basic_ostream)<TCHAR> &stm, CString const& shim)
+inline
+STLSOFT_NS_QUAL_STD(basic_ostream)<TCHAR>&
+operator <<(
+    STLSOFT_NS_QUAL_STD(basic_ostream)<TCHAR>&  stm
+,   CString const&                              shim
+)
 {
     return stm << static_cast<LPCTSTR>(shim);
 }

@@ -4,7 +4,7 @@
  * Purpose: Type conversions for Windows.
  *
  * Created: 31st May 2003
- * Updated: 9th November 2026
+ * Updated: 15th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    4
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 16
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     121
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -873,7 +873,7 @@ using ::winstl::c_str_ptr_null_w;
 
 # include <iosfwd>
 
-template <
+template<
     WINSTL_NS_QUAL(ws_size_t) V_internalSize
 >
 inline
@@ -886,7 +886,7 @@ operator <<(
     return stm << c.c_str();
 }
 
-template <
+template<
     WINSTL_NS_QUAL(ws_size_t) V_internalSize
 >
 inline

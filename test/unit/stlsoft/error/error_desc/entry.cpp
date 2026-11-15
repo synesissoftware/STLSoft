@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for stlsoft::error_desc.
  *
  * Created: 28th October 2026
- * Updated: 1st November 2026
+ * Updated: 15th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,7 @@
 #include <stlsoft/memory/auto_buffer.hpp>
 
 /* Standard C++ header files */
+#include <sstream>
 #include <string>
 
 /* Standard C header files */
@@ -98,6 +99,7 @@ namespace {
     static void TEST_NARROW_COPY();
 #endif /* compiler */
     static void TEST_error_desc_WIDE_FALLBACK_MATCHES_NARROW();
+    static void TEST_STREAM_INSERTION();
 } // anonymous namespace
 
 
@@ -133,6 +135,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_NARROW_COPY);
 #endif /* compiler */
         XTESTS_RUN_CASE(TEST_error_desc_WIDE_FALLBACK_MATCHES_NARROW);
+        XTESTS_RUN_CASE(TEST_STREAM_INSERTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -386,6 +389,26 @@ static void TEST_error_desc_WIDE_FALLBACK_MATCHES_NARROW()
     EXPECT_WIDE_ERRNO_(ENOENT);
     EXPECT_WIDE_ERRNO_(EINVAL);
 #endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS || STLSOFT_ERROR_DESC_wcserror */
+}
+
+static void TEST_STREAM_INSERTION()
+{
+#ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+
+    stlsoft::error_desc const   narrow(ENOENT);
+    stlsoft::error_desc_w const wide(ENOENT);
+    std::ostringstream          nstm;
+    std::wostringstream         wstm;
+
+    nstm << narrow;
+    wstm << wide;
+
+    TEST_MS_EQ(narrow.get_description(), nstm.str().c_str());
+    TEST_WS_EQ(wide.get_description(), wstm.str().c_str());
+#else /* ? STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+
+    TEST_PASSED();
+#endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 }
 } // anonymous namespace
 

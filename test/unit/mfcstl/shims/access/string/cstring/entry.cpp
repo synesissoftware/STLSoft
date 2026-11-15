@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for CString string-access shims.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 15th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -21,6 +21,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sstream>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -29,9 +30,10 @@
 
 namespace {
 
-    static void TEST_calls_possible(void);
-    static void TEST_empty_string(void);
-    static void TEST_non_empty_string(void);
+    static void TEST_calls_possible();
+    static void TEST_empty_string();
+    static void TEST_non_empty_string();
+    static void TEST_STREAM_INSERTION();
 } // anonymous namespace
 
 
@@ -51,6 +53,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_calls_possible);
         XTESTS_RUN_CASE(TEST_empty_string);
         XTESTS_RUN_CASE(TEST_non_empty_string);
+        XTESTS_RUN_CASE(TEST_STREAM_INSERTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -96,6 +99,16 @@ static void TEST_non_empty_string()
     TEST_MS_EQ(_T("mfcstl"), stlsoft::c_str_ptr(s));
     TEST_MS_EQ(_T("mfcstl"), stlsoft::c_str_data(s));
     TEST_MS_EQ(_T("mfcstl"), stlsoft::c_str_ptr_null(s));
+}
+
+static void TEST_STREAM_INSERTION()
+{
+    CString const                                       s(_T("mfcstl"));
+    STLSOFT_NS_QUAL_STD(basic_ostringstream)<TCHAR>     stm;
+
+    stm << s;
+
+    TEST_MS_EQ(_T("mfcstl"), stm.str().c_str());
 }
 } // anonymous namespace
 

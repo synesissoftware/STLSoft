@@ -4,7 +4,7 @@
  * Purpose: Character-encoding scheme interconversion components.
  *
  * Created: 31st May 2003
- * Updated: 9th November 2026
+ * Updated: 15th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR      3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION   7
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT       125
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT       126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -826,7 +826,7 @@ operator <<(
 
 # include <iosfwd>
 
-template <
+template<
     STLSOFT_NS_QUAL(ss_size_t) V_internalSize
 >
 inline
@@ -839,7 +839,7 @@ operator <<(
     return stm << c.c_str();
 }
 
-template <
+template<
     STLSOFT_NS_QUAL(ss_size_t) V_internalSize
 >
 inline

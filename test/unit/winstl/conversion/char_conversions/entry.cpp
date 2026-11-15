@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `conversion`.
  *
  * Created: 9th August 2026
- * Updated: 7th November 2026
+ * Updated: 15th November 2026
  * Note:    Auto-generated on 9th August 2026 (test initiative); regenerate via test/scripts/ rather than hand-editing layout.
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -20,6 +20,7 @@
 #include <xtests/terse-api.h>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/stlsoft.h>
+#include <sstream>
 #include <stdlib.h>
 #include <string.h>
 
@@ -30,8 +31,9 @@
 
 namespace {
 
-    static void test_multibyte2wide_roundtrip(void);
-    static void test_wide2multibyte_roundtrip(void);
+    static void test_multibyte2wide_roundtrip();
+    static void test_wide2multibyte_roundtrip();
+    static void TEST_STREAM_INSERTION();
 } // anonymous namespace
 
 
@@ -50,6 +52,7 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(test_multibyte2wide_roundtrip);
         XTESTS_RUN_CASE(test_wide2multibyte_roundtrip);
+        XTESTS_RUN_CASE(TEST_STREAM_INSERTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -66,7 +69,7 @@ int main(int argc, char* argv[])
 
 namespace {
 
-static void test_multibyte2wide_roundtrip(void)
+static void test_multibyte2wide_roundtrip()
 {
     char const mb[] = "hello";
     winstl::multibyte2wide<64> conv(mb);
@@ -76,7 +79,7 @@ static void test_multibyte2wide_roundtrip(void)
     TEST_BOOLEAN_TRUE(0 == ::wcscmp(L"hello", stlsoft::c_str_ptr_w(conv)));
 }
 
-static void test_wide2multibyte_roundtrip(void)
+static void test_wide2multibyte_roundtrip()
 {
     wchar_t const w[] = L"world";
     winstl::wide2multibyte<64> conv(w);
@@ -84,6 +87,20 @@ static void test_wide2multibyte_roundtrip(void)
     TEST_PTR_NE(NULL, stlsoft::c_str_ptr(conv));
     TEST_INT_EQ(5, static_cast<int>(stlsoft::c_str_len(conv)));
     TEST_MS_EQ("world", stlsoft::c_str_ptr_a(conv));
+}
+
+static void TEST_STREAM_INSERTION()
+{
+    winstl::multibyte2wide<64> const    wide("hello");
+    winstl::wide2multibyte<64> const    narrow(L"world");
+    std::wostringstream                 wstm;
+    std::ostringstream                  nstm;
+
+    wstm << wide;
+    nstm << narrow;
+
+    TEST_WS_EQ(wide.c_str(), wstm.str().c_str());
+    TEST_MS_EQ(narrow.c_str(), nstm.str().c_str());
 }
 } // anonymous namespace
 
