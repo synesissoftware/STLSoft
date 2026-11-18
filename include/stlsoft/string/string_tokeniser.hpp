@@ -4,7 +4,7 @@
  * Purpose: String token parsing class.
  *
  * Created: 6th January 2001
- * Updated: 12th November 2026
+ * Updated: 18th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR      5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR      1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION   18
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT       248
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION   19
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT       249
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -738,7 +738,6 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
-
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
 
     /// Tokenise the given range with the given delimiter
@@ -760,6 +759,13 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+
+public:
+    /// Copy constructor.
+    string_tokeniser(class_type const& rhs)
+        : m_str(rhs.m_str)
+        , m_delimiter(rhs.m_delimiter)
+    {}
 
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
