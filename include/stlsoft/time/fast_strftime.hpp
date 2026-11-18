@@ -4,7 +4,7 @@
  * Purpose: Efficient drop-in replacement for strftime().
  *
  * Created: 23rd December 2018
- * Updated: 9th November 2026
+ * Updated: 19th November 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MAJOR       1
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MINOR       3
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_REVISION    2
-# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        19
+# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -512,7 +512,6 @@ fast_strftime_(
 
                     dest[n++] = ch;
                     break;
-
                 case 0:
 week_number_U:
 
@@ -561,7 +560,6 @@ finish_two_digit:
                     state = state_literal;
 
                     break;
-
 finish_three_digit:
 
                     STLSOFT_ASSERT(v >= 0 && v < 1000);
@@ -626,7 +624,6 @@ finish_three_digit:
                     state = state_literal;
 
                     break;
-
 finish_sliced_item:
 
                     if ((cchDest - n) < (1 + sl->len))
@@ -642,44 +639,37 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'A':
 
                     sl = &info.weekdays_long[tm->tm_wday];
 
                     goto finish_sliced_item;
-
                 case 'a':
 
                     sl = &info.weekdays_short[tm->tm_wday];
 
                     goto finish_sliced_item;
-
                 case 'B':
 
                     sl = &info.months_long[tm->tm_mon];
 
                     goto finish_sliced_item;
-
                 case 'b':
                 case 'h':
 
                     sl = &info.months_short[tm->tm_mon];
 
                     goto finish_sliced_item;
-
                 case 'd':
 
                     v = tm->tm_mday;
 
                     goto finish_two_digit;
-
                 case 'H':
 
                     v = tm->tm_hour;
 
                     goto finish_two_digit;
-
                 case 'I':
 
                     v = tm->tm_hour % 12;
@@ -690,37 +680,31 @@ finish_sliced_item:
                     }
 
                     goto finish_two_digit;
-
                 case 'j':
 
                     v = 1 + tm->tm_yday;
 
                     goto finish_three_digit;
-
                 case 'M':
 
                     v = tm->tm_min;
 
                     goto finish_two_digit;
-
                 case 'm':
 
                     v = tm->tm_mon + 1;
 
                     goto finish_two_digit;
-
                 case 'S':
 
                     v = tm->tm_sec;
 
                     goto finish_two_digit;
-
                 case 'U':
 
                     wd = tm->tm_wday;
 
                     goto week_number_U;
-
                 case 'W':
 
                     if (0 == tm->tm_wday)
@@ -733,7 +717,6 @@ finish_sliced_item:
                     }
 
                     goto week_number_U;
-
                 case 'w':
 
                     v = tm->tm_wday;
@@ -748,7 +731,6 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'Y':
 
                     v = 1900 + tm->tm_year;
@@ -778,13 +760,11 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'y':
 
                     v = (tm->tm_year % 100);
 
                     goto finish_two_digit;
-
 
                 // The extensions
 
@@ -793,11 +773,9 @@ finish_sliced_item:
                     v = (1900 + tm->tm_year) / 100;
 
                     goto finish_two_digit;
-
                 case 'c': // locale-specific date and time
 
                     break;
-
                 case 'D': // %m/%d/%y
 
                     if ((cchDest - n) < 9)
@@ -829,7 +807,6 @@ finish_sliced_item:
                     }
 
                     break;
-
                 case 'e': // space-leading-padded day-of-month
 
                     if ((cchDest - n) < 3)
@@ -856,7 +833,6 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'F': // %Y-%m-%d
 
                     if ((cchDest - n) < 11)
@@ -903,15 +879,12 @@ finish_sliced_item:
                     }
 
                     break;
-
                 case 'G': // week-based year
 
                     break;
-
                 case 'g': // week-based year - last two digits
 
                     break;
-
                 case 'n': // a '\n'
 
                     if ((cchDest - n) < 2)
@@ -924,11 +897,9 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'p': // locale's AM/PM indicator
 
                     break;
-
                 case 'R': // %H:%M
 
                     if ((cchDest - n) < 6)
@@ -961,11 +932,9 @@ finish_sliced_item:
                     }
 
                     break;
-
                 case 'r': // locale's 12-hr clock time
 
                     break;
-
                 case 'T': // %H:%M:%S
 
                     if ((cchDest - n) < 9)
@@ -1009,7 +978,6 @@ finish_sliced_item:
                     }
 
                     break;
-
                 case 't': // a '\t'
 
                     if ((cchDest - n) < 2)
@@ -1022,7 +990,6 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'u': // ISO 8601 weekday (1 - 7, Monday == 1)
 
                     if ((cchDest - n) < 2)
@@ -1042,30 +1009,24 @@ finish_sliced_item:
                     state = state_literal;
 
                     break;
-
                 case 'V': // ISO 8601 week number
 
                     break;
-
                 case 'X': // locale-dependent time
 
                     break;
-
                 case 'x': // locale-dependent date
 
                     break;
-
                 case 'Z': // Timezone abbreviation
 
                     break;
-
                 case 'z': // ISO 8601 offset
 
                     break;
                 }
             }
             break;
-
         default:
 
             STLSOFT_MESSAGE_ASSERT("should not get here", false);
@@ -1348,6 +1309,7 @@ fast_strftime(
     return fast_strftime(dest, V_dimension, fmt, tm);
 }
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
